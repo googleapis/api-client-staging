@@ -123,7 +123,7 @@ public class DatabaseAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListDatabasesRequest actualRequest = (ListDatabasesRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, actualRequest.getParentAsInstanceName());
+    Assert.assertEquals(parent, InstanceName.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -169,7 +169,7 @@ public class DatabaseAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CreateDatabaseRequest actualRequest = (CreateDatabaseRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, actualRequest.getParentAsInstanceName());
+    Assert.assertEquals(parent, InstanceName.parse(actualRequest.getParent()));
     Assert.assertEquals(createStatement, actualRequest.getCreateStatement());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -212,7 +212,7 @@ public class DatabaseAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetDatabaseRequest actualRequest = (GetDatabaseRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, actualRequest.getNameAsDatabaseName());
+    Assert.assertEquals(name, DatabaseName.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -257,7 +257,7 @@ public class DatabaseAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     UpdateDatabaseDdlRequest actualRequest = (UpdateDatabaseDdlRequest) actualRequests.get(0);
 
-    Assert.assertEquals(database, actualRequest.getDatabaseAsDatabaseName());
+    Assert.assertEquals(database, DatabaseName.parse(actualRequest.getDatabase()));
     Assert.assertEquals(statements, actualRequest.getStatementsList());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -298,7 +298,7 @@ public class DatabaseAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DropDatabaseRequest actualRequest = (DropDatabaseRequest) actualRequests.get(0);
 
-    Assert.assertEquals(database, actualRequest.getDatabaseAsDatabaseName());
+    Assert.assertEquals(database, DatabaseName.parse(actualRequest.getDatabase()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -336,7 +336,7 @@ public class DatabaseAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetDatabaseDdlRequest actualRequest = (GetDatabaseDdlRequest) actualRequests.get(0);
 
-    Assert.assertEquals(database, actualRequest.getDatabaseAsDatabaseName());
+    Assert.assertEquals(database, DatabaseName.parse(actualRequest.getDatabase()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -367,7 +367,7 @@ public class DatabaseAdminClientTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    String formattedResource = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+    String formattedResource = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
     Policy policy = Policy.newBuilder().build();
 
     Policy actualResponse = client.setIamPolicy(formattedResource, policy);
@@ -392,8 +392,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      String formattedResource =
-          DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+      String formattedResource = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
       Policy policy = Policy.newBuilder().build();
 
       client.setIamPolicy(formattedResource, policy);
@@ -411,7 +410,7 @@ public class DatabaseAdminClientTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    String formattedResource = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+    String formattedResource = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
     Policy actualResponse = client.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -434,8 +433,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      String formattedResource =
-          DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+      String formattedResource = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
@@ -450,7 +448,7 @@ public class DatabaseAdminClientTest {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    String formattedResource = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+    String formattedResource = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
     List<String> permissions = new ArrayList<>();
 
     TestIamPermissionsResponse actualResponse =
@@ -476,8 +474,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      String formattedResource =
-          DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+      String formattedResource = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
       List<String> permissions = new ArrayList<>();
 
       client.testIamPermissions(formattedResource, permissions);

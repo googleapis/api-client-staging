@@ -1804,6 +1804,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(subscriptionName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithSubscriptionName(com.google.pubsub.v1.SubscriptionName value) {
       if (value == null) {
         return setName("");
@@ -1811,6 +1818,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SubscriptionName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.pubsub.v1.SubscriptionName getNameAsSubscriptionName() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -1818,6 +1832,13 @@ private static final long serialVersionUID = 0L;
       }
       return com.google.pubsub.v1.SubscriptionName.parse(str);
     }
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setTopic(topicNameOneof.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setTopicWithTopicNameOneof(com.google.pubsub.v1.TopicNameOneof value) {
       if (value == null) {
         return setTopic("");
@@ -1825,6 +1846,13 @@ private static final long serialVersionUID = 0L;
       return setTopic(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * TopicNameOneof.parse(protoBuilder.getTopic());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.pubsub.v1.TopicNameOneof getTopicAsTopicNameOneof() {
       java.lang.String str = getTopic();
       if (str.isEmpty()) {
@@ -1835,6 +1863,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.pubsub.v1.Subscription)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SubscriptionName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.pubsub.v1.SubscriptionName getNameAsSubscriptionName() {
     java.lang.String str = getName();
     if (str.isEmpty()) {
@@ -1842,6 +1877,13 @@ private static final long serialVersionUID = 0L;
     }
     return com.google.pubsub.v1.SubscriptionName.parse(str);
   }
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * TopicNameOneof.parse(protoObject.getTopic());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.pubsub.v1.TopicNameOneof getTopicAsTopicNameOneof() {
     java.lang.String str = getTopic();
     if (str.isEmpty()) {

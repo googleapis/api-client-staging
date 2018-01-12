@@ -832,6 +832,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(projectName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithProjectName(com.google.monitoring.v3.ProjectName value) {
       if (value == null) {
         return setName("");
@@ -839,6 +846,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * ProjectName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.monitoring.v3.ProjectName getNameAsProjectName() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -849,6 +863,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.monitoring.v3.CreateGroupRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * ProjectName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.monitoring.v3.ProjectName getNameAsProjectName() {
     java.lang.String str = getName();
     if (str.isEmpty()) {

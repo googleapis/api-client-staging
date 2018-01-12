@@ -511,6 +511,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setDatabase(databaseName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setDatabaseWithDatabaseName(com.google.spanner.admin.database.v1.DatabaseName value) {
       if (value == null) {
         return setDatabase("");
@@ -518,6 +525,13 @@ private static final long serialVersionUID = 0L;
       return setDatabase(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * DatabaseName.parse(protoBuilder.getDatabase());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.spanner.admin.database.v1.DatabaseName getDatabaseAsDatabaseName() {
       java.lang.String str = getDatabase();
       if (str.isEmpty()) {
@@ -528,6 +542,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.spanner.admin.database.v1.CreateDatabaseMetadata)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * DatabaseName.parse(protoObject.getDatabase());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.spanner.admin.database.v1.DatabaseName getDatabaseAsDatabaseName() {
     java.lang.String str = getDatabase();
     if (str.isEmpty()) {

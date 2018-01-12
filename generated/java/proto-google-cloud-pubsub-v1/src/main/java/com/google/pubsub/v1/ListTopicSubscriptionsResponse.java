@@ -750,6 +750,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setSubscriptions(index, subscriptionName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public Builder setSubscriptionsWithSubscriptionName(int index, com.google.pubsub.v1.SubscriptionName value) {
       if (value == null) {
         return setSubscriptions(index, "");
@@ -757,6 +764,13 @@ private static final long serialVersionUID = 0L;
       return setSubscriptions(index, value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.addSubscriptions(subscriptionName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public Builder addSubscriptionsWithSubscriptionName(com.google.pubsub.v1.SubscriptionName value) {
       if (value == null) {
         return addSubscriptions("");
@@ -764,6 +778,13 @@ private static final long serialVersionUID = 0L;
       return addSubscriptions(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.addAllSubscriptions(com.google.pubsub.v1.SubscriptionName.toStringList(values));
+     * </code></pre>
+     */
+    @Deprecated
     public Builder addAllSubscriptionsWithSubscriptionNameList(java.lang.Iterable<com.google.pubsub.v1.SubscriptionName> values) {
       java.util.List<java.lang.String> list = new java.util.ArrayList<java.lang.String>();
       for (com.google.pubsub.v1.SubscriptionName value : values) {
@@ -776,6 +797,13 @@ private static final long serialVersionUID = 0L;
       return addAllSubscriptions(list);
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SubscriptionName.parse(protoBuilder.getSubscriptions(index));
+     * </code></pre>
+     */
+    @Deprecated
     public com.google.pubsub.v1.SubscriptionName getSubscriptionsAsSubscriptionName(int index) {
       java.lang.String str = getSubscriptions(index);
       if (str.isEmpty()) {
@@ -784,6 +812,13 @@ private static final long serialVersionUID = 0L;
       return com.google.pubsub.v1.SubscriptionName.parse(str);
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SubscriptionName.parseList(protoBuilder.getSubscriptionsList());
+     * </code></pre>
+     */
+    @Deprecated
     public java.util.List<com.google.pubsub.v1.SubscriptionName> getSubscriptionsListAsSubscriptionNameList() {
       java.util.List<com.google.pubsub.v1.SubscriptionName> list = new java.util.ArrayList<com.google.pubsub.v1.SubscriptionName>();
       for (int i = 0; i < getSubscriptionsCount(); i++) {
@@ -794,6 +829,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.pubsub.v1.ListTopicSubscriptionsResponse)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SubscriptionName.parse(protoObject.getSubscriptions(index));
+   * </code></pre>
+   */
+  @Deprecated
   public com.google.pubsub.v1.SubscriptionName getSubscriptionsAsSubscriptionName(int index) {
     java.lang.String str = getSubscriptions(index);
     if (str.isEmpty()) {
@@ -802,6 +844,13 @@ private static final long serialVersionUID = 0L;
     return com.google.pubsub.v1.SubscriptionName.parse(str);
   }
   
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SubscriptionName.parseList(protoObject.getSubscriptionsList());
+   * </code></pre>
+   */
+  @Deprecated
   public java.util.List<com.google.pubsub.v1.SubscriptionName> getSubscriptionsListAsSubscriptionNameList() {
     java.util.List<com.google.pubsub.v1.SubscriptionName> list = new java.util.ArrayList<com.google.pubsub.v1.SubscriptionName>();
     for (int i = 0; i < getSubscriptionsCount(); i++) {

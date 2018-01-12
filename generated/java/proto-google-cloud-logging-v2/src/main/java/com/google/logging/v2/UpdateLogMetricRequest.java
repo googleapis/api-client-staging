@@ -766,6 +766,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setMetricName(metricNameOneof.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setMetricNameWithMetricNameOneof(com.google.logging.v2.MetricNameOneof value) {
       if (value == null) {
         return setMetricName("");
@@ -773,6 +780,13 @@ private static final long serialVersionUID = 0L;
       return setMetricName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * MetricNameOneof.parse(protoBuilder.getMetricName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.logging.v2.MetricNameOneof getMetricNameAsMetricNameOneof() {
       java.lang.String str = getMetricName();
       if (str.isEmpty()) {
@@ -783,6 +797,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.logging.v2.UpdateLogMetricRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * MetricNameOneof.parse(protoObject.getMetricName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.logging.v2.MetricNameOneof getMetricNameAsMetricNameOneof() {
     java.lang.String str = getMetricName();
     if (str.isEmpty()) {

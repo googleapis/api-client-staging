@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class MetricDescriptorName implements ResourceName {
     return of(project, metricDescriptor);
   }
 
+  public static String format(String project, String metricDescriptor) {
+    return newBuilder()
+      .setProject(project)
+      .setMetricDescriptor(metricDescriptor)
+      .build()
+      .toString();
+  }
+
   public static MetricDescriptorName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "MetricDescriptorName.parse: formattedString not in valid format");
     return of(matchMap.get("project"), matchMap.get("metric_descriptor"));
+  }
+
+  public static List<MetricDescriptorName> parseList(List<String> formattedStrings) {
+    List<MetricDescriptorName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<MetricDescriptorName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (MetricDescriptorName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

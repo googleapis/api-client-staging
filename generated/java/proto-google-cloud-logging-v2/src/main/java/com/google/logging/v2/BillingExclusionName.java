@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class BillingExclusionName implements ResourceName {
     return of(billingAccount, exclusion);
   }
 
+  public static String format(String billingAccount, String exclusion) {
+    return newBuilder()
+      .setBillingAccount(billingAccount)
+      .setExclusion(exclusion)
+      .build()
+      .toString();
+  }
+
   public static BillingExclusionName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "BillingExclusionName.parse: formattedString not in valid format");
     return of(matchMap.get("billing_account"), matchMap.get("exclusion"));
+  }
+
+  public static List<BillingExclusionName> parseList(List<String> formattedStrings) {
+    List<BillingExclusionName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<BillingExclusionName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (BillingExclusionName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

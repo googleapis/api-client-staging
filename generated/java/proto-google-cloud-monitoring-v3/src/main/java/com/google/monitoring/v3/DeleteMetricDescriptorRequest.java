@@ -530,6 +530,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(metricDescriptorName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithMetricDescriptorName(com.google.monitoring.v3.MetricDescriptorName value) {
       if (value == null) {
         return setName("");
@@ -537,6 +544,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * MetricDescriptorName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.monitoring.v3.MetricDescriptorName getNameAsMetricDescriptorName() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -547,6 +561,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.monitoring.v3.DeleteMetricDescriptorRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * MetricDescriptorName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.monitoring.v3.MetricDescriptorName getNameAsMetricDescriptorName() {
     java.lang.String str = getName();
     if (str.isEmpty()) {

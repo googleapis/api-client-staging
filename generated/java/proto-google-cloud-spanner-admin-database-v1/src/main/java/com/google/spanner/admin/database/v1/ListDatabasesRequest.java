@@ -763,6 +763,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setParent(instanceName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setParentWithInstanceName(com.google.spanner.admin.database.v1.InstanceName value) {
       if (value == null) {
         return setParent("");
@@ -770,6 +777,13 @@ private static final long serialVersionUID = 0L;
       return setParent(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * InstanceName.parse(protoBuilder.getParent());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.spanner.admin.database.v1.InstanceName getParentAsInstanceName() {
       java.lang.String str = getParent();
       if (str.isEmpty()) {
@@ -780,6 +794,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.spanner.admin.database.v1.ListDatabasesRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * InstanceName.parse(protoObject.getParent());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.spanner.admin.database.v1.InstanceName getParentAsInstanceName() {
     java.lang.String str = getParent();
     if (str.isEmpty()) {

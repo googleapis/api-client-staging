@@ -1436,6 +1436,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(projectName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithProjectName(com.google.monitoring.v3.ProjectName value) {
       if (value == null) {
         return setName("");
@@ -1443,6 +1450,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * ProjectName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.monitoring.v3.ProjectName getNameAsProjectName() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -1450,6 +1464,13 @@ private static final long serialVersionUID = 0L;
       }
       return com.google.monitoring.v3.ProjectName.parse(str);
     }
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setChildrenOfGroup(groupName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setChildrenOfGroupWithGroupName(com.google.monitoring.v3.GroupName value) {
       if (value == null) {
         return setChildrenOfGroup("");
@@ -1457,6 +1478,13 @@ private static final long serialVersionUID = 0L;
       return setChildrenOfGroup(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * GroupName.parse(protoBuilder.getChildrenOfGroup());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.monitoring.v3.GroupName getChildrenOfGroupAsGroupName() {
       java.lang.String str = getChildrenOfGroup();
       if (str.isEmpty()) {
@@ -1464,6 +1492,13 @@ private static final long serialVersionUID = 0L;
       }
       return com.google.monitoring.v3.GroupName.parse(str);
     }
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setAncestorsOfGroup(groupName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setAncestorsOfGroupWithGroupName(com.google.monitoring.v3.GroupName value) {
       if (value == null) {
         return setAncestorsOfGroup("");
@@ -1471,6 +1506,13 @@ private static final long serialVersionUID = 0L;
       return setAncestorsOfGroup(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * GroupName.parse(protoBuilder.getAncestorsOfGroup());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.monitoring.v3.GroupName getAncestorsOfGroupAsGroupName() {
       java.lang.String str = getAncestorsOfGroup();
       if (str.isEmpty()) {
@@ -1478,6 +1520,13 @@ private static final long serialVersionUID = 0L;
       }
       return com.google.monitoring.v3.GroupName.parse(str);
     }
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setDescendantsOfGroup(groupName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setDescendantsOfGroupWithGroupName(com.google.monitoring.v3.GroupName value) {
       if (value == null) {
         return setDescendantsOfGroup("");
@@ -1485,6 +1534,13 @@ private static final long serialVersionUID = 0L;
       return setDescendantsOfGroup(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * GroupName.parse(protoBuilder.getDescendantsOfGroup());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.monitoring.v3.GroupName getDescendantsOfGroupAsGroupName() {
       java.lang.String str = getDescendantsOfGroup();
       if (str.isEmpty()) {
@@ -1495,6 +1551,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.monitoring.v3.ListGroupsRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * ProjectName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.monitoring.v3.ProjectName getNameAsProjectName() {
     java.lang.String str = getName();
     if (str.isEmpty()) {
@@ -1502,6 +1565,13 @@ private static final long serialVersionUID = 0L;
     }
     return com.google.monitoring.v3.ProjectName.parse(str);
   }
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * GroupName.parse(protoObject.getChildrenOfGroup());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.monitoring.v3.GroupName getChildrenOfGroupAsGroupName() {
     java.lang.String str = getChildrenOfGroup();
     if (str.isEmpty()) {
@@ -1509,6 +1579,13 @@ private static final long serialVersionUID = 0L;
     }
     return com.google.monitoring.v3.GroupName.parse(str);
   }
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * GroupName.parse(protoObject.getAncestorsOfGroup());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.monitoring.v3.GroupName getAncestorsOfGroupAsGroupName() {
     java.lang.String str = getAncestorsOfGroup();
     if (str.isEmpty()) {
@@ -1516,6 +1593,13 @@ private static final long serialVersionUID = 0L;
     }
     return com.google.monitoring.v3.GroupName.parse(str);
   }
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * GroupName.parse(protoObject.getDescendantsOfGroup());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.monitoring.v3.GroupName getDescendantsOfGroupAsGroupName() {
     java.lang.String str = getDescendantsOfGroup();
     if (str.isEmpty()) {

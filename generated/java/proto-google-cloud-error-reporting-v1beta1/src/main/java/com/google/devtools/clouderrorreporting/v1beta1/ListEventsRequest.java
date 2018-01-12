@@ -1427,6 +1427,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setProjectName(projectName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setProjectNameWithProjectName(com.google.devtools.clouderrorreporting.v1beta1.ProjectName value) {
       if (value == null) {
         return setProjectName("");
@@ -1434,6 +1441,13 @@ private static final long serialVersionUID = 0L;
       return setProjectName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * ProjectName.parse(protoBuilder.getProjectName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.devtools.clouderrorreporting.v1beta1.ProjectName getProjectNameAsProjectName() {
       java.lang.String str = getProjectName();
       if (str.isEmpty()) {
@@ -1444,6 +1458,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.devtools.clouderrorreporting.v1beta1.ListEventsRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * ProjectName.parse(protoObject.getProjectName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.devtools.clouderrorreporting.v1beta1.ProjectName getProjectNameAsProjectName() {
     java.lang.String str = getProjectName();
     if (str.isEmpty()) {

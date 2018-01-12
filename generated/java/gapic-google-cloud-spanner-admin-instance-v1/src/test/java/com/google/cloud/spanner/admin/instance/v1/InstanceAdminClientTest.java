@@ -128,7 +128,7 @@ public class InstanceAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListInstanceConfigsRequest actualRequest = (ListInstanceConfigsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, actualRequest.getParentAsProjectName());
+    Assert.assertEquals(parent, ProjectName.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -157,10 +157,7 @@ public class InstanceAdminClientTest {
     InstanceConfigName name2 = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
     String displayName = "displayName1615086568";
     InstanceConfig expectedResponse =
-        InstanceConfig.newBuilder()
-            .setNameWithInstanceConfigName(name2)
-            .setDisplayName(displayName)
-            .build();
+        InstanceConfig.newBuilder().setName(name2.toString()).setDisplayName(displayName).build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
     InstanceConfigName name = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
@@ -172,7 +169,7 @@ public class InstanceAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetInstanceConfigRequest actualRequest = (GetInstanceConfigRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, actualRequest.getNameAsInstanceConfigName());
+    Assert.assertEquals(name, InstanceConfigName.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -220,7 +217,7 @@ public class InstanceAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListInstancesRequest actualRequest = (ListInstancesRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, actualRequest.getParentAsProjectName());
+    Assert.assertEquals(parent, ProjectName.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -252,8 +249,8 @@ public class InstanceAdminClientTest {
     int nodeCount = 1539922066;
     Instance expectedResponse =
         Instance.newBuilder()
-            .setNameWithInstanceName(name2)
-            .setConfigWithInstanceConfigName(config)
+            .setName(name2.toString())
+            .setConfig(config.toString())
             .setDisplayName(displayName)
             .setNodeCount(nodeCount)
             .build();
@@ -268,7 +265,7 @@ public class InstanceAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetInstanceRequest actualRequest = (GetInstanceRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, actualRequest.getNameAsInstanceName());
+    Assert.assertEquals(name, InstanceName.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -300,8 +297,8 @@ public class InstanceAdminClientTest {
     int nodeCount = 1539922066;
     Instance expectedResponse =
         Instance.newBuilder()
-            .setNameWithInstanceName(name)
-            .setConfigWithInstanceConfigName(config)
+            .setName(name.toString())
+            .setConfig(config.toString())
             .setDisplayName(displayName)
             .setNodeCount(nodeCount)
             .build();
@@ -324,8 +321,8 @@ public class InstanceAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CreateInstanceRequest actualRequest = (CreateInstanceRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, actualRequest.getParentAsProjectName());
-    Assert.assertEquals(instanceId, actualRequest.getInstanceIdAsInstanceName());
+    Assert.assertEquals(parent, ProjectName.parse(actualRequest.getParent()));
+    Assert.assertEquals(instanceId, InstanceName.parse(actualRequest.getInstanceId()));
     Assert.assertEquals(instance, actualRequest.getInstance());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -362,8 +359,8 @@ public class InstanceAdminClientTest {
     int nodeCount = 1539922066;
     Instance expectedResponse =
         Instance.newBuilder()
-            .setNameWithInstanceName(name)
-            .setConfigWithInstanceConfigName(config)
+            .setName(name.toString())
+            .setConfig(config.toString())
             .setDisplayName(displayName)
             .setNodeCount(nodeCount)
             .build();
@@ -426,7 +423,7 @@ public class InstanceAdminClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DeleteInstanceRequest actualRequest = (DeleteInstanceRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, actualRequest.getNameAsInstanceName());
+    Assert.assertEquals(name, InstanceName.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -457,7 +454,7 @@ public class InstanceAdminClientTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+    String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
     Policy policy = Policy.newBuilder().build();
 
     Policy actualResponse = client.setIamPolicy(formattedResource, policy);
@@ -482,7 +479,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+      String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
       Policy policy = Policy.newBuilder().build();
 
       client.setIamPolicy(formattedResource, policy);
@@ -500,7 +497,7 @@ public class InstanceAdminClientTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+    String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
 
     Policy actualResponse = client.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -523,7 +520,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+      String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
@@ -538,7 +535,7 @@ public class InstanceAdminClientTest {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+    String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
     List<String> permissions = new ArrayList<>();
 
     TestIamPermissionsResponse actualResponse =
@@ -564,7 +561,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+      String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
       List<String> permissions = new ArrayList<>();
 
       client.testIamPermissions(formattedResource, permissions);
