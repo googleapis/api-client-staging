@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.cloud.privacy.dlp.v2beta2;
+package com.google.cloud.dlp.v2beta2;
 
-import static com.google.cloud.privacy.dlp.v2beta2.PagedResponseWrappers.ListDeidentifyTemplatesPagedResponse;
-import static com.google.cloud.privacy.dlp.v2beta2.PagedResponseWrappers.ListDlpJobsPagedResponse;
-import static com.google.cloud.privacy.dlp.v2beta2.PagedResponseWrappers.ListInspectTemplatesPagedResponse;
+import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDeidentifyTemplatesPagedResponse;
+import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDlpJobsPagedResponse;
+import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListInspectTemplatesPagedResponse;
 
 import com.google.api.core.ApiFunction;
 import com.google.api.core.ApiFuture;
@@ -41,8 +41,8 @@ import com.google.api.gax.rpc.StatusCode;
 import com.google.api.gax.rpc.TransportChannelProvider;
 import com.google.api.gax.rpc.UnaryCallSettings;
 import com.google.api.gax.rpc.UnaryCallable;
-import com.google.cloud.privacy.dlp.v2beta2.stub.DlpServiceStub;
-import com.google.cloud.privacy.dlp.v2beta2.stub.GrpcDlpServiceStub;
+import com.google.cloud.dlp.v2beta2.stub.DlpServiceStub;
+import com.google.cloud.dlp.v2beta2.stub.GrpcDlpServiceStub;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;

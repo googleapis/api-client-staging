@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.cloud.privacy.dlp.v2beta2;
+package com.google.cloud.dlp.v2beta2;
 
 import com.google.api.core.ApiFunction;
 import com.google.api.core.ApiFuture;
