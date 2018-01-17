@@ -40,4 +40,4 @@
  * </code>
  * </pre>
  */
-package com.google.cloud.privacy.dlp.v2beta2;
+package com.google.cloud.dlp.v2beta2;

@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.cloud.privacy.dlp.v2beta2;
+package com.google.cloud.dlp.v2beta2;
 
-import static com.google.cloud.privacy.dlp.v2beta2.PagedResponseWrappers.ListDeidentifyTemplatesPagedResponse;
-import static com.google.cloud.privacy.dlp.v2beta2.PagedResponseWrappers.ListDlpJobsPagedResponse;
-import static com.google.cloud.privacy.dlp.v2beta2.PagedResponseWrappers.ListInspectTemplatesPagedResponse;
+import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDeidentifyTemplatesPagedResponse;
+import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDlpJobsPagedResponse;
+import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListInspectTemplatesPagedResponse;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.UnaryCallable;
-import com.google.cloud.privacy.dlp.v2beta2.stub.DlpServiceStub;
+import com.google.cloud.dlp.v2beta2.stub.DlpServiceStub;
 import com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest;
 import com.google.privacy.dlp.v2beta2.CancelDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest;
