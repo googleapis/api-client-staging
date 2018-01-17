@@ -113,7 +113,7 @@ jobs:
       - checkout
       - run:
           name: Run GAPIC unit tests in OpenJDK 7.
-          command: ./generated/java/gradlew -p ./generated/java clean test
+          command: ./generated/java/gradlew -p ./generated/java clean test -Dorg.gradle.jvmargs=-Xmx256m
     working_directory: /var/code/googleapis/
 
   openjdk8:
@@ -125,7 +125,7 @@ jobs:
       - checkout
       - run:
           name: Run GAPIC unit tests in OpenJDK 8.
-          command: ./generated/java/gradlew -p ./generated/java clean test
+          command: ./generated/java/gradlew -p ./generated/java clean test -Dorg.gradle.jvmargs=-Xmx256m
     working_directory: /var/code/googleapis/
 
   python27:
