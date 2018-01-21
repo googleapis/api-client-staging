@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -40,7 +40,7 @@ use Google\Cloud\Bigtable\V2\BigtableGrpcClient;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
-use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry as Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
@@ -61,8 +61,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $bigtableClient = new BigtableClient();
  * try {
- *     $bigtableClient = new BigtableClient();
  *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
  *     // Read all responses until the stream is complete
  *     $stream = $bigtableClient->readRows($formattedTableName);
@@ -246,8 +246,8 @@ class BigtableGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Google Cloud Bigtable API.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
+     *                          Defaults to the scopes for the Cloud Bigtable API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
      *           Specify this setting to specify the retry behavior of all methods on the client.
@@ -342,8 +342,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
      *     $stream = $bigtableClient->readRows($formattedTableName);
@@ -361,6 +361,14 @@ class BigtableGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $appProfileId
+     *          This is a private alpha release of Cloud Bigtable replication. This feature
+     *          is not currently available to most Cloud Bigtable customers. This feature
+     *          might be changed in backward-incompatible ways and is not recommended for
+     *          production use. It is not subject to any SLA or deprecation policy.
+     *
+     *          This value specifies routing for replication. If not specified, the
+     *          "default" application profile will be used.
      *     @type RowSet $rows
      *          The row keys and/or ranges to read. If not specified, reads from all rows.
      *     @type RowFilter $filter
@@ -382,6 +390,9 @@ class BigtableGapicClient
     {
         $request = new ReadRowsRequest();
         $request->setTableName($tableName);
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+        }
         if (isset($optionalArgs['rows'])) {
             $request->setRows($optionalArgs['rows']);
         }
@@ -427,8 +438,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
      *     $stream = $bigtableClient->sampleRowKeys($formattedTableName);
@@ -446,6 +457,14 @@ class BigtableGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $appProfileId
+     *          This is a private alpha release of Cloud Bigtable replication. This feature
+     *          is not currently available to most Cloud Bigtable customers. This feature
+     *          might be changed in backward-incompatible ways and is not recommended for
+     *          production use. It is not subject to any SLA or deprecation policy.
+     *
+     *          This value specifies routing for replication. If not specified, the
+     *          "default" application profile will be used.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -459,6 +478,9 @@ class BigtableGapicClient
     {
         $request = new SampleRowKeysRequest();
         $request->setTableName($tableName);
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+        }
 
         if (array_key_exists('timeoutMillis', $optionalArgs)) {
             $optionalArgs['retrySettings'] = [
@@ -493,8 +515,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
      *     $mutations = [];
@@ -514,6 +536,14 @@ class BigtableGapicClient
      * @param array      $optionalArgs {
      *                                 Optional.
      *
+     *     @type string $appProfileId
+     *          This is a private alpha release of Cloud Bigtable replication. This feature
+     *          is not currently available to most Cloud Bigtable customers. This feature
+     *          might be changed in backward-incompatible ways and is not recommended for
+     *          production use. It is not subject to any SLA or deprecation policy.
+     *
+     *          This value specifies routing for replication. If not specified, the
+     *          "default" application profile will be used.
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -532,6 +562,9 @@ class BigtableGapicClient
         $request->setTableName($tableName);
         $request->setRowKey($rowKey);
         $request->setMutations($mutations);
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+        }
 
         $defaultCallSettings = $this->defaultCallSettings['mutateRow'];
         if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
@@ -560,8 +593,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $entries = [];
      *     // Read all responses until the stream is complete
@@ -574,15 +607,23 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string  $tableName    The unique name of the table to which the mutations should be applied.
-     * @param Entry[] $entries      The row keys and corresponding mutations to be applied in bulk.
-     *                              Each entry is applied as an atomic mutation, but the entries may be
-     *                              applied in arbitrary order (even between entries for the same row).
-     *                              At least one entry must be specified, and in total the entries can
-     *                              contain at most 100000 mutations.
-     * @param array   $optionalArgs {
-     *                              Optional.
+     * @param string                    $tableName    The unique name of the table to which the mutations should be applied.
+     * @param MutateRowsRequest_Entry[] $entries      The row keys and corresponding mutations to be applied in bulk.
+     *                                                Each entry is applied as an atomic mutation, but the entries may be
+     *                                                applied in arbitrary order (even between entries for the same row).
+     *                                                At least one entry must be specified, and in total the entries can
+     *                                                contain at most 100000 mutations.
+     * @param array                     $optionalArgs {
+     *                                                Optional.
      *
+     *     @type string $appProfileId
+     *          This is a private alpha release of Cloud Bigtable replication. This feature
+     *          is not currently available to most Cloud Bigtable customers. This feature
+     *          might be changed in backward-incompatible ways and is not recommended for
+     *          production use. It is not subject to any SLA or deprecation policy.
+     *
+     *          This value specifies routing for replication. If not specified, the
+     *          "default" application profile will be used.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -597,6 +638,9 @@ class BigtableGapicClient
         $request = new MutateRowsRequest();
         $request->setTableName($tableName);
         $request->setEntries($entries);
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+        }
 
         if (array_key_exists('timeoutMillis', $optionalArgs)) {
             $optionalArgs['retrySettings'] = [
@@ -630,8 +674,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
      *     $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
@@ -648,6 +692,14 @@ class BigtableGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $appProfileId
+     *          This is a private alpha release of Cloud Bigtable replication. This feature
+     *          is not currently available to most Cloud Bigtable customers. This feature
+     *          might be changed in backward-incompatible ways and is not recommended for
+     *          production use. It is not subject to any SLA or deprecation policy.
+     *
+     *          This value specifies routing for replication. If not specified, the
+     *          "default" application profile will be used.
      *     @type RowFilter $predicateFilter
      *          The filter to be applied to the contents of the specified row. Depending
      *          on whether or not any results are yielded, either `true_mutations` or
@@ -682,6 +734,9 @@ class BigtableGapicClient
         $request = new CheckAndMutateRowRequest();
         $request->setTableName($tableName);
         $request->setRowKey($rowKey);
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+        }
         if (isset($optionalArgs['predicateFilter'])) {
             $request->setPredicateFilter($optionalArgs['predicateFilter']);
         }
@@ -713,16 +768,16 @@ class BigtableGapicClient
     }
 
     /**
-     * Modifies a row atomically. The method reads the latest existing timestamp
-     * and value from the specified columns and writes a new entry based on
-     * pre-defined read/modify/write rules. The new value for the timestamp is the
-     * greater of the existing timestamp or the current server time. The method
-     * returns the new contents of all modified cells.
+     * Modifies a row atomically on the server. The method reads the latest
+     * existing timestamp and value from the specified columns and writes a new
+     * entry based on pre-defined read/modify/write rules. The new value for the
+     * timestamp is the greater of the existing timestamp or the current server
+     * time. The method returns the new contents of all modified cells.
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
      *     $rules = [];
@@ -743,6 +798,14 @@ class BigtableGapicClient
      * @param array                 $optionalArgs {
      *                                            Optional.
      *
+     *     @type string $appProfileId
+     *          This is a private alpha release of Cloud Bigtable replication. This feature
+     *          is not currently available to most Cloud Bigtable customers. This feature
+     *          might be changed in backward-incompatible ways and is not recommended for
+     *          production use. It is not subject to any SLA or deprecation policy.
+     *
+     *          This value specifies routing for replication. If not specified, the
+     *          "default" application profile will be used.
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -761,6 +824,9 @@ class BigtableGapicClient
         $request->setTableName($tableName);
         $request->setRowKey($rowKey);
         $request->setRules($rules);
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+        }
 
         $defaultCallSettings = $this->defaultCallSettings['readModifyWriteRow'];
         if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
