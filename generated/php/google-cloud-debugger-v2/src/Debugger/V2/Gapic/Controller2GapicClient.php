@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -150,7 +150,7 @@ class Controller2GapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Debugger API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
