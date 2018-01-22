@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -36,23 +36,34 @@ use Google\ApiCore\CallSettings;
 use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Bigtable\Admin\V2\AppProfile;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminGrpcClient;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\Admin\V2\Instance_State as State;
-use Google\Cloud\Bigtable\Admin\V2\Instance_Type as Type;
+use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
+use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest;
-use Google\Cloud\Bigtable\Admin\V2\StorageType;
+use Google\Cloud\Bigtable\Admin\V2\PartialUpdateInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Version;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable Instances and
@@ -67,8 +78,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
  * try {
- *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
  *     $formattedParent = $bigtableInstanceAdminClient->projectName('[PROJECT]');
  *     $instanceId = '';
  *     $instance = new Instance();
@@ -135,6 +146,7 @@ class BigtableInstanceAdminGapicClient
 
     private static $projectNameTemplate;
     private static $instanceNameTemplate;
+    private static $appProfileNameTemplate;
     private static $clusterNameTemplate;
     private static $locationNameTemplate;
     private static $pathTemplateMap;
@@ -166,6 +178,15 @@ class BigtableInstanceAdminGapicClient
         return self::$instanceNameTemplate;
     }
 
+    private static function getAppProfileNameTemplate()
+    {
+        if (self::$appProfileNameTemplate == null) {
+            self::$appProfileNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/appProfiles/{app_profile}');
+        }
+
+        return self::$appProfileNameTemplate;
+    }
+
     private static function getClusterNameTemplate()
     {
         if (self::$clusterNameTemplate == null) {
@@ -190,12 +211,30 @@ class BigtableInstanceAdminGapicClient
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
+                'appProfile' => self::getAppProfileNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    private static function getPageStreamingDescriptors()
+    {
+        $listAppProfilesPageStreamingDescriptor =
+                new PageStreamingDescriptor([
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAppProfiles',
+                ]);
+
+        $pageStreamingDescriptors = [
+            'listAppProfiles' => $listAppProfilesPageStreamingDescriptor,
+        ];
+
+        return $pageStreamingDescriptors;
     }
 
     private static function getLongRunningDescriptors()
@@ -266,6 +305,26 @@ class BigtableInstanceAdminGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a app_profile resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $appProfile
+     *
+     * @return string The formatted app_profile resource.
+     * @experimental
+     */
+    public static function appProfileName($project, $instance, $appProfile)
+    {
+        return self::getAppProfileNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+            'app_profile' => $appProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a cluster resource.
      *
      * @param string $project
@@ -308,6 +367,7 @@ class BigtableInstanceAdminGapicClient
      * Template: Pattern
      * - project: projects/{project}
      * - instance: projects/{project}/instances/{instance}
+     * - appProfile: projects/{project}/instances/{instance}/appProfiles/{app_profile}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
      * - location: projects/{project}/locations/{location}.
      *
@@ -406,7 +466,7 @@ class BigtableInstanceAdminGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Bigtable Admin API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -471,13 +531,26 @@ class BigtableInstanceAdminGapicClient
             'getInstance' => $defaultDescriptors,
             'listInstances' => $defaultDescriptors,
             'updateInstance' => $defaultDescriptors,
+            'partialUpdateInstance' => $defaultDescriptors,
             'deleteInstance' => $defaultDescriptors,
             'createCluster' => $defaultDescriptors,
             'getCluster' => $defaultDescriptors,
             'listClusters' => $defaultDescriptors,
             'updateCluster' => $defaultDescriptors,
             'deleteCluster' => $defaultDescriptors,
+            'createAppProfile' => $defaultDescriptors,
+            'getAppProfile' => $defaultDescriptors,
+            'listAppProfiles' => $defaultDescriptors,
+            'updateAppProfile' => $defaultDescriptors,
+            'deleteAppProfile' => $defaultDescriptors,
+            'getIamPolicy' => $defaultDescriptors,
+            'setIamPolicy' => $defaultDescriptors,
+            'testIamPermissions' => $defaultDescriptors,
         ];
+        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
+        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
+            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
+        }
         $longRunningDescriptors = self::getLongRunningDescriptors();
         foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
@@ -514,8 +587,8 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedParent = $bigtableInstanceAdminClient->projectName('[PROJECT]');
      *     $instanceId = '';
      *     $instance = new Instance();
@@ -611,8 +684,8 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $bigtableInstanceAdminClient->getInstance($formattedName);
      * } finally {
@@ -667,8 +740,8 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedParent = $bigtableInstanceAdminClient->projectName('[PROJECT]');
      *     $response = $bigtableInstanceAdminClient->listInstances($formattedParent);
      * } finally {
@@ -728,27 +801,39 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $displayName = '';
-     *     $type = Type::TYPE_UNSPECIFIED;
-     *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type);
+     *     $type = Instance_Type::TYPE_UNSPECIFIED;
+     *     $labels = [];
+     *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type, $labels);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param string $name         (`OutputOnly`)
-     *                             The unique name of the instance. Values are of the form
-     *                             `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
-     * @param string $displayName  The descriptive name for this instance as it appears in UIs.
-     *                             Can be changed at any time, but should be kept globally unique
-     *                             to avoid confusion.
-     * @param int    $type         The type of the instance. Defaults to `PRODUCTION`.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_Type}
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name        (`OutputOnly`)
+     *                            The unique name of the instance. Values are of the form
+     *                            `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * @param string $displayName The descriptive name for this instance as it appears in UIs.
+     *                            Can be changed at any time, but should be kept globally unique
+     *                            to avoid confusion.
+     * @param int    $type        The type of the instance. Defaults to `PRODUCTION`.
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_Type}
+     * @param array  $labels      Labels are a flexible and lightweight mechanism for organizing cloud
+     *                            resources into groups that reflect a customer's organizational needs and
+     *                            deployment strategies. They can be used to filter resources and aggregate
+     *                            metrics.
+     *
+     * * Label keys must be between 1 and 63 characters long and must conform to
+     *   the regular expression: `[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
+     * * Label values must be between 0 and 63 characters long and must conform to
+     *   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`.
+     * * No more than 64 labels can be associated with a given resource.
+     * * Keys and values must both be under 128 bytes.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $state
      *          (`OutputOnly`)
@@ -766,12 +851,13 @@ class BigtableInstanceAdminGapicClient
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
-    public function updateInstance($name, $displayName, $type, $optionalArgs = [])
+    public function updateInstance($name, $displayName, $type, $labels, $optionalArgs = [])
     {
         $request = new Instance();
         $request->setName($name);
         $request->setDisplayName($displayName);
         $request->setType($type);
+        $request->setLabels($labels);
         if (isset($optionalArgs['state'])) {
             $request->setState($optionalArgs['state']);
         }
@@ -797,12 +883,71 @@ class BigtableInstanceAdminGapicClient
     }
 
     /**
+     * Partially updates an instance within a project.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $instance = new Instance();
+     *     $updateMask = new FieldMask();
+     *     $response = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param Instance  $instance     The Instance which will (partially) replace the current value.
+     * @param FieldMask $updateMask   The subset of Instance fields which should be replaced.
+     *                                Must be explicitly set.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\LongRunning\Operation
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function partialUpdateInstance($instance, $updateMask, $optionalArgs = [])
+    {
+        $request = new PartialUpdateInstanceRequest();
+        $request->setInstance($instance);
+        $request->setUpdateMask($updateMask);
+
+        $defaultCallSettings = $this->defaultCallSettings['partialUpdateInstance'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'PartialUpdateInstance',
+            $mergedSettings,
+            $this->descriptors['partialUpdateInstance']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Delete an instance from a project.
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $bigtableInstanceAdminClient->deleteInstance($formattedName);
      * } finally {
@@ -855,8 +1000,8 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $clusterId = '';
      *     $cluster = new Cluster();
@@ -946,8 +1091,8 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $response = $bigtableInstanceAdminClient->getCluster($formattedName);
      * } finally {
@@ -1002,8 +1147,8 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $bigtableInstanceAdminClient->listClusters($formattedParent);
      * } finally {
@@ -1065,13 +1210,12 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $location = '';
      *     $serveNodes = 0;
-     *     $defaultStorageType = StorageType::STORAGE_TYPE_UNSPECIFIED;
-     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $location, $serveNodes, $defaultStorageType);
+     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $location, $serveNodes);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *       $result = $operationResponse->getResult();
@@ -1082,7 +1226,7 @@ class BigtableInstanceAdminGapicClient
      *     }
      *
      *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $location, $serveNodes, $defaultStorageType);
+     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $location, $serveNodes);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'updateCluster');
@@ -1102,27 +1246,28 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name               (`OutputOnly`)
-     *                                   The unique name of the cluster. Values are of the form
-     *                                   `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
-     * @param string $location           (`CreationOnly`)
-     *                                   The location where this cluster's nodes and storage reside. For best
-     *                                   performance, clients should be located as close as possible to this cluster.
-     *                                   Currently only zones are supported, so values should be of the form
-     *                                   `projects/<project>/locations/<zone>`.
-     * @param int    $serveNodes         The number of nodes allocated to this cluster. More nodes enable higher
-     *                                   throughput and more consistent performance.
-     * @param int    $defaultStorageType (`CreationOnly`)
-     *                                   The type of storage used by this cluster to serve its
-     *                                   parent instance's tables, unless explicitly overridden.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
-     * @param array  $optionalArgs       {
-     *                                   Optional.
+     * @param string $name         (`OutputOnly`)
+     *                             The unique name of the cluster. Values are of the form
+     *                             `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
+     * @param string $location     (`CreationOnly`)
+     *                             The location where this cluster's nodes and storage reside. For best
+     *                             performance, clients should be located as close as possible to this
+     *                             cluster. Currently only zones are supported, so values should be of the
+     *                             form `projects/<project>/locations/<zone>`.
+     * @param int    $serveNodes   The number of nodes allocated to this cluster. More nodes enable higher
+     *                             throughput and more consistent performance.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the cluster.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster_State}
+     *     @type int $defaultStorageType
+     *          (`CreationOnly`)
+     *          The type of storage used by this cluster to serve its
+     *          parent instance's tables, unless explicitly overridden.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1135,15 +1280,17 @@ class BigtableInstanceAdminGapicClient
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
-    public function updateCluster($name, $location, $serveNodes, $defaultStorageType, $optionalArgs = [])
+    public function updateCluster($name, $location, $serveNodes, $optionalArgs = [])
     {
         $request = new Cluster();
         $request->setName($name);
         $request->setLocation($location);
         $request->setServeNodes($serveNodes);
-        $request->setDefaultStorageType($defaultStorageType);
         if (isset($optionalArgs['state'])) {
             $request->setState($optionalArgs['state']);
+        }
+        if (isset($optionalArgs['defaultStorageType'])) {
+            $request->setDefaultStorageType($optionalArgs['defaultStorageType']);
         }
 
         $defaultCallSettings = $this->defaultCallSettings['updateCluster'];
@@ -1171,8 +1318,8 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $bigtableInstanceAdminClient->deleteCluster($formattedName);
      * } finally {
@@ -1212,6 +1359,559 @@ class BigtableInstanceAdminGapicClient
             'DeleteCluster',
             $mergedSettings,
             $this->descriptors['deleteCluster']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Creates an app profile within an instance.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $appProfileId = '';
+     *     $appProfile = new AppProfile();
+     *     $response = $bigtableInstanceAdminClient->createAppProfile($formattedParent, $appProfileId, $appProfile);
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       The unique name of the instance in which to create the new app profile.
+     *                                 Values are of the form
+     *                                 `projects/<project>/instances/<instance>`.
+     * @param string     $appProfileId The ID to be used when referring to the new app profile within its
+     *                                 instance, e.g., just `myprofile` rather than
+     *                                 `projects/myproject/instances/myinstance/appProfiles/myprofile`.
+     * @param AppProfile $appProfile   The app profile to be created.
+     *                                 Fields marked `OutputOnly` will be ignored.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type bool $ignoreWarnings
+     *          If true, ignore safety checks when creating the app profile.
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function createAppProfile($parent, $appProfileId, $appProfile, $optionalArgs = [])
+    {
+        $request = new CreateAppProfileRequest();
+        $request->setParent($parent);
+        $request->setAppProfileId($appProfileId);
+        $request->setAppProfile($appProfile);
+        if (isset($optionalArgs['ignoreWarnings'])) {
+            $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['createAppProfile'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'CreateAppProfile',
+            $mergedSettings,
+            $this->descriptors['createAppProfile']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Gets information about an app profile.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $formattedName = $bigtableInstanceAdminClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
+     *     $response = $bigtableInstanceAdminClient->getAppProfile($formattedName);
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The unique name of the requested app profile. Values are of the form
+     *                             `projects/<project>/instances/<instance>/appProfiles/<app_profile>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function getAppProfile($name, $optionalArgs = [])
+    {
+        $request = new GetAppProfileRequest();
+        $request->setName($name);
+
+        $defaultCallSettings = $this->defaultCallSettings['getAppProfile'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'GetAppProfile',
+            $mergedSettings,
+            $this->descriptors['getAppProfile']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Lists information about app profiles in an instance.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     // Iterate through all elements
+     *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       The unique name of the instance for which a list of app profiles is
+     *                             requested. Values are of the form
+     *                             `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function listAppProfiles($parent, $optionalArgs = [])
+    {
+        $request = new ListAppProfilesRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['listAppProfiles'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'ListAppProfiles',
+            $mergedSettings,
+            $this->descriptors['listAppProfiles']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Updates an app profile within an instance.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $appProfile = new AppProfile();
+     *     $updateMask = new FieldMask();
+     *     $response = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param AppProfile $appProfile   The app profile which will (partially) replace the current value.
+     * @param FieldMask  $updateMask   The subset of app profile fields which should be replaced.
+     *                                 If unset, all fields will be replaced.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type bool $ignoreWarnings
+     *          If true, ignore safety checks when updating the app profile.
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\LongRunning\Operation
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateAppProfile($appProfile, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateAppProfileRequest();
+        $request->setAppProfile($appProfile);
+        $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['ignoreWarnings'])) {
+            $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['updateAppProfile'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'UpdateAppProfile',
+            $mergedSettings,
+            $this->descriptors['updateAppProfile']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Deletes an app profile from an instance.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $formattedName = $bigtableInstanceAdminClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
+     *     $ignoreWarnings = false;
+     *     $bigtableInstanceAdminClient->deleteAppProfile($formattedName, $ignoreWarnings);
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name           The unique name of the app profile to be deleted. Values are of the form
+     *                               `projects/<project>/instances/<instance>/appProfiles/<app_profile>`.
+     * @param bool   $ignoreWarnings If true, ignore safety checks when deleting the app profile.
+     * @param array  $optionalArgs   {
+     *                               Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteAppProfile($name, $ignoreWarnings, $optionalArgs = [])
+    {
+        $request = new DeleteAppProfileRequest();
+        $request->setName($name);
+        $request->setIgnoreWarnings($ignoreWarnings);
+
+        $defaultCallSettings = $this->defaultCallSettings['deleteAppProfile'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'DeleteAppProfile',
+            $mergedSettings,
+            $this->descriptors['deleteAppProfile']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     *
+     * Gets the access control policy for an instance resource. Returns an empty
+     * policy if an instance exists but does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $response = $bigtableInstanceAdminClient->getIamPolicy($formattedResource);
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function getIamPolicy($resource, $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $request->setResource($resource);
+
+        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'GetIamPolicy',
+            $mergedSettings,
+            $this->descriptors['getIamPolicy']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     *
+     * Sets the access control policy on an instance resource. Replaces any
+     * existing policy.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $policy = new Policy();
+     *     $response = $bigtableInstanceAdminClient->setIamPolicy($formattedResource, $policy);
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+
+        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'SetIamPolicy',
+            $mergedSettings,
+            $this->descriptors['setIamPolicy']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     *
+     * Returns permissions that the caller has on the specified instance resource.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * try {
+     *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $permissions = [];
+     *     $response = $bigtableInstanceAdminClient->testIamPermissions($formattedResource, $permissions);
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               `resource` is usually specified as a path. For example, a Project
+     *                               resource is specified as `projects/{project}`.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    {
+        $request = new TestIamPermissionsRequest();
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+
+        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->bigtableInstanceAdminStub,
+            'TestIamPermissions',
+            $mergedSettings,
+            $this->descriptors['testIamPermissions']
         );
 
         return $callable(
