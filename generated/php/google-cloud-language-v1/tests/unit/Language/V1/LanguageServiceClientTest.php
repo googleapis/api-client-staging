@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,7 +30,7 @@ use Google\Cloud\Language\V1\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse;
 use Google\Cloud\Language\V1\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1\AnalyzeSyntaxResponse;
-use Google\Cloud\Language\V1\AnnotateTextRequest_Features as Features;
+use Google\Cloud\Language\V1\AnnotateTextRequest_Features;
 use Google\Cloud\Language\V1\AnnotateTextResponse;
 use Google\Cloud\Language\V1\ClassifyTextResponse;
 use Google\Cloud\Language\V1\Document;
@@ -443,7 +443,7 @@ class LanguageServiceClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $features = new Features();
+        $features = new AnnotateTextRequest_Features();
 
         $response = $client->annotateText($document, $features);
         $this->assertEquals($expectedResponse, $response);
@@ -483,7 +483,7 @@ class LanguageServiceClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $features = new Features();
+        $features = new AnnotateTextRequest_Features();
 
         try {
             $client->annotateText($document, $features);
