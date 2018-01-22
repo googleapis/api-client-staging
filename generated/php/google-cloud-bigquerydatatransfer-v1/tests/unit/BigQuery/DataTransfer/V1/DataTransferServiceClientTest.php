@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -98,7 +98,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $defaultSchedule = 'defaultSchedule-800168235';
         $supportsCustomSchedule = true;
         $helpUrl = 'helpUrl-789431439';
-        $defaultDataRefreshWindowDays = -1804935157;
+        $defaultDataRefreshWindowDays = 1804935157;
         $manualRunsDisabled = true;
         $expectedResponse = new DataSource();
         $expectedResponse->setName($name2);
@@ -265,7 +265,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $schedule = 'schedule-697920873';
         $dataRefreshWindowDays = 327632845;
         $disabled = true;
-        $userId = -147132913;
+        $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name);
@@ -355,7 +355,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $schedule = 'schedule-697920873';
         $dataRefreshWindowDays = 327632845;
         $disabled = true;
-        $userId = -147132913;
+        $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name);
@@ -513,7 +513,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $schedule = 'schedule-697920873';
         $dataRefreshWindowDays = 327632845;
         $disabled = true;
-        $userId = -147132913;
+        $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name2);
@@ -748,7 +748,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $destinationDatasetId = 'destinationDatasetId1541564179';
         $dataSourceId = 'dataSourceId-1015796374';
-        $userId = -147132913;
+        $userId = 147132913;
         $schedule = 'schedule-697920873';
         $expectedResponse = new TransferRun();
         $expectedResponse->setName($name2);

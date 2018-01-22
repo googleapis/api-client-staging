@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -49,7 +49,6 @@ use Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest;
-use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest_RunAttempt as RunAttempt;
 use Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 use Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest;
@@ -71,8 +70,8 @@ use Google\Protobuf\Timestamp;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $dataTransferServiceClient = new DataTransferServiceClient();
  * try {
- *     $dataTransferServiceClient = new DataTransferServiceClient();
  *     $formattedName = $dataTransferServiceClient->locationDataSourceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE]');
  *     $response = $dataTransferServiceClient->getDataSource($formattedName);
  * } finally {
@@ -502,7 +501,7 @@ class DataTransferServiceGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the BigQuery Data Transfer API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -599,8 +598,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedName = $dataTransferServiceClient->locationDataSourceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE]');
      *     $response = $dataTransferServiceClient->getDataSource($formattedName);
      * } finally {
@@ -656,8 +655,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedParent = $dataTransferServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate through all elements
      *     $pagedResponse = $dataTransferServiceClient->listDataSources($formattedParent);
@@ -739,8 +738,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedParent = $dataTransferServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $transferConfig = new TransferConfig();
      *     $response = $dataTransferServiceClient->createTransferConfig($formattedParent, $transferConfig);
@@ -823,8 +822,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $transferConfig = new TransferConfig();
      *     $updateMask = new FieldMask();
      *     $response = $dataTransferServiceClient->updateTransferConfig($transferConfig, $updateMask);
@@ -902,8 +901,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedName = $dataTransferServiceClient->locationTransferConfigName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]');
      *     $dataTransferServiceClient->deleteTransferConfig($formattedName);
      * } finally {
@@ -956,8 +955,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedName = $dataTransferServiceClient->locationTransferConfigName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]');
      *     $response = $dataTransferServiceClient->getTransferConfig($formattedName);
      * } finally {
@@ -1012,8 +1011,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedParent = $dataTransferServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate through all elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs($formattedParent);
@@ -1103,8 +1102,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedParent = $dataTransferServiceClient->locationTransferConfigName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]');
      *     $startTime = new Timestamp();
      *     $endTime = new Timestamp();
@@ -1167,8 +1166,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedName = $dataTransferServiceClient->locationRunName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]', '[RUN]');
      *     $response = $dataTransferServiceClient->getTransferRun($formattedName);
      * } finally {
@@ -1223,8 +1222,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedName = $dataTransferServiceClient->locationRunName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]', '[RUN]');
      *     $dataTransferServiceClient->deleteTransferRun($formattedName);
      * } finally {
@@ -1277,8 +1276,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedParent = $dataTransferServiceClient->locationTransferConfigName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]');
      *     // Iterate through all elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferRuns($formattedParent);
@@ -1373,8 +1372,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedParent = $dataTransferServiceClient->locationRunName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]', '[RUN]');
      *     // Iterate through all elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferLogs($formattedParent);
@@ -1468,8 +1467,8 @@ class DataTransferServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $dataTransferServiceClient = new DataTransferServiceClient();
      *     $formattedName = $dataTransferServiceClient->locationDataSourceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE]');
      *     $response = $dataTransferServiceClient->checkValidCreds($formattedName);
      * } finally {
