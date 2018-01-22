@@ -18,7 +18,7 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/monitoring/v3/group_service.proto
+ * https://github.com/google/googleapis/blob/master/google/monitoring/v3/uptime_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
@@ -30,13 +30,13 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
-use Google\Cloud\Monitoring\V3\Gapic\GroupServiceGapicClient;
+use Google\Cloud\Monitoring\V3\Gapic\UptimeCheckServiceGapicClient;
 
 /**
  * {@inheritdoc}
  */
-class GroupServiceClient extends GroupServiceGapicClient
+class UptimeCheckServiceClient extends UptimeCheckServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see GroupServiceClientImpl} class.
+    // additions to the generated {@see UptimeCheckServiceClientImpl} class.
 }

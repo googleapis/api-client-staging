@@ -23,10 +23,10 @@
 namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 
 use Google\ApiCore\Testing\MockStubTrait;
-use Google\Cloud\Monitoring\V3\MetricServiceGrpcClient;
+use Google\Cloud\Monitoring\V3\UptimeCheckServiceGrpcClient;
 use Google\Protobuf\Any;
 
-class MockMetricServiceImpl extends MetricServiceGrpcClient
+class MockUptimeCheckServiceImpl extends UptimeCheckServiceGrpcClient
 {
     use MockStubTrait;
 }

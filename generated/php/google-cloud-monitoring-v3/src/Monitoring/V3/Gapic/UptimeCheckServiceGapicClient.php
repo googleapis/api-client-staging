@@ -18,7 +18,7 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/monitoring/v3/group_service.proto
+ * https://github.com/google/googleapis/blob/master/google/monitoring/v3/uptime_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
@@ -37,30 +37,26 @@ use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Monitoring\V3\CreateGroupRequest;
-use Google\Cloud\Monitoring\V3\DeleteGroupRequest;
-use Google\Cloud\Monitoring\V3\GetGroupRequest;
-use Google\Cloud\Monitoring\V3\Group;
-use Google\Cloud\Monitoring\V3\GroupServiceGrpcClient;
-use Google\Cloud\Monitoring\V3\ListGroupMembersRequest;
-use Google\Cloud\Monitoring\V3\ListGroupsRequest;
-use Google\Cloud\Monitoring\V3\TimeInterval;
-use Google\Cloud\Monitoring\V3\UpdateGroupRequest;
+use Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest;
+use Google\Cloud\Monitoring\V3\DeleteUptimeCheckConfigRequest;
+use Google\Cloud\Monitoring\V3\GetUptimeCheckConfigRequest;
+use Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsRequest;
+use Google\Cloud\Monitoring\V3\ListUptimeCheckIpsRequest;
+use Google\Cloud\Monitoring\V3\UpdateUptimeCheckConfigRequest;
+use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
+use Google\Cloud\Monitoring\V3\UptimeCheckServiceGrpcClient;
 use Google\Cloud\Version;
+use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: The Group API lets you inspect and manage your
- * [groups](https://cloud.google.comgoogle.monitoring.v3.Group).
- *
- * A group is a named filter that is used to identify
- * a collection of monitored resources. Groups are typically used to
- * mirror the physical and/or logical topology of the environment.
- * Because group membership is computed dynamically, monitored
- * resources that are started in the future are automatically placed
- * in matching groups. By using a group to name monitored resources in,
- * for example, an alert policy, the target of that alert policy is
- * updated automatically as monitored resources are added and removed
- * from the infrastructure.
+ * Service Description: The UptimeCheckService API is used to manage (list, create, delete, edit)
+ * uptime check configurations in the Stackdriver Monitoring product. An uptime
+ * check is a piece of configuration that determines which resources and
+ * services to monitor for availability. These configurations can also be
+ * configured interactively by navigating to the [Cloud Console]
+ * (http://console.cloud.google.com), selecting the appropriate project,
+ * clicking on "Monitoring" on the left-hand side to navigate to Stackdriver,
+ * and then clicking on "Uptime".
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
@@ -70,24 +66,24 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $groupServiceClient = new GroupServiceClient();
+ * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
  * try {
- *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
+ *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
- *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+ *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
  *     // OR iterate over pages of elements
- *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+ *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
  * } finally {
- *     $groupServiceClient->close();
+ *     $uptimeCheckServiceClient->close();
  * }
  * ```
  *
@@ -98,7 +94,7 @@ use Google\Cloud\Version;
  *
  * @experimental
  */
-class GroupServiceGapicClient
+class UptimeCheckServiceGapicClient
 {
     /**
      * The default address of the service.
@@ -121,13 +117,13 @@ class GroupServiceGapicClient
     const CODEGEN_VERSION = '0.0.5';
 
     private static $projectNameTemplate;
-    private static $groupNameTemplate;
+    private static $uptimeCheckConfigNameTemplate;
     private static $pathTemplateMap;
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
-    protected $groupServiceStub;
+    protected $uptimeCheckServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -141,13 +137,13 @@ class GroupServiceGapicClient
         return self::$projectNameTemplate;
     }
 
-    private static function getGroupNameTemplate()
+    private static function getUptimeCheckConfigNameTemplate()
     {
-        if (self::$groupNameTemplate == null) {
-            self::$groupNameTemplate = new PathTemplate('projects/{project}/groups/{group}');
+        if (self::$uptimeCheckConfigNameTemplate == null) {
+            self::$uptimeCheckConfigNameTemplate = new PathTemplate('projects/{project}/uptimeCheckConfigs/{uptime_check_config}');
         }
 
-        return self::$groupNameTemplate;
+        return self::$uptimeCheckConfigNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -155,7 +151,7 @@ class GroupServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
-                'group' => self::getGroupNameTemplate(),
+                'uptimeCheckConfig' => self::getUptimeCheckConfigNameTemplate(),
             ];
         }
 
@@ -164,28 +160,28 @@ class GroupServiceGapicClient
 
     private static function getPageStreamingDescriptors()
     {
-        $listGroupsPageStreamingDescriptor =
+        $listUptimeCheckConfigsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getGroup',
+                    'resourcesGetMethod' => 'getUptimeCheckConfigs',
                 ]);
-        $listGroupMembersPageStreamingDescriptor =
+        $listUptimeCheckIpsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getMembers',
+                    'resourcesGetMethod' => 'getUptimeCheckIps',
                 ]);
 
         $pageStreamingDescriptors = [
-            'listGroups' => $listGroupsPageStreamingDescriptor,
-            'listGroupMembers' => $listGroupMembersPageStreamingDescriptor,
+            'listUptimeCheckConfigs' => $listUptimeCheckConfigsPageStreamingDescriptor,
+            'listUptimeCheckIps' => $listUptimeCheckIpsPageStreamingDescriptor,
         ];
 
         return $pageStreamingDescriptors;
@@ -223,19 +219,19 @@ class GroupServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a group resource.
+     * a uptime_check_config resource.
      *
      * @param string $project
-     * @param string $group
+     * @param string $uptimeCheckConfig
      *
-     * @return string The formatted group resource.
+     * @return string The formatted uptime_check_config resource.
      * @experimental
      */
-    public static function groupName($project, $group)
+    public static function uptimeCheckConfigName($project, $uptimeCheckConfig)
     {
-        return self::getGroupNameTemplate()->render([
+        return self::getUptimeCheckConfigNameTemplate()->render([
             'project' => $project,
-            'group' => $group,
+            'uptime_check_config' => $uptimeCheckConfig,
         ]);
     }
 
@@ -244,7 +240,7 @@ class GroupServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
-     * - group: projects/{project}/groups/{group}.
+     * - uptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -336,7 +332,7 @@ class GroupServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/group_service_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/uptime_check_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -350,12 +346,12 @@ class GroupServiceGapicClient
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
-            'listGroups' => $defaultDescriptors,
-            'getGroup' => $defaultDescriptors,
-            'createGroup' => $defaultDescriptors,
-            'updateGroup' => $defaultDescriptors,
-            'deleteGroup' => $defaultDescriptors,
-            'listGroupMembers' => $defaultDescriptors,
+            'listUptimeCheckConfigs' => $defaultDescriptors,
+            'getUptimeCheckConfig' => $defaultDescriptors,
+            'createUptimeCheckConfig' => $defaultDescriptors,
+            'updateUptimeCheckConfig' => $defaultDescriptors,
+            'deleteUptimeCheckConfig' => $defaultDescriptors,
+            'listUptimeCheckIps' => $defaultDescriptors,
         ];
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
@@ -366,7 +362,7 @@ class GroupServiceGapicClient
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
-                    'google.monitoring.v3.GroupService',
+                    'google.monitoring.v3.UptimeCheckService',
                     $clientConfig,
                     $options['retryingOverride']
                 );
@@ -379,390 +375,48 @@ class GroupServiceGapicClient
         }
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
 
-        $createGroupServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new GroupServiceGrpcClient($hostname, $opts, $channel);
+        $createUptimeCheckServiceStubFunction = function ($hostname, $opts, $channel) {
+            return new UptimeCheckServiceGrpcClient($hostname, $opts, $channel);
         };
-        if (array_key_exists('createGroupServiceStubFunction', $options)) {
-            $createGroupServiceStubFunction = $options['createGroupServiceStubFunction'];
+        if (array_key_exists('createUptimeCheckServiceStubFunction', $options)) {
+            $createUptimeCheckServiceStubFunction = $options['createUptimeCheckServiceStubFunction'];
         }
-        $this->groupServiceStub = $this->grpcCredentialsHelper->createStub($createGroupServiceStubFunction);
+        $this->uptimeCheckServiceStub = $this->grpcCredentialsHelper->createStub($createUptimeCheckServiceStubFunction);
     }
 
     /**
-     * Lists the existing groups.
+     * Lists the existing valid uptime check configurations for the project,
+     * leaving out any invalid configurations.
      *
      * Sample code:
      * ```
-     * $groupServiceClient = new GroupServiceClient();
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
-     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements
-     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     $groupServiceClient->close();
+     *     $uptimeCheckServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The project whose groups are to be listed. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent The project whose uptime check configurations are listed. The format is
      *
-     *     @type string $childrenOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
-     *          Returns groups whose `parentName` field contains the group
-     *          name.  If no groups have this parent, the results are empty.
-     *     @type string $ancestorsOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
-     *          Returns groups that are ancestors of the specified group.
-     *          The groups are returned in order, starting with the immediate parent and
-     *          ending with the most distant ancestor.  If the specified group has no
-     *          immediate parent, the results are empty.
-     *     @type string $descendantsOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
-     *          Returns the descendants of the specified group.  This is a superset of
-     *          the results returned by the `childrenOfGroup` filter, and includes
-     *          children-of-children, and so forth.
-     *     @type int $pageSize
-     *          The maximum number of resources contained in the underlying API
-     *          response. The API may return fewer values in a page, even if
-     *          there are additional values to be retrieved.
-     *     @type string $pageToken
-     *          A page token is used to specify a page of values to be returned.
-     *          If no page token is specified (the default), the first page
-     *          of values will be returned. Any page token used here must have
-     *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
-     * @experimental
-     */
-    public function listGroups($name, $optionalArgs = [])
-    {
-        $request = new ListGroupsRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['childrenOfGroup'])) {
-            $request->setChildrenOfGroup($optionalArgs['childrenOfGroup']);
-        }
-        if (isset($optionalArgs['ancestorsOfGroup'])) {
-            $request->setAncestorsOfGroup($optionalArgs['ancestorsOfGroup']);
-        }
-        if (isset($optionalArgs['descendantsOfGroup'])) {
-            $request->setDescendantsOfGroup($optionalArgs['descendantsOfGroup']);
-        }
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['listGroups'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
-            'ListGroups',
-            $mergedSettings,
-            $this->descriptors['listGroups']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Gets a single group.
-     *
-     * Sample code:
-     * ```
-     * $groupServiceClient = new GroupServiceClient();
-     * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
-     *     $response = $groupServiceClient->getGroup($formattedName);
-     * } finally {
-     *     $groupServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         The group to retrieve. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Monitoring\V3\Group
-     *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
-     * @experimental
-     */
-    public function getGroup($name, $optionalArgs = [])
-    {
-        $request = new GetGroupRequest();
-        $request->setName($name);
-
-        $defaultCallSettings = $this->defaultCallSettings['getGroup'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
-            'GetGroup',
-            $mergedSettings,
-            $this->descriptors['getGroup']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Creates a new group.
-     *
-     * Sample code:
-     * ```
-     * $groupServiceClient = new GroupServiceClient();
-     * try {
-     *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
-     *     $group = new Group();
-     *     $response = $groupServiceClient->createGroup($formattedName, $group);
-     * } finally {
-     *     $groupServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         The project in which to create the group. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param Group  $group        A group definition. It is an error to define the `name` field because
-     *                             the system assigns the name.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type bool $validateOnly
-     *          If true, validate this request but do not create the group.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Monitoring\V3\Group
-     *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
-     * @experimental
-     */
-    public function createGroup($name, $group, $optionalArgs = [])
-    {
-        $request = new CreateGroupRequest();
-        $request->setName($name);
-        $request->setGroup($group);
-        if (isset($optionalArgs['validateOnly'])) {
-            $request->setValidateOnly($optionalArgs['validateOnly']);
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['createGroup'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
-            'CreateGroup',
-            $mergedSettings,
-            $this->descriptors['createGroup']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Updates an existing group.
-     * You can change any group attributes except `name`.
-     *
-     * Sample code:
-     * ```
-     * $groupServiceClient = new GroupServiceClient();
-     * try {
-     *     $group = new Group();
-     *     $response = $groupServiceClient->updateGroup($group);
-     * } finally {
-     *     $groupServiceClient->close();
-     * }
-     * ```
-     *
-     * @param Group $group        The new definition of the group.  All fields of the existing group,
-     *                            excepting `name`, are replaced with the corresponding fields of this group.
+     *   `projects/[PROJECT_ID]`.
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type bool $validateOnly
-     *          If true, validate this request but do not update the existing group.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Monitoring\V3\Group
-     *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateGroup($group, $optionalArgs = [])
-    {
-        $request = new UpdateGroupRequest();
-        $request->setGroup($group);
-        if (isset($optionalArgs['validateOnly'])) {
-            $request->setValidateOnly($optionalArgs['validateOnly']);
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['updateGroup'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
-            'UpdateGroup',
-            $mergedSettings,
-            $this->descriptors['updateGroup']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Deletes an existing group.
-     *
-     * Sample code:
-     * ```
-     * $groupServiceClient = new GroupServiceClient();
-     * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
-     *     $groupServiceClient->deleteGroup($formattedName);
-     * } finally {
-     *     $groupServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         The group to delete. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteGroup($name, $optionalArgs = [])
-    {
-        $request = new DeleteGroupRequest();
-        $request->setName($name);
-
-        $defaultCallSettings = $this->defaultCallSettings['deleteGroup'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
-            'DeleteGroup',
-            $mergedSettings,
-            $this->descriptors['deleteGroup']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Lists the monitored resources that are members of a group.
-     *
-     * Sample code:
-     * ```
-     * $groupServiceClient = new GroupServiceClient();
-     * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     * } finally {
-     *     $groupServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         The group whose members are listed. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -772,19 +426,6 @@ class GroupServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type string $filter
-     *          An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
-     *          the members to be returned.  The filter may reference the type, labels, and
-     *          metadata of monitored resources that comprise the group.
-     *          For example, to return only resources representing Compute Engine VM
-     *          instances, use this filter:
-     *
-     *              resource.type = "gce_instance"
-     *     @type TimeInterval $interval
-     *          An optional time interval for which results should be returned. Only
-     *          members that were part of the group during the specified interval are
-     *          included in the response.  If no interval is provided then the group
-     *          membership over the last minute is returned.
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -797,24 +438,18 @@ class GroupServiceGapicClient
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
-    public function listGroupMembers($name, $optionalArgs = [])
+    public function listUptimeCheckConfigs($parent, $optionalArgs = [])
     {
-        $request = new ListGroupMembersRequest();
-        $request->setName($name);
+        $request = new ListUptimeCheckConfigsRequest();
+        $request->setParent($parent);
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-        if (isset($optionalArgs['interval'])) {
-            $request->setInterval($optionalArgs['interval']);
-        }
 
-        $defaultCallSettings = $this->defaultCallSettings['listGroupMembers'];
+        $defaultCallSettings = $this->defaultCallSettings['listUptimeCheckConfigs'];
         if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
             $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
                 $optionalArgs['retrySettings']
@@ -822,10 +457,336 @@ class GroupServiceGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
-            'ListGroupMembers',
+            $this->uptimeCheckServiceStub,
+            'ListUptimeCheckConfigs',
             $mergedSettings,
-            $this->descriptors['listGroupMembers']
+            $this->descriptors['listUptimeCheckConfigs']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Gets a single uptime check configuration.
+     *
+     * Sample code:
+     * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * try {
+     *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
+     *     $response = $uptimeCheckServiceClient->getUptimeCheckConfig($formattedName);
+     * } finally {
+     *     $uptimeCheckServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name The uptime check configuration to retrieve. The format is
+     *
+     *   `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function getUptimeCheckConfig($name, $optionalArgs = [])
+    {
+        $request = new GetUptimeCheckConfigRequest();
+        $request->setName($name);
+
+        $defaultCallSettings = $this->defaultCallSettings['getUptimeCheckConfig'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->uptimeCheckServiceStub,
+            'GetUptimeCheckConfig',
+            $mergedSettings,
+            $this->descriptors['getUptimeCheckConfig']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Creates a new uptime check configuration.
+     *
+     * Sample code:
+     * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * try {
+     *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
+     *     $uptimeCheckConfig = new UptimeCheckConfig();
+     *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
+     * } finally {
+     *     $uptimeCheckServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent The project in which to create the uptime check. The format is:
+     *
+     *   `projects/[PROJECT_ID]`.
+     * @param UptimeCheckConfig $uptimeCheckConfig The new uptime check configuration.
+     * @param array             $optionalArgs      {
+     *                                             Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function createUptimeCheckConfig($parent, $uptimeCheckConfig, $optionalArgs = [])
+    {
+        $request = new CreateUptimeCheckConfigRequest();
+        $request->setParent($parent);
+        $request->setUptimeCheckConfig($uptimeCheckConfig);
+
+        $defaultCallSettings = $this->defaultCallSettings['createUptimeCheckConfig'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->uptimeCheckServiceStub,
+            'CreateUptimeCheckConfig',
+            $mergedSettings,
+            $this->descriptors['createUptimeCheckConfig']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Updates an uptime check configuration. You can either replace the entire
+     * configuration with a new one or replace only certain fields in the current
+     * configuration by specifying the fields to be updated via `"updateMask"`.
+     * Returns the updated configuration.
+     *
+     * Sample code:
+     * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * try {
+     *     $uptimeCheckConfig = new UptimeCheckConfig();
+     *     $response = $uptimeCheckServiceClient->updateUptimeCheckConfig($uptimeCheckConfig);
+     * } finally {
+     *     $uptimeCheckServiceClient->close();
+     * }
+     * ```
+     *
+     * @param UptimeCheckConfig $uptimeCheckConfig Required. If an `"updateMask"` has been specified, this field gives
+     *                                             the values for the set of fields mentioned in the `"updateMask"`. If an
+     *                                             `"updateMask"` has not been given, this uptime check configuration replaces
+     *                                             the current configuration. If a field is mentioned in `"updateMask`" but
+     *                                             the corresonding field is omitted in this partial uptime check
+     *                                             configuration, it has the effect of deleting/clearing the field from the
+     *                                             configuration on the server.
+     * @param array             $optionalArgs      {
+     *                                             Optional.
+     *
+     *     @type FieldMask $updateMask
+     *          Optional. If present, only the listed fields in the current uptime check
+     *          configuration are updated with values from the new configuration. If this
+     *          field is empty, then the current configuration is completely replaced with
+     *          the new configuration.
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateUptimeCheckConfig($uptimeCheckConfig, $optionalArgs = [])
+    {
+        $request = new UpdateUptimeCheckConfigRequest();
+        $request->setUptimeCheckConfig($uptimeCheckConfig);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['updateUptimeCheckConfig'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->uptimeCheckServiceStub,
+            'UpdateUptimeCheckConfig',
+            $mergedSettings,
+            $this->descriptors['updateUptimeCheckConfig']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Deletes an uptime check configuration. Note that this method will fail
+     * if the uptime check configuration is referenced by an alert policy or
+     * other dependent configs that would be rendered invalid by the deletion.
+     *
+     * Sample code:
+     * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * try {
+     *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
+     *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($formattedName);
+     * } finally {
+     *     $uptimeCheckServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name The uptime check configuration to delete. The format is
+     *
+     *   `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteUptimeCheckConfig($name, $optionalArgs = [])
+    {
+        $request = new DeleteUptimeCheckConfigRequest();
+        $request->setName($name);
+
+        $defaultCallSettings = $this->defaultCallSettings['deleteUptimeCheckConfig'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->uptimeCheckServiceStub,
+            'DeleteUptimeCheckConfig',
+            $mergedSettings,
+            $this->descriptors['deleteUptimeCheckConfig']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Returns the list of IPs that checkers run from.
+     *
+     * Sample code:
+     * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * try {
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckIps();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckIps();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     * } finally {
+     *     $uptimeCheckServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @experimental
+     */
+    public function listUptimeCheckIps($optionalArgs = [])
+    {
+        $request = new ListUptimeCheckIpsRequest();
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['listUptimeCheckIps'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->uptimeCheckServiceStub,
+            'ListUptimeCheckIps',
+            $mergedSettings,
+            $this->descriptors['listUptimeCheckIps']
         );
 
         return $callable(
@@ -842,7 +803,7 @@ class GroupServiceGapicClient
      */
     public function close()
     {
-        $this->groupServiceStub->close();
+        $this->uptimeCheckServiceStub->close();
     }
 
     private function createCredentialsCallback()

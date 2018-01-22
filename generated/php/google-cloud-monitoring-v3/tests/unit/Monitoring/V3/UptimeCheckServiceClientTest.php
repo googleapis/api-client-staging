@@ -22,14 +22,14 @@
 
 namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 
-use Google\Cloud\Monitoring\V3\GroupServiceClient;
+use Google\Cloud\Monitoring\V3\UptimeCheckServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
-use Google\Api\MonitoredResource;
-use Google\Cloud\Monitoring\V3\Group;
-use Google\Cloud\Monitoring\V3\ListGroupMembersResponse;
-use Google\Cloud\Monitoring\V3\ListGroupsResponse;
+use Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsResponse;
+use Google\Cloud\Monitoring\V3\ListUptimeCheckIpsResponse;
+use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
+use Google\Cloud\Monitoring\V3\UptimeCheckIp;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
@@ -39,7 +39,7 @@ use stdClass;
  * @group monitoring
  * @group grpc
  */
-class GroupServiceClientTest extends GeneratedTest
+class UptimeCheckServiceClientTest extends GeneratedTest
 {
     public function createMockGroupServiceImpl($hostname, $opts)
     {
@@ -59,8 +59,8 @@ class GroupServiceClientTest extends GeneratedTest
     private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => GroupServiceClient::SERVICE_ADDRESS,
-            'port' => GroupServiceClient::DEFAULT_SERVICE_PORT,
+            'serviceAddress' => UptimeCheckServiceClient::SERVICE_ADDRESS,
+            'port' => UptimeCheckServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
 
@@ -68,11 +68,11 @@ class GroupServiceClientTest extends GeneratedTest
     }
 
     /**
-     * @return GroupServiceClient
+     * @return UptimeCheckServiceClient
      */
     private function createClient($createStubFuncName, $grpcStub, $options = [])
     {
-        return new GroupServiceClient($options + [
+        return new UptimeCheckServiceClient($options + [
             $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
                 return $grpcStub;
             },
@@ -82,48 +82,48 @@ class GroupServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function listGroupsTest()
+    public function listUptimeCheckConfigsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
         $nextPageToken = '';
-        $groupElement = new Group();
-        $group = [$groupElement];
-        $expectedResponse = new ListGroupsResponse();
+        $uptimeCheckConfigsElement = new UptimeCheckConfig();
+        $uptimeCheckConfigs = [$uptimeCheckConfigsElement];
+        $expectedResponse = new ListUptimeCheckConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setGroup($group);
+        $expectedResponse->setUptimeCheckConfigs($uptimeCheckConfigs);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
-        $response = $client->listGroups($formattedName);
+        $response = $client->listUptimeCheckConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getGroup()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getUptimeCheckConfigs()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.GroupService/ListGroups', $actualFuncCall);
+        $this->assertSame('/google.monitoring.v3.UptimeCheckService/ListUptimeCheckConfigs', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
     /**
      * @test
      */
-    public function listGroupsExceptionTest()
+    public function listUptimeCheckConfigsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -140,10 +140,10 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         try {
-            $client->listGroups($formattedName);
+            $client->listUptimeCheckConfigs($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -159,37 +159,31 @@ class GroupServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function getGroupTest()
+    public function getUptimeCheckConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
-        $parentName = 'parentName1015022848';
-        $filter = 'filter-1274492040';
-        $isCluster = false;
-        $expectedResponse = new Group();
+        $expectedResponse = new UptimeCheckConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setParentName($parentName);
-        $expectedResponse->setFilter($filter);
-        $expectedResponse->setIsCluster($isCluster);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
 
-        $response = $client->getGroup($formattedName);
+        $response = $client->getUptimeCheckConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.GroupService/GetGroup', $actualFuncCall);
+        $this->assertSame('/google.monitoring.v3.UptimeCheckService/GetUptimeCheckConfig', $actualFuncCall);
 
         $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
@@ -199,10 +193,10 @@ class GroupServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function getGroupExceptionTest()
+    public function getUptimeCheckConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -219,10 +213,10 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
 
         try {
-            $client->getGroup($formattedName);
+            $client->getUptimeCheckConfig($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -238,121 +232,35 @@ class GroupServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function createGroupTest()
+    public function createUptimeCheckConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
-
-        $this->assertTrue($grpcStub->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $displayName = 'displayName1615086568';
-        $parentName = 'parentName1015022848';
-        $filter = 'filter-1274492040';
-        $isCluster = false;
-        $expectedResponse = new Group();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setParentName($parentName);
-        $expectedResponse->setFilter($filter);
-        $expectedResponse->setIsCluster($isCluster);
-        $grpcStub->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
-        $group = new Group();
-
-        $response = $client->createGroup($formattedName, $group);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.GroupService/CreateGroup', $actualFuncCall);
-
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($group, $actualRequestObject->getGroup());
-
-        $this->assertTrue($grpcStub->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function createGroupExceptionTest()
-    {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
-
-        $this->assertTrue($grpcStub->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Grpc\STATUS_DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Grpc\STATUS_DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
-        $group = new Group();
-
-        try {
-            $client->createGroup($formattedName, $group);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateGroupTest()
-    {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
-        $parentName = 'parentName1015022848';
-        $filter = 'filter-1274492040';
-        $isCluster = false;
-        $expectedResponse = new Group();
+        $expectedResponse = new UptimeCheckConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setParentName($parentName);
-        $expectedResponse->setFilter($filter);
-        $expectedResponse->setIsCluster($isCluster);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $group = new Group();
+        $formattedParent = $client->projectName('[PROJECT]');
+        $uptimeCheckConfig = new UptimeCheckConfig();
 
-        $response = $client->updateGroup($group);
+        $response = $client->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.GroupService/UpdateGroup', $actualFuncCall);
+        $this->assertSame('/google.monitoring.v3.UptimeCheckService/CreateUptimeCheckConfig', $actualFuncCall);
 
-        $this->assertProtobufEquals($group, $actualRequestObject->getGroup());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
+        $this->assertProtobufEquals($uptimeCheckConfig, $actualRequestObject->getUptimeCheckConfig());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -360,10 +268,10 @@ class GroupServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function updateGroupExceptionTest()
+    public function createUptimeCheckConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -380,10 +288,11 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $group = new Group();
+        $formattedParent = $client->projectName('[PROJECT]');
+        $uptimeCheckConfig = new UptimeCheckConfig();
 
         try {
-            $client->updateGroup($group);
+            $client->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -399,10 +308,83 @@ class GroupServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteGroupTest()
+    public function updateUptimeCheckConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new UptimeCheckConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $uptimeCheckConfig = new UptimeCheckConfig();
+
+        $response = $client->updateUptimeCheckConfig($uptimeCheckConfig);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.UptimeCheckService/UpdateUptimeCheckConfig', $actualFuncCall);
+
+        $this->assertProtobufEquals($uptimeCheckConfig, $actualRequestObject->getUptimeCheckConfig());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateUptimeCheckConfigExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $uptimeCheckConfig = new UptimeCheckConfig();
+
+        try {
+            $client->updateUptimeCheckConfig($uptimeCheckConfig);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteUptimeCheckConfigTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -411,14 +393,14 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
 
-        $client->deleteGroup($formattedName);
+        $client->deleteUptimeCheckConfig($formattedName);
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.GroupService/DeleteGroup', $actualFuncCall);
+        $this->assertSame('/google.monitoring.v3.UptimeCheckService/DeleteUptimeCheckConfig', $actualFuncCall);
 
         $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
@@ -428,10 +410,10 @@ class GroupServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteGroupExceptionTest()
+    public function deleteUptimeCheckConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -448,10 +430,10 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
 
         try {
-            $client->deleteGroup($formattedName);
+            $client->deleteUptimeCheckConfig($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -467,50 +449,44 @@ class GroupServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function listGroupMembersTest()
+    public function listUptimeCheckIpsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
         $nextPageToken = '';
-        $totalSize = 705419236;
-        $membersElement = new MonitoredResource();
-        $members = [$membersElement];
-        $expectedResponse = new ListGroupMembersResponse();
+        $uptimeCheckIpsElement = new UptimeCheckIp();
+        $uptimeCheckIps = [$uptimeCheckIpsElement];
+        $expectedResponse = new ListUptimeCheckIpsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setTotalSize($totalSize);
-        $expectedResponse->setMembers($members);
+        $expectedResponse->setUptimeCheckIps($uptimeCheckIps);
         $grpcStub->addResponse($expectedResponse);
 
-        // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
-
-        $response = $client->listGroupMembers($formattedName);
+        $response = $client->listUptimeCheckIps();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getMembers()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getUptimeCheckIps()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.GroupService/ListGroupMembers', $actualFuncCall);
+        $this->assertSame('/google.monitoring.v3.UptimeCheckService/ListUptimeCheckIps', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
     /**
      * @test
      */
-    public function listGroupMembersExceptionTest()
+    public function listUptimeCheckIpsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
+        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -526,11 +502,8 @@ class GroupServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
-        // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
-
         try {
-            $client->listGroupMembers($formattedName);
+            $client->listUptimeCheckIps();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
