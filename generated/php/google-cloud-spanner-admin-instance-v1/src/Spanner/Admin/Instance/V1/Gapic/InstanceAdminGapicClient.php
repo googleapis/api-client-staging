@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -88,8 +88,8 @@ use Google\Protobuf\FieldMask;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $instanceAdminClient = new InstanceAdminClient();
  * try {
- *     $instanceAdminClient = new InstanceAdminClient();
  *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
@@ -404,7 +404,7 @@ class InstanceAdminGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Spanner Instance Admin API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -509,8 +509,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
@@ -593,8 +593,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedName = $instanceAdminClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
      *     $response = $instanceAdminClient->getInstanceConfig($formattedName);
      * } finally {
@@ -649,8 +649,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
@@ -755,8 +755,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedName = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $instanceAdminClient->getInstance($formattedName);
      * } finally {
@@ -844,8 +844,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
      *     $instanceId = '';
      *     $instance = new Instance();
@@ -973,8 +973,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $instance = new Instance();
      *     $fieldMask = new FieldMask();
      *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
@@ -1070,8 +1070,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedName = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $instanceAdminClient->deleteInstance($formattedName);
      * } finally {
@@ -1128,8 +1128,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $policy = new Policy();
      *     $response = $instanceAdminClient->setIamPolicy($formattedResource, $policy);
@@ -1195,8 +1195,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $instanceAdminClient->getIamPolicy($formattedResource);
      * } finally {
@@ -1257,8 +1257,8 @@ class InstanceAdminGapicClient
      *
      * Sample code:
      * ```
+     * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $permissions = [];
      *     $response = $instanceAdminClient->testIamPermissions($formattedResource, $permissions);
