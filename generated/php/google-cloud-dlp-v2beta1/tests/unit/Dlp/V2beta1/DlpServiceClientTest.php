@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,7 +29,7 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\Cloud\Dlp\V2beta1\BigQueryTable;
 use Google\Cloud\Dlp\V2beta1\CloudStorageOptions;
-use Google\Cloud\Dlp\V2beta1\CloudStorageOptions_FileSet as FileSet;
+use Google\Cloud\Dlp\V2beta1\CloudStorageOptions_FileSet;
 use Google\Cloud\Dlp\V2beta1\ContentItem;
 use Google\Cloud\Dlp\V2beta1\DeidentifyConfig;
 use Google\Cloud\Dlp\V2beta1\DeidentifyContentResponse;
@@ -42,6 +42,7 @@ use Google\Cloud\Dlp\V2beta1\ListInspectFindingsResponse;
 use Google\Cloud\Dlp\V2beta1\ListRootCategoriesResponse;
 use Google\Cloud\Dlp\V2beta1\OutputStorageConfig;
 use Google\Cloud\Dlp\V2beta1\PrivacyMetric;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig;
 use Google\Cloud\Dlp\V2beta1\RedactContentResponse;
 use Google\Cloud\Dlp\V2beta1\RiskAnalysisOperationResult;
 use Google\Cloud\Dlp\V2beta1\StorageConfig;
@@ -209,8 +210,16 @@ class DlpServiceClientTest extends GeneratedTest
         $itemsElement->setType($type);
         $itemsElement->setValue($value);
         $items = [$itemsElement];
+        $name2 = 'EMAIL_ADDRESS';
+        $infoType = new InfoType();
+        $infoType->setName($name2);
+        $replaceWith = 'REDACTED';
+        $replaceConfigsElement = new RedactContentRequest_ReplaceConfig();
+        $replaceConfigsElement->setInfoType($infoType);
+        $replaceConfigsElement->setReplaceWith($replaceWith);
+        $replaceConfigs = [$replaceConfigsElement];
 
-        $response = $client->redactContent($inspectConfig, $items);
+        $response = $client->redactContent($inspectConfig, $items, ['replaceConfigs' => $replaceConfigs]);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -259,9 +268,17 @@ class DlpServiceClientTest extends GeneratedTest
         $itemsElement->setType($type);
         $itemsElement->setValue($value);
         $items = [$itemsElement];
+        $name2 = 'EMAIL_ADDRESS';
+        $infoType = new InfoType();
+        $infoType->setName($name2);
+        $replaceWith = 'REDACTED';
+        $replaceConfigsElement = new RedactContentRequest_ReplaceConfig();
+        $replaceConfigsElement->setInfoType($infoType);
+        $replaceConfigsElement->setReplaceWith($replaceWith);
+        $replaceConfigs = [$replaceConfigsElement];
 
         try {
-            $client->redactContent($inspectConfig, $items);
+            $client->redactContent($inspectConfig, $items, ['replaceConfigs' => $replaceConfigs]);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -533,7 +550,7 @@ class DlpServiceClientTest extends GeneratedTest
         $inspectConfig = new InspectConfig();
         $inspectConfig->setInfoTypes($infoTypes);
         $url = 'gs://example_bucket/example_file.png';
-        $fileSet = new FileSet();
+        $fileSet = new CloudStorageOptions_FileSet();
         $fileSet->setUrl($url);
         $cloudStorageOptions = new CloudStorageOptions();
         $cloudStorageOptions->setFileSet($fileSet);
@@ -623,7 +640,7 @@ class DlpServiceClientTest extends GeneratedTest
         $inspectConfig = new InspectConfig();
         $inspectConfig->setInfoTypes($infoTypes);
         $url = 'gs://example_bucket/example_file.png';
-        $fileSet = new FileSet();
+        $fileSet = new CloudStorageOptions_FileSet();
         $fileSet->setUrl($url);
         $cloudStorageOptions = new CloudStorageOptions();
         $cloudStorageOptions->setFileSet($fileSet);
