@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -260,7 +260,7 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $topic = 'topic110546223';
-        $ackDeadlineSeconds2 = -921632575;
+        $ackDeadlineSeconds2 = 921632575;
         $retainAckedMessages = false;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
@@ -733,12 +733,12 @@ class SubscriberClientTest extends GeneratedTest
         $request->setSubscription($formattedSubscription);
         $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
         $formattedSubscription2 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds2 = -1562238880;
+        $streamAckDeadlineSeconds2 = 1562238880;
         $request2 = new StreamingPullRequest();
         $request2->setSubscription($formattedSubscription2);
         $request2->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds2);
         $formattedSubscription3 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds3 = -1562238879;
+        $streamAckDeadlineSeconds3 = 1562238879;
         $request3 = new StreamingPullRequest();
         $request3->setSubscription($formattedSubscription3);
         $request3->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds3);

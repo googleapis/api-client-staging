@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -77,8 +77,8 @@ use Google\Protobuf\Timestamp;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $subscriberClient = new SubscriberClient();
  * try {
- *     $subscriberClient = new SubscriberClient();
  *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
  *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
@@ -370,7 +370,7 @@ class SubscriberGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Pub/Sub API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -490,8 +490,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
@@ -609,8 +609,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->getSubscription($formattedSubscription);
      * } finally {
@@ -670,8 +670,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $ackDeadlineSeconds = 42;
      *     $subscription = new Subscription();
      *     $subscription->setAckDeadlineSeconds($ackDeadlineSeconds);
@@ -734,8 +734,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
@@ -821,8 +821,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $subscriberClient->deleteSubscription($formattedSubscription);
      * } finally {
@@ -879,8 +879,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $ackIds = [];
      *     $ackDeadlineSeconds = 0;
@@ -951,8 +951,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $ackIds = [];
      *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
@@ -1012,8 +1012,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $maxMessages = 0;
      *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
@@ -1093,8 +1093,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $streamAckDeadlineSeconds = 0;
      *     $request = new StreamingPullRequest();
@@ -1182,8 +1182,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $pushConfig = new PushConfig();
      *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
@@ -1244,8 +1244,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
@@ -1336,8 +1336,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedName = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->createSnapshot($formattedName, $formattedSubscription);
@@ -1411,8 +1411,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $seconds = 123456;
      *     $expireTime = new Timestamp();
      *     $expireTime->setSeconds($seconds);
@@ -1480,8 +1480,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSnapshot = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
      *     $subscriberClient->deleteSnapshot($formattedSnapshot);
      * } finally {
@@ -1535,8 +1535,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->seek($formattedSubscription);
      * } finally {
@@ -1613,8 +1613,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $policy = new Policy();
      *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
@@ -1678,8 +1678,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->getIamPolicy($formattedResource);
      * } finally {
@@ -1737,8 +1737,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $permissions = [];
      *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
