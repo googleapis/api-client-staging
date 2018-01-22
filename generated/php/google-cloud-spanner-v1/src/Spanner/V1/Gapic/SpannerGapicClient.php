@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -42,7 +42,6 @@ use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
@@ -70,8 +69,8 @@ use Google\Protobuf\Struct;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $spannerClient = new SpannerClient();
  * try {
- *     $spannerClient = new SpannerClient();
  *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
  *     $response = $spannerClient->createSession($formattedDatabase);
  * } finally {
@@ -301,7 +300,7 @@ class SpannerGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Spanner API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -416,8 +415,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
@@ -478,8 +477,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedName = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $response = $spannerClient->getSession($formattedName);
      * } finally {
@@ -533,8 +532,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     // Iterate through all elements
      *     $pagedResponse = $spannerClient->listSessions($formattedDatabase);
@@ -629,8 +628,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedName = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $spannerClient->deleteSession($formattedName);
      * } finally {
@@ -692,8 +691,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $sql = '';
      *     $response = $spannerClient->executeSql($formattedSession, $sql);
@@ -807,8 +806,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $sql = '';
      *     // Read all responses until the stream is complete
@@ -938,8 +937,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $table = '';
      *     $columns = [];
@@ -1045,8 +1044,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $table = '';
      *     $columns = [];
@@ -1159,8 +1158,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $options = new TransactionOptions();
      *     $response = $spannerClient->beginTransaction($formattedSession, $options);
@@ -1224,8 +1223,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $mutations = [];
      *     $response = $spannerClient->commit($formattedSession, $mutations);
@@ -1309,8 +1308,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $transactionId = '';
      *     $spannerClient->rollback($formattedSession, $transactionId);
