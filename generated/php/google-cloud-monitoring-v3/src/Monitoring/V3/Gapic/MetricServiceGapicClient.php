@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -47,7 +47,7 @@ use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
 use Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView;
 use Google\Cloud\Monitoring\V3\MetricServiceGrpcClient;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
@@ -65,8 +65,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $metricServiceClient = new MetricServiceClient();
  * try {
- *     $metricServiceClient = new MetricServiceClient();
  *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
@@ -338,7 +338,7 @@ class MetricServiceGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Monitoring API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -430,8 +430,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
@@ -524,8 +524,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
      * } finally {
@@ -582,8 +582,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
@@ -677,8 +677,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
      * } finally {
@@ -737,8 +737,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $metricDescriptor = new MetricDescriptor();
      *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
@@ -798,8 +798,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $metricServiceClient->deleteMetricDescriptor($formattedName);
      * } finally {
@@ -854,12 +854,12 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $filter = '';
      *     $interval = new TimeInterval();
-     *     $view = TimeSeriesView::FULL;
+     *     $view = ListTimeSeriesRequest_TimeSeriesView::FULL;
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -972,8 +972,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $timeSeries = [];
      *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
