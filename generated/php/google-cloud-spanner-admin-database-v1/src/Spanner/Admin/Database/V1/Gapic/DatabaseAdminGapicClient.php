@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -70,8 +70,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $databaseAdminClient = new DatabaseAdminClient();
  * try {
- *     $databaseAdminClient = new DatabaseAdminClient();
  *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
  *     // Iterate through all elements
  *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
@@ -350,7 +350,7 @@ class DatabaseAdminGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Spanner Database Admin API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -454,8 +454,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate through all elements
      *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
@@ -544,8 +544,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $createStatement = '';
      *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
@@ -640,8 +640,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedName = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getDatabase($formattedName);
      * } finally {
@@ -702,8 +702,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $statements = [];
      *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
@@ -806,8 +806,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $databaseAdminClient->dropDatabase($formattedDatabase);
      * } finally {
@@ -861,8 +861,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getDatabaseDdl($formattedDatabase);
      * } finally {
@@ -920,8 +920,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $policy = new Policy();
      *     $response = $databaseAdminClient->setIamPolicy($formattedResource, $policy);
@@ -987,8 +987,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getIamPolicy($formattedResource);
      * } finally {
@@ -1049,8 +1049,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $permissions = [];
      *     $response = $databaseAdminClient->testIamPermissions($formattedResource, $permissions);
