@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -66,8 +66,8 @@ use Google\Protobuf\FieldMask;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $publisherClient = new PublisherClient();
  * try {
- *     $publisherClient = new PublisherClient();
  *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
@@ -288,7 +288,7 @@ class PublisherGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Pub/Sub API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -387,8 +387,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
@@ -457,8 +457,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $topic = new Topic();
      *     $updateMask = new FieldMask();
      *     $response = $publisherClient->updateTopic($topic, $updateMask);
@@ -518,8 +518,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $data = '';
      *     $messagesElement = new PubsubMessage();
@@ -580,8 +580,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
@@ -636,8 +636,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedProject = $publisherClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
@@ -719,8 +719,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
@@ -806,8 +806,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
@@ -861,8 +861,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
@@ -926,8 +926,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
@@ -985,8 +985,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
