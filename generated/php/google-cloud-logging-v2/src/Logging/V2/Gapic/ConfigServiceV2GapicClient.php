@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -65,8 +65,8 @@ use Google\Protobuf\FieldMask;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $configServiceV2Client = new ConfigServiceV2Client();
  * try {
- *     $configServiceV2Client = new ConfigServiceV2Client();
  *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
@@ -328,7 +328,7 @@ class ConfigServiceV2GapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Logging API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -423,8 +423,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
@@ -510,8 +510,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $response = $configServiceV2Client->getSink($formattedSinkName);
      * } finally {
@@ -575,8 +575,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
@@ -659,8 +659,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
@@ -761,8 +761,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $configServiceV2Client->deleteSink($formattedSinkName);
      * } finally {
@@ -822,8 +822,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
@@ -909,8 +909,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
      *     $response = $configServiceV2Client->getExclusion($formattedName);
      * } finally {
@@ -973,8 +973,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     $exclusion = new LogExclusion();
      *     $response = $configServiceV2Client->createExclusion($formattedParent, $exclusion);
@@ -1039,8 +1039,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
      *     $exclusion = new LogExclusion();
      *     $updateMask = new FieldMask();
@@ -1114,8 +1114,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
      *     $configServiceV2Client->deleteExclusion($formattedName);
      * } finally {
