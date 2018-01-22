@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,6 +28,7 @@ use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\Cloud\VideoIntelligence\V1\AnnotateVideoResponse;
+use Google\Cloud\VideoIntelligence\V1\Feature;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -108,7 +109,12 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsStub->addResponse($completeOperation);
 
-        $response = $client->annotateVideo();
+        // Mock request
+        $inputUri = 'gs://demomaker/cat.mp4';
+        $featuresElement = Feature::LABEL_DETECTION;
+        $features = [$featuresElement];
+
+        $response = $client->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $grpcStub->popReceivedCalls();
@@ -179,7 +185,12 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsStub->addResponse(null, $status);
 
-        $response = $client->annotateVideo();
+        // Mock request
+        $inputUri = 'gs://demomaker/cat.mp4';
+        $featuresElement = Feature::LABEL_DETECTION;
+        $features = [$featuresElement];
+
+        $response = $client->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 

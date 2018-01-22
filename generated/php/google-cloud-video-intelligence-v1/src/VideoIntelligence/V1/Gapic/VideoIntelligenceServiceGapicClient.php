@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -55,10 +55,12 @@ use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceGrpcClient;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
  * try {
- *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
- *
- *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
+ *     $inputUri = 'gs://demomaker/cat.mp4';
+ *     $featuresElement = Feature::LABEL_DETECTION;
+ *     $features = [$featuresElement];
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *       $result = $operationResponse->getResult();
@@ -69,7 +71,7 @@ use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceGrpcClient;
  *     }
  *
  *     // OR start the operation, keep the operation name, and resume later
- *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $videoIntelligenceServiceClient->resumeOperation($operationName, 'annotateVideo');
@@ -207,7 +209,7 @@ class VideoIntelligenceServiceGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Video Intelligence API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -301,10 +303,12 @@ class VideoIntelligenceServiceGapicClient
      *
      * Sample code:
      * ```
+     * $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
      * try {
-     *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
-     *
-     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
+     *     $inputUri = 'gs://demomaker/cat.mp4';
+     *     $featuresElement = Feature::LABEL_DETECTION;
+     *     $features = [$featuresElement];
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *       $result = $operationResponse->getResult();
@@ -315,7 +319,7 @@ class VideoIntelligenceServiceGapicClient
      *     }
      *
      *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $videoIntelligenceServiceClient->resumeOperation($operationName, 'annotateVideo');
