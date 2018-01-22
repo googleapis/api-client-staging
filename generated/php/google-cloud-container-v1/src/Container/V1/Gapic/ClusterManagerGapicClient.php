@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -65,7 +65,7 @@ use Google\Cloud\Container\V1\SetLocationsRequest;
 use Google\Cloud\Container\V1\SetLoggingServiceRequest;
 use Google\Cloud\Container\V1\SetMaintenancePolicyRequest;
 use Google\Cloud\Container\V1\SetMasterAuthRequest;
-use Google\Cloud\Container\V1\SetMasterAuthRequest_Action as Action;
+use Google\Cloud\Container\V1\SetMasterAuthRequest_Action;
 use Google\Cloud\Container\V1\SetMonitoringServiceRequest;
 use Google\Cloud\Container\V1\SetNetworkPolicyRequest;
 use Google\Cloud\Container\V1\SetNodePoolAutoscalingRequest;
@@ -88,8 +88,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $clusterManagerClient = new ClusterManagerClient();
  * try {
- *     $clusterManagerClient = new ClusterManagerClient();
  *     $projectId = '';
  *     $zone = '';
  *     $response = $clusterManagerClient->listClusters($projectId, $zone);
@@ -167,7 +167,7 @@ class ClusterManagerGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Container Engine API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -275,8 +275,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $response = $clusterManagerClient->listClusters($projectId, $zone);
@@ -336,8 +336,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -412,8 +412,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $cluster = new Cluster();
@@ -477,8 +477,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -544,8 +544,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -619,8 +619,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -689,8 +689,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -760,8 +760,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -831,8 +831,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -899,8 +899,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -972,8 +972,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1043,12 +1043,12 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $action = Action::UNKNOWN;
+     *     $action = SetMasterAuthRequest_Action::UNKNOWN;
      *     $update = new MasterAuth();
      *     $response = $clusterManagerClient->setMasterAuth($projectId, $zone, $clusterId, $action, $update);
      * } finally {
@@ -1122,8 +1122,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1186,8 +1186,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $response = $clusterManagerClient->listOperations($projectId, $zone);
@@ -1246,8 +1246,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $operationId = '';
@@ -1310,8 +1310,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $operationId = '';
@@ -1371,8 +1371,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $response = $clusterManagerClient->getServerConfig($projectId, $zone);
@@ -1431,8 +1431,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1495,8 +1495,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1562,8 +1562,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1629,8 +1629,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1697,8 +1697,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1764,8 +1764,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1834,8 +1834,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1909,8 +1909,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1976,8 +1976,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -2040,8 +2040,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -2104,8 +2104,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -2174,8 +2174,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -2241,8 +2241,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
