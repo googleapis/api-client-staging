@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -57,8 +57,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $metricsServiceV2Client = new MetricsServiceV2Client();
  * try {
- *     $metricsServiceV2Client = new MetricsServiceV2Client();
  *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
@@ -280,7 +280,7 @@ class MetricsServiceV2GapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Logging API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -370,8 +370,8 @@ class MetricsServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $metricsServiceV2Client = new MetricsServiceV2Client();
      *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
@@ -454,8 +454,8 @@ class MetricsServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $metricsServiceV2Client = new MetricsServiceV2Client();
      *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
      * } finally {
@@ -511,8 +511,8 @@ class MetricsServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $metricsServiceV2Client = new MetricsServiceV2Client();
      *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->createLogMetric($formattedParent, $metric);
@@ -574,8 +574,8 @@ class MetricsServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $metricsServiceV2Client = new MetricsServiceV2Client();
      *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
@@ -638,8 +638,8 @@ class MetricsServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $metricsServiceV2Client = new MetricsServiceV2Client();
      *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
      * } finally {
