@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -87,8 +87,8 @@ use Google\Protobuf\Timestamp;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $firestoreClient = new FirestoreClient();
  * try {
- *     $firestoreClient = new FirestoreClient();
  *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
  *     $response = $firestoreClient->getDocument($formattedName);
  * } finally {
@@ -394,7 +394,7 @@ class FirestoreGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Firestore API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -493,8 +493,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     $response = $firestoreClient->getDocument($formattedName);
      * } finally {
@@ -568,8 +568,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     $collectionId = '';
      *     // Iterate through all elements
@@ -694,8 +694,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     $collectionId = '';
      *     $documentId = '';
@@ -770,8 +770,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $document = new Document();
      *     $updateMask = new DocumentMask();
      *     $response = $firestoreClient->updateDocument($document, $updateMask);
@@ -849,8 +849,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     $firestoreClient->deleteDocument($formattedName);
      * } finally {
@@ -912,8 +912,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $documents = [];
      *     // Read all responses until the stream is complete
@@ -1009,8 +1009,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $response = $firestoreClient->beginTransaction($formattedDatabase);
      * } finally {
@@ -1071,8 +1071,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $writes = [];
      *     $response = $firestoreClient->commit($formattedDatabase, $writes);
@@ -1137,8 +1137,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $transaction = '';
      *     $firestoreClient->rollback($formattedDatabase, $transaction);
@@ -1194,8 +1194,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     // Read all responses until the stream is complete
      *     $stream = $firestoreClient->runQuery($formattedParent);
@@ -1286,8 +1286,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $request = new WriteRequest();
      *     $request->setDatabase($formattedDatabase);
@@ -1368,8 +1368,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $request = new ListenRequest();
      *     $request->setDatabase($formattedDatabase);
@@ -1450,8 +1450,8 @@ class FirestoreGapicClient
      *
      * Sample code:
      * ```
+     * $firestoreClient = new FirestoreClient();
      * try {
-     *     $firestoreClient = new FirestoreClient();
      *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     // Iterate through all elements
      *     $pagedResponse = $firestoreClient->listCollectionIds($formattedParent);
