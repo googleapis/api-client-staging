@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,7 +31,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
-use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding as AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
 use Google\Cloud\Speech\V1\RecognizeResponse;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
@@ -95,7 +95,7 @@ class SpeechClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $encoding = AudioEncoding::FLAC;
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -143,7 +143,7 @@ class SpeechClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $encoding = AudioEncoding::FLAC;
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -204,7 +204,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
-        $encoding = AudioEncoding::FLAC;
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -289,7 +289,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsStub->addResponse(null, $status);
 
         // Mock request
-        $encoding = AudioEncoding::FLAC;
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
