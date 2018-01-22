@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,9 +38,9 @@ use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Trace\V2\BatchWriteSpansRequest;
 use Google\Cloud\Trace\V2\Span;
-use Google\Cloud\Trace\V2\Span_Attributes as Attributes;
-use Google\Cloud\Trace\V2\Span_Links as Links;
-use Google\Cloud\Trace\V2\Span_TimeEvents as TimeEvents;
+use Google\Cloud\Trace\V2\Span_Attributes;
+use Google\Cloud\Trace\V2\Span_Links;
+use Google\Cloud\Trace\V2\Span_TimeEvents;
 use Google\Cloud\Trace\V2\StackTrace;
 use Google\Cloud\Trace\V2\TraceServiceGrpcClient;
 use Google\Cloud\Trace\V2\TruncatableString;
@@ -65,8 +65,8 @@ use Google\Rpc\Status;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $traceServiceClient = new TraceServiceClient();
  * try {
- *     $traceServiceClient = new TraceServiceClient();
  *     $formattedName = $traceServiceClient->projectName('[PROJECT]');
  *     $spans = [];
  *     $traceServiceClient->batchWriteSpans($formattedName, $spans);
@@ -260,7 +260,7 @@ class TraceServiceGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Trace API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -341,8 +341,8 @@ class TraceServiceGapicClient
      *
      * Sample code:
      * ```
+     * $traceServiceClient = new TraceServiceClient();
      * try {
-     *     $traceServiceClient = new TraceServiceClient();
      *     $formattedName = $traceServiceClient->projectName('[PROJECT]');
      *     $spans = [];
      *     $traceServiceClient->batchWriteSpans($formattedName, $spans);
@@ -399,8 +399,8 @@ class TraceServiceGapicClient
      *
      * Sample code:
      * ```
+     * $traceServiceClient = new TraceServiceClient();
      * try {
-     *     $traceServiceClient = new TraceServiceClient();
      *     $formattedName = $traceServiceClient->spanName('[PROJECT]', '[TRACE]', '[SPAN]');
      *     $spanId = '';
      *     $displayName = new TruncatableString();
@@ -441,15 +441,15 @@ class TraceServiceGapicClient
      *     @type string $parentSpanId
      *          The [SPAN_ID] of this span's parent span. If this is a root span,
      *          then this field must be empty.
-     *     @type Attributes $attributes
+     *     @type Span_Attributes $attributes
      *          A set of attributes on the span. You can have up to 32 attributes per
      *          span.
      *     @type StackTrace $stackTrace
      *          Stack trace captured at the start of the span.
-     *     @type TimeEvents $timeEvents
+     *     @type Span_TimeEvents $timeEvents
      *          A set of time events. You can have up to 32 annotations and 128 message
      *          events per span.
-     *     @type Links $links
+     *     @type Span_Links $links
      *          Links associated with the span. You can have up to 128 links per Span.
      *     @type Status $status
      *          An optional final status for this span.
