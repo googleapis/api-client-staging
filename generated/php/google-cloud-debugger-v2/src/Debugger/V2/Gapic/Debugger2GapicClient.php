@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ use Google\Cloud\Debugger\V2\Debugger2GrpcClient;
 use Google\Cloud\Debugger\V2\DeleteBreakpointRequest;
 use Google\Cloud\Debugger\V2\GetBreakpointRequest;
 use Google\Cloud\Debugger\V2\ListBreakpointsRequest;
-use Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue as BreakpointActionValue;
+use Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue;
 use Google\Cloud\Debugger\V2\ListDebuggeesRequest;
 use Google\Cloud\Debugger\V2\SetBreakpointRequest;
 use Google\Cloud\Version;
@@ -146,7 +146,7 @@ class Debugger2GapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Debugger API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -436,7 +436,7 @@ class Debugger2GapicClient
      *     @type bool $includeInactive
      *          When set to `true`, the response includes active and inactive
      *          breakpoints. Otherwise, it includes only active breakpoints.
-     *     @type BreakpointActionValue $action
+     *     @type ListBreakpointsRequest_BreakpointActionValue $action
      *          When set, the response includes only breakpoints with the specified action.
      *     @type bool $stripResults
      *          This field is deprecated. The following fields are always stripped out of
