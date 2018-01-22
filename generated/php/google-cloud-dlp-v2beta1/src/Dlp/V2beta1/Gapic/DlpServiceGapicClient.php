@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -54,8 +54,8 @@ use Google\Cloud\Dlp\V2beta1\OperationConfig;
 use Google\Cloud\Dlp\V2beta1\OutputStorageConfig;
 use Google\Cloud\Dlp\V2beta1\PrivacyMetric;
 use Google\Cloud\Dlp\V2beta1\RedactContentRequest;
-use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig as ImageRedactionConfig;
-use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig;
 use Google\Cloud\Dlp\V2beta1\StorageConfig;
 use Google\Cloud\Version;
 
@@ -75,8 +75,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $dlpServiceClient = new DlpServiceClient();
  * try {
- *     $dlpServiceClient = new DlpServiceClient();
  *     $name = 'EMAIL_ADDRESS';
  *     $infoTypesElement = new InfoType();
  *     $infoTypesElement->setName($name);
@@ -301,7 +301,7 @@ class DlpServiceGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the DLP API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -400,8 +400,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
@@ -471,8 +471,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
@@ -485,7 +485,15 @@ class DlpServiceGapicClient
      *     $itemsElement->setType($type);
      *     $itemsElement->setValue($value);
      *     $items = [$itemsElement];
-     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items);
+     *     $name2 = 'EMAIL_ADDRESS';
+     *     $infoType = new InfoType();
+     *     $infoType->setName($name2);
+     *     $replaceWith = 'REDACTED';
+     *     $replaceConfigsElement = new RedactContentRequest_ReplaceConfig();
+     *     $replaceConfigsElement->setInfoType($infoType);
+     *     $replaceConfigsElement->setReplaceWith($replaceWith);
+     *     $replaceConfigs = [$replaceConfigsElement];
+     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items, ['replaceConfigs' => $replaceConfigs]);
      * } finally {
      *     $dlpServiceClient->close();
      * }
@@ -496,10 +504,10 @@ class DlpServiceGapicClient
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
-     *     @type ReplaceConfig[] $replaceConfigs
+     *     @type RedactContentRequest_ReplaceConfig[] $replaceConfigs
      *          The strings to replace findings text findings with. Must specify at least
      *          one of these or one ImageRedactionConfig if redacting images.
-     *     @type ImageRedactionConfig[] $imageRedactionConfigs
+     *     @type RedactContentRequest_ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -551,8 +559,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $deidentifyConfig = new DeidentifyConfig();
      *     $inspectConfig = new InspectConfig();
      *     $items = [];
@@ -614,8 +622,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $privacyMetric = new PrivacyMetric();
      *     $sourceTable = new BigQueryTable();
      *     $operationResponse = $dlpServiceClient->analyzeDataSourceRisk($privacyMetric, $sourceTable);
@@ -698,8 +706,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
@@ -707,7 +715,7 @@ class DlpServiceGapicClient
      *     $inspectConfig = new InspectConfig();
      *     $inspectConfig->setInfoTypes($infoTypes);
      *     $url = 'gs://example_bucket/example_file.png';
-     *     $fileSet = new FileSet();
+     *     $fileSet = new CloudStorageOptions_FileSet();
      *     $fileSet->setUrl($url);
      *     $cloudStorageOptions = new CloudStorageOptions();
      *     $cloudStorageOptions->setFileSet($fileSet);
@@ -800,8 +808,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $formattedName = $dlpServiceClient->resultName('[RESULT]');
      *     $response = $dlpServiceClient->listInspectFindings($formattedName);
      * } finally {
@@ -883,8 +891,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $category = 'PII';
      *     $languageCode = 'en';
      *     $response = $dlpServiceClient->listInfoTypes($category, $languageCode);
@@ -943,8 +951,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $languageCode = 'en';
      *     $response = $dlpServiceClient->listRootCategories($languageCode);
      * } finally {
