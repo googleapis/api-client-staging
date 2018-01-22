@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -39,7 +39,7 @@ use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
-use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features as Features;
+use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features;
 use Google\Cloud\Language\V1beta2\ClassifyTextRequest;
 use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\EncodingType;
@@ -58,8 +58,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $languageServiceClient = new LanguageServiceClient();
  * try {
- *     $languageServiceClient = new LanguageServiceClient();
  *     $document = new Document();
  *     $response = $languageServiceClient->analyzeSentiment($document);
  * } finally {
@@ -136,7 +136,7 @@ class LanguageServiceGapicClient
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Natural Language API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -219,8 +219,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeSentiment($document);
      * } finally {
@@ -283,8 +283,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeEntities($document);
      * } finally {
@@ -345,8 +345,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeEntitySentiment($document);
      * } finally {
@@ -408,8 +408,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeSyntax($document);
      * } finally {
@@ -469,8 +469,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->classifyText($document);
      * } finally {
@@ -525,20 +525,20 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
-     *     $features = new Features();
+     *     $features = new AnnotateTextRequest_Features();
      *     $response = $languageServiceClient->annotateText($document, $features);
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Input document.
-     * @param Features $features     The enabled features.
-     * @param array    $optionalArgs {
-     *                               Optional.
+     * @param Document                     $document     Input document.
+     * @param AnnotateTextRequest_Features $features     The enabled features.
+     * @param array                        $optionalArgs {
+     *                                                   Optional.
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
