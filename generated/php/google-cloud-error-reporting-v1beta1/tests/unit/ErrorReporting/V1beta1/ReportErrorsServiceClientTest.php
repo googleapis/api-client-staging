@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
 use Google\Protobuf\Any;
@@ -38,42 +38,20 @@ use stdClass;
  */
 class ReportErrorsServiceClientTest extends GeneratedTest
 {
-    public function createMockErrorGroupServiceImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockErrorGroupServiceImpl($hostname, $opts);
-    }
-
-    public function createMockErrorStatsServiceImpl($hostname, $opts)
-    {
-        return new MockErrorStatsServiceImpl($hostname, $opts);
-    }
-
-    public function createMockReportErrorsServiceImpl($hostname, $opts)
-    {
-        return new MockReportErrorsServiceImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => ReportErrorsServiceClient::SERVICE_ADDRESS,
-            'port' => ReportErrorsServiceClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return ReportErrorsServiceClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new ReportErrorsServiceClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new ReportErrorsServiceClient($options);
     }
 
     /**
@@ -81,14 +59,14 @@ class ReportErrorsServiceClientTest extends GeneratedTest
      */
     public function reportErrorEventTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockReportErrorsServiceImpl']);
-        $client = $this->createClient('createReportErrorsServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ReportErrorEventResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
@@ -96,16 +74,20 @@ class ReportErrorsServiceClientTest extends GeneratedTest
 
         $response = $client->reportErrorEvent($formattedProjectName, $event);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedProjectName, $actualRequestObject->getProjectName());
-        $this->assertProtobufEquals($event, $actualRequestObject->getEvent());
+        $actualValue = $actualRequestObject->getProjectName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedProjectName, $actualValue);
+        $actualValue = $actualRequestObject->getEvent();
+
+        $this->assertProtobufEquals($event, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -113,10 +95,10 @@ class ReportErrorsServiceClientTest extends GeneratedTest
      */
     public function reportErrorEventExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockReportErrorsServiceImpl']);
-        $client = $this->createClient('createReportErrorsServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -128,7 +110,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
@@ -144,7 +126,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
