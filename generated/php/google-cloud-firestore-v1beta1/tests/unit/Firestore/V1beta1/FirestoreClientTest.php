@@ -25,9 +25,9 @@ namespace Google\Cloud\Tests\Unit\Firestore\V1beta1;
 use Google\Cloud\Firestore\V1beta1\FirestoreClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsResponse;
 use Google\Cloud\Firestore\V1beta1\BeginTransactionResponse;
 use Google\Cloud\Firestore\V1beta1\CommitResponse;
@@ -52,32 +52,20 @@ use stdClass;
  */
 class FirestoreClientTest extends GeneratedTest
 {
-    public function createMockFirestoreImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockFirestoreImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => FirestoreClient::SERVICE_ADDRESS,
-            'port' => FirestoreClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return FirestoreClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new FirestoreClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new FirestoreClient($options);
     }
 
     /**
@@ -85,31 +73,33 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function getDocumentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
         $expectedResponse = new Document();
         $expectedResponse->setName($name2);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
 
         $response = $client->getDocument($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/GetDocument', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -117,10 +107,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function getDocumentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -132,7 +122,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -147,8 +137,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -156,10 +146,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function listDocumentsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -168,7 +158,7 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponse = new ListDocumentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDocuments($documents);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -180,15 +170,19 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getDocuments()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/ListDocuments', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($collectionId, $actualRequestObject->getCollectionId());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCollectionId();
+
+        $this->assertProtobufEquals($collectionId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -196,10 +190,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function listDocumentsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -211,7 +205,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -227,8 +221,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -236,16 +230,16 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function createDocumentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
         $expectedResponse = new Document();
         $expectedResponse->setName($name);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -255,18 +249,26 @@ class FirestoreClientTest extends GeneratedTest
 
         $response = $client->createDocument($formattedParent, $collectionId, $documentId, $document);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/CreateDocument', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($collectionId, $actualRequestObject->getCollectionId());
-        $this->assertProtobufEquals($documentId, $actualRequestObject->getDocumentId());
-        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCollectionId();
+
+        $this->assertProtobufEquals($collectionId, $actualValue);
+        $actualValue = $actualRequestObject->getDocumentId();
+
+        $this->assertProtobufEquals($documentId, $actualValue);
+        $actualValue = $actualRequestObject->getDocument();
+
+        $this->assertProtobufEquals($document, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -274,10 +276,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function createDocumentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -289,7 +291,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -307,8 +309,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -316,16 +318,16 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function updateDocumentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
         $expectedResponse = new Document();
         $expectedResponse->setName($name);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $document = new Document();
@@ -333,16 +335,20 @@ class FirestoreClientTest extends GeneratedTest
 
         $response = $client->updateDocument($document, $updateMask);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/UpdateDocument', $actualFuncCall);
 
-        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
-        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+        $actualValue = $actualRequestObject->getDocument();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($document, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -350,10 +356,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function updateDocumentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -365,7 +371,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $document = new Document();
@@ -381,8 +387,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -390,28 +396,30 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function deleteDocumentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
 
         $client->deleteDocument($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/DeleteDocument', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -419,10 +427,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function deleteDocumentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -434,7 +442,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -449,8 +457,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -458,10 +466,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function batchGetDocumentsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $missing = 'missing1069449574';
@@ -469,19 +477,19 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponse = new BatchGetDocumentsResponse();
         $expectedResponse->setMissing($missing);
         $expectedResponse->setTransaction($transaction);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $missing2 = 'missing21243859865';
         $transaction2 = '17';
         $expectedResponse2 = new BatchGetDocumentsResponse();
         $expectedResponse2->setMissing($missing2);
         $expectedResponse2->setTransaction($transaction2);
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $missing3 = 'missing31243859866';
         $transaction3 = '18';
         $expectedResponse3 = new BatchGetDocumentsResponse();
         $expectedResponse3->setMissing($missing3);
         $expectedResponse3->setTransaction($transaction3);
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
@@ -498,16 +506,20 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/BatchGetDocuments', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
-        $this->assertProtobufEquals($documents, $actualRequestObject->getDocuments());
+        $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getDocuments();
+
+        $this->assertProtobufEquals($documents, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -515,8 +527,8 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function batchGetDocumentsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -529,9 +541,9 @@ class FirestoreClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
@@ -550,8 +562,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -559,31 +571,33 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function beginTransactionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $transaction = '-34';
         $expectedResponse = new BeginTransactionResponse();
         $expectedResponse->setTransaction($transaction);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
 
         $response = $client->beginTransaction($formattedDatabase);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/BeginTransaction', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
+        $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -591,10 +605,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function beginTransactionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -606,7 +620,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
@@ -621,8 +635,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -630,14 +644,14 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function commitTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new CommitResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
@@ -645,16 +659,20 @@ class FirestoreClientTest extends GeneratedTest
 
         $response = $client->commit($formattedDatabase, $writes);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/Commit', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
-        $this->assertProtobufEquals($writes, $actualRequestObject->getWrites());
+        $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getWrites();
+
+        $this->assertProtobufEquals($writes, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -662,10 +680,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function commitExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -677,7 +695,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
@@ -693,8 +711,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -702,30 +720,34 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function rollbackTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
         $transaction = '-34';
 
         $client->rollback($formattedDatabase, $transaction);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/Rollback', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
-        $this->assertProtobufEquals($transaction, $actualRequestObject->getTransaction());
+        $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getTransaction();
+
+        $this->assertProtobufEquals($transaction, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -733,10 +755,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function rollbackExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -748,7 +770,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
@@ -764,8 +786,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -773,10 +795,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function runQueryTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $transaction = '-34';
@@ -784,19 +806,19 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponse = new RunQueryResponse();
         $expectedResponse->setTransaction($transaction);
         $expectedResponse->setSkippedResults($skippedResults);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $transaction2 = '17';
         $skippedResults2 = 153532454;
         $expectedResponse2 = new RunQueryResponse();
         $expectedResponse2->setTransaction($transaction2);
         $expectedResponse2->setSkippedResults($skippedResults2);
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $transaction3 = '18';
         $skippedResults3 = 153532453;
         $expectedResponse3 = new RunQueryResponse();
         $expectedResponse3->setTransaction($transaction3);
         $expectedResponse3->setSkippedResults($skippedResults3);
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -812,15 +834,17 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/RunQuery', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -828,8 +852,8 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function runQueryExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -842,9 +866,9 @@ class FirestoreClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock request
         $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -862,8 +886,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -871,10 +895,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function writeTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $streamId = 'streamId-315624902';
@@ -882,19 +906,19 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponse = new WriteResponse();
         $expectedResponse->setStreamId($streamId);
         $expectedResponse->setStreamToken($streamToken);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $streamId2 = 'streamId21627150189';
         $streamToken2 = '-83';
         $expectedResponse2 = new WriteResponse();
         $expectedResponse2->setStreamId($streamId2);
         $expectedResponse2->setStreamToken($streamToken2);
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $streamId3 = 'streamId31627150190';
         $streamToken3 = '-82';
         $expectedResponse3 = new WriteResponse();
         $expectedResponse3->setStreamId($streamId3);
         $expectedResponse3->setStreamToken($streamToken3);
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
@@ -925,14 +949,14 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $createStreamRequests = $grpcStub->popReceivedCalls();
+        $createStreamRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/Write', $streamFuncCall);
         $this->assertNull($streamRequestObject);
 
-        $callObjects = $grpcStub->popCallObjects();
+        $callObjects = $transport->popCallObjects();
         $this->assertSame(1, count($callObjects));
         $bidiCall = $callObjects[0];
 
@@ -943,7 +967,7 @@ class FirestoreClientTest extends GeneratedTest
         $expectedRequests[] = $request3;
         $this->assertEquals($expectedRequests, $writeRequests);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -951,8 +975,8 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function writeExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -965,9 +989,9 @@ class FirestoreClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $bidi = $client->write();
         $results = $bidi->closeWriteAndReadAll();
@@ -982,8 +1006,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -991,18 +1015,18 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function listenTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ListenResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $expectedResponse2 = new ListenResponse();
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $expectedResponse3 = new ListenResponse();
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
@@ -1033,14 +1057,14 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $createStreamRequests = $grpcStub->popReceivedCalls();
+        $createStreamRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/Listen', $streamFuncCall);
         $this->assertNull($streamRequestObject);
 
-        $callObjects = $grpcStub->popCallObjects();
+        $callObjects = $transport->popCallObjects();
         $this->assertSame(1, count($callObjects));
         $bidiCall = $callObjects[0];
 
@@ -1051,7 +1075,7 @@ class FirestoreClientTest extends GeneratedTest
         $expectedRequests[] = $request3;
         $this->assertEquals($expectedRequests, $writeRequests);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1059,8 +1083,8 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function listenExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1073,9 +1097,9 @@ class FirestoreClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $bidi = $client->listen();
         $results = $bidi->closeWriteAndReadAll();
@@ -1090,8 +1114,8 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1099,10 +1123,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function listCollectionIdsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -1111,7 +1135,7 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponse = new ListCollectionIdsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCollectionIds($collectionIds);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -1122,14 +1146,16 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getCollectionIds()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/ListCollectionIds', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1137,10 +1163,10 @@ class FirestoreClientTest extends GeneratedTest
      */
     public function listCollectionIdsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFirestoreImpl']);
-        $client = $this->createClient('createFirestoreStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1152,7 +1178,7 @@ class FirestoreClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
@@ -1167,7 +1193,7 @@ class FirestoreClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
