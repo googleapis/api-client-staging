@@ -24,9 +24,9 @@ namespace Google\Cloud\Tests\Unit\Spanner\V1;
 
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\ListSessionsResponse;
@@ -46,32 +46,20 @@ use stdClass;
  */
 class SpannerClientTest extends GeneratedTest
 {
-    public function createMockSpannerImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockSpannerImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => SpannerClient::SERVICE_ADDRESS,
-            'port' => SpannerClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return SpannerClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new SpannerClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new SpannerClient($options);
     }
 
     /**
@@ -79,31 +67,33 @@ class SpannerClientTest extends GeneratedTest
      */
     public function createSessionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
         $expectedResponse = new Session();
         $expectedResponse->setName($name);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $response = $client->createSession($formattedDatabase);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/CreateSession', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
+        $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -111,10 +101,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function createSessionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -126,7 +116,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -141,8 +131,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -150,31 +140,33 @@ class SpannerClientTest extends GeneratedTest
      */
     public function getSessionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
         $expectedResponse = new Session();
         $expectedResponse->setName($name2);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
 
         $response = $client->getSession($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/GetSession', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -182,10 +174,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function getSessionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -197,7 +189,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -212,8 +204,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -221,10 +213,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function listSessionsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -233,7 +225,7 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse = new ListSessionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessions($sessions);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -244,14 +236,16 @@ class SpannerClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSessions()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ListSessions', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getDatabase();
+
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -259,10 +253,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function listSessionsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -274,7 +268,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -289,8 +283,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -298,28 +292,30 @@ class SpannerClientTest extends GeneratedTest
      */
     public function deleteSessionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
 
         $client->deleteSession($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/DeleteSession', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -327,10 +323,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function deleteSessionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -342,7 +338,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -357,8 +353,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -366,14 +362,14 @@ class SpannerClientTest extends GeneratedTest
      */
     public function executeSqlTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ResultSet();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -381,16 +377,20 @@ class SpannerClientTest extends GeneratedTest
 
         $response = $client->executeSql($formattedSession, $sql);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ExecuteSql', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertProtobufEquals($sql, $actualRequestObject->getSql());
+        $actualValue = $actualRequestObject->getSession();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getSql();
+
+        $this->assertProtobufEquals($sql, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -398,10 +398,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function executeSqlExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -413,7 +413,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -429,8 +429,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -438,10 +438,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function executeStreamingSqlTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $chunkedValue = true;
@@ -449,19 +449,19 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse = new PartialResultSet();
         $expectedResponse->setChunkedValue($chunkedValue);
         $expectedResponse->setResumeToken($resumeToken);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $chunkedValue2 = false;
         $resumeToken2 = '90';
         $expectedResponse2 = new PartialResultSet();
         $expectedResponse2->setChunkedValue($chunkedValue2);
         $expectedResponse2->setResumeToken($resumeToken2);
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $chunkedValue3 = true;
         $resumeToken3 = '91';
         $expectedResponse3 = new PartialResultSet();
         $expectedResponse3->setChunkedValue($chunkedValue3);
         $expectedResponse3->setResumeToken($resumeToken3);
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -478,16 +478,20 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ExecuteStreamingSql', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertProtobufEquals($sql, $actualRequestObject->getSql());
+        $actualValue = $actualRequestObject->getSession();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getSql();
+
+        $this->assertProtobufEquals($sql, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -495,8 +499,8 @@ class SpannerClientTest extends GeneratedTest
      */
     public function executeStreamingSqlExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -509,9 +513,9 @@ class SpannerClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -530,8 +534,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -539,14 +543,14 @@ class SpannerClientTest extends GeneratedTest
      */
     public function readTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ResultSet();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -556,18 +560,26 @@ class SpannerClientTest extends GeneratedTest
 
         $response = $client->read($formattedSession, $table, $columns, $keySet);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Read', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertProtobufEquals($table, $actualRequestObject->getTable());
-        $this->assertProtobufEquals($columns, $actualRequestObject->getColumns());
-        $this->assertProtobufEquals($keySet, $actualRequestObject->getKeySet());
+        $actualValue = $actualRequestObject->getSession();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getTable();
+
+        $this->assertProtobufEquals($table, $actualValue);
+        $actualValue = $actualRequestObject->getColumns();
+
+        $this->assertProtobufEquals($columns, $actualValue);
+        $actualValue = $actualRequestObject->getKeySet();
+
+        $this->assertProtobufEquals($keySet, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -575,10 +587,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function readExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -590,7 +602,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -608,8 +620,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -617,10 +629,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function streamingReadTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $chunkedValue = true;
@@ -628,19 +640,19 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse = new PartialResultSet();
         $expectedResponse->setChunkedValue($chunkedValue);
         $expectedResponse->setResumeToken($resumeToken);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $chunkedValue2 = false;
         $resumeToken2 = '90';
         $expectedResponse2 = new PartialResultSet();
         $expectedResponse2->setChunkedValue($chunkedValue2);
         $expectedResponse2->setResumeToken($resumeToken2);
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $chunkedValue3 = true;
         $resumeToken3 = '91';
         $expectedResponse3 = new PartialResultSet();
         $expectedResponse3->setChunkedValue($chunkedValue3);
         $expectedResponse3->setResumeToken($resumeToken3);
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -659,18 +671,26 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/StreamingRead', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertProtobufEquals($table, $actualRequestObject->getTable());
-        $this->assertProtobufEquals($columns, $actualRequestObject->getColumns());
-        $this->assertProtobufEquals($keySet, $actualRequestObject->getKeySet());
+        $actualValue = $actualRequestObject->getSession();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getTable();
+
+        $this->assertProtobufEquals($table, $actualValue);
+        $actualValue = $actualRequestObject->getColumns();
+
+        $this->assertProtobufEquals($columns, $actualValue);
+        $actualValue = $actualRequestObject->getKeySet();
+
+        $this->assertProtobufEquals($keySet, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -678,8 +698,8 @@ class SpannerClientTest extends GeneratedTest
      */
     public function streamingReadExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -692,9 +712,9 @@ class SpannerClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -715,8 +735,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -724,16 +744,16 @@ class SpannerClientTest extends GeneratedTest
      */
     public function beginTransactionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $id = '27';
         $expectedResponse = new Transaction();
         $expectedResponse->setId($id);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -741,16 +761,20 @@ class SpannerClientTest extends GeneratedTest
 
         $response = $client->beginTransaction($formattedSession, $options);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/BeginTransaction', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertProtobufEquals($options, $actualRequestObject->getOptions());
+        $actualValue = $actualRequestObject->getSession();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getOptions();
+
+        $this->assertProtobufEquals($options, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -758,10 +782,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function beginTransactionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -773,7 +797,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -789,8 +813,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -798,14 +822,14 @@ class SpannerClientTest extends GeneratedTest
      */
     public function commitTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new CommitResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -813,16 +837,20 @@ class SpannerClientTest extends GeneratedTest
 
         $response = $client->commit($formattedSession, $mutations);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Commit', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertProtobufEquals($mutations, $actualRequestObject->getMutations());
+        $actualValue = $actualRequestObject->getSession();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getMutations();
+
+        $this->assertProtobufEquals($mutations, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -830,10 +858,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function commitExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -845,7 +873,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -861,8 +889,8 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -870,30 +898,34 @@ class SpannerClientTest extends GeneratedTest
      */
     public function rollbackTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $transactionId = '28';
 
         $client->rollback($formattedSession, $transactionId);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Rollback', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertProtobufEquals($transactionId, $actualRequestObject->getTransactionId());
+        $actualValue = $actualRequestObject->getSession();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getTransactionId();
+
+        $this->assertProtobufEquals($transactionId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -901,10 +933,10 @@ class SpannerClientTest extends GeneratedTest
      */
     public function rollbackExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
-        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -916,7 +948,7 @@ class SpannerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -932,7 +964,7 @@ class SpannerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
