@@ -21,26 +21,26 @@
  * https://github.com/google/googleapis/blob/master/google/bigtable/admin/v2/bigtable_instance_admin.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
 
 namespace Google\Cloud\Bigtable\Admin\V2\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\Admin\V2\AppProfile;
-use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminGrpcClient;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest;
@@ -54,25 +54,32 @@ use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListClustersResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
 use Google\Cloud\Bigtable\Admin\V2\PartialUpdateInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
-use Google\Cloud\Version;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable Instances and
  * Clusters. Provides access to the Instance and Cluster schemas only, not the
  * tables' metadata or data stored in those tables.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -124,6 +131,13 @@ use Google\Protobuf\FieldMask;
  */
 class BigtableInstanceAdminGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.bigtable.admin.v2.BigtableInstanceAdmin';
+
     /**
      * The default address of the service.
      */
@@ -150,15 +164,32 @@ class BigtableInstanceAdminGapicClient
     private static $clusterNameTemplate;
     private static $locationNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $bigtableInstanceAdminStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
     private $operationsClient;
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/bigtable.admin',
+                'https://www.googleapis.com/auth/bigtable.admin.cluster',
+                'https://www.googleapis.com/auth/bigtable.admin.instance',
+                'https://www.googleapis.com/auth/bigtable.admin.table',
+                'https://www.googleapis.com/auth/cloud-bigtable.admin',
+                'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+                'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
 
     private static function getProjectNameTemplate()
     {
@@ -218,55 +249,6 @@ class BigtableInstanceAdminGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listAppProfilesPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getAppProfiles',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listAppProfiles' => $listAppProfilesPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getLongRunningDescriptors()
-    {
-        return [
-            'createInstance' => [
-                'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Instance',
-                'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateInstanceMetadata',
-            ],
-            'createCluster' => [
-                'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
-                'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata',
-            ],
-            'updateCluster' => [
-                'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
-                'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateClusterMetadata',
-            ],
-        ];
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -409,7 +391,7 @@ class BigtableInstanceAdminGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -427,17 +409,14 @@ class BigtableInstanceAdminGapicClient
      * @param string $operationName The name of the long running operation
      * @param string $methodName    The name of the method used to start the operation
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = self::getLongRunningDescriptors();
-        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
-            $options = $lroDescriptors[$methodName];
-        } else {
-            $options = [];
-        }
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
 
@@ -453,18 +432,21 @@ class BigtableInstanceAdminGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'bigtableadmin.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Bigtable Admin API.
@@ -482,104 +464,30 @@ class BigtableInstanceAdminGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/bigtable.admin',
-                'https://www.googleapis.com/auth/bigtable.admin.cluster',
-                'https://www.googleapis.com/auth/bigtable.admin.instance',
-                'https://www.googleapis.com/auth/bigtable.admin.table',
-                'https://www.googleapis.com/auth/cloud-bigtable.admin',
-                'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
-                'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloud-platform.read-only',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        if (array_key_exists('operationsClient', $options)) {
-            $this->operationsClient = $options['operationsClient'];
-        } else {
-            $operationsClientOptions = $options;
-            unset($operationsClientOptions['retryingOverride']);
-            unset($operationsClientOptions['clientConfigPath']);
-            $this->operationsClient = new OperationsClient($operationsClientOptions);
-        }
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'createInstance' => $defaultDescriptors,
-            'getInstance' => $defaultDescriptors,
-            'listInstances' => $defaultDescriptors,
-            'updateInstance' => $defaultDescriptors,
-            'partialUpdateInstance' => $defaultDescriptors,
-            'deleteInstance' => $defaultDescriptors,
-            'createCluster' => $defaultDescriptors,
-            'getCluster' => $defaultDescriptors,
-            'listClusters' => $defaultDescriptors,
-            'updateCluster' => $defaultDescriptors,
-            'deleteCluster' => $defaultDescriptors,
-            'createAppProfile' => $defaultDescriptors,
-            'getAppProfile' => $defaultDescriptors,
-            'listAppProfiles' => $defaultDescriptors,
-            'updateAppProfile' => $defaultDescriptors,
-            'deleteAppProfile' => $defaultDescriptors,
-            'getIamPolicy' => $defaultDescriptors,
-            'setIamPolicy' => $defaultDescriptors,
-            'testIamPermissions' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-        $longRunningDescriptors = self::getLongRunningDescriptors();
-        foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
-            $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.bigtable.admin.v2.BigtableInstanceAdmin',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createBigtableInstanceAdminStubFunction = function ($hostname, $opts, $channel) {
-            return new BigtableInstanceAdminGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createBigtableInstanceAdminStubFunction', $options)) {
-            $createBigtableInstanceAdminStubFunction = $options['createBigtableInstanceAdminStubFunction'];
-        }
-        $this->bigtableInstanceAdminStub = $this->grpcCredentialsHelper->createStub($createBigtableInstanceAdminStubFunction);
+        $options += self::getClientDefaults();
+        $this->setClientOptions($options);
+        $this->pluckArray([
+            'serviceName',
+            'clientConfigPath',
+            'descriptorsConfigPath',
+        ], $options);
+        $this->operationsClient = $this->pluck('operationsClient', $options, false)
+            ?: new OperationsClient($options);
     }
 
     /**
@@ -639,7 +547,7 @@ class BigtableInstanceAdminGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -648,7 +556,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createInstance($parent, $instanceId, $instance, $clusters, $optionalArgs = [])
@@ -659,24 +567,12 @@ class BigtableInstanceAdminGapicClient
         $request->setInstance($instance);
         $request->setClusters($clusters);
 
-        $defaultCallSettings = $this->defaultCallSettings['createInstance'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startOperationsCall(
             'CreateInstance',
-            $mergedSettings,
-            $this->descriptors['createInstance']
-        );
-
-        return $callable(
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -698,7 +594,7 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -707,7 +603,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Instance
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getInstance($name, $optionalArgs = [])
@@ -715,24 +611,12 @@ class BigtableInstanceAdminGapicClient
         $request = new GetInstanceRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getInstance'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'GetInstance',
-            $mergedSettings,
-            $this->descriptors['getInstance']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Instance::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -756,7 +640,7 @@ class BigtableInstanceAdminGapicClient
      *
      *     @type string $pageToken
      *          The value of `next_page_token` returned by a previous call.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -765,7 +649,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listInstances($parent, $optionalArgs = [])
@@ -776,24 +660,12 @@ class BigtableInstanceAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listInstances'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'ListInstances',
-            $mergedSettings,
-            $this->descriptors['listInstances']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ListInstancesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -839,7 +711,7 @@ class BigtableInstanceAdminGapicClient
      *          (`OutputOnly`)
      *          The current state of the instance.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_State}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -848,7 +720,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Instance
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateInstance($name, $displayName, $type, $labels, $optionalArgs = [])
@@ -862,24 +734,12 @@ class BigtableInstanceAdminGapicClient
             $request->setState($optionalArgs['state']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['updateInstance'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'UpdateInstance',
-            $mergedSettings,
-            $this->descriptors['updateInstance']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Instance::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -903,7 +763,7 @@ class BigtableInstanceAdminGapicClient
      * @param array     $optionalArgs {
      *                                Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -912,7 +772,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\LongRunning\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function partialUpdateInstance($instance, $updateMask, $optionalArgs = [])
@@ -921,24 +781,12 @@ class BigtableInstanceAdminGapicClient
         $request->setInstance($instance);
         $request->setUpdateMask($updateMask);
 
-        $defaultCallSettings = $this->defaultCallSettings['partialUpdateInstance'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'PartialUpdateInstance',
-            $mergedSettings,
-            $this->descriptors['partialUpdateInstance']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -960,14 +808,14 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteInstance($name, $optionalArgs = [])
@@ -975,24 +823,12 @@ class BigtableInstanceAdminGapicClient
         $request = new DeleteInstanceRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteInstance'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'DeleteInstance',
-            $mergedSettings,
-            $this->descriptors['deleteInstance']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1047,7 +883,7 @@ class BigtableInstanceAdminGapicClient
      * @param array   $optionalArgs {
      *                              Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1056,7 +892,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createCluster($parent, $clusterId, $cluster, $optionalArgs = [])
@@ -1066,24 +902,12 @@ class BigtableInstanceAdminGapicClient
         $request->setClusterId($clusterId);
         $request->setCluster($cluster);
 
-        $defaultCallSettings = $this->defaultCallSettings['createCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startOperationsCall(
             'CreateCluster',
-            $mergedSettings,
-            $this->descriptors['createCluster']
-        );
-
-        return $callable(
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1105,7 +929,7 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1114,7 +938,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Cluster
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getCluster($name, $optionalArgs = [])
@@ -1122,24 +946,12 @@ class BigtableInstanceAdminGapicClient
         $request = new GetClusterRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'GetCluster',
-            $mergedSettings,
-            $this->descriptors['getCluster']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Cluster::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1165,7 +977,7 @@ class BigtableInstanceAdminGapicClient
      *
      *     @type string $pageToken
      *          The value of `next_page_token` returned by a previous call.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1174,7 +986,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListClustersResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listClusters($parent, $optionalArgs = [])
@@ -1185,24 +997,12 @@ class BigtableInstanceAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listClusters'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'ListClusters',
-            $mergedSettings,
-            $this->descriptors['listClusters']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ListClustersResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1268,7 +1068,7 @@ class BigtableInstanceAdminGapicClient
      *          The type of storage used by this cluster to serve its
      *          parent instance's tables, unless explicitly overridden.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1277,7 +1077,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateCluster($name, $location, $serveNodes, $optionalArgs = [])
@@ -1293,24 +1093,12 @@ class BigtableInstanceAdminGapicClient
             $request->setDefaultStorageType($optionalArgs['defaultStorageType']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['updateCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startOperationsCall(
             'UpdateCluster',
-            $mergedSettings,
-            $this->descriptors['updateCluster']
-        );
-
-        return $callable(
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1332,14 +1120,14 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteCluster($name, $optionalArgs = [])
@@ -1347,24 +1135,12 @@ class BigtableInstanceAdminGapicClient
         $request = new DeleteClusterRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'DeleteCluster',
-            $mergedSettings,
-            $this->descriptors['deleteCluster']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1401,7 +1177,7 @@ class BigtableInstanceAdminGapicClient
      *
      *     @type bool $ignoreWarnings
      *          If true, ignore safety checks when creating the app profile.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1410,7 +1186,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createAppProfile($parent, $appProfileId, $appProfile, $optionalArgs = [])
@@ -1423,24 +1199,12 @@ class BigtableInstanceAdminGapicClient
             $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['createAppProfile'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'CreateAppProfile',
-            $mergedSettings,
-            $this->descriptors['createAppProfile']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            AppProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1467,7 +1231,7 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1476,7 +1240,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getAppProfile($name, $optionalArgs = [])
@@ -1484,24 +1248,12 @@ class BigtableInstanceAdminGapicClient
         $request = new GetAppProfileRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getAppProfile'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'GetAppProfile',
-            $mergedSettings,
-            $this->descriptors['getAppProfile']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            AppProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1546,7 +1298,7 @@ class BigtableInstanceAdminGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1555,7 +1307,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listAppProfiles($parent, $optionalArgs = [])
@@ -1566,24 +1318,12 @@ class BigtableInstanceAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listAppProfiles'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->getPagedListResponse(
             'ListAppProfiles',
-            $mergedSettings,
-            $this->descriptors['listAppProfiles']
+            $optionalArgs,
+            ListAppProfilesResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -1614,7 +1354,7 @@ class BigtableInstanceAdminGapicClient
      *
      *     @type bool $ignoreWarnings
      *          If true, ignore safety checks when updating the app profile.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1623,7 +1363,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\LongRunning\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateAppProfile($appProfile, $updateMask, $optionalArgs = [])
@@ -1635,24 +1375,12 @@ class BigtableInstanceAdminGapicClient
             $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['updateAppProfile'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'UpdateAppProfile',
-            $mergedSettings,
-            $this->descriptors['updateAppProfile']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1681,14 +1409,14 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs   {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteAppProfile($name, $ignoreWarnings, $optionalArgs = [])
@@ -1697,24 +1425,12 @@ class BigtableInstanceAdminGapicClient
         $request->setName($name);
         $request->setIgnoreWarnings($ignoreWarnings);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteAppProfile'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'DeleteAppProfile',
-            $mergedSettings,
-            $this->descriptors['deleteAppProfile']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1744,7 +1460,7 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1753,7 +1469,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
@@ -1761,24 +1477,12 @@ class BigtableInstanceAdminGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'GetIamPolicy',
-            $mergedSettings,
-            $this->descriptors['getIamPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1813,7 +1517,7 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1822,7 +1526,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
@@ -1831,24 +1535,12 @@ class BigtableInstanceAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'SetIamPolicy',
-            $mergedSettings,
-            $this->descriptors['setIamPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1882,7 +1574,7 @@ class BigtableInstanceAdminGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1891,7 +1583,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
@@ -1900,39 +1592,11 @@ class BigtableInstanceAdminGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
+        return $this->startCall(
             'TestIamPermissions',
-            $mergedSettings,
-            $this->descriptors['testIamPermissions']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->bigtableInstanceAdminStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

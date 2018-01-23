@@ -24,9 +24,9 @@ namespace Google\Cloud\Tests\Unit\Bigtable\Admin\V2;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsResponse;
@@ -46,42 +46,20 @@ use stdClass;
  */
 class BigtableTableAdminClientTest extends GeneratedTest
 {
-    public function createMockBigtableInstanceAdminImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockBigtableInstanceAdminImpl($hostname, $opts);
-    }
-
-    public function createMockBigtableTableAdminImpl($hostname, $opts)
-    {
-        return new MockBigtableTableAdminImpl($hostname, $opts);
-    }
-
-    public function createMockOperationsStub($hostname, $opts)
-    {
-        return new MockOperationsImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => BigtableTableAdminClient::SERVICE_ADDRESS,
-            'port' => BigtableTableAdminClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return BigtableTableAdminClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new BigtableTableAdminClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new BigtableTableAdminClient($options);
     }
 
     /**
@@ -89,16 +67,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function createTableTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
         $expectedResponse = new Table();
         $expectedResponse->setName($name);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -107,17 +85,23 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         $response = $client->createTable($formattedParent, $tableId, $table);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CreateTable', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($tableId, $actualRequestObject->getTableId());
-        $this->assertProtobufEquals($table, $actualRequestObject->getTable());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTableId();
+
+        $this->assertProtobufEquals($tableId, $actualValue);
+        $actualValue = $actualRequestObject->getTable();
+
+        $this->assertProtobufEquals($table, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -125,10 +109,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function createTableExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -140,7 +124,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -157,8 +141,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -166,27 +150,26 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function createTableFromSnapshotTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/createTableFromSnapshotTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $expectedResponse = new Table();
         $expectedResponse->setName($name);
@@ -196,7 +179,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setName('operations/createTableFromSnapshotTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
-        $operationsStub->addResponse($completeOperation);
+        $operationsTransport->addResponse($completeOperation);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -206,17 +189,23 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $response = $client->createTableFromSnapshot($formattedParent, $tableId, $sourceSnapshot);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-        $apiRequests = $grpcStub->popReceivedCalls();
+        $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CreateTableFromSnapshot', $actualApiFuncCall);
-        $this->assertProtobufEquals($formattedParent, $actualApiRequestObject->getParent());
-        $this->assertProtobufEquals($tableId, $actualApiRequestObject->getTableId());
-        $this->assertProtobufEquals($sourceSnapshot, $actualApiRequestObject->getSourceSnapshot());
+        $actualValue = $actualApiRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getTableId();
+
+        $this->assertProtobufEquals($tableId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSourceSnapshot();
+
+        $this->assertProtobufEquals($sourceSnapshot, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTableFromSnapshotTest');
@@ -224,9 +213,9 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $response->pollUntilComplete();
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
+        $apiRequestsEmpty = $transport->popReceivedCalls();
         $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsStub->popReceivedCalls();
+        $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
@@ -234,8 +223,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -243,27 +232,26 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function createTableFromSnapshotExceptionTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/createTableFromSnapshotTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -275,7 +263,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsStub->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -299,10 +287,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
-        $grpcStub->popReceivedCalls();
-        $operationsStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -310,10 +298,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function listTablesTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -322,7 +310,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse = new ListTablesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTables($tables);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -333,14 +321,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getTables()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ListTables', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -348,10 +338,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function listTablesExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -363,7 +353,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -378,8 +368,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -387,31 +377,33 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function getTableTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
         $expectedResponse = new Table();
         $expectedResponse->setName($name2);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
 
         $response = $client->getTable($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GetTable', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -419,10 +411,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function getTableExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -434,7 +426,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -449,8 +441,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -458,28 +450,30 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function deleteTableTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
 
         $client->deleteTable($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteTable', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -487,10 +481,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function deleteTableExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -502,7 +496,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -517,8 +511,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -526,16 +520,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function modifyColumnFamiliesTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
         $expectedResponse = new Table();
         $expectedResponse->setName($name2);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -543,16 +537,20 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         $response = $client->modifyColumnFamilies($formattedName, $modifications);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ModifyColumnFamilies', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($modifications, $actualRequestObject->getModifications());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getModifications();
+
+        $this->assertProtobufEquals($modifications, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -560,10 +558,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function modifyColumnFamiliesExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -575,7 +573,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -591,8 +589,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -600,28 +598,30 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function dropRowRangeTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
 
         $client->dropRowRange($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DropRowRange', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -629,10 +629,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function dropRowRangeExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -644,7 +644,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -659,8 +659,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -668,31 +668,33 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function generateConsistencyTokenTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $consistencyToken = 'consistencyToken-1090516718';
         $expectedResponse = new GenerateConsistencyTokenResponse();
         $expectedResponse->setConsistencyToken($consistencyToken);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
 
         $response = $client->generateConsistencyToken($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GenerateConsistencyToken', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -700,10 +702,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function generateConsistencyTokenExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -715,7 +717,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -730,8 +732,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -739,16 +741,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function checkConsistencyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $consistent = true;
         $expectedResponse = new CheckConsistencyResponse();
         $expectedResponse->setConsistent($consistent);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -756,16 +758,20 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         $response = $client->checkConsistency($formattedName, $consistencyToken);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CheckConsistency', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($consistencyToken, $actualRequestObject->getConsistencyToken());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getConsistencyToken();
+
+        $this->assertProtobufEquals($consistencyToken, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -773,10 +779,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function checkConsistencyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -788,7 +794,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -804,8 +810,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -813,10 +819,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function snapshotTableTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -824,7 +830,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse = new Operation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDone($done);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -834,18 +840,26 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         $response = $client->snapshotTable($formattedName, $cluster, $snapshotId, $description);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/SnapshotTable', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($cluster, $actualRequestObject->getCluster());
-        $this->assertProtobufEquals($snapshotId, $actualRequestObject->getSnapshotId());
-        $this->assertProtobufEquals($description, $actualRequestObject->getDescription());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCluster();
+
+        $this->assertProtobufEquals($cluster, $actualValue);
+        $actualValue = $actualRequestObject->getSnapshotId();
+
+        $this->assertProtobufEquals($snapshotId, $actualValue);
+        $actualValue = $actualRequestObject->getDescription();
+
+        $this->assertProtobufEquals($description, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -853,10 +867,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function snapshotTableExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -868,7 +882,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -886,8 +900,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -895,10 +909,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function getSnapshotTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -908,22 +922,24 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDataSizeBytes($dataSizeBytes);
         $expectedResponse->setDescription($description);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
 
         $response = $client->getSnapshot($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GetSnapshot', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -931,10 +947,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function getSnapshotExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -946,7 +962,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
@@ -961,8 +977,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -970,10 +986,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function listSnapshotsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -982,7 +998,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse = new ListSnapshotsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
@@ -993,14 +1009,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSnapshots()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ListSnapshots', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1008,10 +1026,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function listSnapshotsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1023,7 +1041,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
@@ -1038,8 +1056,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1047,28 +1065,30 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function deleteSnapshotTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
 
         $client->deleteSnapshot($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteSnapshot', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1076,10 +1096,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
      */
     public function deleteSnapshotExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableTableAdminImpl']);
-        $client = $this->createClient('createBigtableTableAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1091,7 +1111,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
@@ -1106,7 +1126,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
