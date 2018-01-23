@@ -24,9 +24,9 @@ namespace Google\Cloud\Tests\Unit\Bigtable\V2;
 
 use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
@@ -43,32 +43,20 @@ use stdClass;
  */
 class BigtableClientTest extends GeneratedTest
 {
-    public function createMockBigtableImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockBigtableImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => BigtableClient::SERVICE_ADDRESS,
-            'port' => BigtableClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return BigtableClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new BigtableClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new BigtableClient($options);
     }
 
     /**
@@ -76,24 +64,24 @@ class BigtableClientTest extends GeneratedTest
      */
     public function readRowsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $lastScannedRowKey = '-126';
         $expectedResponse = new ReadRowsResponse();
         $expectedResponse->setLastScannedRowKey($lastScannedRowKey);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $lastScannedRowKey2 = '-75';
         $expectedResponse2 = new ReadRowsResponse();
         $expectedResponse2->setLastScannedRowKey($lastScannedRowKey2);
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $lastScannedRowKey3 = '-74';
         $expectedResponse3 = new ReadRowsResponse();
         $expectedResponse3->setLastScannedRowKey($lastScannedRowKey3);
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -109,15 +97,17 @@ class BigtableClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/ReadRows', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTableName, $actualRequestObject->getTableName());
+        $actualValue = $actualRequestObject->getTableName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTableName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -125,8 +115,8 @@ class BigtableClientTest extends GeneratedTest
      */
     public function readRowsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -139,9 +129,9 @@ class BigtableClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -159,8 +149,8 @@ class BigtableClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -168,10 +158,10 @@ class BigtableClientTest extends GeneratedTest
      */
     public function sampleRowKeysTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $rowKey = '122';
@@ -179,19 +169,19 @@ class BigtableClientTest extends GeneratedTest
         $expectedResponse = new SampleRowKeysResponse();
         $expectedResponse->setRowKey($rowKey);
         $expectedResponse->setOffsetBytes($offsetBytes);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $rowKey2 = '-83';
         $offsetBytes2 = 480126386;
         $expectedResponse2 = new SampleRowKeysResponse();
         $expectedResponse2->setRowKey($rowKey2);
         $expectedResponse2->setOffsetBytes($offsetBytes2);
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $rowKey3 = '-82';
         $offsetBytes3 = 480126387;
         $expectedResponse3 = new SampleRowKeysResponse();
         $expectedResponse3->setRowKey($rowKey3);
         $expectedResponse3->setOffsetBytes($offsetBytes3);
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -207,15 +197,17 @@ class BigtableClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/SampleRowKeys', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTableName, $actualRequestObject->getTableName());
+        $actualValue = $actualRequestObject->getTableName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTableName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -223,8 +215,8 @@ class BigtableClientTest extends GeneratedTest
      */
     public function sampleRowKeysExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -237,9 +229,9 @@ class BigtableClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -257,8 +249,8 @@ class BigtableClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -266,14 +258,14 @@ class BigtableClientTest extends GeneratedTest
      */
     public function mutateRowTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new MutateRowResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -282,17 +274,23 @@ class BigtableClientTest extends GeneratedTest
 
         $response = $client->mutateRow($formattedTableName, $rowKey, $mutations);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/MutateRow', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTableName, $actualRequestObject->getTableName());
-        $this->assertProtobufEquals($rowKey, $actualRequestObject->getRowKey());
-        $this->assertProtobufEquals($mutations, $actualRequestObject->getMutations());
+        $actualValue = $actualRequestObject->getTableName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTableName, $actualValue);
+        $actualValue = $actualRequestObject->getRowKey();
+
+        $this->assertProtobufEquals($rowKey, $actualValue);
+        $actualValue = $actualRequestObject->getMutations();
+
+        $this->assertProtobufEquals($mutations, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -300,10 +298,10 @@ class BigtableClientTest extends GeneratedTest
      */
     public function mutateRowExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -315,7 +313,7 @@ class BigtableClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -332,8 +330,8 @@ class BigtableClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -341,18 +339,18 @@ class BigtableClientTest extends GeneratedTest
      */
     public function mutateRowsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new MutateRowsResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $expectedResponse2 = new MutateRowsResponse();
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $expectedResponse3 = new MutateRowsResponse();
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -369,16 +367,20 @@ class BigtableClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/MutateRows', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTableName, $actualRequestObject->getTableName());
-        $this->assertProtobufEquals($entries, $actualRequestObject->getEntries());
+        $actualValue = $actualRequestObject->getTableName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTableName, $actualValue);
+        $actualValue = $actualRequestObject->getEntries();
+
+        $this->assertProtobufEquals($entries, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -386,8 +388,8 @@ class BigtableClientTest extends GeneratedTest
      */
     public function mutateRowsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -400,9 +402,9 @@ class BigtableClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -421,8 +423,8 @@ class BigtableClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -430,16 +432,16 @@ class BigtableClientTest extends GeneratedTest
      */
     public function checkAndMutateRowTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $predicateMatched = true;
         $expectedResponse = new CheckAndMutateRowResponse();
         $expectedResponse->setPredicateMatched($predicateMatched);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -447,16 +449,20 @@ class BigtableClientTest extends GeneratedTest
 
         $response = $client->checkAndMutateRow($formattedTableName, $rowKey);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/CheckAndMutateRow', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTableName, $actualRequestObject->getTableName());
-        $this->assertProtobufEquals($rowKey, $actualRequestObject->getRowKey());
+        $actualValue = $actualRequestObject->getTableName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTableName, $actualValue);
+        $actualValue = $actualRequestObject->getRowKey();
+
+        $this->assertProtobufEquals($rowKey, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -464,10 +470,10 @@ class BigtableClientTest extends GeneratedTest
      */
     public function checkAndMutateRowExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -479,7 +485,7 @@ class BigtableClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -495,8 +501,8 @@ class BigtableClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -504,14 +510,14 @@ class BigtableClientTest extends GeneratedTest
      */
     public function readModifyWriteRowTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ReadModifyWriteRowResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -520,17 +526,23 @@ class BigtableClientTest extends GeneratedTest
 
         $response = $client->readModifyWriteRow($formattedTableName, $rowKey, $rules);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/ReadModifyWriteRow', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTableName, $actualRequestObject->getTableName());
-        $this->assertProtobufEquals($rowKey, $actualRequestObject->getRowKey());
-        $this->assertProtobufEquals($rules, $actualRequestObject->getRules());
+        $actualValue = $actualRequestObject->getTableName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTableName, $actualValue);
+        $actualValue = $actualRequestObject->getRowKey();
+
+        $this->assertProtobufEquals($rowKey, $actualValue);
+        $actualValue = $actualRequestObject->getRules();
+
+        $this->assertProtobufEquals($rules, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -538,10 +550,10 @@ class BigtableClientTest extends GeneratedTest
      */
     public function readModifyWriteRowExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockBigtableImpl']);
-        $client = $this->createClient('createBigtableStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -553,7 +565,7 @@ class BigtableClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedTableName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -570,7 +582,7 @@ class BigtableClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

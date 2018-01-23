@@ -21,41 +21,49 @@
  * https://github.com/google/googleapis/blob/master/google/bigtable/v2/bigtable.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
 
 namespace Google\Cloud\Bigtable\V2\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Bigtable\V2\BigtableGrpcClient;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
+use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
-use Google\Cloud\Version;
+use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Service for reading from and writing to existing Bigtable tables.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -83,6 +91,13 @@ use Google\Cloud\Version;
  */
 class BigtableGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.bigtable.v2.Bigtable';
+
     /**
      * The default address of the service.
      */
@@ -105,14 +120,27 @@ class BigtableGapicClient
 
     private static $tableNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $bigtableStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/bigtable.data',
+                'https://www.googleapis.com/auth/bigtable.data.readonly',
+                'https://www.googleapis.com/auth/cloud-bigtable.data',
+                'https://www.googleapis.com/auth/cloud-bigtable.data.readonly',
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/bigtable_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/bigtable_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
 
     private static function getTableNameTemplate()
     {
@@ -132,35 +160,6 @@ class BigtableGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getGrpcStreamingDescriptors()
-    {
-        return [
-            'readRows' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-            'sampleRowKeys' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-            'mutateRows' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-        ];
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -233,18 +232,21 @@ class BigtableGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'bigtable.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Bigtable API.
@@ -262,75 +264,22 @@ class BigtableGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/bigtable.data',
-                'https://www.googleapis.com/auth/bigtable.data.readonly',
-                'https://www.googleapis.com/auth/cloud-bigtable.data',
-                'https://www.googleapis.com/auth/cloud-bigtable.data.readonly',
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloud-platform.read-only',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/bigtable_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'readRows' => $defaultDescriptors,
-            'sampleRowKeys' => $defaultDescriptors,
-            'mutateRow' => $defaultDescriptors,
-            'mutateRows' => $defaultDescriptors,
-            'checkAndMutateRow' => $defaultDescriptors,
-            'readModifyWriteRow' => $defaultDescriptors,
-        ];
-        $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
-        foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
-            $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.bigtable.v2.Bigtable',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createBigtableStubFunction = function ($hostname, $opts, $channel) {
-            return new BigtableGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createBigtableStubFunction', $options)) {
-            $createBigtableStubFunction = $options['createBigtableStubFunction'];
-        }
-        $this->bigtableStub = $this->grpcCredentialsHelper->createStub($createBigtableStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -383,7 +332,7 @@ class BigtableGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function readRows($tableName, $optionalArgs = [])
@@ -403,31 +352,13 @@ class BigtableGapicClient
             $request->setRowsLimit($optionalArgs['rowsLimit']);
         }
 
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['readRows'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableStub,
+        return $this->startCall(
             'ReadRows',
-            $mergedSettings,
-            $this->descriptors['readRows']
-        );
-
-        return $callable(
+            ReadRowsResponse::class,
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**
@@ -471,7 +402,7 @@ class BigtableGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function sampleRowKeys($tableName, $optionalArgs = [])
@@ -482,31 +413,13 @@ class BigtableGapicClient
             $request->setAppProfileId($optionalArgs['appProfileId']);
         }
 
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['sampleRowKeys'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableStub,
+        return $this->startCall(
             'SampleRowKeys',
-            $mergedSettings,
-            $this->descriptors['sampleRowKeys']
-        );
-
-        return $callable(
+            SampleRowKeysResponse::class,
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**
@@ -544,7 +457,7 @@ class BigtableGapicClient
      *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -553,7 +466,7 @@ class BigtableGapicClient
      *
      * @return \Google\Cloud\Bigtable\V2\MutateRowResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function mutateRow($tableName, $rowKey, $mutations, $optionalArgs = [])
@@ -566,24 +479,12 @@ class BigtableGapicClient
             $request->setAppProfileId($optionalArgs['appProfileId']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['mutateRow'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableStub,
+        return $this->startCall(
             'MutateRow',
-            $mergedSettings,
-            $this->descriptors['mutateRow']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            MutateRowResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -630,7 +531,7 @@ class BigtableGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function mutateRows($tableName, $entries, $optionalArgs = [])
@@ -642,31 +543,13 @@ class BigtableGapicClient
             $request->setAppProfileId($optionalArgs['appProfileId']);
         }
 
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['mutateRows'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableStub,
+        return $this->startCall(
             'MutateRows',
-            $mergedSettings,
-            $this->descriptors['mutateRows']
-        );
-
-        return $callable(
+            MutateRowsResponse::class,
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**
@@ -717,7 +600,7 @@ class BigtableGapicClient
      *          order, meaning that earlier mutations can be masked by later ones.
      *          Must contain at least one entry if `true_mutations` is empty, and at most
      *          100000.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -726,7 +609,7 @@ class BigtableGapicClient
      *
      * @return \Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function checkAndMutateRow($tableName, $rowKey, $optionalArgs = [])
@@ -747,24 +630,12 @@ class BigtableGapicClient
             $request->setFalseMutations($optionalArgs['falseMutations']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['checkAndMutateRow'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableStub,
+        return $this->startCall(
             'CheckAndMutateRow',
-            $mergedSettings,
-            $this->descriptors['checkAndMutateRow']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            CheckAndMutateRowResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -806,7 +677,7 @@ class BigtableGapicClient
      *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -815,7 +686,7 @@ class BigtableGapicClient
      *
      * @return \Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function readModifyWriteRow($tableName, $rowKey, $rules, $optionalArgs = [])
@@ -828,39 +699,11 @@ class BigtableGapicClient
             $request->setAppProfileId($optionalArgs['appProfileId']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['readModifyWriteRow'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->bigtableStub,
+        return $this->startCall(
             'ReadModifyWriteRow',
-            $mergedSettings,
-            $this->descriptors['readModifyWriteRow']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->bigtableStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+            ReadModifyWriteRowResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
