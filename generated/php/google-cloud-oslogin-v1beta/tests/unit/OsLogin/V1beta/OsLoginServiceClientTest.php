@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\OsLogin\V1beta;
 
 use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\OsLogin\Common\SshPublicKey;
 use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyResponse;
 use Google\Cloud\OsLogin\V1beta\LoginProfile;
@@ -40,32 +40,20 @@ use stdClass;
  */
 class OsLoginServiceClientTest extends GeneratedTest
 {
-    public function createMockOsLoginServiceImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockOsLoginServiceImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => OsLoginServiceClient::SERVICE_ADDRESS,
-            'port' => OsLoginServiceClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return OsLoginServiceClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new OsLoginServiceClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new OsLoginServiceClient($options);
     }
 
     /**
@@ -73,28 +61,30 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function deletePosixAccountTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->projectName('[USER]', '[PROJECT]');
 
         $client->deletePosixAccount($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1beta.OsLoginService/DeletePosixAccount', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -102,10 +92,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function deletePosixAccountExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -117,7 +107,7 @@ class OsLoginServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->projectName('[USER]', '[PROJECT]');
@@ -132,8 +122,8 @@ class OsLoginServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -141,28 +131,30 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function deleteSshPublicKeyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
 
         $client->deleteSshPublicKey($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1beta.OsLoginService/DeleteSshPublicKey', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -170,10 +162,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function deleteSshPublicKeyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -185,7 +177,7 @@ class OsLoginServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
@@ -200,8 +192,8 @@ class OsLoginServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -209,10 +201,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function getLoginProfileTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -220,22 +212,24 @@ class OsLoginServiceClientTest extends GeneratedTest
         $expectedResponse = new LoginProfile();
         $expectedResponse->setName($name2);
         $expectedResponse->setSuspended($suspended);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->userName('[USER]');
 
         $response = $client->getLoginProfile($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1beta.OsLoginService/GetLoginProfile', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -243,10 +237,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function getLoginProfileExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -258,7 +252,7 @@ class OsLoginServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->userName('[USER]');
@@ -273,8 +267,8 @@ class OsLoginServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -282,10 +276,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function getSshPublicKeyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $key = 'key106079';
@@ -295,22 +289,24 @@ class OsLoginServiceClientTest extends GeneratedTest
         $expectedResponse->setKey($key);
         $expectedResponse->setExpirationTimeUsec($expirationTimeUsec);
         $expectedResponse->setFingerprint($fingerprint);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
 
         $response = $client->getSshPublicKey($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1beta.OsLoginService/GetSshPublicKey', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -318,10 +314,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function getSshPublicKeyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -333,7 +329,7 @@ class OsLoginServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
@@ -348,8 +344,8 @@ class OsLoginServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -357,14 +353,14 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function importSshPublicKeyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ImportSshPublicKeyResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->userName('[USER]');
@@ -372,16 +368,20 @@ class OsLoginServiceClientTest extends GeneratedTest
 
         $response = $client->importSshPublicKey($formattedParent, $sshPublicKey);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1beta.OsLoginService/ImportSshPublicKey', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($sshPublicKey, $actualRequestObject->getSshPublicKey());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSshPublicKey();
+
+        $this->assertProtobufEquals($sshPublicKey, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -389,10 +389,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function importSshPublicKeyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -404,7 +404,7 @@ class OsLoginServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->userName('[USER]');
@@ -420,8 +420,8 @@ class OsLoginServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -429,10 +429,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function updateSshPublicKeyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $key = 'key106079';
@@ -442,7 +442,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $expectedResponse->setKey($key);
         $expectedResponse->setExpirationTimeUsec($expirationTimeUsec);
         $expectedResponse->setFingerprint($fingerprint);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
@@ -450,16 +450,20 @@ class OsLoginServiceClientTest extends GeneratedTest
 
         $response = $client->updateSshPublicKey($formattedName, $sshPublicKey);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1beta.OsLoginService/UpdateSshPublicKey', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($sshPublicKey, $actualRequestObject->getSshPublicKey());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getSshPublicKey();
+
+        $this->assertProtobufEquals($sshPublicKey, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -467,10 +471,10 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     public function updateSshPublicKeyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockOsLoginServiceImpl']);
-        $client = $this->createClient('createOsLoginServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -482,7 +486,7 @@ class OsLoginServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
@@ -498,7 +502,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
