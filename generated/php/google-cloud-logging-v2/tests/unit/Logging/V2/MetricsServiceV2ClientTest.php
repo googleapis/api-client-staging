@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Logging\V2;
 
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Logging\V2\ListLogMetricsResponse;
 use Google\Cloud\Logging\V2\LogMetric;
 use Google\Protobuf\Any;
@@ -39,42 +39,20 @@ use stdClass;
  */
 class MetricsServiceV2ClientTest extends GeneratedTest
 {
-    public function createMockLoggingServiceV2Impl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockLoggingServiceV2Impl($hostname, $opts);
-    }
-
-    public function createMockConfigServiceV2Impl($hostname, $opts)
-    {
-        return new MockConfigServiceV2Impl($hostname, $opts);
-    }
-
-    public function createMockMetricsServiceV2Impl($hostname, $opts)
-    {
-        return new MockMetricsServiceV2Impl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => MetricsServiceV2Client::SERVICE_ADDRESS,
-            'port' => MetricsServiceV2Client::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return MetricsServiceV2Client
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new MetricsServiceV2Client($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new MetricsServiceV2Client($options);
     }
 
     /**
@@ -82,10 +60,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function listLogMetricsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -94,7 +72,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $expectedResponse = new ListLogMetricsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMetrics($metrics);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -105,14 +83,16 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getMetrics()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/ListLogMetrics', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -120,10 +100,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function listLogMetricsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -135,7 +115,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -150,8 +130,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -159,10 +139,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function getLogMetricTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -174,22 +154,24 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setValueExtractor($valueExtractor);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         $response = $client->getLogMetric($formattedMetricName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/GetLogMetric', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedMetricName, $actualRequestObject->getMetricName());
+        $actualValue = $actualRequestObject->getMetricName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedMetricName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -197,10 +179,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function getLogMetricExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -212,7 +194,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
@@ -227,8 +209,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -236,10 +218,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function createLogMetricTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -251,7 +233,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setValueExtractor($valueExtractor);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -259,16 +241,20 @@ class MetricsServiceV2ClientTest extends GeneratedTest
 
         $response = $client->createLogMetric($formattedParent, $metric);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/CreateLogMetric', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($metric, $actualRequestObject->getMetric());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getMetric();
+
+        $this->assertProtobufEquals($metric, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -276,10 +262,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function createLogMetricExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -291,7 +277,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -307,8 +293,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -316,10 +302,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function updateLogMetricTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -331,7 +317,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setValueExtractor($valueExtractor);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
@@ -339,16 +325,20 @@ class MetricsServiceV2ClientTest extends GeneratedTest
 
         $response = $client->updateLogMetric($formattedMetricName, $metric);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/UpdateLogMetric', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedMetricName, $actualRequestObject->getMetricName());
-        $this->assertProtobufEquals($metric, $actualRequestObject->getMetric());
+        $actualValue = $actualRequestObject->getMetricName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedMetricName, $actualValue);
+        $actualValue = $actualRequestObject->getMetric();
+
+        $this->assertProtobufEquals($metric, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -356,10 +346,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function updateLogMetricExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -371,7 +361,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
@@ -387,8 +377,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -396,28 +386,30 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function deleteLogMetricTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         $client->deleteLogMetric($formattedMetricName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/DeleteLogMetric', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedMetricName, $actualRequestObject->getMetricName());
+        $actualValue = $actualRequestObject->getMetricName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedMetricName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -425,10 +417,10 @@ class MetricsServiceV2ClientTest extends GeneratedTest
      */
     public function deleteLogMetricExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
-        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -440,7 +432,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
@@ -455,7 +447,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
