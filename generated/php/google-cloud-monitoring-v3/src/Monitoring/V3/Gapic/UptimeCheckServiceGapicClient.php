@@ -21,32 +21,36 @@
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/uptime_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\DeleteUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\GetUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsRequest;
+use Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsResponse;
 use Google\Cloud\Monitoring\V3\ListUptimeCheckIpsRequest;
+use Google\Cloud\Monitoring\V3\ListUptimeCheckIpsResponse;
 use Google\Cloud\Monitoring\V3\UpdateUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
-use Google\Cloud\Monitoring\V3\UptimeCheckServiceGrpcClient;
-use Google\Cloud\Version;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The UptimeCheckService API is used to manage (list, create, delete, edit)
@@ -58,9 +62,9 @@ use Google\Protobuf\FieldMask;
  * clicking on "Monitoring" on the left-hand side to navigate to Stackdriver,
  * and then clicking on "Uptime".
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -96,6 +100,13 @@ use Google\Protobuf\FieldMask;
  */
 class UptimeCheckServiceGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.monitoring.v3.UptimeCheckService';
+
     /**
      * The default address of the service.
      */
@@ -119,14 +130,25 @@ class UptimeCheckServiceGapicClient
     private static $projectNameTemplate;
     private static $uptimeCheckConfigNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $uptimeCheckServiceStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/monitoring',
+                'https://www.googleapis.com/auth/monitoring.read',
+                'https://www.googleapis.com/auth/monitoring.write',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/uptime_check_service_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/uptime_check_service_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/uptime_check_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
 
     private static function getProjectNameTemplate()
     {
@@ -156,49 +178,6 @@ class UptimeCheckServiceGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listUptimeCheckConfigsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getUptimeCheckConfigs',
-                ]);
-        $listUptimeCheckIpsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getUptimeCheckIps',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listUptimeCheckConfigs' => $listUptimeCheckConfigsPageStreamingDescriptor,
-            'listUptimeCheckIps' => $listUptimeCheckIpsPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -286,18 +265,21 @@ class UptimeCheckServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Monitoring API.
@@ -315,73 +297,22 @@ class UptimeCheckServiceGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/monitoring',
-                'https://www.googleapis.com/auth/monitoring.read',
-                'https://www.googleapis.com/auth/monitoring.write',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/uptime_check_service_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'listUptimeCheckConfigs' => $defaultDescriptors,
-            'getUptimeCheckConfig' => $defaultDescriptors,
-            'createUptimeCheckConfig' => $defaultDescriptors,
-            'updateUptimeCheckConfig' => $defaultDescriptors,
-            'deleteUptimeCheckConfig' => $defaultDescriptors,
-            'listUptimeCheckIps' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.monitoring.v3.UptimeCheckService',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createUptimeCheckServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new UptimeCheckServiceGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createUptimeCheckServiceStubFunction', $options)) {
-            $createUptimeCheckServiceStubFunction = $options['createUptimeCheckServiceStubFunction'];
-        }
-        $this->uptimeCheckServiceStub = $this->grpcCredentialsHelper->createStub($createUptimeCheckServiceStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -426,7 +357,7 @@ class UptimeCheckServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -435,7 +366,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listUptimeCheckConfigs($parent, $optionalArgs = [])
@@ -449,24 +380,12 @@ class UptimeCheckServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listUptimeCheckConfigs'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->uptimeCheckServiceStub,
+        return $this->getPagedListResponse(
             'ListUptimeCheckConfigs',
-            $mergedSettings,
-            $this->descriptors['listUptimeCheckConfigs']
+            $optionalArgs,
+            ListUptimeCheckConfigsResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -489,7 +408,7 @@ class UptimeCheckServiceGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -498,7 +417,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getUptimeCheckConfig($name, $optionalArgs = [])
@@ -506,24 +425,12 @@ class UptimeCheckServiceGapicClient
         $request = new GetUptimeCheckConfigRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getUptimeCheckConfig'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->uptimeCheckServiceStub,
+        return $this->startCall(
             'GetUptimeCheckConfig',
-            $mergedSettings,
-            $this->descriptors['getUptimeCheckConfig']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            UptimeCheckConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -548,7 +455,7 @@ class UptimeCheckServiceGapicClient
      * @param array             $optionalArgs      {
      *                                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -557,7 +464,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createUptimeCheckConfig($parent, $uptimeCheckConfig, $optionalArgs = [])
@@ -566,24 +473,12 @@ class UptimeCheckServiceGapicClient
         $request->setParent($parent);
         $request->setUptimeCheckConfig($uptimeCheckConfig);
 
-        $defaultCallSettings = $this->defaultCallSettings['createUptimeCheckConfig'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->uptimeCheckServiceStub,
+        return $this->startCall(
             'CreateUptimeCheckConfig',
-            $mergedSettings,
-            $this->descriptors['createUptimeCheckConfig']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            UptimeCheckConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -618,7 +513,7 @@ class UptimeCheckServiceGapicClient
      *          configuration are updated with values from the new configuration. If this
      *          field is empty, then the current configuration is completely replaced with
      *          the new configuration.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -627,7 +522,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateUptimeCheckConfig($uptimeCheckConfig, $optionalArgs = [])
@@ -638,24 +533,12 @@ class UptimeCheckServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['updateUptimeCheckConfig'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->uptimeCheckServiceStub,
+        return $this->startCall(
             'UpdateUptimeCheckConfig',
-            $mergedSettings,
-            $this->descriptors['updateUptimeCheckConfig']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            UptimeCheckConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -680,14 +563,14 @@ class UptimeCheckServiceGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteUptimeCheckConfig($name, $optionalArgs = [])
@@ -695,24 +578,12 @@ class UptimeCheckServiceGapicClient
         $request = new DeleteUptimeCheckConfigRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteUptimeCheckConfig'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->uptimeCheckServiceStub,
+        return $this->startCall(
             'DeleteUptimeCheckConfig',
-            $mergedSettings,
-            $this->descriptors['deleteUptimeCheckConfig']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -753,7 +624,7 @@ class UptimeCheckServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -762,7 +633,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listUptimeCheckIps($optionalArgs = [])
@@ -775,39 +646,11 @@ class UptimeCheckServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listUptimeCheckIps'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->uptimeCheckServiceStub,
+        return $this->getPagedListResponse(
             'ListUptimeCheckIps',
-            $mergedSettings,
-            $this->descriptors['listUptimeCheckIps']
+            $optionalArgs,
+            ListUptimeCheckIpsResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->uptimeCheckServiceStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
     }
 }
