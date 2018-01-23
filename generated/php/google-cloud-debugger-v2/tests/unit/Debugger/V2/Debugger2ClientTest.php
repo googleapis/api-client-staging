@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Debugger\V2;
 
 use Google\Cloud\Debugger\V2\Debugger2Client;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\GetBreakpointResponse;
 use Google\Cloud\Debugger\V2\ListBreakpointsResponse;
@@ -42,37 +42,20 @@ use stdClass;
  */
 class Debugger2ClientTest extends GeneratedTest
 {
-    public function createMockDebugger2Impl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockDebugger2Impl($hostname, $opts);
-    }
-
-    public function createMockController2Impl($hostname, $opts)
-    {
-        return new MockController2Impl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => Debugger2Client::SERVICE_ADDRESS,
-            'port' => Debugger2Client::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return Debugger2Client
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new Debugger2Client($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new Debugger2Client($options);
     }
 
     /**
@@ -80,14 +63,14 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function setBreakpointTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new SetBreakpointResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
@@ -96,17 +79,23 @@ class Debugger2ClientTest extends GeneratedTest
 
         $response = $client->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/SetBreakpoint', $actualFuncCall);
 
-        $this->assertProtobufEquals($debuggeeId, $actualRequestObject->getDebuggeeId());
-        $this->assertProtobufEquals($breakpoint, $actualRequestObject->getBreakpoint());
-        $this->assertProtobufEquals($clientVersion, $actualRequestObject->getClientVersion());
+        $actualValue = $actualRequestObject->getDebuggeeId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($debuggeeId, $actualValue);
+        $actualValue = $actualRequestObject->getBreakpoint();
+
+        $this->assertProtobufEquals($breakpoint, $actualValue);
+        $actualValue = $actualRequestObject->getClientVersion();
+
+        $this->assertProtobufEquals($clientVersion, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -114,10 +103,10 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function setBreakpointExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -129,7 +118,7 @@ class Debugger2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
@@ -146,8 +135,8 @@ class Debugger2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -155,14 +144,14 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function getBreakpointTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GetBreakpointResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
@@ -171,17 +160,23 @@ class Debugger2ClientTest extends GeneratedTest
 
         $response = $client->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/GetBreakpoint', $actualFuncCall);
 
-        $this->assertProtobufEquals($debuggeeId, $actualRequestObject->getDebuggeeId());
-        $this->assertProtobufEquals($breakpointId, $actualRequestObject->getBreakpointId());
-        $this->assertProtobufEquals($clientVersion, $actualRequestObject->getClientVersion());
+        $actualValue = $actualRequestObject->getDebuggeeId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($debuggeeId, $actualValue);
+        $actualValue = $actualRequestObject->getBreakpointId();
+
+        $this->assertProtobufEquals($breakpointId, $actualValue);
+        $actualValue = $actualRequestObject->getClientVersion();
+
+        $this->assertProtobufEquals($clientVersion, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -189,10 +184,10 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function getBreakpointExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -204,7 +199,7 @@ class Debugger2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
@@ -221,8 +216,8 @@ class Debugger2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -230,14 +225,14 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function deleteBreakpointTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
@@ -245,17 +240,23 @@ class Debugger2ClientTest extends GeneratedTest
         $clientVersion = 'clientVersion-1506231196';
 
         $client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/DeleteBreakpoint', $actualFuncCall);
 
-        $this->assertProtobufEquals($debuggeeId, $actualRequestObject->getDebuggeeId());
-        $this->assertProtobufEquals($breakpointId, $actualRequestObject->getBreakpointId());
-        $this->assertProtobufEquals($clientVersion, $actualRequestObject->getClientVersion());
+        $actualValue = $actualRequestObject->getDebuggeeId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($debuggeeId, $actualValue);
+        $actualValue = $actualRequestObject->getBreakpointId();
+
+        $this->assertProtobufEquals($breakpointId, $actualValue);
+        $actualValue = $actualRequestObject->getClientVersion();
+
+        $this->assertProtobufEquals($clientVersion, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -263,10 +264,10 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function deleteBreakpointExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -278,7 +279,7 @@ class Debugger2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
@@ -295,8 +296,8 @@ class Debugger2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -304,16 +305,16 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function listBreakpointsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextWaitToken = 'nextWaitToken1006864251';
         $expectedResponse = new ListBreakpointsResponse();
         $expectedResponse->setNextWaitToken($nextWaitToken);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
@@ -321,16 +322,20 @@ class Debugger2ClientTest extends GeneratedTest
 
         $response = $client->listBreakpoints($debuggeeId, $clientVersion);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/ListBreakpoints', $actualFuncCall);
 
-        $this->assertProtobufEquals($debuggeeId, $actualRequestObject->getDebuggeeId());
-        $this->assertProtobufEquals($clientVersion, $actualRequestObject->getClientVersion());
+        $actualValue = $actualRequestObject->getDebuggeeId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($debuggeeId, $actualValue);
+        $actualValue = $actualRequestObject->getClientVersion();
+
+        $this->assertProtobufEquals($clientVersion, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -338,10 +343,10 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function listBreakpointsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -353,7 +358,7 @@ class Debugger2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
@@ -369,8 +374,8 @@ class Debugger2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -378,14 +383,14 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function listDebuggeesTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ListDebuggeesResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $project = 'project-309310695';
@@ -393,16 +398,20 @@ class Debugger2ClientTest extends GeneratedTest
 
         $response = $client->listDebuggees($project, $clientVersion);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/ListDebuggees', $actualFuncCall);
 
-        $this->assertProtobufEquals($project, $actualRequestObject->getProject());
-        $this->assertProtobufEquals($clientVersion, $actualRequestObject->getClientVersion());
+        $actualValue = $actualRequestObject->getProject();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getClientVersion();
+
+        $this->assertProtobufEquals($clientVersion, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -410,10 +419,10 @@ class Debugger2ClientTest extends GeneratedTest
      */
     public function listDebuggeesExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDebugger2Impl']);
-        $client = $this->createClient('createDebugger2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -425,7 +434,7 @@ class Debugger2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $project = 'project-309310695';
@@ -441,7 +450,7 @@ class Debugger2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
