@@ -24,9 +24,9 @@ namespace Google\Cloud\Tests\Unit\Spanner\Admin\Database\V1;
 
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
@@ -45,37 +45,20 @@ use stdClass;
  */
 class DatabaseAdminClientTest extends GeneratedTest
 {
-    public function createMockDatabaseAdminImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockDatabaseAdminImpl($hostname, $opts);
-    }
-
-    public function createMockOperationsStub($hostname, $opts)
-    {
-        return new MockOperationsImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => DatabaseAdminClient::SERVICE_ADDRESS,
-            'port' => DatabaseAdminClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return DatabaseAdminClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new DatabaseAdminClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new DatabaseAdminClient($options);
     }
 
     /**
@@ -83,10 +66,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function listDatabasesTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -95,7 +78,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse = new ListDatabasesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatabases($databases);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -106,14 +89,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getDatabases()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -121,10 +106,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function listDatabasesExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -136,7 +121,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -151,8 +136,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -160,27 +145,26 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function createDatabaseTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/createDatabaseTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
@@ -190,7 +174,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setName('operations/createDatabaseTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
-        $operationsStub->addResponse($completeOperation);
+        $operationsTransport->addResponse($completeOperation);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -199,16 +183,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response = $client->createDatabase($formattedParent, $createStatement);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-        $apiRequests = $grpcStub->popReceivedCalls();
+        $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CreateDatabase', $actualApiFuncCall);
-        $this->assertProtobufEquals($formattedParent, $actualApiRequestObject->getParent());
-        $this->assertProtobufEquals($createStatement, $actualApiRequestObject->getCreateStatement());
+        $actualValue = $actualApiRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getCreateStatement();
+
+        $this->assertProtobufEquals($createStatement, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDatabaseTest');
@@ -216,9 +204,9 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response->pollUntilComplete();
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
+        $apiRequestsEmpty = $transport->popReceivedCalls();
         $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsStub->popReceivedCalls();
+        $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
@@ -226,8 +214,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -235,27 +223,26 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function createDatabaseExceptionTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/createDatabaseTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -267,7 +254,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsStub->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -290,10 +277,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
-        $grpcStub->popReceivedCalls();
-        $operationsStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -301,31 +288,33 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function getDatabaseTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $response = $client->getDatabase($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -333,10 +322,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function getDatabaseExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -348,7 +337,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -363,8 +352,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -372,27 +361,26 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function updateDatabaseDdlTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/updateDatabaseDdlTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
         $expectedResponse = new GPBEmpty();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -400,7 +388,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setName('operations/updateDatabaseDdlTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
-        $operationsStub->addResponse($completeOperation);
+        $operationsTransport->addResponse($completeOperation);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -409,16 +397,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response = $client->updateDatabaseDdl($formattedDatabase, $statements);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-        $apiRequests = $grpcStub->popReceivedCalls();
+        $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabaseDdl', $actualApiFuncCall);
-        $this->assertProtobufEquals($formattedDatabase, $actualApiRequestObject->getDatabase());
-        $this->assertProtobufEquals($statements, $actualApiRequestObject->getStatements());
+        $actualValue = $actualApiRequestObject->getDatabase();
+
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualApiRequestObject->getStatements();
+
+        $this->assertProtobufEquals($statements, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDatabaseDdlTest');
@@ -426,9 +418,9 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response->pollUntilComplete();
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
+        $apiRequestsEmpty = $transport->popReceivedCalls();
         $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsStub->popReceivedCalls();
+        $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
@@ -436,8 +428,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -445,27 +437,26 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function updateDatabaseDdlExceptionTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/updateDatabaseDdlTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -477,7 +468,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsStub->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -500,10 +491,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
-        $grpcStub->popReceivedCalls();
-        $operationsStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -511,28 +502,30 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function dropDatabaseTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $client->dropDatabase($formattedDatabase);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/DropDatabase', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
+        $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -540,10 +533,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function dropDatabaseExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -555,7 +548,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -570,8 +563,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -579,29 +572,31 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function getDatabaseDdlTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GetDatabaseDdlResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $response = $client->getDatabaseDdl($formattedDatabase);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabaseDdl', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
+        $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -609,10 +604,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function getDatabaseDdlExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -624,7 +619,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -639,8 +634,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -648,10 +643,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function setIamPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $version = 351608024;
@@ -659,7 +654,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -667,16 +662,20 @@ class DatabaseAdminClientTest extends GeneratedTest
 
         $response = $client->setIamPolicy($formattedResource, $policy);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/SetIamPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertProtobufEquals($policy, $actualRequestObject->getPolicy());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+
+        $this->assertProtobufEquals($policy, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -684,10 +683,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function setIamPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -699,7 +698,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -715,8 +714,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -724,10 +723,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function getIamPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $version = 351608024;
@@ -735,22 +734,24 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetIamPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -758,10 +759,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function getIamPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -773,7 +774,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -788,8 +789,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -797,14 +798,14 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function testIamPermissionsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -812,16 +813,20 @@ class DatabaseAdminClientTest extends GeneratedTest
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/TestIamPermissions', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertProtobufEquals($permissions, $actualRequestObject->getPermissions());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+
+        $this->assertProtobufEquals($permissions, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -829,10 +834,10 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     public function testIamPermissionsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
-        $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -844,7 +849,7 @@ class DatabaseAdminClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -860,7 +865,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
