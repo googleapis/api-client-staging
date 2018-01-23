@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\UptimeCheckServiceClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsResponse;
 use Google\Cloud\Monitoring\V3\ListUptimeCheckIpsResponse;
 use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
@@ -41,42 +41,20 @@ use stdClass;
  */
 class UptimeCheckServiceClientTest extends GeneratedTest
 {
-    public function createMockGroupServiceImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockGroupServiceImpl($hostname, $opts);
-    }
-
-    public function createMockMetricServiceImpl($hostname, $opts)
-    {
-        return new MockMetricServiceImpl($hostname, $opts);
-    }
-
-    public function createMockUptimeCheckServiceImpl($hostname, $opts)
-    {
-        return new MockUptimeCheckServiceImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => UptimeCheckServiceClient::SERVICE_ADDRESS,
-            'port' => UptimeCheckServiceClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return UptimeCheckServiceClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new UptimeCheckServiceClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new UptimeCheckServiceClient($options);
     }
 
     /**
@@ -84,10 +62,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function listUptimeCheckConfigsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -96,7 +74,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse = new ListUptimeCheckConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setUptimeCheckConfigs($uptimeCheckConfigs);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -107,14 +85,16 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getUptimeCheckConfigs()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/ListUptimeCheckConfigs', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -122,10 +102,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function listUptimeCheckConfigsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -137,7 +117,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -152,8 +132,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -161,10 +141,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function getUptimeCheckConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -172,22 +152,24 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse = new UptimeCheckConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
 
         $response = $client->getUptimeCheckConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/GetUptimeCheckConfig', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -195,10 +177,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function getUptimeCheckConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -210,7 +192,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
@@ -225,8 +207,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -234,10 +216,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function createUptimeCheckConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -245,7 +227,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse = new UptimeCheckConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -253,16 +235,20 @@ class UptimeCheckServiceClientTest extends GeneratedTest
 
         $response = $client->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/CreateUptimeCheckConfig', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($uptimeCheckConfig, $actualRequestObject->getUptimeCheckConfig());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getUptimeCheckConfig();
+
+        $this->assertProtobufEquals($uptimeCheckConfig, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -270,10 +256,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function createUptimeCheckConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -285,7 +271,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -301,8 +287,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -310,10 +296,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function updateUptimeCheckConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -321,22 +307,24 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse = new UptimeCheckConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $uptimeCheckConfig = new UptimeCheckConfig();
 
         $response = $client->updateUptimeCheckConfig($uptimeCheckConfig);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/UpdateUptimeCheckConfig', $actualFuncCall);
 
-        $this->assertProtobufEquals($uptimeCheckConfig, $actualRequestObject->getUptimeCheckConfig());
+        $actualValue = $actualRequestObject->getUptimeCheckConfig();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($uptimeCheckConfig, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -344,10 +332,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function updateUptimeCheckConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -359,7 +347,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $uptimeCheckConfig = new UptimeCheckConfig();
@@ -374,8 +362,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -383,28 +371,30 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function deleteUptimeCheckConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
 
         $client->deleteUptimeCheckConfig($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/DeleteUptimeCheckConfig', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -412,10 +402,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function deleteUptimeCheckConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -427,7 +417,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
@@ -442,8 +432,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -451,10 +441,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function listUptimeCheckIpsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -463,7 +453,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse = new ListUptimeCheckIpsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setUptimeCheckIps($uptimeCheckIps);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         $response = $client->listUptimeCheckIps();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -471,13 +461,13 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getUptimeCheckIps()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/ListUptimeCheckIps', $actualFuncCall);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -485,10 +475,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
      */
     public function listUptimeCheckIpsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockUptimeCheckServiceImpl']);
-        $client = $this->createClient('createUptimeCheckServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -500,7 +490,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         try {
             $client->listUptimeCheckIps();
@@ -512,7 +502,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
