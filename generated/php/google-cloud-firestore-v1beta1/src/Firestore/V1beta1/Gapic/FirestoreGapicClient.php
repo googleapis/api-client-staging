@@ -21,45 +21,55 @@
  * https://github.com/google/googleapis/blob/master/google/firestore/v1beta1/firestore.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
 
 namespace Google\Cloud\Firestore\V1beta1\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsResponse;
 use Google\Cloud\Firestore\V1beta1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1beta1\BeginTransactionResponse;
 use Google\Cloud\Firestore\V1beta1\CommitRequest;
+use Google\Cloud\Firestore\V1beta1\CommitResponse;
 use Google\Cloud\Firestore\V1beta1\CreateDocumentRequest;
 use Google\Cloud\Firestore\V1beta1\DeleteDocumentRequest;
 use Google\Cloud\Firestore\V1beta1\Document;
 use Google\Cloud\Firestore\V1beta1\DocumentMask;
-use Google\Cloud\Firestore\V1beta1\FirestoreGrpcClient;
 use Google\Cloud\Firestore\V1beta1\GetDocumentRequest;
 use Google\Cloud\Firestore\V1beta1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1beta1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\V1beta1\ListDocumentsRequest;
+use Google\Cloud\Firestore\V1beta1\ListDocumentsResponse;
 use Google\Cloud\Firestore\V1beta1\ListenRequest;
+use Google\Cloud\Firestore\V1beta1\ListenResponse;
 use Google\Cloud\Firestore\V1beta1\Precondition;
 use Google\Cloud\Firestore\V1beta1\RollbackRequest;
 use Google\Cloud\Firestore\V1beta1\RunQueryRequest;
+use Google\Cloud\Firestore\V1beta1\RunQueryResponse;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery;
 use Google\Cloud\Firestore\V1beta1\Target;
 use Google\Cloud\Firestore\V1beta1\TransactionOptions;
 use Google\Cloud\Firestore\V1beta1\UpdateDocumentRequest;
 use Google\Cloud\Firestore\V1beta1\Write;
 use Google\Cloud\Firestore\V1beta1\WriteRequest;
-use Google\Cloud\Version;
+use Google\Cloud\Firestore\V1beta1\WriteResponse;
+use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The Cloud Firestore service.
@@ -79,9 +89,9 @@ use Google\Protobuf\Timestamp;
  *      committed. Any read with an equal or greater `read_time` is guaranteed
  *      to see the effects of the transaction.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -105,6 +115,13 @@ use Google\Protobuf\Timestamp;
  */
 class FirestoreGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.firestore.v1beta1.Firestore';
+
     /**
      * The default address of the service.
      */
@@ -130,14 +147,23 @@ class FirestoreGapicClient
     private static $documentPathNameTemplate;
     private static $anyPathNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $firestoreStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/datastore',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/firestore_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/firestore_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/firestore_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
 
     private static function getDatabaseRootNameTemplate()
     {
@@ -187,67 +213,6 @@ class FirestoreGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listDocumentsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getDocuments',
-                ]);
-        $listCollectionIdsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getCollectionIds',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listDocuments' => $listDocumentsPageStreamingDescriptor,
-            'listCollectionIds' => $listCollectionIdsPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getGrpcStreamingDescriptors()
-    {
-        return [
-            'batchGetDocuments' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-            'runQuery' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-            'write' => [
-                'grpcStreamingType' => 'BidiStreaming',
-            ],
-            'listen' => [
-                'grpcStreamingType' => 'BidiStreaming',
-            ],
-        ];
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -381,18 +346,21 @@ class FirestoreGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'firestore.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Firestore API.
@@ -410,82 +378,22 @@ class FirestoreGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/datastore',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/firestore_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'getDocument' => $defaultDescriptors,
-            'listDocuments' => $defaultDescriptors,
-            'createDocument' => $defaultDescriptors,
-            'updateDocument' => $defaultDescriptors,
-            'deleteDocument' => $defaultDescriptors,
-            'batchGetDocuments' => $defaultDescriptors,
-            'beginTransaction' => $defaultDescriptors,
-            'commit' => $defaultDescriptors,
-            'rollback' => $defaultDescriptors,
-            'runQuery' => $defaultDescriptors,
-            'write' => $defaultDescriptors,
-            'listen' => $defaultDescriptors,
-            'listCollectionIds' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-        $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
-        foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
-            $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.firestore.v1beta1.Firestore',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createFirestoreStubFunction = function ($hostname, $opts, $channel) {
-            return new FirestoreGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createFirestoreStubFunction', $options)) {
-            $createFirestoreStubFunction = $options['createFirestoreStubFunction'];
-        }
-        $this->firestoreStub = $this->grpcCredentialsHelper->createStub($createFirestoreStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -517,7 +425,7 @@ class FirestoreGapicClient
      *     @type Timestamp $readTime
      *          Reads the version of the document at the given time.
      *          This may not be older than 60 seconds.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -526,7 +434,7 @@ class FirestoreGapicClient
      *
      * @return \Google\Cloud\Firestore\V1beta1\Document
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getDocument($name, $optionalArgs = [])
@@ -543,24 +451,12 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['getDocument'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'GetDocument',
-            $mergedSettings,
-            $this->descriptors['getDocument']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Document::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -630,7 +526,7 @@ class FirestoreGapicClient
      *
      *          Requests with `show_missing` may not specify `where` or
      *          `order_by`.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -639,7 +535,7 @@ class FirestoreGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listDocuments($parent, $collectionId, $optionalArgs = [])
@@ -669,24 +565,12 @@ class FirestoreGapicClient
             $request->setShowMissing($optionalArgs['showMissing']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listDocuments'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->getPagedListResponse(
             'ListDocuments',
-            $mergedSettings,
-            $this->descriptors['listDocuments']
+            $optionalArgs,
+            ListDocumentsResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -722,7 +606,7 @@ class FirestoreGapicClient
      *
      *          If the document has a field that is not present in this mask, that field
      *          will not be returned in the response.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -731,7 +615,7 @@ class FirestoreGapicClient
      *
      * @return \Google\Cloud\Firestore\V1beta1\Document
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createDocument($parent, $collectionId, $documentId, $document, $optionalArgs = [])
@@ -745,24 +629,12 @@ class FirestoreGapicClient
             $request->setMask($optionalArgs['mask']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['createDocument'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'CreateDocument',
-            $mergedSettings,
-            $this->descriptors['createDocument']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Document::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -800,7 +672,7 @@ class FirestoreGapicClient
      *     @type Precondition $currentDocument
      *          An optional precondition on the document.
      *          The request will fail if this is set and not met by the target document.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -809,7 +681,7 @@ class FirestoreGapicClient
      *
      * @return \Google\Cloud\Firestore\V1beta1\Document
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateDocument($document, $updateMask, $optionalArgs = [])
@@ -824,24 +696,12 @@ class FirestoreGapicClient
             $request->setCurrentDocument($optionalArgs['currentDocument']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['updateDocument'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'UpdateDocument',
-            $mergedSettings,
-            $this->descriptors['updateDocument']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Document::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -866,14 +726,14 @@ class FirestoreGapicClient
      *     @type Precondition $currentDocument
      *          An optional precondition on the document.
      *          The request will fail if this is set and not met by the target document.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteDocument($name, $optionalArgs = [])
@@ -884,24 +744,12 @@ class FirestoreGapicClient
             $request->setCurrentDocument($optionalArgs['currentDocument']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteDocument'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'DeleteDocument',
-            $mergedSettings,
-            $this->descriptors['deleteDocument']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -956,7 +804,7 @@ class FirestoreGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function batchGetDocuments($database, $documents, $optionalArgs = [])
@@ -977,31 +825,13 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['batchGetDocuments'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'BatchGetDocuments',
-            $mergedSettings,
-            $this->descriptors['batchGetDocuments']
-        );
-
-        return $callable(
+            BatchGetDocumentsResponse::class,
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**
@@ -1026,7 +856,7 @@ class FirestoreGapicClient
      *     @type TransactionOptions $options
      *          The options for the transaction.
      *          Defaults to a read-write transaction.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1035,7 +865,7 @@ class FirestoreGapicClient
      *
      * @return \Google\Cloud\Firestore\V1beta1\BeginTransactionResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function beginTransaction($database, $optionalArgs = [])
@@ -1046,24 +876,12 @@ class FirestoreGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['beginTransaction'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'BeginTransaction',
-            $mergedSettings,
-            $this->descriptors['beginTransaction']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            BeginTransactionResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1091,7 +909,7 @@ class FirestoreGapicClient
      *
      *     @type string $transaction
      *          If set, applies all writes in this transaction, and commits it.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1100,7 +918,7 @@ class FirestoreGapicClient
      *
      * @return \Google\Cloud\Firestore\V1beta1\CommitResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function commit($database, $writes, $optionalArgs = [])
@@ -1112,24 +930,12 @@ class FirestoreGapicClient
             $request->setTransaction($optionalArgs['transaction']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['commit'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'Commit',
-            $mergedSettings,
-            $this->descriptors['commit']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            CommitResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1153,14 +959,14 @@ class FirestoreGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function rollback($database, $transaction, $optionalArgs = [])
@@ -1169,24 +975,12 @@ class FirestoreGapicClient
         $request->setDatabase($database);
         $request->setTransaction($transaction);
 
-        $defaultCallSettings = $this->defaultCallSettings['rollback'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'Rollback',
-            $mergedSettings,
-            $this->descriptors['rollback']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1234,7 +1028,7 @@ class FirestoreGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function runQuery($parent, $optionalArgs = [])
@@ -1254,31 +1048,13 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['runQuery'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'RunQuery',
-            $mergedSettings,
-            $this->descriptors['runQuery']
-        );
-
-        return $callable(
+            RunQueryResponse::class,
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**
@@ -1331,36 +1107,18 @@ class FirestoreGapicClient
      *
      * @return \Google\ApiCore\BidiStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function write($optionalArgs = [])
     {
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['write'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'Write',
-            $mergedSettings,
-            $this->descriptors['write']
-        );
-
-        return $callable(
+            WriteResponse::class,
+            $optionalArgs,
             null,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::BIDI_STREAMING_CALL
+        );
     }
 
     /**
@@ -1413,36 +1171,18 @@ class FirestoreGapicClient
      *
      * @return \Google\ApiCore\BidiStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listen($optionalArgs = [])
     {
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['listen'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->startCall(
             'Listen',
-            $mergedSettings,
-            $this->descriptors['listen']
-        );
-
-        return $callable(
+            ListenResponse::class,
+            $optionalArgs,
             null,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::BIDI_STREAMING_CALL
+        );
     }
 
     /**
@@ -1487,7 +1227,7 @@ class FirestoreGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1496,7 +1236,7 @@ class FirestoreGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listCollectionIds($parent, $optionalArgs = [])
@@ -1510,39 +1250,11 @@ class FirestoreGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listCollectionIds'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
+        return $this->getPagedListResponse(
             'ListCollectionIds',
-            $mergedSettings,
-            $this->descriptors['listCollectionIds']
+            $optionalArgs,
+            ListCollectionIdsResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->firestoreStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
     }
 }
