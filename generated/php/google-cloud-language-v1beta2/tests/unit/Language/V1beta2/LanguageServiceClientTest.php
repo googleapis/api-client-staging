@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Language\V1beta2;
 
 use Google\Cloud\Language\V1beta2\LanguageServiceClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
@@ -44,32 +44,20 @@ use stdClass;
  */
 class LanguageServiceClientTest extends GeneratedTest
 {
-    public function createMockLanguageServiceImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockLanguageServiceImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => LanguageServiceClient::SERVICE_ADDRESS,
-            'port' => LanguageServiceClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return LanguageServiceClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new LanguageServiceClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new LanguageServiceClient($options);
     }
 
     /**
@@ -77,31 +65,33 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function analyzeSentimentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnalyzeSentimentResponse();
         $expectedResponse->setLanguage($language);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $document = new Document();
 
         $response = $client->analyzeSentiment($document);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeSentiment', $actualFuncCall);
 
-        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+        $actualValue = $actualRequestObject->getDocument();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($document, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -109,10 +99,10 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function analyzeSentimentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -124,7 +114,7 @@ class LanguageServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $document = new Document();
@@ -139,8 +129,8 @@ class LanguageServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -148,31 +138,33 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function analyzeEntitiesTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnalyzeEntitiesResponse();
         $expectedResponse->setLanguage($language);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $document = new Document();
 
         $response = $client->analyzeEntities($document);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntities', $actualFuncCall);
 
-        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+        $actualValue = $actualRequestObject->getDocument();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($document, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -180,10 +172,10 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function analyzeEntitiesExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -195,7 +187,7 @@ class LanguageServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $document = new Document();
@@ -210,8 +202,8 @@ class LanguageServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -219,31 +211,33 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function analyzeEntitySentimentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnalyzeEntitySentimentResponse();
         $expectedResponse->setLanguage($language);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $document = new Document();
 
         $response = $client->analyzeEntitySentiment($document);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntitySentiment', $actualFuncCall);
 
-        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+        $actualValue = $actualRequestObject->getDocument();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($document, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -251,10 +245,10 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function analyzeEntitySentimentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -266,7 +260,7 @@ class LanguageServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $document = new Document();
@@ -281,8 +275,8 @@ class LanguageServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -290,31 +284,33 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function analyzeSyntaxTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnalyzeSyntaxResponse();
         $expectedResponse->setLanguage($language);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $document = new Document();
 
         $response = $client->analyzeSyntax($document);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeSyntax', $actualFuncCall);
 
-        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+        $actualValue = $actualRequestObject->getDocument();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($document, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -322,10 +318,10 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function analyzeSyntaxExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -337,7 +333,7 @@ class LanguageServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $document = new Document();
@@ -352,8 +348,8 @@ class LanguageServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -361,29 +357,31 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function classifyTextTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ClassifyTextResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $document = new Document();
 
         $response = $client->classifyText($document);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/ClassifyText', $actualFuncCall);
 
-        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+        $actualValue = $actualRequestObject->getDocument();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($document, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -391,10 +389,10 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function classifyTextExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -406,7 +404,7 @@ class LanguageServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $document = new Document();
@@ -421,8 +419,8 @@ class LanguageServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -430,16 +428,16 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function annotateTextTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnnotateTextResponse();
         $expectedResponse->setLanguage($language);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $document = new Document();
@@ -447,16 +445,20 @@ class LanguageServiceClientTest extends GeneratedTest
 
         $response = $client->annotateText($document, $features);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnnotateText', $actualFuncCall);
 
-        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
-        $this->assertProtobufEquals($features, $actualRequestObject->getFeatures());
+        $actualValue = $actualRequestObject->getDocument();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($document, $actualValue);
+        $actualValue = $actualRequestObject->getFeatures();
+
+        $this->assertProtobufEquals($features, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -464,10 +466,10 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     public function annotateTextExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
-        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -479,7 +481,7 @@ class LanguageServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $document = new Document();
@@ -495,7 +497,7 @@ class LanguageServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
