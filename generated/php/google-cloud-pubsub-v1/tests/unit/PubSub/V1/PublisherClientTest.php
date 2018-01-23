@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\PubSub\V1;
 
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse;
@@ -45,42 +45,20 @@ use stdClass;
  */
 class PublisherClientTest extends GeneratedTest
 {
-    public function createMockPublisherImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockPublisherImpl($hostname, $opts);
-    }
-
-    public function createMockIAMPolicyImpl($hostname, $opts)
-    {
-        return new MockIAMPolicyImpl($hostname, $opts);
-    }
-
-    public function createMockSubscriberImpl($hostname, $opts)
-    {
-        return new MockSubscriberImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => PublisherClient::SERVICE_ADDRESS,
-            'port' => PublisherClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return PublisherClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new PublisherClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new PublisherClient($options);
     }
 
     /**
@@ -88,31 +66,33 @@ class PublisherClientTest extends GeneratedTest
      */
     public function createTopicTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
         $expectedResponse = new Topic();
         $expectedResponse->setName($name2);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->createTopic($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/CreateTopic', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -120,10 +100,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function createTopicExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -135,7 +115,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -150,8 +130,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -159,16 +139,16 @@ class PublisherClientTest extends GeneratedTest
      */
     public function updateTopicTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
         $expectedResponse = new Topic();
         $expectedResponse->setName($name);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $topic = new Topic();
@@ -176,16 +156,20 @@ class PublisherClientTest extends GeneratedTest
 
         $response = $client->updateTopic($topic, $updateMask);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/UpdateTopic', $actualFuncCall);
 
-        $this->assertProtobufEquals($topic, $actualRequestObject->getTopic());
-        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+        $actualValue = $actualRequestObject->getTopic();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($topic, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -193,10 +177,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function updateTopicExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -208,7 +192,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $topic = new Topic();
@@ -224,8 +208,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -233,17 +217,17 @@ class PublisherClientTest extends GeneratedTest
      */
     public function publishTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $messageIdsElement = 'messageIdsElement-744837059';
         $messageIds = [$messageIdsElement];
         $expectedResponse = new PublishResponse();
         $expectedResponse->setMessageIds($messageIds);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -254,16 +238,20 @@ class PublisherClientTest extends GeneratedTest
 
         $response = $client->publish($formattedTopic, $messages);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/Publish', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTopic, $actualRequestObject->getTopic());
-        $this->assertProtobufEquals($messages, $actualRequestObject->getMessages());
+        $actualValue = $actualRequestObject->getTopic();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTopic, $actualValue);
+        $actualValue = $actualRequestObject->getMessages();
+
+        $this->assertProtobufEquals($messages, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -271,10 +259,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function publishExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -286,7 +274,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -305,8 +293,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -314,31 +302,33 @@ class PublisherClientTest extends GeneratedTest
      */
     public function getTopicTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
         $expectedResponse = new Topic();
         $expectedResponse->setName($name);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->getTopic($formattedTopic);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/GetTopic', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTopic, $actualRequestObject->getTopic());
+        $actualValue = $actualRequestObject->getTopic();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTopic, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -346,10 +336,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function getTopicExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -361,7 +351,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -376,8 +366,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -385,10 +375,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function listTopicsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -397,7 +387,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse = new ListTopicsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTopics($topics);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedProject = $client->projectName('[PROJECT]');
@@ -408,14 +398,16 @@ class PublisherClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getTopics()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/ListTopics', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedProject, $actualRequestObject->getProject());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getProject();
+
+        $this->assertProtobufEquals($formattedProject, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -423,10 +415,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function listTopicsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -438,7 +430,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedProject = $client->projectName('[PROJECT]');
@@ -453,8 +445,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -462,10 +454,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function listTopicSubscriptionsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -474,7 +466,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse = new ListTopicSubscriptionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubscriptions($subscriptions);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -485,14 +477,16 @@ class PublisherClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSubscriptions()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/ListTopicSubscriptions', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTopic, $actualRequestObject->getTopic());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getTopic();
+
+        $this->assertProtobufEquals($formattedTopic, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -500,10 +494,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function listTopicSubscriptionsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -515,7 +509,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -530,8 +524,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -539,28 +533,30 @@ class PublisherClientTest extends GeneratedTest
      */
     public function deleteTopicTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $client->deleteTopic($formattedTopic);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/DeleteTopic', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedTopic, $actualRequestObject->getTopic());
+        $actualValue = $actualRequestObject->getTopic();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedTopic, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -568,10 +564,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function deleteTopicExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -583,7 +579,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -598,8 +594,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -607,10 +603,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function setIamPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $version = 351608024;
@@ -618,7 +614,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -626,16 +622,20 @@ class PublisherClientTest extends GeneratedTest
 
         $response = $client->setIamPolicy($formattedResource, $policy);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertProtobufEquals($policy, $actualRequestObject->getPolicy());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+
+        $this->assertProtobufEquals($policy, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -643,10 +643,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function setIamPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -658,7 +658,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -674,8 +674,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -683,10 +683,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function getIamPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $version = 351608024;
@@ -694,22 +694,24 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -717,10 +719,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function getIamPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -732,7 +734,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -747,8 +749,8 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -756,14 +758,14 @@ class PublisherClientTest extends GeneratedTest
      */
     public function testIamPermissionsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -771,16 +773,20 @@ class PublisherClientTest extends GeneratedTest
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertProtobufEquals($permissions, $actualRequestObject->getPermissions());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+
+        $this->assertProtobufEquals($permissions, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -788,10 +794,10 @@ class PublisherClientTest extends GeneratedTest
      */
     public function testIamPermissionsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -803,7 +809,7 @@ class PublisherClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
@@ -819,7 +825,7 @@ class PublisherClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
