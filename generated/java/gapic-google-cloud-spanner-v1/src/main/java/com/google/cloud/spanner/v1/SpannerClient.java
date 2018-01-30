@@ -22,6 +22,7 @@ import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.v1.stub.SpannerStub;
+import com.google.cloud.spanner.v1.stub.SpannerStubSettings;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import com.google.spanner.v1.BeginTransactionRequest;
@@ -151,7 +152,7 @@ public class SpannerClient implements BackgroundResource {
    */
   protected SpannerClient(SpannerSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((SpannerStubSettings) settings.getStubSettings()).createStub();
   }
 
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")

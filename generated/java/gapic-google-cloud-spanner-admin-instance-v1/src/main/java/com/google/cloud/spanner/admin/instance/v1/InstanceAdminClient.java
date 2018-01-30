@@ -24,6 +24,7 @@ import com.google.api.gax.longrunning.OperationFuture;
 import com.google.api.gax.rpc.OperationCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.admin.instance.v1.stub.InstanceAdminStub;
+import com.google.cloud.spanner.admin.instance.v1.stub.InstanceAdminStubSettings;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -173,7 +174,7 @@ public class InstanceAdminClient implements BackgroundResource {
    */
   protected InstanceAdminClient(InstanceAdminSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((InstanceAdminStubSettings) settings.getStubSettings()).createStub();
     this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
   }
 

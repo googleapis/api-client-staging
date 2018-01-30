@@ -26,7 +26,6 @@ import com.google.api.gax.grpc.GrpcCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.OperationCallable;
 import com.google.api.gax.rpc.UnaryCallable;
-import com.google.cloud.spanner.admin.instance.v1.InstanceAdminSettings;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -178,13 +177,13 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
   private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable;
 
-  public static final GrpcInstanceAdminStub create(InstanceAdminSettings settings)
+  public static final GrpcInstanceAdminStub create(InstanceAdminStubSettings settings)
       throws IOException {
     return new GrpcInstanceAdminStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcInstanceAdminStub create(ClientContext clientContext) throws IOException {
-    return new GrpcInstanceAdminStub(InstanceAdminSettings.newBuilder().build(), clientContext);
+    return new GrpcInstanceAdminStub(InstanceAdminStubSettings.newBuilder().build(), clientContext);
   }
 
   /**
@@ -192,7 +191,7 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
    * that it is easy to make a subclass, but otherwise, the static factory methods should be
    * preferred.
    */
-  protected GrpcInstanceAdminStub(InstanceAdminSettings settings, ClientContext clientContext)
+  protected GrpcInstanceAdminStub(InstanceAdminStubSettings settings, ClientContext clientContext)
       throws IOException {
     this.operationsStub = GrpcOperationsStub.create(clientContext);
 

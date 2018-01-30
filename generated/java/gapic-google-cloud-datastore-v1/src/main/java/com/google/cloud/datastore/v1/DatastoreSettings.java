@@ -17,25 +17,15 @@ package com.google.cloud.datastore.v1;
 
 import com.google.api.core.ApiFunction;
 import com.google.api.core.BetaApi;
-import com.google.api.gax.core.GaxProperties;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.InstantiatingExecutorProvider;
-import com.google.api.gax.grpc.GaxGrpcProperties;
-import com.google.api.gax.grpc.GrpcTransportChannel;
 import com.google.api.gax.grpc.InstantiatingGrpcChannelProvider;
-import com.google.api.gax.retrying.RetrySettings;
 import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ClientSettings;
-import com.google.api.gax.rpc.StatusCode;
 import com.google.api.gax.rpc.TransportChannelProvider;
 import com.google.api.gax.rpc.UnaryCallSettings;
-import com.google.cloud.datastore.v1.stub.DatastoreStub;
-import com.google.cloud.datastore.v1.stub.GrpcDatastoreStub;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
+import com.google.cloud.datastore.v1.stub.DatastoreStubSettings;
 import com.google.datastore.v1.AllocateIdsRequest;
 import com.google.datastore.v1.AllocateIdsResponse;
 import com.google.datastore.v1.BeginTransactionRequest;
@@ -53,7 +43,6 @@ import com.google.datastore.v1.RunQueryResponse;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Generated;
-import org.threeten.bp.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 /**
@@ -84,105 +73,78 @@ import org.threeten.bp.Duration;
 @Generated("by GAPIC v0.0.5")
 @BetaApi
 public class DatastoreSettings extends ClientSettings<DatastoreSettings> {
-  /** The default scopes of the service. */
-  private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
-      ImmutableList.<String>builder()
-          .add("https://www.googleapis.com/auth/cloud-platform")
-          .add("https://www.googleapis.com/auth/datastore")
-          .build();
-
-  private final UnaryCallSettings<LookupRequest, LookupResponse> lookupSettings;
-  private final UnaryCallSettings<RunQueryRequest, RunQueryResponse> runQuerySettings;
-  private final UnaryCallSettings<BeginTransactionRequest, BeginTransactionResponse>
-      beginTransactionSettings;
-  private final UnaryCallSettings<CommitRequest, CommitResponse> commitSettings;
-  private final UnaryCallSettings<RollbackRequest, RollbackResponse> rollbackSettings;
-  private final UnaryCallSettings<AllocateIdsRequest, AllocateIdsResponse> allocateIdsSettings;
-  private final UnaryCallSettings<ReserveIdsRequest, ReserveIdsResponse> reserveIdsSettings;
-
   /** Returns the object with the settings used for calls to lookup. */
   public UnaryCallSettings<LookupRequest, LookupResponse> lookupSettings() {
-    return lookupSettings;
+    return ((DatastoreStubSettings) getStubSettings()).lookupSettings();
   }
 
   /** Returns the object with the settings used for calls to runQuery. */
   public UnaryCallSettings<RunQueryRequest, RunQueryResponse> runQuerySettings() {
-    return runQuerySettings;
+    return ((DatastoreStubSettings) getStubSettings()).runQuerySettings();
   }
 
   /** Returns the object with the settings used for calls to beginTransaction. */
   public UnaryCallSettings<BeginTransactionRequest, BeginTransactionResponse>
       beginTransactionSettings() {
-    return beginTransactionSettings;
+    return ((DatastoreStubSettings) getStubSettings()).beginTransactionSettings();
   }
 
   /** Returns the object with the settings used for calls to commit. */
   public UnaryCallSettings<CommitRequest, CommitResponse> commitSettings() {
-    return commitSettings;
+    return ((DatastoreStubSettings) getStubSettings()).commitSettings();
   }
 
   /** Returns the object with the settings used for calls to rollback. */
   public UnaryCallSettings<RollbackRequest, RollbackResponse> rollbackSettings() {
-    return rollbackSettings;
+    return ((DatastoreStubSettings) getStubSettings()).rollbackSettings();
   }
 
   /** Returns the object with the settings used for calls to allocateIds. */
   public UnaryCallSettings<AllocateIdsRequest, AllocateIdsResponse> allocateIdsSettings() {
-    return allocateIdsSettings;
+    return ((DatastoreStubSettings) getStubSettings()).allocateIdsSettings();
   }
 
   /** Returns the object with the settings used for calls to reserveIds. */
   public UnaryCallSettings<ReserveIdsRequest, ReserveIdsResponse> reserveIdsSettings() {
-    return reserveIdsSettings;
+    return ((DatastoreStubSettings) getStubSettings()).reserveIdsSettings();
   }
 
-  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
-  public DatastoreStub createStub() throws IOException {
-    if (getTransportChannelProvider()
-        .getTransportName()
-        .equals(GrpcTransportChannel.getGrpcTransportName())) {
-      return GrpcDatastoreStub.create(this);
-    } else {
-      throw new UnsupportedOperationException(
-          "Transport not supported: " + getTransportChannelProvider().getTransportName());
-    }
+  public static final DatastoreSettings create(DatastoreStubSettings stub) throws IOException {
+    return new DatastoreSettings.Builder(stub.toBuilder()).build();
   }
 
   /** Returns a builder for the default ExecutorProvider for this service. */
   public static InstantiatingExecutorProvider.Builder defaultExecutorProviderBuilder() {
-    return InstantiatingExecutorProvider.newBuilder();
+    return DatastoreStubSettings.defaultExecutorProviderBuilder();
   }
 
   /** Returns the default service endpoint. */
   public static String getDefaultEndpoint() {
-    return "datastore.googleapis.com:443";
+    return DatastoreStubSettings.getDefaultEndpoint();
   }
 
   /** Returns the default service scopes. */
   public static List<String> getDefaultServiceScopes() {
-    return DEFAULT_SERVICE_SCOPES;
+    return DatastoreStubSettings.getDefaultServiceScopes();
   }
 
   /** Returns a builder for the default credentials for this service. */
   public static GoogleCredentialsProvider.Builder defaultCredentialsProviderBuilder() {
-    return GoogleCredentialsProvider.newBuilder().setScopesToApply(DEFAULT_SERVICE_SCOPES);
+    return DatastoreStubSettings.defaultCredentialsProviderBuilder();
   }
 
   /** Returns a builder for the default ChannelProvider for this service. */
   public static InstantiatingGrpcChannelProvider.Builder defaultGrpcTransportProviderBuilder() {
-    return InstantiatingGrpcChannelProvider.newBuilder();
+    return DatastoreStubSettings.defaultGrpcTransportProviderBuilder();
   }
 
   public static TransportChannelProvider defaultTransportChannelProvider() {
-    return defaultGrpcTransportProviderBuilder().build();
+    return DatastoreStubSettings.defaultTransportChannelProvider();
   }
 
   @BetaApi("The surface for customizing headers is not stable yet and may change in the future.")
   public static ApiClientHeaderProvider.Builder defaultApiClientHeaderProviderBuilder() {
-    return ApiClientHeaderProvider.newBuilder()
-        .setGeneratedLibToken("gapic", GaxProperties.getLibraryVersion(DatastoreSettings.class))
-        .setTransportToken(
-            GaxGrpcProperties.getGrpcTokenName(), GaxGrpcProperties.getGrpcVersion());
+    return DatastoreStubSettings.defaultApiClientHeaderProviderBuilder();
   }
 
   /** Returns a new builder for this class. */
@@ -202,168 +164,32 @@ public class DatastoreSettings extends ClientSettings<DatastoreSettings> {
 
   protected DatastoreSettings(Builder settingsBuilder) throws IOException {
     super(settingsBuilder);
-
-    lookupSettings = settingsBuilder.lookupSettings().build();
-    runQuerySettings = settingsBuilder.runQuerySettings().build();
-    beginTransactionSettings = settingsBuilder.beginTransactionSettings().build();
-    commitSettings = settingsBuilder.commitSettings().build();
-    rollbackSettings = settingsBuilder.rollbackSettings().build();
-    allocateIdsSettings = settingsBuilder.allocateIdsSettings().build();
-    reserveIdsSettings = settingsBuilder.reserveIdsSettings().build();
   }
 
   /** Builder for DatastoreSettings. */
   public static class Builder extends ClientSettings.Builder<DatastoreSettings, Builder> {
-    private final ImmutableList<UnaryCallSettings.Builder<?, ?>> unaryMethodSettingsBuilders;
-
-    private final UnaryCallSettings.Builder<LookupRequest, LookupResponse> lookupSettings;
-    private final UnaryCallSettings.Builder<RunQueryRequest, RunQueryResponse> runQuerySettings;
-    private final UnaryCallSettings.Builder<BeginTransactionRequest, BeginTransactionResponse>
-        beginTransactionSettings;
-    private final UnaryCallSettings.Builder<CommitRequest, CommitResponse> commitSettings;
-    private final UnaryCallSettings.Builder<RollbackRequest, RollbackResponse> rollbackSettings;
-    private final UnaryCallSettings.Builder<AllocateIdsRequest, AllocateIdsResponse>
-        allocateIdsSettings;
-    private final UnaryCallSettings.Builder<ReserveIdsRequest, ReserveIdsResponse>
-        reserveIdsSettings;
-
-    private static final ImmutableMap<String, ImmutableSet<StatusCode.Code>>
-        RETRYABLE_CODE_DEFINITIONS;
-
-    static {
-      ImmutableMap.Builder<String, ImmutableSet<StatusCode.Code>> definitions =
-          ImmutableMap.builder();
-      definitions.put(
-          "idempotent",
-          ImmutableSet.copyOf(
-              Lists.<StatusCode.Code>newArrayList(
-                  StatusCode.Code.DEADLINE_EXCEEDED, StatusCode.Code.UNAVAILABLE)));
-      definitions.put("non_idempotent", ImmutableSet.copyOf(Lists.<StatusCode.Code>newArrayList()));
-      RETRYABLE_CODE_DEFINITIONS = definitions.build();
-    }
-
-    private static final ImmutableMap<String, RetrySettings> RETRY_PARAM_DEFINITIONS;
-
-    static {
-      ImmutableMap.Builder<String, RetrySettings> definitions = ImmutableMap.builder();
-      RetrySettings settings = null;
-      settings =
-          RetrySettings.newBuilder()
-              .setInitialRetryDelay(Duration.ofMillis(100L))
-              .setRetryDelayMultiplier(1.3)
-              .setMaxRetryDelay(Duration.ofMillis(60000L))
-              .setInitialRpcTimeout(Duration.ofMillis(60000L))
-              .setRpcTimeoutMultiplier(1.0)
-              .setMaxRpcTimeout(Duration.ofMillis(60000L))
-              .setTotalTimeout(Duration.ofMillis(600000L))
-              .build();
-      definitions.put("default", settings);
-      RETRY_PARAM_DEFINITIONS = definitions.build();
-    }
-
-    protected Builder() {
+    protected Builder() throws IOException {
       this((ClientContext) null);
     }
 
     protected Builder(ClientContext clientContext) {
-      super(clientContext);
-
-      lookupSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      runQuerySettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      beginTransactionSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      commitSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      rollbackSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      allocateIdsSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      reserveIdsSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
-              lookupSettings,
-              runQuerySettings,
-              beginTransactionSettings,
-              commitSettings,
-              rollbackSettings,
-              allocateIdsSettings,
-              reserveIdsSettings);
-
-      initDefaults(this);
+      super(DatastoreStubSettings.newBuilder(clientContext));
     }
 
     private static Builder createDefault() {
-      Builder builder = new Builder((ClientContext) null);
-      builder.setTransportChannelProvider(defaultTransportChannelProvider());
-      builder.setCredentialsProvider(defaultCredentialsProviderBuilder().build());
-      builder.setInternalHeaderProvider(defaultApiClientHeaderProviderBuilder().build());
-      builder.setEndpoint(getDefaultEndpoint());
-      return initDefaults(builder);
-    }
-
-    private static Builder initDefaults(Builder builder) {
-
-      builder
-          .lookupSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .runQuerySettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .beginTransactionSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .commitSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .rollbackSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .allocateIdsSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .reserveIdsSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      return builder;
+      return new Builder(DatastoreStubSettings.newBuilder());
     }
 
     protected Builder(DatastoreSettings settings) {
-      super(settings);
+      super(settings.getStubSettings().toBuilder());
+    }
 
-      lookupSettings = settings.lookupSettings.toBuilder();
-      runQuerySettings = settings.runQuerySettings.toBuilder();
-      beginTransactionSettings = settings.beginTransactionSettings.toBuilder();
-      commitSettings = settings.commitSettings.toBuilder();
-      rollbackSettings = settings.rollbackSettings.toBuilder();
-      allocateIdsSettings = settings.allocateIdsSettings.toBuilder();
-      reserveIdsSettings = settings.reserveIdsSettings.toBuilder();
+    protected Builder(DatastoreStubSettings.Builder stubSettings) {
+      super(stubSettings);
+    }
 
-      unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
-              lookupSettings,
-              runQuerySettings,
-              beginTransactionSettings,
-              commitSettings,
-              rollbackSettings,
-              allocateIdsSettings,
-              reserveIdsSettings);
+    public DatastoreStubSettings.Builder getStubSettingsBuilder() {
+      return ((DatastoreStubSettings.Builder) getStubSettings());
     }
 
     /**
@@ -373,45 +199,46 @@ public class DatastoreSettings extends ClientSettings<DatastoreSettings> {
      */
     public Builder applyToAllUnaryMethods(
         ApiFunction<UnaryCallSettings.Builder<?, ?>, Void> settingsUpdater) throws Exception {
-      super.applyToAllUnaryMethods(unaryMethodSettingsBuilders, settingsUpdater);
+      super.applyToAllUnaryMethods(
+          getStubSettingsBuilder().unaryMethodSettingsBuilders(), settingsUpdater);
       return this;
     }
 
     /** Returns the builder for the settings used for calls to lookup. */
     public UnaryCallSettings.Builder<LookupRequest, LookupResponse> lookupSettings() {
-      return lookupSettings;
+      return getStubSettingsBuilder().lookupSettings();
     }
 
     /** Returns the builder for the settings used for calls to runQuery. */
     public UnaryCallSettings.Builder<RunQueryRequest, RunQueryResponse> runQuerySettings() {
-      return runQuerySettings;
+      return getStubSettingsBuilder().runQuerySettings();
     }
 
     /** Returns the builder for the settings used for calls to beginTransaction. */
     public UnaryCallSettings.Builder<BeginTransactionRequest, BeginTransactionResponse>
         beginTransactionSettings() {
-      return beginTransactionSettings;
+      return getStubSettingsBuilder().beginTransactionSettings();
     }
 
     /** Returns the builder for the settings used for calls to commit. */
     public UnaryCallSettings.Builder<CommitRequest, CommitResponse> commitSettings() {
-      return commitSettings;
+      return getStubSettingsBuilder().commitSettings();
     }
 
     /** Returns the builder for the settings used for calls to rollback. */
     public UnaryCallSettings.Builder<RollbackRequest, RollbackResponse> rollbackSettings() {
-      return rollbackSettings;
+      return getStubSettingsBuilder().rollbackSettings();
     }
 
     /** Returns the builder for the settings used for calls to allocateIds. */
     public UnaryCallSettings.Builder<AllocateIdsRequest, AllocateIdsResponse>
         allocateIdsSettings() {
-      return allocateIdsSettings;
+      return getStubSettingsBuilder().allocateIdsSettings();
     }
 
     /** Returns the builder for the settings used for calls to reserveIds. */
     public UnaryCallSettings.Builder<ReserveIdsRequest, ReserveIdsResponse> reserveIdsSettings() {
-      return reserveIdsSettings;
+      return getStubSettingsBuilder().reserveIdsSettings();
     }
 
     @Override
