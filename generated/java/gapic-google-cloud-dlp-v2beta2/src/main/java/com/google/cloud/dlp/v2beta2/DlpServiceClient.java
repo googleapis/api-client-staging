@@ -23,6 +23,7 @@ import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.dlp.v2beta2.stub.DlpServiceStub;
+import com.google.cloud.dlp.v2beta2.stub.DlpServiceStubSettings;
 import com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest;
 import com.google.privacy.dlp.v2beta2.CancelDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest;
@@ -166,7 +167,7 @@ public class DlpServiceClient implements BackgroundResource {
    */
   protected DlpServiceClient(DlpServiceSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((DlpServiceStubSettings) settings.getStubSettings()).createStub();
   }
 
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")

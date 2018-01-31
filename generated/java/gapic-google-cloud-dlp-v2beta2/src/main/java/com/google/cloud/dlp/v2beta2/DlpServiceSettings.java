@@ -20,33 +20,17 @@ import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDlpJobsPage
 import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListInspectTemplatesPagedResponse;
 
 import com.google.api.core.ApiFunction;
-import com.google.api.core.ApiFuture;
 import com.google.api.core.BetaApi;
-import com.google.api.gax.core.GaxProperties;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.InstantiatingExecutorProvider;
-import com.google.api.gax.grpc.GaxGrpcProperties;
-import com.google.api.gax.grpc.GrpcTransportChannel;
 import com.google.api.gax.grpc.InstantiatingGrpcChannelProvider;
-import com.google.api.gax.retrying.RetrySettings;
-import com.google.api.gax.rpc.ApiCallContext;
 import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ClientSettings;
-import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.PagedCallSettings;
-import com.google.api.gax.rpc.PagedListDescriptor;
-import com.google.api.gax.rpc.PagedListResponseFactory;
-import com.google.api.gax.rpc.StatusCode;
 import com.google.api.gax.rpc.TransportChannelProvider;
 import com.google.api.gax.rpc.UnaryCallSettings;
-import com.google.api.gax.rpc.UnaryCallable;
-import com.google.cloud.dlp.v2beta2.stub.DlpServiceStub;
-import com.google.cloud.dlp.v2beta2.stub.GrpcDlpServiceStub;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
+import com.google.cloud.dlp.v2beta2.stub.DlpServiceStubSettings;
 import com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest;
 import com.google.privacy.dlp.v2beta2.CancelDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest;
@@ -83,7 +67,6 @@ import com.google.protobuf.Empty;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Generated;
-import org.threeten.bp.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 /**
@@ -114,105 +97,59 @@ import org.threeten.bp.Duration;
 @Generated("by GAPIC v0.0.5")
 @BetaApi
 public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
-  /** The default scopes of the service. */
-  private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
-      ImmutableList.<String>builder().add("https://www.googleapis.com/auth/cloud-platform").build();
-
-  private final UnaryCallSettings<InspectContentRequest, InspectContentResponse>
-      inspectContentSettings;
-  private final UnaryCallSettings<RedactImageRequest, RedactImageResponse> redactImageSettings;
-  private final UnaryCallSettings<DeidentifyContentRequest, DeidentifyContentResponse>
-      deidentifyContentSettings;
-  private final UnaryCallSettings<ReidentifyContentRequest, ReidentifyContentResponse>
-      reidentifyContentSettings;
-  private final UnaryCallSettings<InspectDataSourceRequest, DlpJob> inspectDataSourceSettings;
-  private final UnaryCallSettings<AnalyzeDataSourceRiskRequest, DlpJob>
-      analyzeDataSourceRiskSettings;
-  private final UnaryCallSettings<ListInfoTypesRequest, ListInfoTypesResponse>
-      listInfoTypesSettings;
-  private final UnaryCallSettings<CreateInspectTemplateRequest, InspectTemplate>
-      createInspectTemplateSettings;
-  private final UnaryCallSettings<UpdateInspectTemplateRequest, InspectTemplate>
-      updateInspectTemplateSettings;
-  private final UnaryCallSettings<GetInspectTemplateRequest, InspectTemplate>
-      getInspectTemplateSettings;
-  private final PagedCallSettings<
-          ListInspectTemplatesRequest, ListInspectTemplatesResponse,
-          ListInspectTemplatesPagedResponse>
-      listInspectTemplatesSettings;
-  private final UnaryCallSettings<DeleteInspectTemplateRequest, Empty>
-      deleteInspectTemplateSettings;
-  private final UnaryCallSettings<CreateDeidentifyTemplateRequest, DeidentifyTemplate>
-      createDeidentifyTemplateSettings;
-  private final UnaryCallSettings<UpdateDeidentifyTemplateRequest, DeidentifyTemplate>
-      updateDeidentifyTemplateSettings;
-  private final UnaryCallSettings<GetDeidentifyTemplateRequest, DeidentifyTemplate>
-      getDeidentifyTemplateSettings;
-  private final PagedCallSettings<
-          ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse,
-          ListDeidentifyTemplatesPagedResponse>
-      listDeidentifyTemplatesSettings;
-  private final UnaryCallSettings<DeleteDeidentifyTemplateRequest, Empty>
-      deleteDeidentifyTemplateSettings;
-  private final PagedCallSettings<ListDlpJobsRequest, ListDlpJobsResponse, ListDlpJobsPagedResponse>
-      listDlpJobsSettings;
-  private final UnaryCallSettings<GetDlpJobRequest, DlpJob> getDlpJobSettings;
-  private final UnaryCallSettings<DeleteDlpJobRequest, Empty> deleteDlpJobSettings;
-  private final UnaryCallSettings<CancelDlpJobRequest, Empty> cancelDlpJobSettings;
-
   /** Returns the object with the settings used for calls to inspectContent. */
   public UnaryCallSettings<InspectContentRequest, InspectContentResponse> inspectContentSettings() {
-    return inspectContentSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).inspectContentSettings();
   }
 
   /** Returns the object with the settings used for calls to redactImage. */
   public UnaryCallSettings<RedactImageRequest, RedactImageResponse> redactImageSettings() {
-    return redactImageSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).redactImageSettings();
   }
 
   /** Returns the object with the settings used for calls to deidentifyContent. */
   public UnaryCallSettings<DeidentifyContentRequest, DeidentifyContentResponse>
       deidentifyContentSettings() {
-    return deidentifyContentSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).deidentifyContentSettings();
   }
 
   /** Returns the object with the settings used for calls to reidentifyContent. */
   public UnaryCallSettings<ReidentifyContentRequest, ReidentifyContentResponse>
       reidentifyContentSettings() {
-    return reidentifyContentSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).reidentifyContentSettings();
   }
 
   /** Returns the object with the settings used for calls to inspectDataSource. */
   public UnaryCallSettings<InspectDataSourceRequest, DlpJob> inspectDataSourceSettings() {
-    return inspectDataSourceSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).inspectDataSourceSettings();
   }
 
   /** Returns the object with the settings used for calls to analyzeDataSourceRisk. */
   public UnaryCallSettings<AnalyzeDataSourceRiskRequest, DlpJob> analyzeDataSourceRiskSettings() {
-    return analyzeDataSourceRiskSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).analyzeDataSourceRiskSettings();
   }
 
   /** Returns the object with the settings used for calls to listInfoTypes. */
   public UnaryCallSettings<ListInfoTypesRequest, ListInfoTypesResponse> listInfoTypesSettings() {
-    return listInfoTypesSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).listInfoTypesSettings();
   }
 
   /** Returns the object with the settings used for calls to createInspectTemplate. */
   public UnaryCallSettings<CreateInspectTemplateRequest, InspectTemplate>
       createInspectTemplateSettings() {
-    return createInspectTemplateSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).createInspectTemplateSettings();
   }
 
   /** Returns the object with the settings used for calls to updateInspectTemplate. */
   public UnaryCallSettings<UpdateInspectTemplateRequest, InspectTemplate>
       updateInspectTemplateSettings() {
-    return updateInspectTemplateSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).updateInspectTemplateSettings();
   }
 
   /** Returns the object with the settings used for calls to getInspectTemplate. */
   public UnaryCallSettings<GetInspectTemplateRequest, InspectTemplate>
       getInspectTemplateSettings() {
-    return getInspectTemplateSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).getInspectTemplateSettings();
   }
 
   /** Returns the object with the settings used for calls to listInspectTemplates. */
@@ -220,30 +157,30 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
           ListInspectTemplatesRequest, ListInspectTemplatesResponse,
           ListInspectTemplatesPagedResponse>
       listInspectTemplatesSettings() {
-    return listInspectTemplatesSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).listInspectTemplatesSettings();
   }
 
   /** Returns the object with the settings used for calls to deleteInspectTemplate. */
   public UnaryCallSettings<DeleteInspectTemplateRequest, Empty> deleteInspectTemplateSettings() {
-    return deleteInspectTemplateSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).deleteInspectTemplateSettings();
   }
 
   /** Returns the object with the settings used for calls to createDeidentifyTemplate. */
   public UnaryCallSettings<CreateDeidentifyTemplateRequest, DeidentifyTemplate>
       createDeidentifyTemplateSettings() {
-    return createDeidentifyTemplateSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).createDeidentifyTemplateSettings();
   }
 
   /** Returns the object with the settings used for calls to updateDeidentifyTemplate. */
   public UnaryCallSettings<UpdateDeidentifyTemplateRequest, DeidentifyTemplate>
       updateDeidentifyTemplateSettings() {
-    return updateDeidentifyTemplateSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).updateDeidentifyTemplateSettings();
   }
 
   /** Returns the object with the settings used for calls to getDeidentifyTemplate. */
   public UnaryCallSettings<GetDeidentifyTemplateRequest, DeidentifyTemplate>
       getDeidentifyTemplateSettings() {
-    return getDeidentifyTemplateSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).getDeidentifyTemplateSettings();
   }
 
   /** Returns the object with the settings used for calls to listDeidentifyTemplates. */
@@ -251,83 +188,72 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
           ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse,
           ListDeidentifyTemplatesPagedResponse>
       listDeidentifyTemplatesSettings() {
-    return listDeidentifyTemplatesSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).listDeidentifyTemplatesSettings();
   }
 
   /** Returns the object with the settings used for calls to deleteDeidentifyTemplate. */
   public UnaryCallSettings<DeleteDeidentifyTemplateRequest, Empty>
       deleteDeidentifyTemplateSettings() {
-    return deleteDeidentifyTemplateSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).deleteDeidentifyTemplateSettings();
   }
 
   /** Returns the object with the settings used for calls to listDlpJobs. */
   public PagedCallSettings<ListDlpJobsRequest, ListDlpJobsResponse, ListDlpJobsPagedResponse>
       listDlpJobsSettings() {
-    return listDlpJobsSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).listDlpJobsSettings();
   }
 
   /** Returns the object with the settings used for calls to getDlpJob. */
   public UnaryCallSettings<GetDlpJobRequest, DlpJob> getDlpJobSettings() {
-    return getDlpJobSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).getDlpJobSettings();
   }
 
   /** Returns the object with the settings used for calls to deleteDlpJob. */
   public UnaryCallSettings<DeleteDlpJobRequest, Empty> deleteDlpJobSettings() {
-    return deleteDlpJobSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).deleteDlpJobSettings();
   }
 
   /** Returns the object with the settings used for calls to cancelDlpJob. */
   public UnaryCallSettings<CancelDlpJobRequest, Empty> cancelDlpJobSettings() {
-    return cancelDlpJobSettings;
+    return ((DlpServiceStubSettings) getStubSettings()).cancelDlpJobSettings();
   }
 
-  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
-  public DlpServiceStub createStub() throws IOException {
-    if (getTransportChannelProvider()
-        .getTransportName()
-        .equals(GrpcTransportChannel.getGrpcTransportName())) {
-      return GrpcDlpServiceStub.create(this);
-    } else {
-      throw new UnsupportedOperationException(
-          "Transport not supported: " + getTransportChannelProvider().getTransportName());
-    }
+  public static final DlpServiceSettings create(DlpServiceStubSettings stub) throws IOException {
+    return new DlpServiceSettings.Builder(stub.toBuilder()).build();
   }
 
   /** Returns a builder for the default ExecutorProvider for this service. */
   public static InstantiatingExecutorProvider.Builder defaultExecutorProviderBuilder() {
-    return InstantiatingExecutorProvider.newBuilder();
+    return DlpServiceStubSettings.defaultExecutorProviderBuilder();
   }
 
   /** Returns the default service endpoint. */
   public static String getDefaultEndpoint() {
-    return "dlp.googleapis.com:443";
+    return DlpServiceStubSettings.getDefaultEndpoint();
   }
 
   /** Returns the default service scopes. */
   public static List<String> getDefaultServiceScopes() {
-    return DEFAULT_SERVICE_SCOPES;
+    return DlpServiceStubSettings.getDefaultServiceScopes();
   }
 
   /** Returns a builder for the default credentials for this service. */
   public static GoogleCredentialsProvider.Builder defaultCredentialsProviderBuilder() {
-    return GoogleCredentialsProvider.newBuilder().setScopesToApply(DEFAULT_SERVICE_SCOPES);
+    return DlpServiceStubSettings.defaultCredentialsProviderBuilder();
   }
 
   /** Returns a builder for the default ChannelProvider for this service. */
   public static InstantiatingGrpcChannelProvider.Builder defaultGrpcTransportProviderBuilder() {
-    return InstantiatingGrpcChannelProvider.newBuilder();
+    return DlpServiceStubSettings.defaultGrpcTransportProviderBuilder();
   }
 
   public static TransportChannelProvider defaultTransportChannelProvider() {
-    return defaultGrpcTransportProviderBuilder().build();
+    return DlpServiceStubSettings.defaultTransportChannelProvider();
   }
 
   @BetaApi("The surface for customizing headers is not stable yet and may change in the future.")
   public static ApiClientHeaderProvider.Builder defaultApiClientHeaderProviderBuilder() {
-    return ApiClientHeaderProvider.newBuilder()
-        .setGeneratedLibToken("gapic", GaxProperties.getLibraryVersion(DlpServiceSettings.class))
-        .setTransportToken(
-            GaxGrpcProperties.getGrpcTokenName(), GaxGrpcProperties.getGrpcVersion());
+    return DlpServiceStubSettings.defaultApiClientHeaderProviderBuilder();
   }
 
   /** Returns a new builder for this class. */
@@ -347,536 +273,32 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
 
   protected DlpServiceSettings(Builder settingsBuilder) throws IOException {
     super(settingsBuilder);
-
-    inspectContentSettings = settingsBuilder.inspectContentSettings().build();
-    redactImageSettings = settingsBuilder.redactImageSettings().build();
-    deidentifyContentSettings = settingsBuilder.deidentifyContentSettings().build();
-    reidentifyContentSettings = settingsBuilder.reidentifyContentSettings().build();
-    inspectDataSourceSettings = settingsBuilder.inspectDataSourceSettings().build();
-    analyzeDataSourceRiskSettings = settingsBuilder.analyzeDataSourceRiskSettings().build();
-    listInfoTypesSettings = settingsBuilder.listInfoTypesSettings().build();
-    createInspectTemplateSettings = settingsBuilder.createInspectTemplateSettings().build();
-    updateInspectTemplateSettings = settingsBuilder.updateInspectTemplateSettings().build();
-    getInspectTemplateSettings = settingsBuilder.getInspectTemplateSettings().build();
-    listInspectTemplatesSettings = settingsBuilder.listInspectTemplatesSettings().build();
-    deleteInspectTemplateSettings = settingsBuilder.deleteInspectTemplateSettings().build();
-    createDeidentifyTemplateSettings = settingsBuilder.createDeidentifyTemplateSettings().build();
-    updateDeidentifyTemplateSettings = settingsBuilder.updateDeidentifyTemplateSettings().build();
-    getDeidentifyTemplateSettings = settingsBuilder.getDeidentifyTemplateSettings().build();
-    listDeidentifyTemplatesSettings = settingsBuilder.listDeidentifyTemplatesSettings().build();
-    deleteDeidentifyTemplateSettings = settingsBuilder.deleteDeidentifyTemplateSettings().build();
-    listDlpJobsSettings = settingsBuilder.listDlpJobsSettings().build();
-    getDlpJobSettings = settingsBuilder.getDlpJobSettings().build();
-    deleteDlpJobSettings = settingsBuilder.deleteDlpJobSettings().build();
-    cancelDlpJobSettings = settingsBuilder.cancelDlpJobSettings().build();
   }
-
-  private static final PagedListDescriptor<
-          ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate>
-      LIST_INSPECT_TEMPLATES_PAGE_STR_DESC =
-          new PagedListDescriptor<
-              ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate>() {
-            @Override
-            public String emptyToken() {
-              return "";
-            }
-
-            @Override
-            public ListInspectTemplatesRequest injectToken(
-                ListInspectTemplatesRequest payload, String token) {
-              return ListInspectTemplatesRequest.newBuilder(payload).setPageToken(token).build();
-            }
-
-            @Override
-            public ListInspectTemplatesRequest injectPageSize(
-                ListInspectTemplatesRequest payload, int pageSize) {
-              return ListInspectTemplatesRequest.newBuilder(payload).setPageSize(pageSize).build();
-            }
-
-            @Override
-            public Integer extractPageSize(ListInspectTemplatesRequest payload) {
-              return payload.getPageSize();
-            }
-
-            @Override
-            public String extractNextToken(ListInspectTemplatesResponse payload) {
-              return payload.getNextPageToken();
-            }
-
-            @Override
-            public Iterable<InspectTemplate> extractResources(
-                ListInspectTemplatesResponse payload) {
-              return payload.getInspectTemplatesList();
-            }
-          };
-
-  private static final PagedListDescriptor<
-          ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse, DeidentifyTemplate>
-      LIST_DEIDENTIFY_TEMPLATES_PAGE_STR_DESC =
-          new PagedListDescriptor<
-              ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse,
-              DeidentifyTemplate>() {
-            @Override
-            public String emptyToken() {
-              return "";
-            }
-
-            @Override
-            public ListDeidentifyTemplatesRequest injectToken(
-                ListDeidentifyTemplatesRequest payload, String token) {
-              return ListDeidentifyTemplatesRequest.newBuilder(payload).setPageToken(token).build();
-            }
-
-            @Override
-            public ListDeidentifyTemplatesRequest injectPageSize(
-                ListDeidentifyTemplatesRequest payload, int pageSize) {
-              return ListDeidentifyTemplatesRequest.newBuilder(payload)
-                  .setPageSize(pageSize)
-                  .build();
-            }
-
-            @Override
-            public Integer extractPageSize(ListDeidentifyTemplatesRequest payload) {
-              return payload.getPageSize();
-            }
-
-            @Override
-            public String extractNextToken(ListDeidentifyTemplatesResponse payload) {
-              return payload.getNextPageToken();
-            }
-
-            @Override
-            public Iterable<DeidentifyTemplate> extractResources(
-                ListDeidentifyTemplatesResponse payload) {
-              return payload.getDeidentifyTemplatesList();
-            }
-          };
-
-  private static final PagedListDescriptor<ListDlpJobsRequest, ListDlpJobsResponse, DlpJob>
-      LIST_DLP_JOBS_PAGE_STR_DESC =
-          new PagedListDescriptor<ListDlpJobsRequest, ListDlpJobsResponse, DlpJob>() {
-            @Override
-            public String emptyToken() {
-              return "";
-            }
-
-            @Override
-            public ListDlpJobsRequest injectToken(ListDlpJobsRequest payload, String token) {
-              return ListDlpJobsRequest.newBuilder(payload).setPageToken(token).build();
-            }
-
-            @Override
-            public ListDlpJobsRequest injectPageSize(ListDlpJobsRequest payload, int pageSize) {
-              return ListDlpJobsRequest.newBuilder(payload).setPageSize(pageSize).build();
-            }
-
-            @Override
-            public Integer extractPageSize(ListDlpJobsRequest payload) {
-              return payload.getPageSize();
-            }
-
-            @Override
-            public String extractNextToken(ListDlpJobsResponse payload) {
-              return payload.getNextPageToken();
-            }
-
-            @Override
-            public Iterable<DlpJob> extractResources(ListDlpJobsResponse payload) {
-              return payload.getJobsList();
-            }
-          };
-
-  private static final PagedListResponseFactory<
-          ListInspectTemplatesRequest, ListInspectTemplatesResponse,
-          ListInspectTemplatesPagedResponse>
-      LIST_INSPECT_TEMPLATES_PAGE_STR_FACT =
-          new PagedListResponseFactory<
-              ListInspectTemplatesRequest, ListInspectTemplatesResponse,
-              ListInspectTemplatesPagedResponse>() {
-            @Override
-            public ApiFuture<ListInspectTemplatesPagedResponse> getFuturePagedResponse(
-                UnaryCallable<ListInspectTemplatesRequest, ListInspectTemplatesResponse> callable,
-                ListInspectTemplatesRequest request,
-                ApiCallContext context,
-                ApiFuture<ListInspectTemplatesResponse> futureResponse) {
-              PageContext<
-                      ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate>
-                  pageContext =
-                      PageContext.create(
-                          callable, LIST_INSPECT_TEMPLATES_PAGE_STR_DESC, request, context);
-              return ListInspectTemplatesPagedResponse.createAsync(pageContext, futureResponse);
-            }
-          };
-
-  private static final PagedListResponseFactory<
-          ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse,
-          ListDeidentifyTemplatesPagedResponse>
-      LIST_DEIDENTIFY_TEMPLATES_PAGE_STR_FACT =
-          new PagedListResponseFactory<
-              ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse,
-              ListDeidentifyTemplatesPagedResponse>() {
-            @Override
-            public ApiFuture<ListDeidentifyTemplatesPagedResponse> getFuturePagedResponse(
-                UnaryCallable<ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse>
-                    callable,
-                ListDeidentifyTemplatesRequest request,
-                ApiCallContext context,
-                ApiFuture<ListDeidentifyTemplatesResponse> futureResponse) {
-              PageContext<
-                      ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse,
-                      DeidentifyTemplate>
-                  pageContext =
-                      PageContext.create(
-                          callable, LIST_DEIDENTIFY_TEMPLATES_PAGE_STR_DESC, request, context);
-              return ListDeidentifyTemplatesPagedResponse.createAsync(pageContext, futureResponse);
-            }
-          };
-
-  private static final PagedListResponseFactory<
-          ListDlpJobsRequest, ListDlpJobsResponse, ListDlpJobsPagedResponse>
-      LIST_DLP_JOBS_PAGE_STR_FACT =
-          new PagedListResponseFactory<
-              ListDlpJobsRequest, ListDlpJobsResponse, ListDlpJobsPagedResponse>() {
-            @Override
-            public ApiFuture<ListDlpJobsPagedResponse> getFuturePagedResponse(
-                UnaryCallable<ListDlpJobsRequest, ListDlpJobsResponse> callable,
-                ListDlpJobsRequest request,
-                ApiCallContext context,
-                ApiFuture<ListDlpJobsResponse> futureResponse) {
-              PageContext<ListDlpJobsRequest, ListDlpJobsResponse, DlpJob> pageContext =
-                  PageContext.create(callable, LIST_DLP_JOBS_PAGE_STR_DESC, request, context);
-              return ListDlpJobsPagedResponse.createAsync(pageContext, futureResponse);
-            }
-          };
 
   /** Builder for DlpServiceSettings. */
   public static class Builder extends ClientSettings.Builder<DlpServiceSettings, Builder> {
-    private final ImmutableList<UnaryCallSettings.Builder<?, ?>> unaryMethodSettingsBuilders;
-
-    private final UnaryCallSettings.Builder<InspectContentRequest, InspectContentResponse>
-        inspectContentSettings;
-    private final UnaryCallSettings.Builder<RedactImageRequest, RedactImageResponse>
-        redactImageSettings;
-    private final UnaryCallSettings.Builder<DeidentifyContentRequest, DeidentifyContentResponse>
-        deidentifyContentSettings;
-    private final UnaryCallSettings.Builder<ReidentifyContentRequest, ReidentifyContentResponse>
-        reidentifyContentSettings;
-    private final UnaryCallSettings.Builder<InspectDataSourceRequest, DlpJob>
-        inspectDataSourceSettings;
-    private final UnaryCallSettings.Builder<AnalyzeDataSourceRiskRequest, DlpJob>
-        analyzeDataSourceRiskSettings;
-    private final UnaryCallSettings.Builder<ListInfoTypesRequest, ListInfoTypesResponse>
-        listInfoTypesSettings;
-    private final UnaryCallSettings.Builder<CreateInspectTemplateRequest, InspectTemplate>
-        createInspectTemplateSettings;
-    private final UnaryCallSettings.Builder<UpdateInspectTemplateRequest, InspectTemplate>
-        updateInspectTemplateSettings;
-    private final UnaryCallSettings.Builder<GetInspectTemplateRequest, InspectTemplate>
-        getInspectTemplateSettings;
-    private final PagedCallSettings.Builder<
-            ListInspectTemplatesRequest, ListInspectTemplatesResponse,
-            ListInspectTemplatesPagedResponse>
-        listInspectTemplatesSettings;
-    private final UnaryCallSettings.Builder<DeleteInspectTemplateRequest, Empty>
-        deleteInspectTemplateSettings;
-    private final UnaryCallSettings.Builder<CreateDeidentifyTemplateRequest, DeidentifyTemplate>
-        createDeidentifyTemplateSettings;
-    private final UnaryCallSettings.Builder<UpdateDeidentifyTemplateRequest, DeidentifyTemplate>
-        updateDeidentifyTemplateSettings;
-    private final UnaryCallSettings.Builder<GetDeidentifyTemplateRequest, DeidentifyTemplate>
-        getDeidentifyTemplateSettings;
-    private final PagedCallSettings.Builder<
-            ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse,
-            ListDeidentifyTemplatesPagedResponse>
-        listDeidentifyTemplatesSettings;
-    private final UnaryCallSettings.Builder<DeleteDeidentifyTemplateRequest, Empty>
-        deleteDeidentifyTemplateSettings;
-    private final PagedCallSettings.Builder<
-            ListDlpJobsRequest, ListDlpJobsResponse, ListDlpJobsPagedResponse>
-        listDlpJobsSettings;
-    private final UnaryCallSettings.Builder<GetDlpJobRequest, DlpJob> getDlpJobSettings;
-    private final UnaryCallSettings.Builder<DeleteDlpJobRequest, Empty> deleteDlpJobSettings;
-    private final UnaryCallSettings.Builder<CancelDlpJobRequest, Empty> cancelDlpJobSettings;
-
-    private static final ImmutableMap<String, ImmutableSet<StatusCode.Code>>
-        RETRYABLE_CODE_DEFINITIONS;
-
-    static {
-      ImmutableMap.Builder<String, ImmutableSet<StatusCode.Code>> definitions =
-          ImmutableMap.builder();
-      definitions.put(
-          "idempotent",
-          ImmutableSet.copyOf(
-              Lists.<StatusCode.Code>newArrayList(
-                  StatusCode.Code.DEADLINE_EXCEEDED, StatusCode.Code.UNAVAILABLE)));
-      definitions.put("non_idempotent", ImmutableSet.copyOf(Lists.<StatusCode.Code>newArrayList()));
-      RETRYABLE_CODE_DEFINITIONS = definitions.build();
-    }
-
-    private static final ImmutableMap<String, RetrySettings> RETRY_PARAM_DEFINITIONS;
-
-    static {
-      ImmutableMap.Builder<String, RetrySettings> definitions = ImmutableMap.builder();
-      RetrySettings settings = null;
-      settings =
-          RetrySettings.newBuilder()
-              .setInitialRetryDelay(Duration.ofMillis(100L))
-              .setRetryDelayMultiplier(1.3)
-              .setMaxRetryDelay(Duration.ofMillis(60000L))
-              .setInitialRpcTimeout(Duration.ofMillis(20000L))
-              .setRpcTimeoutMultiplier(1.0)
-              .setMaxRpcTimeout(Duration.ofMillis(20000L))
-              .setTotalTimeout(Duration.ofMillis(600000L))
-              .build();
-      definitions.put("default", settings);
-      RETRY_PARAM_DEFINITIONS = definitions.build();
-    }
-
-    protected Builder() {
+    protected Builder() throws IOException {
       this((ClientContext) null);
     }
 
     protected Builder(ClientContext clientContext) {
-      super(clientContext);
-
-      inspectContentSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      redactImageSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      deidentifyContentSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      reidentifyContentSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      inspectDataSourceSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      analyzeDataSourceRiskSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      listInfoTypesSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      createInspectTemplateSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      updateInspectTemplateSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      getInspectTemplateSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      listInspectTemplatesSettings =
-          PagedCallSettings.newBuilder(LIST_INSPECT_TEMPLATES_PAGE_STR_FACT);
-
-      deleteInspectTemplateSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      createDeidentifyTemplateSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      updateDeidentifyTemplateSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      getDeidentifyTemplateSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      listDeidentifyTemplatesSettings =
-          PagedCallSettings.newBuilder(LIST_DEIDENTIFY_TEMPLATES_PAGE_STR_FACT);
-
-      deleteDeidentifyTemplateSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      listDlpJobsSettings = PagedCallSettings.newBuilder(LIST_DLP_JOBS_PAGE_STR_FACT);
-
-      getDlpJobSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      deleteDlpJobSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      cancelDlpJobSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
-
-      unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
-              inspectContentSettings,
-              redactImageSettings,
-              deidentifyContentSettings,
-              reidentifyContentSettings,
-              inspectDataSourceSettings,
-              analyzeDataSourceRiskSettings,
-              listInfoTypesSettings,
-              createInspectTemplateSettings,
-              updateInspectTemplateSettings,
-              getInspectTemplateSettings,
-              listInspectTemplatesSettings,
-              deleteInspectTemplateSettings,
-              createDeidentifyTemplateSettings,
-              updateDeidentifyTemplateSettings,
-              getDeidentifyTemplateSettings,
-              listDeidentifyTemplatesSettings,
-              deleteDeidentifyTemplateSettings,
-              listDlpJobsSettings,
-              getDlpJobSettings,
-              deleteDlpJobSettings,
-              cancelDlpJobSettings);
-
-      initDefaults(this);
+      super(DlpServiceStubSettings.newBuilder(clientContext));
     }
 
     private static Builder createDefault() {
-      Builder builder = new Builder((ClientContext) null);
-      builder.setTransportChannelProvider(defaultTransportChannelProvider());
-      builder.setCredentialsProvider(defaultCredentialsProviderBuilder().build());
-      builder.setInternalHeaderProvider(defaultApiClientHeaderProviderBuilder().build());
-      builder.setEndpoint(getDefaultEndpoint());
-      return initDefaults(builder);
-    }
-
-    private static Builder initDefaults(Builder builder) {
-
-      builder
-          .inspectContentSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .redactImageSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .deidentifyContentSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .reidentifyContentSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .inspectDataSourceSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .analyzeDataSourceRiskSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .listInfoTypesSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .createInspectTemplateSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .updateInspectTemplateSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .getInspectTemplateSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .listInspectTemplatesSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .deleteInspectTemplateSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .createDeidentifyTemplateSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .updateDeidentifyTemplateSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .getDeidentifyTemplateSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .listDeidentifyTemplatesSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .deleteDeidentifyTemplateSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .listDlpJobsSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .getDlpJobSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .deleteDlpJobSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .cancelDlpJobSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      return builder;
+      return new Builder(DlpServiceStubSettings.newBuilder());
     }
 
     protected Builder(DlpServiceSettings settings) {
-      super(settings);
+      super(settings.getStubSettings().toBuilder());
+    }
 
-      inspectContentSettings = settings.inspectContentSettings.toBuilder();
-      redactImageSettings = settings.redactImageSettings.toBuilder();
-      deidentifyContentSettings = settings.deidentifyContentSettings.toBuilder();
-      reidentifyContentSettings = settings.reidentifyContentSettings.toBuilder();
-      inspectDataSourceSettings = settings.inspectDataSourceSettings.toBuilder();
-      analyzeDataSourceRiskSettings = settings.analyzeDataSourceRiskSettings.toBuilder();
-      listInfoTypesSettings = settings.listInfoTypesSettings.toBuilder();
-      createInspectTemplateSettings = settings.createInspectTemplateSettings.toBuilder();
-      updateInspectTemplateSettings = settings.updateInspectTemplateSettings.toBuilder();
-      getInspectTemplateSettings = settings.getInspectTemplateSettings.toBuilder();
-      listInspectTemplatesSettings = settings.listInspectTemplatesSettings.toBuilder();
-      deleteInspectTemplateSettings = settings.deleteInspectTemplateSettings.toBuilder();
-      createDeidentifyTemplateSettings = settings.createDeidentifyTemplateSettings.toBuilder();
-      updateDeidentifyTemplateSettings = settings.updateDeidentifyTemplateSettings.toBuilder();
-      getDeidentifyTemplateSettings = settings.getDeidentifyTemplateSettings.toBuilder();
-      listDeidentifyTemplatesSettings = settings.listDeidentifyTemplatesSettings.toBuilder();
-      deleteDeidentifyTemplateSettings = settings.deleteDeidentifyTemplateSettings.toBuilder();
-      listDlpJobsSettings = settings.listDlpJobsSettings.toBuilder();
-      getDlpJobSettings = settings.getDlpJobSettings.toBuilder();
-      deleteDlpJobSettings = settings.deleteDlpJobSettings.toBuilder();
-      cancelDlpJobSettings = settings.cancelDlpJobSettings.toBuilder();
+    protected Builder(DlpServiceStubSettings.Builder stubSettings) {
+      super(stubSettings);
+    }
 
-      unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
-              inspectContentSettings,
-              redactImageSettings,
-              deidentifyContentSettings,
-              reidentifyContentSettings,
-              inspectDataSourceSettings,
-              analyzeDataSourceRiskSettings,
-              listInfoTypesSettings,
-              createInspectTemplateSettings,
-              updateInspectTemplateSettings,
-              getInspectTemplateSettings,
-              listInspectTemplatesSettings,
-              deleteInspectTemplateSettings,
-              createDeidentifyTemplateSettings,
-              updateDeidentifyTemplateSettings,
-              getDeidentifyTemplateSettings,
-              listDeidentifyTemplatesSettings,
-              deleteDeidentifyTemplateSettings,
-              listDlpJobsSettings,
-              getDlpJobSettings,
-              deleteDlpJobSettings,
-              cancelDlpJobSettings);
+    public DlpServiceStubSettings.Builder getStubSettingsBuilder() {
+      return ((DlpServiceStubSettings.Builder) getStubSettings());
     }
 
     /**
@@ -886,67 +308,68 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
      */
     public Builder applyToAllUnaryMethods(
         ApiFunction<UnaryCallSettings.Builder<?, ?>, Void> settingsUpdater) throws Exception {
-      super.applyToAllUnaryMethods(unaryMethodSettingsBuilders, settingsUpdater);
+      super.applyToAllUnaryMethods(
+          getStubSettingsBuilder().unaryMethodSettingsBuilders(), settingsUpdater);
       return this;
     }
 
     /** Returns the builder for the settings used for calls to inspectContent. */
     public UnaryCallSettings.Builder<InspectContentRequest, InspectContentResponse>
         inspectContentSettings() {
-      return inspectContentSettings;
+      return getStubSettingsBuilder().inspectContentSettings();
     }
 
     /** Returns the builder for the settings used for calls to redactImage. */
     public UnaryCallSettings.Builder<RedactImageRequest, RedactImageResponse>
         redactImageSettings() {
-      return redactImageSettings;
+      return getStubSettingsBuilder().redactImageSettings();
     }
 
     /** Returns the builder for the settings used for calls to deidentifyContent. */
     public UnaryCallSettings.Builder<DeidentifyContentRequest, DeidentifyContentResponse>
         deidentifyContentSettings() {
-      return deidentifyContentSettings;
+      return getStubSettingsBuilder().deidentifyContentSettings();
     }
 
     /** Returns the builder for the settings used for calls to reidentifyContent. */
     public UnaryCallSettings.Builder<ReidentifyContentRequest, ReidentifyContentResponse>
         reidentifyContentSettings() {
-      return reidentifyContentSettings;
+      return getStubSettingsBuilder().reidentifyContentSettings();
     }
 
     /** Returns the builder for the settings used for calls to inspectDataSource. */
     public UnaryCallSettings.Builder<InspectDataSourceRequest, DlpJob> inspectDataSourceSettings() {
-      return inspectDataSourceSettings;
+      return getStubSettingsBuilder().inspectDataSourceSettings();
     }
 
     /** Returns the builder for the settings used for calls to analyzeDataSourceRisk. */
     public UnaryCallSettings.Builder<AnalyzeDataSourceRiskRequest, DlpJob>
         analyzeDataSourceRiskSettings() {
-      return analyzeDataSourceRiskSettings;
+      return getStubSettingsBuilder().analyzeDataSourceRiskSettings();
     }
 
     /** Returns the builder for the settings used for calls to listInfoTypes. */
     public UnaryCallSettings.Builder<ListInfoTypesRequest, ListInfoTypesResponse>
         listInfoTypesSettings() {
-      return listInfoTypesSettings;
+      return getStubSettingsBuilder().listInfoTypesSettings();
     }
 
     /** Returns the builder for the settings used for calls to createInspectTemplate. */
     public UnaryCallSettings.Builder<CreateInspectTemplateRequest, InspectTemplate>
         createInspectTemplateSettings() {
-      return createInspectTemplateSettings;
+      return getStubSettingsBuilder().createInspectTemplateSettings();
     }
 
     /** Returns the builder for the settings used for calls to updateInspectTemplate. */
     public UnaryCallSettings.Builder<UpdateInspectTemplateRequest, InspectTemplate>
         updateInspectTemplateSettings() {
-      return updateInspectTemplateSettings;
+      return getStubSettingsBuilder().updateInspectTemplateSettings();
     }
 
     /** Returns the builder for the settings used for calls to getInspectTemplate. */
     public UnaryCallSettings.Builder<GetInspectTemplateRequest, InspectTemplate>
         getInspectTemplateSettings() {
-      return getInspectTemplateSettings;
+      return getStubSettingsBuilder().getInspectTemplateSettings();
     }
 
     /** Returns the builder for the settings used for calls to listInspectTemplates. */
@@ -954,31 +377,31 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
             ListInspectTemplatesRequest, ListInspectTemplatesResponse,
             ListInspectTemplatesPagedResponse>
         listInspectTemplatesSettings() {
-      return listInspectTemplatesSettings;
+      return getStubSettingsBuilder().listInspectTemplatesSettings();
     }
 
     /** Returns the builder for the settings used for calls to deleteInspectTemplate. */
     public UnaryCallSettings.Builder<DeleteInspectTemplateRequest, Empty>
         deleteInspectTemplateSettings() {
-      return deleteInspectTemplateSettings;
+      return getStubSettingsBuilder().deleteInspectTemplateSettings();
     }
 
     /** Returns the builder for the settings used for calls to createDeidentifyTemplate. */
     public UnaryCallSettings.Builder<CreateDeidentifyTemplateRequest, DeidentifyTemplate>
         createDeidentifyTemplateSettings() {
-      return createDeidentifyTemplateSettings;
+      return getStubSettingsBuilder().createDeidentifyTemplateSettings();
     }
 
     /** Returns the builder for the settings used for calls to updateDeidentifyTemplate. */
     public UnaryCallSettings.Builder<UpdateDeidentifyTemplateRequest, DeidentifyTemplate>
         updateDeidentifyTemplateSettings() {
-      return updateDeidentifyTemplateSettings;
+      return getStubSettingsBuilder().updateDeidentifyTemplateSettings();
     }
 
     /** Returns the builder for the settings used for calls to getDeidentifyTemplate. */
     public UnaryCallSettings.Builder<GetDeidentifyTemplateRequest, DeidentifyTemplate>
         getDeidentifyTemplateSettings() {
-      return getDeidentifyTemplateSettings;
+      return getStubSettingsBuilder().getDeidentifyTemplateSettings();
     }
 
     /** Returns the builder for the settings used for calls to listDeidentifyTemplates. */
@@ -986,35 +409,35 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
             ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse,
             ListDeidentifyTemplatesPagedResponse>
         listDeidentifyTemplatesSettings() {
-      return listDeidentifyTemplatesSettings;
+      return getStubSettingsBuilder().listDeidentifyTemplatesSettings();
     }
 
     /** Returns the builder for the settings used for calls to deleteDeidentifyTemplate. */
     public UnaryCallSettings.Builder<DeleteDeidentifyTemplateRequest, Empty>
         deleteDeidentifyTemplateSettings() {
-      return deleteDeidentifyTemplateSettings;
+      return getStubSettingsBuilder().deleteDeidentifyTemplateSettings();
     }
 
     /** Returns the builder for the settings used for calls to listDlpJobs. */
     public PagedCallSettings.Builder<
             ListDlpJobsRequest, ListDlpJobsResponse, ListDlpJobsPagedResponse>
         listDlpJobsSettings() {
-      return listDlpJobsSettings;
+      return getStubSettingsBuilder().listDlpJobsSettings();
     }
 
     /** Returns the builder for the settings used for calls to getDlpJob. */
     public UnaryCallSettings.Builder<GetDlpJobRequest, DlpJob> getDlpJobSettings() {
-      return getDlpJobSettings;
+      return getStubSettingsBuilder().getDlpJobSettings();
     }
 
     /** Returns the builder for the settings used for calls to deleteDlpJob. */
     public UnaryCallSettings.Builder<DeleteDlpJobRequest, Empty> deleteDlpJobSettings() {
-      return deleteDlpJobSettings;
+      return getStubSettingsBuilder().deleteDlpJobSettings();
     }
 
     /** Returns the builder for the settings used for calls to cancelDlpJob. */
     public UnaryCallSettings.Builder<CancelDlpJobRequest, Empty> cancelDlpJobSettings() {
-      return cancelDlpJobSettings;
+      return getStubSettingsBuilder().cancelDlpJobSettings();
     }
 
     @Override
