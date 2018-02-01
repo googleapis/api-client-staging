@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,27 +21,31 @@
  * https://github.com/google/googleapis/blob/master/google/devtools/cloudtrace/v1/trace.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
 
 namespace Google\Cloud\Trace\V1\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Trace\V1\GetTraceRequest;
 use Google\Cloud\Trace\V1\ListTracesRequest;
+use Google\Cloud\Trace\V1\ListTracesResponse;
 use Google\Cloud\Trace\V1\PatchTracesRequest;
-use Google\Cloud\Trace\V1\TraceServiceGrpcClient;
+use Google\Cloud\Trace\V1\Trace;
 use Google\Cloud\Trace\V1\Traces;
-use Google\Cloud\Version;
+use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: This file describes an API for collecting and viewing traces and spans
@@ -50,16 +54,16 @@ use Google\Protobuf\Timestamp;
  * timed event which forms a node of the trace tree. Spans for a single trace
  * may span multiple services.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $traceServiceClient = new TraceServiceClient();
  * try {
- *     $traceServiceClient = new TraceServiceClient();
  *     $projectId = '';
  *     $traces = new Traces();
  *     $traceServiceClient->patchTraces($projectId, $traces);
@@ -72,6 +76,13 @@ use Google\Protobuf\Timestamp;
  */
 class TraceServiceGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.devtools.cloudtrace.v1.TraceService';
+
     /**
      * The default address of the service.
      */
@@ -92,44 +103,22 @@ class TraceServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
-
-    protected $grpcCredentialsHelper;
-    protected $traceServiceStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
-
-    private static function getPageStreamingDescriptors()
+    private static function getClientDefaults()
     {
-        $listTracesPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getTraces',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listTraces' => $listTracesPageStreamingDescriptor,
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/trace.append',
+                'https://www.googleapis.com/auth/trace.readonly',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/trace_service_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/trace_service_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/trace_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -141,20 +130,23 @@ class TraceServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'cloudtrace.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Trace API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -170,69 +162,22 @@ class TraceServiceGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/trace.append',
-                'https://www.googleapis.com/auth/trace.readonly',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/trace_service_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'patchTraces' => $defaultDescriptors,
-            'getTrace' => $defaultDescriptors,
-            'listTraces' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.devtools.cloudtrace.v1.TraceService',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createTraceServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new TraceServiceGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createTraceServiceStubFunction', $options)) {
-            $createTraceServiceStubFunction = $options['createTraceServiceStubFunction'];
-        }
-        $this->traceServiceStub = $this->grpcCredentialsHelper->createStub($createTraceServiceStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -244,8 +189,8 @@ class TraceServiceGapicClient
      *
      * Sample code:
      * ```
+     * $traceServiceClient = new TraceServiceClient();
      * try {
-     *     $traceServiceClient = new TraceServiceClient();
      *     $projectId = '';
      *     $traces = new Traces();
      *     $traceServiceClient->patchTraces($projectId, $traces);
@@ -259,14 +204,14 @@ class TraceServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function patchTraces($projectId, $traces, $optionalArgs = [])
@@ -275,24 +220,12 @@ class TraceServiceGapicClient
         $request->setProjectId($projectId);
         $request->setTraces($traces);
 
-        $defaultCallSettings = $this->defaultCallSettings['patchTraces'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->traceServiceStub,
+        return $this->startCall(
             'PatchTraces',
-            $mergedSettings,
-            $this->descriptors['patchTraces']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -300,8 +233,8 @@ class TraceServiceGapicClient
      *
      * Sample code:
      * ```
+     * $traceServiceClient = new TraceServiceClient();
      * try {
-     *     $traceServiceClient = new TraceServiceClient();
      *     $projectId = '';
      *     $traceId = '';
      *     $response = $traceServiceClient->getTrace($projectId, $traceId);
@@ -315,7 +248,7 @@ class TraceServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -324,7 +257,7 @@ class TraceServiceGapicClient
      *
      * @return \Google\Cloud\Trace\V1\Trace
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getTrace($projectId, $traceId, $optionalArgs = [])
@@ -333,24 +266,12 @@ class TraceServiceGapicClient
         $request->setProjectId($projectId);
         $request->setTraceId($traceId);
 
-        $defaultCallSettings = $this->defaultCallSettings['getTrace'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->traceServiceStub,
+        return $this->startCall(
             'GetTrace',
-            $mergedSettings,
-            $this->descriptors['getTrace']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Trace::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -358,8 +279,8 @@ class TraceServiceGapicClient
      *
      * Sample code:
      * ```
+     * $traceServiceClient = new TraceServiceClient();
      * try {
-     *     $traceServiceClient = new TraceServiceClient();
      *     $projectId = '';
      *     // Iterate through all elements
      *     $pagedResponse = $traceServiceClient->listTraces($projectId);
@@ -447,7 +368,7 @@ class TraceServiceGapicClient
      *          (for example, `name desc`).
      *
      *          Only one sort field is permitted.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -456,7 +377,7 @@ class TraceServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listTraces($projectId, $optionalArgs = [])
@@ -485,39 +406,11 @@ class TraceServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listTraces'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->traceServiceStub,
+        return $this->getPagedListResponse(
             'ListTraces',
-            $mergedSettings,
-            $this->descriptors['listTraces']
+            $optionalArgs,
+            ListTracesResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->traceServiceStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
     }
 }
