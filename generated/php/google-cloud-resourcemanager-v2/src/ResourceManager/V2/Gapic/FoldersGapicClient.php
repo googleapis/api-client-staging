@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,54 +21,59 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/resourcemanager/v2/folders.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
 
 namespace Google\Cloud\ResourceManager\V2\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ResourceManager\V2\CreateFolderRequest;
 use Google\Cloud\ResourceManager\V2\DeleteFolderRequest;
 use Google\Cloud\ResourceManager\V2\Folder;
-use Google\Cloud\ResourceManager\V2\FoldersGrpcClient;
 use Google\Cloud\ResourceManager\V2\GetFolderRequest;
 use Google\Cloud\ResourceManager\V2\ListFoldersRequest;
+use Google\Cloud\ResourceManager\V2\ListFoldersResponse;
 use Google\Cloud\ResourceManager\V2\MoveFolderRequest;
 use Google\Cloud\ResourceManager\V2\SearchFoldersRequest;
+use Google\Cloud\ResourceManager\V2\SearchFoldersResponse;
 use Google\Cloud\ResourceManager\V2\UndeleteFolderRequest;
 use Google\Cloud\ResourceManager\V2\UpdateFolderRequest;
-use Google\Cloud\Version;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Manages Cloud Resource Folders.
  * Cloud Resource Folders can be used to organize the resources under an
  * organization and to control the IAM policies applied to groups of resources.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $foldersClient = new FoldersClient();
  * try {
- *     $foldersClient = new FoldersClient();
  *     $formattedParent = $foldersClient->organizationName('[ORG_ID]');
  *     // Iterate through all elements
  *     $pagedResponse = $foldersClient->listFolders($formattedParent);
@@ -97,6 +102,13 @@ use Google\Protobuf\FieldMask;
  */
 class FoldersGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.cloud.resourcemanager.v2.Folders';
+
     /**
      * The default address of the service.
      */
@@ -120,14 +132,23 @@ class FoldersGapicClient
     private static $folderNameTemplate;
     private static $organizationNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $foldersStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/folders_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/folders_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/folders_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
 
     private static function getFolderNameTemplate()
     {
@@ -157,49 +178,6 @@ class FoldersGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listFoldersPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getFolders',
-                ]);
-        $searchFoldersPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getFolders',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listFolders' => $listFoldersPageStreamingDescriptor,
-            'searchFolders' => $searchFoldersPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -285,20 +263,23 @@ class FoldersGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'cloudresourcemanager.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Resource Manager API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -314,76 +295,22 @@ class FoldersGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloud-platform.read-only',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/folders_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'listFolders' => $defaultDescriptors,
-            'searchFolders' => $defaultDescriptors,
-            'getFolder' => $defaultDescriptors,
-            'createFolder' => $defaultDescriptors,
-            'updateFolder' => $defaultDescriptors,
-            'moveFolder' => $defaultDescriptors,
-            'deleteFolder' => $defaultDescriptors,
-            'undeleteFolder' => $defaultDescriptors,
-            'getIamPolicy' => $defaultDescriptors,
-            'setIamPolicy' => $defaultDescriptors,
-            'testIamPermissions' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.cloud.resourcemanager.v2.Folders',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createFoldersStubFunction = function ($hostname, $opts, $channel) {
-            return new FoldersGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createFoldersStubFunction', $options)) {
-            $createFoldersStubFunction = $options['createFoldersStubFunction'];
-        }
-        $this->foldersStub = $this->grpcCredentialsHelper->createStub($createFoldersStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -397,8 +324,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedParent = $foldersClient->organizationName('[ORG_ID]');
      *     // Iterate through all elements
      *     $pagedResponse = $foldersClient->listFolders($formattedParent);
@@ -438,7 +365,7 @@ class FoldersGapicClient
      *     @type bool $showDeleted
      *          Controls whether Folders in the [DELETE_REQUESTED} state should
      *          be returned.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -447,7 +374,7 @@ class FoldersGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listFolders($parent, $optionalArgs = [])
@@ -464,24 +391,12 @@ class FoldersGapicClient
             $request->setShowDeleted($optionalArgs['showDeleted']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listFolders'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->getPagedListResponse(
             'ListFolders',
-            $mergedSettings,
-            $this->descriptors['listFolders']
+            $optionalArgs,
+            ListFoldersResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -494,8 +409,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *
      *     // Iterate through all elements
      *     $pagedResponse = $foldersClient->searchFolders();
@@ -544,7 +459,7 @@ class FoldersGapicClient
      *          |parent=folders/123|Folders whose parent is "folders/123".|
      *          |parent=folders/123 AND lifecycleState=ACTIVE|Active folders whose
      *          parent is "folders/123".|
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -553,7 +468,7 @@ class FoldersGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function searchFolders($optionalArgs = [])
@@ -569,24 +484,12 @@ class FoldersGapicClient
             $request->setQuery($optionalArgs['query']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['searchFolders'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->getPagedListResponse(
             'SearchFolders',
-            $mergedSettings,
-            $this->descriptors['searchFolders']
+            $optionalArgs,
+            SearchFoldersResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -598,8 +501,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedName = $foldersClient->folderName('[FOLDER]');
      *     $response = $foldersClient->getFolder($formattedName);
      * } finally {
@@ -612,7 +515,7 @@ class FoldersGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -621,7 +524,7 @@ class FoldersGapicClient
      *
      * @return \Google\Cloud\ResourceManager\V2\Folder
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getFolder($name, $optionalArgs = [])
@@ -629,24 +532,12 @@ class FoldersGapicClient
         $request = new GetFolderRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getFolder'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'GetFolder',
-            $mergedSettings,
-            $this->descriptors['getFolder']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Folder::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -679,8 +570,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedParent = $foldersClient->organizationName('[ORG_ID]');
      *     $folder = new Folder();
      *     $response = $foldersClient->createFolder($formattedParent, $folder);
@@ -696,7 +587,7 @@ class FoldersGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -705,7 +596,7 @@ class FoldersGapicClient
      *
      * @return \Google\LongRunning\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createFolder($parent, $folder, $optionalArgs = [])
@@ -714,24 +605,12 @@ class FoldersGapicClient
         $request->setParent($parent);
         $request->setFolder($folder);
 
-        $defaultCallSettings = $this->defaultCallSettings['createFolder'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'CreateFolder',
-            $mergedSettings,
-            $this->descriptors['createFolder']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -752,8 +631,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $folder = new Folder();
      *     $updateMask = new FieldMask();
      *     $response = $foldersClient->updateFolder($folder, $updateMask);
@@ -770,7 +649,7 @@ class FoldersGapicClient
      * @param array     $optionalArgs {
      *                                Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -779,7 +658,7 @@ class FoldersGapicClient
      *
      * @return \Google\Cloud\ResourceManager\V2\Folder
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateFolder($folder, $updateMask, $optionalArgs = [])
@@ -788,24 +667,12 @@ class FoldersGapicClient
         $request->setFolder($folder);
         $request->setUpdateMask($updateMask);
 
-        $defaultCallSettings = $this->defaultCallSettings['updateFolder'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'UpdateFolder',
-            $mergedSettings,
-            $this->descriptors['updateFolder']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Folder::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -828,8 +695,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedName = $foldersClient->folderName('[FOLDER]');
      *     $formattedDestinationParent = $foldersClient->organizationName('[ORG_ID]');
      *     $response = $foldersClient->moveFolder($formattedName, $formattedDestinationParent);
@@ -846,7 +713,7 @@ class FoldersGapicClient
      * @param array  $optionalArgs      {
      *                                  Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -855,7 +722,7 @@ class FoldersGapicClient
      *
      * @return \Google\LongRunning\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function moveFolder($name, $destinationParent, $optionalArgs = [])
@@ -864,24 +731,12 @@ class FoldersGapicClient
         $request->setName($name);
         $request->setDestinationParent($destinationParent);
 
-        $defaultCallSettings = $this->defaultCallSettings['moveFolder'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'MoveFolder',
-            $mergedSettings,
-            $this->descriptors['moveFolder']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -895,8 +750,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedName = $foldersClient->folderName('[FOLDER]');
      *     $response = $foldersClient->deleteFolder($formattedName);
      * } finally {
@@ -912,7 +767,7 @@ class FoldersGapicClient
      *     @type bool $recursiveDelete
      *          Instructs DeleteFolderAction to delete a folder even when the folder is not
      *          empty.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -921,7 +776,7 @@ class FoldersGapicClient
      *
      * @return \Google\Cloud\ResourceManager\V2\Folder
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteFolder($name, $optionalArgs = [])
@@ -932,24 +787,12 @@ class FoldersGapicClient
             $request->setRecursiveDelete($optionalArgs['recursiveDelete']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteFolder'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'DeleteFolder',
-            $mergedSettings,
-            $this->descriptors['deleteFolder']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Folder::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -964,8 +807,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedName = $foldersClient->folderName('[FOLDER]');
      *     $response = $foldersClient->undeleteFolder($formattedName);
      * } finally {
@@ -978,7 +821,7 @@ class FoldersGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -987,7 +830,7 @@ class FoldersGapicClient
      *
      * @return \Google\Cloud\ResourceManager\V2\Folder
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function undeleteFolder($name, $optionalArgs = [])
@@ -995,24 +838,12 @@ class FoldersGapicClient
         $request = new UndeleteFolderRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['undeleteFolder'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'UndeleteFolder',
-            $mergedSettings,
-            $this->descriptors['undeleteFolder']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Folder::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1024,8 +855,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedResource = $foldersClient->folderName('[FOLDER]');
      *     $response = $foldersClient->getIamPolicy($formattedResource);
      * } finally {
@@ -1039,7 +870,7 @@ class FoldersGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1048,7 +879,7 @@ class FoldersGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
@@ -1056,24 +887,12 @@ class FoldersGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'GetIamPolicy',
-            $mergedSettings,
-            $this->descriptors['getIamPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1085,8 +904,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedResource = $foldersClient->folderName('[FOLDER]');
      *     $policy = new Policy();
      *     $response = $foldersClient->setIamPolicy($formattedResource, $policy);
@@ -1105,7 +924,7 @@ class FoldersGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1114,7 +933,7 @@ class FoldersGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
@@ -1123,24 +942,12 @@ class FoldersGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'SetIamPolicy',
-            $mergedSettings,
-            $this->descriptors['setIamPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1152,8 +959,8 @@ class FoldersGapicClient
      *
      * Sample code:
      * ```
+     * $foldersClient = new FoldersClient();
      * try {
-     *     $foldersClient = new FoldersClient();
      *     $formattedResource = $foldersClient->folderName('[FOLDER]');
      *     $permissions = [];
      *     $response = $foldersClient->testIamPermissions($formattedResource, $permissions);
@@ -1172,7 +979,7 @@ class FoldersGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1181,7 +988,7 @@ class FoldersGapicClient
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
@@ -1190,39 +997,11 @@ class FoldersGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->foldersStub,
+        return $this->startCall(
             'TestIamPermissions',
-            $mergedSettings,
-            $this->descriptors['testIamPermissions']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->foldersStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
