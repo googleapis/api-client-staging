@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Dataproc\V1;
 
 use Google\Cloud\Dataproc\V1\JobControllerClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\Job;
 use Google\Cloud\Dataproc\V1\ListJobsResponse;
 use Google\Protobuf\Any;
@@ -40,37 +40,20 @@ use stdClass;
  */
 class JobControllerClientTest extends GeneratedTest
 {
-    public function createMockClusterControllerImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockClusterControllerImpl($hostname, $opts);
-    }
-
-    public function createMockJobControllerImpl($hostname, $opts)
-    {
-        return new MockJobControllerImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => JobControllerClient::SERVICE_ADDRESS,
-            'port' => JobControllerClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return JobControllerClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new JobControllerClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new JobControllerClient($options);
     }
 
     /**
@@ -78,10 +61,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function submitJobTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $driverOutputResourceUri = 'driverOutputResourceUri-542229086';
@@ -89,7 +72,7 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse = new Job();
         $expectedResponse->setDriverOutputResourceUri($driverOutputResourceUri);
         $expectedResponse->setDriverControlFilesUri($driverControlFilesUri);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -98,17 +81,23 @@ class JobControllerClientTest extends GeneratedTest
 
         $response = $client->submitJob($projectId, $region, $job);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/SubmitJob', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($region, $actualRequestObject->getRegion());
-        $this->assertProtobufEquals($job, $actualRequestObject->getJob());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getJob();
+
+        $this->assertProtobufEquals($job, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -116,10 +105,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function submitJobExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -131,7 +120,7 @@ class JobControllerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -148,8 +137,8 @@ class JobControllerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -157,10 +146,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function getJobTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $driverOutputResourceUri = 'driverOutputResourceUri-542229086';
@@ -168,7 +157,7 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse = new Job();
         $expectedResponse->setDriverOutputResourceUri($driverOutputResourceUri);
         $expectedResponse->setDriverControlFilesUri($driverControlFilesUri);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -177,17 +166,23 @@ class JobControllerClientTest extends GeneratedTest
 
         $response = $client->getJob($projectId, $region, $jobId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/GetJob', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($region, $actualRequestObject->getRegion());
-        $this->assertProtobufEquals($jobId, $actualRequestObject->getJobId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getJobId();
+
+        $this->assertProtobufEquals($jobId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -195,10 +190,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function getJobExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -210,7 +205,7 @@ class JobControllerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -227,8 +222,8 @@ class JobControllerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -236,10 +231,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function listJobsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -248,7 +243,7 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse = new ListJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -260,15 +255,19 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getJobs()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/ListJobs', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($region, $actualRequestObject->getRegion());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getProjectId();
+
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+
+        $this->assertProtobufEquals($region, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -276,10 +275,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function listJobsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -291,7 +290,7 @@ class JobControllerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -307,8 +306,8 @@ class JobControllerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -316,10 +315,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function updateJobTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $driverOutputResourceUri = 'driverOutputResourceUri-542229086';
@@ -327,7 +326,7 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse = new Job();
         $expectedResponse->setDriverOutputResourceUri($driverOutputResourceUri);
         $expectedResponse->setDriverControlFilesUri($driverControlFilesUri);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -338,19 +337,29 @@ class JobControllerClientTest extends GeneratedTest
 
         $response = $client->updateJob($projectId, $region, $jobId, $job, $updateMask);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/UpdateJob', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($region, $actualRequestObject->getRegion());
-        $this->assertProtobufEquals($jobId, $actualRequestObject->getJobId());
-        $this->assertProtobufEquals($job, $actualRequestObject->getJob());
-        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getJobId();
+
+        $this->assertProtobufEquals($jobId, $actualValue);
+        $actualValue = $actualRequestObject->getJob();
+
+        $this->assertProtobufEquals($job, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -358,10 +367,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function updateJobExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -373,7 +382,7 @@ class JobControllerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -392,8 +401,8 @@ class JobControllerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -401,10 +410,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function cancelJobTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $driverOutputResourceUri = 'driverOutputResourceUri-542229086';
@@ -412,7 +421,7 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse = new Job();
         $expectedResponse->setDriverOutputResourceUri($driverOutputResourceUri);
         $expectedResponse->setDriverControlFilesUri($driverControlFilesUri);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -421,17 +430,23 @@ class JobControllerClientTest extends GeneratedTest
 
         $response = $client->cancelJob($projectId, $region, $jobId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/CancelJob', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($region, $actualRequestObject->getRegion());
-        $this->assertProtobufEquals($jobId, $actualRequestObject->getJobId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getJobId();
+
+        $this->assertProtobufEquals($jobId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -439,10 +454,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function cancelJobExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -454,7 +469,7 @@ class JobControllerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -471,8 +486,8 @@ class JobControllerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -480,14 +495,14 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function deleteJobTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -495,17 +510,23 @@ class JobControllerClientTest extends GeneratedTest
         $jobId = 'jobId-1154752291';
 
         $client->deleteJob($projectId, $region, $jobId);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/DeleteJob', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($region, $actualRequestObject->getRegion());
-        $this->assertProtobufEquals($jobId, $actualRequestObject->getJobId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getJobId();
+
+        $this->assertProtobufEquals($jobId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -513,10 +534,10 @@ class JobControllerClientTest extends GeneratedTest
      */
     public function deleteJobExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockJobControllerImpl']);
-        $client = $this->createClient('createJobControllerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -528,7 +549,7 @@ class JobControllerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -545,7 +566,7 @@ class JobControllerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
