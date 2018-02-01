@@ -142,9 +142,7 @@ class DataTransferServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
             'scopes' => [
-                'https://www.googleapis.com/auth/bigquery',
                 'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloud-platform.read-only',
             ],
             'clientConfigPath' => __DIR__.'/../resources/data_transfer_service_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/data_transfer_service_rest_client_config.php',
@@ -636,10 +634,8 @@ class DataTransferServiceGapicClient
      *
      * @param string         $parent         The BigQuery project id where the transfer configuration should be created.
      *                                       Must be in the format /projects/{project_id}/locations/{location_id}
-     *                                       or
-     *                                       /projects/{project_id}/locations/-
-     *                                       In case when '-' is specified as location_id, location is infered from
-     *                                       the destination dataset region.
+     *                                       If specified location and location of the destination bigquery dataset
+     *                                       do not match - the request will fail.
      * @param TransferConfig $transferConfig Data transfer configuration to create.
      * @param array          $optionalArgs   {
      *                                       Optional.
@@ -921,7 +917,7 @@ class DataTransferServiceGapicClient
     }
 
     /**
-     * Creates transfer runs for a time range [range_start_time, range_end_time].
+     * Creates transfer runs for a time range [start_time, end_time].
      * For each date - or whatever granularity the data source supports - in the
      * range, one transfer run is created.
      * Note that runs are created per UTC time in the time range.
