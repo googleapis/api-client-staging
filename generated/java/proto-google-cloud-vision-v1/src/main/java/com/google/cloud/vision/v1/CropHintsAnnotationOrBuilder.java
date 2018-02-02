@@ -8,24 +8,44 @@ public interface CropHintsAnnotationOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   java.util.List<com.google.cloud.vision.v1.CropHint> 
       getCropHintsList();
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   com.google.cloud.vision.v1.CropHint getCropHints(int index);
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   int getCropHintsCount();
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   java.util.List<? extends com.google.cloud.vision.v1.CropHintOrBuilder> 
       getCropHintsOrBuilderList();
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   com.google.cloud.vision.v1.CropHintOrBuilder getCropHintsOrBuilder(

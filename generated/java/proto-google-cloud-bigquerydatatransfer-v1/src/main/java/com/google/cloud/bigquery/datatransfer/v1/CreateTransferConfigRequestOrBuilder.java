@@ -11,10 +11,8 @@ public interface CreateTransferConfigRequestOrBuilder extends
    * <pre>
    * The BigQuery project id where the transfer configuration should be created.
    * Must be in the format /projects/{project_id}/locations/{location_id}
-   * or
-   * /projects/{project_id}/locations/-
-   * In case when '-' is specified as location_id, location is infered from
-   * the destination dataset region.
+   * If specified location and location of the destination bigquery dataset
+   * do not match - the request will fail.
    * </pre>
    *
    * <code>string parent = 1;</code>
@@ -24,10 +22,8 @@ public interface CreateTransferConfigRequestOrBuilder extends
    * <pre>
    * The BigQuery project id where the transfer configuration should be created.
    * Must be in the format /projects/{project_id}/locations/{location_id}
-   * or
-   * /projects/{project_id}/locations/-
-   * In case when '-' is specified as location_id, location is infered from
-   * the destination dataset region.
+   * If specified location and location of the destination bigquery dataset
+   * do not match - the request will fail.
    * </pre>
    *
    * <code>string parent = 1;</code>

@@ -84,36 +84,39 @@ public final class TextAnnotationProto {
       "ected_languages\030\001 \003(\01327.google.cloud.vis" +
       "ion.v1.TextAnnotation.DetectedLanguage\022L" +
       "\n\016detected_break\030\002 \001(\01324.google.cloud.vi" +
-      "sion.v1.TextAnnotation.DetectedBreak\"\233\001\n" +
+      "sion.v1.TextAnnotation.DetectedBreak\"\257\001\n" +
       "\004Page\022E\n\010property\030\001 \001(\01323.google.cloud.v" +
       "ision.v1.TextAnnotation.TextProperty\022\r\n\005" +
       "width\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022-\n\006blocks\030\004 ",
-      "\003(\0132\035.google.cloud.vision.v1.Block\"\322\002\n\005B" +
-      "lock\022E\n\010property\030\001 \001(\01323.google.cloud.vi" +
-      "sion.v1.TextAnnotation.TextProperty\022:\n\014b" +
-      "ounding_box\030\002 \001(\0132$.google.cloud.vision." +
-      "v1.BoundingPoly\0225\n\nparagraphs\030\003 \003(\0132!.go" +
-      "ogle.cloud.vision.v1.Paragraph\022;\n\nblock_" +
-      "type\030\004 \001(\0162\'.google.cloud.vision.v1.Bloc" +
-      "k.BlockType\"R\n\tBlockType\022\013\n\007UNKNOWN\020\000\022\010\n" +
-      "\004TEXT\020\001\022\t\n\005TABLE\020\002\022\013\n\007PICTURE\020\003\022\t\n\005RULER" +
-      "\020\004\022\013\n\007BARCODE\020\005\"\273\001\n\tParagraph\022E\n\010propert",
+      "\003(\0132\035.google.cloud.vision.v1.Block\022\022\n\nco" +
+      "nfidence\030\005 \001(\002\"\346\002\n\005Block\022E\n\010property\030\001 \001" +
+      "(\01323.google.cloud.vision.v1.TextAnnotati" +
+      "on.TextProperty\022:\n\014bounding_box\030\002 \001(\0132$." +
+      "google.cloud.vision.v1.BoundingPoly\0225\n\np" +
+      "aragraphs\030\003 \003(\0132!.google.cloud.vision.v1" +
+      ".Paragraph\022;\n\nblock_type\030\004 \001(\0162\'.google." +
+      "cloud.vision.v1.Block.BlockType\022\022\n\nconfi" +
+      "dence\030\005 \001(\002\"R\n\tBlockType\022\013\n\007UNKNOWN\020\000\022\010\n" +
+      "\004TEXT\020\001\022\t\n\005TABLE\020\002\022\013\n\007PICTURE\020\003\022\t\n\005RULER",
+      "\020\004\022\013\n\007BARCODE\020\005\"\317\001\n\tParagraph\022E\n\010propert" +
       "y\030\001 \001(\01323.google.cloud.vision.v1.TextAnn" +
       "otation.TextProperty\022:\n\014bounding_box\030\002 \001" +
       "(\0132$.google.cloud.vision.v1.BoundingPoly" +
       "\022+\n\005words\030\003 \003(\0132\034.google.cloud.vision.v1" +
-      ".Word\"\272\001\n\004Word\022E\n\010property\030\001 \001(\01323.googl" +
-      "e.cloud.vision.v1.TextAnnotation.TextPro" +
-      "perty\022:\n\014bounding_box\030\002 \001(\0132$.google.clo" +
-      "ud.vision.v1.BoundingPoly\022/\n\007symbols\030\003 \003" +
-      "(\0132\036.google.cloud.vision.v1.Symbol\"\231\001\n\006S" +
-      "ymbol\022E\n\010property\030\001 \001(\01323.google.cloud.v",
+      ".Word\022\022\n\nconfidence\030\004 \001(\002\"\316\001\n\004Word\022E\n\010pr" +
+      "operty\030\001 \001(\01323.google.cloud.vision.v1.Te" +
+      "xtAnnotation.TextProperty\022:\n\014bounding_bo" +
+      "x\030\002 \001(\0132$.google.cloud.vision.v1.Boundin" +
+      "gPoly\022/\n\007symbols\030\003 \003(\0132\036.google.cloud.vi",
+      "sion.v1.Symbol\022\022\n\nconfidence\030\004 \001(\002\"\255\001\n\006S" +
+      "ymbol\022E\n\010property\030\001 \001(\01323.google.cloud.v" +
       "ision.v1.TextAnnotation.TextProperty\022:\n\014" +
       "bounding_box\030\002 \001(\0132$.google.cloud.vision" +
-      ".v1.BoundingPoly\022\014\n\004text\030\003 \001(\tBt\n\032com.go" +
-      "ogle.cloud.vision.v1B\023TextAnnotationProt" +
-      "oP\001Z<google.golang.org/genproto/googleap" +
-      "is/cloud/vision/v1;vision\370\001\001b\006proto3"
+      ".v1.BoundingPoly\022\014\n\004text\030\003 \001(\t\022\022\n\nconfid" +
+      "ence\030\004 \001(\002Bt\n\032com.google.cloud.vision.v1" +
+      "B\023TextAnnotationProtoP\001Z<google.golang.o" +
+      "rg/genproto/googleapis/cloud/vision/v1;v" +
+      "ision\370\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -158,31 +161,31 @@ public final class TextAnnotationProto {
     internal_static_google_cloud_vision_v1_Page_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_vision_v1_Page_descriptor,
-        new java.lang.String[] { "Property", "Width", "Height", "Blocks", });
+        new java.lang.String[] { "Property", "Width", "Height", "Blocks", "Confidence", });
     internal_static_google_cloud_vision_v1_Block_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_google_cloud_vision_v1_Block_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_vision_v1_Block_descriptor,
-        new java.lang.String[] { "Property", "BoundingBox", "Paragraphs", "BlockType", });
+        new java.lang.String[] { "Property", "BoundingBox", "Paragraphs", "BlockType", "Confidence", });
     internal_static_google_cloud_vision_v1_Paragraph_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_google_cloud_vision_v1_Paragraph_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_vision_v1_Paragraph_descriptor,
-        new java.lang.String[] { "Property", "BoundingBox", "Words", });
+        new java.lang.String[] { "Property", "BoundingBox", "Words", "Confidence", });
     internal_static_google_cloud_vision_v1_Word_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_google_cloud_vision_v1_Word_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_vision_v1_Word_descriptor,
-        new java.lang.String[] { "Property", "BoundingBox", "Symbols", });
+        new java.lang.String[] { "Property", "BoundingBox", "Symbols", "Confidence", });
     internal_static_google_cloud_vision_v1_Symbol_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_google_cloud_vision_v1_Symbol_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_vision_v1_Symbol_descriptor,
-        new java.lang.String[] { "Property", "BoundingBox", "Text", });
+        new java.lang.String[] { "Property", "BoundingBox", "Text", "Confidence", });
     com.google.api.AnnotationsProto.getDescriptor();
     com.google.cloud.vision.v1.GeometryProto.getDescriptor();
   }

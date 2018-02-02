@@ -98,7 +98,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Image content, represented as a stream of bytes.
-   * Note: as with all `bytes` fields, protobuffers use a pure binary
+   * Note: As with all `bytes` fields, protobuffers use a pure binary
    * representation, whereas JSON representations use base64.
    * </pre>
    *
@@ -112,9 +112,9 @@ private static final long serialVersionUID = 0L;
   private com.google.cloud.vision.v1.ImageSource source_;
   /**
    * <pre>
-   * Google Cloud Storage image location. If both `content` and `source`
-   * are provided for an image, `content` takes precedence and is
-   * used to perform the image annotation request.
+   * Google Cloud Storage image location, or publicly-accessible image
+   * URL. If both `content` and `source` are provided for an image, `content`
+   * takes precedence and is used to perform the image annotation request.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -124,9 +124,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Google Cloud Storage image location. If both `content` and `source`
-   * are provided for an image, `content` takes precedence and is
-   * used to perform the image annotation request.
+   * Google Cloud Storage image location, or publicly-accessible image
+   * URL. If both `content` and `source` are provided for an image, `content`
+   * takes precedence and is used to perform the image annotation request.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -136,9 +136,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Google Cloud Storage image location. If both `content` and `source`
-   * are provided for an image, `content` takes precedence and is
-   * used to perform the image annotation request.
+   * Google Cloud Storage image location, or publicly-accessible image
+   * URL. If both `content` and `source` are provided for an image, `content`
+   * takes precedence and is used to perform the image annotation request.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -468,7 +468,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Image content, represented as a stream of bytes.
-     * Note: as with all `bytes` fields, protobuffers use a pure binary
+     * Note: As with all `bytes` fields, protobuffers use a pure binary
      * representation, whereas JSON representations use base64.
      * </pre>
      *
@@ -480,7 +480,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Image content, represented as a stream of bytes.
-     * Note: as with all `bytes` fields, protobuffers use a pure binary
+     * Note: As with all `bytes` fields, protobuffers use a pure binary
      * representation, whereas JSON representations use base64.
      * </pre>
      *
@@ -498,7 +498,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Image content, represented as a stream of bytes.
-     * Note: as with all `bytes` fields, protobuffers use a pure binary
+     * Note: As with all `bytes` fields, protobuffers use a pure binary
      * representation, whereas JSON representations use base64.
      * </pre>
      *
@@ -516,9 +516,9 @@ private static final long serialVersionUID = 0L;
         com.google.cloud.vision.v1.ImageSource, com.google.cloud.vision.v1.ImageSource.Builder, com.google.cloud.vision.v1.ImageSourceOrBuilder> sourceBuilder_;
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -528,9 +528,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -544,9 +544,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -566,9 +566,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -586,9 +586,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -610,9 +610,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -630,9 +630,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -644,9 +644,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -661,9 +661,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Google Cloud Storage image location. If both `content` and `source`
-     * are provided for an image, `content` takes precedence and is
-     * used to perform the image annotation request.
+     * Google Cloud Storage image location, or publicly-accessible image
+     * URL. If both `content` and `source` are provided for an image, `content`
+     * takes precedence and is used to perform the image annotation request.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>

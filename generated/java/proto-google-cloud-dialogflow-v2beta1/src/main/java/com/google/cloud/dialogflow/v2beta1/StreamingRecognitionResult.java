@@ -42,6 +42,7 @@ private static final long serialVersionUID = 0L;
     messageType_ = 0;
     transcript_ = "";
     isFinal_ = false;
+    confidence_ = 0F;
   }
 
   @java.lang.Override
@@ -87,6 +88,11 @@ private static final long serialVersionUID = 0L;
           case 24: {
 
             isFinal_ = input.readBool();
+            break;
+          }
+          case 37: {
+
+            confidence_ = input.readFloat();
             break;
           }
         }
@@ -332,6 +338,7 @@ private static final long serialVersionUID = 0L;
   private boolean isFinal_;
   /**
    * <pre>
+   * The default of 0.0 is a sentinel value indicating `confidence` was not set.
    * If `false`, the `StreamingRecognitionResult` represents an
    * interim result that may change. If `true`, the recognizer will not return
    * any further hypotheses about this piece of the audio. May only be populated
@@ -342,6 +349,24 @@ private static final long serialVersionUID = 0L;
    */
   public boolean getIsFinal() {
     return isFinal_;
+  }
+
+  public static final int CONFIDENCE_FIELD_NUMBER = 4;
+  private float confidence_;
+  /**
+   * <pre>
+   * The Speech confidence between 0.0 and 1.0 for the current portion of audio.
+   * A higher number indicates an estimated greater likelihood that the
+   * recognized words are correct. The default of 0.0 is a sentinel value
+   * indicating that confidence was not set.
+   * This field is typically only provided if `is_final` is true and you should
+   * not rely on it being accurate or even set.
+   * </pre>
+   *
+   * <code>float confidence = 4;</code>
+   */
+  public float getConfidence() {
+    return confidence_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -365,6 +390,9 @@ private static final long serialVersionUID = 0L;
     if (isFinal_ != false) {
       output.writeBool(3, isFinal_);
     }
+    if (confidence_ != 0F) {
+      output.writeFloat(4, confidence_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -383,6 +411,10 @@ private static final long serialVersionUID = 0L;
     if (isFinal_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, isFinal_);
+    }
+    if (confidence_ != 0F) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(4, confidence_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -405,6 +437,10 @@ private static final long serialVersionUID = 0L;
         .equals(other.getTranscript());
     result = result && (getIsFinal()
         == other.getIsFinal());
+    result = result && (
+        java.lang.Float.floatToIntBits(getConfidence())
+        == java.lang.Float.floatToIntBits(
+            other.getConfidence()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -423,6 +459,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + IS_FINAL_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getIsFinal());
+    hash = (37 * hash) + CONFIDENCE_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getConfidence());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -581,6 +620,8 @@ private static final long serialVersionUID = 0L;
 
       isFinal_ = false;
 
+      confidence_ = 0F;
+
       return this;
     }
 
@@ -606,6 +647,7 @@ private static final long serialVersionUID = 0L;
       result.messageType_ = messageType_;
       result.transcript_ = transcript_;
       result.isFinal_ = isFinal_;
+      result.confidence_ = confidence_;
       onBuilt();
       return result;
     }
@@ -656,6 +698,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getIsFinal() != false) {
         setIsFinal(other.getIsFinal());
+      }
+      if (other.getConfidence() != 0F) {
+        setConfidence(other.getConfidence());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -845,6 +890,7 @@ private static final long serialVersionUID = 0L;
     private boolean isFinal_ ;
     /**
      * <pre>
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * If `false`, the `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, the recognizer will not return
      * any further hypotheses about this piece of the audio. May only be populated
@@ -858,6 +904,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * If `false`, the `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, the recognizer will not return
      * any further hypotheses about this piece of the audio. May only be populated
@@ -874,6 +921,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * If `false`, the `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, the recognizer will not return
      * any further hypotheses about this piece of the audio. May only be populated
@@ -885,6 +933,59 @@ private static final long serialVersionUID = 0L;
     public Builder clearIsFinal() {
       
       isFinal_ = false;
+      onChanged();
+      return this;
+    }
+
+    private float confidence_ ;
+    /**
+     * <pre>
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio.
+     * A higher number indicates an estimated greater likelihood that the
+     * recognized words are correct. The default of 0.0 is a sentinel value
+     * indicating that confidence was not set.
+     * This field is typically only provided if `is_final` is true and you should
+     * not rely on it being accurate or even set.
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public float getConfidence() {
+      return confidence_;
+    }
+    /**
+     * <pre>
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio.
+     * A higher number indicates an estimated greater likelihood that the
+     * recognized words are correct. The default of 0.0 is a sentinel value
+     * indicating that confidence was not set.
+     * This field is typically only provided if `is_final` is true and you should
+     * not rely on it being accurate or even set.
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public Builder setConfidence(float value) {
+      
+      confidence_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio.
+     * A higher number indicates an estimated greater likelihood that the
+     * recognized words are correct. The default of 0.0 is a sentinel value
+     * indicating that confidence was not set.
+     * This field is typically only provided if `is_final` is true and you should
+     * not rely on it being accurate or even set.
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public Builder clearConfidence() {
+      
+      confidence_ = 0F;
       onChanged();
       return this;
     }

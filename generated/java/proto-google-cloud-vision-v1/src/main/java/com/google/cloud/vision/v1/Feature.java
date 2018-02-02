@@ -5,10 +5,9 @@ package com.google.cloud.vision.v1;
 
 /**
  * <pre>
- * Users describe the type of Google Cloud Vision API tasks to perform over
- * images by using *Feature*s. Each Feature indicates a type of image
- * detection task to perform. Features encode the Cloud Vision API
- * vertical to operate on and the number of top-scoring results to return.
+ * The type of Google Cloud Vision API detection to perform, and the maximum
+ * number of results to return for that type. Multiple `Feature` objects can
+ * be specified in the `features` list.
  * </pre>
  *
  * Protobuf type {@code google.cloud.vision.v1.Feature}
@@ -25,6 +24,7 @@ private static final long serialVersionUID = 0L;
   private Feature() {
     type_ = 0;
     maxResults_ = 0;
+    model_ = "";
   }
 
   @java.lang.Override
@@ -66,6 +66,12 @@ private static final long serialVersionUID = 0L;
             maxResults_ = input.readInt32();
             break;
           }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            model_ = s;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -92,7 +98,7 @@ private static final long serialVersionUID = 0L;
 
   /**
    * <pre>
-   * Type of image feature.
+   * Type of Google Cloud Vision API feature to be extracted.
    * </pre>
    *
    * Protobuf enum {@code google.cloud.vision.v1.Feature.Type}
@@ -141,7 +147,9 @@ private static final long serialVersionUID = 0L;
     LABEL_DETECTION(4),
     /**
      * <pre>
-     * Run OCR.
+     * Run text detection / optical character recognition (OCR). Text detection
+     * is optimized for areas of text within a larger image; if the image is
+     * a document, use `DOCUMENT_TEXT_DETECTION` instead.
      * </pre>
      *
      * <code>TEXT_DETECTION = 5;</code>
@@ -150,7 +158,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Run dense text document OCR. Takes precedence when both
-     * DOCUMENT_TEXT_DETECTION and TEXT_DETECTION are present.
+     * `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` are present.
      * </pre>
      *
      * <code>DOCUMENT_TEXT_DETECTION = 11;</code>
@@ -158,7 +166,8 @@ private static final long serialVersionUID = 0L;
     DOCUMENT_TEXT_DETECTION(11),
     /**
      * <pre>
-     * Run computer vision models to compute image safe-search properties.
+     * Run Safe Search to detect potentially unsafe
+     * or undesirable content.
      * </pre>
      *
      * <code>SAFE_SEARCH_DETECTION = 6;</code>
@@ -166,7 +175,8 @@ private static final long serialVersionUID = 0L;
     SAFE_SEARCH_DETECTION(6),
     /**
      * <pre>
-     * Compute a set of image properties, such as the image's dominant colors.
+     * Compute a set of image properties, such as the
+     * image's dominant colors.
      * </pre>
      *
      * <code>IMAGE_PROPERTIES = 7;</code>
@@ -233,7 +243,9 @@ private static final long serialVersionUID = 0L;
     public static final int LABEL_DETECTION_VALUE = 4;
     /**
      * <pre>
-     * Run OCR.
+     * Run text detection / optical character recognition (OCR). Text detection
+     * is optimized for areas of text within a larger image; if the image is
+     * a document, use `DOCUMENT_TEXT_DETECTION` instead.
      * </pre>
      *
      * <code>TEXT_DETECTION = 5;</code>
@@ -242,7 +254,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Run dense text document OCR. Takes precedence when both
-     * DOCUMENT_TEXT_DETECTION and TEXT_DETECTION are present.
+     * `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` are present.
      * </pre>
      *
      * <code>DOCUMENT_TEXT_DETECTION = 11;</code>
@@ -250,7 +262,8 @@ private static final long serialVersionUID = 0L;
     public static final int DOCUMENT_TEXT_DETECTION_VALUE = 11;
     /**
      * <pre>
-     * Run computer vision models to compute image safe-search properties.
+     * Run Safe Search to detect potentially unsafe
+     * or undesirable content.
      * </pre>
      *
      * <code>SAFE_SEARCH_DETECTION = 6;</code>
@@ -258,7 +271,8 @@ private static final long serialVersionUID = 0L;
     public static final int SAFE_SEARCH_DETECTION_VALUE = 6;
     /**
      * <pre>
-     * Compute a set of image properties, such as the image's dominant colors.
+     * Compute a set of image properties, such as the
+     * image's dominant colors.
      * </pre>
      *
      * <code>IMAGE_PROPERTIES = 7;</code>
@@ -391,13 +405,60 @@ private static final long serialVersionUID = 0L;
   private int maxResults_;
   /**
    * <pre>
-   * Maximum number of results of this type.
+   * Maximum number of results of this type. Does not apply to
+   * `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
    * </pre>
    *
    * <code>int32 max_results = 2;</code>
    */
   public int getMaxResults() {
     return maxResults_;
+  }
+
+  public static final int MODEL_FIELD_NUMBER = 3;
+  private volatile java.lang.Object model_;
+  /**
+   * <pre>
+   * Model to use for the feature.
+   * Supported values: "builtin/stable" (the default if unset) and
+   * "builtin/latest".
+   * </pre>
+   *
+   * <code>string model = 3;</code>
+   */
+  public java.lang.String getModel() {
+    java.lang.Object ref = model_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      model_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * Model to use for the feature.
+   * Supported values: "builtin/stable" (the default if unset) and
+   * "builtin/latest".
+   * </pre>
+   *
+   * <code>string model = 3;</code>
+   */
+  public com.google.protobuf.ByteString
+      getModelBytes() {
+    java.lang.Object ref = model_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      model_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -418,6 +479,9 @@ private static final long serialVersionUID = 0L;
     if (maxResults_ != 0) {
       output.writeInt32(2, maxResults_);
     }
+    if (!getModelBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, model_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -433,6 +497,9 @@ private static final long serialVersionUID = 0L;
     if (maxResults_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, maxResults_);
+    }
+    if (!getModelBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, model_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -453,6 +520,8 @@ private static final long serialVersionUID = 0L;
     result = result && type_ == other.type_;
     result = result && (getMaxResults()
         == other.getMaxResults());
+    result = result && getModel()
+        .equals(other.getModel());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -468,6 +537,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + type_;
     hash = (37 * hash) + MAX_RESULTS_FIELD_NUMBER;
     hash = (53 * hash) + getMaxResults();
+    hash = (37 * hash) + MODEL_FIELD_NUMBER;
+    hash = (53 * hash) + getModel().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -563,10 +634,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Users describe the type of Google Cloud Vision API tasks to perform over
-   * images by using *Feature*s. Each Feature indicates a type of image
-   * detection task to perform. Features encode the Cloud Vision API
-   * vertical to operate on and the number of top-scoring results to return.
+   * The type of Google Cloud Vision API detection to perform, and the maximum
+   * number of results to return for that type. Multiple `Feature` objects can
+   * be specified in the `features` list.
    * </pre>
    *
    * Protobuf type {@code google.cloud.vision.v1.Feature}
@@ -608,6 +678,8 @@ private static final long serialVersionUID = 0L;
 
       maxResults_ = 0;
 
+      model_ = "";
+
       return this;
     }
 
@@ -632,6 +704,7 @@ private static final long serialVersionUID = 0L;
       com.google.cloud.vision.v1.Feature result = new com.google.cloud.vision.v1.Feature(this);
       result.type_ = type_;
       result.maxResults_ = maxResults_;
+      result.model_ = model_;
       onBuilt();
       return result;
     }
@@ -678,6 +751,10 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getMaxResults() != 0) {
         setMaxResults(other.getMaxResults());
+      }
+      if (!other.getModel().isEmpty()) {
+        model_ = other.model_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -773,7 +850,8 @@ private static final long serialVersionUID = 0L;
     private int maxResults_ ;
     /**
      * <pre>
-     * Maximum number of results of this type.
+     * Maximum number of results of this type. Does not apply to
+     * `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
      * </pre>
      *
      * <code>int32 max_results = 2;</code>
@@ -783,7 +861,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Maximum number of results of this type.
+     * Maximum number of results of this type. Does not apply to
+     * `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
      * </pre>
      *
      * <code>int32 max_results = 2;</code>
@@ -796,7 +875,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Maximum number of results of this type.
+     * Maximum number of results of this type. Does not apply to
+     * `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
      * </pre>
      *
      * <code>int32 max_results = 2;</code>
@@ -804,6 +884,105 @@ private static final long serialVersionUID = 0L;
     public Builder clearMaxResults() {
       
       maxResults_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object model_ = "";
+    /**
+     * <pre>
+     * Model to use for the feature.
+     * Supported values: "builtin/stable" (the default if unset) and
+     * "builtin/latest".
+     * </pre>
+     *
+     * <code>string model = 3;</code>
+     */
+    public java.lang.String getModel() {
+      java.lang.Object ref = model_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        model_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Model to use for the feature.
+     * Supported values: "builtin/stable" (the default if unset) and
+     * "builtin/latest".
+     * </pre>
+     *
+     * <code>string model = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getModelBytes() {
+      java.lang.Object ref = model_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        model_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Model to use for the feature.
+     * Supported values: "builtin/stable" (the default if unset) and
+     * "builtin/latest".
+     * </pre>
+     *
+     * <code>string model = 3;</code>
+     */
+    public Builder setModel(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      model_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Model to use for the feature.
+     * Supported values: "builtin/stable" (the default if unset) and
+     * "builtin/latest".
+     * </pre>
+     *
+     * <code>string model = 3;</code>
+     */
+    public Builder clearModel() {
+      
+      model_ = getDefaultInstance().getModel();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Model to use for the feature.
+     * Supported values: "builtin/stable" (the default if unset) and
+     * "builtin/latest".
+     * </pre>
+     *
+     * <code>string model = 3;</code>
+     */
+    public Builder setModelBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      model_ = value;
       onChanged();
       return this;
     }

@@ -33,6 +33,9 @@ ext {
 
 sourceSets {
   main {
+    resources {
+      srcDir 'src/main/proto'
+    }
     java {
       srcDir 'src/main/java'
     }

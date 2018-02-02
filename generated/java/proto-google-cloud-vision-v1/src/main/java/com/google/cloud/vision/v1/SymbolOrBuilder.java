@@ -116,4 +116,13 @@ public interface SymbolOrBuilder extends
    */
   com.google.protobuf.ByteString
       getTextBytes();
+
+  /**
+   * <pre>
+   * Confidence of the OCR results for the symbol. Range [0, 1].
+   * </pre>
+   *
+   * <code>float confidence = 4;</code>
+   */
+  float getConfidence();
 }
