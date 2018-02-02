@@ -92,6 +92,9 @@ subprojects {
   }
 }
 
+// Proto publish tasks
+// ===================
+
 apply plugin: 'java'
 
 task allDocs(type: Javadoc) {
@@ -110,6 +113,10 @@ task checkOutGhPages {
       commandLine "git", "clone", "--branch", "gh-pages", "--single-branch", "git@github.com:googleapis/googleapis.git", "tmp_gh-pages"
     }
   }
+}
+
+clean.doFirst {
+  delete "tmp_gh-pages"
 }
 
 task copyFilesToGhPages {
