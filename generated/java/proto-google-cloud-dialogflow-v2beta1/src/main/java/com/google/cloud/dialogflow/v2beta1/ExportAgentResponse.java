@@ -181,6 +181,17 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The exported agent.
+   * Example for how to export an agent to a zip file via a command line:
+   * curl &#92;
+   *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:export'&#92;
+   *   -X POST &#92;
+   *   -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+   *   -H 'Accept: application/json' &#92;
+   *   -H 'Content-Type: application/json' &#92;
+   *   --compressed &#92;
+   *   --data-binary '{}' &#92;
+   * | grep agentContent | sed -e 's/.*"agentContent": "&#92;([^"]*&#92;)".*&#47;&#92;1/' &#92;
+   * | base64 --decode &gt; &lt;agent zip file&gt;
    * </pre>
    *
    * <code>bytes agent_content = 2;</code>
@@ -652,6 +663,17 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The exported agent.
+     * Example for how to export an agent to a zip file via a command line:
+     * curl &#92;
+     *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:export'&#92;
+     *   -X POST &#92;
+     *   -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+     *   -H 'Accept: application/json' &#92;
+     *   -H 'Content-Type: application/json' &#92;
+     *   --compressed &#92;
+     *   --data-binary '{}' &#92;
+     * | grep agentContent | sed -e 's/.*"agentContent": "&#92;([^"]*&#92;)".*&#47;&#92;1/' &#92;
+     * | base64 --decode &gt; &lt;agent zip file&gt;
      * </pre>
      *
      * <code>bytes agent_content = 2;</code>
@@ -665,6 +687,17 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The exported agent.
+     * Example for how to export an agent to a zip file via a command line:
+     * curl &#92;
+     *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:export'&#92;
+     *   -X POST &#92;
+     *   -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+     *   -H 'Accept: application/json' &#92;
+     *   -H 'Content-Type: application/json' &#92;
+     *   --compressed &#92;
+     *   --data-binary '{}' &#92;
+     * | grep agentContent | sed -e 's/.*"agentContent": "&#92;([^"]*&#92;)".*&#47;&#92;1/' &#92;
+     * | base64 --decode &gt; &lt;agent zip file&gt;
      * </pre>
      *
      * <code>bytes agent_content = 2;</code>
@@ -681,6 +714,17 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The exported agent.
+     * Example for how to export an agent to a zip file via a command line:
+     * curl &#92;
+     *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:export'&#92;
+     *   -X POST &#92;
+     *   -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+     *   -H 'Accept: application/json' &#92;
+     *   -H 'Content-Type: application/json' &#92;
+     *   --compressed &#92;
+     *   --data-binary '{}' &#92;
+     * | grep agentContent | sed -e 's/.*"agentContent": "&#92;([^"]*&#92;)".*&#47;&#92;1/' &#92;
+     * | base64 --decode &gt; &lt;agent zip file&gt;
      * </pre>
      *
      * <code>bytes agent_content = 2;</code>

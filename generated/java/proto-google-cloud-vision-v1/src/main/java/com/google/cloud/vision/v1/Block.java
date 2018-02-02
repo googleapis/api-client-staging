@@ -22,6 +22,7 @@ private static final long serialVersionUID = 0L;
   private Block() {
     paragraphs_ = java.util.Collections.emptyList();
     blockType_ = 0;
+    confidence_ = 0F;
   }
 
   @java.lang.Override
@@ -91,6 +92,11 @@ private static final long serialVersionUID = 0L;
             int rawValue = input.readEnum();
 
             blockType_ = rawValue;
+            break;
+          }
+          case 45: {
+
+            confidence_ = input.readFloat();
             break;
           }
         }
@@ -350,14 +356,14 @@ private static final long serialVersionUID = 0L;
    * is represented as around the top-left corner as defined when the text is
    * read in the 'natural' orientation.
    * For example:
-   *   * when the text is horizontal it might look like:
-   *      0----1
-   *      |    |
-   *      3----2
-   *   * when it's rotated 180 degrees around the top-left corner it becomes:
-   *      2----3
-   *      |    |
-   *      1----0
+   * * when the text is horizontal it might look like:
+   *         0----1
+   *         |    |
+   *         3----2
+   * * when it's rotated 180 degrees around the top-left corner it becomes:
+   *         2----3
+   *         |    |
+   *         1----0
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
@@ -374,14 +380,14 @@ private static final long serialVersionUID = 0L;
    * is represented as around the top-left corner as defined when the text is
    * read in the 'natural' orientation.
    * For example:
-   *   * when the text is horizontal it might look like:
-   *      0----1
-   *      |    |
-   *      3----2
-   *   * when it's rotated 180 degrees around the top-left corner it becomes:
-   *      2----3
-   *      |    |
-   *      1----0
+   * * when the text is horizontal it might look like:
+   *         0----1
+   *         |    |
+   *         3----2
+   * * when it's rotated 180 degrees around the top-left corner it becomes:
+   *         2----3
+   *         |    |
+   *         1----0
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
@@ -398,14 +404,14 @@ private static final long serialVersionUID = 0L;
    * is represented as around the top-left corner as defined when the text is
    * read in the 'natural' orientation.
    * For example:
-   *   * when the text is horizontal it might look like:
-   *      0----1
-   *      |    |
-   *      3----2
-   *   * when it's rotated 180 degrees around the top-left corner it becomes:
-   *      2----3
-   *      |    |
-   *      1----0
+   * * when the text is horizontal it might look like:
+   *         0----1
+   *         |    |
+   *         3----2
+   * * when it's rotated 180 degrees around the top-left corner it becomes:
+   *         2----3
+   *         |    |
+   *         1----0
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
@@ -494,6 +500,19 @@ private static final long serialVersionUID = 0L;
     return result == null ? com.google.cloud.vision.v1.Block.BlockType.UNRECOGNIZED : result;
   }
 
+  public static final int CONFIDENCE_FIELD_NUMBER = 5;
+  private float confidence_;
+  /**
+   * <pre>
+   * Confidence of the OCR results on the block. Range [0, 1].
+   * </pre>
+   *
+   * <code>float confidence = 5;</code>
+   */
+  public float getConfidence() {
+    return confidence_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -518,6 +537,9 @@ private static final long serialVersionUID = 0L;
     if (blockType_ != com.google.cloud.vision.v1.Block.BlockType.UNKNOWN.getNumber()) {
       output.writeEnum(4, blockType_);
     }
+    if (confidence_ != 0F) {
+      output.writeFloat(5, confidence_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -541,6 +563,10 @@ private static final long serialVersionUID = 0L;
     if (blockType_ != com.google.cloud.vision.v1.Block.BlockType.UNKNOWN.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(4, blockType_);
+    }
+    if (confidence_ != 0F) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(5, confidence_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -571,6 +597,10 @@ private static final long serialVersionUID = 0L;
     result = result && getParagraphsList()
         .equals(other.getParagraphsList());
     result = result && blockType_ == other.blockType_;
+    result = result && (
+        java.lang.Float.floatToIntBits(getConfidence())
+        == java.lang.Float.floatToIntBits(
+            other.getConfidence()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -596,6 +626,9 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + BLOCK_TYPE_FIELD_NUMBER;
     hash = (53 * hash) + blockType_;
+    hash = (37 * hash) + CONFIDENCE_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getConfidence());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -750,6 +783,8 @@ private static final long serialVersionUID = 0L;
       }
       blockType_ = 0;
 
+      confidence_ = 0F;
+
       return this;
     }
 
@@ -794,6 +829,7 @@ private static final long serialVersionUID = 0L;
         result.paragraphs_ = paragraphsBuilder_.build();
       }
       result.blockType_ = blockType_;
+      result.confidence_ = confidence_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -870,6 +906,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.blockType_ != 0) {
         setBlockTypeValue(other.getBlockTypeValue());
+      }
+      if (other.getConfidence() != 0F) {
+        setConfidence(other.getConfidence());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1063,14 +1102,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1087,14 +1126,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1115,14 +1154,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1149,14 +1188,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1181,14 +1220,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1217,14 +1256,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1249,14 +1288,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1275,14 +1314,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1304,14 +1343,14 @@ private static final long serialVersionUID = 0L;
      * is represented as around the top-left corner as defined when the text is
      * read in the 'natural' orientation.
      * For example:
-     *   * when the text is horizontal it might look like:
-     *      0----1
-     *      |    |
-     *      3----2
-     *   * when it's rotated 180 degrees around the top-left corner it becomes:
-     *      2----3
-     *      |    |
-     *      1----0
+     * * when the text is horizontal it might look like:
+     *         0----1
+     *         |    |
+     *         3----2
+     * * when it's rotated 180 degrees around the top-left corner it becomes:
+     *         2----3
+     *         |    |
+     *         1----0
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
@@ -1703,6 +1742,44 @@ private static final long serialVersionUID = 0L;
     public Builder clearBlockType() {
       
       blockType_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private float confidence_ ;
+    /**
+     * <pre>
+     * Confidence of the OCR results on the block. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 5;</code>
+     */
+    public float getConfidence() {
+      return confidence_;
+    }
+    /**
+     * <pre>
+     * Confidence of the OCR results on the block. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 5;</code>
+     */
+    public Builder setConfidence(float value) {
+      
+      confidence_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Confidence of the OCR results on the block. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 5;</code>
+     */
+    public Builder clearConfidence() {
+      
+      confidence_ = 0F;
       onChanged();
       return this;
     }

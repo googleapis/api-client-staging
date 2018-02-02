@@ -54,8 +54,7 @@ public interface WebDetectionOrBuilder extends
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -65,8 +64,7 @@ public interface WebDetectionOrBuilder extends
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -75,8 +73,7 @@ public interface WebDetectionOrBuilder extends
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -85,8 +82,7 @@ public interface WebDetectionOrBuilder extends
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -96,8 +92,7 @@ public interface WebDetectionOrBuilder extends
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -201,5 +196,93 @@ public interface WebDetectionOrBuilder extends
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
    */
   com.google.cloud.vision.v1.WebDetection.WebPageOrBuilder getPagesWithMatchingImagesOrBuilder(
+      int index);
+
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> 
+      getVisuallySimilarImagesList();
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  com.google.cloud.vision.v1.WebDetection.WebImage getVisuallySimilarImages(int index);
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  int getVisuallySimilarImagesCount();
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+      getVisuallySimilarImagesOrBuilderList();
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getVisuallySimilarImagesOrBuilder(
+      int index);
+
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  java.util.List<com.google.cloud.vision.v1.WebDetection.WebLabel> 
+      getBestGuessLabelsList();
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  com.google.cloud.vision.v1.WebDetection.WebLabel getBestGuessLabels(int index);
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  int getBestGuessLabelsCount();
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder> 
+      getBestGuessLabelsOrBuilderList();
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder getBestGuessLabelsOrBuilder(
       int index);
 }

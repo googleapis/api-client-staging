@@ -24,6 +24,8 @@ private static final long serialVersionUID = 0L;
     fullMatchingImages_ = java.util.Collections.emptyList();
     partialMatchingImages_ = java.util.Collections.emptyList();
     pagesWithMatchingImages_ = java.util.Collections.emptyList();
+    visuallySimilarImages_ = java.util.Collections.emptyList();
+    bestGuessLabels_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -90,6 +92,24 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(com.google.cloud.vision.v1.WebDetection.WebPage.parser(), extensionRegistry));
             break;
           }
+          case 50: {
+            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+              visuallySimilarImages_ = new java.util.ArrayList<com.google.cloud.vision.v1.WebDetection.WebImage>();
+              mutable_bitField0_ |= 0x00000010;
+            }
+            visuallySimilarImages_.add(
+                input.readMessage(com.google.cloud.vision.v1.WebDetection.WebImage.parser(), extensionRegistry));
+            break;
+          }
+          case 66: {
+            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+              bestGuessLabels_ = new java.util.ArrayList<com.google.cloud.vision.v1.WebDetection.WebLabel>();
+              mutable_bitField0_ |= 0x00000020;
+            }
+            bestGuessLabels_.add(
+                input.readMessage(com.google.cloud.vision.v1.WebDetection.WebLabel.parser(), extensionRegistry));
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -109,6 +129,12 @@ private static final long serialVersionUID = 0L;
       }
       if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
         pagesWithMatchingImages_ = java.util.Collections.unmodifiableList(pagesWithMatchingImages_);
+      }
+      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+        visuallySimilarImages_ = java.util.Collections.unmodifiableList(visuallySimilarImages_);
+      }
+      if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+        bestGuessLabels_ = java.util.Collections.unmodifiableList(bestGuessLabels_);
       }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
@@ -980,8 +1006,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * Overall relevancy score for the image.
-     * Not normalized and not comparable across different image queries.
+     * (Deprecated) Overall relevancy score for the image.
      * </pre>
      *
      * <code>float score = 2;</code>
@@ -1118,8 +1143,7 @@ private static final long serialVersionUID = 0L;
     private float score_;
     /**
      * <pre>
-     * Overall relevancy score for the image.
-     * Not normalized and not comparable across different image queries.
+     * (Deprecated) Overall relevancy score for the image.
      * </pre>
      *
      * <code>float score = 2;</code>
@@ -1527,8 +1551,7 @@ private static final long serialVersionUID = 0L;
       private float score_ ;
       /**
        * <pre>
-       * Overall relevancy score for the image.
-       * Not normalized and not comparable across different image queries.
+       * (Deprecated) Overall relevancy score for the image.
        * </pre>
        *
        * <code>float score = 2;</code>
@@ -1538,8 +1561,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Overall relevancy score for the image.
-       * Not normalized and not comparable across different image queries.
+       * (Deprecated) Overall relevancy score for the image.
        * </pre>
        *
        * <code>float score = 2;</code>
@@ -1552,8 +1574,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Overall relevancy score for the image.
-       * Not normalized and not comparable across different image queries.
+       * (Deprecated) Overall relevancy score for the image.
        * </pre>
        *
        * <code>float score = 2;</code>
@@ -1637,13 +1658,138 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * Overall relevancy score for the web page.
-     * Not normalized and not comparable across different image queries.
+     * (Deprecated) Overall relevancy score for the web page.
      * </pre>
      *
      * <code>float score = 2;</code>
      */
     float getScore();
+
+    /**
+     * <pre>
+     * Title for the web page, may contain HTML markups.
+     * </pre>
+     *
+     * <code>string page_title = 3;</code>
+     */
+    java.lang.String getPageTitle();
+    /**
+     * <pre>
+     * Title for the web page, may contain HTML markups.
+     * </pre>
+     *
+     * <code>string page_title = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPageTitleBytes();
+
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> 
+        getFullMatchingImagesList();
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    com.google.cloud.vision.v1.WebDetection.WebImage getFullMatchingImages(int index);
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    int getFullMatchingImagesCount();
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+        getFullMatchingImagesOrBuilderList();
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getFullMatchingImagesOrBuilder(
+        int index);
+
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> 
+        getPartialMatchingImagesList();
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    com.google.cloud.vision.v1.WebDetection.WebImage getPartialMatchingImages(int index);
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    int getPartialMatchingImagesCount();
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+        getPartialMatchingImagesOrBuilderList();
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getPartialMatchingImagesOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -1664,6 +1810,9 @@ private static final long serialVersionUID = 0L;
     private WebPage() {
       url_ = "";
       score_ = 0F;
+      pageTitle_ = "";
+      fullMatchingImages_ = java.util.Collections.emptyList();
+      partialMatchingImages_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -1705,6 +1854,30 @@ private static final long serialVersionUID = 0L;
               score_ = input.readFloat();
               break;
             }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              pageTitle_ = s;
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                fullMatchingImages_ = new java.util.ArrayList<com.google.cloud.vision.v1.WebDetection.WebImage>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              fullMatchingImages_.add(
+                  input.readMessage(com.google.cloud.vision.v1.WebDetection.WebImage.parser(), extensionRegistry));
+              break;
+            }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                partialMatchingImages_ = new java.util.ArrayList<com.google.cloud.vision.v1.WebDetection.WebImage>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              partialMatchingImages_.add(
+                  input.readMessage(com.google.cloud.vision.v1.WebDetection.WebImage.parser(), extensionRegistry));
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1713,6 +1886,12 @@ private static final long serialVersionUID = 0L;
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          fullMatchingImages_ = java.util.Collections.unmodifiableList(fullMatchingImages_);
+        }
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          partialMatchingImages_ = java.util.Collections.unmodifiableList(partialMatchingImages_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -1729,6 +1908,7 @@ private static final long serialVersionUID = 0L;
               com.google.cloud.vision.v1.WebDetection.WebPage.class, com.google.cloud.vision.v1.WebDetection.WebPage.Builder.class);
     }
 
+    private int bitField0_;
     public static final int URL_FIELD_NUMBER = 1;
     private volatile java.lang.Object url_;
     /**
@@ -1775,14 +1955,185 @@ private static final long serialVersionUID = 0L;
     private float score_;
     /**
      * <pre>
-     * Overall relevancy score for the web page.
-     * Not normalized and not comparable across different image queries.
+     * (Deprecated) Overall relevancy score for the web page.
      * </pre>
      *
      * <code>float score = 2;</code>
      */
     public float getScore() {
       return score_;
+    }
+
+    public static final int PAGE_TITLE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object pageTitle_;
+    /**
+     * <pre>
+     * Title for the web page, may contain HTML markups.
+     * </pre>
+     *
+     * <code>string page_title = 3;</code>
+     */
+    public java.lang.String getPageTitle() {
+      java.lang.Object ref = pageTitle_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        pageTitle_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Title for the web page, may contain HTML markups.
+     * </pre>
+     *
+     * <code>string page_title = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPageTitleBytes() {
+      java.lang.Object ref = pageTitle_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        pageTitle_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FULL_MATCHING_IMAGES_FIELD_NUMBER = 4;
+    private java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> fullMatchingImages_;
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> getFullMatchingImagesList() {
+      return fullMatchingImages_;
+    }
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    public java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+        getFullMatchingImagesOrBuilderList() {
+      return fullMatchingImages_;
+    }
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    public int getFullMatchingImagesCount() {
+      return fullMatchingImages_.size();
+    }
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImage getFullMatchingImages(int index) {
+      return fullMatchingImages_.get(index);
+    }
+    /**
+     * <pre>
+     * Fully matching images on the page.
+     * Can include resized copies of the query image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getFullMatchingImagesOrBuilder(
+        int index) {
+      return fullMatchingImages_.get(index);
+    }
+
+    public static final int PARTIAL_MATCHING_IMAGES_FIELD_NUMBER = 5;
+    private java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> partialMatchingImages_;
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> getPartialMatchingImagesList() {
+      return partialMatchingImages_;
+    }
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    public java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+        getPartialMatchingImagesOrBuilderList() {
+      return partialMatchingImages_;
+    }
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    public int getPartialMatchingImagesCount() {
+      return partialMatchingImages_.size();
+    }
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImage getPartialMatchingImages(int index) {
+      return partialMatchingImages_.get(index);
+    }
+    /**
+     * <pre>
+     * Partial matching images on the page.
+     * Those images are similar enough to share some key-point features. For
+     * example an original image will likely have partial matching for its
+     * crops.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getPartialMatchingImagesOrBuilder(
+        int index) {
+      return partialMatchingImages_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1803,6 +2154,15 @@ private static final long serialVersionUID = 0L;
       if (score_ != 0F) {
         output.writeFloat(2, score_);
       }
+      if (!getPageTitleBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, pageTitle_);
+      }
+      for (int i = 0; i < fullMatchingImages_.size(); i++) {
+        output.writeMessage(4, fullMatchingImages_.get(i));
+      }
+      for (int i = 0; i < partialMatchingImages_.size(); i++) {
+        output.writeMessage(5, partialMatchingImages_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1817,6 +2177,17 @@ private static final long serialVersionUID = 0L;
       if (score_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, score_);
+      }
+      if (!getPageTitleBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, pageTitle_);
+      }
+      for (int i = 0; i < fullMatchingImages_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, fullMatchingImages_.get(i));
+      }
+      for (int i = 0; i < partialMatchingImages_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, partialMatchingImages_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1840,6 +2211,12 @@ private static final long serialVersionUID = 0L;
           java.lang.Float.floatToIntBits(getScore())
           == java.lang.Float.floatToIntBits(
               other.getScore()));
+      result = result && getPageTitle()
+          .equals(other.getPageTitle());
+      result = result && getFullMatchingImagesList()
+          .equals(other.getFullMatchingImagesList());
+      result = result && getPartialMatchingImagesList()
+          .equals(other.getPartialMatchingImagesList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1856,6 +2233,16 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + SCORE_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getScore());
+      hash = (37 * hash) + PAGE_TITLE_FIELD_NUMBER;
+      hash = (53 * hash) + getPageTitle().hashCode();
+      if (getFullMatchingImagesCount() > 0) {
+        hash = (37 * hash) + FULL_MATCHING_IMAGES_FIELD_NUMBER;
+        hash = (53 * hash) + getFullMatchingImagesList().hashCode();
+      }
+      if (getPartialMatchingImagesCount() > 0) {
+        hash = (37 * hash) + PARTIAL_MATCHING_IMAGES_FIELD_NUMBER;
+        hash = (53 * hash) + getPartialMatchingImagesList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1985,6 +2372,8 @@ private static final long serialVersionUID = 0L;
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getFullMatchingImagesFieldBuilder();
+          getPartialMatchingImagesFieldBuilder();
         }
       }
       public Builder clear() {
@@ -1993,6 +2382,20 @@ private static final long serialVersionUID = 0L;
 
         score_ = 0F;
 
+        pageTitle_ = "";
+
+        if (fullMatchingImagesBuilder_ == null) {
+          fullMatchingImages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          fullMatchingImagesBuilder_.clear();
+        }
+        if (partialMatchingImagesBuilder_ == null) {
+          partialMatchingImages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          partialMatchingImagesBuilder_.clear();
+        }
         return this;
       }
 
@@ -2015,8 +2418,30 @@ private static final long serialVersionUID = 0L;
 
       public com.google.cloud.vision.v1.WebDetection.WebPage buildPartial() {
         com.google.cloud.vision.v1.WebDetection.WebPage result = new com.google.cloud.vision.v1.WebDetection.WebPage(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.url_ = url_;
         result.score_ = score_;
+        result.pageTitle_ = pageTitle_;
+        if (fullMatchingImagesBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            fullMatchingImages_ = java.util.Collections.unmodifiableList(fullMatchingImages_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.fullMatchingImages_ = fullMatchingImages_;
+        } else {
+          result.fullMatchingImages_ = fullMatchingImagesBuilder_.build();
+        }
+        if (partialMatchingImagesBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+            partialMatchingImages_ = java.util.Collections.unmodifiableList(partialMatchingImages_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
+          result.partialMatchingImages_ = partialMatchingImages_;
+        } else {
+          result.partialMatchingImages_ = partialMatchingImagesBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -2065,6 +2490,62 @@ private static final long serialVersionUID = 0L;
         if (other.getScore() != 0F) {
           setScore(other.getScore());
         }
+        if (!other.getPageTitle().isEmpty()) {
+          pageTitle_ = other.pageTitle_;
+          onChanged();
+        }
+        if (fullMatchingImagesBuilder_ == null) {
+          if (!other.fullMatchingImages_.isEmpty()) {
+            if (fullMatchingImages_.isEmpty()) {
+              fullMatchingImages_ = other.fullMatchingImages_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureFullMatchingImagesIsMutable();
+              fullMatchingImages_.addAll(other.fullMatchingImages_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.fullMatchingImages_.isEmpty()) {
+            if (fullMatchingImagesBuilder_.isEmpty()) {
+              fullMatchingImagesBuilder_.dispose();
+              fullMatchingImagesBuilder_ = null;
+              fullMatchingImages_ = other.fullMatchingImages_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              fullMatchingImagesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getFullMatchingImagesFieldBuilder() : null;
+            } else {
+              fullMatchingImagesBuilder_.addAllMessages(other.fullMatchingImages_);
+            }
+          }
+        }
+        if (partialMatchingImagesBuilder_ == null) {
+          if (!other.partialMatchingImages_.isEmpty()) {
+            if (partialMatchingImages_.isEmpty()) {
+              partialMatchingImages_ = other.partialMatchingImages_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+            } else {
+              ensurePartialMatchingImagesIsMutable();
+              partialMatchingImages_.addAll(other.partialMatchingImages_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.partialMatchingImages_.isEmpty()) {
+            if (partialMatchingImagesBuilder_.isEmpty()) {
+              partialMatchingImagesBuilder_.dispose();
+              partialMatchingImagesBuilder_ = null;
+              partialMatchingImages_ = other.partialMatchingImages_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+              partialMatchingImagesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getPartialMatchingImagesFieldBuilder() : null;
+            } else {
+              partialMatchingImagesBuilder_.addAllMessages(other.partialMatchingImages_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -2091,6 +2572,7 @@ private static final long serialVersionUID = 0L;
         }
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object url_ = "";
       /**
@@ -2184,8 +2666,7 @@ private static final long serialVersionUID = 0L;
       private float score_ ;
       /**
        * <pre>
-       * Overall relevancy score for the web page.
-       * Not normalized and not comparable across different image queries.
+       * (Deprecated) Overall relevancy score for the web page.
        * </pre>
        *
        * <code>float score = 2;</code>
@@ -2195,8 +2676,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Overall relevancy score for the web page.
-       * Not normalized and not comparable across different image queries.
+       * (Deprecated) Overall relevancy score for the web page.
        * </pre>
        *
        * <code>float score = 2;</code>
@@ -2209,8 +2689,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Overall relevancy score for the web page.
-       * Not normalized and not comparable across different image queries.
+       * (Deprecated) Overall relevancy score for the web page.
        * </pre>
        *
        * <code>float score = 2;</code>
@@ -2220,6 +2699,791 @@ private static final long serialVersionUID = 0L;
         score_ = 0F;
         onChanged();
         return this;
+      }
+
+      private java.lang.Object pageTitle_ = "";
+      /**
+       * <pre>
+       * Title for the web page, may contain HTML markups.
+       * </pre>
+       *
+       * <code>string page_title = 3;</code>
+       */
+      public java.lang.String getPageTitle() {
+        java.lang.Object ref = pageTitle_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          pageTitle_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Title for the web page, may contain HTML markups.
+       * </pre>
+       *
+       * <code>string page_title = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPageTitleBytes() {
+        java.lang.Object ref = pageTitle_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          pageTitle_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Title for the web page, may contain HTML markups.
+       * </pre>
+       *
+       * <code>string page_title = 3;</code>
+       */
+      public Builder setPageTitle(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        pageTitle_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Title for the web page, may contain HTML markups.
+       * </pre>
+       *
+       * <code>string page_title = 3;</code>
+       */
+      public Builder clearPageTitle() {
+        
+        pageTitle_ = getDefaultInstance().getPageTitle();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Title for the web page, may contain HTML markups.
+       * </pre>
+       *
+       * <code>string page_title = 3;</code>
+       */
+      public Builder setPageTitleBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        pageTitle_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> fullMatchingImages_ =
+        java.util.Collections.emptyList();
+      private void ensureFullMatchingImagesIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          fullMatchingImages_ = new java.util.ArrayList<com.google.cloud.vision.v1.WebDetection.WebImage>(fullMatchingImages_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> fullMatchingImagesBuilder_;
+
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> getFullMatchingImagesList() {
+        if (fullMatchingImagesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(fullMatchingImages_);
+        } else {
+          return fullMatchingImagesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public int getFullMatchingImagesCount() {
+        if (fullMatchingImagesBuilder_ == null) {
+          return fullMatchingImages_.size();
+        } else {
+          return fullMatchingImagesBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImage getFullMatchingImages(int index) {
+        if (fullMatchingImagesBuilder_ == null) {
+          return fullMatchingImages_.get(index);
+        } else {
+          return fullMatchingImagesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder setFullMatchingImages(
+          int index, com.google.cloud.vision.v1.WebDetection.WebImage value) {
+        if (fullMatchingImagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFullMatchingImagesIsMutable();
+          fullMatchingImages_.set(index, value);
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder setFullMatchingImages(
+          int index, com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+        if (fullMatchingImagesBuilder_ == null) {
+          ensureFullMatchingImagesIsMutable();
+          fullMatchingImages_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder addFullMatchingImages(com.google.cloud.vision.v1.WebDetection.WebImage value) {
+        if (fullMatchingImagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFullMatchingImagesIsMutable();
+          fullMatchingImages_.add(value);
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder addFullMatchingImages(
+          int index, com.google.cloud.vision.v1.WebDetection.WebImage value) {
+        if (fullMatchingImagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFullMatchingImagesIsMutable();
+          fullMatchingImages_.add(index, value);
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder addFullMatchingImages(
+          com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+        if (fullMatchingImagesBuilder_ == null) {
+          ensureFullMatchingImagesIsMutable();
+          fullMatchingImages_.add(builderForValue.build());
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder addFullMatchingImages(
+          int index, com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+        if (fullMatchingImagesBuilder_ == null) {
+          ensureFullMatchingImagesIsMutable();
+          fullMatchingImages_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder addAllFullMatchingImages(
+          java.lang.Iterable<? extends com.google.cloud.vision.v1.WebDetection.WebImage> values) {
+        if (fullMatchingImagesBuilder_ == null) {
+          ensureFullMatchingImagesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, fullMatchingImages_);
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder clearFullMatchingImages() {
+        if (fullMatchingImagesBuilder_ == null) {
+          fullMatchingImages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public Builder removeFullMatchingImages(int index) {
+        if (fullMatchingImagesBuilder_ == null) {
+          ensureFullMatchingImagesIsMutable();
+          fullMatchingImages_.remove(index);
+          onChanged();
+        } else {
+          fullMatchingImagesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImage.Builder getFullMatchingImagesBuilder(
+          int index) {
+        return getFullMatchingImagesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getFullMatchingImagesOrBuilder(
+          int index) {
+        if (fullMatchingImagesBuilder_ == null) {
+          return fullMatchingImages_.get(index);  } else {
+          return fullMatchingImagesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+           getFullMatchingImagesOrBuilderList() {
+        if (fullMatchingImagesBuilder_ != null) {
+          return fullMatchingImagesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(fullMatchingImages_);
+        }
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImage.Builder addFullMatchingImagesBuilder() {
+        return getFullMatchingImagesFieldBuilder().addBuilder(
+            com.google.cloud.vision.v1.WebDetection.WebImage.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImage.Builder addFullMatchingImagesBuilder(
+          int index) {
+        return getFullMatchingImagesFieldBuilder().addBuilder(
+            index, com.google.cloud.vision.v1.WebDetection.WebImage.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Fully matching images on the page.
+       * Can include resized copies of the query image.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
+       */
+      public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage.Builder> 
+           getFullMatchingImagesBuilderList() {
+        return getFullMatchingImagesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+          getFullMatchingImagesFieldBuilder() {
+        if (fullMatchingImagesBuilder_ == null) {
+          fullMatchingImagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder>(
+                  fullMatchingImages_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          fullMatchingImages_ = null;
+        }
+        return fullMatchingImagesBuilder_;
+      }
+
+      private java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> partialMatchingImages_ =
+        java.util.Collections.emptyList();
+      private void ensurePartialMatchingImagesIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          partialMatchingImages_ = new java.util.ArrayList<com.google.cloud.vision.v1.WebDetection.WebImage>(partialMatchingImages_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> partialMatchingImagesBuilder_;
+
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> getPartialMatchingImagesList() {
+        if (partialMatchingImagesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(partialMatchingImages_);
+        } else {
+          return partialMatchingImagesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public int getPartialMatchingImagesCount() {
+        if (partialMatchingImagesBuilder_ == null) {
+          return partialMatchingImages_.size();
+        } else {
+          return partialMatchingImagesBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImage getPartialMatchingImages(int index) {
+        if (partialMatchingImagesBuilder_ == null) {
+          return partialMatchingImages_.get(index);
+        } else {
+          return partialMatchingImagesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder setPartialMatchingImages(
+          int index, com.google.cloud.vision.v1.WebDetection.WebImage value) {
+        if (partialMatchingImagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePartialMatchingImagesIsMutable();
+          partialMatchingImages_.set(index, value);
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder setPartialMatchingImages(
+          int index, com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+        if (partialMatchingImagesBuilder_ == null) {
+          ensurePartialMatchingImagesIsMutable();
+          partialMatchingImages_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder addPartialMatchingImages(com.google.cloud.vision.v1.WebDetection.WebImage value) {
+        if (partialMatchingImagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePartialMatchingImagesIsMutable();
+          partialMatchingImages_.add(value);
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder addPartialMatchingImages(
+          int index, com.google.cloud.vision.v1.WebDetection.WebImage value) {
+        if (partialMatchingImagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePartialMatchingImagesIsMutable();
+          partialMatchingImages_.add(index, value);
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder addPartialMatchingImages(
+          com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+        if (partialMatchingImagesBuilder_ == null) {
+          ensurePartialMatchingImagesIsMutable();
+          partialMatchingImages_.add(builderForValue.build());
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder addPartialMatchingImages(
+          int index, com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+        if (partialMatchingImagesBuilder_ == null) {
+          ensurePartialMatchingImagesIsMutable();
+          partialMatchingImages_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder addAllPartialMatchingImages(
+          java.lang.Iterable<? extends com.google.cloud.vision.v1.WebDetection.WebImage> values) {
+        if (partialMatchingImagesBuilder_ == null) {
+          ensurePartialMatchingImagesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, partialMatchingImages_);
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder clearPartialMatchingImages() {
+        if (partialMatchingImagesBuilder_ == null) {
+          partialMatchingImages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public Builder removePartialMatchingImages(int index) {
+        if (partialMatchingImagesBuilder_ == null) {
+          ensurePartialMatchingImagesIsMutable();
+          partialMatchingImages_.remove(index);
+          onChanged();
+        } else {
+          partialMatchingImagesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImage.Builder getPartialMatchingImagesBuilder(
+          int index) {
+        return getPartialMatchingImagesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getPartialMatchingImagesOrBuilder(
+          int index) {
+        if (partialMatchingImagesBuilder_ == null) {
+          return partialMatchingImages_.get(index);  } else {
+          return partialMatchingImagesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+           getPartialMatchingImagesOrBuilderList() {
+        if (partialMatchingImagesBuilder_ != null) {
+          return partialMatchingImagesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(partialMatchingImages_);
+        }
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImage.Builder addPartialMatchingImagesBuilder() {
+        return getPartialMatchingImagesFieldBuilder().addBuilder(
+            com.google.cloud.vision.v1.WebDetection.WebImage.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public com.google.cloud.vision.v1.WebDetection.WebImage.Builder addPartialMatchingImagesBuilder(
+          int index) {
+        return getPartialMatchingImagesFieldBuilder().addBuilder(
+            index, com.google.cloud.vision.v1.WebDetection.WebImage.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Partial matching images on the page.
+       * Those images are similar enough to share some key-point features. For
+       * example an original image will likely have partial matching for its
+       * crops.
+       * </pre>
+       *
+       * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
+       */
+      public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage.Builder> 
+           getPartialMatchingImagesBuilderList() {
+        return getPartialMatchingImagesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+          getPartialMatchingImagesFieldBuilder() {
+        if (partialMatchingImagesBuilder_ == null) {
+          partialMatchingImagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder>(
+                  partialMatchingImages_,
+                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  getParentForChildren(),
+                  isClean());
+          partialMatchingImages_ = null;
+        }
+        return partialMatchingImagesBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2265,6 +3529,763 @@ private static final long serialVersionUID = 0L;
     }
 
     public com.google.cloud.vision.v1.WebDetection.WebPage getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface WebLabelOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:google.cloud.vision.v1.WebDetection.WebLabel)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Label for extra metadata.
+     * </pre>
+     *
+     * <code>string label = 1;</code>
+     */
+    java.lang.String getLabel();
+    /**
+     * <pre>
+     * Label for extra metadata.
+     * </pre>
+     *
+     * <code>string label = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getLabelBytes();
+
+    /**
+     * <pre>
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+     * For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * </pre>
+     *
+     * <code>string language_code = 2;</code>
+     */
+    java.lang.String getLanguageCode();
+    /**
+     * <pre>
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+     * For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * </pre>
+     *
+     * <code>string language_code = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getLanguageCodeBytes();
+  }
+  /**
+   * <pre>
+   * Label to provide extra metadata for the web detection.
+   * </pre>
+   *
+   * Protobuf type {@code google.cloud.vision.v1.WebDetection.WebLabel}
+   */
+  public  static final class WebLabel extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.WebDetection.WebLabel)
+      WebLabelOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use WebLabel.newBuilder() to construct.
+    private WebLabel(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private WebLabel() {
+      label_ = "";
+      languageCode_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private WebLabel(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              label_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              languageCode_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.google.cloud.vision.v1.WebDetectionProto.internal_static_google_cloud_vision_v1_WebDetection_WebLabel_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.google.cloud.vision.v1.WebDetectionProto.internal_static_google_cloud_vision_v1_WebDetection_WebLabel_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.google.cloud.vision.v1.WebDetection.WebLabel.class, com.google.cloud.vision.v1.WebDetection.WebLabel.Builder.class);
+    }
+
+    public static final int LABEL_FIELD_NUMBER = 1;
+    private volatile java.lang.Object label_;
+    /**
+     * <pre>
+     * Label for extra metadata.
+     * </pre>
+     *
+     * <code>string label = 1;</code>
+     */
+    public java.lang.String getLabel() {
+      java.lang.Object ref = label_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        label_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Label for extra metadata.
+     * </pre>
+     *
+     * <code>string label = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLabelBytes() {
+      java.lang.Object ref = label_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        label_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LANGUAGE_CODE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object languageCode_;
+    /**
+     * <pre>
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+     * For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * </pre>
+     *
+     * <code>string language_code = 2;</code>
+     */
+    public java.lang.String getLanguageCode() {
+      java.lang.Object ref = languageCode_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        languageCode_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+     * For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * </pre>
+     *
+     * <code>string language_code = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLanguageCodeBytes() {
+      java.lang.Object ref = languageCode_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        languageCode_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getLabelBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, label_);
+      }
+      if (!getLanguageCodeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, languageCode_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getLabelBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, label_);
+      }
+      if (!getLanguageCodeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, languageCode_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.google.cloud.vision.v1.WebDetection.WebLabel)) {
+        return super.equals(obj);
+      }
+      com.google.cloud.vision.v1.WebDetection.WebLabel other = (com.google.cloud.vision.v1.WebDetection.WebLabel) obj;
+
+      boolean result = true;
+      result = result && getLabel()
+          .equals(other.getLabel());
+      result = result && getLanguageCode()
+          .equals(other.getLanguageCode());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + LABEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLabel().hashCode();
+      hash = (37 * hash) + LANGUAGE_CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getLanguageCode().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.google.cloud.vision.v1.WebDetection.WebLabel prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Label to provide extra metadata for the web detection.
+     * </pre>
+     *
+     * Protobuf type {@code google.cloud.vision.v1.WebDetection.WebLabel}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:google.cloud.vision.v1.WebDetection.WebLabel)
+        com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.google.cloud.vision.v1.WebDetectionProto.internal_static_google_cloud_vision_v1_WebDetection_WebLabel_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.google.cloud.vision.v1.WebDetectionProto.internal_static_google_cloud_vision_v1_WebDetection_WebLabel_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.google.cloud.vision.v1.WebDetection.WebLabel.class, com.google.cloud.vision.v1.WebDetection.WebLabel.Builder.class);
+      }
+
+      // Construct using com.google.cloud.vision.v1.WebDetection.WebLabel.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        label_ = "";
+
+        languageCode_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.google.cloud.vision.v1.WebDetectionProto.internal_static_google_cloud_vision_v1_WebDetection_WebLabel_descriptor;
+      }
+
+      public com.google.cloud.vision.v1.WebDetection.WebLabel getDefaultInstanceForType() {
+        return com.google.cloud.vision.v1.WebDetection.WebLabel.getDefaultInstance();
+      }
+
+      public com.google.cloud.vision.v1.WebDetection.WebLabel build() {
+        com.google.cloud.vision.v1.WebDetection.WebLabel result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.google.cloud.vision.v1.WebDetection.WebLabel buildPartial() {
+        com.google.cloud.vision.v1.WebDetection.WebLabel result = new com.google.cloud.vision.v1.WebDetection.WebLabel(this);
+        result.label_ = label_;
+        result.languageCode_ = languageCode_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.google.cloud.vision.v1.WebDetection.WebLabel) {
+          return mergeFrom((com.google.cloud.vision.v1.WebDetection.WebLabel)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.google.cloud.vision.v1.WebDetection.WebLabel other) {
+        if (other == com.google.cloud.vision.v1.WebDetection.WebLabel.getDefaultInstance()) return this;
+        if (!other.getLabel().isEmpty()) {
+          label_ = other.label_;
+          onChanged();
+        }
+        if (!other.getLanguageCode().isEmpty()) {
+          languageCode_ = other.languageCode_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.cloud.vision.v1.WebDetection.WebLabel parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.google.cloud.vision.v1.WebDetection.WebLabel) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object label_ = "";
+      /**
+       * <pre>
+       * Label for extra metadata.
+       * </pre>
+       *
+       * <code>string label = 1;</code>
+       */
+      public java.lang.String getLabel() {
+        java.lang.Object ref = label_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          label_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Label for extra metadata.
+       * </pre>
+       *
+       * <code>string label = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLabelBytes() {
+        java.lang.Object ref = label_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          label_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Label for extra metadata.
+       * </pre>
+       *
+       * <code>string label = 1;</code>
+       */
+      public Builder setLabel(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        label_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Label for extra metadata.
+       * </pre>
+       *
+       * <code>string label = 1;</code>
+       */
+      public Builder clearLabel() {
+        
+        label_ = getDefaultInstance().getLabel();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Label for extra metadata.
+       * </pre>
+       *
+       * <code>string label = 1;</code>
+       */
+      public Builder setLabelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        label_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object languageCode_ = "";
+      /**
+       * <pre>
+       * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+       * For more information, see
+       * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+       * </pre>
+       *
+       * <code>string language_code = 2;</code>
+       */
+      public java.lang.String getLanguageCode() {
+        java.lang.Object ref = languageCode_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          languageCode_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+       * For more information, see
+       * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+       * </pre>
+       *
+       * <code>string language_code = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLanguageCodeBytes() {
+        java.lang.Object ref = languageCode_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          languageCode_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+       * For more information, see
+       * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+       * </pre>
+       *
+       * <code>string language_code = 2;</code>
+       */
+      public Builder setLanguageCode(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        languageCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+       * For more information, see
+       * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+       * </pre>
+       *
+       * <code>string language_code = 2;</code>
+       */
+      public Builder clearLanguageCode() {
+        
+        languageCode_ = getDefaultInstance().getLanguageCode();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+       * For more information, see
+       * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+       * </pre>
+       *
+       * <code>string language_code = 2;</code>
+       */
+      public Builder setLanguageCodeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        languageCode_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:google.cloud.vision.v1.WebDetection.WebLabel)
+    }
+
+    // @@protoc_insertion_point(class_scope:google.cloud.vision.v1.WebDetection.WebLabel)
+    private static final com.google.cloud.vision.v1.WebDetection.WebLabel DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.google.cloud.vision.v1.WebDetection.WebLabel();
+    }
+
+    public static com.google.cloud.vision.v1.WebDetection.WebLabel getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<WebLabel>
+        PARSER = new com.google.protobuf.AbstractParser<WebLabel>() {
+      public WebLabel parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new WebLabel(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<WebLabel> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<WebLabel> getParserForType() {
+      return PARSER;
+    }
+
+    public com.google.cloud.vision.v1.WebDetection.WebLabel getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2330,8 +4351,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -2342,8 +4362,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -2355,8 +4374,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -2367,8 +4385,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -2379,8 +4396,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Fully matching images from the Internet.
-   * They're definite neardups and most often a copy of the query image with
-   * merely a size change.
+   * Can include resized copies of the query image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -2510,6 +4526,116 @@ private static final long serialVersionUID = 0L;
     return pagesWithMatchingImages_.get(index);
   }
 
+  public static final int VISUALLY_SIMILAR_IMAGES_FIELD_NUMBER = 6;
+  private java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> visuallySimilarImages_;
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> getVisuallySimilarImagesList() {
+    return visuallySimilarImages_;
+  }
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  public java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+      getVisuallySimilarImagesOrBuilderList() {
+    return visuallySimilarImages_;
+  }
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  public int getVisuallySimilarImagesCount() {
+    return visuallySimilarImages_.size();
+  }
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  public com.google.cloud.vision.v1.WebDetection.WebImage getVisuallySimilarImages(int index) {
+    return visuallySimilarImages_.get(index);
+  }
+  /**
+   * <pre>
+   * The visually similar image results.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+   */
+  public com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getVisuallySimilarImagesOrBuilder(
+      int index) {
+    return visuallySimilarImages_.get(index);
+  }
+
+  public static final int BEST_GUESS_LABELS_FIELD_NUMBER = 8;
+  private java.util.List<com.google.cloud.vision.v1.WebDetection.WebLabel> bestGuessLabels_;
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  public java.util.List<com.google.cloud.vision.v1.WebDetection.WebLabel> getBestGuessLabelsList() {
+    return bestGuessLabels_;
+  }
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  public java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder> 
+      getBestGuessLabelsOrBuilderList() {
+    return bestGuessLabels_;
+  }
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  public int getBestGuessLabelsCount() {
+    return bestGuessLabels_.size();
+  }
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  public com.google.cloud.vision.v1.WebDetection.WebLabel getBestGuessLabels(int index) {
+    return bestGuessLabels_.get(index);
+  }
+  /**
+   * <pre>
+   * Best guess text labels for the request image.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+   */
+  public com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder getBestGuessLabelsOrBuilder(
+      int index) {
+    return bestGuessLabels_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -2533,6 +4659,12 @@ private static final long serialVersionUID = 0L;
     }
     for (int i = 0; i < pagesWithMatchingImages_.size(); i++) {
       output.writeMessage(4, pagesWithMatchingImages_.get(i));
+    }
+    for (int i = 0; i < visuallySimilarImages_.size(); i++) {
+      output.writeMessage(6, visuallySimilarImages_.get(i));
+    }
+    for (int i = 0; i < bestGuessLabels_.size(); i++) {
+      output.writeMessage(8, bestGuessLabels_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -2558,6 +4690,14 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, pagesWithMatchingImages_.get(i));
     }
+    for (int i = 0; i < visuallySimilarImages_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, visuallySimilarImages_.get(i));
+    }
+    for (int i = 0; i < bestGuessLabels_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(8, bestGuessLabels_.get(i));
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -2582,6 +4722,10 @@ private static final long serialVersionUID = 0L;
         .equals(other.getPartialMatchingImagesList());
     result = result && getPagesWithMatchingImagesList()
         .equals(other.getPagesWithMatchingImagesList());
+    result = result && getVisuallySimilarImagesList()
+        .equals(other.getVisuallySimilarImagesList());
+    result = result && getBestGuessLabelsList()
+        .equals(other.getBestGuessLabelsList());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -2608,6 +4752,14 @@ private static final long serialVersionUID = 0L;
     if (getPagesWithMatchingImagesCount() > 0) {
       hash = (37 * hash) + PAGES_WITH_MATCHING_IMAGES_FIELD_NUMBER;
       hash = (53 * hash) + getPagesWithMatchingImagesList().hashCode();
+    }
+    if (getVisuallySimilarImagesCount() > 0) {
+      hash = (37 * hash) + VISUALLY_SIMILAR_IMAGES_FIELD_NUMBER;
+      hash = (53 * hash) + getVisuallySimilarImagesList().hashCode();
+    }
+    if (getBestGuessLabelsCount() > 0) {
+      hash = (37 * hash) + BEST_GUESS_LABELS_FIELD_NUMBER;
+      hash = (53 * hash) + getBestGuessLabelsList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -2742,6 +4894,8 @@ private static final long serialVersionUID = 0L;
         getFullMatchingImagesFieldBuilder();
         getPartialMatchingImagesFieldBuilder();
         getPagesWithMatchingImagesFieldBuilder();
+        getVisuallySimilarImagesFieldBuilder();
+        getBestGuessLabelsFieldBuilder();
       }
     }
     public Builder clear() {
@@ -2769,6 +4923,18 @@ private static final long serialVersionUID = 0L;
         bitField0_ = (bitField0_ & ~0x00000008);
       } else {
         pagesWithMatchingImagesBuilder_.clear();
+      }
+      if (visuallySimilarImagesBuilder_ == null) {
+        visuallySimilarImages_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+      } else {
+        visuallySimilarImagesBuilder_.clear();
+      }
+      if (bestGuessLabelsBuilder_ == null) {
+        bestGuessLabels_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);
+      } else {
+        bestGuessLabelsBuilder_.clear();
       }
       return this;
     }
@@ -2828,6 +4994,24 @@ private static final long serialVersionUID = 0L;
         result.pagesWithMatchingImages_ = pagesWithMatchingImages_;
       } else {
         result.pagesWithMatchingImages_ = pagesWithMatchingImagesBuilder_.build();
+      }
+      if (visuallySimilarImagesBuilder_ == null) {
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          visuallySimilarImages_ = java.util.Collections.unmodifiableList(visuallySimilarImages_);
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.visuallySimilarImages_ = visuallySimilarImages_;
+      } else {
+        result.visuallySimilarImages_ = visuallySimilarImagesBuilder_.build();
+      }
+      if (bestGuessLabelsBuilder_ == null) {
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          bestGuessLabels_ = java.util.Collections.unmodifiableList(bestGuessLabels_);
+          bitField0_ = (bitField0_ & ~0x00000020);
+        }
+        result.bestGuessLabels_ = bestGuessLabels_;
+      } else {
+        result.bestGuessLabels_ = bestGuessLabelsBuilder_.build();
       }
       onBuilt();
       return result;
@@ -2971,6 +5155,58 @@ private static final long serialVersionUID = 0L;
                  getPagesWithMatchingImagesFieldBuilder() : null;
           } else {
             pagesWithMatchingImagesBuilder_.addAllMessages(other.pagesWithMatchingImages_);
+          }
+        }
+      }
+      if (visuallySimilarImagesBuilder_ == null) {
+        if (!other.visuallySimilarImages_.isEmpty()) {
+          if (visuallySimilarImages_.isEmpty()) {
+            visuallySimilarImages_ = other.visuallySimilarImages_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureVisuallySimilarImagesIsMutable();
+            visuallySimilarImages_.addAll(other.visuallySimilarImages_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.visuallySimilarImages_.isEmpty()) {
+          if (visuallySimilarImagesBuilder_.isEmpty()) {
+            visuallySimilarImagesBuilder_.dispose();
+            visuallySimilarImagesBuilder_ = null;
+            visuallySimilarImages_ = other.visuallySimilarImages_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+            visuallySimilarImagesBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getVisuallySimilarImagesFieldBuilder() : null;
+          } else {
+            visuallySimilarImagesBuilder_.addAllMessages(other.visuallySimilarImages_);
+          }
+        }
+      }
+      if (bestGuessLabelsBuilder_ == null) {
+        if (!other.bestGuessLabels_.isEmpty()) {
+          if (bestGuessLabels_.isEmpty()) {
+            bestGuessLabels_ = other.bestGuessLabels_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+          } else {
+            ensureBestGuessLabelsIsMutable();
+            bestGuessLabels_.addAll(other.bestGuessLabels_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.bestGuessLabels_.isEmpty()) {
+          if (bestGuessLabelsBuilder_.isEmpty()) {
+            bestGuessLabelsBuilder_.dispose();
+            bestGuessLabelsBuilder_ = null;
+            bestGuessLabels_ = other.bestGuessLabels_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+            bestGuessLabelsBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getBestGuessLabelsFieldBuilder() : null;
+          } else {
+            bestGuessLabelsBuilder_.addAllMessages(other.bestGuessLabels_);
           }
         }
       }
@@ -3329,8 +5565,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3345,8 +5580,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3361,8 +5595,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3377,8 +5610,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3400,8 +5632,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3420,8 +5651,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3442,8 +5672,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3465,8 +5694,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3485,8 +5713,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3505,8 +5732,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3526,8 +5752,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3545,8 +5770,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3564,8 +5788,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3577,8 +5800,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3593,8 +5815,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3610,8 +5831,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3623,8 +5843,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -3637,8 +5856,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Fully matching images from the Internet.
-     * They're definite neardups and most often a copy of the query image with
-     * merely a size change.
+     * Can include resized copies of the query image.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
@@ -4320,6 +6538,630 @@ private static final long serialVersionUID = 0L;
         pagesWithMatchingImages_ = null;
       }
       return pagesWithMatchingImagesBuilder_;
+    }
+
+    private java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> visuallySimilarImages_ =
+      java.util.Collections.emptyList();
+    private void ensureVisuallySimilarImagesIsMutable() {
+      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        visuallySimilarImages_ = new java.util.ArrayList<com.google.cloud.vision.v1.WebDetection.WebImage>(visuallySimilarImages_);
+        bitField0_ |= 0x00000010;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> visuallySimilarImagesBuilder_;
+
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage> getVisuallySimilarImagesList() {
+      if (visuallySimilarImagesBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(visuallySimilarImages_);
+      } else {
+        return visuallySimilarImagesBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public int getVisuallySimilarImagesCount() {
+      if (visuallySimilarImagesBuilder_ == null) {
+        return visuallySimilarImages_.size();
+      } else {
+        return visuallySimilarImagesBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImage getVisuallySimilarImages(int index) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        return visuallySimilarImages_.get(index);
+      } else {
+        return visuallySimilarImagesBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder setVisuallySimilarImages(
+        int index, com.google.cloud.vision.v1.WebDetection.WebImage value) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureVisuallySimilarImagesIsMutable();
+        visuallySimilarImages_.set(index, value);
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder setVisuallySimilarImages(
+        int index, com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        ensureVisuallySimilarImagesIsMutable();
+        visuallySimilarImages_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder addVisuallySimilarImages(com.google.cloud.vision.v1.WebDetection.WebImage value) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureVisuallySimilarImagesIsMutable();
+        visuallySimilarImages_.add(value);
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder addVisuallySimilarImages(
+        int index, com.google.cloud.vision.v1.WebDetection.WebImage value) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureVisuallySimilarImagesIsMutable();
+        visuallySimilarImages_.add(index, value);
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder addVisuallySimilarImages(
+        com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        ensureVisuallySimilarImagesIsMutable();
+        visuallySimilarImages_.add(builderForValue.build());
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder addVisuallySimilarImages(
+        int index, com.google.cloud.vision.v1.WebDetection.WebImage.Builder builderForValue) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        ensureVisuallySimilarImagesIsMutable();
+        visuallySimilarImages_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder addAllVisuallySimilarImages(
+        java.lang.Iterable<? extends com.google.cloud.vision.v1.WebDetection.WebImage> values) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        ensureVisuallySimilarImagesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, visuallySimilarImages_);
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder clearVisuallySimilarImages() {
+      if (visuallySimilarImagesBuilder_ == null) {
+        visuallySimilarImages_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public Builder removeVisuallySimilarImages(int index) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        ensureVisuallySimilarImagesIsMutable();
+        visuallySimilarImages_.remove(index);
+        onChanged();
+      } else {
+        visuallySimilarImagesBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImage.Builder getVisuallySimilarImagesBuilder(
+        int index) {
+      return getVisuallySimilarImagesFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder getVisuallySimilarImagesOrBuilder(
+        int index) {
+      if (visuallySimilarImagesBuilder_ == null) {
+        return visuallySimilarImages_.get(index);  } else {
+        return visuallySimilarImagesBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+         getVisuallySimilarImagesOrBuilderList() {
+      if (visuallySimilarImagesBuilder_ != null) {
+        return visuallySimilarImagesBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(visuallySimilarImages_);
+      }
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImage.Builder addVisuallySimilarImagesBuilder() {
+      return getVisuallySimilarImagesFieldBuilder().addBuilder(
+          com.google.cloud.vision.v1.WebDetection.WebImage.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebImage.Builder addVisuallySimilarImagesBuilder(
+        int index) {
+      return getVisuallySimilarImagesFieldBuilder().addBuilder(
+          index, com.google.cloud.vision.v1.WebDetection.WebImage.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * The visually similar image results.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+     */
+    public java.util.List<com.google.cloud.vision.v1.WebDetection.WebImage.Builder> 
+         getVisuallySimilarImagesBuilderList() {
+      return getVisuallySimilarImagesFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder> 
+        getVisuallySimilarImagesFieldBuilder() {
+      if (visuallySimilarImagesBuilder_ == null) {
+        visuallySimilarImagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.google.cloud.vision.v1.WebDetection.WebImage, com.google.cloud.vision.v1.WebDetection.WebImage.Builder, com.google.cloud.vision.v1.WebDetection.WebImageOrBuilder>(
+                visuallySimilarImages_,
+                ((bitField0_ & 0x00000010) == 0x00000010),
+                getParentForChildren(),
+                isClean());
+        visuallySimilarImages_ = null;
+      }
+      return visuallySimilarImagesBuilder_;
+    }
+
+    private java.util.List<com.google.cloud.vision.v1.WebDetection.WebLabel> bestGuessLabels_ =
+      java.util.Collections.emptyList();
+    private void ensureBestGuessLabelsIsMutable() {
+      if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+        bestGuessLabels_ = new java.util.ArrayList<com.google.cloud.vision.v1.WebDetection.WebLabel>(bestGuessLabels_);
+        bitField0_ |= 0x00000020;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.cloud.vision.v1.WebDetection.WebLabel, com.google.cloud.vision.v1.WebDetection.WebLabel.Builder, com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder> bestGuessLabelsBuilder_;
+
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public java.util.List<com.google.cloud.vision.v1.WebDetection.WebLabel> getBestGuessLabelsList() {
+      if (bestGuessLabelsBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(bestGuessLabels_);
+      } else {
+        return bestGuessLabelsBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public int getBestGuessLabelsCount() {
+      if (bestGuessLabelsBuilder_ == null) {
+        return bestGuessLabels_.size();
+      } else {
+        return bestGuessLabelsBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebLabel getBestGuessLabels(int index) {
+      if (bestGuessLabelsBuilder_ == null) {
+        return bestGuessLabels_.get(index);
+      } else {
+        return bestGuessLabelsBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder setBestGuessLabels(
+        int index, com.google.cloud.vision.v1.WebDetection.WebLabel value) {
+      if (bestGuessLabelsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureBestGuessLabelsIsMutable();
+        bestGuessLabels_.set(index, value);
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder setBestGuessLabels(
+        int index, com.google.cloud.vision.v1.WebDetection.WebLabel.Builder builderForValue) {
+      if (bestGuessLabelsBuilder_ == null) {
+        ensureBestGuessLabelsIsMutable();
+        bestGuessLabels_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder addBestGuessLabels(com.google.cloud.vision.v1.WebDetection.WebLabel value) {
+      if (bestGuessLabelsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureBestGuessLabelsIsMutable();
+        bestGuessLabels_.add(value);
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder addBestGuessLabels(
+        int index, com.google.cloud.vision.v1.WebDetection.WebLabel value) {
+      if (bestGuessLabelsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureBestGuessLabelsIsMutable();
+        bestGuessLabels_.add(index, value);
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder addBestGuessLabels(
+        com.google.cloud.vision.v1.WebDetection.WebLabel.Builder builderForValue) {
+      if (bestGuessLabelsBuilder_ == null) {
+        ensureBestGuessLabelsIsMutable();
+        bestGuessLabels_.add(builderForValue.build());
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder addBestGuessLabels(
+        int index, com.google.cloud.vision.v1.WebDetection.WebLabel.Builder builderForValue) {
+      if (bestGuessLabelsBuilder_ == null) {
+        ensureBestGuessLabelsIsMutable();
+        bestGuessLabels_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder addAllBestGuessLabels(
+        java.lang.Iterable<? extends com.google.cloud.vision.v1.WebDetection.WebLabel> values) {
+      if (bestGuessLabelsBuilder_ == null) {
+        ensureBestGuessLabelsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, bestGuessLabels_);
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder clearBestGuessLabels() {
+      if (bestGuessLabelsBuilder_ == null) {
+        bestGuessLabels_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public Builder removeBestGuessLabels(int index) {
+      if (bestGuessLabelsBuilder_ == null) {
+        ensureBestGuessLabelsIsMutable();
+        bestGuessLabels_.remove(index);
+        onChanged();
+      } else {
+        bestGuessLabelsBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebLabel.Builder getBestGuessLabelsBuilder(
+        int index) {
+      return getBestGuessLabelsFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder getBestGuessLabelsOrBuilder(
+        int index) {
+      if (bestGuessLabelsBuilder_ == null) {
+        return bestGuessLabels_.get(index);  } else {
+        return bestGuessLabelsBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public java.util.List<? extends com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder> 
+         getBestGuessLabelsOrBuilderList() {
+      if (bestGuessLabelsBuilder_ != null) {
+        return bestGuessLabelsBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(bestGuessLabels_);
+      }
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebLabel.Builder addBestGuessLabelsBuilder() {
+      return getBestGuessLabelsFieldBuilder().addBuilder(
+          com.google.cloud.vision.v1.WebDetection.WebLabel.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetection.WebLabel.Builder addBestGuessLabelsBuilder(
+        int index) {
+      return getBestGuessLabelsFieldBuilder().addBuilder(
+          index, com.google.cloud.vision.v1.WebDetection.WebLabel.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Best guess text labels for the request image.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
+     */
+    public java.util.List<com.google.cloud.vision.v1.WebDetection.WebLabel.Builder> 
+         getBestGuessLabelsBuilderList() {
+      return getBestGuessLabelsFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.cloud.vision.v1.WebDetection.WebLabel, com.google.cloud.vision.v1.WebDetection.WebLabel.Builder, com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder> 
+        getBestGuessLabelsFieldBuilder() {
+      if (bestGuessLabelsBuilder_ == null) {
+        bestGuessLabelsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.google.cloud.vision.v1.WebDetection.WebLabel, com.google.cloud.vision.v1.WebDetection.WebLabel.Builder, com.google.cloud.vision.v1.WebDetection.WebLabelOrBuilder>(
+                bestGuessLabels_,
+                ((bitField0_ & 0x00000020) == 0x00000020),
+                getParentForChildren(),
+                isClean());
+        bestGuessLabels_ = null;
+      }
+      return bestGuessLabelsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

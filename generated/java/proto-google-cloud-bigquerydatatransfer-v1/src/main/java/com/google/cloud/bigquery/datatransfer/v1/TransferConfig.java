@@ -11,6 +11,7 @@ package com.google.cloud.bigquery.datatransfer.v1;
  * When a new transfer configuration is created, the specified
  * `destination_dataset_id` is created when needed and shared with the
  * appropriate data source service account.
+ * Next id: 20
  * </pre>
  *
  * Protobuf type {@code google.cloud.bigquery.datatransfer.v1.TransferConfig}
@@ -589,6 +590,8 @@ private static final long serialVersionUID = 0L;
    * Output only. Unique ID of the user on whose behalf transfer is done.
    * Applicable only to data sources that do not support service accounts.
    * When set to 0, the data source service account credentials are used.
+   * May be negative. Note, that this identifier is not stable.
+   * It may change over time even for the same user.
    * </pre>
    *
    * <code>int64 user_id = 11;</code>
@@ -940,6 +943,7 @@ private static final long serialVersionUID = 0L;
    * When a new transfer configuration is created, the specified
    * `destination_dataset_id` is created when needed and shared with the
    * appropriate data source service account.
+   * Next id: 20
    * </pre>
    *
    * Protobuf type {@code google.cloud.bigquery.datatransfer.v1.TransferConfig}
@@ -2323,6 +2327,8 @@ private static final long serialVersionUID = 0L;
      * Output only. Unique ID of the user on whose behalf transfer is done.
      * Applicable only to data sources that do not support service accounts.
      * When set to 0, the data source service account credentials are used.
+     * May be negative. Note, that this identifier is not stable.
+     * It may change over time even for the same user.
      * </pre>
      *
      * <code>int64 user_id = 11;</code>
@@ -2335,6 +2341,8 @@ private static final long serialVersionUID = 0L;
      * Output only. Unique ID of the user on whose behalf transfer is done.
      * Applicable only to data sources that do not support service accounts.
      * When set to 0, the data source service account credentials are used.
+     * May be negative. Note, that this identifier is not stable.
+     * It may change over time even for the same user.
      * </pre>
      *
      * <code>int64 user_id = 11;</code>
@@ -2350,6 +2358,8 @@ private static final long serialVersionUID = 0L;
      * Output only. Unique ID of the user on whose behalf transfer is done.
      * Applicable only to data sources that do not support service accounts.
      * When set to 0, the data source service account credentials are used.
+     * May be negative. Note, that this identifier is not stable.
+     * It may change over time even for the same user.
      * </pre>
      *
      * <code>int64 user_id = 11;</code>

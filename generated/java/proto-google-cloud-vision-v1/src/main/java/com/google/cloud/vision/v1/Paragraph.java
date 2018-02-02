@@ -21,6 +21,7 @@ private static final long serialVersionUID = 0L;
   }
   private Paragraph() {
     words_ = java.util.Collections.emptyList();
+    confidence_ = 0F;
   }
 
   @java.lang.Override
@@ -84,6 +85,11 @@ private static final long serialVersionUID = 0L;
             }
             words_.add(
                 input.readMessage(com.google.cloud.vision.v1.Word.parser(), extensionRegistry));
+            break;
+          }
+          case 37: {
+
+            confidence_ = input.readFloat();
             break;
           }
         }
@@ -277,6 +283,19 @@ private static final long serialVersionUID = 0L;
     return words_.get(index);
   }
 
+  public static final int CONFIDENCE_FIELD_NUMBER = 4;
+  private float confidence_;
+  /**
+   * <pre>
+   * Confidence of the OCR results for the paragraph. Range [0, 1].
+   * </pre>
+   *
+   * <code>float confidence = 4;</code>
+   */
+  public float getConfidence() {
+    return confidence_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -298,6 +317,9 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < words_.size(); i++) {
       output.writeMessage(3, words_.get(i));
     }
+    if (confidence_ != 0F) {
+      output.writeFloat(4, confidence_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -317,6 +339,10 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < words_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, words_.get(i));
+    }
+    if (confidence_ != 0F) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(4, confidence_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -346,6 +372,10 @@ private static final long serialVersionUID = 0L;
     }
     result = result && getWordsList()
         .equals(other.getWordsList());
+    result = result && (
+        java.lang.Float.floatToIntBits(getConfidence())
+        == java.lang.Float.floatToIntBits(
+            other.getConfidence()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -369,6 +399,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + WORDS_FIELD_NUMBER;
       hash = (53 * hash) + getWordsList().hashCode();
     }
+    hash = (37 * hash) + CONFIDENCE_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getConfidence());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -521,6 +554,8 @@ private static final long serialVersionUID = 0L;
       } else {
         wordsBuilder_.clear();
       }
+      confidence_ = 0F;
+
       return this;
     }
 
@@ -564,6 +599,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.words_ = wordsBuilder_.build();
       }
+      result.confidence_ = confidence_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -637,6 +673,9 @@ private static final long serialVersionUID = 0L;
             wordsBuilder_.addAllMessages(other.words_);
           }
         }
+      }
+      if (other.getConfidence() != 0F) {
+        setConfidence(other.getConfidence());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1408,6 +1447,44 @@ private static final long serialVersionUID = 0L;
         words_ = null;
       }
       return wordsBuilder_;
+    }
+
+    private float confidence_ ;
+    /**
+     * <pre>
+     * Confidence of the OCR results for the paragraph. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public float getConfidence() {
+      return confidence_;
+    }
+    /**
+     * <pre>
+     * Confidence of the OCR results for the paragraph. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public Builder setConfidence(float value) {
+      
+      confidence_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Confidence of the OCR results for the paragraph. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public Builder clearConfidence() {
+      
+      confidence_ = 0F;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

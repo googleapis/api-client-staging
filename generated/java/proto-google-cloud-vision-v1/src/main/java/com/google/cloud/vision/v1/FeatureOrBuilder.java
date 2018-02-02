@@ -26,10 +26,33 @@ public interface FeatureOrBuilder extends
 
   /**
    * <pre>
-   * Maximum number of results of this type.
+   * Maximum number of results of this type. Does not apply to
+   * `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
    * </pre>
    *
    * <code>int32 max_results = 2;</code>
    */
   int getMaxResults();
+
+  /**
+   * <pre>
+   * Model to use for the feature.
+   * Supported values: "builtin/stable" (the default if unset) and
+   * "builtin/latest".
+   * </pre>
+   *
+   * <code>string model = 3;</code>
+   */
+  java.lang.String getModel();
+  /**
+   * <pre>
+   * Model to use for the feature.
+   * Supported values: "builtin/stable" (the default if unset) and
+   * "builtin/latest".
+   * </pre>
+   *
+   * <code>string model = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getModelBytes();
 }

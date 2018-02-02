@@ -26,6 +26,7 @@ private static final long serialVersionUID = 0L;
     spoof_ = 0;
     medical_ = 0;
     violence_ = 0;
+    racy_ = 0;
   }
 
   @java.lang.Override
@@ -80,6 +81,12 @@ private static final long serialVersionUID = 0L;
             violence_ = rawValue;
             break;
           }
+          case 72: {
+            int rawValue = input.readEnum();
+
+            racy_ = rawValue;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -108,7 +115,9 @@ private static final long serialVersionUID = 0L;
   private int adult_;
   /**
    * <pre>
-   * Represents the adult content likelihood for the image.
+   * Represents the adult content likelihood for the image. Adult content may
+   * contain elements such as nudity, pornographic images or cartoons, or
+   * sexual activities.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -118,7 +127,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Represents the adult content likelihood for the image.
+   * Represents the adult content likelihood for the image. Adult content may
+   * contain elements such as nudity, pornographic images or cartoons, or
+   * sexual activities.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -184,7 +195,7 @@ private static final long serialVersionUID = 0L;
   private int violence_;
   /**
    * <pre>
-   * Violence likelihood.
+   * Likelihood that this image contains violent content.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
@@ -194,13 +205,43 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Violence likelihood.
+   * Likelihood that this image contains violent content.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getViolence() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(violence_);
+    return result == null ? com.google.cloud.vision.v1.Likelihood.UNRECOGNIZED : result;
+  }
+
+  public static final int RACY_FIELD_NUMBER = 9;
+  private int racy_;
+  /**
+   * <pre>
+   * Likelihood that the request image contains racy content. Racy content may
+   * include (but is not limited to) skimpy or sheer clothing, strategically
+   * covered nudity, lewd or provocative poses, or close-ups of sensitive
+   * body areas.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+   */
+  public int getRacyValue() {
+    return racy_;
+  }
+  /**
+   * <pre>
+   * Likelihood that the request image contains racy content. Racy content may
+   * include (but is not limited to) skimpy or sheer clothing, strategically
+   * covered nudity, lewd or provocative poses, or close-ups of sensitive
+   * body areas.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+   */
+  public com.google.cloud.vision.v1.Likelihood getRacy() {
+    com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(racy_);
     return result == null ? com.google.cloud.vision.v1.Likelihood.UNRECOGNIZED : result;
   }
 
@@ -228,6 +269,9 @@ private static final long serialVersionUID = 0L;
     if (violence_ != com.google.cloud.vision.v1.Likelihood.UNKNOWN.getNumber()) {
       output.writeEnum(4, violence_);
     }
+    if (racy_ != com.google.cloud.vision.v1.Likelihood.UNKNOWN.getNumber()) {
+      output.writeEnum(9, racy_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -252,6 +296,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(4, violence_);
     }
+    if (racy_ != com.google.cloud.vision.v1.Likelihood.UNKNOWN.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(9, racy_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -272,6 +320,7 @@ private static final long serialVersionUID = 0L;
     result = result && spoof_ == other.spoof_;
     result = result && medical_ == other.medical_;
     result = result && violence_ == other.violence_;
+    result = result && racy_ == other.racy_;
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -291,6 +340,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + medical_;
     hash = (37 * hash) + VIOLENCE_FIELD_NUMBER;
     hash = (53 * hash) + violence_;
+    hash = (37 * hash) + RACY_FIELD_NUMBER;
+    hash = (53 * hash) + racy_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -434,6 +485,8 @@ private static final long serialVersionUID = 0L;
 
       violence_ = 0;
 
+      racy_ = 0;
+
       return this;
     }
 
@@ -460,6 +513,7 @@ private static final long serialVersionUID = 0L;
       result.spoof_ = spoof_;
       result.medical_ = medical_;
       result.violence_ = violence_;
+      result.racy_ = racy_;
       onBuilt();
       return result;
     }
@@ -513,6 +567,9 @@ private static final long serialVersionUID = 0L;
       if (other.violence_ != 0) {
         setViolenceValue(other.getViolenceValue());
       }
+      if (other.racy_ != 0) {
+        setRacyValue(other.getRacyValue());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -543,7 +600,9 @@ private static final long serialVersionUID = 0L;
     private int adult_ = 0;
     /**
      * <pre>
-     * Represents the adult content likelihood for the image.
+     * Represents the adult content likelihood for the image. Adult content may
+     * contain elements such as nudity, pornographic images or cartoons, or
+     * sexual activities.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -553,7 +612,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Represents the adult content likelihood for the image.
+     * Represents the adult content likelihood for the image. Adult content may
+     * contain elements such as nudity, pornographic images or cartoons, or
+     * sexual activities.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -565,7 +626,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Represents the adult content likelihood for the image.
+     * Represents the adult content likelihood for the image. Adult content may
+     * contain elements such as nudity, pornographic images or cartoons, or
+     * sexual activities.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -576,7 +639,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Represents the adult content likelihood for the image.
+     * Represents the adult content likelihood for the image. Adult content may
+     * contain elements such as nudity, pornographic images or cartoons, or
+     * sexual activities.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -592,7 +657,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Represents the adult content likelihood for the image.
+     * Represents the adult content likelihood for the image. Adult content may
+     * contain elements such as nudity, pornographic images or cartoons, or
+     * sexual activities.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -745,7 +812,7 @@ private static final long serialVersionUID = 0L;
     private int violence_ = 0;
     /**
      * <pre>
-     * Violence likelihood.
+     * Likelihood that this image contains violent content.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
@@ -755,7 +822,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Violence likelihood.
+     * Likelihood that this image contains violent content.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
@@ -767,7 +834,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Violence likelihood.
+     * Likelihood that this image contains violent content.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
@@ -778,7 +845,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Violence likelihood.
+     * Likelihood that this image contains violent content.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
@@ -794,7 +861,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Violence likelihood.
+     * Likelihood that this image contains violent content.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
@@ -802,6 +869,85 @@ private static final long serialVersionUID = 0L;
     public Builder clearViolence() {
       
       violence_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private int racy_ = 0;
+    /**
+     * <pre>
+     * Likelihood that the request image contains racy content. Racy content may
+     * include (but is not limited to) skimpy or sheer clothing, strategically
+     * covered nudity, lewd or provocative poses, or close-ups of sensitive
+     * body areas.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+     */
+    public int getRacyValue() {
+      return racy_;
+    }
+    /**
+     * <pre>
+     * Likelihood that the request image contains racy content. Racy content may
+     * include (but is not limited to) skimpy or sheer clothing, strategically
+     * covered nudity, lewd or provocative poses, or close-ups of sensitive
+     * body areas.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+     */
+    public Builder setRacyValue(int value) {
+      racy_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Likelihood that the request image contains racy content. Racy content may
+     * include (but is not limited to) skimpy or sheer clothing, strategically
+     * covered nudity, lewd or provocative poses, or close-ups of sensitive
+     * body areas.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+     */
+    public com.google.cloud.vision.v1.Likelihood getRacy() {
+      com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(racy_);
+      return result == null ? com.google.cloud.vision.v1.Likelihood.UNRECOGNIZED : result;
+    }
+    /**
+     * <pre>
+     * Likelihood that the request image contains racy content. Racy content may
+     * include (but is not limited to) skimpy or sheer clothing, strategically
+     * covered nudity, lewd or provocative poses, or close-ups of sensitive
+     * body areas.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+     */
+    public Builder setRacy(com.google.cloud.vision.v1.Likelihood value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      racy_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Likelihood that the request image contains racy content. Racy content may
+     * include (but is not limited to) skimpy or sheer clothing, strategically
+     * covered nudity, lewd or provocative poses, or close-ups of sensitive
+     * body areas.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+     */
+    public Builder clearRacy() {
+      
+      racy_ = 0;
       onChanged();
       return this;
     }

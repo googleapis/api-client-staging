@@ -22,14 +22,6 @@ public enum TransferState
   TRANSFER_STATE_UNSPECIFIED(0),
   /**
    * <pre>
-   * Data transfer is inactive.
-   * </pre>
-   *
-   * <code>INACTIVE = 1;</code>
-   */
-  INACTIVE(1),
-  /**
-   * <pre>
    * Data transfer is scheduled and is waiting to be picked up by
    * data transfer backend.
    * </pre>
@@ -80,14 +72,6 @@ public enum TransferState
    * <code>TRANSFER_STATE_UNSPECIFIED = 0;</code>
    */
   public static final int TRANSFER_STATE_UNSPECIFIED_VALUE = 0;
-  /**
-   * <pre>
-   * Data transfer is inactive.
-   * </pre>
-   *
-   * <code>INACTIVE = 1;</code>
-   */
-  public static final int INACTIVE_VALUE = 1;
   /**
    * <pre>
    * Data transfer is scheduled and is waiting to be picked up by
@@ -150,7 +134,6 @@ public enum TransferState
   public static TransferState forNumber(int value) {
     switch (value) {
       case 0: return TRANSFER_STATE_UNSPECIFIED;
-      case 1: return INACTIVE;
       case 2: return PENDING;
       case 3: return RUNNING;
       case 4: return SUCCEEDED;
