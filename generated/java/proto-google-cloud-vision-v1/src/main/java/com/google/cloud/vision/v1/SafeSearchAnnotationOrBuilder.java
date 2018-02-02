@@ -9,7 +9,9 @@ public interface SafeSearchAnnotationOrBuilder extends
 
   /**
    * <pre>
-   * Represents the adult content likelihood for the image.
+   * Represents the adult content likelihood for the image. Adult content may
+   * contain elements such as nudity, pornographic images or cartoons, or
+   * sexual activities.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -17,7 +19,9 @@ public interface SafeSearchAnnotationOrBuilder extends
   int getAdultValue();
   /**
    * <pre>
-   * Represents the adult content likelihood for the image.
+   * Represents the adult content likelihood for the image. Adult content may
+   * contain elements such as nudity, pornographic images or cartoons, or
+   * sexual activities.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
@@ -64,7 +68,7 @@ public interface SafeSearchAnnotationOrBuilder extends
 
   /**
    * <pre>
-   * Violence likelihood.
+   * Likelihood that this image contains violent content.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
@@ -72,10 +76,33 @@ public interface SafeSearchAnnotationOrBuilder extends
   int getViolenceValue();
   /**
    * <pre>
-   * Violence likelihood.
+   * Likelihood that this image contains violent content.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
    */
   com.google.cloud.vision.v1.Likelihood getViolence();
+
+  /**
+   * <pre>
+   * Likelihood that the request image contains racy content. Racy content may
+   * include (but is not limited to) skimpy or sheer clothing, strategically
+   * covered nudity, lewd or provocative poses, or close-ups of sensitive
+   * body areas.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+   */
+  int getRacyValue();
+  /**
+   * <pre>
+   * Likelihood that the request image contains racy content. Racy content may
+   * include (but is not limited to) skimpy or sheer clothing, strategically
+   * covered nudity, lewd or provocative poses, or close-ups of sensitive
+   * body areas.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
+   */
+  com.google.cloud.vision.v1.Likelihood getRacy();
 }

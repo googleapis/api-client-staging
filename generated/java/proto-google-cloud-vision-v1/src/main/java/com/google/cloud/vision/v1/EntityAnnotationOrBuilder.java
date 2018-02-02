@@ -10,7 +10,8 @@ public interface EntityAnnotationOrBuilder extends
   /**
    * <pre>
    * Opaque entity ID. Some IDs may be available in
-   * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+   * [Google Knowledge Graph Search
+   * API](https://developers.google.com/knowledge-graph/).
    * </pre>
    *
    * <code>string mid = 1;</code>
@@ -19,7 +20,8 @@ public interface EntityAnnotationOrBuilder extends
   /**
    * <pre>
    * Opaque entity ID. Some IDs may be available in
-   * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+   * [Google Knowledge Graph Search
+   * API](https://developers.google.com/knowledge-graph/).
    * </pre>
    *
    * <code>string mid = 1;</code>
@@ -76,6 +78,7 @@ public interface EntityAnnotationOrBuilder extends
 
   /**
    * <pre>
+   * **Deprecated. Use `score` instead.**
    * The accuracy of the entity detection in an image.
    * For example, for an image in which the "Eiffel Tower" entity is detected,
    * this field represents the confidence that there is a tower in the query
@@ -101,10 +104,8 @@ public interface EntityAnnotationOrBuilder extends
 
   /**
    * <pre>
-   * Image region to which this entity belongs. Currently not produced
-   * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-   * are produced for the entire text detected in an image region, followed by
-   * `boundingPoly`s for each word within the detected text.
+   * Image region to which this entity belongs. Not produced
+   * for `LABEL_DETECTION` features.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -112,10 +113,8 @@ public interface EntityAnnotationOrBuilder extends
   boolean hasBoundingPoly();
   /**
    * <pre>
-   * Image region to which this entity belongs. Currently not produced
-   * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-   * are produced for the entire text detected in an image region, followed by
-   * `boundingPoly`s for each word within the detected text.
+   * Image region to which this entity belongs. Not produced
+   * for `LABEL_DETECTION` features.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -123,10 +122,8 @@ public interface EntityAnnotationOrBuilder extends
   com.google.cloud.vision.v1.BoundingPoly getBoundingPoly();
   /**
    * <pre>
-   * Image region to which this entity belongs. Currently not produced
-   * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-   * are produced for the entire text detected in an image region, followed by
-   * `boundingPoly`s for each word within the detected text.
+   * Image region to which this entity belongs. Not produced
+   * for `LABEL_DETECTION` features.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>

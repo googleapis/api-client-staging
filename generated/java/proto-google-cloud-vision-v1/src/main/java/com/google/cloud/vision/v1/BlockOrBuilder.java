@@ -40,14 +40,14 @@ public interface BlockOrBuilder extends
    * is represented as around the top-left corner as defined when the text is
    * read in the 'natural' orientation.
    * For example:
-   *   * when the text is horizontal it might look like:
-   *      0----1
-   *      |    |
-   *      3----2
-   *   * when it's rotated 180 degrees around the top-left corner it becomes:
-   *      2----3
-   *      |    |
-   *      1----0
+   * * when the text is horizontal it might look like:
+   *         0----1
+   *         |    |
+   *         3----2
+   * * when it's rotated 180 degrees around the top-left corner it becomes:
+   *         2----3
+   *         |    |
+   *         1----0
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
@@ -62,14 +62,14 @@ public interface BlockOrBuilder extends
    * is represented as around the top-left corner as defined when the text is
    * read in the 'natural' orientation.
    * For example:
-   *   * when the text is horizontal it might look like:
-   *      0----1
-   *      |    |
-   *      3----2
-   *   * when it's rotated 180 degrees around the top-left corner it becomes:
-   *      2----3
-   *      |    |
-   *      1----0
+   * * when the text is horizontal it might look like:
+   *         0----1
+   *         |    |
+   *         3----2
+   * * when it's rotated 180 degrees around the top-left corner it becomes:
+   *         2----3
+   *         |    |
+   *         1----0
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
@@ -84,14 +84,14 @@ public interface BlockOrBuilder extends
    * is represented as around the top-left corner as defined when the text is
    * read in the 'natural' orientation.
    * For example:
-   *   * when the text is horizontal it might look like:
-   *      0----1
-   *      |    |
-   *      3----2
-   *   * when it's rotated 180 degrees around the top-left corner it becomes:
-   *      2----3
-   *      |    |
-   *      1----0
+   * * when the text is horizontal it might look like:
+   *         0----1
+   *         |    |
+   *         3----2
+   * * when it's rotated 180 degrees around the top-left corner it becomes:
+   *         2----3
+   *         |    |
+   *         1----0
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
@@ -159,4 +159,13 @@ public interface BlockOrBuilder extends
    * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
    */
   com.google.cloud.vision.v1.Block.BlockType getBlockType();
+
+  /**
+   * <pre>
+   * Confidence of the OCR results on the block. Range [0, 1].
+   * </pre>
+   *
+   * <code>float confidence = 5;</code>
+   */
+  float getConfidence();
 }

@@ -442,8 +442,7 @@ private static final long serialVersionUID = 0L;
   private java.util.List<com.google.cloud.vision.v1.EntityAnnotation> textAnnotations_;
   /**
    * <pre>
-   * If present, text (OCR) detection or document (OCR) text detection has
-   * completed successfully.
+   * If present, text (OCR) detection has completed successfully.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -453,8 +452,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * If present, text (OCR) detection or document (OCR) text detection has
-   * completed successfully.
+   * If present, text (OCR) detection has completed successfully.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -465,8 +463,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * If present, text (OCR) detection or document (OCR) text detection has
-   * completed successfully.
+   * If present, text (OCR) detection has completed successfully.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -476,8 +473,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * If present, text (OCR) detection or document (OCR) text detection has
-   * completed successfully.
+   * If present, text (OCR) detection has completed successfully.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -487,8 +483,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * If present, text (OCR) detection or document (OCR) text detection has
-   * completed successfully.
+   * If present, text (OCR) detection has completed successfully.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2702,8 +2697,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2717,8 +2711,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2732,8 +2725,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2747,8 +2739,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2769,8 +2760,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2788,8 +2778,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2809,8 +2798,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2831,8 +2819,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2850,8 +2837,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2869,8 +2855,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2889,8 +2874,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2907,8 +2891,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2925,8 +2908,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2937,8 +2919,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2952,8 +2933,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2968,8 +2948,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2980,8 +2959,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
@@ -2993,8 +2971,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If present, text (OCR) detection or document (OCR) text detection has
-     * completed successfully.
+     * If present, text (OCR) detection has completed successfully.
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>

@@ -158,7 +158,8 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Opaque entity ID. Some IDs may be available in
-   * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+   * [Google Knowledge Graph Search
+   * API](https://developers.google.com/knowledge-graph/).
    * </pre>
    *
    * <code>string mid = 1;</code>
@@ -178,7 +179,8 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Opaque entity ID. Some IDs may be available in
-   * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+   * [Google Knowledge Graph Search
+   * API](https://developers.google.com/knowledge-graph/).
    * </pre>
    *
    * <code>string mid = 1;</code>
@@ -300,6 +302,7 @@ private static final long serialVersionUID = 0L;
   private float confidence_;
   /**
    * <pre>
+   * **Deprecated. Use `score` instead.**
    * The accuracy of the entity detection in an image.
    * For example, for an image in which the "Eiffel Tower" entity is detected,
    * this field represents the confidence that there is a tower in the query
@@ -333,10 +336,8 @@ private static final long serialVersionUID = 0L;
   private com.google.cloud.vision.v1.BoundingPoly boundingPoly_;
   /**
    * <pre>
-   * Image region to which this entity belongs. Currently not produced
-   * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-   * are produced for the entire text detected in an image region, followed by
-   * `boundingPoly`s for each word within the detected text.
+   * Image region to which this entity belongs. Not produced
+   * for `LABEL_DETECTION` features.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -346,10 +347,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Image region to which this entity belongs. Currently not produced
-   * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-   * are produced for the entire text detected in an image region, followed by
-   * `boundingPoly`s for each word within the detected text.
+   * Image region to which this entity belongs. Not produced
+   * for `LABEL_DETECTION` features.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -359,10 +358,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Image region to which this entity belongs. Currently not produced
-   * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-   * are produced for the entire text detected in an image region, followed by
-   * `boundingPoly`s for each word within the detected text.
+   * Image region to which this entity belongs. Not produced
+   * for `LABEL_DETECTION` features.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1035,7 +1032,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Opaque entity ID. Some IDs may be available in
-     * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+     * [Google Knowledge Graph Search
+     * API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
      * <code>string mid = 1;</code>
@@ -1055,7 +1053,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Opaque entity ID. Some IDs may be available in
-     * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+     * [Google Knowledge Graph Search
+     * API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
      * <code>string mid = 1;</code>
@@ -1076,7 +1075,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Opaque entity ID. Some IDs may be available in
-     * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+     * [Google Knowledge Graph Search
+     * API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
      * <code>string mid = 1;</code>
@@ -1094,7 +1094,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Opaque entity ID. Some IDs may be available in
-     * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+     * [Google Knowledge Graph Search
+     * API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
      * <code>string mid = 1;</code>
@@ -1108,7 +1109,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Opaque entity ID. Some IDs may be available in
-     * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+     * [Google Knowledge Graph Search
+     * API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
      * <code>string mid = 1;</code>
@@ -1349,6 +1351,7 @@ private static final long serialVersionUID = 0L;
     private float confidence_ ;
     /**
      * <pre>
+     * **Deprecated. Use `score` instead.**
      * The accuracy of the entity detection in an image.
      * For example, for an image in which the "Eiffel Tower" entity is detected,
      * this field represents the confidence that there is a tower in the query
@@ -1362,6 +1365,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * **Deprecated. Use `score` instead.**
      * The accuracy of the entity detection in an image.
      * For example, for an image in which the "Eiffel Tower" entity is detected,
      * this field represents the confidence that there is a tower in the query
@@ -1378,6 +1382,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * **Deprecated. Use `score` instead.**
      * The accuracy of the entity detection in an image.
      * For example, for an image in which the "Eiffel Tower" entity is detected,
      * this field represents the confidence that there is a tower in the query
@@ -1448,10 +1453,8 @@ private static final long serialVersionUID = 0L;
         com.google.cloud.vision.v1.BoundingPoly, com.google.cloud.vision.v1.BoundingPoly.Builder, com.google.cloud.vision.v1.BoundingPolyOrBuilder> boundingPolyBuilder_;
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1461,10 +1464,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1478,10 +1479,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1501,10 +1500,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1522,10 +1519,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1547,10 +1542,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1568,10 +1561,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1583,10 +1574,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
@@ -1601,10 +1590,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Image region to which this entity belongs. Currently not produced
-     * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-     * are produced for the entire text detected in an image region, followed by
-     * `boundingPoly`s for each word within the detected text.
+     * Image region to which this entity belongs. Not produced
+     * for `LABEL_DETECTION` features.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>

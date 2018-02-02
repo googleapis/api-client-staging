@@ -21,6 +21,7 @@ private static final long serialVersionUID = 0L;
   }
   private Symbol() {
     text_ = "";
+    confidence_ = 0F;
   }
 
   @java.lang.Override
@@ -81,6 +82,11 @@ private static final long serialVersionUID = 0L;
             java.lang.String s = input.readStringRequireUtf8();
 
             text_ = s;
+            break;
+          }
+          case 37: {
+
+            confidence_ = input.readFloat();
             break;
           }
         }
@@ -257,6 +263,19 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int CONFIDENCE_FIELD_NUMBER = 4;
+  private float confidence_;
+  /**
+   * <pre>
+   * Confidence of the OCR results for the symbol. Range [0, 1].
+   * </pre>
+   *
+   * <code>float confidence = 4;</code>
+   */
+  public float getConfidence() {
+    return confidence_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -278,6 +297,9 @@ private static final long serialVersionUID = 0L;
     if (!getTextBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, text_);
     }
+    if (confidence_ != 0F) {
+      output.writeFloat(4, confidence_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -296,6 +318,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!getTextBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, text_);
+    }
+    if (confidence_ != 0F) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(4, confidence_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -325,6 +351,10 @@ private static final long serialVersionUID = 0L;
     }
     result = result && getText()
         .equals(other.getText());
+    result = result && (
+        java.lang.Float.floatToIntBits(getConfidence())
+        == java.lang.Float.floatToIntBits(
+            other.getConfidence()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -346,6 +376,9 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + TEXT_FIELD_NUMBER;
     hash = (53 * hash) + getText().hashCode();
+    hash = (37 * hash) + CONFIDENCE_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getConfidence());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -493,6 +526,8 @@ private static final long serialVersionUID = 0L;
       }
       text_ = "";
 
+      confidence_ = 0F;
+
       return this;
     }
 
@@ -526,6 +561,7 @@ private static final long serialVersionUID = 0L;
         result.boundingBox_ = boundingBoxBuilder_.build();
       }
       result.text_ = text_;
+      result.confidence_ = confidence_;
       onBuilt();
       return result;
     }
@@ -576,6 +612,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getText().isEmpty()) {
         text_ = other.text_;
         onChanged();
+      }
+      if (other.getConfidence() != 0F) {
+        setConfidence(other.getConfidence());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1121,6 +1160,44 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       text_ = value;
+      onChanged();
+      return this;
+    }
+
+    private float confidence_ ;
+    /**
+     * <pre>
+     * Confidence of the OCR results for the symbol. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public float getConfidence() {
+      return confidence_;
+    }
+    /**
+     * <pre>
+     * Confidence of the OCR results for the symbol. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public Builder setConfidence(float value) {
+      
+      confidence_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Confidence of the OCR results for the symbol. Range [0, 1].
+     * </pre>
+     *
+     * <code>float confidence = 4;</code>
+     */
+    public Builder clearConfidence() {
+      
+      confidence_ = 0F;
       onChanged();
       return this;
     }

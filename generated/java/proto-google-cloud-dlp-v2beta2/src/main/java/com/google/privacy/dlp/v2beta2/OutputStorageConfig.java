@@ -127,7 +127,10 @@ private static final long serialVersionUID = 0L;
   public static final int TABLE_FIELD_NUMBER = 1;
   /**
    * <pre>
-   * Store findings in a new table in an existing dataset.
+   * Store findings in a new table in an existing dataset. If table_id is not
+   * set a new one will be generated for you with the following format:
+   * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+   * generating the date details.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -137,7 +140,10 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Store findings in a new table in an existing dataset.
+   * Store findings in a new table in an existing dataset. If table_id is not
+   * set a new one will be generated for you with the following format:
+   * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+   * generating the date details.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -150,7 +156,10 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Store findings in a new table in an existing dataset.
+   * Store findings in a new table in an existing dataset. If table_id is not
+   * set a new one will be generated for you with the following format:
+   * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+   * generating the date details.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -496,7 +505,10 @@ private static final long serialVersionUID = 0L;
         com.google.privacy.dlp.v2beta2.BigQueryTable, com.google.privacy.dlp.v2beta2.BigQueryTable.Builder, com.google.privacy.dlp.v2beta2.BigQueryTableOrBuilder> tableBuilder_;
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -506,7 +518,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -526,7 +541,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -546,7 +564,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -564,7 +585,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -590,7 +614,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -613,7 +640,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -623,7 +653,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
@@ -640,7 +673,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset.
+     * Store findings in a new table in an existing dataset. If table_id is not
+     * set a new one will be generated for you with the following format:
+     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+     * generating the date details.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>

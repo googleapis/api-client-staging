@@ -9,8 +9,7 @@ public interface UpdateContextRequestOrBuilder extends
 
   /**
    * <pre>
-   * Required. The context to update. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * Required. The context to update.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -18,8 +17,7 @@ public interface UpdateContextRequestOrBuilder extends
   boolean hasContext();
   /**
    * <pre>
-   * Required. The context to update. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * Required. The context to update.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -27,8 +25,7 @@ public interface UpdateContextRequestOrBuilder extends
   com.google.cloud.dialogflow.v2beta1.Context getContext();
   /**
    * <pre>
-   * Required. The context to update. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * Required. The context to update.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>

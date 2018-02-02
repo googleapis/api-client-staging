@@ -61,11 +61,14 @@ public interface QueryResultOrBuilder extends
 
   /**
    * <pre>
-   * The confidence estimate between 0.0 and 1.0. A higher number
+   * The Speech recognition confidence between 0.0 and 1.0. A higher number
    * indicates an estimated greater likelihood that the recognized words are
    * correct. The default of 0.0 is a sentinel value indicating that confidence
-   * was not set. This field is populated if natural speech audio was provided
-   * as input.
+   * was not set.
+   * You should not rely on this field as it isn't guaranteed to be accurate, or
+   * even set. In particular this field isn't set in Webhook calls and for
+   * StreamingDetectIntent since the streaming endpoint has separate confidence
+   * estimates per portion of the audio in StreamingRecognitionResult.
    * </pre>
    *
    * <code>float speech_recognition_confidence = 2;</code>

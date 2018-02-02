@@ -348,7 +348,7 @@ public interface DataSourceOrBuilder extends
 
   /**
    * <pre>
-   * The minimum interval between two consecutive scheduled runs.
+   * The minimum interval for scheduler to schedule runs.
    * </pre>
    *
    * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -356,7 +356,7 @@ public interface DataSourceOrBuilder extends
   boolean hasMinimumScheduleInterval();
   /**
    * <pre>
-   * The minimum interval between two consecutive scheduled runs.
+   * The minimum interval for scheduler to schedule runs.
    * </pre>
    *
    * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -364,7 +364,7 @@ public interface DataSourceOrBuilder extends
   com.google.protobuf.Duration getMinimumScheduleInterval();
   /**
    * <pre>
-   * The minimum interval between two consecutive scheduled runs.
+   * The minimum interval for scheduler to schedule runs.
    * </pre>
    *
    * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>

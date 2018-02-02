@@ -90,12 +90,20 @@ private static final long serialVersionUID = 0L;
   public static final int CROP_HINTS_FIELD_NUMBER = 1;
   private java.util.List<com.google.cloud.vision.v1.CropHint> cropHints_;
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   public java.util.List<com.google.cloud.vision.v1.CropHint> getCropHintsList() {
     return cropHints_;
   }
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   public java.util.List<? extends com.google.cloud.vision.v1.CropHintOrBuilder> 
@@ -103,18 +111,30 @@ private static final long serialVersionUID = 0L;
     return cropHints_;
   }
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   public int getCropHintsCount() {
     return cropHints_.size();
   }
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   public com.google.cloud.vision.v1.CropHint getCropHints(int index) {
     return cropHints_.get(index);
   }
   /**
+   * <pre>
+   * Crop hint results.
+   * </pre>
+   *
    * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
    */
   public com.google.cloud.vision.v1.CropHintOrBuilder getCropHintsOrBuilder(
@@ -462,6 +482,10 @@ private static final long serialVersionUID = 0L;
         com.google.cloud.vision.v1.CropHint, com.google.cloud.vision.v1.CropHint.Builder, com.google.cloud.vision.v1.CropHintOrBuilder> cropHintsBuilder_;
 
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public java.util.List<com.google.cloud.vision.v1.CropHint> getCropHintsList() {
@@ -472,6 +496,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public int getCropHintsCount() {
@@ -482,6 +510,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public com.google.cloud.vision.v1.CropHint getCropHints(int index) {
@@ -492,6 +524,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder setCropHints(
@@ -509,6 +545,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder setCropHints(
@@ -523,6 +563,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder addCropHints(com.google.cloud.vision.v1.CropHint value) {
@@ -539,6 +583,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder addCropHints(
@@ -556,6 +604,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder addCropHints(
@@ -570,6 +622,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder addCropHints(
@@ -584,6 +640,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder addAllCropHints(
@@ -599,6 +659,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder clearCropHints() {
@@ -612,6 +676,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public Builder removeCropHints(int index) {
@@ -625,6 +693,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public com.google.cloud.vision.v1.CropHint.Builder getCropHintsBuilder(
@@ -632,6 +704,10 @@ private static final long serialVersionUID = 0L;
       return getCropHintsFieldBuilder().getBuilder(index);
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public com.google.cloud.vision.v1.CropHintOrBuilder getCropHintsOrBuilder(
@@ -642,6 +718,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public java.util.List<? extends com.google.cloud.vision.v1.CropHintOrBuilder> 
@@ -653,6 +733,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public com.google.cloud.vision.v1.CropHint.Builder addCropHintsBuilder() {
@@ -660,6 +744,10 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.vision.v1.CropHint.getDefaultInstance());
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public com.google.cloud.vision.v1.CropHint.Builder addCropHintsBuilder(
@@ -668,6 +756,10 @@ private static final long serialVersionUID = 0L;
           index, com.google.cloud.vision.v1.CropHint.getDefaultInstance());
     }
     /**
+     * <pre>
+     * Crop hint results.
+     * </pre>
+     *
      * <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
      */
     public java.util.List<com.google.cloud.vision.v1.CropHint.Builder> 

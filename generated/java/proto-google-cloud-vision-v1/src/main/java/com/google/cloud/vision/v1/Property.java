@@ -22,6 +22,7 @@ private static final long serialVersionUID = 0L;
   private Property() {
     name_ = "";
     value_ = "";
+    uint64Value_ = 0L;
   }
 
   @java.lang.Override
@@ -62,6 +63,11 @@ private static final long serialVersionUID = 0L;
             java.lang.String s = input.readStringRequireUtf8();
 
             value_ = s;
+            break;
+          }
+          case 24: {
+
+            uint64Value_ = input.readUInt64();
             break;
           }
         }
@@ -172,6 +178,19 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int UINT64_VALUE_FIELD_NUMBER = 3;
+  private long uint64Value_;
+  /**
+   * <pre>
+   * Value of numeric properties.
+   * </pre>
+   *
+   * <code>uint64 uint64_value = 3;</code>
+   */
+  public long getUint64Value() {
+    return uint64Value_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -190,6 +209,9 @@ private static final long serialVersionUID = 0L;
     if (!getValueBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, value_);
     }
+    if (uint64Value_ != 0L) {
+      output.writeUInt64(3, uint64Value_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -203,6 +225,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!getValueBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, value_);
+    }
+    if (uint64Value_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt64Size(3, uint64Value_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -224,6 +250,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getName());
     result = result && getValue()
         .equals(other.getValue());
+    result = result && (getUint64Value()
+        == other.getUint64Value());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -239,6 +267,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + VALUE_FIELD_NUMBER;
     hash = (53 * hash) + getValue().hashCode();
+    hash = (37 * hash) + UINT64_VALUE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getUint64Value());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -376,6 +407,8 @@ private static final long serialVersionUID = 0L;
 
       value_ = "";
 
+      uint64Value_ = 0L;
+
       return this;
     }
 
@@ -400,6 +433,7 @@ private static final long serialVersionUID = 0L;
       com.google.cloud.vision.v1.Property result = new com.google.cloud.vision.v1.Property(this);
       result.name_ = name_;
       result.value_ = value_;
+      result.uint64Value_ = uint64Value_;
       onBuilt();
       return result;
     }
@@ -448,6 +482,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getValue().isEmpty()) {
         value_ = other.value_;
         onChanged();
+      }
+      if (other.getUint64Value() != 0L) {
+        setUint64Value(other.getUint64Value());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -650,6 +687,44 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       value_ = value;
+      onChanged();
+      return this;
+    }
+
+    private long uint64Value_ ;
+    /**
+     * <pre>
+     * Value of numeric properties.
+     * </pre>
+     *
+     * <code>uint64 uint64_value = 3;</code>
+     */
+    public long getUint64Value() {
+      return uint64Value_;
+    }
+    /**
+     * <pre>
+     * Value of numeric properties.
+     * </pre>
+     *
+     * <code>uint64 uint64_value = 3;</code>
+     */
+    public Builder setUint64Value(long value) {
+      
+      uint64Value_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Value of numeric properties.
+     * </pre>
+     *
+     * <code>uint64 uint64_value = 3;</code>
+     */
+    public Builder clearUint64Value() {
+      
+      uint64Value_ = 0L;
       onChanged();
       return this;
     }

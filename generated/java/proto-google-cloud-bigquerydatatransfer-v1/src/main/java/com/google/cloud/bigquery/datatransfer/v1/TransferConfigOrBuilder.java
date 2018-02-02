@@ -250,6 +250,8 @@ public interface TransferConfigOrBuilder extends
    * Output only. Unique ID of the user on whose behalf transfer is done.
    * Applicable only to data sources that do not support service accounts.
    * When set to 0, the data source service account credentials are used.
+   * May be negative. Note, that this identifier is not stable.
+   * It may change over time even for the same user.
    * </pre>
    *
    * <code>int64 user_id = 11;</code>
