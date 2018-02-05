@@ -23,11 +23,13 @@ import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.logging.v2.stub.ConfigServiceV2Stub;
 import com.google.cloud.logging.v2.stub.ConfigServiceV2StubSettings;
+import com.google.logging.v2.AnyExclusionName;
+import com.google.logging.v2.AnyParentName;
+import com.google.logging.v2.AnySinkName;
 import com.google.logging.v2.CreateExclusionRequest;
 import com.google.logging.v2.CreateSinkRequest;
 import com.google.logging.v2.DeleteExclusionRequest;
 import com.google.logging.v2.DeleteSinkRequest;
-import com.google.logging.v2.ExclusionNameOneof;
 import com.google.logging.v2.GetExclusionRequest;
 import com.google.logging.v2.GetSinkRequest;
 import com.google.logging.v2.ListExclusionsRequest;
@@ -36,8 +38,6 @@ import com.google.logging.v2.ListSinksRequest;
 import com.google.logging.v2.ListSinksResponse;
 import com.google.logging.v2.LogExclusion;
 import com.google.logging.v2.LogSink;
-import com.google.logging.v2.ParentNameOneof;
-import com.google.logging.v2.SinkNameOneof;
 import com.google.logging.v2.UpdateExclusionRequest;
 import com.google.logging.v2.UpdateSinkRequest;
 import com.google.protobuf.Empty;
@@ -57,7 +57,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (ConfigClient configClient = ConfigClient.create()) {
- *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+ *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
  *   LogSink response = configClient.getSink(sinkName);
  * }
  * </code>
@@ -173,7 +173,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   for (LogSink element : configClient.listSinks(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
@@ -185,8 +185,9 @@ public class ConfigClient implements BackgroundResource {
    *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final ListSinksPagedResponse listSinks(ParentNameOneof parent) {
-    ListSinksRequest request = ListSinksRequest.newBuilder().setParent(parent.toString()).build();
+  public final ListSinksPagedResponse listSinks(AnyParentName parent) {
+    ListSinksRequest request =
+        ListSinksRequest.newBuilder().setParent(parent == null ? null : parent.toString()).build();
     return listSinks(request);
   }
 
@@ -198,7 +199,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -223,7 +224,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -247,7 +248,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -278,7 +279,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   LogSink response = configClient.getSink(sinkName);
    * }
    * </code></pre>
@@ -291,9 +292,12 @@ public class ConfigClient implements BackgroundResource {
    *     <p>Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final LogSink getSink(SinkNameOneof sinkName) {
+  public final LogSink getSink(AnySinkName sinkName) {
 
-    GetSinkRequest request = GetSinkRequest.newBuilder().setSinkName(sinkName.toString()).build();
+    GetSinkRequest request =
+        GetSinkRequest.newBuilder()
+            .setSinkName(sinkName == null ? null : sinkName.toString())
+            .build();
     return getSink(request);
   }
 
@@ -305,7 +309,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   GetSinkRequest request = GetSinkRequest.newBuilder()
    *     .setSinkName(sinkName.toString())
    *     .build();
@@ -328,7 +332,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   GetSinkRequest request = GetSinkRequest.newBuilder()
    *     .setSinkName(sinkName.toString())
    *     .build();
@@ -353,7 +357,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   LogSink sink = LogSink.newBuilder().build();
    *   LogSink response = configClient.createSink(parent, sink);
    * }
@@ -367,10 +371,13 @@ public class ConfigClient implements BackgroundResource {
    *     already in use.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final LogSink createSink(ParentNameOneof parent, LogSink sink) {
+  public final LogSink createSink(AnyParentName parent, LogSink sink) {
 
     CreateSinkRequest request =
-        CreateSinkRequest.newBuilder().setParent(parent.toString()).setSink(sink).build();
+        CreateSinkRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .setSink(sink)
+            .build();
     return createSink(request);
   }
 
@@ -385,7 +392,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   LogSink sink = LogSink.newBuilder().build();
    *   CreateSinkRequest request = CreateSinkRequest.newBuilder()
    *     .setParent(parent.toString())
@@ -413,7 +420,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   LogSink sink = LogSink.newBuilder().build();
    *   CreateSinkRequest request = CreateSinkRequest.newBuilder()
    *     .setParent(parent.toString())
@@ -439,7 +446,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   LogSink sink = LogSink.newBuilder().build();
    *   LogSink response = configClient.updateSink(sinkName, sink);
    * }
@@ -456,10 +463,13 @@ public class ConfigClient implements BackgroundResource {
    *     of `sink_name`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final LogSink updateSink(SinkNameOneof sinkName, LogSink sink) {
+  public final LogSink updateSink(AnySinkName sinkName, LogSink sink) {
 
     UpdateSinkRequest request =
-        UpdateSinkRequest.newBuilder().setSinkName(sinkName.toString()).setSink(sink).build();
+        UpdateSinkRequest.newBuilder()
+            .setSinkName(sinkName == null ? null : sinkName.toString())
+            .setSink(sink)
+            .build();
     return updateSink(request);
   }
 
@@ -473,7 +483,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   LogSink sink = LogSink.newBuilder().build();
    *   UpdateSinkRequest request = UpdateSinkRequest.newBuilder()
    *     .setSinkName(sinkName.toString())
@@ -500,7 +510,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   LogSink sink = LogSink.newBuilder().build();
    *   UpdateSinkRequest request = UpdateSinkRequest.newBuilder()
    *     .setSinkName(sinkName.toString())
@@ -525,7 +535,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   configClient.deleteSink(sinkName);
    * }
    * </code></pre>
@@ -539,10 +549,12 @@ public class ConfigClient implements BackgroundResource {
    *     <p>Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final void deleteSink(SinkNameOneof sinkName) {
+  public final void deleteSink(AnySinkName sinkName) {
 
     DeleteSinkRequest request =
-        DeleteSinkRequest.newBuilder().setSinkName(sinkName.toString()).build();
+        DeleteSinkRequest.newBuilder()
+            .setSinkName(sinkName == null ? null : sinkName.toString())
+            .build();
     deleteSink(request);
   }
 
@@ -555,7 +567,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   DeleteSinkRequest request = DeleteSinkRequest.newBuilder()
    *     .setSinkName(sinkName.toString())
    *     .build();
@@ -579,7 +591,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.of("[PROJECT]", "[SINK]"));
+   *   AnySinkName sinkName = SinkName.of("[PROJECT]", "[SINK]");
    *   DeleteSinkRequest request = DeleteSinkRequest.newBuilder()
    *     .setSinkName(sinkName.toString())
    *     .build();
@@ -601,7 +613,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   for (LogExclusion element : configClient.listExclusions(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
@@ -613,9 +625,11 @@ public class ConfigClient implements BackgroundResource {
    *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final ListExclusionsPagedResponse listExclusions(ParentNameOneof parent) {
+  public final ListExclusionsPagedResponse listExclusions(AnyParentName parent) {
     ListExclusionsRequest request =
-        ListExclusionsRequest.newBuilder().setParent(parent.toString()).build();
+        ListExclusionsRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listExclusions(request);
   }
 
@@ -627,7 +641,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   ListExclusionsRequest request = ListExclusionsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -652,7 +666,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   ListExclusionsRequest request = ListExclusionsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -677,7 +691,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   ListExclusionsRequest request = ListExclusionsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -709,7 +723,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   LogExclusion response = configClient.getExclusion(name);
    * }
    * </code></pre>
@@ -722,9 +736,10 @@ public class ConfigClient implements BackgroundResource {
    *     <p>Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final LogExclusion getExclusion(ExclusionNameOneof name) {
+  public final LogExclusion getExclusion(AnyExclusionName name) {
 
-    GetExclusionRequest request = GetExclusionRequest.newBuilder().setName(name.toString()).build();
+    GetExclusionRequest request =
+        GetExclusionRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getExclusion(request);
   }
 
@@ -736,7 +751,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   GetExclusionRequest request = GetExclusionRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -759,7 +774,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   GetExclusionRequest request = GetExclusionRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -782,7 +797,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   LogExclusion response = configClient.createExclusion(parent, exclusion);
    * }
@@ -796,11 +811,11 @@ public class ConfigClient implements BackgroundResource {
    *     is not already used in the parent resource.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final LogExclusion createExclusion(ParentNameOneof parent, LogExclusion exclusion) {
+  public final LogExclusion createExclusion(AnyParentName parent, LogExclusion exclusion) {
 
     CreateExclusionRequest request =
         CreateExclusionRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setExclusion(exclusion)
             .build();
     return createExclusion(request);
@@ -815,7 +830,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   CreateExclusionRequest request = CreateExclusionRequest.newBuilder()
    *     .setParent(parent.toString())
@@ -841,7 +856,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+   *   AnyParentName parent = ProjectName.of("[PROJECT]");
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   CreateExclusionRequest request = CreateExclusionRequest.newBuilder()
    *     .setParent(parent.toString())
@@ -865,7 +880,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
    *   LogExclusion response = configClient.updateExclusion(name, exclusion, updateMask);
@@ -889,11 +904,11 @@ public class ConfigClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final LogExclusion updateExclusion(
-      ExclusionNameOneof name, LogExclusion exclusion, FieldMask updateMask) {
+      AnyExclusionName name, LogExclusion exclusion, FieldMask updateMask) {
 
     UpdateExclusionRequest request =
         UpdateExclusionRequest.newBuilder()
-            .setName(name.toString())
+            .setName(name == null ? null : name.toString())
             .setExclusion(exclusion)
             .setUpdateMask(updateMask)
             .build();
@@ -908,7 +923,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
    *   UpdateExclusionRequest request = UpdateExclusionRequest.newBuilder()
@@ -935,7 +950,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
    *   UpdateExclusionRequest request = UpdateExclusionRequest.newBuilder()
@@ -961,7 +976,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   configClient.deleteExclusion(name);
    * }
    * </code></pre>
@@ -974,10 +989,10 @@ public class ConfigClient implements BackgroundResource {
    *     <p>Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final void deleteExclusion(ExclusionNameOneof name) {
+  public final void deleteExclusion(AnyExclusionName name) {
 
     DeleteExclusionRequest request =
-        DeleteExclusionRequest.newBuilder().setName(name.toString()).build();
+        DeleteExclusionRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteExclusion(request);
   }
 
@@ -989,7 +1004,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   DeleteExclusionRequest request = DeleteExclusionRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1012,7 +1027,7 @@ public class ConfigClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
-   *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.of("[PROJECT]", "[EXCLUSION]"));
+   *   AnyExclusionName name = ExclusionName.of("[PROJECT]", "[EXCLUSION]");
    *   DeleteExclusionRequest request = DeleteExclusionRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();

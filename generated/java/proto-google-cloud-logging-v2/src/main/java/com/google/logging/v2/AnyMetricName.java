@@ -14,22 +14,17 @@
 
 package com.google.logging.v2;
 
-import com.google.api.resourcenames.ResourceNameType;
+import com.google.api.resourcenames.ResourceName;
 
-/**
- * @deprecated This class is no longer necessary given the switch from the Oneof pattern to inheritance
- * for one-of groupings.
- */
-@Deprecated
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class ExclusionNameType implements ResourceNameType {
+public abstract class AnyMetricName implements ResourceName {
+  protected AnyMetricName() {}
 
-  private static ExclusionNameType instance = new ExclusionNameType();
-
-  private ExclusionNameType() {}
-
-  public static ExclusionNameType instance() {
-    return instance;
+  public static AnyMetricName parse(String resourceNameString) {
+    if (MetricName.isParsableFrom(resourceNameString)) {
+      return MetricName.parse(resourceNameString);
+    }
+    return UntypedMetricName.parse(resourceNameString);
   }
 }
