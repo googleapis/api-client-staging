@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ import com.google.api.gax.rpc.BidiStreamingCallable;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
-import com.google.cloud.firestore.v1beta1.FirestoreSettings;
 import com.google.firestore.v1beta1.BatchGetDocumentsRequest;
 import com.google.firestore.v1beta1.BatchGetDocumentsResponse;
 import com.google.firestore.v1beta1.BeginTransactionRequest;
@@ -201,12 +200,12 @@ public class GrpcFirestoreStub extends FirestoreStub {
   private final UnaryCallable<ListCollectionIdsRequest, ListCollectionIdsPagedResponse>
       listCollectionIdsPagedCallable;
 
-  public static final GrpcFirestoreStub create(FirestoreSettings settings) throws IOException {
+  public static final GrpcFirestoreStub create(FirestoreStubSettings settings) throws IOException {
     return new GrpcFirestoreStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcFirestoreStub create(ClientContext clientContext) throws IOException {
-    return new GrpcFirestoreStub(FirestoreSettings.newBuilder().build(), clientContext);
+    return new GrpcFirestoreStub(FirestoreStubSettings.newBuilder().build(), clientContext);
   }
 
   /**
@@ -214,7 +213,7 @@ public class GrpcFirestoreStub extends FirestoreStub {
    * that it is easy to make a subclass, but otherwise, the static factory methods should be
    * preferred.
    */
-  protected GrpcFirestoreStub(FirestoreSettings settings, ClientContext clientContext)
+  protected GrpcFirestoreStub(FirestoreStubSettings settings, ClientContext clientContext)
       throws IOException {
 
     GrpcCallSettings<GetDocumentRequest, Document> getDocumentTransportSettings =

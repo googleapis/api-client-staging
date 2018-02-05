@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import com.google.bigtable.v2.SampleRowKeysRequest;
 import com.google.bigtable.v2.SampleRowKeysResponse;
 import com.google.bigtable.v2.TableName;
 import com.google.cloud.bigtable.data.v2.stub.BigtableStub;
+import com.google.cloud.bigtable.data.v2.stub.BigtableStubSettings;
 import com.google.protobuf.ByteString;
 import java.io.IOException;
 import java.util.List;
@@ -147,7 +148,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    */
   protected BaseBigtableDataClient(BaseBigtableDataSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((BigtableStubSettings) settings.getStubSettings()).createStub();
   }
 
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
@@ -196,7 +197,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *
    *   TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ReadRowsRequest request = ReadRowsRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .build();
    *
    *   baseBigtableDataClient.readRowsCallable().serverStreamingCall(request, responseObserver));
@@ -237,7 +238,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *
    *   TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   SampleRowKeysRequest request = SampleRowKeysRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .build();
    *
    *   baseBigtableDataClient.sampleRowKeysCallable().serverStreamingCall(request, responseObserver));
@@ -278,7 +279,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
 
     MutateRowRequest request =
         MutateRowRequest.newBuilder()
-            .setTableNameWithTableName(tableName)
+            .setTableName(tableName.toString())
             .setRowKey(rowKey)
             .addAllMutations(mutations)
             .build();
@@ -298,7 +299,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
    *   MutateRowRequest request = MutateRowRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .setRowKey(rowKey)
    *     .addAllMutations(mutations)
    *     .build();
@@ -326,7 +327,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
    *   MutateRowRequest request = MutateRowRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .setRowKey(rowKey)
    *     .addAllMutations(mutations)
    *     .build();
@@ -370,7 +371,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *   TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   List&lt;MutateRowsRequest.Entry&gt; entries = new ArrayList&lt;&gt;();
    *   MutateRowsRequest request = MutateRowsRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .addAllEntries(entries)
    *     .build();
    *
@@ -425,7 +426,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
 
     CheckAndMutateRowRequest request =
         CheckAndMutateRowRequest.newBuilder()
-            .setTableNameWithTableName(tableName)
+            .setTableName(tableName.toString())
             .setRowKey(rowKey)
             .setPredicateFilter(predicateFilter)
             .addAllTrueMutations(trueMutations)
@@ -445,7 +446,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *   TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   CheckAndMutateRowRequest request = CheckAndMutateRowRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .setRowKey(rowKey)
    *     .build();
    *   CheckAndMutateRowResponse response = baseBigtableDataClient.checkAndMutateRow(request);
@@ -470,7 +471,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *   TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   CheckAndMutateRowRequest request = CheckAndMutateRowRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .setRowKey(rowKey)
    *     .build();
    *   ApiFuture&lt;CheckAndMutateRowResponse&gt; future = baseBigtableDataClient.checkAndMutateRowCallable().futureCall(request);
@@ -516,7 +517,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
 
     ReadModifyWriteRowRequest request =
         ReadModifyWriteRowRequest.newBuilder()
-            .setTableNameWithTableName(tableName)
+            .setTableName(tableName.toString())
             .setRowKey(rowKey)
             .addAllRules(rules)
             .build();
@@ -538,7 +539,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;ReadModifyWriteRule&gt; rules = new ArrayList&lt;&gt;();
    *   ReadModifyWriteRowRequest request = ReadModifyWriteRowRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .setRowKey(rowKey)
    *     .addAllRules(rules)
    *     .build();
@@ -568,7 +569,7 @@ public class BaseBigtableDataClient implements BackgroundResource {
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;ReadModifyWriteRule&gt; rules = new ArrayList&lt;&gt;();
    *   ReadModifyWriteRowRequest request = ReadModifyWriteRowRequest.newBuilder()
-   *     .setTableNameWithTableName(tableName)
+   *     .setTableName(tableName.toString())
    *     .setRowKey(rowKey)
    *     .addAllRules(rules)
    *     .build();

@@ -142,4 +142,13 @@ public interface ParagraphOrBuilder extends
    */
   com.google.cloud.vision.v1.WordOrBuilder getWordsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * Confidence of the OCR results for the paragraph. Range [0, 1].
+   * </pre>
+   *
+   * <code>float confidence = 4;</code>
+   */
+  float getConfidence();
 }

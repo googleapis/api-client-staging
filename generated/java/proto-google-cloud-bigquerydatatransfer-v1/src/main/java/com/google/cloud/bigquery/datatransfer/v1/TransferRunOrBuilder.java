@@ -33,24 +33,6 @@ public interface TransferRunOrBuilder extends
 
   /**
    * <pre>
-   * The BigQuery target dataset id.
-   * </pre>
-   *
-   * <code>string destination_dataset_id = 2;</code>
-   */
-  java.lang.String getDestinationDatasetId();
-  /**
-   * <pre>
-   * The BigQuery target dataset id.
-   * </pre>
-   *
-   * <code>string destination_dataset_id = 2;</code>
-   */
-  com.google.protobuf.ByteString
-      getDestinationDatasetIdBytes();
-
-  /**
-   * <pre>
    * Minimum time after which a transfer run can be started.
    * </pre>
    *
@@ -73,31 +55,6 @@ public interface TransferRunOrBuilder extends
    * <code>.google.protobuf.Timestamp schedule_time = 3;</code>
    */
   com.google.protobuf.TimestampOrBuilder getScheduleTimeOrBuilder();
-
-  /**
-   * <pre>
-   * Data transfer specific parameters.
-   * </pre>
-   *
-   * <code>.google.protobuf.Struct params = 9;</code>
-   */
-  boolean hasParams();
-  /**
-   * <pre>
-   * Data transfer specific parameters.
-   * </pre>
-   *
-   * <code>.google.protobuf.Struct params = 9;</code>
-   */
-  com.google.protobuf.Struct getParams();
-  /**
-   * <pre>
-   * Data transfer specific parameters.
-   * </pre>
-   *
-   * <code>.google.protobuf.Struct params = 9;</code>
-   */
-  com.google.protobuf.StructOrBuilder getParamsOrBuilder();
 
   /**
    * <pre>
@@ -126,6 +83,31 @@ public interface TransferRunOrBuilder extends
    * <code>.google.protobuf.Timestamp run_time = 10;</code>
    */
   com.google.protobuf.TimestampOrBuilder getRunTimeOrBuilder();
+
+  /**
+   * <pre>
+   * Status of the transfer run.
+   * </pre>
+   *
+   * <code>.google.rpc.Status error_status = 21;</code>
+   */
+  boolean hasErrorStatus();
+  /**
+   * <pre>
+   * Status of the transfer run.
+   * </pre>
+   *
+   * <code>.google.rpc.Status error_status = 21;</code>
+   */
+  com.google.rpc.Status getErrorStatus();
+  /**
+   * <pre>
+   * Status of the transfer run.
+   * </pre>
+   *
+   * <code>.google.rpc.Status error_status = 21;</code>
+   */
+  com.google.rpc.StatusOrBuilder getErrorStatusOrBuilder();
 
   /**
    * <pre>
@@ -210,6 +192,49 @@ public interface TransferRunOrBuilder extends
 
   /**
    * <pre>
+   * Output only. Data transfer specific parameters.
+   * </pre>
+   *
+   * <code>.google.protobuf.Struct params = 9;</code>
+   */
+  boolean hasParams();
+  /**
+   * <pre>
+   * Output only. Data transfer specific parameters.
+   * </pre>
+   *
+   * <code>.google.protobuf.Struct params = 9;</code>
+   */
+  com.google.protobuf.Struct getParams();
+  /**
+   * <pre>
+   * Output only. Data transfer specific parameters.
+   * </pre>
+   *
+   * <code>.google.protobuf.Struct params = 9;</code>
+   */
+  com.google.protobuf.StructOrBuilder getParamsOrBuilder();
+
+  /**
+   * <pre>
+   * Output only. The BigQuery target dataset id.
+   * </pre>
+   *
+   * <code>string destination_dataset_id = 2;</code>
+   */
+  java.lang.String getDestinationDatasetId();
+  /**
+   * <pre>
+   * Output only. The BigQuery target dataset id.
+   * </pre>
+   *
+   * <code>string destination_dataset_id = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getDestinationDatasetIdBytes();
+
+  /**
+   * <pre>
    * Output only. Data source id.
    * </pre>
    *
@@ -248,7 +273,8 @@ public interface TransferRunOrBuilder extends
    * Output only. Unique ID of the user on whose behalf transfer is done.
    * Applicable only to data sources that do not support service accounts.
    * When set to 0, the data source service account credentials are used.
-   * May be negative.
+   * May be negative. Note, that this identifier is not stable.
+   * It may change over time even for the same user.
    * </pre>
    *
    * <code>int64 user_id = 11;</code>

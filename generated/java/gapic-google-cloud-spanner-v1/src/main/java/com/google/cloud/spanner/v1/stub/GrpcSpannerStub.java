@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import com.google.api.gax.grpc.GrpcCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
-import com.google.cloud.spanner.v1.SpannerSettings;
 import com.google.protobuf.Empty;
 import com.google.spanner.v1.BeginTransactionRequest;
 import com.google.spanner.v1.CommitRequest;
@@ -161,19 +160,19 @@ public class GrpcSpannerStub extends SpannerStub {
   private final UnaryCallable<CommitRequest, CommitResponse> commitCallable;
   private final UnaryCallable<RollbackRequest, Empty> rollbackCallable;
 
-  public static final GrpcSpannerStub create(SpannerSettings settings) throws IOException {
+  public static final GrpcSpannerStub create(SpannerStubSettings settings) throws IOException {
     return new GrpcSpannerStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcSpannerStub create(ClientContext clientContext) throws IOException {
-    return new GrpcSpannerStub(SpannerSettings.newBuilder().build(), clientContext);
+    return new GrpcSpannerStub(SpannerStubSettings.newBuilder().build(), clientContext);
   }
 
   /**
    * Constructs an instance of GrpcSpannerStub, using the given settings. This is protected so that
    * it is easy to make a subclass, but otherwise, the static factory methods should be preferred.
    */
-  protected GrpcSpannerStub(SpannerSettings settings, ClientContext clientContext)
+  protected GrpcSpannerStub(SpannerStubSettings settings, ClientContext clientContext)
       throws IOException {
 
     GrpcCallSettings<CreateSessionRequest, Session> createSessionTransportSettings =

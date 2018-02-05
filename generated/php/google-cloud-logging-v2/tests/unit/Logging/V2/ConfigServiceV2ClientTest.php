@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Logging\V2;
 
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Logging\V2\ListExclusionsResponse;
 use Google\Cloud\Logging\V2\ListSinksResponse;
 use Google\Cloud\Logging\V2\LogExclusion;
@@ -42,42 +42,20 @@ use stdClass;
  */
 class ConfigServiceV2ClientTest extends GeneratedTest
 {
-    public function createMockLoggingServiceV2Impl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockLoggingServiceV2Impl($hostname, $opts);
-    }
-
-    public function createMockConfigServiceV2Impl($hostname, $opts)
-    {
-        return new MockConfigServiceV2Impl($hostname, $opts);
-    }
-
-    public function createMockMetricsServiceV2Impl($hostname, $opts)
-    {
-        return new MockMetricsServiceV2Impl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => ConfigServiceV2Client::SERVICE_ADDRESS,
-            'port' => ConfigServiceV2Client::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return ConfigServiceV2Client
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new ConfigServiceV2Client($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new ConfigServiceV2Client($options);
     }
 
     /**
@@ -85,10 +63,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function listSinksTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -97,7 +75,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse = new ListSinksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSinks($sinks);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -108,14 +86,16 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSinks()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListSinks', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -123,10 +103,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function listSinksExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -138,7 +118,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -153,8 +133,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -162,10 +142,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function getSinkTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -179,22 +159,24 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
 
         $response = $client->getSink($formattedSinkName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetSink', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSinkName, $actualRequestObject->getSinkName());
+        $actualValue = $actualRequestObject->getSinkName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSinkName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -202,10 +184,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function getSinkExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -217,7 +199,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
@@ -232,8 +214,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -241,10 +223,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function createSinkTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -258,7 +240,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -266,16 +248,20 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $response = $client->createSink($formattedParent, $sink);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateSink', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($sink, $actualRequestObject->getSink());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSink();
+
+        $this->assertProtobufEquals($sink, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -283,10 +269,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function createSinkExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -298,7 +284,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -314,8 +300,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -323,10 +309,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function updateSinkTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -340,7 +326,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
@@ -348,16 +334,20 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $response = $client->updateSink($formattedSinkName, $sink);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateSink', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSinkName, $actualRequestObject->getSinkName());
-        $this->assertProtobufEquals($sink, $actualRequestObject->getSink());
+        $actualValue = $actualRequestObject->getSinkName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSinkName, $actualValue);
+        $actualValue = $actualRequestObject->getSink();
+
+        $this->assertProtobufEquals($sink, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -365,10 +355,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function updateSinkExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -380,7 +370,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
@@ -396,8 +386,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -405,28 +395,30 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function deleteSinkTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
 
         $client->deleteSink($formattedSinkName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteSink', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSinkName, $actualRequestObject->getSinkName());
+        $actualValue = $actualRequestObject->getSinkName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSinkName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -434,10 +426,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function deleteSinkExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -449,7 +441,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
@@ -464,8 +456,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -473,10 +465,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function listExclusionsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -485,7 +477,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse = new ListExclusionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExclusions($exclusions);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -496,14 +488,16 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getExclusions()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListExclusions', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -511,10 +505,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function listExclusionsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -526,7 +520,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -541,8 +535,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -550,10 +544,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function getExclusionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -565,22 +559,24 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDisabled($disabled);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
 
         $response = $client->getExclusion($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetExclusion', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -588,10 +584,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function getExclusionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -603,7 +599,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
@@ -618,8 +614,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -627,10 +623,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function createExclusionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -642,7 +638,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDisabled($disabled);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -650,16 +646,20 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $response = $client->createExclusion($formattedParent, $exclusion);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateExclusion', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($exclusion, $actualRequestObject->getExclusion());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getExclusion();
+
+        $this->assertProtobufEquals($exclusion, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -667,10 +667,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function createExclusionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -682,7 +682,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -698,8 +698,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -707,10 +707,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function updateExclusionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -722,7 +722,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDisabled($disabled);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
@@ -731,17 +731,23 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $response = $client->updateExclusion($formattedName, $exclusion, $updateMask);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateExclusion', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($exclusion, $actualRequestObject->getExclusion());
-        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getExclusion();
+
+        $this->assertProtobufEquals($exclusion, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -749,10 +755,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function updateExclusionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -764,7 +770,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
@@ -781,8 +787,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -790,28 +796,30 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function deleteExclusionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
 
         $client->deleteExclusion($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteExclusion', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -819,10 +827,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     public function deleteExclusionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
-        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -834,7 +842,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
@@ -849,7 +857,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

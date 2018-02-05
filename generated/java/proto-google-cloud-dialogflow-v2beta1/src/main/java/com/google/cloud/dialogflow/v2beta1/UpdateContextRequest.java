@@ -105,8 +105,7 @@ private static final long serialVersionUID = 0L;
   private com.google.cloud.dialogflow.v2beta1.Context context_;
   /**
    * <pre>
-   * Required. The context to update. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * Required. The context to update.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -116,8 +115,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Required. The context to update. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * Required. The context to update.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -127,8 +125,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Required. The context to update. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * Required. The context to update.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -506,8 +503,7 @@ private static final long serialVersionUID = 0L;
         com.google.cloud.dialogflow.v2beta1.Context, com.google.cloud.dialogflow.v2beta1.Context.Builder, com.google.cloud.dialogflow.v2beta1.ContextOrBuilder> contextBuilder_;
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -517,8 +513,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -532,8 +527,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -553,8 +547,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -572,8 +565,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -595,8 +587,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -614,8 +605,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -627,8 +617,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>
@@ -643,8 +632,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Required. The context to update. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+     * Required. The context to update.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Context context = 1;</code>

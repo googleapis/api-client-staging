@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ import com.google.api.gax.grpc.GrpcCallSettings;
 import com.google.api.gax.grpc.GrpcCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.UnaryCallable;
-import com.google.cloud.monitoring.v3.MetricServiceSettings;
 import com.google.monitoring.v3.CreateMetricDescriptorRequest;
 import com.google.monitoring.v3.CreateTimeSeriesRequest;
 import com.google.monitoring.v3.DeleteMetricDescriptorRequest;
@@ -167,13 +166,13 @@ public class GrpcMetricServiceStub extends MetricServiceStub {
       listTimeSeriesPagedCallable;
   private final UnaryCallable<CreateTimeSeriesRequest, Empty> createTimeSeriesCallable;
 
-  public static final GrpcMetricServiceStub create(MetricServiceSettings settings)
+  public static final GrpcMetricServiceStub create(MetricServiceStubSettings settings)
       throws IOException {
     return new GrpcMetricServiceStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcMetricServiceStub create(ClientContext clientContext) throws IOException {
-    return new GrpcMetricServiceStub(MetricServiceSettings.newBuilder().build(), clientContext);
+    return new GrpcMetricServiceStub(MetricServiceStubSettings.newBuilder().build(), clientContext);
   }
 
   /**
@@ -181,7 +180,7 @@ public class GrpcMetricServiceStub extends MetricServiceStub {
    * that it is easy to make a subclass, but otherwise, the static factory methods should be
    * preferred.
    */
-  protected GrpcMetricServiceStub(MetricServiceSettings settings, ClientContext clientContext)
+  protected GrpcMetricServiceStub(MetricServiceStubSettings settings, ClientContext clientContext)
       throws IOException {
 
     GrpcCallSettings<

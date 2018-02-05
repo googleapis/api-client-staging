@@ -10,7 +10,7 @@ public interface ImageOrBuilder extends
   /**
    * <pre>
    * Image content, represented as a stream of bytes.
-   * Note: as with all `bytes` fields, protobuffers use a pure binary
+   * Note: As with all `bytes` fields, protobuffers use a pure binary
    * representation, whereas JSON representations use base64.
    * </pre>
    *
@@ -20,9 +20,9 @@ public interface ImageOrBuilder extends
 
   /**
    * <pre>
-   * Google Cloud Storage image location. If both `content` and `source`
-   * are provided for an image, `content` takes precedence and is
-   * used to perform the image annotation request.
+   * Google Cloud Storage image location, or publicly-accessible image
+   * URL. If both `content` and `source` are provided for an image, `content`
+   * takes precedence and is used to perform the image annotation request.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -30,9 +30,9 @@ public interface ImageOrBuilder extends
   boolean hasSource();
   /**
    * <pre>
-   * Google Cloud Storage image location. If both `content` and `source`
-   * are provided for an image, `content` takes precedence and is
-   * used to perform the image annotation request.
+   * Google Cloud Storage image location, or publicly-accessible image
+   * URL. If both `content` and `source` are provided for an image, `content`
+   * takes precedence and is used to perform the image annotation request.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
@@ -40,9 +40,9 @@ public interface ImageOrBuilder extends
   com.google.cloud.vision.v1.ImageSource getSource();
   /**
    * <pre>
-   * Google Cloud Storage image location. If both `content` and `source`
-   * are provided for an image, `content` takes precedence and is
-   * used to perform the image annotation request.
+   * Google Cloud Storage image location, or publicly-accessible image
+   * URL. If both `content` and `source` are provided for an image, `content`
+   * takes precedence and is used to perform the image annotation request.
    * </pre>
    *
    * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>

@@ -86,6 +86,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 50: {
+            com.google.cloud.vision.v1.WebDetectionParams.Builder subBuilder = null;
+            if (webDetectionParams_ != null) {
+              subBuilder = webDetectionParams_.toBuilder();
+            }
+            webDetectionParams_ = input.readMessage(com.google.cloud.vision.v1.WebDetectionParams.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(webDetectionParams_);
+              webDetectionParams_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -253,6 +266,39 @@ private static final long serialVersionUID = 0L;
     return getCropHintsParams();
   }
 
+  public static final int WEB_DETECTION_PARAMS_FIELD_NUMBER = 6;
+  private com.google.cloud.vision.v1.WebDetectionParams webDetectionParams_;
+  /**
+   * <pre>
+   * Parameters for web detection.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+   */
+  public boolean hasWebDetectionParams() {
+    return webDetectionParams_ != null;
+  }
+  /**
+   * <pre>
+   * Parameters for web detection.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+   */
+  public com.google.cloud.vision.v1.WebDetectionParams getWebDetectionParams() {
+    return webDetectionParams_ == null ? com.google.cloud.vision.v1.WebDetectionParams.getDefaultInstance() : webDetectionParams_;
+  }
+  /**
+   * <pre>
+   * Parameters for web detection.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+   */
+  public com.google.cloud.vision.v1.WebDetectionParamsOrBuilder getWebDetectionParamsOrBuilder() {
+    return getWebDetectionParams();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -273,6 +319,9 @@ private static final long serialVersionUID = 0L;
     }
     if (cropHintsParams_ != null) {
       output.writeMessage(4, getCropHintsParams());
+    }
+    if (webDetectionParams_ != null) {
+      output.writeMessage(6, getWebDetectionParams());
     }
     unknownFields.writeTo(output);
   }
@@ -297,6 +346,10 @@ private static final long serialVersionUID = 0L;
     if (cropHintsParams_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, getCropHintsParams());
+    }
+    if (webDetectionParams_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, getWebDetectionParams());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -326,6 +379,11 @@ private static final long serialVersionUID = 0L;
       result = result && getCropHintsParams()
           .equals(other.getCropHintsParams());
     }
+    result = result && (hasWebDetectionParams() == other.hasWebDetectionParams());
+    if (hasWebDetectionParams()) {
+      result = result && getWebDetectionParams()
+          .equals(other.getWebDetectionParams());
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -348,6 +406,10 @@ private static final long serialVersionUID = 0L;
     if (hasCropHintsParams()) {
       hash = (37 * hash) + CROP_HINTS_PARAMS_FIELD_NUMBER;
       hash = (53 * hash) + getCropHintsParams().hashCode();
+    }
+    if (hasWebDetectionParams()) {
+      hash = (37 * hash) + WEB_DETECTION_PARAMS_FIELD_NUMBER;
+      hash = (53 * hash) + getWebDetectionParams().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -496,6 +558,12 @@ private static final long serialVersionUID = 0L;
         cropHintsParams_ = null;
         cropHintsParamsBuilder_ = null;
       }
+      if (webDetectionParamsBuilder_ == null) {
+        webDetectionParams_ = null;
+      } else {
+        webDetectionParams_ = null;
+        webDetectionParamsBuilder_ = null;
+      }
       return this;
     }
 
@@ -534,6 +602,11 @@ private static final long serialVersionUID = 0L;
         result.cropHintsParams_ = cropHintsParams_;
       } else {
         result.cropHintsParams_ = cropHintsParamsBuilder_.build();
+      }
+      if (webDetectionParamsBuilder_ == null) {
+        result.webDetectionParams_ = webDetectionParams_;
+      } else {
+        result.webDetectionParams_ = webDetectionParamsBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -592,6 +665,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasCropHintsParams()) {
         mergeCropHintsParams(other.getCropHintsParams());
+      }
+      if (other.hasWebDetectionParams()) {
+        mergeWebDetectionParams(other.getWebDetectionParams());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1118,6 +1194,159 @@ private static final long serialVersionUID = 0L;
         cropHintsParams_ = null;
       }
       return cropHintsParamsBuilder_;
+    }
+
+    private com.google.cloud.vision.v1.WebDetectionParams webDetectionParams_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.cloud.vision.v1.WebDetectionParams, com.google.cloud.vision.v1.WebDetectionParams.Builder, com.google.cloud.vision.v1.WebDetectionParamsOrBuilder> webDetectionParamsBuilder_;
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    public boolean hasWebDetectionParams() {
+      return webDetectionParamsBuilder_ != null || webDetectionParams_ != null;
+    }
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetectionParams getWebDetectionParams() {
+      if (webDetectionParamsBuilder_ == null) {
+        return webDetectionParams_ == null ? com.google.cloud.vision.v1.WebDetectionParams.getDefaultInstance() : webDetectionParams_;
+      } else {
+        return webDetectionParamsBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    public Builder setWebDetectionParams(com.google.cloud.vision.v1.WebDetectionParams value) {
+      if (webDetectionParamsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        webDetectionParams_ = value;
+        onChanged();
+      } else {
+        webDetectionParamsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    public Builder setWebDetectionParams(
+        com.google.cloud.vision.v1.WebDetectionParams.Builder builderForValue) {
+      if (webDetectionParamsBuilder_ == null) {
+        webDetectionParams_ = builderForValue.build();
+        onChanged();
+      } else {
+        webDetectionParamsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    public Builder mergeWebDetectionParams(com.google.cloud.vision.v1.WebDetectionParams value) {
+      if (webDetectionParamsBuilder_ == null) {
+        if (webDetectionParams_ != null) {
+          webDetectionParams_ =
+            com.google.cloud.vision.v1.WebDetectionParams.newBuilder(webDetectionParams_).mergeFrom(value).buildPartial();
+        } else {
+          webDetectionParams_ = value;
+        }
+        onChanged();
+      } else {
+        webDetectionParamsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    public Builder clearWebDetectionParams() {
+      if (webDetectionParamsBuilder_ == null) {
+        webDetectionParams_ = null;
+        onChanged();
+      } else {
+        webDetectionParams_ = null;
+        webDetectionParamsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetectionParams.Builder getWebDetectionParamsBuilder() {
+      
+      onChanged();
+      return getWebDetectionParamsFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    public com.google.cloud.vision.v1.WebDetectionParamsOrBuilder getWebDetectionParamsOrBuilder() {
+      if (webDetectionParamsBuilder_ != null) {
+        return webDetectionParamsBuilder_.getMessageOrBuilder();
+      } else {
+        return webDetectionParams_ == null ?
+            com.google.cloud.vision.v1.WebDetectionParams.getDefaultInstance() : webDetectionParams_;
+      }
+    }
+    /**
+     * <pre>
+     * Parameters for web detection.
+     * </pre>
+     *
+     * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.cloud.vision.v1.WebDetectionParams, com.google.cloud.vision.v1.WebDetectionParams.Builder, com.google.cloud.vision.v1.WebDetectionParamsOrBuilder> 
+        getWebDetectionParamsFieldBuilder() {
+      if (webDetectionParamsBuilder_ == null) {
+        webDetectionParamsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.cloud.vision.v1.WebDetectionParams, com.google.cloud.vision.v1.WebDetectionParams.Builder, com.google.cloud.vision.v1.WebDetectionParamsOrBuilder>(
+                getWebDetectionParams(),
+                getParentForChildren(),
+                isClean());
+        webDetectionParams_ = null;
+      }
+      return webDetectionParamsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

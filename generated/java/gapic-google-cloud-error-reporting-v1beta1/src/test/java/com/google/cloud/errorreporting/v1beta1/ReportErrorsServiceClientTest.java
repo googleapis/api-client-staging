@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,7 +99,7 @@ public class ReportErrorsServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ReportErrorEventRequest actualRequest = (ReportErrorEventRequest) actualRequests.get(0);
 
-    Assert.assertEquals(projectName, actualRequest.getProjectNameAsProjectName());
+    Assert.assertEquals(projectName, ProjectName.parse(actualRequest.getProjectName()));
     Assert.assertEquals(event, actualRequest.getEvent());
     Assert.assertTrue(
         channelProvider.isHeaderSent(

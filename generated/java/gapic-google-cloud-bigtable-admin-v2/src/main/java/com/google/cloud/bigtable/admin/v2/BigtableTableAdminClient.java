@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,6 +49,7 @@ import com.google.bigtable.admin.v2.SnapshotTableRequest;
 import com.google.bigtable.admin.v2.Table;
 import com.google.bigtable.admin.v2.TableName;
 import com.google.cloud.bigtable.admin.v2.stub.BigtableTableAdminStub;
+import com.google.cloud.bigtable.admin.v2.stub.BigtableTableAdminStubSettings;
 import com.google.longrunning.Operation;
 import com.google.longrunning.OperationsClient;
 import com.google.protobuf.Empty;
@@ -165,7 +166,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    */
   protected BigtableTableAdminClient(BigtableTableAdminSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((BigtableTableAdminStubSettings) settings.getStubSettings()).createStub();
     this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
   }
 
@@ -220,7 +221,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
     CreateTableRequest request =
         CreateTableRequest.newBuilder()
-            .setParentWithInstanceName(parent)
+            .setParent(parent.toString())
             .setTableId(tableId)
             .setTable(table)
             .build();
@@ -240,7 +241,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   String tableId = "";
    *   Table table = Table.newBuilder().build();
    *   CreateTableRequest request = CreateTableRequest.newBuilder()
-   *     .setParentWithInstanceName(parent)
+   *     .setParent(parent.toString())
    *     .setTableId(tableId)
    *     .setTable(table)
    *     .build();
@@ -268,7 +269,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   String tableId = "";
    *   Table table = Table.newBuilder().build();
    *   CreateTableRequest request = CreateTableRequest.newBuilder()
-   *     .setParentWithInstanceName(parent)
+   *     .setParent(parent.toString())
    *     .setTableId(tableId)
    *     .setTable(table)
    *     .build();
@@ -317,7 +318,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
     CreateTableFromSnapshotRequest request =
         CreateTableFromSnapshotRequest.newBuilder()
-            .setParentWithInstanceName(parent)
+            .setParent(parent.toString())
             .setTableId(tableId)
             .setSourceSnapshot(sourceSnapshot)
             .build();
@@ -342,7 +343,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   String tableId = "";
    *   String sourceSnapshot = "";
    *   CreateTableFromSnapshotRequest request = CreateTableFromSnapshotRequest.newBuilder()
-   *     .setParentWithInstanceName(parent)
+   *     .setParent(parent.toString())
    *     .setTableId(tableId)
    *     .setSourceSnapshot(sourceSnapshot)
    *     .build();
@@ -376,7 +377,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   String tableId = "";
    *   String sourceSnapshot = "";
    *   CreateTableFromSnapshotRequest request = CreateTableFromSnapshotRequest.newBuilder()
-   *     .setParentWithInstanceName(parent)
+   *     .setParent(parent.toString())
    *     .setTableId(tableId)
    *     .setSourceSnapshot(sourceSnapshot)
    *     .build();
@@ -410,7 +411,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   String tableId = "";
    *   String sourceSnapshot = "";
    *   CreateTableFromSnapshotRequest request = CreateTableFromSnapshotRequest.newBuilder()
-   *     .setParentWithInstanceName(parent)
+   *     .setParent(parent.toString())
    *     .setTableId(tableId)
    *     .setSourceSnapshot(sourceSnapshot)
    *     .build();
@@ -445,8 +446,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListTablesPagedResponse listTables(InstanceName parent) {
-    ListTablesRequest request =
-        ListTablesRequest.newBuilder().setParentWithInstanceName(parent).build();
+    ListTablesRequest request = ListTablesRequest.newBuilder().setParent(parent.toString()).build();
     return listTables(request);
   }
 
@@ -460,7 +460,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   ListTablesRequest request = ListTablesRequest.newBuilder()
-   *     .setParentWithInstanceName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (Table element : bigtableTableAdminClient.listTables(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -485,7 +485,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   ListTablesRequest request = ListTablesRequest.newBuilder()
-   *     .setParentWithInstanceName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListTablesPagedResponse&gt; future = bigtableTableAdminClient.listTablesPagedCallable().futureCall(request);
    *   // Do something
@@ -509,7 +509,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   ListTablesRequest request = ListTablesRequest.newBuilder()
-   *     .setParentWithInstanceName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListTablesResponse response = bigtableTableAdminClient.listTablesCallable().call(request);
@@ -549,7 +549,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    */
   public final Table getTable(TableName name) {
 
-    GetTableRequest request = GetTableRequest.newBuilder().setNameWithTableName(name).build();
+    GetTableRequest request = GetTableRequest.newBuilder().setName(name.toString()).build();
     return getTable(request);
   }
 
@@ -563,7 +563,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   GetTableRequest request = GetTableRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .build();
    *   Table response = bigtableTableAdminClient.getTable(request);
    * }
@@ -586,7 +586,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   GetTableRequest request = GetTableRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Table&gt; future = bigtableTableAdminClient.getTableCallable().futureCall(request);
    *   // Do something
@@ -617,7 +617,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    */
   public final void deleteTable(TableName name) {
 
-    DeleteTableRequest request = DeleteTableRequest.newBuilder().setNameWithTableName(name).build();
+    DeleteTableRequest request = DeleteTableRequest.newBuilder().setName(name.toString()).build();
     deleteTable(request);
   }
 
@@ -631,7 +631,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   DeleteTableRequest request = DeleteTableRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .build();
    *   bigtableTableAdminClient.deleteTable(request);
    * }
@@ -654,7 +654,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   DeleteTableRequest request = DeleteTableRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = bigtableTableAdminClient.deleteTableCallable().futureCall(request);
    *   // Do something
@@ -694,7 +694,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
     ModifyColumnFamiliesRequest request =
         ModifyColumnFamiliesRequest.newBuilder()
-            .setNameWithTableName(name)
+            .setName(name.toString())
             .addAllModifications(modifications)
             .build();
     return modifyColumnFamilies(request);
@@ -713,7 +713,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   List&lt;ModifyColumnFamiliesRequest.Modification&gt; modifications = new ArrayList&lt;&gt;();
    *   ModifyColumnFamiliesRequest request = ModifyColumnFamiliesRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .addAllModifications(modifications)
    *     .build();
    *   Table response = bigtableTableAdminClient.modifyColumnFamilies(request);
@@ -740,7 +740,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   List&lt;ModifyColumnFamiliesRequest.Modification&gt; modifications = new ArrayList&lt;&gt;();
    *   ModifyColumnFamiliesRequest request = ModifyColumnFamiliesRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .addAllModifications(modifications)
    *     .build();
    *   ApiFuture&lt;Table&gt; future = bigtableTableAdminClient.modifyColumnFamiliesCallable().futureCall(request);
@@ -764,7 +764,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   DropRowRangeRequest request = DropRowRangeRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .build();
    *   bigtableTableAdminClient.dropRowRange(request);
    * }
@@ -788,7 +788,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   DropRowRangeRequest request = DropRowRangeRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = bigtableTableAdminClient.dropRowRangeCallable().futureCall(request);
    *   // Do something
@@ -827,7 +827,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
   public final GenerateConsistencyTokenResponse generateConsistencyToken(TableName name) {
 
     GenerateConsistencyTokenRequest request =
-        GenerateConsistencyTokenRequest.newBuilder().setNameWithTableName(name).build();
+        GenerateConsistencyTokenRequest.newBuilder().setName(name.toString()).build();
     return generateConsistencyToken(request);
   }
 
@@ -848,7 +848,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   GenerateConsistencyTokenRequest request = GenerateConsistencyTokenRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .build();
    *   GenerateConsistencyTokenResponse response = bigtableTableAdminClient.generateConsistencyToken(request);
    * }
@@ -879,7 +879,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   GenerateConsistencyTokenRequest request = GenerateConsistencyTokenRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;GenerateConsistencyTokenResponse&gt; future = bigtableTableAdminClient.generateConsistencyTokenCallable().futureCall(request);
    *   // Do something
@@ -921,7 +921,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
     CheckConsistencyRequest request =
         CheckConsistencyRequest.newBuilder()
-            .setNameWithTableName(name)
+            .setName(name.toString())
             .setConsistencyToken(consistencyToken)
             .build();
     return checkConsistency(request);
@@ -944,7 +944,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   String consistencyToken = "";
    *   CheckConsistencyRequest request = CheckConsistencyRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .setConsistencyToken(consistencyToken)
    *     .build();
    *   CheckConsistencyResponse response = bigtableTableAdminClient.checkConsistency(request);
@@ -975,7 +975,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   String consistencyToken = "";
    *   CheckConsistencyRequest request = CheckConsistencyRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .setConsistencyToken(consistencyToken)
    *     .build();
    *   ApiFuture&lt;CheckConsistencyResponse&gt; future = bigtableTableAdminClient.checkConsistencyCallable().futureCall(request);
@@ -1008,7 +1008,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   String snapshotId = "";
    *   String description = "";
    *   SnapshotTableRequest request = SnapshotTableRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .setCluster(cluster)
    *     .setSnapshotId(snapshotId)
    *     .setDescription(description)
@@ -1043,7 +1043,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *   String snapshotId = "";
    *   String description = "";
    *   SnapshotTableRequest request = SnapshotTableRequest.newBuilder()
-   *     .setNameWithTableName(name)
+   *     .setName(name.toString())
    *     .setCluster(cluster)
    *     .setSnapshotId(snapshotId)
    *     .setDescription(description)
@@ -1082,8 +1082,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    */
   public final Snapshot getSnapshot(SnapshotName name) {
 
-    GetSnapshotRequest request =
-        GetSnapshotRequest.newBuilder().setNameWithSnapshotName(name).build();
+    GetSnapshotRequest request = GetSnapshotRequest.newBuilder().setName(name.toString()).build();
     return getSnapshot(request);
   }
 
@@ -1102,7 +1101,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   SnapshotName name = SnapshotName.of("[PROJECT]", "[INSTANCE]", "[CLUSTER]", "[SNAPSHOT]");
    *   GetSnapshotRequest request = GetSnapshotRequest.newBuilder()
-   *     .setNameWithSnapshotName(name)
+   *     .setName(name.toString())
    *     .build();
    *   Snapshot response = bigtableTableAdminClient.getSnapshot(request);
    * }
@@ -1130,7 +1129,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   SnapshotName name = SnapshotName.of("[PROJECT]", "[INSTANCE]", "[CLUSTER]", "[SNAPSHOT]");
    *   GetSnapshotRequest request = GetSnapshotRequest.newBuilder()
-   *     .setNameWithSnapshotName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Snapshot&gt; future = bigtableTableAdminClient.getSnapshotCallable().futureCall(request);
    *   // Do something
@@ -1170,7 +1169,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    */
   public final ListSnapshotsPagedResponse listSnapshots(ClusterName parent) {
     ListSnapshotsRequest request =
-        ListSnapshotsRequest.newBuilder().setParentWithClusterName(parent).build();
+        ListSnapshotsRequest.newBuilder().setParent(parent.toString()).build();
     return listSnapshots(request);
   }
 
@@ -1189,7 +1188,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   ClusterName parent = ClusterName.of("[PROJECT]", "[INSTANCE]", "[CLUSTER]");
    *   ListSnapshotsRequest request = ListSnapshotsRequest.newBuilder()
-   *     .setParentWithClusterName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (Snapshot element : bigtableTableAdminClient.listSnapshots(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -1219,7 +1218,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   ClusterName parent = ClusterName.of("[PROJECT]", "[INSTANCE]", "[CLUSTER]");
    *   ListSnapshotsRequest request = ListSnapshotsRequest.newBuilder()
-   *     .setParentWithClusterName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListSnapshotsPagedResponse&gt; future = bigtableTableAdminClient.listSnapshotsPagedCallable().futureCall(request);
    *   // Do something
@@ -1249,7 +1248,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   ClusterName parent = ClusterName.of("[PROJECT]", "[INSTANCE]", "[CLUSTER]");
    *   ListSnapshotsRequest request = ListSnapshotsRequest.newBuilder()
-   *     .setParentWithClusterName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListSnapshotsResponse response = bigtableTableAdminClient.listSnapshotsCallable().call(request);
@@ -1295,7 +1294,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
   public final void deleteSnapshot(SnapshotName name) {
 
     DeleteSnapshotRequest request =
-        DeleteSnapshotRequest.newBuilder().setNameWithSnapshotName(name).build();
+        DeleteSnapshotRequest.newBuilder().setName(name.toString()).build();
     deleteSnapshot(request);
   }
 
@@ -1314,7 +1313,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   SnapshotName name = SnapshotName.of("[PROJECT]", "[INSTANCE]", "[CLUSTER]", "[SNAPSHOT]");
    *   DeleteSnapshotRequest request = DeleteSnapshotRequest.newBuilder()
-   *     .setNameWithSnapshotName(name)
+   *     .setName(name.toString())
    *     .build();
    *   bigtableTableAdminClient.deleteSnapshot(request);
    * }
@@ -1342,7 +1341,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
    *   SnapshotName name = SnapshotName.of("[PROJECT]", "[INSTANCE]", "[CLUSTER]", "[SNAPSHOT]");
    *   DeleteSnapshotRequest request = DeleteSnapshotRequest.newBuilder()
-   *     .setNameWithSnapshotName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = bigtableTableAdminClient.deleteSnapshotCallable().futureCall(request);
    *   // Do something

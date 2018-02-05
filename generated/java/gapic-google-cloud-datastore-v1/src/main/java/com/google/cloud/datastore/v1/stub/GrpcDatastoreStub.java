@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import com.google.api.gax.grpc.GrpcCallSettings;
 import com.google.api.gax.grpc.GrpcCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.UnaryCallable;
-import com.google.cloud.datastore.v1.DatastoreSettings;
 import com.google.datastore.v1.AllocateIdsRequest;
 import com.google.datastore.v1.AllocateIdsResponse;
 import com.google.datastore.v1.BeginTransactionRequest;
@@ -122,12 +121,12 @@ public class GrpcDatastoreStub extends DatastoreStub {
   private final UnaryCallable<AllocateIdsRequest, AllocateIdsResponse> allocateIdsCallable;
   private final UnaryCallable<ReserveIdsRequest, ReserveIdsResponse> reserveIdsCallable;
 
-  public static final GrpcDatastoreStub create(DatastoreSettings settings) throws IOException {
+  public static final GrpcDatastoreStub create(DatastoreStubSettings settings) throws IOException {
     return new GrpcDatastoreStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcDatastoreStub create(ClientContext clientContext) throws IOException {
-    return new GrpcDatastoreStub(DatastoreSettings.newBuilder().build(), clientContext);
+    return new GrpcDatastoreStub(DatastoreStubSettings.newBuilder().build(), clientContext);
   }
 
   /**
@@ -135,7 +134,7 @@ public class GrpcDatastoreStub extends DatastoreStub {
    * that it is easy to make a subclass, but otherwise, the static factory methods should be
    * preferred.
    */
-  protected GrpcDatastoreStub(DatastoreSettings settings, ClientContext clientContext)
+  protected GrpcDatastoreStub(DatastoreStubSettings settings, ClientContext clientContext)
       throws IOException {
 
     GrpcCallSettings<LookupRequest, LookupResponse> lookupTransportSettings =

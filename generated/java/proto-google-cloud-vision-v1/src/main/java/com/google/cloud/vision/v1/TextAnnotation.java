@@ -9,9 +9,9 @@ package com.google.cloud.vision.v1;
  * The hierarchy of an OCR extracted text structure is like this:
  *     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol
  * Each structural component, starting from Page, may further have their own
- * properties. Properties describe detected languages, breaks etc.. Please
- * refer to the [google.cloud.vision.v1.TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty] message
- * definition below for more detail.
+ * properties. Properties describe detected languages, breaks etc.. Please refer
+ * to the [TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty] message definition below for more
+ * detail.
  * </pre>
  *
  * Protobuf type {@code google.cloud.vision.v1.TextAnnotation}
@@ -775,10 +775,18 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * Detected break type.
+     * </pre>
+     *
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     int getTypeValue();
     /**
+     * <pre>
+     * Detected break type.
+     * </pre>
+     *
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType getType();
@@ -919,7 +927,8 @@ private static final long serialVersionUID = 0L;
       EOL_SURE_SPACE(3),
       /**
        * <pre>
-       * End-line hyphen that is not present in text; does
+       * End-line hyphen that is not present in text; does not co-occur with
+       * `SPACE`, `LEADER_SPACE`, or `LINE_BREAK`.
        * </pre>
        *
        * <code>HYPHEN = 4;</code>
@@ -927,8 +936,6 @@ private static final long serialVersionUID = 0L;
       HYPHEN(4),
       /**
        * <pre>
-       * not co-occur with SPACE, LEADER_SPACE, or
-       * LINE_BREAK.
        * Line break that ends a paragraph.
        * </pre>
        *
@@ -972,7 +979,8 @@ private static final long serialVersionUID = 0L;
       public static final int EOL_SURE_SPACE_VALUE = 3;
       /**
        * <pre>
-       * End-line hyphen that is not present in text; does
+       * End-line hyphen that is not present in text; does not co-occur with
+       * `SPACE`, `LEADER_SPACE`, or `LINE_BREAK`.
        * </pre>
        *
        * <code>HYPHEN = 4;</code>
@@ -980,8 +988,6 @@ private static final long serialVersionUID = 0L;
       public static final int HYPHEN_VALUE = 4;
       /**
        * <pre>
-       * not co-occur with SPACE, LEADER_SPACE, or
-       * LINE_BREAK.
        * Line break that ends a paragraph.
        * </pre>
        *
@@ -1069,12 +1075,20 @@ private static final long serialVersionUID = 0L;
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
+     * <pre>
+     * Detected break type.
+     * </pre>
+     *
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
+     * <pre>
+     * Detected break type.
+     * </pre>
+     *
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType getType() {
@@ -1401,12 +1415,20 @@ private static final long serialVersionUID = 0L;
 
       private int type_ = 0;
       /**
+       * <pre>
+       * Detected break type.
+       * </pre>
+       *
        * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public int getTypeValue() {
         return type_;
       }
       /**
+       * <pre>
+       * Detected break type.
+       * </pre>
+       *
        * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public Builder setTypeValue(int value) {
@@ -1415,6 +1437,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Detected break type.
+       * </pre>
+       *
        * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType getType() {
@@ -1422,6 +1448,10 @@ private static final long serialVersionUID = 0L;
         return result == null ? com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType.UNRECOGNIZED : result;
       }
       /**
+       * <pre>
+       * Detected break type.
+       * </pre>
+       *
        * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public Builder setType(com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType value) {
@@ -1434,6 +1464,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Detected break type.
+       * </pre>
+       *
        * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public Builder clearType() {
@@ -2927,9 +2961,9 @@ private static final long serialVersionUID = 0L;
    * The hierarchy of an OCR extracted text structure is like this:
    *     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol
    * Each structural component, starting from Page, may further have their own
-   * properties. Properties describe detected languages, breaks etc.. Please
-   * refer to the [google.cloud.vision.v1.TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty] message
-   * definition below for more detail.
+   * properties. Properties describe detected languages, breaks etc.. Please refer
+   * to the [TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty] message definition below for more
+   * detail.
    * </pre>
    *
    * Protobuf type {@code google.cloud.vision.v1.TextAnnotation}

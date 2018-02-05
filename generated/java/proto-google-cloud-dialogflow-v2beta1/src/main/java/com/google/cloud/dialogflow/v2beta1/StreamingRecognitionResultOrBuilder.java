@@ -46,6 +46,7 @@ public interface StreamingRecognitionResultOrBuilder extends
 
   /**
    * <pre>
+   * The default of 0.0 is a sentinel value indicating `confidence` was not set.
    * If `false`, the `StreamingRecognitionResult` represents an
    * interim result that may change. If `true`, the recognizer will not return
    * any further hypotheses about this piece of the audio. May only be populated
@@ -55,4 +56,18 @@ public interface StreamingRecognitionResultOrBuilder extends
    * <code>bool is_final = 3;</code>
    */
   boolean getIsFinal();
+
+  /**
+   * <pre>
+   * The Speech confidence between 0.0 and 1.0 for the current portion of audio.
+   * A higher number indicates an estimated greater likelihood that the
+   * recognized words are correct. The default of 0.0 is a sentinel value
+   * indicating that confidence was not set.
+   * This field is typically only provided if `is_final` is true and you should
+   * not rely on it being accurate or even set.
+   * </pre>
+   *
+   * <code>float confidence = 4;</code>
+   */
+  float getConfidence();
 }

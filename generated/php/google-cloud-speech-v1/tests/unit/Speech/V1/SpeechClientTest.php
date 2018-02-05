@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,13 +25,13 @@ namespace Google\Cloud\Tests\Unit\Speech\V1;
 use Google\Cloud\Speech\V1\SpeechClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
-use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding as AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
 use Google\Cloud\Speech\V1\RecognizeResponse;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
@@ -47,37 +47,20 @@ use stdClass;
  */
 class SpeechClientTest extends GeneratedTest
 {
-    public function createMockSpeechImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockSpeechImpl($hostname, $opts);
-    }
-
-    public function createMockOperationsStub($hostname, $opts)
-    {
-        return new MockOperationsImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => SpeechClient::SERVICE_ADDRESS,
-            'port' => SpeechClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return SpeechClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new SpeechClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new SpeechClient($options);
     }
 
     /**
@@ -85,17 +68,17 @@ class SpeechClientTest extends GeneratedTest
      */
     public function recognizeTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
-        $client = $this->createClient('createSpeechStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new RecognizeResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
-        $encoding = AudioEncoding::FLAC;
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -108,16 +91,20 @@ class SpeechClientTest extends GeneratedTest
 
         $response = $client->recognize($config, $audio);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v1.Speech/Recognize', $actualFuncCall);
 
-        $this->assertProtobufEquals($config, $actualRequestObject->getConfig());
-        $this->assertProtobufEquals($audio, $actualRequestObject->getAudio());
+        $actualValue = $actualRequestObject->getConfig();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($config, $actualValue);
+        $actualValue = $actualRequestObject->getAudio();
+
+        $this->assertProtobufEquals($audio, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -125,10 +112,10 @@ class SpeechClientTest extends GeneratedTest
      */
     public function recognizeExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
-        $client = $this->createClient('createSpeechStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -140,10 +127,10 @@ class SpeechClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
-        $encoding = AudioEncoding::FLAC;
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -164,8 +151,8 @@ class SpeechClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -173,27 +160,26 @@ class SpeechClientTest extends GeneratedTest
      */
     public function longRunningRecognizeTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
-        $client = $this->createClient('createSpeechStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/longRunningRecognizeTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
         $expectedResponse = new LongRunningRecognizeResponse();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -201,10 +187,10 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setName('operations/longRunningRecognizeTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
-        $operationsStub->addResponse($completeOperation);
+        $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $encoding = AudioEncoding::FLAC;
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -218,16 +204,20 @@ class SpeechClientTest extends GeneratedTest
         $response = $client->longRunningRecognize($config, $audio);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-        $apiRequests = $grpcStub->popReceivedCalls();
+        $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v1.Speech/LongRunningRecognize', $actualApiFuncCall);
-        $this->assertProtobufEquals($config, $actualApiRequestObject->getConfig());
-        $this->assertProtobufEquals($audio, $actualApiRequestObject->getAudio());
+        $actualValue = $actualApiRequestObject->getConfig();
+
+        $this->assertProtobufEquals($config, $actualValue);
+        $actualValue = $actualApiRequestObject->getAudio();
+
+        $this->assertProtobufEquals($audio, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/longRunningRecognizeTest');
@@ -235,9 +225,9 @@ class SpeechClientTest extends GeneratedTest
         $response->pollUntilComplete();
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
+        $apiRequestsEmpty = $transport->popReceivedCalls();
         $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsStub->popReceivedCalls();
+        $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
@@ -245,8 +235,8 @@ class SpeechClientTest extends GeneratedTest
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -254,27 +244,26 @@ class SpeechClientTest extends GeneratedTest
      */
     public function longRunningRecognizeExceptionTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
-        $client = $this->createClient('createSpeechStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/longRunningRecognizeTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -286,10 +275,10 @@ class SpeechClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsStub->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $encoding = AudioEncoding::FLAC;
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -317,10 +306,10 @@ class SpeechClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
-        $grpcStub->popReceivedCalls();
-        $operationsStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -328,18 +317,18 @@ class SpeechClientTest extends GeneratedTest
      */
     public function streamingRecognizeTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
-        $client = $this->createClient('createSpeechStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new StreamingRecognizeResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $expectedResponse2 = new StreamingRecognizeResponse();
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $expectedResponse3 = new StreamingRecognizeResponse();
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $request = new StreamingRecognizeRequest();
@@ -364,14 +353,14 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
 
-        $createStreamRequests = $grpcStub->popReceivedCalls();
+        $createStreamRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v1.Speech/StreamingRecognize', $streamFuncCall);
         $this->assertNull($streamRequestObject);
 
-        $callObjects = $grpcStub->popCallObjects();
+        $callObjects = $transport->popCallObjects();
         $this->assertSame(1, count($callObjects));
         $bidiCall = $callObjects[0];
 
@@ -382,7 +371,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedRequests[] = $request3;
         $this->assertEquals($expectedRequests, $writeRequests);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -390,8 +379,8 @@ class SpeechClientTest extends GeneratedTest
      */
     public function streamingRecognizeExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
-        $client = $this->createClient('createSpeechStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -404,9 +393,9 @@ class SpeechClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $bidi = $client->streamingRecognize();
         $results = $bidi->closeWriteAndReadAll();
@@ -421,7 +410,7 @@ class SpeechClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

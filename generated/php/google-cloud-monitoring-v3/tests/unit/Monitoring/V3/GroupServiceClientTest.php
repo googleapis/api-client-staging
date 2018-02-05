@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\GroupServiceClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Api\MonitoredResource;
 use Google\Cloud\Monitoring\V3\Group;
 use Google\Cloud\Monitoring\V3\ListGroupMembersResponse;
@@ -41,37 +41,20 @@ use stdClass;
  */
 class GroupServiceClientTest extends GeneratedTest
 {
-    public function createMockGroupServiceImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockGroupServiceImpl($hostname, $opts);
-    }
-
-    public function createMockMetricServiceImpl($hostname, $opts)
-    {
-        return new MockMetricServiceImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => GroupServiceClient::SERVICE_ADDRESS,
-            'port' => GroupServiceClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return GroupServiceClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new GroupServiceClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new GroupServiceClient($options);
     }
 
     /**
@@ -79,10 +62,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function listGroupsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -91,7 +74,7 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse = new ListGroupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGroup($group);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->projectName('[PROJECT]');
@@ -102,14 +85,16 @@ class GroupServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getGroup()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/ListGroups', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -117,10 +102,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function listGroupsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -132,7 +117,7 @@ class GroupServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->projectName('[PROJECT]');
@@ -147,8 +132,8 @@ class GroupServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -156,10 +141,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function getGroupTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -173,22 +158,24 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setParentName($parentName);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setIsCluster($isCluster);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
 
         $response = $client->getGroup($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/GetGroup', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -196,10 +183,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function getGroupExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -211,7 +198,7 @@ class GroupServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
@@ -226,8 +213,8 @@ class GroupServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -235,10 +222,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function createGroupTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -252,7 +239,7 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setParentName($parentName);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setIsCluster($isCluster);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->projectName('[PROJECT]');
@@ -260,16 +247,20 @@ class GroupServiceClientTest extends GeneratedTest
 
         $response = $client->createGroup($formattedName, $group);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/CreateGroup', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($group, $actualRequestObject->getGroup());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getGroup();
+
+        $this->assertProtobufEquals($group, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -277,10 +268,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function createGroupExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -292,7 +283,7 @@ class GroupServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->projectName('[PROJECT]');
@@ -308,8 +299,8 @@ class GroupServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -317,10 +308,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function updateGroupTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -334,22 +325,24 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setParentName($parentName);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setIsCluster($isCluster);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $group = new Group();
 
         $response = $client->updateGroup($group);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/UpdateGroup', $actualFuncCall);
 
-        $this->assertProtobufEquals($group, $actualRequestObject->getGroup());
+        $actualValue = $actualRequestObject->getGroup();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($group, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -357,10 +350,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function updateGroupExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -372,7 +365,7 @@ class GroupServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $group = new Group();
@@ -387,8 +380,8 @@ class GroupServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -396,28 +389,30 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function deleteGroupTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
 
         $client->deleteGroup($formattedName);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/DeleteGroup', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -425,10 +420,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function deleteGroupExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -440,7 +435,7 @@ class GroupServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
@@ -455,8 +450,8 @@ class GroupServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -464,21 +459,21 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function listGroupMembersTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
-        $totalSize = -705419236;
+        $totalSize = 705419236;
         $membersElement = new MonitoredResource();
         $members = [$membersElement];
         $expectedResponse = new ListGroupMembersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setMembers($members);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
@@ -489,14 +484,16 @@ class GroupServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getMembers()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/ListGroupMembers', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -504,10 +501,10 @@ class GroupServiceClientTest extends GeneratedTest
      */
     public function listGroupMembersExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
-        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -519,7 +516,7 @@ class GroupServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
@@ -534,7 +531,7 @@ class GroupServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

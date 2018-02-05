@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.errorreporting.v1beta1.stub.ErrorGroupServiceStub;
+import com.google.cloud.errorreporting.v1beta1.stub.ErrorGroupServiceStubSettings;
 import com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup;
 import com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.GroupName;
@@ -130,7 +131,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    */
   protected ErrorGroupServiceClient(ErrorGroupServiceSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((ErrorGroupServiceStubSettings) settings.getStubSettings()).createStub();
   }
 
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
@@ -172,7 +173,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
   public final ErrorGroup getGroup(GroupName groupName) {
 
     GetGroupRequest request =
-        GetGroupRequest.newBuilder().setGroupNameWithGroupName(groupName).build();
+        GetGroupRequest.newBuilder().setGroupName(groupName.toString()).build();
     return getGroup(request);
   }
 
@@ -186,7 +187,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
    *   GroupName groupName = GroupName.of("[PROJECT]", "[GROUP]");
    *   GetGroupRequest request = GetGroupRequest.newBuilder()
-   *     .setGroupNameWithGroupName(groupName)
+   *     .setGroupName(groupName.toString())
    *     .build();
    *   ErrorGroup response = errorGroupServiceClient.getGroup(request);
    * }
@@ -209,7 +210,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
    *   GroupName groupName = GroupName.of("[PROJECT]", "[GROUP]");
    *   GetGroupRequest request = GetGroupRequest.newBuilder()
-   *     .setGroupNameWithGroupName(groupName)
+   *     .setGroupName(groupName.toString())
    *     .build();
    *   ApiFuture&lt;ErrorGroup&gt; future = errorGroupServiceClient.getGroupCallable().futureCall(request);
    *   // Do something

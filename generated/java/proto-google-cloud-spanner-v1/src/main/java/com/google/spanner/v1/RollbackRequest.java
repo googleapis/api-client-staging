@@ -586,6 +586,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setSession(sessionName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setSessionWithSessionName(com.google.spanner.v1.SessionName value) {
       if (value == null) {
         return setSession("");
@@ -593,6 +600,13 @@ private static final long serialVersionUID = 0L;
       return setSession(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SessionName.parse(protoBuilder.getSession());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.spanner.v1.SessionName getSessionAsSessionName() {
       java.lang.String str = getSession();
       if (str.isEmpty()) {
@@ -603,6 +617,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.spanner.v1.RollbackRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SessionName.parse(protoObject.getSession());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.spanner.v1.SessionName getSessionAsSessionName() {
     java.lang.String str = getSession();
     if (str.isEmpty()) {

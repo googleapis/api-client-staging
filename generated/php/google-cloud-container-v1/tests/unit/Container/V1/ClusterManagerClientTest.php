@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Container\V1;
 
 use Google\Cloud\Container\V1\ClusterManagerClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterUpdate;
@@ -40,7 +40,7 @@ use Google\Cloud\Container\V1\NodePool;
 use Google\Cloud\Container\V1\NodePoolAutoscaling;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\ServerConfig;
-use Google\Cloud\Container\V1\SetMasterAuthRequest_Action as Action;
+use Google\Cloud\Container\V1\SetMasterAuthRequest_Action;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
@@ -52,32 +52,20 @@ use stdClass;
  */
 class ClusterManagerClientTest extends GeneratedTest
 {
-    public function createMockClusterManagerImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockClusterManagerImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => ClusterManagerClient::SERVICE_ADDRESS,
-            'port' => ClusterManagerClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return ClusterManagerClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new ClusterManagerClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new ClusterManagerClient($options);
     }
 
     /**
@@ -85,14 +73,14 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function listClustersTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ListClustersResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -100,16 +88,20 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->listClusters($projectId, $zone);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/ListClusters', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -117,10 +109,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function listClustersExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -132,7 +124,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -148,8 +140,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -157,10 +149,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function getClusterTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -208,7 +200,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setServicesIpv4Cidr($servicesIpv4Cidr);
         $expectedResponse->setCurrentNodeCount($currentNodeCount);
         $expectedResponse->setExpireTime($expireTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -217,17 +209,23 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->getCluster($projectId, $zone, $clusterId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/GetCluster', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -235,10 +233,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function getClusterExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -250,7 +248,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -267,8 +265,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -276,10 +274,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function createClusterTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -299,7 +297,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -308,17 +306,23 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->createCluster($projectId, $zone, $cluster);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CreateCluster', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($cluster, $actualRequestObject->getCluster());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getCluster();
+
+        $this->assertProtobufEquals($cluster, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -326,10 +330,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function createClusterExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -341,7 +345,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -358,8 +362,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -367,10 +371,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function updateClusterTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -390,7 +394,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -400,18 +404,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->updateCluster($projectId, $zone, $clusterId, $update);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateCluster', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($update, $actualRequestObject->getUpdate());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getUpdate();
+
+        $this->assertProtobufEquals($update, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -419,10 +431,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function updateClusterExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -434,7 +446,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -452,8 +464,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -461,10 +473,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function updateNodePoolTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -484,7 +496,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -496,20 +508,32 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->updateNodePool($projectId, $zone, $clusterId, $nodePoolId, $nodeVersion, $imageType);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateNodePool', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($nodePoolId, $actualRequestObject->getNodePoolId());
-        $this->assertProtobufEquals($nodeVersion, $actualRequestObject->getNodeVersion());
-        $this->assertProtobufEquals($imageType, $actualRequestObject->getImageType());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNodePoolId();
+
+        $this->assertProtobufEquals($nodePoolId, $actualValue);
+        $actualValue = $actualRequestObject->getNodeVersion();
+
+        $this->assertProtobufEquals($nodeVersion, $actualValue);
+        $actualValue = $actualRequestObject->getImageType();
+
+        $this->assertProtobufEquals($imageType, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -517,10 +541,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function updateNodePoolExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -532,7 +556,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -552,8 +576,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -561,10 +585,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setNodePoolAutoscalingTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -584,7 +608,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -595,19 +619,29 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolAutoscaling', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($nodePoolId, $actualRequestObject->getNodePoolId());
-        $this->assertProtobufEquals($autoscaling, $actualRequestObject->getAutoscaling());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNodePoolId();
+
+        $this->assertProtobufEquals($nodePoolId, $actualValue);
+        $actualValue = $actualRequestObject->getAutoscaling();
+
+        $this->assertProtobufEquals($autoscaling, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -615,10 +649,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setNodePoolAutoscalingExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -630,7 +664,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -649,8 +683,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -658,10 +692,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setLoggingServiceTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -681,7 +715,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -691,18 +725,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setLoggingService($projectId, $zone, $clusterId, $loggingService);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLoggingService', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($loggingService, $actualRequestObject->getLoggingService());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getLoggingService();
+
+        $this->assertProtobufEquals($loggingService, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -710,10 +752,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setLoggingServiceExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -725,7 +767,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -743,8 +785,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -752,10 +794,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setMonitoringServiceTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -775,7 +817,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -785,18 +827,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setMonitoringService($projectId, $zone, $clusterId, $monitoringService);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetMonitoringService', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($monitoringService, $actualRequestObject->getMonitoringService());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getMonitoringService();
+
+        $this->assertProtobufEquals($monitoringService, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -804,10 +854,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setMonitoringServiceExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -819,7 +869,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -837,8 +887,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -846,10 +896,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setAddonsConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -869,7 +919,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -879,18 +929,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetAddonsConfig', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($addonsConfig, $actualRequestObject->getAddonsConfig());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getAddonsConfig();
+
+        $this->assertProtobufEquals($addonsConfig, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -898,10 +956,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setAddonsConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -913,7 +971,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -931,8 +989,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -940,10 +998,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setLocationsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -963,7 +1021,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -973,18 +1031,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setLocations($projectId, $zone, $clusterId, $locations);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLocations', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($locations, $actualRequestObject->getLocations());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getLocations();
+
+        $this->assertProtobufEquals($locations, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -992,10 +1058,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setLocationsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1007,7 +1073,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1025,8 +1091,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1034,10 +1100,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function updateMasterTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -1057,7 +1123,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1067,18 +1133,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->updateMaster($projectId, $zone, $clusterId, $masterVersion);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateMaster', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($masterVersion, $actualRequestObject->getMasterVersion());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getMasterVersion();
+
+        $this->assertProtobufEquals($masterVersion, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1086,10 +1160,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function updateMasterExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1101,7 +1175,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1119,8 +1193,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1128,10 +1202,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setMasterAuthTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -1151,30 +1225,40 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
         $zone = 'zone3744684';
         $clusterId = 'clusterId240280960';
-        $action = Action::UNKNOWN;
+        $action = SetMasterAuthRequest_Action::UNKNOWN;
         $update = new MasterAuth();
 
         $response = $client->setMasterAuth($projectId, $zone, $clusterId, $action, $update);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetMasterAuth', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($action, $actualRequestObject->getAction());
-        $this->assertProtobufEquals($update, $actualRequestObject->getUpdate());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getAction();
+
+        $this->assertProtobufEquals($action, $actualValue);
+        $actualValue = $actualRequestObject->getUpdate();
+
+        $this->assertProtobufEquals($update, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1182,10 +1266,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setMasterAuthExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1197,13 +1281,13 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
         $zone = 'zone3744684';
         $clusterId = 'clusterId240280960';
-        $action = Action::UNKNOWN;
+        $action = SetMasterAuthRequest_Action::UNKNOWN;
         $update = new MasterAuth();
 
         try {
@@ -1216,8 +1300,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1225,10 +1309,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function deleteClusterTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -1248,7 +1332,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1257,17 +1341,23 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->deleteCluster($projectId, $zone, $clusterId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/DeleteCluster', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1275,10 +1365,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function deleteClusterExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1290,7 +1380,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1307,8 +1397,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1316,14 +1406,14 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function listOperationsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ListOperationsResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1331,16 +1421,20 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->listOperations($projectId, $zone);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/ListOperations', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1348,10 +1442,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function listOperationsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1363,7 +1457,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1379,8 +1473,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1388,10 +1482,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function getOperationTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -1411,7 +1505,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1420,17 +1514,23 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->getOperation($projectId, $zone, $operationId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/GetOperation', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($operationId, $actualRequestObject->getOperationId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getOperationId();
+
+        $this->assertProtobufEquals($operationId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1438,10 +1538,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function getOperationExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1453,7 +1553,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1470,8 +1570,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1479,14 +1579,14 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function cancelOperationTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1494,17 +1594,23 @@ class ClusterManagerClientTest extends GeneratedTest
         $operationId = 'operationId-274116877';
 
         $client->cancelOperation($projectId, $zone, $operationId);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CancelOperation', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($operationId, $actualRequestObject->getOperationId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getOperationId();
+
+        $this->assertProtobufEquals($operationId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1512,10 +1618,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function cancelOperationExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1527,7 +1633,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1544,8 +1650,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1553,10 +1659,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function getServerConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $defaultClusterVersion = 'defaultClusterVersion111003029';
@@ -1564,7 +1670,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse = new ServerConfig();
         $expectedResponse->setDefaultClusterVersion($defaultClusterVersion);
         $expectedResponse->setDefaultImageType($defaultImageType);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1572,16 +1678,20 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->getServerConfig($projectId, $zone);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/GetServerConfig', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1589,10 +1699,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function getServerConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1604,7 +1714,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1620,8 +1730,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1629,14 +1739,14 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function listNodePoolsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ListNodePoolsResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1645,17 +1755,23 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->listNodePools($projectId, $zone, $clusterId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/ListNodePools', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1663,10 +1779,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function listNodePoolsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1678,7 +1794,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1695,8 +1811,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1704,10 +1820,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function getNodePoolTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -1721,7 +1837,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setVersion($version);
         $expectedResponse->setStatusMessage($statusMessage);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1731,18 +1847,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->getNodePool($projectId, $zone, $clusterId, $nodePoolId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/GetNodePool', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($nodePoolId, $actualRequestObject->getNodePoolId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNodePoolId();
+
+        $this->assertProtobufEquals($nodePoolId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1750,10 +1874,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function getNodePoolExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1765,7 +1889,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1783,8 +1907,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1792,10 +1916,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function createNodePoolTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -1815,7 +1939,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1825,18 +1949,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->createNodePool($projectId, $zone, $clusterId, $nodePool);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CreateNodePool', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($nodePool, $actualRequestObject->getNodePool());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNodePool();
+
+        $this->assertProtobufEquals($nodePool, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1844,10 +1976,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function createNodePoolExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1859,7 +1991,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1877,8 +2009,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1886,10 +2018,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function deleteNodePoolTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -1909,7 +2041,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1919,18 +2051,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->deleteNodePool($projectId, $zone, $clusterId, $nodePoolId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/DeleteNodePool', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($nodePoolId, $actualRequestObject->getNodePoolId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNodePoolId();
+
+        $this->assertProtobufEquals($nodePoolId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1938,10 +2078,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function deleteNodePoolExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1953,7 +2093,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -1971,8 +2111,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1980,10 +2120,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function rollbackNodePoolUpgradeTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2003,7 +2143,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2013,18 +2153,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->rollbackNodePoolUpgrade($projectId, $zone, $clusterId, $nodePoolId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/RollbackNodePoolUpgrade', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($nodePoolId, $actualRequestObject->getNodePoolId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNodePoolId();
+
+        $this->assertProtobufEquals($nodePoolId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2032,10 +2180,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function rollbackNodePoolUpgradeExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2047,7 +2195,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2065,8 +2213,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2074,10 +2222,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setNodePoolManagementTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2097,7 +2245,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2108,19 +2256,29 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolManagement', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($nodePoolId, $actualRequestObject->getNodePoolId());
-        $this->assertProtobufEquals($management, $actualRequestObject->getManagement());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNodePoolId();
+
+        $this->assertProtobufEquals($nodePoolId, $actualValue);
+        $actualValue = $actualRequestObject->getManagement();
+
+        $this->assertProtobufEquals($management, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2128,10 +2286,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setNodePoolManagementExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2143,7 +2301,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2162,8 +2320,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2171,10 +2329,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setLabelsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2194,7 +2352,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2205,19 +2363,29 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setLabels($projectId, $zone, $clusterId, $resourceLabels, $labelFingerprint);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLabels', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($resourceLabels, $actualRequestObject->getResourceLabels());
-        $this->assertProtobufEquals($labelFingerprint, $actualRequestObject->getLabelFingerprint());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getResourceLabels();
+
+        $this->assertProtobufEquals($resourceLabels, $actualValue);
+        $actualValue = $actualRequestObject->getLabelFingerprint();
+
+        $this->assertProtobufEquals($labelFingerprint, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2225,10 +2393,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setLabelsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2240,7 +2408,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2259,8 +2427,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2268,10 +2436,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setLegacyAbacTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2291,7 +2459,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2301,18 +2469,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setLegacyAbac($projectId, $zone, $clusterId, $enabled);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLegacyAbac', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($enabled, $actualRequestObject->getEnabled());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getEnabled();
+
+        $this->assertProtobufEquals($enabled, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2320,10 +2496,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setLegacyAbacExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2335,7 +2511,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2353,8 +2529,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2362,10 +2538,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function startIPRotationTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2385,7 +2561,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2394,17 +2570,23 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->startIPRotation($projectId, $zone, $clusterId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/StartIPRotation', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2412,10 +2594,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function startIPRotationExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2427,7 +2609,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2444,8 +2626,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2453,10 +2635,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function completeIPRotationTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2476,7 +2658,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2485,17 +2667,23 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->completeIPRotation($projectId, $zone, $clusterId);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CompleteIPRotation', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2503,10 +2691,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function completeIPRotationExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2518,7 +2706,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2535,8 +2723,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2544,10 +2732,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setNodePoolSizeTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2567,7 +2755,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2578,19 +2766,29 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setNodePoolSize($projectId, $zone, $clusterId, $nodePoolId, $nodeCount);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolSize', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($nodePoolId, $actualRequestObject->getNodePoolId());
-        $this->assertProtobufEquals($nodeCount, $actualRequestObject->getNodeCount());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNodePoolId();
+
+        $this->assertProtobufEquals($nodePoolId, $actualValue);
+        $actualValue = $actualRequestObject->getNodeCount();
+
+        $this->assertProtobufEquals($nodeCount, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2598,10 +2796,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setNodePoolSizeExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2613,7 +2811,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2632,8 +2830,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2641,10 +2839,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setNetworkPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2664,7 +2862,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2674,18 +2872,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNetworkPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($networkPolicy, $actualRequestObject->getNetworkPolicy());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getNetworkPolicy();
+
+        $this->assertProtobufEquals($networkPolicy, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2693,10 +2899,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setNetworkPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2708,7 +2914,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2726,8 +2932,8 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2735,10 +2941,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setMaintenancePolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -2758,7 +2964,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTargetLink($targetLink);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2768,18 +2974,26 @@ class ClusterManagerClientTest extends GeneratedTest
 
         $response = $client->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetMaintenancePolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertProtobufEquals($zone, $actualRequestObject->getZone());
-        $this->assertProtobufEquals($clusterId, $actualRequestObject->getClusterId());
-        $this->assertProtobufEquals($maintenancePolicy, $actualRequestObject->getMaintenancePolicy());
+        $actualValue = $actualRequestObject->getProjectId();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getClusterId();
+
+        $this->assertProtobufEquals($clusterId, $actualValue);
+        $actualValue = $actualRequestObject->getMaintenancePolicy();
+
+        $this->assertProtobufEquals($maintenancePolicy, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -2787,10 +3001,10 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     public function setMaintenancePolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockClusterManagerImpl']);
-        $client = $this->createClient('createClusterManagerStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -2802,7 +3016,7 @@ class ClusterManagerClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -2820,7 +3034,7 @@ class ClusterManagerClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

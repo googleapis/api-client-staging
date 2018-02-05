@@ -93,4 +93,13 @@ public interface PageOrBuilder extends
    */
   com.google.cloud.vision.v1.BlockOrBuilder getBlocksOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * Confidence of the OCR results on the page. Range [0, 1].
+   * </pre>
+   *
+   * <code>float confidence = 5;</code>
+   */
+  float getConfidence();
 }

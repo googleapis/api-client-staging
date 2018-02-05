@@ -793,6 +793,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setSubscription(subscriptionName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setSubscriptionWithSubscriptionName(com.google.pubsub.v1.SubscriptionName value) {
       if (value == null) {
         return setSubscription("");
@@ -800,6 +807,13 @@ private static final long serialVersionUID = 0L;
       return setSubscription(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SubscriptionName.parse(protoBuilder.getSubscription());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.pubsub.v1.SubscriptionName getSubscriptionAsSubscriptionName() {
       java.lang.String str = getSubscription();
       if (str.isEmpty()) {
@@ -810,6 +824,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.pubsub.v1.ModifyPushConfigRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SubscriptionName.parse(protoObject.getSubscription());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.pubsub.v1.SubscriptionName getSubscriptionAsSubscriptionName() {
     java.lang.String str = getSubscription();
     if (str.isEmpty()) {

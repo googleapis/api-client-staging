@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\Vision\V1;
 
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Protobuf\Any;
 use Grpc;
@@ -37,32 +37,20 @@ use stdClass;
  */
 class ImageAnnotatorClientTest extends GeneratedTest
 {
-    public function createMockImageAnnotatorImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockImageAnnotatorImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => ImageAnnotatorClient::SERVICE_ADDRESS,
-            'port' => ImageAnnotatorClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return ImageAnnotatorClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new ImageAnnotatorClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new ImageAnnotatorClient($options);
     }
 
     /**
@@ -70,29 +58,31 @@ class ImageAnnotatorClientTest extends GeneratedTest
      */
     public function batchAnnotateImagesTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockImageAnnotatorImpl']);
-        $client = $this->createClient('createImageAnnotatorStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new BatchAnnotateImagesResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $requests = [];
 
         $response = $client->batchAnnotateImages($requests);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages', $actualFuncCall);
 
-        $this->assertProtobufEquals($requests, $actualRequestObject->getRequests());
+        $actualValue = $actualRequestObject->getRequests();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($requests, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -100,10 +90,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
      */
     public function batchAnnotateImagesExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockImageAnnotatorImpl']);
-        $client = $this->createClient('createImageAnnotatorStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -115,7 +105,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $requests = [];
@@ -130,7 +120,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

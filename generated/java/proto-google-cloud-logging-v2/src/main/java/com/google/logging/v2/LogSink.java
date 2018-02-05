@@ -2003,6 +2003,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setDestination(resourceName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setDestinationWithResourceName(com.google.api.resourcenames.ResourceName value) {
       if (value == null) {
         return setDestination("");
@@ -2010,6 +2017,13 @@ private static final long serialVersionUID = 0L;
       return setDestination(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * ResourceName.parse(protoBuilder.getDestination());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.api.resourcenames.ResourceName getDestinationAsResourceName() {
       java.lang.String str = getDestination();
       if (str.isEmpty()) {
@@ -2020,6 +2034,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.logging.v2.LogSink)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * ResourceName.parse(protoObject.getDestination());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.api.resourcenames.ResourceName getDestinationAsResourceName() {
     java.lang.String str = getDestination();
     if (str.isEmpty()) {

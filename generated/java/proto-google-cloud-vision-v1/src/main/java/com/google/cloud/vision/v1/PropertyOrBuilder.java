@@ -42,4 +42,13 @@ public interface PropertyOrBuilder extends
    */
   com.google.protobuf.ByteString
       getValueBytes();
+
+  /**
+   * <pre>
+   * Value of numeric properties.
+   * </pre>
+   *
+   * <code>uint64 uint64_value = 3;</code>
+   */
+  long getUint64Value();
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.dialogflow.v2beta1.stub.SessionEntityTypesStub;
+import com.google.cloud.dialogflow.v2beta1.stub.SessionEntityTypesStubSettings;
 import com.google.protobuf.Empty;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -134,7 +135,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    */
   protected SessionEntityTypesClient(SessionEntityTypesSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((SessionEntityTypesStubSettings) settings.getStubSettings()).createStub();
   }
 
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
@@ -173,7 +174,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    */
   public final ListSessionEntityTypesPagedResponse listSessionEntityTypes(SessionName parent) {
     ListSessionEntityTypesRequest request =
-        ListSessionEntityTypesRequest.newBuilder().setParentWithSessionName(parent).build();
+        ListSessionEntityTypesRequest.newBuilder().setParent(parent.toString()).build();
     return listSessionEntityTypes(request);
   }
 
@@ -187,7 +188,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    * try (SessionEntityTypesClient sessionEntityTypesClient = SessionEntityTypesClient.create()) {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   ListSessionEntityTypesRequest request = ListSessionEntityTypesRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (SessionEntityType element : sessionEntityTypesClient.listSessionEntityTypes(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -213,7 +214,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    * try (SessionEntityTypesClient sessionEntityTypesClient = SessionEntityTypesClient.create()) {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   ListSessionEntityTypesRequest request = ListSessionEntityTypesRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListSessionEntityTypesPagedResponse&gt; future = sessionEntityTypesClient.listSessionEntityTypesPagedCallable().futureCall(request);
    *   // Do something
@@ -238,7 +239,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    * try (SessionEntityTypesClient sessionEntityTypesClient = SessionEntityTypesClient.create()) {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   ListSessionEntityTypesRequest request = ListSessionEntityTypesRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListSessionEntityTypesResponse response = sessionEntityTypesClient.listSessionEntityTypesCallable().call(request);
@@ -280,7 +281,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
   public final SessionEntityType getSessionEntityType(SessionEntityTypeName name) {
 
     GetSessionEntityTypeRequest request =
-        GetSessionEntityTypeRequest.newBuilder().setNameWithSessionEntityTypeName(name).build();
+        GetSessionEntityTypeRequest.newBuilder().setName(name.toString()).build();
     return getSessionEntityType(request);
   }
 
@@ -294,7 +295,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    * try (SessionEntityTypesClient sessionEntityTypesClient = SessionEntityTypesClient.create()) {
    *   SessionEntityTypeName name = SessionEntityTypeName.of("[PROJECT]", "[SESSION]", "[ENTITY_TYPE]");
    *   GetSessionEntityTypeRequest request = GetSessionEntityTypeRequest.newBuilder()
-   *     .setNameWithSessionEntityTypeName(name)
+   *     .setName(name.toString())
    *     .build();
    *   SessionEntityType response = sessionEntityTypesClient.getSessionEntityType(request);
    * }
@@ -317,7 +318,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    * try (SessionEntityTypesClient sessionEntityTypesClient = SessionEntityTypesClient.create()) {
    *   SessionEntityTypeName name = SessionEntityTypeName.of("[PROJECT]", "[SESSION]", "[ENTITY_TYPE]");
    *   GetSessionEntityTypeRequest request = GetSessionEntityTypeRequest.newBuilder()
-   *     .setNameWithSessionEntityTypeName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;SessionEntityType&gt; future = sessionEntityTypesClient.getSessionEntityTypeCallable().futureCall(request);
    *   // Do something
@@ -354,7 +355,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
 
     CreateSessionEntityTypeRequest request =
         CreateSessionEntityTypeRequest.newBuilder()
-            .setParentWithSessionName(parent)
+            .setParent(parent.toString())
             .setSessionEntityType(sessionEntityType)
             .build();
     return createSessionEntityType(request);
@@ -371,7 +372,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   SessionEntityType sessionEntityType = SessionEntityType.newBuilder().build();
    *   CreateSessionEntityTypeRequest request = CreateSessionEntityTypeRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .setSessionEntityType(sessionEntityType)
    *     .build();
    *   SessionEntityType response = sessionEntityTypesClient.createSessionEntityType(request);
@@ -396,7 +397,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   SessionEntityType sessionEntityType = SessionEntityType.newBuilder().build();
    *   CreateSessionEntityTypeRequest request = CreateSessionEntityTypeRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .setSessionEntityType(sessionEntityType)
    *     .build();
    *   ApiFuture&lt;SessionEntityType&gt; future = sessionEntityTypesClient.createSessionEntityTypeCallable().futureCall(request);
@@ -500,7 +501,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
   public final void deleteSessionEntityType(SessionEntityTypeName name) {
 
     DeleteSessionEntityTypeRequest request =
-        DeleteSessionEntityTypeRequest.newBuilder().setNameWithSessionEntityTypeName(name).build();
+        DeleteSessionEntityTypeRequest.newBuilder().setName(name.toString()).build();
     deleteSessionEntityType(request);
   }
 
@@ -514,7 +515,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    * try (SessionEntityTypesClient sessionEntityTypesClient = SessionEntityTypesClient.create()) {
    *   SessionEntityTypeName name = SessionEntityTypeName.of("[PROJECT]", "[SESSION]", "[ENTITY_TYPE]");
    *   DeleteSessionEntityTypeRequest request = DeleteSessionEntityTypeRequest.newBuilder()
-   *     .setNameWithSessionEntityTypeName(name)
+   *     .setName(name.toString())
    *     .build();
    *   sessionEntityTypesClient.deleteSessionEntityType(request);
    * }
@@ -537,7 +538,7 @@ public class SessionEntityTypesClient implements BackgroundResource {
    * try (SessionEntityTypesClient sessionEntityTypesClient = SessionEntityTypesClient.create()) {
    *   SessionEntityTypeName name = SessionEntityTypeName.of("[PROJECT]", "[SESSION]", "[ENTITY_TYPE]");
    *   DeleteSessionEntityTypeRequest request = DeleteSessionEntityTypeRequest.newBuilder()
-   *     .setNameWithSessionEntityTypeName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = sessionEntityTypesClient.deleteSessionEntityTypeCallable().futureCall(request);
    *   // Do something

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -120,7 +120,7 @@ public class SessionEntityTypesClientTest {
     ListSessionEntityTypesRequest actualRequest =
         (ListSessionEntityTypesRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, actualRequest.getParentAsSessionName());
+    Assert.assertEquals(parent, SessionName.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -149,7 +149,7 @@ public class SessionEntityTypesClientTest {
     SessionEntityTypeName name2 =
         SessionEntityTypeName.of("[PROJECT]", "[SESSION]", "[ENTITY_TYPE]");
     SessionEntityType expectedResponse =
-        SessionEntityType.newBuilder().setNameWithSessionEntityTypeName(name2).build();
+        SessionEntityType.newBuilder().setName(name2.toString()).build();
     mockSessionEntityTypes.addResponse(expectedResponse);
 
     SessionEntityTypeName name =
@@ -162,7 +162,7 @@ public class SessionEntityTypesClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetSessionEntityTypeRequest actualRequest = (GetSessionEntityTypeRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, actualRequest.getNameAsSessionEntityTypeName());
+    Assert.assertEquals(name, SessionEntityTypeName.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -192,7 +192,7 @@ public class SessionEntityTypesClientTest {
     SessionEntityTypeName name =
         SessionEntityTypeName.of("[PROJECT]", "[SESSION]", "[ENTITY_TYPE]");
     SessionEntityType expectedResponse =
-        SessionEntityType.newBuilder().setNameWithSessionEntityTypeName(name).build();
+        SessionEntityType.newBuilder().setName(name.toString()).build();
     mockSessionEntityTypes.addResponse(expectedResponse);
 
     SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
@@ -206,7 +206,7 @@ public class SessionEntityTypesClientTest {
     CreateSessionEntityTypeRequest actualRequest =
         (CreateSessionEntityTypeRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, actualRequest.getParentAsSessionName());
+    Assert.assertEquals(parent, SessionName.parse(actualRequest.getParent()));
     Assert.assertEquals(sessionEntityType, actualRequest.getSessionEntityType());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -237,7 +237,7 @@ public class SessionEntityTypesClientTest {
     SessionEntityTypeName name =
         SessionEntityTypeName.of("[PROJECT]", "[SESSION]", "[ENTITY_TYPE]");
     SessionEntityType expectedResponse =
-        SessionEntityType.newBuilder().setNameWithSessionEntityTypeName(name).build();
+        SessionEntityType.newBuilder().setName(name.toString()).build();
     mockSessionEntityTypes.addResponse(expectedResponse);
 
     SessionEntityType sessionEntityType = SessionEntityType.newBuilder().build();
@@ -289,7 +289,7 @@ public class SessionEntityTypesClientTest {
     DeleteSessionEntityTypeRequest actualRequest =
         (DeleteSessionEntityTypeRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, actualRequest.getNameAsSessionEntityTypeName());
+    Assert.assertEquals(name, SessionEntityTypeName.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),

@@ -147,4 +147,13 @@ public interface WordOrBuilder extends
    */
   com.google.cloud.vision.v1.SymbolOrBuilder getSymbolsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * Confidence of the OCR results for the word. Range [0, 1].
+   * </pre>
+   *
+   * <code>float confidence = 4;</code>
+   */
+  float getConfidence();
 }

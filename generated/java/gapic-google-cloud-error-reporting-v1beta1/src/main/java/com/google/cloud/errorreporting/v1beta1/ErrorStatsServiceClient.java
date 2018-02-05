@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.errorreporting.v1beta1.stub.ErrorStatsServiceStub;
+import com.google.cloud.errorreporting.v1beta1.stub.ErrorStatsServiceStubSettings;
 import com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.ListEventsRequest;
@@ -138,7 +139,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    */
   protected ErrorStatsServiceClient(ErrorStatsServiceSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((ErrorStatsServiceStubSettings) settings.getStubSettings()).createStub();
   }
 
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
@@ -189,7 +190,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
       ProjectName projectName, QueryTimeRange timeRange) {
     ListGroupStatsRequest request =
         ListGroupStatsRequest.newBuilder()
-            .setProjectNameWithProjectName(projectName)
+            .setProjectName(projectName.toString())
             .setTimeRange(timeRange)
             .build();
     return listGroupStats(request);
@@ -206,7 +207,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   QueryTimeRange timeRange = QueryTimeRange.newBuilder().build();
    *   ListGroupStatsRequest request = ListGroupStatsRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .setTimeRange(timeRange)
    *     .build();
    *   for (ErrorGroupStats element : errorStatsServiceClient.listGroupStats(request).iterateAll()) {
@@ -233,7 +234,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   QueryTimeRange timeRange = QueryTimeRange.newBuilder().build();
    *   ListGroupStatsRequest request = ListGroupStatsRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .setTimeRange(timeRange)
    *     .build();
    *   ApiFuture&lt;ListGroupStatsPagedResponse&gt; future = errorStatsServiceClient.listGroupStatsPagedCallable().futureCall(request);
@@ -260,7 +261,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   QueryTimeRange timeRange = QueryTimeRange.newBuilder().build();
    *   ListGroupStatsRequest request = ListGroupStatsRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .setTimeRange(timeRange)
    *     .build();
    *   while (true) {
@@ -308,7 +309,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
   public final ListEventsPagedResponse listEvents(ProjectName projectName, String groupId) {
     ListEventsRequest request =
         ListEventsRequest.newBuilder()
-            .setProjectNameWithProjectName(projectName)
+            .setProjectName(projectName.toString())
             .setGroupId(groupId)
             .build();
     return listEvents(request);
@@ -325,7 +326,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   String groupId = "";
    *   ListEventsRequest request = ListEventsRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .setGroupId(groupId)
    *     .build();
    *   for (ErrorEvent element : errorStatsServiceClient.listEvents(request).iterateAll()) {
@@ -352,7 +353,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   String groupId = "";
    *   ListEventsRequest request = ListEventsRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .setGroupId(groupId)
    *     .build();
    *   ApiFuture&lt;ListEventsPagedResponse&gt; future = errorStatsServiceClient.listEventsPagedCallable().futureCall(request);
@@ -378,7 +379,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   String groupId = "";
    *   ListEventsRequest request = ListEventsRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .setGroupId(groupId)
    *     .build();
    *   while (true) {
@@ -421,7 +422,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
   public final DeleteEventsResponse deleteEvents(ProjectName projectName) {
 
     DeleteEventsRequest request =
-        DeleteEventsRequest.newBuilder().setProjectNameWithProjectName(projectName).build();
+        DeleteEventsRequest.newBuilder().setProjectName(projectName.toString()).build();
     return deleteEvents(request);
   }
 
@@ -435,7 +436,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    * try (ErrorStatsServiceClient errorStatsServiceClient = ErrorStatsServiceClient.create()) {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   DeleteEventsRequest request = DeleteEventsRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .build();
    *   DeleteEventsResponse response = errorStatsServiceClient.deleteEvents(request);
    * }
@@ -458,7 +459,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
    * try (ErrorStatsServiceClient errorStatsServiceClient = ErrorStatsServiceClient.create()) {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   DeleteEventsRequest request = DeleteEventsRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .build();
    *   ApiFuture&lt;DeleteEventsResponse&gt; future = errorStatsServiceClient.deleteEventsCallable().futureCall(request);
    *   // Do something

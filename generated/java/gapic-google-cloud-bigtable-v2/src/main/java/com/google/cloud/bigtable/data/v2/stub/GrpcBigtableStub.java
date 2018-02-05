@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ import com.google.bigtable.v2.ReadRowsRequest;
 import com.google.bigtable.v2.ReadRowsResponse;
 import com.google.bigtable.v2.SampleRowKeysRequest;
 import com.google.bigtable.v2.SampleRowKeysResponse;
-import com.google.cloud.bigtable.data.v2.BaseBigtableDataSettings;
 import io.grpc.MethodDescriptor;
 import io.grpc.protobuf.ProtoUtils;
 import java.io.IOException;
@@ -119,20 +118,19 @@ public class GrpcBigtableStub extends BigtableStub {
   private final UnaryCallable<ReadModifyWriteRowRequest, ReadModifyWriteRowResponse>
       readModifyWriteRowCallable;
 
-  public static final GrpcBigtableStub create(BaseBigtableDataSettings settings)
-      throws IOException {
+  public static final GrpcBigtableStub create(BigtableStubSettings settings) throws IOException {
     return new GrpcBigtableStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcBigtableStub create(ClientContext clientContext) throws IOException {
-    return new GrpcBigtableStub(BaseBigtableDataSettings.newBuilder().build(), clientContext);
+    return new GrpcBigtableStub(BigtableStubSettings.newBuilder().build(), clientContext);
   }
 
   /**
    * Constructs an instance of GrpcBigtableStub, using the given settings. This is protected so that
    * it is easy to make a subclass, but otherwise, the static factory methods should be preferred.
    */
-  protected GrpcBigtableStub(BaseBigtableDataSettings settings, ClientContext clientContext)
+  protected GrpcBigtableStub(BigtableStubSettings settings, ClientContext clientContext)
       throws IOException {
 
     GrpcCallSettings<ReadRowsRequest, ReadRowsResponse> readRowsTransportSettings =

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.dialogflow.v2beta1.stub.ContextsStub;
+import com.google.cloud.dialogflow.v2beta1.stub.ContextsStubSettings;
 import com.google.protobuf.Empty;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -129,7 +130,7 @@ public class ContextsClient implements BackgroundResource {
    */
   protected ContextsClient(ContextsSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((ContextsStubSettings) settings.getStubSettings()).createStub();
   }
 
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
@@ -168,7 +169,7 @@ public class ContextsClient implements BackgroundResource {
    */
   public final ListContextsPagedResponse listContexts(SessionName parent) {
     ListContextsRequest request =
-        ListContextsRequest.newBuilder().setParentWithSessionName(parent).build();
+        ListContextsRequest.newBuilder().setParent(parent.toString()).build();
     return listContexts(request);
   }
 
@@ -182,7 +183,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   ListContextsRequest request = ListContextsRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (Context element : contextsClient.listContexts(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -207,7 +208,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   ListContextsRequest request = ListContextsRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListContextsPagedResponse&gt; future = contextsClient.listContextsPagedCallable().futureCall(request);
    *   // Do something
@@ -232,7 +233,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   ListContextsRequest request = ListContextsRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListContextsResponse response = contextsClient.listContextsCallable().call(request);
@@ -272,7 +273,7 @@ public class ContextsClient implements BackgroundResource {
    */
   public final Context getContext(ContextName name) {
 
-    GetContextRequest request = GetContextRequest.newBuilder().setNameWithContextName(name).build();
+    GetContextRequest request = GetContextRequest.newBuilder().setName(name.toString()).build();
     return getContext(request);
   }
 
@@ -286,7 +287,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   ContextName name = ContextName.of("[PROJECT]", "[SESSION]", "[CONTEXT]");
    *   GetContextRequest request = GetContextRequest.newBuilder()
-   *     .setNameWithContextName(name)
+   *     .setName(name.toString())
    *     .build();
    *   Context response = contextsClient.getContext(request);
    * }
@@ -309,7 +310,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   ContextName name = ContextName.of("[PROJECT]", "[SESSION]", "[CONTEXT]");
    *   GetContextRequest request = GetContextRequest.newBuilder()
-   *     .setNameWithContextName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Context&gt; future = contextsClient.getContextCallable().futureCall(request);
    *   // Do something
@@ -343,10 +344,7 @@ public class ContextsClient implements BackgroundResource {
   public final Context createContext(SessionName parent, Context context) {
 
     CreateContextRequest request =
-        CreateContextRequest.newBuilder()
-            .setParentWithSessionName(parent)
-            .setContext(context)
-            .build();
+        CreateContextRequest.newBuilder().setParent(parent.toString()).setContext(context).build();
     return createContext(request);
   }
 
@@ -361,7 +359,7 @@ public class ContextsClient implements BackgroundResource {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   Context context = Context.newBuilder().build();
    *   CreateContextRequest request = CreateContextRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .setContext(context)
    *     .build();
    *   Context response = contextsClient.createContext(request);
@@ -386,7 +384,7 @@ public class ContextsClient implements BackgroundResource {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   Context context = Context.newBuilder().build();
    *   CreateContextRequest request = CreateContextRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .setContext(context)
    *     .build();
    *   ApiFuture&lt;Context&gt; future = contextsClient.createContextCallable().futureCall(request);
@@ -412,8 +410,7 @@ public class ContextsClient implements BackgroundResource {
    * }
    * </code></pre>
    *
-   * @param context Required. The context to update. Format: `projects/&lt;Project
-   *     ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * @param context Required. The context to update.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Context updateContext(Context context) {
@@ -487,7 +484,7 @@ public class ContextsClient implements BackgroundResource {
   public final void deleteContext(ContextName name) {
 
     DeleteContextRequest request =
-        DeleteContextRequest.newBuilder().setNameWithContextName(name).build();
+        DeleteContextRequest.newBuilder().setName(name.toString()).build();
     deleteContext(request);
   }
 
@@ -501,7 +498,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   ContextName name = ContextName.of("[PROJECT]", "[SESSION]", "[CONTEXT]");
    *   DeleteContextRequest request = DeleteContextRequest.newBuilder()
-   *     .setNameWithContextName(name)
+   *     .setName(name.toString())
    *     .build();
    *   contextsClient.deleteContext(request);
    * }
@@ -524,7 +521,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   ContextName name = ContextName.of("[PROJECT]", "[SESSION]", "[CONTEXT]");
    *   DeleteContextRequest request = DeleteContextRequest.newBuilder()
-   *     .setNameWithContextName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = contextsClient.deleteContextCallable().futureCall(request);
    *   // Do something
@@ -556,7 +553,7 @@ public class ContextsClient implements BackgroundResource {
   public final void deleteAllContexts(SessionName parent) {
 
     DeleteAllContextsRequest request =
-        DeleteAllContextsRequest.newBuilder().setParentWithSessionName(parent).build();
+        DeleteAllContextsRequest.newBuilder().setParent(parent.toString()).build();
     deleteAllContexts(request);
   }
 
@@ -570,7 +567,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   DeleteAllContextsRequest request = DeleteAllContextsRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   contextsClient.deleteAllContexts(request);
    * }
@@ -593,7 +590,7 @@ public class ContextsClient implements BackgroundResource {
    * try (ContextsClient contextsClient = ContextsClient.create()) {
    *   SessionName parent = SessionName.of("[PROJECT]", "[SESSION]");
    *   DeleteAllContextsRequest request = DeleteAllContextsRequest.newBuilder()
-   *     .setParentWithSessionName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = contextsClient.deleteAllContextsCallable().futureCall(request);
    *   // Do something

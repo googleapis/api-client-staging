@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@ import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.videointelligence.v1beta1.AnnotateVideoProgress;
 import com.google.cloud.videointelligence.v1beta1.AnnotateVideoRequest;
 import com.google.cloud.videointelligence.v1beta1.AnnotateVideoResponse;
-import com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceSettings;
 import com.google.longrunning.Operation;
 import com.google.longrunning.stub.GrpcOperationsStub;
 import io.grpc.MethodDescriptor;
@@ -65,14 +64,14 @@ public class GrpcVideoIntelligenceServiceStub extends VideoIntelligenceServiceSt
       annotateVideoOperationCallable;
 
   public static final GrpcVideoIntelligenceServiceStub create(
-      VideoIntelligenceServiceSettings settings) throws IOException {
+      VideoIntelligenceServiceStubSettings settings) throws IOException {
     return new GrpcVideoIntelligenceServiceStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcVideoIntelligenceServiceStub create(ClientContext clientContext)
       throws IOException {
     return new GrpcVideoIntelligenceServiceStub(
-        VideoIntelligenceServiceSettings.newBuilder().build(), clientContext);
+        VideoIntelligenceServiceStubSettings.newBuilder().build(), clientContext);
   }
 
   /**
@@ -81,7 +80,8 @@ public class GrpcVideoIntelligenceServiceStub extends VideoIntelligenceServiceSt
    * should be preferred.
    */
   protected GrpcVideoIntelligenceServiceStub(
-      VideoIntelligenceServiceSettings settings, ClientContext clientContext) throws IOException {
+      VideoIntelligenceServiceStubSettings settings, ClientContext clientContext)
+      throws IOException {
     this.operationsStub = GrpcOperationsStub.create(clientContext);
 
     GrpcCallSettings<AnnotateVideoRequest, Operation> annotateVideoTransportSettings =

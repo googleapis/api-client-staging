@@ -1070,7 +1070,7 @@ private static final long serialVersionUID = 0L;
   private com.google.protobuf.Duration minimumScheduleInterval_;
   /**
    * <pre>
-   * The minimum interval between two consecutive scheduled runs.
+   * The minimum interval for scheduler to schedule runs.
    * </pre>
    *
    * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -1080,7 +1080,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The minimum interval between two consecutive scheduled runs.
+   * The minimum interval for scheduler to schedule runs.
    * </pre>
    *
    * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -1090,7 +1090,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The minimum interval between two consecutive scheduled runs.
+   * The minimum interval for scheduler to schedule runs.
    * </pre>
    *
    * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3295,7 +3295,7 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> minimumScheduleIntervalBuilder_;
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3305,7 +3305,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3319,7 +3319,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3339,7 +3339,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3357,7 +3357,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3379,7 +3379,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3397,7 +3397,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3409,7 +3409,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3424,7 +3424,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The minimum interval between two consecutive scheduled runs.
+     * The minimum interval for scheduler to schedule runs.
      * </pre>
      *
      * <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
@@ -3453,6 +3453,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(dataSourceNameOneof.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithDataSourceNameOneof(com.google.cloud.bigquery.datatransfer.v1.DataSourceNameOneof value) {
       if (value == null) {
         return setName("");
@@ -3460,6 +3467,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * DataSourceNameOneof.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.cloud.bigquery.datatransfer.v1.DataSourceNameOneof getNameAsDataSourceNameOneof() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -3470,6 +3484,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.cloud.bigquery.datatransfer.v1.DataSource)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * DataSourceNameOneof.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.cloud.bigquery.datatransfer.v1.DataSourceNameOneof getNameAsDataSourceNameOneof() {
     java.lang.String str = getName();
     if (str.isEmpty()) {

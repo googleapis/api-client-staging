@@ -6154,6 +6154,26 @@ private static final long serialVersionUID = 0L;
        */
       com.google.protobuf.ByteString
           getImageUriBytes();
+
+      /**
+       * <pre>
+       * Optional. A text description of the image to be used for accessibility,
+       * e.g., screen readers.
+       * </pre>
+       *
+       * <code>string accessibility_text = 2;</code>
+       */
+      java.lang.String getAccessibilityText();
+      /**
+       * <pre>
+       * Optional. A text description of the image to be used for accessibility,
+       * e.g., screen readers.
+       * </pre>
+       *
+       * <code>string accessibility_text = 2;</code>
+       */
+      com.google.protobuf.ByteString
+          getAccessibilityTextBytes();
     }
     /**
      * <pre>
@@ -6173,6 +6193,7 @@ private static final long serialVersionUID = 0L;
       }
       private Image() {
         imageUri_ = "";
+        accessibilityText_ = "";
       }
 
       @java.lang.Override
@@ -6207,6 +6228,12 @@ private static final long serialVersionUID = 0L;
                 java.lang.String s = input.readStringRequireUtf8();
 
                 imageUri_ = s;
+                break;
+              }
+              case 18: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                accessibilityText_ = s;
                 break;
               }
             }
@@ -6275,6 +6302,50 @@ private static final long serialVersionUID = 0L;
         }
       }
 
+      public static final int ACCESSIBILITY_TEXT_FIELD_NUMBER = 2;
+      private volatile java.lang.Object accessibilityText_;
+      /**
+       * <pre>
+       * Optional. A text description of the image to be used for accessibility,
+       * e.g., screen readers.
+       * </pre>
+       *
+       * <code>string accessibility_text = 2;</code>
+       */
+      public java.lang.String getAccessibilityText() {
+        java.lang.Object ref = accessibilityText_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          accessibilityText_ = s;
+          return s;
+        }
+      }
+      /**
+       * <pre>
+       * Optional. A text description of the image to be used for accessibility,
+       * e.g., screen readers.
+       * </pre>
+       *
+       * <code>string accessibility_text = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccessibilityTextBytes() {
+        java.lang.Object ref = accessibilityText_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          accessibilityText_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -6290,6 +6361,9 @@ private static final long serialVersionUID = 0L;
         if (!getImageUriBytes().isEmpty()) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, imageUri_);
         }
+        if (!getAccessibilityTextBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, accessibilityText_);
+        }
         unknownFields.writeTo(output);
       }
 
@@ -6300,6 +6374,9 @@ private static final long serialVersionUID = 0L;
         size = 0;
         if (!getImageUriBytes().isEmpty()) {
           size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, imageUri_);
+        }
+        if (!getAccessibilityTextBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, accessibilityText_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -6319,6 +6396,8 @@ private static final long serialVersionUID = 0L;
         boolean result = true;
         result = result && getImageUri()
             .equals(other.getImageUri());
+        result = result && getAccessibilityText()
+            .equals(other.getAccessibilityText());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -6332,6 +6411,8 @@ private static final long serialVersionUID = 0L;
         hash = (19 * hash) + getDescriptor().hashCode();
         hash = (37 * hash) + IMAGE_URI_FIELD_NUMBER;
         hash = (53 * hash) + getImageUri().hashCode();
+        hash = (37 * hash) + ACCESSIBILITY_TEXT_FIELD_NUMBER;
+        hash = (53 * hash) + getAccessibilityText().hashCode();
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -6467,6 +6548,8 @@ private static final long serialVersionUID = 0L;
           super.clear();
           imageUri_ = "";
 
+          accessibilityText_ = "";
+
           return this;
         }
 
@@ -6490,6 +6573,7 @@ private static final long serialVersionUID = 0L;
         public com.google.cloud.dialogflow.v2beta1.Intent.Message.Image buildPartial() {
           com.google.cloud.dialogflow.v2beta1.Intent.Message.Image result = new com.google.cloud.dialogflow.v2beta1.Intent.Message.Image(this);
           result.imageUri_ = imageUri_;
+          result.accessibilityText_ = accessibilityText_;
           onBuilt();
           return result;
         }
@@ -6533,6 +6617,10 @@ private static final long serialVersionUID = 0L;
           if (other == com.google.cloud.dialogflow.v2beta1.Intent.Message.Image.getDefaultInstance()) return this;
           if (!other.getImageUri().isEmpty()) {
             imageUri_ = other.imageUri_;
+            onChanged();
+          }
+          if (!other.getAccessibilityText().isEmpty()) {
+            accessibilityText_ = other.accessibilityText_;
             onChanged();
           }
           this.mergeUnknownFields(other.unknownFields);
@@ -6647,6 +6735,100 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
           
           imageUri_ = value;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object accessibilityText_ = "";
+        /**
+         * <pre>
+         * Optional. A text description of the image to be used for accessibility,
+         * e.g., screen readers.
+         * </pre>
+         *
+         * <code>string accessibility_text = 2;</code>
+         */
+        public java.lang.String getAccessibilityText() {
+          java.lang.Object ref = accessibilityText_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            accessibilityText_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <pre>
+         * Optional. A text description of the image to be used for accessibility,
+         * e.g., screen readers.
+         * </pre>
+         *
+         * <code>string accessibility_text = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+            getAccessibilityTextBytes() {
+          java.lang.Object ref = accessibilityText_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            accessibilityText_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <pre>
+         * Optional. A text description of the image to be used for accessibility,
+         * e.g., screen readers.
+         * </pre>
+         *
+         * <code>string accessibility_text = 2;</code>
+         */
+        public Builder setAccessibilityText(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          accessibilityText_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         * Optional. A text description of the image to be used for accessibility,
+         * e.g., screen readers.
+         * </pre>
+         *
+         * <code>string accessibility_text = 2;</code>
+         */
+        public Builder clearAccessibilityText() {
+          
+          accessibilityText_ = getDefaultInstance().getAccessibilityText();
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         * Optional. A text description of the image to be used for accessibility,
+         * e.g., screen readers.
+         * </pre>
+         *
+         * <code>string accessibility_text = 2;</code>
+         */
+        public Builder setAccessibilityTextBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          accessibilityText_ = value;
           onChanged();
           return this;
         }
@@ -30370,6 +30552,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(intentName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithIntentName(com.google.cloud.dialogflow.v2beta1.IntentName value) {
       if (value == null) {
         return setName("");
@@ -30377,6 +30566,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * IntentName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.cloud.dialogflow.v2beta1.IntentName getNameAsIntentName() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -30387,6 +30583,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.Intent)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * IntentName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.cloud.dialogflow.v2beta1.IntentName getNameAsIntentName() {
     java.lang.String str = getName();
     if (str.isEmpty()) {

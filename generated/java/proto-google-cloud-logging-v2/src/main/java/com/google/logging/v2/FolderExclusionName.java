@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class FolderExclusionName implements ResourceName {
     return of(folder, exclusion);
   }
 
+  public static String format(String folder, String exclusion) {
+    return newBuilder()
+      .setFolder(folder)
+      .setExclusion(exclusion)
+      .build()
+      .toString();
+  }
+
   public static FolderExclusionName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "FolderExclusionName.parse: formattedString not in valid format");
     return of(matchMap.get("folder"), matchMap.get("exclusion"));
+  }
+
+  public static List<FolderExclusionName> parseList(List<String> formattedStrings) {
+    List<FolderExclusionName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<FolderExclusionName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (FolderExclusionName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

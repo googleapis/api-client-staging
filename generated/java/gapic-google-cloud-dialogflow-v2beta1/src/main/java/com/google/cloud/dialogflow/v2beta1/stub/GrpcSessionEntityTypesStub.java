@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@ import com.google.cloud.dialogflow.v2beta1.GetSessionEntityTypeRequest;
 import com.google.cloud.dialogflow.v2beta1.ListSessionEntityTypesRequest;
 import com.google.cloud.dialogflow.v2beta1.ListSessionEntityTypesResponse;
 import com.google.cloud.dialogflow.v2beta1.SessionEntityType;
-import com.google.cloud.dialogflow.v2beta1.SessionEntityTypesSettings;
 import com.google.cloud.dialogflow.v2beta1.UpdateSessionEntityTypeRequest;
 import com.google.protobuf.Empty;
 import io.grpc.MethodDescriptor;
@@ -118,7 +117,7 @@ public class GrpcSessionEntityTypesStub extends SessionEntityTypesStub {
   private final UnaryCallable<DeleteSessionEntityTypeRequest, Empty>
       deleteSessionEntityTypeCallable;
 
-  public static final GrpcSessionEntityTypesStub create(SessionEntityTypesSettings settings)
+  public static final GrpcSessionEntityTypesStub create(SessionEntityTypesStubSettings settings)
       throws IOException {
     return new GrpcSessionEntityTypesStub(settings, ClientContext.create(settings));
   }
@@ -126,7 +125,7 @@ public class GrpcSessionEntityTypesStub extends SessionEntityTypesStub {
   public static final GrpcSessionEntityTypesStub create(ClientContext clientContext)
       throws IOException {
     return new GrpcSessionEntityTypesStub(
-        SessionEntityTypesSettings.newBuilder().build(), clientContext);
+        SessionEntityTypesStubSettings.newBuilder().build(), clientContext);
   }
 
   /**
@@ -135,7 +134,7 @@ public class GrpcSessionEntityTypesStub extends SessionEntityTypesStub {
    * should be preferred.
    */
   protected GrpcSessionEntityTypesStub(
-      SessionEntityTypesSettings settings, ClientContext clientContext) throws IOException {
+      SessionEntityTypesStubSettings settings, ClientContext clientContext) throws IOException {
 
     GrpcCallSettings<ListSessionEntityTypesRequest, ListSessionEntityTypesResponse>
         listSessionEntityTypesTransportSettings =

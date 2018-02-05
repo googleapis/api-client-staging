@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.ApiStreamObserver;
 import com.google.api.gax.rpc.BidiStreamingCallable;
 import com.google.api.gax.rpc.InvalidArgumentException;
+import com.google.api.gax.rpc.StatusCode;
 import com.google.protobuf.GeneratedMessageV3;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
@@ -112,7 +113,7 @@ public class SessionsClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DetectIntentRequest actualRequest = (DetectIntentRequest) actualRequests.get(0);
 
-    Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
+    Assert.assertEquals(session, SessionName.parse(actualRequest.getSession()));
     Assert.assertEquals(queryInput, actualRequest.getQueryInput());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -193,9 +194,9 @@ public class SessionsClientTest {
       List<StreamingDetectIntentResponse> actualResponses = responseObserver.future().get();
       Assert.fail("No exception thrown");
     } catch (ExecutionException e) {
-      Assert.assertTrue(e.getCause() instanceof StatusRuntimeException);
-      StatusRuntimeException statusException = (StatusRuntimeException) e.getCause();
-      Assert.assertEquals(Status.INVALID_ARGUMENT, statusException.getStatus());
+      Assert.assertTrue(e.getCause() instanceof InvalidArgumentException);
+      InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
+      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
     }
   }
 }

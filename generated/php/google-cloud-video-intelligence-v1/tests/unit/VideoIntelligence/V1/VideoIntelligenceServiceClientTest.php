@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,10 +24,11 @@ namespace Google\Cloud\Tests\Unit\VideoIntelligence\V1;
 
 use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\VideoIntelligence\V1\AnnotateVideoResponse;
+use Google\Cloud\VideoIntelligence\V1\Feature;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -40,37 +41,20 @@ use stdClass;
  */
 class VideoIntelligenceServiceClientTest extends GeneratedTest
 {
-    public function createMockVideoIntelligenceServiceImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockVideoIntelligenceServiceImpl($hostname, $opts);
-    }
-
-    public function createMockOperationsStub($hostname, $opts)
-    {
-        return new MockOperationsImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => VideoIntelligenceServiceClient::SERVICE_ADDRESS,
-            'port' => VideoIntelligenceServiceClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return VideoIntelligenceServiceClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new VideoIntelligenceServiceClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new VideoIntelligenceServiceClient($options);
     }
 
     /**
@@ -78,27 +62,26 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
      */
     public function annotateVideoTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockVideoIntelligenceServiceImpl']);
-        $client = $this->createClient('createVideoIntelligenceServiceStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/annotateVideoTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
         $expectedResponse = new AnnotateVideoResponse();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -106,14 +89,19 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $completeOperation->setName('operations/annotateVideoTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
-        $operationsStub->addResponse($completeOperation);
+        $operationsTransport->addResponse($completeOperation);
 
-        $response = $client->annotateVideo();
+        // Mock request
+        $inputUri = 'gs://demomaker/cat.mp4';
+        $featuresElement = Feature::LABEL_DETECTION;
+        $features = [$featuresElement];
+
+        $response = $client->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-        $apiRequests = $grpcStub->popReceivedCalls();
+        $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
@@ -126,9 +114,9 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $response->pollUntilComplete();
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
+        $apiRequestsEmpty = $transport->popReceivedCalls();
         $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsStub->popReceivedCalls();
+        $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
@@ -136,8 +124,8 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -145,27 +133,26 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
      */
     public function annotateVideoExceptionTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockVideoIntelligenceServiceImpl']);
-        $client = $this->createClient('createVideoIntelligenceServiceStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/annotateVideoTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -177,9 +164,14 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsStub->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
 
-        $response = $client->annotateVideo();
+        // Mock request
+        $inputUri = 'gs://demomaker/cat.mp4';
+        $featuresElement = Feature::LABEL_DETECTION;
+        $features = [$featuresElement];
+
+        $response = $client->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -196,9 +188,9 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
-        $grpcStub->popReceivedCalls();
-        $operationsStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

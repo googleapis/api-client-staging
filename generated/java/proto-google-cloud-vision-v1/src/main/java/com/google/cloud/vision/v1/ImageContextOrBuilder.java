@@ -119,4 +119,29 @@ public interface ImageContextOrBuilder extends
    * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
    */
   com.google.cloud.vision.v1.CropHintsParamsOrBuilder getCropHintsParamsOrBuilder();
+
+  /**
+   * <pre>
+   * Parameters for web detection.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+   */
+  boolean hasWebDetectionParams();
+  /**
+   * <pre>
+   * Parameters for web detection.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+   */
+  com.google.cloud.vision.v1.WebDetectionParams getWebDetectionParams();
+  /**
+   * <pre>
+   * Parameters for web detection.
+   * </pre>
+   *
+   * <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+   */
+  com.google.cloud.vision.v1.WebDetectionParamsOrBuilder getWebDetectionParamsOrBuilder();
 }

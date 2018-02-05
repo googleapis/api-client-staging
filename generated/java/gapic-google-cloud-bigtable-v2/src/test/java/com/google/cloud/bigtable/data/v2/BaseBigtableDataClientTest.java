@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import com.google.api.gax.grpc.testing.MockStreamObserver;
 import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.InvalidArgumentException;
 import com.google.api.gax.rpc.ServerStreamingCallable;
+import com.google.api.gax.rpc.StatusCode;
 import com.google.bigtable.v2.CheckAndMutateRowRequest;
 import com.google.bigtable.v2.CheckAndMutateRowResponse;
 import com.google.bigtable.v2.MutateRowRequest;
@@ -103,7 +104,7 @@ public class BaseBigtableDataClientTest {
     mockBigtable.addResponse(expectedResponse);
     TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
     ReadRowsRequest request =
-        ReadRowsRequest.newBuilder().setTableNameWithTableName(tableName).build();
+        ReadRowsRequest.newBuilder().setTableName(tableName.toString()).build();
 
     MockStreamObserver<ReadRowsResponse> responseObserver = new MockStreamObserver<>();
 
@@ -122,7 +123,7 @@ public class BaseBigtableDataClientTest {
     mockBigtable.addException(exception);
     TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
     ReadRowsRequest request =
-        ReadRowsRequest.newBuilder().setTableNameWithTableName(tableName).build();
+        ReadRowsRequest.newBuilder().setTableName(tableName.toString()).build();
 
     MockStreamObserver<ReadRowsResponse> responseObserver = new MockStreamObserver<>();
 
@@ -133,9 +134,9 @@ public class BaseBigtableDataClientTest {
       List<ReadRowsResponse> actualResponses = responseObserver.future().get();
       Assert.fail("No exception thrown");
     } catch (ExecutionException e) {
-      Assert.assertTrue(e.getCause() instanceof StatusRuntimeException);
-      StatusRuntimeException statusException = (StatusRuntimeException) e.getCause();
-      Assert.assertEquals(Status.INVALID_ARGUMENT, statusException.getStatus());
+      Assert.assertTrue(e.getCause() instanceof InvalidArgumentException);
+      InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
+      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
     }
   }
 
@@ -149,7 +150,7 @@ public class BaseBigtableDataClientTest {
     mockBigtable.addResponse(expectedResponse);
     TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
     SampleRowKeysRequest request =
-        SampleRowKeysRequest.newBuilder().setTableNameWithTableName(tableName).build();
+        SampleRowKeysRequest.newBuilder().setTableName(tableName.toString()).build();
 
     MockStreamObserver<SampleRowKeysResponse> responseObserver = new MockStreamObserver<>();
 
@@ -169,7 +170,7 @@ public class BaseBigtableDataClientTest {
     mockBigtable.addException(exception);
     TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
     SampleRowKeysRequest request =
-        SampleRowKeysRequest.newBuilder().setTableNameWithTableName(tableName).build();
+        SampleRowKeysRequest.newBuilder().setTableName(tableName.toString()).build();
 
     MockStreamObserver<SampleRowKeysResponse> responseObserver = new MockStreamObserver<>();
 
@@ -181,9 +182,9 @@ public class BaseBigtableDataClientTest {
       List<SampleRowKeysResponse> actualResponses = responseObserver.future().get();
       Assert.fail("No exception thrown");
     } catch (ExecutionException e) {
-      Assert.assertTrue(e.getCause() instanceof StatusRuntimeException);
-      StatusRuntimeException statusException = (StatusRuntimeException) e.getCause();
-      Assert.assertEquals(Status.INVALID_ARGUMENT, statusException.getStatus());
+      Assert.assertTrue(e.getCause() instanceof InvalidArgumentException);
+      InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
+      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
     }
   }
 
@@ -204,7 +205,7 @@ public class BaseBigtableDataClientTest {
     Assert.assertEquals(1, actualRequests.size());
     MutateRowRequest actualRequest = (MutateRowRequest) actualRequests.get(0);
 
-    Assert.assertEquals(tableName, actualRequest.getTableNameAsTableName());
+    Assert.assertEquals(tableName, TableName.parse(actualRequest.getTableName()));
     Assert.assertEquals(rowKey, actualRequest.getRowKey());
     Assert.assertEquals(mutations, actualRequest.getMutationsList());
     Assert.assertTrue(
@@ -240,7 +241,7 @@ public class BaseBigtableDataClientTest {
     List<MutateRowsRequest.Entry> entries = new ArrayList<>();
     MutateRowsRequest request =
         MutateRowsRequest.newBuilder()
-            .setTableNameWithTableName(tableName)
+            .setTableName(tableName.toString())
             .addAllEntries(entries)
             .build();
 
@@ -264,7 +265,7 @@ public class BaseBigtableDataClientTest {
     List<MutateRowsRequest.Entry> entries = new ArrayList<>();
     MutateRowsRequest request =
         MutateRowsRequest.newBuilder()
-            .setTableNameWithTableName(tableName)
+            .setTableName(tableName.toString())
             .addAllEntries(entries)
             .build();
 
@@ -278,9 +279,9 @@ public class BaseBigtableDataClientTest {
       List<MutateRowsResponse> actualResponses = responseObserver.future().get();
       Assert.fail("No exception thrown");
     } catch (ExecutionException e) {
-      Assert.assertTrue(e.getCause() instanceof StatusRuntimeException);
-      StatusRuntimeException statusException = (StatusRuntimeException) e.getCause();
-      Assert.assertEquals(Status.INVALID_ARGUMENT, statusException.getStatus());
+      Assert.assertTrue(e.getCause() instanceof InvalidArgumentException);
+      InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
+      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
     }
   }
 
@@ -306,7 +307,7 @@ public class BaseBigtableDataClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CheckAndMutateRowRequest actualRequest = (CheckAndMutateRowRequest) actualRequests.get(0);
 
-    Assert.assertEquals(tableName, actualRequest.getTableNameAsTableName());
+    Assert.assertEquals(tableName, TableName.parse(actualRequest.getTableName()));
     Assert.assertEquals(rowKey, actualRequest.getRowKey());
     Assert.assertEquals(predicateFilter, actualRequest.getPredicateFilter());
     Assert.assertEquals(trueMutations, actualRequest.getTrueMutationsList());
@@ -354,7 +355,7 @@ public class BaseBigtableDataClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ReadModifyWriteRowRequest actualRequest = (ReadModifyWriteRowRequest) actualRequests.get(0);
 
-    Assert.assertEquals(tableName, actualRequest.getTableNameAsTableName());
+    Assert.assertEquals(tableName, TableName.parse(actualRequest.getTableName()));
     Assert.assertEquals(rowKey, actualRequest.getRowKey());
     Assert.assertEquals(rules, actualRequest.getRulesList());
     Assert.assertTrue(

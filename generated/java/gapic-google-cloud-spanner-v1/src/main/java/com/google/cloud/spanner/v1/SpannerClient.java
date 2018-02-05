@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.v1.stub.SpannerStub;
+import com.google.cloud.spanner.v1.stub.SpannerStubSettings;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import com.google.spanner.v1.BeginTransactionRequest;
@@ -151,7 +152,7 @@ public class SpannerClient implements BackgroundResource {
    */
   protected SpannerClient(SpannerSettings settings) throws IOException {
     this.settings = settings;
-    this.stub = settings.createStub();
+    this.stub = ((SpannerStubSettings) settings.getStubSettings()).createStub();
   }
 
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
@@ -202,7 +203,7 @@ public class SpannerClient implements BackgroundResource {
   public final Session createSession(DatabaseName database) {
 
     CreateSessionRequest request =
-        CreateSessionRequest.newBuilder().setDatabaseWithDatabaseName(database).build();
+        CreateSessionRequest.newBuilder().setDatabase(database.toString()).build();
     return createSession(request);
   }
 
@@ -230,7 +231,7 @@ public class SpannerClient implements BackgroundResource {
    * try (SpannerClient spannerClient = SpannerClient.create()) {
    *   DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   CreateSessionRequest request = CreateSessionRequest.newBuilder()
-   *     .setDatabaseWithDatabaseName(database)
+   *     .setDatabase(database.toString())
    *     .build();
    *   Session response = spannerClient.createSession(request);
    * }
@@ -267,7 +268,7 @@ public class SpannerClient implements BackgroundResource {
    * try (SpannerClient spannerClient = SpannerClient.create()) {
    *   DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   CreateSessionRequest request = CreateSessionRequest.newBuilder()
-   *     .setDatabaseWithDatabaseName(database)
+   *     .setDatabase(database.toString())
    *     .build();
    *   ApiFuture&lt;Session&gt; future = spannerClient.createSessionCallable().futureCall(request);
    *   // Do something
@@ -298,7 +299,7 @@ public class SpannerClient implements BackgroundResource {
    */
   public final Session getSession(SessionName name) {
 
-    GetSessionRequest request = GetSessionRequest.newBuilder().setNameWithSessionName(name).build();
+    GetSessionRequest request = GetSessionRequest.newBuilder().setName(name.toString()).build();
     return getSession(request);
   }
 
@@ -313,7 +314,7 @@ public class SpannerClient implements BackgroundResource {
    * try (SpannerClient spannerClient = SpannerClient.create()) {
    *   SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   GetSessionRequest request = GetSessionRequest.newBuilder()
-   *     .setNameWithSessionName(name)
+   *     .setName(name.toString())
    *     .build();
    *   Session response = spannerClient.getSession(request);
    * }
@@ -337,7 +338,7 @@ public class SpannerClient implements BackgroundResource {
    * try (SpannerClient spannerClient = SpannerClient.create()) {
    *   SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   GetSessionRequest request = GetSessionRequest.newBuilder()
-   *     .setNameWithSessionName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Session&gt; future = spannerClient.getSessionCallable().futureCall(request);
    *   // Do something
@@ -357,7 +358,7 @@ public class SpannerClient implements BackgroundResource {
    *
    * <pre><code>
    * try (SpannerClient spannerClient = SpannerClient.create()) {
-   *   String formattedDatabase = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+   *   String formattedDatabase = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   for (Session element : spannerClient.listSessions(formattedDatabase).iterateAll()) {
    *     // doThingsWith(element);
    *   }
@@ -380,7 +381,7 @@ public class SpannerClient implements BackgroundResource {
    *
    * <pre><code>
    * try (SpannerClient spannerClient = SpannerClient.create()) {
-   *   String formattedDatabase = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+   *   String formattedDatabase = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
    *     .setDatabase(formattedDatabase)
    *     .build();
@@ -405,7 +406,7 @@ public class SpannerClient implements BackgroundResource {
    *
    * <pre><code>
    * try (SpannerClient spannerClient = SpannerClient.create()) {
-   *   String formattedDatabase = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+   *   String formattedDatabase = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
    *     .setDatabase(formattedDatabase)
    *     .build();
@@ -430,7 +431,7 @@ public class SpannerClient implements BackgroundResource {
    *
    * <pre><code>
    * try (SpannerClient spannerClient = SpannerClient.create()) {
-   *   String formattedDatabase = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+   *   String formattedDatabase = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
    *     .setDatabase(formattedDatabase)
    *     .build();
@@ -472,7 +473,7 @@ public class SpannerClient implements BackgroundResource {
   public final void deleteSession(SessionName name) {
 
     DeleteSessionRequest request =
-        DeleteSessionRequest.newBuilder().setNameWithSessionName(name).build();
+        DeleteSessionRequest.newBuilder().setName(name.toString()).build();
     deleteSession(request);
   }
 
@@ -486,7 +487,7 @@ public class SpannerClient implements BackgroundResource {
    * try (SpannerClient spannerClient = SpannerClient.create()) {
    *   SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   DeleteSessionRequest request = DeleteSessionRequest.newBuilder()
-   *     .setNameWithSessionName(name)
+   *     .setName(name.toString())
    *     .build();
    *   spannerClient.deleteSession(request);
    * }
@@ -509,7 +510,7 @@ public class SpannerClient implements BackgroundResource {
    * try (SpannerClient spannerClient = SpannerClient.create()) {
    *   SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   DeleteSessionRequest request = DeleteSessionRequest.newBuilder()
-   *     .setNameWithSessionName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = spannerClient.deleteSessionCallable().futureCall(request);
    *   // Do something
@@ -541,7 +542,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   String sql = "";
    *   ExecuteSqlRequest request = ExecuteSqlRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setSql(sql)
    *     .build();
    *   ResultSet response = spannerClient.executeSql(request);
@@ -575,7 +576,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   String sql = "";
    *   ExecuteSqlRequest request = ExecuteSqlRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setSql(sql)
    *     .build();
    *   ApiFuture&lt;ResultSet&gt; future = spannerClient.executeSqlCallable().futureCall(request);
@@ -620,7 +621,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   String sql = "";
    *   ExecuteSqlRequest request = ExecuteSqlRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setSql(sql)
    *     .build();
    *
@@ -656,7 +657,7 @@ public class SpannerClient implements BackgroundResource {
    *   List&lt;String&gt; columns = new ArrayList&lt;&gt;();
    *   KeySet keySet = KeySet.newBuilder().build();
    *   ReadRequest request = ReadRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setTable(table)
    *     .addAllColumns(columns)
    *     .setKeySet(keySet)
@@ -695,7 +696,7 @@ public class SpannerClient implements BackgroundResource {
    *   List&lt;String&gt; columns = new ArrayList&lt;&gt;();
    *   KeySet keySet = KeySet.newBuilder().build();
    *   ReadRequest request = ReadRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setTable(table)
    *     .addAllColumns(columns)
    *     .setKeySet(keySet)
@@ -744,7 +745,7 @@ public class SpannerClient implements BackgroundResource {
    *   List&lt;String&gt; columns = new ArrayList&lt;&gt;();
    *   KeySet keySet = KeySet.newBuilder().build();
    *   ReadRequest request = ReadRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setTable(table)
    *     .addAllColumns(columns)
    *     .setKeySet(keySet)
@@ -782,7 +783,7 @@ public class SpannerClient implements BackgroundResource {
 
     BeginTransactionRequest request =
         BeginTransactionRequest.newBuilder()
-            .setSessionWithSessionName(session)
+            .setSession(session.toString())
             .setOptions(options)
             .build();
     return beginTransaction(request);
@@ -801,7 +802,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   TransactionOptions options = TransactionOptions.newBuilder().build();
    *   BeginTransactionRequest request = BeginTransactionRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setOptions(options)
    *     .build();
    *   Transaction response = spannerClient.beginTransaction(request);
@@ -828,7 +829,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   TransactionOptions options = TransactionOptions.newBuilder().build();
    *   BeginTransactionRequest request = BeginTransactionRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setOptions(options)
    *     .build();
    *   ApiFuture&lt;Transaction&gt; future = spannerClient.beginTransactionCallable().futureCall(request);
@@ -873,7 +874,7 @@ public class SpannerClient implements BackgroundResource {
 
     CommitRequest request =
         CommitRequest.newBuilder()
-            .setSessionWithSessionName(session)
+            .setSession(session.toString())
             .setTransactionId(transactionId)
             .addAllMutations(mutations)
             .build();
@@ -918,7 +919,7 @@ public class SpannerClient implements BackgroundResource {
 
     CommitRequest request =
         CommitRequest.newBuilder()
-            .setSessionWithSessionName(session)
+            .setSession(session.toString())
             .setSingleUseTransaction(singleUseTransaction)
             .addAllMutations(mutations)
             .build();
@@ -942,7 +943,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
    *   CommitRequest request = CommitRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .addAllMutations(mutations)
    *     .build();
    *   CommitResponse response = spannerClient.commit(request);
@@ -973,7 +974,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
    *   CommitRequest request = CommitRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .addAllMutations(mutations)
    *     .build();
    *   ApiFuture&lt;CommitResponse&gt; future = spannerClient.commitCallable().futureCall(request);
@@ -1014,7 +1015,7 @@ public class SpannerClient implements BackgroundResource {
 
     RollbackRequest request =
         RollbackRequest.newBuilder()
-            .setSessionWithSessionName(session)
+            .setSession(session.toString())
             .setTransactionId(transactionId)
             .build();
     rollback(request);
@@ -1037,7 +1038,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   ByteString transactionId = ByteString.copyFromUtf8("");
    *   RollbackRequest request = RollbackRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setTransactionId(transactionId)
    *     .build();
    *   spannerClient.rollback(request);
@@ -1068,7 +1069,7 @@ public class SpannerClient implements BackgroundResource {
    *   SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   ByteString transactionId = ByteString.copyFromUtf8("");
    *   RollbackRequest request = RollbackRequest.newBuilder()
-   *     .setSessionWithSessionName(session)
+   *     .setSession(session.toString())
    *     .setTransactionId(transactionId)
    *     .build();
    *   ApiFuture&lt;Void&gt; future = spannerClient.rollbackCallable().futureCall(request);

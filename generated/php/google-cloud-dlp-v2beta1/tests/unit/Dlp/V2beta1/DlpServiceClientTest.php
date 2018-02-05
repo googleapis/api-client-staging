@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,12 +24,12 @@ namespace Google\Cloud\Tests\Unit\Dlp\V2beta1;
 
 use Google\Cloud\Dlp\V2beta1\DlpServiceClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dlp\V2beta1\BigQueryTable;
 use Google\Cloud\Dlp\V2beta1\CloudStorageOptions;
-use Google\Cloud\Dlp\V2beta1\CloudStorageOptions_FileSet as FileSet;
+use Google\Cloud\Dlp\V2beta1\CloudStorageOptions_FileSet;
 use Google\Cloud\Dlp\V2beta1\ContentItem;
 use Google\Cloud\Dlp\V2beta1\DeidentifyConfig;
 use Google\Cloud\Dlp\V2beta1\DeidentifyContentResponse;
@@ -42,6 +42,7 @@ use Google\Cloud\Dlp\V2beta1\ListInspectFindingsResponse;
 use Google\Cloud\Dlp\V2beta1\ListRootCategoriesResponse;
 use Google\Cloud\Dlp\V2beta1\OutputStorageConfig;
 use Google\Cloud\Dlp\V2beta1\PrivacyMetric;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig;
 use Google\Cloud\Dlp\V2beta1\RedactContentResponse;
 use Google\Cloud\Dlp\V2beta1\RiskAnalysisOperationResult;
 use Google\Cloud\Dlp\V2beta1\StorageConfig;
@@ -57,37 +58,20 @@ use stdClass;
  */
 class DlpServiceClientTest extends GeneratedTest
 {
-    public function createMockDlpServiceImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockDlpServiceImpl($hostname, $opts);
-    }
-
-    public function createMockOperationsStub($hostname, $opts)
-    {
-        return new MockOperationsImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => DlpServiceClient::SERVICE_ADDRESS,
-            'port' => DlpServiceClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return DlpServiceClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new DlpServiceClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new DlpServiceClient($options);
     }
 
     /**
@@ -95,14 +79,14 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function inspectContentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new InspectContentResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $name = 'EMAIL_ADDRESS';
@@ -120,16 +104,20 @@ class DlpServiceClientTest extends GeneratedTest
 
         $response = $client->inspectContent($inspectConfig, $items);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/InspectContent', $actualFuncCall);
 
-        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
-        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
+        $actualValue = $actualRequestObject->getInspectConfig();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($inspectConfig, $actualValue);
+        $actualValue = $actualRequestObject->getItems();
+
+        $this->assertProtobufEquals($items, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -137,10 +125,10 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function inspectContentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -152,7 +140,7 @@ class DlpServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $name = 'EMAIL_ADDRESS';
@@ -178,8 +166,8 @@ class DlpServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -187,14 +175,14 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function redactContentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new RedactContentResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $name = 'EMAIL_ADDRESS';
@@ -209,19 +197,31 @@ class DlpServiceClientTest extends GeneratedTest
         $itemsElement->setType($type);
         $itemsElement->setValue($value);
         $items = [$itemsElement];
+        $name2 = 'EMAIL_ADDRESS';
+        $infoType = new InfoType();
+        $infoType->setName($name2);
+        $replaceWith = 'REDACTED';
+        $replaceConfigsElement = new RedactContentRequest_ReplaceConfig();
+        $replaceConfigsElement->setInfoType($infoType);
+        $replaceConfigsElement->setReplaceWith($replaceWith);
+        $replaceConfigs = [$replaceConfigsElement];
 
-        $response = $client->redactContent($inspectConfig, $items);
+        $response = $client->redactContent($inspectConfig, $items, ['replaceConfigs' => $replaceConfigs]);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/RedactContent', $actualFuncCall);
 
-        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
-        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
+        $actualValue = $actualRequestObject->getInspectConfig();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($inspectConfig, $actualValue);
+        $actualValue = $actualRequestObject->getItems();
+
+        $this->assertProtobufEquals($items, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -229,10 +229,10 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function redactContentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -244,7 +244,7 @@ class DlpServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $name = 'EMAIL_ADDRESS';
@@ -259,9 +259,17 @@ class DlpServiceClientTest extends GeneratedTest
         $itemsElement->setType($type);
         $itemsElement->setValue($value);
         $items = [$itemsElement];
+        $name2 = 'EMAIL_ADDRESS';
+        $infoType = new InfoType();
+        $infoType->setName($name2);
+        $replaceWith = 'REDACTED';
+        $replaceConfigsElement = new RedactContentRequest_ReplaceConfig();
+        $replaceConfigsElement->setInfoType($infoType);
+        $replaceConfigsElement->setReplaceWith($replaceWith);
+        $replaceConfigs = [$replaceConfigsElement];
 
         try {
-            $client->redactContent($inspectConfig, $items);
+            $client->redactContent($inspectConfig, $items, ['replaceConfigs' => $replaceConfigs]);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -270,8 +278,8 @@ class DlpServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -279,14 +287,14 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function deidentifyContentTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new DeidentifyContentResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $deidentifyConfig = new DeidentifyConfig();
@@ -295,17 +303,23 @@ class DlpServiceClientTest extends GeneratedTest
 
         $response = $client->deidentifyContent($deidentifyConfig, $inspectConfig, $items);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/DeidentifyContent', $actualFuncCall);
 
-        $this->assertProtobufEquals($deidentifyConfig, $actualRequestObject->getDeidentifyConfig());
-        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
-        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
+        $actualValue = $actualRequestObject->getDeidentifyConfig();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($deidentifyConfig, $actualValue);
+        $actualValue = $actualRequestObject->getInspectConfig();
+
+        $this->assertProtobufEquals($inspectConfig, $actualValue);
+        $actualValue = $actualRequestObject->getItems();
+
+        $this->assertProtobufEquals($items, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -313,10 +327,10 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function deidentifyContentExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -328,7 +342,7 @@ class DlpServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $deidentifyConfig = new DeidentifyConfig();
@@ -345,8 +359,8 @@ class DlpServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -354,27 +368,26 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function analyzeDataSourceRiskTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/analyzeDataSourceRiskTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
         $expectedResponse = new RiskAnalysisOperationResult();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -382,7 +395,7 @@ class DlpServiceClientTest extends GeneratedTest
         $completeOperation->setName('operations/analyzeDataSourceRiskTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
-        $operationsStub->addResponse($completeOperation);
+        $operationsTransport->addResponse($completeOperation);
 
         // Mock request
         $privacyMetric = new PrivacyMetric();
@@ -391,16 +404,20 @@ class DlpServiceClientTest extends GeneratedTest
         $response = $client->analyzeDataSourceRisk($privacyMetric, $sourceTable);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-        $apiRequests = $grpcStub->popReceivedCalls();
+        $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/AnalyzeDataSourceRisk', $actualApiFuncCall);
-        $this->assertProtobufEquals($privacyMetric, $actualApiRequestObject->getPrivacyMetric());
-        $this->assertProtobufEquals($sourceTable, $actualApiRequestObject->getSourceTable());
+        $actualValue = $actualApiRequestObject->getPrivacyMetric();
+
+        $this->assertProtobufEquals($privacyMetric, $actualValue);
+        $actualValue = $actualApiRequestObject->getSourceTable();
+
+        $this->assertProtobufEquals($sourceTable, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/analyzeDataSourceRiskTest');
@@ -408,9 +425,9 @@ class DlpServiceClientTest extends GeneratedTest
         $response->pollUntilComplete();
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
+        $apiRequestsEmpty = $transport->popReceivedCalls();
         $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsStub->popReceivedCalls();
+        $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
@@ -418,8 +435,8 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -427,27 +444,26 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function analyzeDataSourceRiskExceptionTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/analyzeDataSourceRiskTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -459,7 +475,7 @@ class DlpServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsStub->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
 
         // Mock request
         $privacyMetric = new PrivacyMetric();
@@ -482,10 +498,10 @@ class DlpServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
-        $grpcStub->popReceivedCalls();
-        $operationsStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -493,27 +509,26 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function createInspectOperationTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/createInspectOperationTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $expectedResponse = new InspectOperationResult();
         $expectedResponse->setName($name2);
@@ -523,7 +538,7 @@ class DlpServiceClientTest extends GeneratedTest
         $completeOperation->setName('operations/createInspectOperationTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
-        $operationsStub->addResponse($completeOperation);
+        $operationsTransport->addResponse($completeOperation);
 
         // Mock request
         $name = 'EMAIL_ADDRESS';
@@ -533,7 +548,7 @@ class DlpServiceClientTest extends GeneratedTest
         $inspectConfig = new InspectConfig();
         $inspectConfig->setInfoTypes($infoTypes);
         $url = 'gs://example_bucket/example_file.png';
-        $fileSet = new FileSet();
+        $fileSet = new CloudStorageOptions_FileSet();
         $fileSet->setUrl($url);
         $cloudStorageOptions = new CloudStorageOptions();
         $cloudStorageOptions->setFileSet($fileSet);
@@ -544,17 +559,23 @@ class DlpServiceClientTest extends GeneratedTest
         $response = $client->createInspectOperation($inspectConfig, $storageConfig, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-        $apiRequests = $grpcStub->popReceivedCalls();
+        $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/CreateInspectOperation', $actualApiFuncCall);
-        $this->assertProtobufEquals($inspectConfig, $actualApiRequestObject->getInspectConfig());
-        $this->assertProtobufEquals($storageConfig, $actualApiRequestObject->getStorageConfig());
-        $this->assertProtobufEquals($outputConfig, $actualApiRequestObject->getOutputConfig());
+        $actualValue = $actualApiRequestObject->getInspectConfig();
+
+        $this->assertProtobufEquals($inspectConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getStorageConfig();
+
+        $this->assertProtobufEquals($storageConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getOutputConfig();
+
+        $this->assertProtobufEquals($outputConfig, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInspectOperationTest');
@@ -562,9 +583,9 @@ class DlpServiceClientTest extends GeneratedTest
         $response->pollUntilComplete();
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
+        $apiRequestsEmpty = $transport->popReceivedCalls();
         $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsStub->popReceivedCalls();
+        $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
@@ -572,8 +593,8 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -581,27 +602,26 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function createInspectOperationExceptionTest()
     {
-        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'scopes' => [],
-            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
-                return $operationsStub;
-            },
+            'transport' => $operationsTransport,
         ]);
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
 
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/createInspectOperationTest');
         $incompleteOperation->setDone(false);
-        $grpcStub->addResponse($incompleteOperation);
+        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -613,7 +633,7 @@ class DlpServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsStub->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
 
         // Mock request
         $name = 'EMAIL_ADDRESS';
@@ -623,7 +643,7 @@ class DlpServiceClientTest extends GeneratedTest
         $inspectConfig = new InspectConfig();
         $inspectConfig->setInfoTypes($infoTypes);
         $url = 'gs://example_bucket/example_file.png';
-        $fileSet = new FileSet();
+        $fileSet = new CloudStorageOptions_FileSet();
         $fileSet->setUrl($url);
         $cloudStorageOptions = new CloudStorageOptions();
         $cloudStorageOptions->setFileSet($fileSet);
@@ -648,10 +668,10 @@ class DlpServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
-        $grpcStub->popReceivedCalls();
-        $operationsStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-        $this->assertTrue($operationsStub->isExhausted());
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -659,31 +679,33 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function listInspectFindingsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = 'nextPageToken-1530815211';
         $expectedResponse = new ListInspectFindingsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->resultName('[RESULT]');
 
         $response = $client->listInspectFindings($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/ListInspectFindings', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -691,10 +713,10 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function listInspectFindingsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -706,7 +728,7 @@ class DlpServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->resultName('[RESULT]');
@@ -721,8 +743,8 @@ class DlpServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -730,14 +752,14 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function listInfoTypesTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ListInfoTypesResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $category = 'PII';
@@ -745,16 +767,20 @@ class DlpServiceClientTest extends GeneratedTest
 
         $response = $client->listInfoTypes($category, $languageCode);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/ListInfoTypes', $actualFuncCall);
 
-        $this->assertProtobufEquals($category, $actualRequestObject->getCategory());
-        $this->assertProtobufEquals($languageCode, $actualRequestObject->getLanguageCode());
+        $actualValue = $actualRequestObject->getCategory();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($category, $actualValue);
+        $actualValue = $actualRequestObject->getLanguageCode();
+
+        $this->assertProtobufEquals($languageCode, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -762,10 +788,10 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function listInfoTypesExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -777,7 +803,7 @@ class DlpServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $category = 'PII';
@@ -793,8 +819,8 @@ class DlpServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -802,29 +828,31 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function listRootCategoriesTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new ListRootCategoriesResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $languageCode = 'en';
 
         $response = $client->listRootCategories($languageCode);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/ListRootCategories', $actualFuncCall);
 
-        $this->assertProtobufEquals($languageCode, $actualRequestObject->getLanguageCode());
+        $actualValue = $actualRequestObject->getLanguageCode();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($languageCode, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -832,10 +860,10 @@ class DlpServiceClientTest extends GeneratedTest
      */
     public function listRootCategoriesExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -847,7 +875,7 @@ class DlpServiceClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $languageCode = 'en';
@@ -862,7 +890,7 @@ class DlpServiceClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

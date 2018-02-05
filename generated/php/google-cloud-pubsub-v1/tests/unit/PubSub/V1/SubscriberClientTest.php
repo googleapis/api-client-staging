@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,8 +25,8 @@ namespace Google\Cloud\Tests\Unit\PubSub\V1;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\ListSnapshotsResponse;
@@ -52,42 +52,20 @@ use stdClass;
  */
 class SubscriberClientTest extends GeneratedTest
 {
-    public function createMockPublisherImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockPublisherImpl($hostname, $opts);
-    }
-
-    public function createMockIAMPolicyImpl($hostname, $opts)
-    {
-        return new MockIAMPolicyImpl($hostname, $opts);
-    }
-
-    public function createMockSubscriberImpl($hostname, $opts)
-    {
-        return new MockSubscriberImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => SubscriberClient::SERVICE_ADDRESS,
-            'port' => SubscriberClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return SubscriberClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new SubscriberClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new SubscriberClient($options);
     }
 
     /**
@@ -95,10 +73,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function createSubscriptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -110,7 +88,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setTopic($topic2);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -118,16 +96,20 @@ class SubscriberClientTest extends GeneratedTest
 
         $response = $client->createSubscription($formattedName, $formattedTopic);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/CreateSubscription', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($formattedTopic, $actualRequestObject->getTopic());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getTopic();
+
+        $this->assertProtobufEquals($formattedTopic, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -135,10 +117,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function createSubscriptionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -150,7 +132,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -166,8 +148,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -175,10 +157,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function getSubscriptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -190,22 +172,24 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setTopic($topic);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $response = $client->getSubscription($formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/GetSubscription', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSubscription, $actualRequestObject->getSubscription());
+        $actualValue = $actualRequestObject->getSubscription();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -213,10 +197,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function getSubscriptionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -228,7 +212,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -243,8 +227,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -252,22 +236,22 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function updateSubscriptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
         $topic = 'topic110546223';
-        $ackDeadlineSeconds2 = -921632575;
+        $ackDeadlineSeconds2 = 921632575;
         $retainAckedMessages = false;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds2);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $ackDeadlineSeconds = 42;
@@ -280,16 +264,20 @@ class SubscriberClientTest extends GeneratedTest
 
         $response = $client->updateSubscription($subscription, $updateMask);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSubscription', $actualFuncCall);
 
-        $this->assertProtobufEquals($subscription, $actualRequestObject->getSubscription());
-        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+        $actualValue = $actualRequestObject->getSubscription();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($subscription, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -297,10 +285,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function updateSubscriptionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -312,7 +300,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $ackDeadlineSeconds = 42;
@@ -333,8 +321,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -342,10 +330,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function listSubscriptionsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -354,7 +342,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new ListSubscriptionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubscriptions($subscriptions);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedProject = $client->projectName('[PROJECT]');
@@ -365,14 +353,16 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSubscriptions()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ListSubscriptions', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedProject, $actualRequestObject->getProject());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getProject();
+
+        $this->assertProtobufEquals($formattedProject, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -380,10 +370,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function listSubscriptionsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -395,7 +385,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedProject = $client->projectName('[PROJECT]');
@@ -410,8 +400,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -419,28 +409,30 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function deleteSubscriptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $client->deleteSubscription($formattedSubscription);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/DeleteSubscription', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSubscription, $actualRequestObject->getSubscription());
+        $actualValue = $actualRequestObject->getSubscription();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -448,10 +440,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function deleteSubscriptionExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -463,7 +455,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -478,8 +470,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -487,14 +479,14 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function modifyAckDeadlineTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -502,17 +494,23 @@ class SubscriberClientTest extends GeneratedTest
         $ackDeadlineSeconds = 2135351438;
 
         $client->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ModifyAckDeadline', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSubscription, $actualRequestObject->getSubscription());
-        $this->assertProtobufEquals($ackIds, $actualRequestObject->getAckIds());
-        $this->assertProtobufEquals($ackDeadlineSeconds, $actualRequestObject->getAckDeadlineSeconds());
+        $actualValue = $actualRequestObject->getSubscription();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+        $actualValue = $actualRequestObject->getAckIds();
+
+        $this->assertProtobufEquals($ackIds, $actualValue);
+        $actualValue = $actualRequestObject->getAckDeadlineSeconds();
+
+        $this->assertProtobufEquals($ackDeadlineSeconds, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -520,10 +518,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function modifyAckDeadlineExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -535,7 +533,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -552,8 +550,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -561,30 +559,34 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function acknowledgeTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
 
         $client->acknowledge($formattedSubscription, $ackIds);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/Acknowledge', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSubscription, $actualRequestObject->getSubscription());
-        $this->assertProtobufEquals($ackIds, $actualRequestObject->getAckIds());
+        $actualValue = $actualRequestObject->getSubscription();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+        $actualValue = $actualRequestObject->getAckIds();
+
+        $this->assertProtobufEquals($ackIds, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -592,10 +594,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function acknowledgeExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -607,7 +609,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -623,8 +625,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -632,14 +634,14 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function pullTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new PullResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -647,16 +649,20 @@ class SubscriberClientTest extends GeneratedTest
 
         $response = $client->pull($formattedSubscription, $maxMessages);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/Pull', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSubscription, $actualRequestObject->getSubscription());
-        $this->assertProtobufEquals($maxMessages, $actualRequestObject->getMaxMessages());
+        $actualValue = $actualRequestObject->getSubscription();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+        $actualValue = $actualRequestObject->getMaxMessages();
+
+        $this->assertProtobufEquals($maxMessages, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -664,10 +670,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function pullExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -679,7 +685,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -695,8 +701,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -704,27 +710,27 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function streamingPullTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $receivedMessagesElement = new ReceivedMessage();
         $receivedMessages = [$receivedMessagesElement];
         $expectedResponse = new StreamingPullResponse();
         $expectedResponse->setReceivedMessages($receivedMessages);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
         $receivedMessagesElement2 = new ReceivedMessage();
         $receivedMessages2 = [$receivedMessagesElement2];
         $expectedResponse2 = new StreamingPullResponse();
         $expectedResponse2->setReceivedMessages($receivedMessages2);
-        $grpcStub->addResponse($expectedResponse2);
+        $transport->addResponse($expectedResponse2);
         $receivedMessagesElement3 = new ReceivedMessage();
         $receivedMessages3 = [$receivedMessagesElement3];
         $expectedResponse3 = new StreamingPullResponse();
         $expectedResponse3->setReceivedMessages($receivedMessages3);
-        $grpcStub->addResponse($expectedResponse3);
+        $transport->addResponse($expectedResponse3);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -733,12 +739,12 @@ class SubscriberClientTest extends GeneratedTest
         $request->setSubscription($formattedSubscription);
         $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
         $formattedSubscription2 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds2 = -1562238880;
+        $streamAckDeadlineSeconds2 = 1562238880;
         $request2 = new StreamingPullRequest();
         $request2->setSubscription($formattedSubscription2);
         $request2->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds2);
         $formattedSubscription3 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds3 = -1562238879;
+        $streamAckDeadlineSeconds3 = 1562238879;
         $request3 = new StreamingPullRequest();
         $request3->setSubscription($formattedSubscription3);
         $request3->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds3);
@@ -761,14 +767,14 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResources[] = $expectedResponse3->getReceivedMessages()[0];
         $this->assertEquals($expectedResources, $responses);
 
-        $createStreamRequests = $grpcStub->popReceivedCalls();
+        $createStreamRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/StreamingPull', $streamFuncCall);
         $this->assertNull($streamRequestObject);
 
-        $callObjects = $grpcStub->popCallObjects();
+        $callObjects = $transport->popCallObjects();
         $this->assertSame(1, count($callObjects));
         $bidiCall = $callObjects[0];
 
@@ -779,7 +785,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedRequests[] = $request3;
         $this->assertEquals($expectedRequests, $writeRequests);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -787,8 +793,8 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function streamingPullExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -801,9 +807,9 @@ class SubscriberClientTest extends GeneratedTest
            'details' => [],
         ], JSON_PRETTY_PRINT);
 
-        $grpcStub->setStreamingStatus($status);
+        $transport->setStreamingStatus($status);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $bidi = $client->streamingPull();
         $results = $bidi->closeWriteAndReadAll();
@@ -818,8 +824,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -827,30 +833,34 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function modifyPushConfigTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $pushConfig = new PushConfig();
 
         $client->modifyPushConfig($formattedSubscription, $pushConfig);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ModifyPushConfig', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSubscription, $actualRequestObject->getSubscription());
-        $this->assertProtobufEquals($pushConfig, $actualRequestObject->getPushConfig());
+        $actualValue = $actualRequestObject->getSubscription();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+        $actualValue = $actualRequestObject->getPushConfig();
+
+        $this->assertProtobufEquals($pushConfig, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -858,10 +868,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function modifyPushConfigExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -873,7 +883,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -889,8 +899,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -898,10 +908,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function listSnapshotsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -910,7 +920,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new ListSnapshotsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedProject = $client->projectName('[PROJECT]');
@@ -921,14 +931,16 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSnapshots()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ListSnapshots', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedProject, $actualRequestObject->getProject());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getProject();
+
+        $this->assertProtobufEquals($formattedProject, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -936,10 +948,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function listSnapshotsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -951,7 +963,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedProject = $client->projectName('[PROJECT]');
@@ -966,8 +978,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -975,10 +987,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function createSnapshotTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -986,7 +998,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new Snapshot();
         $expectedResponse->setName($name2);
         $expectedResponse->setTopic($topic);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
@@ -994,16 +1006,20 @@ class SubscriberClientTest extends GeneratedTest
 
         $response = $client->createSnapshot($formattedName, $formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/CreateSnapshot', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($formattedSubscription, $actualRequestObject->getSubscription());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getSubscription();
+
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1011,10 +1027,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function createSnapshotExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1026,7 +1042,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
@@ -1042,8 +1058,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1051,10 +1067,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function updateSnapshotTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -1062,7 +1078,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new Snapshot();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $seconds = 123456;
@@ -1077,16 +1093,20 @@ class SubscriberClientTest extends GeneratedTest
 
         $response = $client->updateSnapshot($snapshot, $updateMask);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSnapshot', $actualFuncCall);
 
-        $this->assertProtobufEquals($snapshot, $actualRequestObject->getSnapshot());
-        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+        $actualValue = $actualRequestObject->getSnapshot();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($snapshot, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1094,10 +1114,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function updateSnapshotExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1109,7 +1129,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $seconds = 123456;
@@ -1132,8 +1152,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1141,28 +1161,30 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function deleteSnapshotTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
 
         $client->deleteSnapshot($formattedSnapshot);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/DeleteSnapshot', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSnapshot, $actualRequestObject->getSnapshot());
+        $actualValue = $actualRequestObject->getSnapshot();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSnapshot, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1170,10 +1192,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function deleteSnapshotExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1185,7 +1207,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
@@ -1200,8 +1222,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1209,29 +1231,31 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function seekTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new SeekResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $response = $client->seek($formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/Seek', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedSubscription, $actualRequestObject->getSubscription());
+        $actualValue = $actualRequestObject->getSubscription();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1239,10 +1263,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function seekExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
-        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1254,7 +1278,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -1269,8 +1293,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1278,10 +1302,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function setIamPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $version = 351608024;
@@ -1289,7 +1313,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -1297,16 +1321,20 @@ class SubscriberClientTest extends GeneratedTest
 
         $response = $client->setIamPolicy($formattedResource, $policy);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertProtobufEquals($policy, $actualRequestObject->getPolicy());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+
+        $this->assertProtobufEquals($policy, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1314,10 +1342,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function setIamPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1329,7 +1357,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -1345,8 +1373,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1354,10 +1382,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function getIamPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $version = 351608024;
@@ -1365,22 +1393,24 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1388,10 +1418,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function getIamPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1403,7 +1433,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -1418,8 +1448,8 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1427,14 +1457,14 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function testIamPermissionsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -1442,16 +1472,20 @@ class SubscriberClientTest extends GeneratedTest
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertProtobufEquals($permissions, $actualRequestObject->getPermissions());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+
+        $this->assertProtobufEquals($permissions, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -1459,10 +1493,10 @@ class SubscriberClientTest extends GeneratedTest
      */
     public function testIamPermissionsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
-        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -1474,7 +1508,7 @@ class SubscriberClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -1490,7 +1524,7 @@ class SubscriberClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

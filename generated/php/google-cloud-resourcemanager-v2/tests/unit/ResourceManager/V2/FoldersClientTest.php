@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,8 +24,8 @@ namespace Google\Cloud\Tests\Unit\ResourceManager\V2;
 
 use Google\Cloud\ResourceManager\V2\FoldersClient;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ResourceManager\V2\Folder;
@@ -43,32 +43,20 @@ use stdClass;
  */
 class FoldersClientTest extends GeneratedTest
 {
-    public function createMockFoldersImpl($hostname, $opts)
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        return new MockFoldersImpl($hostname, $opts);
-    }
-
-    private function createStub($createGrpcStub)
-    {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([
-            'serviceAddress' => FoldersClient::SERVICE_ADDRESS,
-            'port' => FoldersClient::DEFAULT_SERVICE_PORT,
-            'scopes' => ['unknown-service-scopes'],
-        ]);
-
-        return $grpcCredentialsHelper->createStub($createGrpcStub);
+        return new MockTransport($deserialize);
     }
 
     /**
      * @return FoldersClient
      */
-    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    private function createClient(array $options = [])
     {
-        return new FoldersClient($options + [
-            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-            },
-        ]);
+        return new FoldersClient($options);
     }
 
     /**
@@ -76,10 +64,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function listFoldersTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -88,7 +76,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse = new ListFoldersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFolders($folders);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->organizationName('[ORG_ID]');
@@ -99,14 +87,16 @@ class FoldersClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getFolders()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/ListFolders', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertTrue($grpcStub->isExhausted());
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -114,10 +104,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function listFoldersExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -129,7 +119,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->organizationName('[ORG_ID]');
@@ -144,8 +134,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -153,10 +143,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function searchFoldersTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -165,7 +155,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse = new SearchFoldersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFolders($folders);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         $response = $client->searchFolders();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -173,13 +163,13 @@ class FoldersClientTest extends GeneratedTest
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getFolders()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/SearchFolders', $actualFuncCall);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -187,10 +177,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function searchFoldersExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -202,7 +192,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         try {
             $client->searchFolders();
@@ -214,8 +204,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -223,10 +213,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function getFolderTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -236,22 +226,24 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
         $expectedResponse->setDisplayName($displayName);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->folderName('[FOLDER]');
 
         $response = $client->getFolder($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/GetFolder', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -259,10 +251,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function getFolderExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -274,7 +266,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->folderName('[FOLDER]');
@@ -289,8 +281,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -298,10 +290,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function createFolderTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -309,7 +301,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
         $expectedResponse->setDone($done);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->organizationName('[ORG_ID]');
@@ -317,16 +309,20 @@ class FoldersClientTest extends GeneratedTest
 
         $response = $client->createFolder($formattedParent, $folder);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/CreateFolder', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertProtobufEquals($folder, $actualRequestObject->getFolder());
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getFolder();
+
+        $this->assertProtobufEquals($folder, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -334,10 +330,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function createFolderExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -349,7 +345,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedParent = $client->organizationName('[ORG_ID]');
@@ -365,8 +361,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -374,10 +370,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function updateFolderTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name = 'name3373707';
@@ -387,7 +383,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
         $expectedResponse->setDisplayName($displayName);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $folder = new Folder();
@@ -395,16 +391,20 @@ class FoldersClientTest extends GeneratedTest
 
         $response = $client->updateFolder($folder, $updateMask);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/UpdateFolder', $actualFuncCall);
 
-        $this->assertProtobufEquals($folder, $actualRequestObject->getFolder());
-        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+        $actualValue = $actualRequestObject->getFolder();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($folder, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -412,10 +412,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function updateFolderExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -427,7 +427,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $folder = new Folder();
@@ -443,8 +443,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -452,10 +452,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function moveFolderTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -463,7 +463,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse = new Operation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDone($done);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->folderName('[FOLDER]');
@@ -471,16 +471,20 @@ class FoldersClientTest extends GeneratedTest
 
         $response = $client->moveFolder($formattedName, $formattedDestinationParent);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/MoveFolder', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
-        $this->assertProtobufEquals($formattedDestinationParent, $actualRequestObject->getDestinationParent());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getDestinationParent();
+
+        $this->assertProtobufEquals($formattedDestinationParent, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -488,10 +492,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function moveFolderExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -503,7 +507,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->folderName('[FOLDER]');
@@ -519,8 +523,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -528,10 +532,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function deleteFolderTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -541,22 +545,24 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
         $expectedResponse->setDisplayName($displayName);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->folderName('[FOLDER]');
 
         $response = $client->deleteFolder($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/DeleteFolder', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -564,10 +570,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function deleteFolderExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -579,7 +585,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->folderName('[FOLDER]');
@@ -594,8 +600,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -603,10 +609,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function undeleteFolderTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -616,22 +622,24 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
         $expectedResponse->setDisplayName($displayName);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedName = $client->folderName('[FOLDER]');
 
         $response = $client->undeleteFolder($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/UndeleteFolder', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -639,10 +647,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function undeleteFolderExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -654,7 +662,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedName = $client->folderName('[FOLDER]');
@@ -669,8 +677,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -678,10 +686,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function getIamPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $version = 351608024;
@@ -689,22 +697,24 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->folderName('[FOLDER]');
 
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/GetIamPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -712,10 +722,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function getIamPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -727,7 +737,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->folderName('[FOLDER]');
@@ -742,8 +752,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -751,10 +761,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function setIamPolicyTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $version = 351608024;
@@ -762,7 +772,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->folderName('[FOLDER]');
@@ -770,16 +780,20 @@ class FoldersClientTest extends GeneratedTest
 
         $response = $client->setIamPolicy($formattedResource, $policy);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/SetIamPolicy', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertProtobufEquals($policy, $actualRequestObject->getPolicy());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+
+        $this->assertProtobufEquals($policy, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -787,10 +801,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function setIamPolicyExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -802,7 +816,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->folderName('[FOLDER]');
@@ -818,8 +832,8 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -827,14 +841,14 @@ class FoldersClientTest extends GeneratedTest
      */
     public function testIamPermissionsTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
-        $grpcStub->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedResource = $client->folderName('[FOLDER]');
@@ -842,16 +856,20 @@ class FoldersClientTest extends GeneratedTest
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/TestIamPermissions', $actualFuncCall);
 
-        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertProtobufEquals($permissions, $actualRequestObject->getPermissions());
+        $actualValue = $actualRequestObject->getResource();
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+
+        $this->assertProtobufEquals($permissions, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -859,10 +877,10 @@ class FoldersClientTest extends GeneratedTest
      */
     public function testIamPermissionsExceptionTest()
     {
-        $grpcStub = $this->createStub([$this, 'createMockFoldersImpl']);
-        $client = $this->createClient('createFoldersStubFunction', $grpcStub);
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
@@ -874,7 +892,7 @@ class FoldersClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $formattedResource = $client->folderName('[FOLDER]');
@@ -890,7 +908,7 @@ class FoldersClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

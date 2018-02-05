@@ -54,6 +54,17 @@ public interface ImportAgentRequestOrBuilder extends
   /**
    * <pre>
    * The agent to import.
+   * Example for how to import an agent via the command line:
+   * curl &#92;
+   *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import&#92;
+   *    -X POST &#92;
+   *    -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+   *    -H 'Accept: application/json' &#92;
+   *    -H 'Content-Type: application/json' &#92;
+   *    --compressed &#92;
+   *    --data-binary "{
+   *       'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+   *    }"
    * </pre>
    *
    * <code>bytes agent_content = 3;</code>

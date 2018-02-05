@@ -241,10 +241,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * A face-specific landmark (for example, a face feature).
-   * Landmark positions may fall outside the bounds of the image
-   * if the face is near one or more edges of the image.
-   * Therefore it is NOT guaranteed that `0 &lt;= x &lt; width` or
-   * `0 &lt;= y &lt; height`.
    * </pre>
    *
    * Protobuf type {@code google.cloud.vision.v1.FaceAnnotation.Landmark}
@@ -1241,10 +1237,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * A face-specific landmark (for example, a face feature).
-     * Landmark positions may fall outside the bounds of the image
-     * if the face is near one or more edges of the image.
-     * Therefore it is NOT guaranteed that `0 &lt;= x &lt; width` or
-     * `0 &lt;= y &lt; height`.
      * </pre>
      *
      * Protobuf type {@code google.cloud.vision.v1.FaceAnnotation.Landmark}

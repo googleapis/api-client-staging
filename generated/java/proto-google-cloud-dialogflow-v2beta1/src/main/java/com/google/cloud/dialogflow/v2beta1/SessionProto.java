@@ -135,41 +135,41 @@ public final class SessionProto {
       "RecognitionResult\022B\n\014query_result\030\003 \001(\0132" +
       ",.google.cloud.dialogflow.v2beta1.QueryR" +
       "esult\022*\n\016webhook_status\030\004 \001(\0132\022.google.r" +
-      "pc.Status\"\373\001\n\032StreamingRecognitionResult" +
+      "pc.Status\"\217\002\n\032StreamingRecognitionResult" +
       "\022]\n\014message_type\030\001 \001(\0162G.google.cloud.di" +
       "alogflow.v2beta1.StreamingRecognitionRes",
       "ult.MessageType\022\022\n\ntranscript\030\002 \001(\t\022\020\n\010i" +
-      "s_final\030\003 \001(\010\"X\n\013MessageType\022\034\n\030MESSAGE_" +
-      "TYPE_UNSPECIFIED\020\000\022\016\n\nTRANSCRIPT\020\001\022\033\n\027EN" +
-      "D_OF_SINGLE_UTTERANCE\020\002\"\242\001\n\020InputAudioCo" +
-      "nfig\022F\n\016audio_encoding\030\001 \001(\0162..google.cl" +
-      "oud.dialogflow.v2beta1.AudioEncoding\022\031\n\021" +
-      "sample_rate_hertz\030\002 \001(\005\022\025\n\rlanguage_code" +
-      "\030\003 \001(\t\022\024\n\014phrase_hints\030\004 \003(\t\"0\n\tTextInpu" +
-      "t\022\014\n\004text\030\001 \001(\t\022\025\n\rlanguage_code\030\002 \001(\t\"^" +
-      "\n\nEventInput\022\014\n\004name\030\001 \001(\t\022+\n\nparameters",
-      "\030\002 \001(\0132\027.google.protobuf.Struct\022\025\n\rlangu" +
-      "age_code\030\003 \001(\t*\373\001\n\rAudioEncoding\022\036\n\032AUDI" +
-      "O_ENCODING_UNSPECIFIED\020\000\022\034\n\030AUDIO_ENCODI" +
-      "NG_LINEAR_16\020\001\022\027\n\023AUDIO_ENCODING_FLAC\020\002\022" +
-      "\030\n\024AUDIO_ENCODING_MULAW\020\003\022\026\n\022AUDIO_ENCOD" +
-      "ING_AMR\020\004\022\031\n\025AUDIO_ENCODING_AMR_WB\020\005\022\033\n\027" +
-      "AUDIO_ENCODING_OGG_OPUS\020\006\022)\n%AUDIO_ENCOD" +
-      "ING_SPEEX_WITH_HEADER_BYTE\020\0072\355\002\n\010Session" +
-      "s\022\303\001\n\014DetectIntent\0224.google.cloud.dialog" +
-      "flow.v2beta1.DetectIntentRequest\0325.googl",
-      "e.cloud.dialogflow.v2beta1.DetectIntentR" +
-      "esponse\"F\202\323\344\223\002@\";/v2beta1/{session=proje" +
-      "cts/*/agent/sessions/*}:detectIntent:\001*\022" +
-      "\232\001\n\025StreamingDetectIntent\022=.google.cloud" +
-      ".dialogflow.v2beta1.StreamingDetectInten" +
-      "tRequest\032>.google.cloud.dialogflow.v2bet" +
-      "a1.StreamingDetectIntentResponse(\0010\001B\252\001\n" +
-      "#com.google.cloud.dialogflow.v2beta1B\014Se" +
-      "ssionProtoP\001ZIgoogle.golang.org/genproto" +
-      "/googleapis/cloud/dialogflow/v2beta1;dia",
-      "logflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialogflo" +
-      "w.V2beta1b\006proto3"
+      "s_final\030\003 \001(\010\022\022\n\nconfidence\030\004 \001(\002\"X\n\013Mes" +
+      "sageType\022\034\n\030MESSAGE_TYPE_UNSPECIFIED\020\000\022\016" +
+      "\n\nTRANSCRIPT\020\001\022\033\n\027END_OF_SINGLE_UTTERANC" +
+      "E\020\002\"\242\001\n\020InputAudioConfig\022F\n\016audio_encodi" +
+      "ng\030\001 \001(\0162..google.cloud.dialogflow.v2bet" +
+      "a1.AudioEncoding\022\031\n\021sample_rate_hertz\030\002 " +
+      "\001(\005\022\025\n\rlanguage_code\030\003 \001(\t\022\024\n\014phrase_hin" +
+      "ts\030\004 \003(\t\"0\n\tTextInput\022\014\n\004text\030\001 \001(\t\022\025\n\rl" +
+      "anguage_code\030\002 \001(\t\"^\n\nEventInput\022\014\n\004name",
+      "\030\001 \001(\t\022+\n\nparameters\030\002 \001(\0132\027.google.prot" +
+      "obuf.Struct\022\025\n\rlanguage_code\030\003 \001(\t*\373\001\n\rA" +
+      "udioEncoding\022\036\n\032AUDIO_ENCODING_UNSPECIFI" +
+      "ED\020\000\022\034\n\030AUDIO_ENCODING_LINEAR_16\020\001\022\027\n\023AU" +
+      "DIO_ENCODING_FLAC\020\002\022\030\n\024AUDIO_ENCODING_MU" +
+      "LAW\020\003\022\026\n\022AUDIO_ENCODING_AMR\020\004\022\031\n\025AUDIO_E" +
+      "NCODING_AMR_WB\020\005\022\033\n\027AUDIO_ENCODING_OGG_O" +
+      "PUS\020\006\022)\n%AUDIO_ENCODING_SPEEX_WITH_HEADE" +
+      "R_BYTE\020\0072\355\002\n\010Sessions\022\303\001\n\014DetectIntent\0224" +
+      ".google.cloud.dialogflow.v2beta1.DetectI",
+      "ntentRequest\0325.google.cloud.dialogflow.v" +
+      "2beta1.DetectIntentResponse\"F\202\323\344\223\002@\";/v2" +
+      "beta1/{session=projects/*/agent/sessions" +
+      "/*}:detectIntent:\001*\022\232\001\n\025StreamingDetectI" +
+      "ntent\022=.google.cloud.dialogflow.v2beta1." +
+      "StreamingDetectIntentRequest\032>.google.cl" +
+      "oud.dialogflow.v2beta1.StreamingDetectIn" +
+      "tentResponse(\0010\001B\252\001\n#com.google.cloud.di" +
+      "alogflow.v2beta1B\014SessionProtoP\001ZIgoogle" +
+      ".golang.org/genproto/googleapis/cloud/di",
+      "alogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Go" +
+      "ogle.Cloud.Dialogflow.V2beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -237,7 +237,7 @@ public final class SessionProto {
     internal_static_google_cloud_dialogflow_v2beta1_StreamingRecognitionResult_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_dialogflow_v2beta1_StreamingRecognitionResult_descriptor,
-        new java.lang.String[] { "MessageType", "Transcript", "IsFinal", });
+        new java.lang.String[] { "MessageType", "Transcript", "IsFinal", "Confidence", });
     internal_static_google_cloud_dialogflow_v2beta1_InputAudioConfig_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_google_cloud_dialogflow_v2beta1_InputAudioConfig_fieldAccessorTable = new

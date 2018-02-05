@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class FolderSinkName implements ResourceName {
     return of(folder, sink);
   }
 
+  public static String format(String folder, String sink) {
+    return newBuilder()
+      .setFolder(folder)
+      .setSink(sink)
+      .build()
+      .toString();
+  }
+
   public static FolderSinkName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "FolderSinkName.parse: formattedString not in valid format");
     return of(matchMap.get("folder"), matchMap.get("sink"));
+  }
+
+  public static List<FolderSinkName> parseList(List<String> formattedStrings) {
+    List<FolderSinkName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<FolderSinkName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (FolderSinkName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

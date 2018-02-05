@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -60,10 +62,40 @@ public class FolderName implements ResourceName {
     return of(folder);
   }
 
+  public static String format(String folder) {
+    return newBuilder()
+      .setFolder(folder)
+      .build()
+      .toString();
+  }
+
   public static FolderName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "FolderName.parse: formattedString not in valid format");
     return of(matchMap.get("folder"));
+  }
+
+  public static List<FolderName> parseList(List<String> formattedStrings) {
+    List<FolderName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<FolderName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (FolderName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

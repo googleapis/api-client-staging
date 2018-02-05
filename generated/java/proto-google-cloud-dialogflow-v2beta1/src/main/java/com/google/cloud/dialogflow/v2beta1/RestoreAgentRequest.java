@@ -236,6 +236,17 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The agent to restore.
+   * Example for how to restore an agent via the command line:
+   * curl &#92;
+   *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore&#92;
+   *    -X POST &#92;
+   *    -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+   *    -H 'Accept: application/json' &#92;
+   *    -H 'Content-Type: application/json' &#92;
+   *    --compressed &#92;
+   *    --data-binary "{
+   *        'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+   *    }" &#92;
    * </pre>
    *
    * <code>bytes agent_content = 3;</code>
@@ -828,6 +839,17 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The agent to restore.
+     * Example for how to restore an agent via the command line:
+     * curl &#92;
+     *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore&#92;
+     *    -X POST &#92;
+     *    -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+     *    -H 'Accept: application/json' &#92;
+     *    -H 'Content-Type: application/json' &#92;
+     *    --compressed &#92;
+     *    --data-binary "{
+     *        'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+     *    }" &#92;
      * </pre>
      *
      * <code>bytes agent_content = 3;</code>
@@ -841,6 +863,17 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The agent to restore.
+     * Example for how to restore an agent via the command line:
+     * curl &#92;
+     *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore&#92;
+     *    -X POST &#92;
+     *    -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+     *    -H 'Accept: application/json' &#92;
+     *    -H 'Content-Type: application/json' &#92;
+     *    --compressed &#92;
+     *    --data-binary "{
+     *        'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+     *    }" &#92;
      * </pre>
      *
      * <code>bytes agent_content = 3;</code>
@@ -857,6 +890,17 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The agent to restore.
+     * Example for how to restore an agent via the command line:
+     * curl &#92;
+     *   'https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore&#92;
+     *    -X POST &#92;
+     *    -H 'Authorization: Bearer '$(gcloud auth print-access-token) &#92;
+     *    -H 'Accept: application/json' &#92;
+     *    -H 'Content-Type: application/json' &#92;
+     *    --compressed &#92;
+     *    --data-binary "{
+     *        'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+     *    }" &#92;
      * </pre>
      *
      * <code>bytes agent_content = 3;</code>
@@ -880,6 +924,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setParent(projectName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setParentWithProjectName(com.google.cloud.dialogflow.v2beta1.ProjectName value) {
       if (value == null) {
         return setParent("");
@@ -887,6 +938,13 @@ private static final long serialVersionUID = 0L;
       return setParent(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * ProjectName.parse(protoBuilder.getParent());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.cloud.dialogflow.v2beta1.ProjectName getParentAsProjectName() {
       java.lang.String str = getParent();
       if (str.isEmpty()) {
@@ -897,6 +955,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.RestoreAgentRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * ProjectName.parse(protoObject.getParent());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.cloud.dialogflow.v2beta1.ProjectName getParentAsProjectName() {
     java.lang.String str = getParent();
     if (str.isEmpty()) {
