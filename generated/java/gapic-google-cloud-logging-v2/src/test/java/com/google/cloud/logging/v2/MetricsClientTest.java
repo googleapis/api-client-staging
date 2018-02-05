@@ -25,6 +25,8 @@ import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.InvalidArgumentException;
 import com.google.common.collect.Lists;
+import com.google.logging.v2.AnyMetricName;
+import com.google.logging.v2.AnyParentName;
 import com.google.logging.v2.CreateLogMetricRequest;
 import com.google.logging.v2.DeleteLogMetricRequest;
 import com.google.logging.v2.GetLogMetricRequest;
@@ -32,8 +34,6 @@ import com.google.logging.v2.ListLogMetricsRequest;
 import com.google.logging.v2.ListLogMetricsResponse;
 import com.google.logging.v2.LogMetric;
 import com.google.logging.v2.MetricName;
-import com.google.logging.v2.MetricNameOneof;
-import com.google.logging.v2.ParentNameOneof;
 import com.google.logging.v2.ProjectName;
 import com.google.logging.v2.UpdateLogMetricRequest;
 import com.google.protobuf.Empty;
@@ -107,7 +107,7 @@ public class MetricsClientTest {
             .build();
     mockMetricsServiceV2.addResponse(expectedResponse);
 
-    ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+    AnyParentName parent = ProjectName.of("[PROJECT]");
 
     ListLogMetricsPagedResponse pagedListResponse = client.listLogMetrics(parent);
 
@@ -119,7 +119,7 @@ public class MetricsClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListLogMetricsRequest actualRequest = (ListLogMetricsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, ParentNameOneof.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, AnyParentName.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -133,7 +133,7 @@ public class MetricsClientTest {
     mockMetricsServiceV2.addException(exception);
 
     try {
-      ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+      AnyParentName parent = ProjectName.of("[PROJECT]");
 
       client.listLogMetrics(parent);
       Assert.fail("No exception raised");
@@ -158,7 +158,7 @@ public class MetricsClientTest {
             .build();
     mockMetricsServiceV2.addResponse(expectedResponse);
 
-    MetricNameOneof metricName = MetricNameOneof.from(MetricName.of("[PROJECT]", "[METRIC]"));
+    AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
 
     LogMetric actualResponse = client.getLogMetric(metricName);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -167,7 +167,7 @@ public class MetricsClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetLogMetricRequest actualRequest = (GetLogMetricRequest) actualRequests.get(0);
 
-    Assert.assertEquals(metricName, MetricNameOneof.parse(actualRequest.getMetricName()));
+    Assert.assertEquals(metricName, AnyMetricName.parse(actualRequest.getMetricName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -181,7 +181,7 @@ public class MetricsClientTest {
     mockMetricsServiceV2.addException(exception);
 
     try {
-      MetricNameOneof metricName = MetricNameOneof.from(MetricName.of("[PROJECT]", "[METRIC]"));
+      AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
 
       client.getLogMetric(metricName);
       Assert.fail("No exception raised");
@@ -206,7 +206,7 @@ public class MetricsClientTest {
             .build();
     mockMetricsServiceV2.addResponse(expectedResponse);
 
-    ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+    AnyParentName parent = ProjectName.of("[PROJECT]");
     LogMetric metric = LogMetric.newBuilder().build();
 
     LogMetric actualResponse = client.createLogMetric(parent, metric);
@@ -216,7 +216,7 @@ public class MetricsClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CreateLogMetricRequest actualRequest = (CreateLogMetricRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, ParentNameOneof.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, AnyParentName.parse(actualRequest.getParent()));
     Assert.assertEquals(metric, actualRequest.getMetric());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -231,7 +231,7 @@ public class MetricsClientTest {
     mockMetricsServiceV2.addException(exception);
 
     try {
-      ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
+      AnyParentName parent = ProjectName.of("[PROJECT]");
       LogMetric metric = LogMetric.newBuilder().build();
 
       client.createLogMetric(parent, metric);
@@ -257,7 +257,7 @@ public class MetricsClientTest {
             .build();
     mockMetricsServiceV2.addResponse(expectedResponse);
 
-    MetricNameOneof metricName = MetricNameOneof.from(MetricName.of("[PROJECT]", "[METRIC]"));
+    AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
     LogMetric metric = LogMetric.newBuilder().build();
 
     LogMetric actualResponse = client.updateLogMetric(metricName, metric);
@@ -267,7 +267,7 @@ public class MetricsClientTest {
     Assert.assertEquals(1, actualRequests.size());
     UpdateLogMetricRequest actualRequest = (UpdateLogMetricRequest) actualRequests.get(0);
 
-    Assert.assertEquals(metricName, MetricNameOneof.parse(actualRequest.getMetricName()));
+    Assert.assertEquals(metricName, AnyMetricName.parse(actualRequest.getMetricName()));
     Assert.assertEquals(metric, actualRequest.getMetric());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -282,7 +282,7 @@ public class MetricsClientTest {
     mockMetricsServiceV2.addException(exception);
 
     try {
-      MetricNameOneof metricName = MetricNameOneof.from(MetricName.of("[PROJECT]", "[METRIC]"));
+      AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
       LogMetric metric = LogMetric.newBuilder().build();
 
       client.updateLogMetric(metricName, metric);
@@ -298,7 +298,7 @@ public class MetricsClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockMetricsServiceV2.addResponse(expectedResponse);
 
-    MetricNameOneof metricName = MetricNameOneof.from(MetricName.of("[PROJECT]", "[METRIC]"));
+    AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
 
     client.deleteLogMetric(metricName);
 
@@ -306,7 +306,7 @@ public class MetricsClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DeleteLogMetricRequest actualRequest = (DeleteLogMetricRequest) actualRequests.get(0);
 
-    Assert.assertEquals(metricName, MetricNameOneof.parse(actualRequest.getMetricName()));
+    Assert.assertEquals(metricName, AnyMetricName.parse(actualRequest.getMetricName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -320,7 +320,7 @@ public class MetricsClientTest {
     mockMetricsServiceV2.addException(exception);
 
     try {
-      MetricNameOneof metricName = MetricNameOneof.from(MetricName.of("[PROJECT]", "[METRIC]"));
+      AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
 
       client.deleteLogMetric(metricName);
       Assert.fail("No exception raised");
