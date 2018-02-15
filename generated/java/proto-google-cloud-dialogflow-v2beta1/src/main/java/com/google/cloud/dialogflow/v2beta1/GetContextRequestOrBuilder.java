@@ -10,7 +10,11 @@ public interface GetContextRequestOrBuilder extends
   /**
    * <pre>
    * Required. The name of the context. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
+   * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
+   * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
+   * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
+   * 'sandbox' runtime.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -19,7 +23,11 @@ public interface GetContextRequestOrBuilder extends
   /**
    * <pre>
    * Required. The name of the context. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
+   * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
+   * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
+   * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
+   * 'sandbox' runtime.
    * </pre>
    *
    * <code>string name = 1;</code>

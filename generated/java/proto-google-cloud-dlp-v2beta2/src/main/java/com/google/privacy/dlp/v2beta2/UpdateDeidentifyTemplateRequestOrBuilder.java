@@ -10,7 +10,8 @@ public interface UpdateDeidentifyTemplateRequestOrBuilder extends
   /**
    * <pre>
    * Resource name of organization and deidentify template to be updated, for
-   * example `organizations/433245324/deidentifyTemplates/432452342`.
+   * example `organizations/433245324/deidentifyTemplates/432452342` or
+   * projects/project-id/deidentifyTemplates/432452342.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -19,7 +20,8 @@ public interface UpdateDeidentifyTemplateRequestOrBuilder extends
   /**
    * <pre>
    * Resource name of organization and deidentify template to be updated, for
-   * example `organizations/433245324/deidentifyTemplates/432452342`.
+   * example `organizations/433245324/deidentifyTemplates/432452342` or
+   * projects/project-id/deidentifyTemplates/432452342.
    * </pre>
    *
    * <code>string name = 1;</code>

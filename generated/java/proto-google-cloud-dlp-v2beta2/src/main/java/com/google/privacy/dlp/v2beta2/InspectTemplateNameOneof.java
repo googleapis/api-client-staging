@@ -17,8 +17,8 @@ package com.google.privacy.dlp.v2beta2;
 import com.google.common.base.Preconditions;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
-import com.google.privacy.dlp.v2beta2.InspectTemplateName;
-import com.google.privacy.dlp.v2beta2.InspectTemplate2Name;
+import com.google.privacy.dlp.v2beta2.OrganizationInspectTemplateName;
+import com.google.privacy.dlp.v2beta2.ProjectInspectTemplateName;
 import com.google.api.resourcenames.UntypedResourceName;
 import java.io.IOException;
 
@@ -28,16 +28,16 @@ public class InspectTemplateNameOneof implements ResourceName {
 
   private final ResourceName resourceName;
 
-  public InspectTemplateName getInspectTemplateName() {
-    if (resourceName instanceof InspectTemplateName) {
-      return (InspectTemplateName) resourceName;
+  public OrganizationInspectTemplateName getOrganizationInspectTemplateName() {
+    if (resourceName instanceof OrganizationInspectTemplateName) {
+      return (OrganizationInspectTemplateName) resourceName;
     } else {
       return null;
     }
   }
-  public InspectTemplate2Name getInspectTemplate2Name() {
-    if (resourceName instanceof InspectTemplate2Name) {
-      return (InspectTemplate2Name) resourceName;
+  public ProjectInspectTemplateName getProjectInspectTemplateName() {
+    if (resourceName instanceof ProjectInspectTemplateName) {
+      return (ProjectInspectTemplateName) resourceName;
     } else {
       return null;
     }
@@ -65,20 +65,20 @@ public class InspectTemplateNameOneof implements ResourceName {
   }
 
   public static InspectTemplateNameOneof parse(String resourceNameString) {
-    if (InspectTemplateName.isParsableFrom(resourceNameString)) {
-      return new InspectTemplateNameOneof(InspectTemplateName.parse(resourceNameString));
+    if (OrganizationInspectTemplateName.isParsableFrom(resourceNameString)) {
+      return new InspectTemplateNameOneof(OrganizationInspectTemplateName.parse(resourceNameString));
     }
-    if (InspectTemplate2Name.isParsableFrom(resourceNameString)) {
-      return new InspectTemplateNameOneof(InspectTemplate2Name.parse(resourceNameString));
+    if (ProjectInspectTemplateName.isParsableFrom(resourceNameString)) {
+      return new InspectTemplateNameOneof(ProjectInspectTemplateName.parse(resourceNameString));
     }
     return new InspectTemplateNameOneof(UntypedResourceName.parse(resourceNameString));
   }
 
-  public static InspectTemplateNameOneof from(InspectTemplateName inspectTemplateName) {
-    return new InspectTemplateNameOneof(inspectTemplateName);
+  public static InspectTemplateNameOneof from(OrganizationInspectTemplateName organizationInspectTemplateName) {
+    return new InspectTemplateNameOneof(organizationInspectTemplateName);
   }
-  public static InspectTemplateNameOneof from(InspectTemplate2Name inspectTemplate2Name) {
-    return new InspectTemplateNameOneof(inspectTemplate2Name);
+  public static InspectTemplateNameOneof from(ProjectInspectTemplateName projectInspectTemplateName) {
+    return new InspectTemplateNameOneof(projectInspectTemplateName);
   }
 
   public static InspectTemplateNameOneof fromUntyped(UntypedResourceName untypedResourceName) {

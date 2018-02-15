@@ -15,9 +15,9 @@
  */
 package com.google.cloud.dlp.v2beta2.stub;
 
-import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDeidentifyTemplatesPagedResponse;
-import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDlpJobsPagedResponse;
-import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListInspectTemplatesPagedResponse;
+import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListDeidentifyTemplatesPagedResponse;
+import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListDlpJobsPagedResponse;
+import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListInspectTemplatesPagedResponse;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;

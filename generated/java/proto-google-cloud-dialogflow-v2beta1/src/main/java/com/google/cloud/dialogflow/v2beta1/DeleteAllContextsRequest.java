@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for
- * [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
+ * The request message for [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest}
@@ -87,7 +86,10 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Required. The name of the session to delete all contexts from. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
+   * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
+   * under construction and will be available soon. If &lt;Runtime ID&gt; is not
+   * specified we assume default 'sandbox' runtime.
    * </pre>
    *
    * <code>string parent = 1;</code>
@@ -107,7 +109,10 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Required. The name of the session to delete all contexts from. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
+   * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
+   * under construction and will be available soon. If &lt;Runtime ID&gt; is not
+   * specified we assume default 'sandbox' runtime.
    * </pre>
    *
    * <code>string parent = 1;</code>
@@ -278,8 +283,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for
-   * [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
+   * The request message for [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest}
@@ -418,7 +422,10 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
+     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
+     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
+     * specified we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -438,7 +445,10 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
+     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
+     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
+     * specified we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -459,7 +469,10 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
+     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
+     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
+     * specified we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -477,7 +490,10 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
+     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
+     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
+     * specified we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -491,7 +507,10 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
+     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
+     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
+     * specified we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string parent = 1;</code>

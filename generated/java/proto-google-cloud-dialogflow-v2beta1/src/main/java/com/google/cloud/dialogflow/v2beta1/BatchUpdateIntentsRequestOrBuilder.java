@@ -29,8 +29,6 @@ public interface BatchUpdateIntentsRequestOrBuilder extends
 
   /**
    * <pre>
-   * Warning: Importing intents from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing intents to update or
    * create. The file format can either be a serialized proto (of IntentBatch
    * type) or JSON object. Note: The URI must start with "gs://".
@@ -41,8 +39,6 @@ public interface BatchUpdateIntentsRequestOrBuilder extends
   java.lang.String getIntentBatchUri();
   /**
    * <pre>
-   * Warning: Importing intents from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing intents to update or
    * create. The file format can either be a serialized proto (of IntentBatch
    * type) or JSON object. Note: The URI must start with "gs://".

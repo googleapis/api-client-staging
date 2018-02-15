@@ -29,8 +29,6 @@ public interface ImportAgentRequestOrBuilder extends
 
   /**
    * <pre>
-   * Warning: Importing agents from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing the agent to import.
    * Note: The URI must start with "gs://".
    * </pre>
@@ -40,8 +38,6 @@ public interface ImportAgentRequestOrBuilder extends
   java.lang.String getAgentUri();
   /**
    * <pre>
-   * Warning: Importing agents from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing the agent to import.
    * Note: The URI must start with "gs://".
    * </pre>

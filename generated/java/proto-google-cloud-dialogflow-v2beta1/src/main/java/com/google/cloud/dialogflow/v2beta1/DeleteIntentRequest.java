@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for
- * [Intents.DeleteIntent][google.cloud.dialogflow.v2beta1.Intents.DeleteIntent].
+ * The request message for [Intents.DeleteIntent][google.cloud.dialogflow.v2beta1.Intents.DeleteIntent].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.DeleteIntentRequest}
@@ -278,8 +277,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for
-   * [Intents.DeleteIntent][google.cloud.dialogflow.v2beta1.Intents.DeleteIntent].
+   * The request message for [Intents.DeleteIntent][google.cloud.dialogflow.v2beta1.Intents.DeleteIntent].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.DeleteIntentRequest}

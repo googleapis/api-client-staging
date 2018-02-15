@@ -15,8 +15,8 @@
  */
 package com.google.cloud.spanner.admin.instance.v1.stub;
 
-import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.ListInstanceConfigsPagedResponse;
-import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.ListInstancesPagedResponse;
+import static com.google.cloud.spanner.admin.instance.v1.InstanceAdminClient.ListInstanceConfigsPagedResponse;
+import static com.google.cloud.spanner.admin.instance.v1.InstanceAdminClient.ListInstancesPagedResponse;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
