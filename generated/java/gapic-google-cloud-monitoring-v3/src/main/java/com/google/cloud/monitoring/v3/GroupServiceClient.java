@@ -265,7 +265,8 @@ public class GroupServiceClient implements BackgroundResource {
    */
   public final Group getGroup(GroupName name) {
 
-    GetGroupRequest request = GetGroupRequest.newBuilder().setName(name.toString()).build();
+    GetGroupRequest request =
+        GetGroupRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getGroup(request);
   }
 
@@ -337,7 +338,10 @@ public class GroupServiceClient implements BackgroundResource {
   public final Group createGroup(ProjectName name, Group group) {
 
     CreateGroupRequest request =
-        CreateGroupRequest.newBuilder().setName(name.toString()).setGroup(group).build();
+        CreateGroupRequest.newBuilder()
+            .setName(name == null ? null : name.toString())
+            .setGroup(group)
+            .build();
     return createGroup(request);
   }
 
@@ -477,7 +481,8 @@ public class GroupServiceClient implements BackgroundResource {
    */
   public final void deleteGroup(GroupName name) {
 
-    DeleteGroupRequest request = DeleteGroupRequest.newBuilder().setName(name.toString()).build();
+    DeleteGroupRequest request =
+        DeleteGroupRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteGroup(request);
   }
 
@@ -547,7 +552,7 @@ public class GroupServiceClient implements BackgroundResource {
    */
   public final ListGroupMembersPagedResponse listGroupMembers(GroupName name) {
     ListGroupMembersRequest request =
-        ListGroupMembersRequest.newBuilder().setName(name.toString()).build();
+        ListGroupMembersRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return listGroupMembers(request);
   }
 

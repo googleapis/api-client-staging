@@ -190,7 +190,7 @@ public class TopicAdminClient implements BackgroundResource {
    */
   public final Topic createTopic(TopicName name) {
 
-    Topic request = Topic.newBuilder().setName(name.toString()).build();
+    Topic request = Topic.newBuilder().setName(name == null ? null : name.toString()).build();
     return createTopic(request);
   }
 
@@ -323,7 +323,10 @@ public class TopicAdminClient implements BackgroundResource {
       TopicName topic, List<PubsubMessage> messages) {
 
     PublishRequest request =
-        PublishRequest.newBuilder().setTopic(topic.toString()).addAllMessages(messages).build();
+        PublishRequest.newBuilder()
+            .setTopic(topic == null ? null : topic.toString())
+            .addAllMessages(messages)
+            .build();
     return publish(request);
   }
 
@@ -406,7 +409,8 @@ public class TopicAdminClient implements BackgroundResource {
    */
   public final Topic getTopic(TopicName topic) {
 
-    GetTopicRequest request = GetTopicRequest.newBuilder().setTopic(topic.toString()).build();
+    GetTopicRequest request =
+        GetTopicRequest.newBuilder().setTopic(topic == null ? null : topic.toString()).build();
     return getTopic(request);
   }
 
@@ -476,7 +480,9 @@ public class TopicAdminClient implements BackgroundResource {
    */
   public final ListTopicsPagedResponse listTopics(ProjectName project) {
     ListTopicsRequest request =
-        ListTopicsRequest.newBuilder().setProject(project.toString()).build();
+        ListTopicsRequest.newBuilder()
+            .setProject(project == null ? null : project.toString())
+            .build();
     return listTopics(request);
   }
 
@@ -581,7 +587,9 @@ public class TopicAdminClient implements BackgroundResource {
    */
   public final ListTopicSubscriptionsPagedResponse listTopicSubscriptions(TopicName topic) {
     ListTopicSubscriptionsRequest request =
-        ListTopicSubscriptionsRequest.newBuilder().setTopic(topic.toString()).build();
+        ListTopicSubscriptionsRequest.newBuilder()
+            .setTopic(topic == null ? null : topic.toString())
+            .build();
     return listTopicSubscriptions(request);
   }
 
@@ -689,7 +697,8 @@ public class TopicAdminClient implements BackgroundResource {
    */
   public final void deleteTopic(TopicName topic) {
 
-    DeleteTopicRequest request = DeleteTopicRequest.newBuilder().setTopic(topic.toString()).build();
+    DeleteTopicRequest request =
+        DeleteTopicRequest.newBuilder().setTopic(topic == null ? null : topic.toString()).build();
     deleteTopic(request);
   }
 

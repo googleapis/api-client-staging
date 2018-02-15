@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -22,6 +22,10 @@ import com.google.privacy.dlp.v2beta2.DeidentifyTemplate2Name;
 import com.google.api.resourcenames.UntypedResourceName;
 import java.io.IOException;
 
+/**
+ * @deprecated Use AnyDeidentifyTemplateName instead of this class.
+ */
+@Deprecated
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
 public class DeidentifyTemplateNameOneof implements ResourceName {

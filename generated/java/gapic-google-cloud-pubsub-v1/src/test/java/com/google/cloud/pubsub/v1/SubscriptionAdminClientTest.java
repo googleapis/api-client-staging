@@ -39,6 +39,7 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.pubsub.v1.AcknowledgeRequest;
+import com.google.pubsub.v1.AnyTopicName;
 import com.google.pubsub.v1.CreateSnapshotRequest;
 import com.google.pubsub.v1.DeleteSnapshotRequest;
 import com.google.pubsub.v1.DeleteSubscriptionRequest;
@@ -61,7 +62,6 @@ import com.google.pubsub.v1.StreamingPullResponse;
 import com.google.pubsub.v1.Subscription;
 import com.google.pubsub.v1.SubscriptionName;
 import com.google.pubsub.v1.TopicName;
-import com.google.pubsub.v1.TopicNameOneof;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import java.io.IOException;
@@ -124,7 +124,7 @@ public class SubscriptionAdminClientTest {
   @SuppressWarnings("all")
   public void createSubscriptionTest() {
     SubscriptionName name2 = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-    TopicNameOneof topic2 = TopicNameOneof.from(TopicName.of("[PROJECT]", "[TOPIC]"));
+    AnyTopicName topic2 = TopicName.of("[PROJECT]", "[TOPIC]");
     int ackDeadlineSeconds2 = 921632575;
     boolean retainAckedMessages = false;
     Subscription expectedResponse =
@@ -182,7 +182,7 @@ public class SubscriptionAdminClientTest {
   @SuppressWarnings("all")
   public void getSubscriptionTest() {
     SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-    TopicNameOneof topic = TopicNameOneof.from(TopicName.of("[PROJECT]", "[TOPIC]"));
+    AnyTopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
     int ackDeadlineSeconds = 2135351438;
     boolean retainAckedMessages = false;
     Subscription expectedResponse =

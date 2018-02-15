@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -22,6 +22,10 @@ import com.google.cloud.bigquery.datatransfer.v1.ProjectName;
 import com.google.api.resourcenames.UntypedResourceName;
 import java.io.IOException;
 
+/**
+ * @deprecated Use AnyParentName instead of this class.
+ */
+@Deprecated
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
 public class ParentNameOneof implements ResourceName {

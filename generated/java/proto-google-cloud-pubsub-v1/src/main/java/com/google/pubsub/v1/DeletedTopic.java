@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -19,7 +19,7 @@ import com.google.api.resourcenames.ResourceNameType;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class DeletedTopic implements ResourceName {
+public class DeletedTopic extends AnyTopicName {
 
   private static final String FIXED_VALUE = "_deleted-topic_";
 
@@ -31,7 +31,11 @@ public class DeletedTopic implements ResourceName {
     return instance;
   }
 
-  @Override
+  /**
+   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
+   * for one-of groupings.
+   */
+  @Deprecated
   public ResourceNameType getType() {
     return DeletedTopicType.instance();
   }
