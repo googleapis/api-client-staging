@@ -15,13 +15,17 @@
  */
 package com.google.cloud.spanner.admin.instance.v1;
 
-import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.ListInstanceConfigsPagedResponse;
-import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.ListInstancesPagedResponse;
-
+import com.google.api.core.ApiFunction;
+import com.google.api.core.ApiFuture;
+import com.google.api.core.ApiFutures;
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.longrunning.OperationFuture;
+import com.google.api.gax.paging.AbstractFixedSizeCollection;
+import com.google.api.gax.paging.AbstractPage;
+import com.google.api.gax.paging.AbstractPagedListResponse;
 import com.google.api.gax.rpc.OperationCallable;
+import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.admin.instance.v1.stub.InstanceAdminStub;
 import com.google.cloud.spanner.admin.instance.v1.stub.InstanceAdminStubSettings;
@@ -1403,5 +1407,159 @@ public class InstanceAdminClient implements BackgroundResource {
   @Override
   public boolean awaitTermination(long duration, TimeUnit unit) throws InterruptedException {
     return stub.awaitTermination(duration, unit);
+  }
+
+  public static class ListInstanceConfigsPagedResponse
+      extends AbstractPagedListResponse<
+          ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig,
+          ListInstanceConfigsPage, ListInstanceConfigsFixedSizeCollection> {
+
+    public static ApiFuture<ListInstanceConfigsPagedResponse> createAsync(
+        PageContext<ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig>
+            context,
+        ApiFuture<ListInstanceConfigsResponse> futureResponse) {
+      ApiFuture<ListInstanceConfigsPage> futurePage =
+          ListInstanceConfigsPage.createEmptyPage().createPageAsync(context, futureResponse);
+      return ApiFutures.transform(
+          futurePage,
+          new ApiFunction<ListInstanceConfigsPage, ListInstanceConfigsPagedResponse>() {
+            @Override
+            public ListInstanceConfigsPagedResponse apply(ListInstanceConfigsPage input) {
+              return new ListInstanceConfigsPagedResponse(input);
+            }
+          });
+    }
+
+    private ListInstanceConfigsPagedResponse(ListInstanceConfigsPage page) {
+      super(page, ListInstanceConfigsFixedSizeCollection.createEmptyCollection());
+    }
+  }
+
+  public static class ListInstanceConfigsPage
+      extends AbstractPage<
+          ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig,
+          ListInstanceConfigsPage> {
+
+    private ListInstanceConfigsPage(
+        PageContext<ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig>
+            context,
+        ListInstanceConfigsResponse response) {
+      super(context, response);
+    }
+
+    private static ListInstanceConfigsPage createEmptyPage() {
+      return new ListInstanceConfigsPage(null, null);
+    }
+
+    @Override
+    protected ListInstanceConfigsPage createPage(
+        PageContext<ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig>
+            context,
+        ListInstanceConfigsResponse response) {
+      return new ListInstanceConfigsPage(context, response);
+    }
+
+    @Override
+    public ApiFuture<ListInstanceConfigsPage> createPageAsync(
+        PageContext<ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig>
+            context,
+        ApiFuture<ListInstanceConfigsResponse> futureResponse) {
+      return super.createPageAsync(context, futureResponse);
+    }
+  }
+
+  public static class ListInstanceConfigsFixedSizeCollection
+      extends AbstractFixedSizeCollection<
+          ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig,
+          ListInstanceConfigsPage, ListInstanceConfigsFixedSizeCollection> {
+
+    private ListInstanceConfigsFixedSizeCollection(
+        List<ListInstanceConfigsPage> pages, int collectionSize) {
+      super(pages, collectionSize);
+    }
+
+    private static ListInstanceConfigsFixedSizeCollection createEmptyCollection() {
+      return new ListInstanceConfigsFixedSizeCollection(null, 0);
+    }
+
+    @Override
+    protected ListInstanceConfigsFixedSizeCollection createCollection(
+        List<ListInstanceConfigsPage> pages, int collectionSize) {
+      return new ListInstanceConfigsFixedSizeCollection(pages, collectionSize);
+    }
+  }
+
+  public static class ListInstancesPagedResponse
+      extends AbstractPagedListResponse<
+          ListInstancesRequest, ListInstancesResponse, Instance, ListInstancesPage,
+          ListInstancesFixedSizeCollection> {
+
+    public static ApiFuture<ListInstancesPagedResponse> createAsync(
+        PageContext<ListInstancesRequest, ListInstancesResponse, Instance> context,
+        ApiFuture<ListInstancesResponse> futureResponse) {
+      ApiFuture<ListInstancesPage> futurePage =
+          ListInstancesPage.createEmptyPage().createPageAsync(context, futureResponse);
+      return ApiFutures.transform(
+          futurePage,
+          new ApiFunction<ListInstancesPage, ListInstancesPagedResponse>() {
+            @Override
+            public ListInstancesPagedResponse apply(ListInstancesPage input) {
+              return new ListInstancesPagedResponse(input);
+            }
+          });
+    }
+
+    private ListInstancesPagedResponse(ListInstancesPage page) {
+      super(page, ListInstancesFixedSizeCollection.createEmptyCollection());
+    }
+  }
+
+  public static class ListInstancesPage
+      extends AbstractPage<
+          ListInstancesRequest, ListInstancesResponse, Instance, ListInstancesPage> {
+
+    private ListInstancesPage(
+        PageContext<ListInstancesRequest, ListInstancesResponse, Instance> context,
+        ListInstancesResponse response) {
+      super(context, response);
+    }
+
+    private static ListInstancesPage createEmptyPage() {
+      return new ListInstancesPage(null, null);
+    }
+
+    @Override
+    protected ListInstancesPage createPage(
+        PageContext<ListInstancesRequest, ListInstancesResponse, Instance> context,
+        ListInstancesResponse response) {
+      return new ListInstancesPage(context, response);
+    }
+
+    @Override
+    public ApiFuture<ListInstancesPage> createPageAsync(
+        PageContext<ListInstancesRequest, ListInstancesResponse, Instance> context,
+        ApiFuture<ListInstancesResponse> futureResponse) {
+      return super.createPageAsync(context, futureResponse);
+    }
+  }
+
+  public static class ListInstancesFixedSizeCollection
+      extends AbstractFixedSizeCollection<
+          ListInstancesRequest, ListInstancesResponse, Instance, ListInstancesPage,
+          ListInstancesFixedSizeCollection> {
+
+    private ListInstancesFixedSizeCollection(List<ListInstancesPage> pages, int collectionSize) {
+      super(pages, collectionSize);
+    }
+
+    private static ListInstancesFixedSizeCollection createEmptyCollection() {
+      return new ListInstancesFixedSizeCollection(null, 0);
+    }
+
+    @Override
+    protected ListInstancesFixedSizeCollection createCollection(
+        List<ListInstancesPage> pages, int collectionSize) {
+      return new ListInstancesFixedSizeCollection(pages, collectionSize);
+    }
   }
 }

@@ -15,12 +15,17 @@
  */
 package com.google.cloud.spanner.admin.database.v1;
 
-import static com.google.cloud.spanner.admin.database.v1.PagedResponseWrappers.ListDatabasesPagedResponse;
-
+import com.google.api.core.ApiFunction;
+import com.google.api.core.ApiFuture;
+import com.google.api.core.ApiFutures;
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.longrunning.OperationFuture;
+import com.google.api.gax.paging.AbstractFixedSizeCollection;
+import com.google.api.gax.paging.AbstractPage;
+import com.google.api.gax.paging.AbstractPagedListResponse;
 import com.google.api.gax.rpc.OperationCallable;
+import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.admin.database.v1.stub.DatabaseAdminStub;
 import com.google.cloud.spanner.admin.database.v1.stub.DatabaseAdminStubSettings;
@@ -1053,5 +1058,79 @@ public class DatabaseAdminClient implements BackgroundResource {
   @Override
   public boolean awaitTermination(long duration, TimeUnit unit) throws InterruptedException {
     return stub.awaitTermination(duration, unit);
+  }
+
+  public static class ListDatabasesPagedResponse
+      extends AbstractPagedListResponse<
+          ListDatabasesRequest, ListDatabasesResponse, Database, ListDatabasesPage,
+          ListDatabasesFixedSizeCollection> {
+
+    public static ApiFuture<ListDatabasesPagedResponse> createAsync(
+        PageContext<ListDatabasesRequest, ListDatabasesResponse, Database> context,
+        ApiFuture<ListDatabasesResponse> futureResponse) {
+      ApiFuture<ListDatabasesPage> futurePage =
+          ListDatabasesPage.createEmptyPage().createPageAsync(context, futureResponse);
+      return ApiFutures.transform(
+          futurePage,
+          new ApiFunction<ListDatabasesPage, ListDatabasesPagedResponse>() {
+            @Override
+            public ListDatabasesPagedResponse apply(ListDatabasesPage input) {
+              return new ListDatabasesPagedResponse(input);
+            }
+          });
+    }
+
+    private ListDatabasesPagedResponse(ListDatabasesPage page) {
+      super(page, ListDatabasesFixedSizeCollection.createEmptyCollection());
+    }
+  }
+
+  public static class ListDatabasesPage
+      extends AbstractPage<
+          ListDatabasesRequest, ListDatabasesResponse, Database, ListDatabasesPage> {
+
+    private ListDatabasesPage(
+        PageContext<ListDatabasesRequest, ListDatabasesResponse, Database> context,
+        ListDatabasesResponse response) {
+      super(context, response);
+    }
+
+    private static ListDatabasesPage createEmptyPage() {
+      return new ListDatabasesPage(null, null);
+    }
+
+    @Override
+    protected ListDatabasesPage createPage(
+        PageContext<ListDatabasesRequest, ListDatabasesResponse, Database> context,
+        ListDatabasesResponse response) {
+      return new ListDatabasesPage(context, response);
+    }
+
+    @Override
+    public ApiFuture<ListDatabasesPage> createPageAsync(
+        PageContext<ListDatabasesRequest, ListDatabasesResponse, Database> context,
+        ApiFuture<ListDatabasesResponse> futureResponse) {
+      return super.createPageAsync(context, futureResponse);
+    }
+  }
+
+  public static class ListDatabasesFixedSizeCollection
+      extends AbstractFixedSizeCollection<
+          ListDatabasesRequest, ListDatabasesResponse, Database, ListDatabasesPage,
+          ListDatabasesFixedSizeCollection> {
+
+    private ListDatabasesFixedSizeCollection(List<ListDatabasesPage> pages, int collectionSize) {
+      super(pages, collectionSize);
+    }
+
+    private static ListDatabasesFixedSizeCollection createEmptyCollection() {
+      return new ListDatabasesFixedSizeCollection(null, 0);
+    }
+
+    @Override
+    protected ListDatabasesFixedSizeCollection createCollection(
+        List<ListDatabasesPage> pages, int collectionSize) {
+      return new ListDatabasesFixedSizeCollection(pages, collectionSize);
+    }
   }
 }
