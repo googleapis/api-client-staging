@@ -10,7 +10,10 @@ public interface CreateSessionEntityTypeRequestOrBuilder extends
   /**
    * <pre>
    * Required. The session to create a session entity type for.
-   * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+   * Note: Runtimes are under construction and will be available soon.
+   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
    * </pre>
    *
    * <code>string parent = 1;</code>
@@ -19,7 +22,10 @@ public interface CreateSessionEntityTypeRequestOrBuilder extends
   /**
    * <pre>
    * Required. The session to create a session entity type for.
-   * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+   * Note: Runtimes are under construction and will be available soon.
+   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
    * </pre>
    *
    * <code>string parent = 1;</code>

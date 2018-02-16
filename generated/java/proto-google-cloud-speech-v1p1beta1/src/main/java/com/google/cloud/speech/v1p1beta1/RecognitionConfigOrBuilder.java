@@ -144,4 +144,28 @@ public interface RecognitionConfigOrBuilder extends
    * <code>bool enable_word_time_offsets = 8;</code>
    */
   boolean getEnableWordTimeOffsets();
+
+  /**
+   * <pre>
+   * *Optional* Which model to select for the given request. Select the model
+   * best suited to your domain to get best results. If a model is not
+   * explicitly specified, then we auto-select a model based on the parameters
+   * in the RecognitionConfig.
+   * </pre>
+   *
+   * <code>string model = 13;</code>
+   */
+  java.lang.String getModel();
+  /**
+   * <pre>
+   * *Optional* Which model to select for the given request. Select the model
+   * best suited to your domain to get best results. If a model is not
+   * explicitly specified, then we auto-select a model based on the parameters
+   * in the RecognitionConfig.
+   * </pre>
+   *
+   * <code>string model = 13;</code>
+   */
+  com.google.protobuf.ByteString
+      getModelBytes();
 }

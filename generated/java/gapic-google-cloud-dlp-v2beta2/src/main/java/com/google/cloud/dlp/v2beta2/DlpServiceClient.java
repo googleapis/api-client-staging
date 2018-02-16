@@ -15,12 +15,15 @@
  */
 package com.google.cloud.dlp.v2beta2;
 
-import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDeidentifyTemplatesPagedResponse;
-import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListDlpJobsPagedResponse;
-import static com.google.cloud.dlp.v2beta2.PagedResponseWrappers.ListInspectTemplatesPagedResponse;
-
+import com.google.api.core.ApiFunction;
+import com.google.api.core.ApiFuture;
+import com.google.api.core.ApiFutures;
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
+import com.google.api.gax.paging.AbstractFixedSizeCollection;
+import com.google.api.gax.paging.AbstractPage;
+import com.google.api.gax.paging.AbstractPagedListResponse;
+import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.dlp.v2beta2.stub.DlpServiceStub;
 import com.google.cloud.dlp.v2beta2.stub.DlpServiceStubSettings;
@@ -58,6 +61,7 @@ import com.google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.UpdateInspectTemplateRequest;
 import com.google.protobuf.Empty;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Generated;
 
@@ -426,7 +430,7 @@ public class DlpServiceClient implements BackgroundResource {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
-   * repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+   * repository. [How-to guide](/dlp/docs/compute-risk-analysis)
    *
    * <p>Sample code:
    *
@@ -450,7 +454,7 @@ public class DlpServiceClient implements BackgroundResource {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
-   * repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+   * repository. [How-to guide](/dlp/docs/compute-risk-analysis)
    *
    * <p>Sample code:
    *
@@ -565,7 +569,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
    *   UpdateInspectTemplateRequest request = UpdateInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -588,7 +592,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
    *   UpdateInspectTemplateRequest request = UpdateInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -734,7 +738,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
    *   DeleteInspectTemplateRequest request = DeleteInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -757,7 +761,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
    *   DeleteInspectTemplateRequest request = DeleteInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -828,7 +832,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   UpdateDeidentifyTemplateRequest request = UpdateDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -852,7 +856,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   UpdateDeidentifyTemplateRequest request = UpdateDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -875,7 +879,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   GetDeidentifyTemplateRequest request = GetDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -898,7 +902,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   GetDeidentifyTemplateRequest request = GetDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1004,7 +1008,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   DeleteDeidentifyTemplateRequest request = DeleteDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1027,7 +1031,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   DeleteDeidentifyTemplateRequest request = DeleteDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1290,5 +1294,242 @@ public class DlpServiceClient implements BackgroundResource {
   @Override
   public boolean awaitTermination(long duration, TimeUnit unit) throws InterruptedException {
     return stub.awaitTermination(duration, unit);
+  }
+
+  public static class ListInspectTemplatesPagedResponse
+      extends AbstractPagedListResponse<
+          ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate,
+          ListInspectTemplatesPage, ListInspectTemplatesFixedSizeCollection> {
+
+    public static ApiFuture<ListInspectTemplatesPagedResponse> createAsync(
+        PageContext<ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate>
+            context,
+        ApiFuture<ListInspectTemplatesResponse> futureResponse) {
+      ApiFuture<ListInspectTemplatesPage> futurePage =
+          ListInspectTemplatesPage.createEmptyPage().createPageAsync(context, futureResponse);
+      return ApiFutures.transform(
+          futurePage,
+          new ApiFunction<ListInspectTemplatesPage, ListInspectTemplatesPagedResponse>() {
+            @Override
+            public ListInspectTemplatesPagedResponse apply(ListInspectTemplatesPage input) {
+              return new ListInspectTemplatesPagedResponse(input);
+            }
+          });
+    }
+
+    private ListInspectTemplatesPagedResponse(ListInspectTemplatesPage page) {
+      super(page, ListInspectTemplatesFixedSizeCollection.createEmptyCollection());
+    }
+  }
+
+  public static class ListInspectTemplatesPage
+      extends AbstractPage<
+          ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate,
+          ListInspectTemplatesPage> {
+
+    private ListInspectTemplatesPage(
+        PageContext<ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate>
+            context,
+        ListInspectTemplatesResponse response) {
+      super(context, response);
+    }
+
+    private static ListInspectTemplatesPage createEmptyPage() {
+      return new ListInspectTemplatesPage(null, null);
+    }
+
+    @Override
+    protected ListInspectTemplatesPage createPage(
+        PageContext<ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate>
+            context,
+        ListInspectTemplatesResponse response) {
+      return new ListInspectTemplatesPage(context, response);
+    }
+
+    @Override
+    public ApiFuture<ListInspectTemplatesPage> createPageAsync(
+        PageContext<ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate>
+            context,
+        ApiFuture<ListInspectTemplatesResponse> futureResponse) {
+      return super.createPageAsync(context, futureResponse);
+    }
+  }
+
+  public static class ListInspectTemplatesFixedSizeCollection
+      extends AbstractFixedSizeCollection<
+          ListInspectTemplatesRequest, ListInspectTemplatesResponse, InspectTemplate,
+          ListInspectTemplatesPage, ListInspectTemplatesFixedSizeCollection> {
+
+    private ListInspectTemplatesFixedSizeCollection(
+        List<ListInspectTemplatesPage> pages, int collectionSize) {
+      super(pages, collectionSize);
+    }
+
+    private static ListInspectTemplatesFixedSizeCollection createEmptyCollection() {
+      return new ListInspectTemplatesFixedSizeCollection(null, 0);
+    }
+
+    @Override
+    protected ListInspectTemplatesFixedSizeCollection createCollection(
+        List<ListInspectTemplatesPage> pages, int collectionSize) {
+      return new ListInspectTemplatesFixedSizeCollection(pages, collectionSize);
+    }
+  }
+
+  public static class ListDeidentifyTemplatesPagedResponse
+      extends AbstractPagedListResponse<
+          ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse, DeidentifyTemplate,
+          ListDeidentifyTemplatesPage, ListDeidentifyTemplatesFixedSizeCollection> {
+
+    public static ApiFuture<ListDeidentifyTemplatesPagedResponse> createAsync(
+        PageContext<
+                ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse, DeidentifyTemplate>
+            context,
+        ApiFuture<ListDeidentifyTemplatesResponse> futureResponse) {
+      ApiFuture<ListDeidentifyTemplatesPage> futurePage =
+          ListDeidentifyTemplatesPage.createEmptyPage().createPageAsync(context, futureResponse);
+      return ApiFutures.transform(
+          futurePage,
+          new ApiFunction<ListDeidentifyTemplatesPage, ListDeidentifyTemplatesPagedResponse>() {
+            @Override
+            public ListDeidentifyTemplatesPagedResponse apply(ListDeidentifyTemplatesPage input) {
+              return new ListDeidentifyTemplatesPagedResponse(input);
+            }
+          });
+    }
+
+    private ListDeidentifyTemplatesPagedResponse(ListDeidentifyTemplatesPage page) {
+      super(page, ListDeidentifyTemplatesFixedSizeCollection.createEmptyCollection());
+    }
+  }
+
+  public static class ListDeidentifyTemplatesPage
+      extends AbstractPage<
+          ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse, DeidentifyTemplate,
+          ListDeidentifyTemplatesPage> {
+
+    private ListDeidentifyTemplatesPage(
+        PageContext<
+                ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse, DeidentifyTemplate>
+            context,
+        ListDeidentifyTemplatesResponse response) {
+      super(context, response);
+    }
+
+    private static ListDeidentifyTemplatesPage createEmptyPage() {
+      return new ListDeidentifyTemplatesPage(null, null);
+    }
+
+    @Override
+    protected ListDeidentifyTemplatesPage createPage(
+        PageContext<
+                ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse, DeidentifyTemplate>
+            context,
+        ListDeidentifyTemplatesResponse response) {
+      return new ListDeidentifyTemplatesPage(context, response);
+    }
+
+    @Override
+    public ApiFuture<ListDeidentifyTemplatesPage> createPageAsync(
+        PageContext<
+                ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse, DeidentifyTemplate>
+            context,
+        ApiFuture<ListDeidentifyTemplatesResponse> futureResponse) {
+      return super.createPageAsync(context, futureResponse);
+    }
+  }
+
+  public static class ListDeidentifyTemplatesFixedSizeCollection
+      extends AbstractFixedSizeCollection<
+          ListDeidentifyTemplatesRequest, ListDeidentifyTemplatesResponse, DeidentifyTemplate,
+          ListDeidentifyTemplatesPage, ListDeidentifyTemplatesFixedSizeCollection> {
+
+    private ListDeidentifyTemplatesFixedSizeCollection(
+        List<ListDeidentifyTemplatesPage> pages, int collectionSize) {
+      super(pages, collectionSize);
+    }
+
+    private static ListDeidentifyTemplatesFixedSizeCollection createEmptyCollection() {
+      return new ListDeidentifyTemplatesFixedSizeCollection(null, 0);
+    }
+
+    @Override
+    protected ListDeidentifyTemplatesFixedSizeCollection createCollection(
+        List<ListDeidentifyTemplatesPage> pages, int collectionSize) {
+      return new ListDeidentifyTemplatesFixedSizeCollection(pages, collectionSize);
+    }
+  }
+
+  public static class ListDlpJobsPagedResponse
+      extends AbstractPagedListResponse<
+          ListDlpJobsRequest, ListDlpJobsResponse, DlpJob, ListDlpJobsPage,
+          ListDlpJobsFixedSizeCollection> {
+
+    public static ApiFuture<ListDlpJobsPagedResponse> createAsync(
+        PageContext<ListDlpJobsRequest, ListDlpJobsResponse, DlpJob> context,
+        ApiFuture<ListDlpJobsResponse> futureResponse) {
+      ApiFuture<ListDlpJobsPage> futurePage =
+          ListDlpJobsPage.createEmptyPage().createPageAsync(context, futureResponse);
+      return ApiFutures.transform(
+          futurePage,
+          new ApiFunction<ListDlpJobsPage, ListDlpJobsPagedResponse>() {
+            @Override
+            public ListDlpJobsPagedResponse apply(ListDlpJobsPage input) {
+              return new ListDlpJobsPagedResponse(input);
+            }
+          });
+    }
+
+    private ListDlpJobsPagedResponse(ListDlpJobsPage page) {
+      super(page, ListDlpJobsFixedSizeCollection.createEmptyCollection());
+    }
+  }
+
+  public static class ListDlpJobsPage
+      extends AbstractPage<ListDlpJobsRequest, ListDlpJobsResponse, DlpJob, ListDlpJobsPage> {
+
+    private ListDlpJobsPage(
+        PageContext<ListDlpJobsRequest, ListDlpJobsResponse, DlpJob> context,
+        ListDlpJobsResponse response) {
+      super(context, response);
+    }
+
+    private static ListDlpJobsPage createEmptyPage() {
+      return new ListDlpJobsPage(null, null);
+    }
+
+    @Override
+    protected ListDlpJobsPage createPage(
+        PageContext<ListDlpJobsRequest, ListDlpJobsResponse, DlpJob> context,
+        ListDlpJobsResponse response) {
+      return new ListDlpJobsPage(context, response);
+    }
+
+    @Override
+    public ApiFuture<ListDlpJobsPage> createPageAsync(
+        PageContext<ListDlpJobsRequest, ListDlpJobsResponse, DlpJob> context,
+        ApiFuture<ListDlpJobsResponse> futureResponse) {
+      return super.createPageAsync(context, futureResponse);
+    }
+  }
+
+  public static class ListDlpJobsFixedSizeCollection
+      extends AbstractFixedSizeCollection<
+          ListDlpJobsRequest, ListDlpJobsResponse, DlpJob, ListDlpJobsPage,
+          ListDlpJobsFixedSizeCollection> {
+
+    private ListDlpJobsFixedSizeCollection(List<ListDlpJobsPage> pages, int collectionSize) {
+      super(pages, collectionSize);
+    }
+
+    private static ListDlpJobsFixedSizeCollection createEmptyCollection() {
+      return new ListDlpJobsFixedSizeCollection(null, 0);
+    }
+
+    @Override
+    protected ListDlpJobsFixedSizeCollection createCollection(
+        List<ListDlpJobsPage> pages, int collectionSize) {
+      return new ListDlpJobsFixedSizeCollection(pages, collectionSize);
+    }
   }
 }

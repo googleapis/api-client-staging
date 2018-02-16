@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The response message for
- * [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
+ * The response message for [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.SearchAgentsResponse}
@@ -365,8 +364,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The response message for
-   * [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
+   * The response message for [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.SearchAgentsResponse}

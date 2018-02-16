@@ -25,20 +25,20 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class InspectTemplateName implements ResourceName {
+public class OrganizationDeidentifyTemplateName implements ResourceName {
 
   private static final PathTemplate PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("organizations/{organization}/inspectTemplates/{inspect_template}");
+      PathTemplate.createWithoutUrlEncoding("organizations/{organization}/deidentifyTemplates/{deidentify_template}");
 
   private final String organization;
-  private final String inspectTemplate;
+  private final String deidentifyTemplate;
 
   public String getOrganization() {
     return organization;
   }
 
-  public String getInspectTemplate() {
-    return inspectTemplate;
+  public String getDeidentifyTemplate() {
+    return deidentifyTemplate;
   }
 
   public static Builder newBuilder() {
@@ -49,15 +49,15 @@ public class InspectTemplateName implements ResourceName {
     return new Builder(this);
   }
 
-  private InspectTemplateName(Builder builder) {
+  private OrganizationDeidentifyTemplateName(Builder builder) {
     organization = Preconditions.checkNotNull(builder.getOrganization());
-    inspectTemplate = Preconditions.checkNotNull(builder.getInspectTemplate());
+    deidentifyTemplate = Preconditions.checkNotNull(builder.getDeidentifyTemplate());
   }
 
-  public static InspectTemplateName of(String organization, String inspectTemplate) {
+  public static OrganizationDeidentifyTemplateName of(String organization, String deidentifyTemplate) {
     return newBuilder()
       .setOrganization(organization)
-      .setInspectTemplate(inspectTemplate)
+      .setDeidentifyTemplate(deidentifyTemplate)
       .build();
   }
 
@@ -65,38 +65,38 @@ public class InspectTemplateName implements ResourceName {
    * @deprecated Use {@link #of(String, String)} instead.
    */
   @Deprecated
-  public static InspectTemplateName create(String organization, String inspectTemplate) {
-    return of(organization, inspectTemplate);
+  public static OrganizationDeidentifyTemplateName create(String organization, String deidentifyTemplate) {
+    return of(organization, deidentifyTemplate);
   }
 
-  public static String format(String organization, String inspectTemplate) {
+  public static String format(String organization, String deidentifyTemplate) {
     return newBuilder()
       .setOrganization(organization)
-      .setInspectTemplate(inspectTemplate)
+      .setDeidentifyTemplate(deidentifyTemplate)
       .build()
       .toString();
   }
 
-  public static InspectTemplateName parse(String formattedString) {
+  public static OrganizationDeidentifyTemplateName parse(String formattedString) {
     if (formattedString.isEmpty()) {
       return null;
     }
     Map<String, String> matchMap =
-        PATH_TEMPLATE.validatedMatch(formattedString, "InspectTemplateName.parse: formattedString not in valid format");
-    return of(matchMap.get("organization"), matchMap.get("inspect_template"));
+        PATH_TEMPLATE.validatedMatch(formattedString, "OrganizationDeidentifyTemplateName.parse: formattedString not in valid format");
+    return of(matchMap.get("organization"), matchMap.get("deidentify_template"));
   }
 
-  public static List<InspectTemplateName> parseList(List<String> formattedStrings) {
-    List<InspectTemplateName> list = new ArrayList<>(formattedStrings.size());
+  public static List<OrganizationDeidentifyTemplateName> parseList(List<String> formattedStrings) {
+    List<OrganizationDeidentifyTemplateName> list = new ArrayList<>(formattedStrings.size());
     for (String formattedString : formattedStrings) {
       list.add(parse(formattedString));
     }
     return list;
   }
 
-  public static List<String> toStringList(List<InspectTemplateName> values) {
+  public static List<String> toStringList(List<OrganizationDeidentifyTemplateName> values) {
     List<String> list = new ArrayList<String>(values.size());
-    for (InspectTemplateName value : values) {
+    for (OrganizationDeidentifyTemplateName value : values) {
       if (value == null) {
         list.add("");
       } else {
@@ -112,26 +112,26 @@ public class InspectTemplateName implements ResourceName {
 
   @Override
   public ResourceNameType getType() {
-    return InspectTemplateNameType.instance();
+    return OrganizationDeidentifyTemplateNameType.instance();
   }
 
   @Override
   public String toString() {
-    return PATH_TEMPLATE.instantiate("organization", organization, "inspect_template", inspectTemplate);
+    return PATH_TEMPLATE.instantiate("organization", organization, "deidentify_template", deidentifyTemplate);
   }
 
-  /** Builder for InspectTemplateName. */
+  /** Builder for OrganizationDeidentifyTemplateName. */
   public static class Builder {
 
     private String organization;
-    private String inspectTemplate;
+    private String deidentifyTemplate;
 
     public String getOrganization() {
       return organization;
     }
 
-    public String getInspectTemplate() {
-      return inspectTemplate;
+    public String getDeidentifyTemplate() {
+      return deidentifyTemplate;
     }
 
     public Builder setOrganization(String organization) {
@@ -139,21 +139,21 @@ public class InspectTemplateName implements ResourceName {
       return this;
     }
 
-    public Builder setInspectTemplate(String inspectTemplate) {
-      this.inspectTemplate = inspectTemplate;
+    public Builder setDeidentifyTemplate(String deidentifyTemplate) {
+      this.deidentifyTemplate = deidentifyTemplate;
       return this;
     }
 
     private Builder() {
     }
 
-    private Builder(InspectTemplateName inspectTemplateName) {
-      organization = inspectTemplateName.organization;
-      inspectTemplate = inspectTemplateName.inspectTemplate;
+    private Builder(OrganizationDeidentifyTemplateName organizationDeidentifyTemplateName) {
+      organization = organizationDeidentifyTemplateName.organization;
+      deidentifyTemplate = organizationDeidentifyTemplateName.deidentifyTemplate;
     }
 
-    public InspectTemplateName build() {
-      return new InspectTemplateName(this);
+    public OrganizationDeidentifyTemplateName build() {
+      return new OrganizationDeidentifyTemplateName(this);
     }
   }
 
@@ -162,10 +162,10 @@ public class InspectTemplateName implements ResourceName {
     if (o == this) {
       return true;
     }
-    if (o instanceof InspectTemplateName) {
-      InspectTemplateName that = (InspectTemplateName) o;
+    if (o instanceof OrganizationDeidentifyTemplateName) {
+      OrganizationDeidentifyTemplateName that = (OrganizationDeidentifyTemplateName) o;
       return (this.organization.equals(that.organization))
-          && (this.inspectTemplate.equals(that.inspectTemplate));
+          && (this.deidentifyTemplate.equals(that.deidentifyTemplate));
     }
     return false;
   }
@@ -176,7 +176,7 @@ public class InspectTemplateName implements ResourceName {
     h *= 1000003;
     h ^= organization.hashCode();
     h *= 1000003;
-    h ^= inspectTemplate.hashCode();
+    h ^= deidentifyTemplate.hashCode();
     return h;
   }
 }

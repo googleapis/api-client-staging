@@ -15,7 +15,7 @@
  */
 package com.google.cloud.spanner.v1;
 
-import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
+import static com.google.cloud.spanner.v1.SpannerClient.ListSessionsPagedResponse;
 
 import com.google.api.gax.core.NoCredentialsProvider;
 import com.google.api.gax.grpc.GaxGrpcProperties;

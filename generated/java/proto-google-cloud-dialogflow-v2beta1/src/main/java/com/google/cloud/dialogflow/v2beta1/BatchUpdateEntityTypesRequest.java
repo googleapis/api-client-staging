@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for
- * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
+ * The request message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesRequest}
@@ -207,8 +206,6 @@ private static final long serialVersionUID = 0L;
   public static final int ENTITY_TYPE_BATCH_URI_FIELD_NUMBER = 2;
   /**
    * <pre>
-   * Warning: Importing entity types from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing entity types to update
    * or create. The file format can either be a serialized proto (of
    * EntityBatch type) or a JSON object. Note: The URI must start with
@@ -236,8 +233,6 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Warning: Importing entity types from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing entity types to update
    * or create. The file format can either be a serialized proto (of
    * EntityBatch type) or a JSON object. Note: The URI must start with
@@ -604,8 +599,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for
-   * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
+   * The request message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.BatchUpdateEntityTypes].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesRequest}
@@ -900,8 +894,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * Warning: Importing entity types from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing entity types to update
      * or create. The file format can either be a serialized proto (of
      * EntityBatch type) or a JSON object. Note: The URI must start with
@@ -929,8 +921,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Importing entity types from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing entity types to update
      * or create. The file format can either be a serialized proto (of
      * EntityBatch type) or a JSON object. Note: The URI must start with
@@ -959,8 +949,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Importing entity types from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing entity types to update
      * or create. The file format can either be a serialized proto (of
      * EntityBatch type) or a JSON object. Note: The URI must start with
@@ -981,8 +969,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Importing entity types from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing entity types to update
      * or create. The file format can either be a serialized proto (of
      * EntityBatch type) or a JSON object. Note: The URI must start with
@@ -1001,8 +987,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Importing entity types from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing entity types to update
      * or create. The file format can either be a serialized proto (of
      * EntityBatch type) or a JSON object. Note: The URI must start with

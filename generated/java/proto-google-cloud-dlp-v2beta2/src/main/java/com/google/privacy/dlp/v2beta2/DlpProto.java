@@ -1042,7 +1042,7 @@ public final class DlpProto {
       "QUALS\020\005\022\027\n\023LESS_THAN_OR_EQUALS\020\006\022\n\n\006EXIS" +
       "TS\020\007*R\n\nDlpJobType\022\034\n\030DLP_JOB_TYPE_UNSPE" +
       "CIFIED\020\000\022\017\n\013INSPECT_JOB\020\001\022\025\n\021RISK_ANALYS" +
-      "IS_JOB\020\0022\245\035\n\nDlpService\022\260\001\n\016InspectConte" +
+      "IS_JOB\020\0022\252!\n\nDlpService\022\260\001\n\016InspectConte" +
       "nt\0221.google.privacy.dlp.v2beta2.InspectC" +
       "ontentRequest\0322.google.privacy.dlp.v2bet" +
       "a2.InspectContentResponse\"7\202\323\344\223\0021\",/v2be" +
@@ -1073,74 +1073,87 @@ public final class DlpProto {
       "s\0220.google.privacy.dlp.v2beta2.ListInfoT" +
       "ypesRequest\0321.google.privacy.dlp.v2beta2" +
       ".ListInfoTypesResponse\"\032\202\323\344\223\002\024\022\022/v2beta2" +
-      "/infoTypes\022\275\001\n\025CreateInspectTemplate\0228.g" +
+      "/infoTypes\022\361\001\n\025CreateInspectTemplate\0228.g" +
       "oogle.privacy.dlp.v2beta2.CreateInspectT" +
       "emplateRequest\032+.google.privacy.dlp.v2be" +
-      "ta2.InspectTemplate\"=\202\323\344\223\0027\"2/v2beta2/{p" +
+      "ta2.InspectTemplate\"q\202\323\344\223\002k\"2/v2beta2/{p" +
       "arent=organizations/*}/inspectTemplates:",
-      "\001*\022\275\001\n\025UpdateInspectTemplate\0228.google.pr" +
-      "ivacy.dlp.v2beta2.UpdateInspectTemplateR" +
-      "equest\032+.google.privacy.dlp.v2beta2.Insp" +
-      "ectTemplate\"=\202\323\344\223\002722/v2beta2/{name=orga" +
-      "nizations/*/inspectTemplates/*}:\001*\022\264\001\n\022G" +
-      "etInspectTemplate\0225.google.privacy.dlp.v" +
-      "2beta2.GetInspectTemplateRequest\032+.googl" +
-      "e.privacy.dlp.v2beta2.InspectTemplate\":\202" +
-      "\323\344\223\0024\0222/v2beta2/{name=organizations/*/in" +
-      "spectTemplates/*}\022\305\001\n\024ListInspectTemplat",
-      "es\0227.google.privacy.dlp.v2beta2.ListInsp" +
-      "ectTemplatesRequest\0328.google.privacy.dlp" +
-      ".v2beta2.ListInspectTemplatesResponse\":\202" +
-      "\323\344\223\0024\0222/v2beta2/{parent=organizations/*}" +
-      "/inspectTemplates\022\245\001\n\025DeleteInspectTempl" +
-      "ate\0228.google.privacy.dlp.v2beta2.DeleteI" +
-      "nspectTemplateRequest\032\026.google.protobuf." +
-      "Empty\":\202\323\344\223\0024*2/v2beta2/{name=organizati" +
-      "ons/*/inspectTemplates/*}\022\311\001\n\030CreateDeid" +
-      "entifyTemplate\022;.google.privacy.dlp.v2be",
-      "ta2.CreateDeidentifyTemplateRequest\032..go" +
-      "ogle.privacy.dlp.v2beta2.DeidentifyTempl" +
-      "ate\"@\202\323\344\223\002:\"5/v2beta2/{parent=organizati" +
-      "ons/*}/deidentifyTemplates:\001*\022\311\001\n\030Update" +
-      "DeidentifyTemplate\022;.google.privacy.dlp." +
-      "v2beta2.UpdateDeidentifyTemplateRequest\032" +
-      "..google.privacy.dlp.v2beta2.DeidentifyT" +
-      "emplate\"@\202\323\344\223\002:25/v2beta2/{name=organiza" +
-      "tions/*/deidentifyTemplates/*}:\001*\022\300\001\n\025Ge" +
-      "tDeidentifyTemplate\0228.google.privacy.dlp",
-      ".v2beta2.GetDeidentifyTemplateRequest\032.." +
-      "google.privacy.dlp.v2beta2.DeidentifyTem" +
-      "plate\"=\202\323\344\223\0027\0225/v2beta2/{name=organizati" +
-      "ons/*/deidentifyTemplates/*}\022\321\001\n\027ListDei" +
-      "dentifyTemplates\022:.google.privacy.dlp.v2" +
-      "beta2.ListDeidentifyTemplatesRequest\032;.g" +
-      "oogle.privacy.dlp.v2beta2.ListDeidentify" +
-      "TemplatesResponse\"=\202\323\344\223\0027\0225/v2beta2/{par" +
-      "ent=organizations/*}/deidentifyTemplates" +
-      "\022\256\001\n\030DeleteDeidentifyTemplate\022;.google.p",
-      "rivacy.dlp.v2beta2.DeleteDeidentifyTempl" +
-      "ateRequest\032\026.google.protobuf.Empty\"=\202\323\344\223" +
-      "\0027*5/v2beta2/{name=organizations/*/deide" +
-      "ntifyTemplates/*}\022\234\001\n\013ListDlpJobs\022..goog" +
-      "le.privacy.dlp.v2beta2.ListDlpJobsReques" +
-      "t\032/.google.privacy.dlp.v2beta2.ListDlpJo" +
-      "bsResponse\",\202\323\344\223\002&\022$/v2beta2/{parent=pro" +
-      "jects/*}/dlpJobs\022\213\001\n\tGetDlpJob\022,.google." +
-      "privacy.dlp.v2beta2.GetDlpJobRequest\032\".g" +
-      "oogle.privacy.dlp.v2beta2.DlpJob\",\202\323\344\223\002&",
-      "\022$/v2beta2/{name=projects/*/dlpJobs/*}\022\205" +
-      "\001\n\014DeleteDlpJob\022/.google.privacy.dlp.v2b" +
-      "eta2.DeleteDlpJobRequest\032\026.google.protob" +
-      "uf.Empty\",\202\323\344\223\002&*$/v2beta2/{name=project" +
-      "s/*/dlpJobs/*}\022\217\001\n\014CancelDlpJob\022/.google" +
-      ".privacy.dlp.v2beta2.CancelDlpJobRequest" +
-      "\032\026.google.protobuf.Empty\"6\202\323\344\223\0020\"+/v2bet" +
-      "a2/{name=projects/*/dlpJobs/*}:cancel:\001*" +
-      "B\241\001\n\036com.google.privacy.dlp.v2beta2B\010Dlp" +
-      "ProtoP\001Z=google.golang.org/genproto/goog",
-      "leapis/privacy/dlp/v2beta2;dlp\252\002\030Google." +
-      "Cloud.Dlp.V2Beta2\312\002\030Google\\Cloud\\Dlp\\V2b" +
-      "eta2b\006proto3"
+      "\001*Z2\"-/v2beta2/{parent=projects/*}/inspe" +
+      "ctTemplates:\001*\022\361\001\n\025UpdateInspectTemplate" +
+      "\0228.google.privacy.dlp.v2beta2.UpdateInsp" +
+      "ectTemplateRequest\032+.google.privacy.dlp." +
+      "v2beta2.InspectTemplate\"q\202\323\344\223\002k22/v2beta" +
+      "2/{name=organizations/*/inspectTemplates" +
+      "/*}:\001*Z22-/v2beta2/{name=projects/*/insp" +
+      "ectTemplates/*}:\001*\022\345\001\n\022GetInspectTemplat" +
+      "e\0225.google.privacy.dlp.v2beta2.GetInspec" +
+      "tTemplateRequest\032+.google.privacy.dlp.v2",
+      "beta2.InspectTemplate\"k\202\323\344\223\002e\0222/v2beta2/" +
+      "{name=organizations/*/inspectTemplates/*" +
+      "}Z/\022-/v2beta2/{name=projects/*/inspectTe" +
+      "mplates/*}\022\366\001\n\024ListInspectTemplates\0227.go" +
+      "ogle.privacy.dlp.v2beta2.ListInspectTemp" +
+      "latesRequest\0328.google.privacy.dlp.v2beta" +
+      "2.ListInspectTemplatesResponse\"k\202\323\344\223\002e\0222" +
+      "/v2beta2/{parent=organizations/*}/inspec" +
+      "tTemplatesZ/\022-/v2beta2/{parent=projects/" +
+      "*}/inspectTemplates\022\326\001\n\025DeleteInspectTem",
+      "plate\0228.google.privacy.dlp.v2beta2.Delet" +
+      "eInspectTemplateRequest\032\026.google.protobu" +
+      "f.Empty\"k\202\323\344\223\002e*2/v2beta2/{name=organiza" +
+      "tions/*/inspectTemplates/*}Z/*-/v2beta2/" +
+      "{name=projects/*/inspectTemplates/*}\022\200\002\n" +
+      "\030CreateDeidentifyTemplate\022;.google.priva" +
+      "cy.dlp.v2beta2.CreateDeidentifyTemplateR" +
+      "equest\032..google.privacy.dlp.v2beta2.Deid" +
+      "entifyTemplate\"w\202\323\344\223\002q\"5/v2beta2/{parent" +
+      "=organizations/*}/deidentifyTemplates:\001*",
+      "Z5\"0/v2beta2/{parent=projects/*}/deident" +
+      "ifyTemplates:\001*\022\200\002\n\030UpdateDeidentifyTemp" +
+      "late\022;.google.privacy.dlp.v2beta2.Update" +
+      "DeidentifyTemplateRequest\032..google.priva" +
+      "cy.dlp.v2beta2.DeidentifyTemplate\"w\202\323\344\223\002" +
+      "q25/v2beta2/{name=organizations/*/deiden" +
+      "tifyTemplates/*}:\001*Z520/v2beta2/{name=pr" +
+      "ojects/*/deidentifyTemplates/*}:\001*\022\364\001\n\025G" +
+      "etDeidentifyTemplate\0228.google.privacy.dl" +
+      "p.v2beta2.GetDeidentifyTemplateRequest\032.",
+      ".google.privacy.dlp.v2beta2.DeidentifyTe" +
+      "mplate\"q\202\323\344\223\002k\0225/v2beta2/{name=organizat" +
+      "ions/*/deidentifyTemplates/*}Z2\0220/v2beta" +
+      "2/{name=projects/*/deidentifyTemplates/*" +
+      "}\022\205\002\n\027ListDeidentifyTemplates\022:.google.p" +
+      "rivacy.dlp.v2beta2.ListDeidentifyTemplat" +
+      "esRequest\032;.google.privacy.dlp.v2beta2.L" +
+      "istDeidentifyTemplatesResponse\"q\202\323\344\223\002k\0225" +
+      "/v2beta2/{parent=organizations/*}/deiden" +
+      "tifyTemplatesZ2\0220/v2beta2/{parent=projec",
+      "ts/*}/deidentifyTemplates\022\342\001\n\030DeleteDeid" +
+      "entifyTemplate\022;.google.privacy.dlp.v2be" +
+      "ta2.DeleteDeidentifyTemplateRequest\032\026.go" +
+      "ogle.protobuf.Empty\"q\202\323\344\223\002k*5/v2beta2/{n" +
+      "ame=organizations/*/deidentifyTemplates/" +
+      "*}Z2*0/v2beta2/{name=projects/*/deidenti" +
+      "fyTemplates/*}\022\234\001\n\013ListDlpJobs\022..google." +
+      "privacy.dlp.v2beta2.ListDlpJobsRequest\032/" +
+      ".google.privacy.dlp.v2beta2.ListDlpJobsR" +
+      "esponse\",\202\323\344\223\002&\022$/v2beta2/{parent=projec",
+      "ts/*}/dlpJobs\022\213\001\n\tGetDlpJob\022,.google.pri" +
+      "vacy.dlp.v2beta2.GetDlpJobRequest\032\".goog" +
+      "le.privacy.dlp.v2beta2.DlpJob\",\202\323\344\223\002&\022$/" +
+      "v2beta2/{name=projects/*/dlpJobs/*}\022\205\001\n\014" +
+      "DeleteDlpJob\022/.google.privacy.dlp.v2beta" +
+      "2.DeleteDlpJobRequest\032\026.google.protobuf." +
+      "Empty\",\202\323\344\223\002&*$/v2beta2/{name=projects/*" +
+      "/dlpJobs/*}\022\217\001\n\014CancelDlpJob\022/.google.pr" +
+      "ivacy.dlp.v2beta2.CancelDlpJobRequest\032\026." +
+      "google.protobuf.Empty\"6\202\323\344\223\0020\"+/v2beta2/",
+      "{name=projects/*/dlpJobs/*}:cancel:\001*B\241\001" +
+      "\n\036com.google.privacy.dlp.v2beta2B\010DlpPro" +
+      "toP\001Z=google.golang.org/genproto/googlea" +
+      "pis/privacy/dlp/v2beta2;dlp\252\002\030Google.Clo" +
+      "ud.Dlp.V2Beta2\312\002\030Google\\Cloud\\Dlp\\V2beta" +
+      "2b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

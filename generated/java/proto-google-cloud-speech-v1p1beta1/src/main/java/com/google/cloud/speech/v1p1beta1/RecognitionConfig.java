@@ -28,6 +28,7 @@ private static final long serialVersionUID = 0L;
     profanityFilter_ = false;
     speechContexts_ = java.util.Collections.emptyList();
     enableWordTimeOffsets_ = false;
+    model_ = "";
   }
 
   @java.lang.Override
@@ -97,6 +98,12 @@ private static final long serialVersionUID = 0L;
           case 64: {
 
             enableWordTimeOffsets_ = input.readBool();
+            break;
+          }
+          case 106: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            model_ = s;
             break;
           }
         }
@@ -596,6 +603,54 @@ private static final long serialVersionUID = 0L;
     return enableWordTimeOffsets_;
   }
 
+  public static final int MODEL_FIELD_NUMBER = 13;
+  private volatile java.lang.Object model_;
+  /**
+   * <pre>
+   * *Optional* Which model to select for the given request. Select the model
+   * best suited to your domain to get best results. If a model is not
+   * explicitly specified, then we auto-select a model based on the parameters
+   * in the RecognitionConfig.
+   * </pre>
+   *
+   * <code>string model = 13;</code>
+   */
+  public java.lang.String getModel() {
+    java.lang.Object ref = model_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      model_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * *Optional* Which model to select for the given request. Select the model
+   * best suited to your domain to get best results. If a model is not
+   * explicitly specified, then we auto-select a model based on the parameters
+   * in the RecognitionConfig.
+   * </pre>
+   *
+   * <code>string model = 13;</code>
+   */
+  public com.google.protobuf.ByteString
+      getModelBytes() {
+    java.lang.Object ref = model_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      model_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -628,6 +683,9 @@ private static final long serialVersionUID = 0L;
     }
     if (enableWordTimeOffsets_ != false) {
       output.writeBool(8, enableWordTimeOffsets_);
+    }
+    if (!getModelBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 13, model_);
     }
     unknownFields.writeTo(output);
   }
@@ -664,6 +722,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(8, enableWordTimeOffsets_);
     }
+    if (!getModelBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, model_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -693,6 +754,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getSpeechContextsList());
     result = result && (getEnableWordTimeOffsets()
         == other.getEnableWordTimeOffsets());
+    result = result && getModel()
+        .equals(other.getModel());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -722,6 +785,8 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ENABLE_WORD_TIME_OFFSETS_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getEnableWordTimeOffsets());
+    hash = (37 * hash) + MODEL_FIELD_NUMBER;
+    hash = (53 * hash) + getModel().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -875,6 +940,8 @@ private static final long serialVersionUID = 0L;
       }
       enableWordTimeOffsets_ = false;
 
+      model_ = "";
+
       return this;
     }
 
@@ -914,6 +981,7 @@ private static final long serialVersionUID = 0L;
         result.speechContexts_ = speechContextsBuilder_.build();
       }
       result.enableWordTimeOffsets_ = enableWordTimeOffsets_;
+      result.model_ = model_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -1000,6 +1068,10 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getEnableWordTimeOffsets() != false) {
         setEnableWordTimeOffsets(other.getEnableWordTimeOffsets());
+      }
+      if (!other.getModel().isEmpty()) {
+        model_ = other.model_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1707,6 +1779,110 @@ private static final long serialVersionUID = 0L;
     public Builder clearEnableWordTimeOffsets() {
       
       enableWordTimeOffsets_ = false;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object model_ = "";
+    /**
+     * <pre>
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig.
+     * </pre>
+     *
+     * <code>string model = 13;</code>
+     */
+    public java.lang.String getModel() {
+      java.lang.Object ref = model_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        model_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig.
+     * </pre>
+     *
+     * <code>string model = 13;</code>
+     */
+    public com.google.protobuf.ByteString
+        getModelBytes() {
+      java.lang.Object ref = model_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        model_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig.
+     * </pre>
+     *
+     * <code>string model = 13;</code>
+     */
+    public Builder setModel(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      model_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig.
+     * </pre>
+     *
+     * <code>string model = 13;</code>
+     */
+    public Builder clearModel() {
+      
+      model_ = getDefaultInstance().getModel();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig.
+     * </pre>
+     *
+     * <code>string model = 13;</code>
+     */
+    public Builder setModelBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      model_ = value;
       onChanged();
       return this;
     }

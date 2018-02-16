@@ -321,7 +321,7 @@ public final class DlpServiceGrpc {
     /**
      * <pre>
      * Schedules a job to compute risk analysis metrics over content in a Google
-     * Cloud Platform repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+     * Cloud Platform repository. [How-to guide](/dlp/docs/compute-risk-analysis)
      * </pre>
      */
     public void analyzeDataSourceRisk(com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest request,
@@ -730,7 +730,7 @@ public final class DlpServiceGrpc {
     /**
      * <pre>
      * Schedules a job to compute risk analysis metrics over content in a Google
-     * Cloud Platform repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+     * Cloud Platform repository. [How-to guide](/dlp/docs/compute-risk-analysis)
      * </pre>
      */
     public void analyzeDataSourceRisk(com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest request,
@@ -998,7 +998,7 @@ public final class DlpServiceGrpc {
     /**
      * <pre>
      * Schedules a job to compute risk analysis metrics over content in a Google
-     * Cloud Platform repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+     * Cloud Platform repository. [How-to guide](/dlp/docs/compute-risk-analysis)
      * </pre>
      */
     public com.google.privacy.dlp.v2beta2.DlpJob analyzeDataSourceRisk(com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest request) {
@@ -1255,7 +1255,7 @@ public final class DlpServiceGrpc {
     /**
      * <pre>
      * Schedules a job to compute risk analysis metrics over content in a Google
-     * Cloud Platform repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+     * Cloud Platform repository. [How-to guide](/dlp/docs/compute-risk-analysis)
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2beta2.DlpJob> analyzeDataSourceRisk(

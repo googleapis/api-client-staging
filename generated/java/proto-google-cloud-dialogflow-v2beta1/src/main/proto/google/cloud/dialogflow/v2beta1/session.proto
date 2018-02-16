@@ -32,6 +32,7 @@ option java_outer_classname = "SessionProto";
 option java_package = "com.google.cloud.dialogflow.v2beta1";
 option objc_class_prefix = "DF";
 
+
 // Manages user sessions.
 //
 // #
@@ -41,23 +42,22 @@ service Sessions {
   // and session entity types to be updated, which in turn might affect
   // results of future queries.
   rpc DetectIntent(DetectIntentRequest) returns (DetectIntentResponse) {
-    option (google.api.http) = {
-      post: "/v2beta1/{session=projects/*/agent/sessions/*}:detectIntent"
-      body: "*"
-    };
+    option (google.api.http) = { post: "/v2beta1/{session=projects/*/agent/sessions/*}:detectIntent" body: "*" };
   }
 
   // Processes a natural language query in audio format in a streaming fashion
   // and returns structured, actionable data as a result. This method is only
   // available via the gRPC API (not REST).
-  rpc StreamingDetectIntent(stream StreamingDetectIntentRequest)
-      returns (stream StreamingDetectIntentResponse);
+  rpc StreamingDetectIntent(stream StreamingDetectIntentRequest) returns (stream StreamingDetectIntentResponse);
 }
 
 // The request to detect user's intent.
 message DetectIntentRequest {
   // Required. The name of the session this query is sent to. Format:
-  // `projects/<Project ID>/agent/sessions/<Session ID>`.
+  // `projects/<Project ID>/agent/sessions/<Session ID>`, or
+  // `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`.
+  // Note: Runtimes are under construction and will be available soon.
+  // If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
   // It's up to the API caller to choose an appropriate session ID. It can be
   // a random number or some type of user identifier (preferably hashed).
   // The length of the session ID must not exceed 36 bytes.
@@ -227,8 +227,7 @@ message QueryResult {
 // Multiple request messages should be sent in order:
 //
 // 1.  The first message must contain `session`, `query_input` plus optionally
-//     `query_params` and/or `single_utterance`. The message must not contain
-//     `input_audio`.
+//     `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
 //
 // 2.  If `query_input` was set to a streaming input audio config,
 //     all subsequent messages must contain only `input_audio`.
@@ -236,7 +235,10 @@ message QueryResult {
 message StreamingDetectIntentRequest {
   // Required. The name of the session the query is sent to.
   // Format of the session name:
-  // `projects/<Project ID>/agent/sessions/<Session ID>`.
+  // `projects/<Project ID>/agent/sessions/<Session ID>`, or
+  // `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`.
+  // Note: Runtimes are under construction and will be available soon.
+  // If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
   // It’s up to the API caller to choose an appropriate <Session ID>. It can be
   // a random number or some type of user identifier (preferably hashed).
   // The length of the session ID must not exceed 36 characters.

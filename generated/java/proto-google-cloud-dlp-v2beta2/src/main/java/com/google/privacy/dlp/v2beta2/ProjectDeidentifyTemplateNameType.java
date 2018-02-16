@@ -18,13 +18,13 @@ import com.google.api.resourcenames.ResourceNameType;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class InspectTemplate2NameType implements ResourceNameType {
+public class ProjectDeidentifyTemplateNameType implements ResourceNameType {
 
-  private static InspectTemplate2NameType instance = new InspectTemplate2NameType();
+  private static ProjectDeidentifyTemplateNameType instance = new ProjectDeidentifyTemplateNameType();
 
-  private InspectTemplate2NameType() {}
+  private ProjectDeidentifyTemplateNameType() {}
 
-  public static InspectTemplate2NameType instance() {
+  public static ProjectDeidentifyTemplateNameType instance() {
     return instance;
   }
 }

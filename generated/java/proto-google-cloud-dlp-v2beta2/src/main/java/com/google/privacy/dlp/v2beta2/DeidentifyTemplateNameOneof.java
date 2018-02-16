@@ -17,8 +17,8 @@ package com.google.privacy.dlp.v2beta2;
 import com.google.common.base.Preconditions;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
-import com.google.privacy.dlp.v2beta2.DeidentifyTemplateName;
-import com.google.privacy.dlp.v2beta2.DeidentifyTemplate2Name;
+import com.google.privacy.dlp.v2beta2.OrganizationDeidentifyTemplateName;
+import com.google.privacy.dlp.v2beta2.ProjectDeidentifyTemplateName;
 import com.google.api.resourcenames.UntypedResourceName;
 import java.io.IOException;
 
@@ -28,16 +28,16 @@ public class DeidentifyTemplateNameOneof implements ResourceName {
 
   private final ResourceName resourceName;
 
-  public DeidentifyTemplateName getDeidentifyTemplateName() {
-    if (resourceName instanceof DeidentifyTemplateName) {
-      return (DeidentifyTemplateName) resourceName;
+  public OrganizationDeidentifyTemplateName getOrganizationDeidentifyTemplateName() {
+    if (resourceName instanceof OrganizationDeidentifyTemplateName) {
+      return (OrganizationDeidentifyTemplateName) resourceName;
     } else {
       return null;
     }
   }
-  public DeidentifyTemplate2Name getDeidentifyTemplate2Name() {
-    if (resourceName instanceof DeidentifyTemplate2Name) {
-      return (DeidentifyTemplate2Name) resourceName;
+  public ProjectDeidentifyTemplateName getProjectDeidentifyTemplateName() {
+    if (resourceName instanceof ProjectDeidentifyTemplateName) {
+      return (ProjectDeidentifyTemplateName) resourceName;
     } else {
       return null;
     }
@@ -65,20 +65,20 @@ public class DeidentifyTemplateNameOneof implements ResourceName {
   }
 
   public static DeidentifyTemplateNameOneof parse(String resourceNameString) {
-    if (DeidentifyTemplateName.isParsableFrom(resourceNameString)) {
-      return new DeidentifyTemplateNameOneof(DeidentifyTemplateName.parse(resourceNameString));
+    if (OrganizationDeidentifyTemplateName.isParsableFrom(resourceNameString)) {
+      return new DeidentifyTemplateNameOneof(OrganizationDeidentifyTemplateName.parse(resourceNameString));
     }
-    if (DeidentifyTemplate2Name.isParsableFrom(resourceNameString)) {
-      return new DeidentifyTemplateNameOneof(DeidentifyTemplate2Name.parse(resourceNameString));
+    if (ProjectDeidentifyTemplateName.isParsableFrom(resourceNameString)) {
+      return new DeidentifyTemplateNameOneof(ProjectDeidentifyTemplateName.parse(resourceNameString));
     }
     return new DeidentifyTemplateNameOneof(UntypedResourceName.parse(resourceNameString));
   }
 
-  public static DeidentifyTemplateNameOneof from(DeidentifyTemplateName deidentifyTemplateName) {
-    return new DeidentifyTemplateNameOneof(deidentifyTemplateName);
+  public static DeidentifyTemplateNameOneof from(OrganizationDeidentifyTemplateName organizationDeidentifyTemplateName) {
+    return new DeidentifyTemplateNameOneof(organizationDeidentifyTemplateName);
   }
-  public static DeidentifyTemplateNameOneof from(DeidentifyTemplate2Name deidentifyTemplate2Name) {
-    return new DeidentifyTemplateNameOneof(deidentifyTemplate2Name);
+  public static DeidentifyTemplateNameOneof from(ProjectDeidentifyTemplateName projectDeidentifyTemplateName) {
+    return new DeidentifyTemplateNameOneof(projectDeidentifyTemplateName);
   }
 
   public static DeidentifyTemplateNameOneof fromUntyped(UntypedResourceName untypedResourceName) {

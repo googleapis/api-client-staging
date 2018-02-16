@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The response message for
- * [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
+ * The response message for [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.ExportAgentResponse}
@@ -387,8 +386,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The response message for
-   * [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
+   * The response message for [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.ExportAgentResponse}

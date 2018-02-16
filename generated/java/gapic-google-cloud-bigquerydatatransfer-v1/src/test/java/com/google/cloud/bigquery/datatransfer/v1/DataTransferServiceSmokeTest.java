@@ -15,7 +15,7 @@
  */
 package com.google.cloud.bigquery.datatransfer.v1;
 
-import static com.google.cloud.bigquery.datatransfer.v1.PagedResponseWrappers.ListDataSourcesPagedResponse;
+import static com.google.cloud.bigquery.datatransfer.v1.DataTransferServiceClient.ListDataSourcesPagedResponse;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

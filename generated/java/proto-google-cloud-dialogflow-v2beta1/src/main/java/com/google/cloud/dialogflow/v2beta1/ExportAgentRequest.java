@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for
- * [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
+ * The request message for [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.ExportAgentRequest}
@@ -137,8 +136,6 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object agentUri_;
   /**
    * <pre>
-   * Warning: Exporting agents to a URI is not implemented yet.
-   * This feature is coming soon.
    * Optional. The Google Cloud Storage URI to export the agent to.
    * Note: The URI must start with
    * "gs://". If left unspecified, the serialized agent is returned inline.
@@ -160,8 +157,6 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Warning: Exporting agents to a URI is not implemented yet.
-   * This feature is coming soon.
    * Optional. The Google Cloud Storage URI to export the agent to.
    * Note: The URI must start with
    * "gs://". If left unspecified, the serialized agent is returned inline.
@@ -345,8 +340,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for
-   * [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
+   * The request message for [Agents.ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.ExportAgentRequest}
@@ -585,8 +579,6 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object agentUri_ = "";
     /**
      * <pre>
-     * Warning: Exporting agents to a URI is not implemented yet.
-     * This feature is coming soon.
      * Optional. The Google Cloud Storage URI to export the agent to.
      * Note: The URI must start with
      * "gs://". If left unspecified, the serialized agent is returned inline.
@@ -608,8 +600,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Exporting agents to a URI is not implemented yet.
-     * This feature is coming soon.
      * Optional. The Google Cloud Storage URI to export the agent to.
      * Note: The URI must start with
      * "gs://". If left unspecified, the serialized agent is returned inline.
@@ -632,8 +622,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Exporting agents to a URI is not implemented yet.
-     * This feature is coming soon.
      * Optional. The Google Cloud Storage URI to export the agent to.
      * Note: The URI must start with
      * "gs://". If left unspecified, the serialized agent is returned inline.
@@ -653,8 +641,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Exporting agents to a URI is not implemented yet.
-     * This feature is coming soon.
      * Optional. The Google Cloud Storage URI to export the agent to.
      * Note: The URI must start with
      * "gs://". If left unspecified, the serialized agent is returned inline.
@@ -670,8 +656,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Exporting agents to a URI is not implemented yet.
-     * This feature is coming soon.
      * Optional. The Google Cloud Storage URI to export the agent to.
      * Note: The URI must start with
      * "gs://". If left unspecified, the serialized agent is returned inline.
