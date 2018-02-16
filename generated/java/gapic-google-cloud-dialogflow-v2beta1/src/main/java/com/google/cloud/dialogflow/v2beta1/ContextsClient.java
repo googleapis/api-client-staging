@@ -169,7 +169,9 @@ public class ContextsClient implements BackgroundResource {
    */
   public final ListContextsPagedResponse listContexts(SessionName parent) {
     ListContextsRequest request =
-        ListContextsRequest.newBuilder().setParent(parent.toString()).build();
+        ListContextsRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listContexts(request);
   }
 
@@ -273,7 +275,8 @@ public class ContextsClient implements BackgroundResource {
    */
   public final Context getContext(ContextName name) {
 
-    GetContextRequest request = GetContextRequest.newBuilder().setName(name.toString()).build();
+    GetContextRequest request =
+        GetContextRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getContext(request);
   }
 
@@ -344,7 +347,10 @@ public class ContextsClient implements BackgroundResource {
   public final Context createContext(SessionName parent, Context context) {
 
     CreateContextRequest request =
-        CreateContextRequest.newBuilder().setParent(parent.toString()).setContext(context).build();
+        CreateContextRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .setContext(context)
+            .build();
     return createContext(request);
   }
 
@@ -484,7 +490,7 @@ public class ContextsClient implements BackgroundResource {
   public final void deleteContext(ContextName name) {
 
     DeleteContextRequest request =
-        DeleteContextRequest.newBuilder().setName(name.toString()).build();
+        DeleteContextRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteContext(request);
   }
 
@@ -553,7 +559,9 @@ public class ContextsClient implements BackgroundResource {
   public final void deleteAllContexts(SessionName parent) {
 
     DeleteAllContextsRequest request =
-        DeleteAllContextsRequest.newBuilder().setParent(parent.toString()).build();
+        DeleteAllContextsRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     deleteAllContexts(request);
   }
 

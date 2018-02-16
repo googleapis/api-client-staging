@@ -516,51 +516,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(instanceName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithInstanceName(com.google.bigtable.admin.v2.InstanceName value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * InstanceName.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.bigtable.admin.v2.InstanceName getNameAsInstanceName() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.bigtable.admin.v2.InstanceName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.bigtable.admin.v2.DeleteInstanceRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * InstanceName.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.bigtable.admin.v2.InstanceName getNameAsInstanceName() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.bigtable.admin.v2.InstanceName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.bigtable.admin.v2.DeleteInstanceRequest)
   private static final com.google.bigtable.admin.v2.DeleteInstanceRequest DEFAULT_INSTANCE;
   static {

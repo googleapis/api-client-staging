@@ -42,6 +42,7 @@ import com.google.pubsub.v1.ListSubscriptionsResponse;
 import com.google.pubsub.v1.ModifyAckDeadlineRequest;
 import com.google.pubsub.v1.ModifyPushConfigRequest;
 import com.google.pubsub.v1.ProjectName;
+import com.google.pubsub.v1.ProjectTopicName;
 import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
@@ -53,8 +54,6 @@ import com.google.pubsub.v1.StreamingPullRequest;
 import com.google.pubsub.v1.StreamingPullResponse;
 import com.google.pubsub.v1.Subscription;
 import com.google.pubsub.v1.SubscriptionName;
-import com.google.pubsub.v1.TopicName;
-import com.google.pubsub.v1.TopicNameOneof;
 import com.google.pubsub.v1.UpdateSnapshotRequest;
 import com.google.pubsub.v1.UpdateSubscriptionRequest;
 import java.io.IOException;
@@ -76,7 +75,7 @@ import javax.annotation.Generated;
  * <code>
  * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
  *   SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
- *   TopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+ *   ProjectTopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
  *   PushConfig pushConfig = PushConfig.newBuilder().build();
  *   int ackDeadlineSeconds = 0;
  *   Subscription response = subscriptionAdminClient.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
@@ -205,7 +204,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * <pre><code>
    * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
    *   SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-   *   TopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+   *   ProjectTopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
    *   PushConfig pushConfig = PushConfig.newBuilder().build();
    *   int ackDeadlineSeconds = 0;
    *   Subscription response = subscriptionAdminClient.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
@@ -239,12 +238,15 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Subscription createSubscription(
-      SubscriptionName name, TopicName topic, PushConfig pushConfig, int ackDeadlineSeconds) {
+      SubscriptionName name,
+      ProjectTopicName topic,
+      PushConfig pushConfig,
+      int ackDeadlineSeconds) {
 
     Subscription request =
         Subscription.newBuilder()
-            .setName(name.toString())
-            .setTopic(topic == null ? null : TopicNameOneof.from(topic).toString())
+            .setName(name == null ? null : name.toString())
+            .setTopic(topic == null ? null : topic.toString())
             .setPushConfig(pushConfig)
             .setAckDeadlineSeconds(ackDeadlineSeconds)
             .build();
@@ -267,7 +269,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * <pre><code>
    * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
    *   SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-   *   TopicNameOneof topic = TopicNameOneof.from(TopicName.of("[PROJECT]", "[TOPIC]"));
+   *   TopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
    *   Subscription request = Subscription.newBuilder()
    *     .setName(name.toString())
    *     .setTopic(topic.toString())
@@ -299,7 +301,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * <pre><code>
    * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
    *   SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-   *   TopicNameOneof topic = TopicNameOneof.from(TopicName.of("[PROJECT]", "[TOPIC]"));
+   *   TopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
    *   Subscription request = Subscription.newBuilder()
    *     .setName(name.toString())
    *     .setTopic(topic.toString())
@@ -334,7 +336,9 @@ public class SubscriptionAdminClient implements BackgroundResource {
   public final Subscription getSubscription(SubscriptionName subscription) {
 
     GetSubscriptionRequest request =
-        GetSubscriptionRequest.newBuilder().setSubscription(subscription.toString()).build();
+        GetSubscriptionRequest.newBuilder()
+            .setSubscription(subscription == null ? null : subscription.toString())
+            .build();
     return getSubscription(request);
   }
 
@@ -473,7 +477,9 @@ public class SubscriptionAdminClient implements BackgroundResource {
    */
   public final ListSubscriptionsPagedResponse listSubscriptions(ProjectName project) {
     ListSubscriptionsRequest request =
-        ListSubscriptionsRequest.newBuilder().setProject(project.toString()).build();
+        ListSubscriptionsRequest.newBuilder()
+            .setProject(project == null ? null : project.toString())
+            .build();
     return listSubscriptions(request);
   }
 
@@ -582,7 +588,9 @@ public class SubscriptionAdminClient implements BackgroundResource {
   public final void deleteSubscription(SubscriptionName subscription) {
 
     DeleteSubscriptionRequest request =
-        DeleteSubscriptionRequest.newBuilder().setSubscription(subscription.toString()).build();
+        DeleteSubscriptionRequest.newBuilder()
+            .setSubscription(subscription == null ? null : subscription.toString())
+            .build();
     deleteSubscription(request);
   }
 
@@ -670,7 +678,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
 
     ModifyAckDeadlineRequest request =
         ModifyAckDeadlineRequest.newBuilder()
-            .setSubscription(subscription.toString())
+            .setSubscription(subscription == null ? null : subscription.toString())
             .addAllAckIds(ackIds)
             .setAckDeadlineSeconds(ackDeadlineSeconds)
             .build();
@@ -765,7 +773,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
 
     AcknowledgeRequest request =
         AcknowledgeRequest.newBuilder()
-            .setSubscription(subscription.toString())
+            .setSubscription(subscription == null ? null : subscription.toString())
             .addAllAckIds(ackIds)
             .build();
     acknowledge(request);
@@ -861,7 +869,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
 
     PullRequest request =
         PullRequest.newBuilder()
-            .setSubscription(subscription.toString())
+            .setSubscription(subscription == null ? null : subscription.toString())
             .setReturnImmediately(returnImmediately)
             .setMaxMessages(maxMessages)
             .build();
@@ -1005,7 +1013,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
 
     ModifyPushConfigRequest request =
         ModifyPushConfigRequest.newBuilder()
-            .setSubscription(subscription.toString())
+            .setSubscription(subscription == null ? null : subscription.toString())
             .setPushConfig(pushConfig)
             .build();
     modifyPushConfig(request);
@@ -1091,7 +1099,9 @@ public class SubscriptionAdminClient implements BackgroundResource {
    */
   public final ListSnapshotsPagedResponse listSnapshots(ProjectName project) {
     ListSnapshotsRequest request =
-        ListSnapshotsRequest.newBuilder().setProject(project.toString()).build();
+        ListSnapshotsRequest.newBuilder()
+            .setProject(project == null ? null : project.toString())
+            .build();
     return listSnapshots(request);
   }
 
@@ -1213,8 +1223,8 @@ public class SubscriptionAdminClient implements BackgroundResource {
 
     CreateSnapshotRequest request =
         CreateSnapshotRequest.newBuilder()
-            .setName(name.toString())
-            .setSubscription(subscription.toString())
+            .setName(name == null ? null : name.toString())
+            .setSubscription(subscription == null ? null : subscription.toString())
             .build();
     return createSnapshot(request);
   }
@@ -1380,7 +1390,9 @@ public class SubscriptionAdminClient implements BackgroundResource {
   public final void deleteSnapshot(SnapshotName snapshot) {
 
     DeleteSnapshotRequest request =
-        DeleteSnapshotRequest.newBuilder().setSnapshot(snapshot.toString()).build();
+        DeleteSnapshotRequest.newBuilder()
+            .setSnapshot(snapshot == null ? null : snapshot.toString())
+            .build();
     deleteSnapshot(request);
   }
 

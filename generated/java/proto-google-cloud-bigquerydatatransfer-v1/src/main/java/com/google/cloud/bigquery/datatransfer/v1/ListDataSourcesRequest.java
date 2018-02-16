@@ -773,51 +773,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(parentNameOneof.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithParentNameOneof(com.google.cloud.bigquery.datatransfer.v1.ParentNameOneof value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ParentNameOneof.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.bigquery.datatransfer.v1.ParentNameOneof getParentAsParentNameOneof() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.bigquery.datatransfer.v1.ParentNameOneof.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.bigquery.datatransfer.v1.ListDataSourcesRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ParentNameOneof.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.bigquery.datatransfer.v1.ParentNameOneof getParentAsParentNameOneof() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.bigquery.datatransfer.v1.ParentNameOneof.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.bigquery.datatransfer.v1.ListDataSourcesRequest)
   private static final com.google.cloud.bigquery.datatransfer.v1.ListDataSourcesRequest DEFAULT_INSTANCE;
   static {

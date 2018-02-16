@@ -232,7 +232,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
 
     CreateInstanceRequest request =
         CreateInstanceRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setInstanceId(instanceId)
             .setInstance(instance)
             .putAllClusters(clusters)
@@ -346,7 +346,8 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    */
   public final Instance getInstance(InstanceName name) {
 
-    GetInstanceRequest request = GetInstanceRequest.newBuilder().setName(name.toString()).build();
+    GetInstanceRequest request =
+        GetInstanceRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getInstance(request);
   }
 
@@ -415,7 +416,9 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final ListInstancesResponse listInstances(ProjectName parent) {
 
     ListInstancesRequest request =
-        ListInstancesRequest.newBuilder().setParent(parent.toString()).build();
+        ListInstancesRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listInstances(request);
   }
 
@@ -620,7 +623,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final void deleteInstance(InstanceName name) {
 
     DeleteInstanceRequest request =
-        DeleteInstanceRequest.newBuilder().setName(name.toString()).build();
+        DeleteInstanceRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteInstance(request);
   }
 
@@ -696,7 +699,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
 
     CreateClusterRequest request =
         CreateClusterRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setClusterId(clusterId)
             .setCluster(cluster)
             .build();
@@ -803,7 +806,8 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    */
   public final Cluster getCluster(ClusterName name) {
 
-    GetClusterRequest request = GetClusterRequest.newBuilder().setName(name.toString()).build();
+    GetClusterRequest request =
+        GetClusterRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getCluster(request);
   }
 
@@ -874,7 +878,9 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final ListClustersResponse listClusters(InstanceName parent) {
 
     ListClustersRequest request =
-        ListClustersRequest.newBuilder().setParent(parent.toString()).build();
+        ListClustersRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listClusters(request);
   }
 
@@ -1023,7 +1029,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final void deleteCluster(ClusterName name) {
 
     DeleteClusterRequest request =
-        DeleteClusterRequest.newBuilder().setName(name.toString()).build();
+        DeleteClusterRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteCluster(request);
   }
 
@@ -1105,7 +1111,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
 
     CreateAppProfileRequest request =
         CreateAppProfileRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setAppProfileId(appProfileId)
             .setAppProfile(appProfile)
             .build();
@@ -1200,7 +1206,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final AppProfile getAppProfile(AppProfileName name) {
 
     GetAppProfileRequest request =
-        GetAppProfileRequest.newBuilder().setName(name.toString()).build();
+        GetAppProfileRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getAppProfile(request);
   }
 
@@ -1285,7 +1291,9 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    */
   public final ListAppProfilesPagedResponse listAppProfiles(InstanceName parent) {
     ListAppProfilesRequest request =
-        ListAppProfilesRequest.newBuilder().setParent(parent.toString()).build();
+        ListAppProfilesRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listAppProfiles(request);
   }
 
@@ -1504,7 +1512,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final void deleteAppProfile(AppProfileName name) {
 
     DeleteAppProfileRequest request =
-        DeleteAppProfileRequest.newBuilder().setName(name.toString()).build();
+        DeleteAppProfileRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteAppProfile(request);
   }
 

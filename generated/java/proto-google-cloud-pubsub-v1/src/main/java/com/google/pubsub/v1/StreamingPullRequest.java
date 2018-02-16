@@ -1472,51 +1472,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setSubscription(subscriptionName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setSubscriptionWithSubscriptionName(com.google.pubsub.v1.SubscriptionName value) {
-      if (value == null) {
-        return setSubscription("");
-      }
-      return setSubscription(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * SubscriptionName.parse(protoBuilder.getSubscription());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.pubsub.v1.SubscriptionName getSubscriptionAsSubscriptionName() {
-      java.lang.String str = getSubscription();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.pubsub.v1.SubscriptionName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.pubsub.v1.StreamingPullRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * SubscriptionName.parse(protoObject.getSubscription());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.pubsub.v1.SubscriptionName getSubscriptionAsSubscriptionName() {
-    java.lang.String str = getSubscription();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.pubsub.v1.SubscriptionName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.pubsub.v1.StreamingPullRequest)
   private static final com.google.pubsub.v1.StreamingPullRequest DEFAULT_INSTANCE;
   static {

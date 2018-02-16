@@ -177,7 +177,7 @@ public class SessionsClient implements BackgroundResource {
 
     DetectIntentRequest request =
         DetectIntentRequest.newBuilder()
-            .setSession(session.toString())
+            .setSession(session == null ? null : session.toString())
             .setQueryInput(queryInput)
             .build();
     return detectIntent(request);

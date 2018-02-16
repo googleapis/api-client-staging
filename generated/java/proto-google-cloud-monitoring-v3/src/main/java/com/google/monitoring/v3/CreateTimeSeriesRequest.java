@@ -1048,51 +1048,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(projectName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithProjectName(com.google.monitoring.v3.ProjectName value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ProjectName.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.monitoring.v3.ProjectName getNameAsProjectName() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.monitoring.v3.ProjectName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.monitoring.v3.CreateTimeSeriesRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ProjectName.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.monitoring.v3.ProjectName getNameAsProjectName() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.monitoring.v3.ProjectName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.monitoring.v3.CreateTimeSeriesRequest)
   private static final com.google.monitoring.v3.CreateTimeSeriesRequest DEFAULT_INSTANCE;
   static {

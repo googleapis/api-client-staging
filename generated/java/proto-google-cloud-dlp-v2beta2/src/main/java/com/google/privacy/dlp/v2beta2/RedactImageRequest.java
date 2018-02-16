@@ -2576,51 +2576,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(projectName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithProjectName(com.google.privacy.dlp.v2beta2.ProjectName value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ProjectName.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.privacy.dlp.v2beta2.ProjectName getParentAsProjectName() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.privacy.dlp.v2beta2.ProjectName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.privacy.dlp.v2beta2.RedactImageRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ProjectName.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.privacy.dlp.v2beta2.ProjectName getParentAsProjectName() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.privacy.dlp.v2beta2.ProjectName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.privacy.dlp.v2beta2.RedactImageRequest)
   private static final com.google.privacy.dlp.v2beta2.RedactImageRequest DEFAULT_INSTANCE;
   static {

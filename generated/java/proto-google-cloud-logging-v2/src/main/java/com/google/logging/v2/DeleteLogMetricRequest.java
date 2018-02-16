@@ -516,51 +516,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setMetricName(metricNameOneof.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setMetricNameWithMetricNameOneof(com.google.logging.v2.MetricNameOneof value) {
-      if (value == null) {
-        return setMetricName("");
-      }
-      return setMetricName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * MetricNameOneof.parse(protoBuilder.getMetricName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.logging.v2.MetricNameOneof getMetricNameAsMetricNameOneof() {
-      java.lang.String str = getMetricName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.logging.v2.MetricNameOneof.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.logging.v2.DeleteLogMetricRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * MetricNameOneof.parse(protoObject.getMetricName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.logging.v2.MetricNameOneof getMetricNameAsMetricNameOneof() {
-    java.lang.String str = getMetricName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.logging.v2.MetricNameOneof.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.logging.v2.DeleteLogMetricRequest)
   private static final com.google.logging.v2.DeleteLogMetricRequest DEFAULT_INSTANCE;
   static {

@@ -426,7 +426,7 @@ public class DlpServiceClient implements BackgroundResource {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
-   * repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+   * repository. [How-to guide](/dlp/docs/compute-risk-analysis)
    *
    * <p>Sample code:
    *
@@ -450,7 +450,7 @@ public class DlpServiceClient implements BackgroundResource {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
-   * repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+   * repository. [How-to guide](/dlp/docs/compute-risk-analysis)
    *
    * <p>Sample code:
    *
@@ -565,7 +565,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateName name = OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]");
    *   UpdateInspectTemplateRequest request = UpdateInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -588,7 +588,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateName name = OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]");
    *   UpdateInspectTemplateRequest request = UpdateInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -734,7 +734,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateName name = OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]");
    *   DeleteInspectTemplateRequest request = DeleteInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -757,7 +757,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateName name = OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]");
    *   DeleteInspectTemplateRequest request = DeleteInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -828,7 +828,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   UpdateDeidentifyTemplateRequest request = UpdateDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -852,7 +852,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   UpdateDeidentifyTemplateRequest request = UpdateDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -875,7 +875,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   GetDeidentifyTemplateRequest request = GetDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -898,7 +898,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   GetDeidentifyTemplateRequest request = GetDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1004,7 +1004,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   DeleteDeidentifyTemplateRequest request = DeleteDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1027,7 +1027,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   DeleteDeidentifyTemplateRequest request = DeleteDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();

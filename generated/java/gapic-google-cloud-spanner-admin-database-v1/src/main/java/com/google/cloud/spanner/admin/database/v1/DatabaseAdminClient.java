@@ -205,7 +205,9 @@ public class DatabaseAdminClient implements BackgroundResource {
    */
   public final ListDatabasesPagedResponse listDatabases(InstanceName parent) {
     ListDatabasesRequest request =
-        ListDatabasesRequest.newBuilder().setParent(parent.toString()).build();
+        ListDatabasesRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listDatabases(request);
   }
 
@@ -324,7 +326,7 @@ public class DatabaseAdminClient implements BackgroundResource {
 
     CreateDatabaseRequest request =
         CreateDatabaseRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setCreateStatement(createStatement)
             .build();
     return createDatabaseAsync(request);
@@ -442,7 +444,8 @@ public class DatabaseAdminClient implements BackgroundResource {
    */
   public final Database getDatabase(DatabaseName name) {
 
-    GetDatabaseRequest request = GetDatabaseRequest.newBuilder().setName(name.toString()).build();
+    GetDatabaseRequest request =
+        GetDatabaseRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getDatabase(request);
   }
 
@@ -520,7 +523,7 @@ public class DatabaseAdminClient implements BackgroundResource {
 
     UpdateDatabaseDdlRequest request =
         UpdateDatabaseDdlRequest.newBuilder()
-            .setDatabase(database.toString())
+            .setDatabase(database == null ? null : database.toString())
             .addAllStatements(statements)
             .build();
     return updateDatabaseDdlAsync(request);
@@ -638,7 +641,9 @@ public class DatabaseAdminClient implements BackgroundResource {
   public final void dropDatabase(DatabaseName database) {
 
     DropDatabaseRequest request =
-        DropDatabaseRequest.newBuilder().setDatabase(database.toString()).build();
+        DropDatabaseRequest.newBuilder()
+            .setDatabase(database == null ? null : database.toString())
+            .build();
     dropDatabase(request);
   }
 
@@ -708,7 +713,9 @@ public class DatabaseAdminClient implements BackgroundResource {
   public final GetDatabaseDdlResponse getDatabaseDdl(DatabaseName database) {
 
     GetDatabaseDdlRequest request =
-        GetDatabaseDdlRequest.newBuilder().setDatabase(database.toString()).build();
+        GetDatabaseDdlRequest.newBuilder()
+            .setDatabase(database == null ? null : database.toString())
+            .build();
     return getDatabaseDdl(request);
   }
 

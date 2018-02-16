@@ -228,5 +228,25 @@ public interface DlpJobOrBuilder extends
   com.google.rpc.StatusOrBuilder getErrorResultsOrBuilder(
       int index);
 
+  /**
+   * <pre>
+   * If created by a job trigger, the resource name of the trigger that
+   * instantiated the job.
+   * </pre>
+   *
+   * <code>string job_trigger_name = 10;</code>
+   */
+  java.lang.String getJobTriggerName();
+  /**
+   * <pre>
+   * If created by a job trigger, the resource name of the trigger that
+   * instantiated the job.
+   * </pre>
+   *
+   * <code>string job_trigger_name = 10;</code>
+   */
+  com.google.protobuf.ByteString
+      getJobTriggerNameBytes();
+
   public com.google.privacy.dlp.v2beta2.DlpJob.DetailsCase getDetailsCase();
 }

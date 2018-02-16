@@ -551,51 +551,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setGroupName(groupName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setGroupNameWithGroupName(com.google.devtools.clouderrorreporting.v1beta1.GroupName value) {
-      if (value == null) {
-        return setGroupName("");
-      }
-      return setGroupName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * GroupName.parse(protoBuilder.getGroupName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.devtools.clouderrorreporting.v1beta1.GroupName getGroupNameAsGroupName() {
-      java.lang.String str = getGroupName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.devtools.clouderrorreporting.v1beta1.GroupName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.devtools.clouderrorreporting.v1beta1.GetGroupRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * GroupName.parse(protoObject.getGroupName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.devtools.clouderrorreporting.v1beta1.GroupName getGroupNameAsGroupName() {
-    java.lang.String str = getGroupName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.devtools.clouderrorreporting.v1beta1.GroupName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.GetGroupRequest)
   private static final com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest DEFAULT_INSTANCE;
   static {
