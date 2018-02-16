@@ -22,7 +22,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class UntypedDataSourceName extends AnyDataSourceName {
+public class UntypedDataSourceName extends DataSourceName {
 
   private final String rawValue;
 

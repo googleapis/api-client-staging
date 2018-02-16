@@ -24,7 +24,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class BillingSinkName extends AnySinkName {
+public class BillingSinkName extends SinkName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("billingAccounts/{billing_account}/sinks/{sink}");
@@ -58,14 +58,6 @@ public class BillingSinkName extends AnySinkName {
       .setBillingAccount(billingAccount)
       .setSink(sink)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static BillingSinkName create(String billingAccount, String sink) {
-    return of(billingAccount, sink);
   }
 
   public static String format(String billingAccount, String sink) {
@@ -110,12 +102,11 @@ public class BillingSinkName extends AnySinkName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return BillingSinkNameType.instance();
+    throw new UnsupportedOperationException("BillingSinkName.getType() not supported");
   }
 
   @Override

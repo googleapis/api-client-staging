@@ -24,7 +24,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class LocationDataSourceName extends AnyDataSourceName {
+public class LocationDataSourceName extends DataSourceName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/locations/{location}/dataSources/{data_source}");
@@ -65,14 +65,6 @@ public class LocationDataSourceName extends AnyDataSourceName {
       .setLocation(location)
       .setDataSource(dataSource)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String, String)} instead.
-   */
-  @Deprecated
-  public static LocationDataSourceName create(String project, String location, String dataSource) {
-    return of(project, location, dataSource);
   }
 
   public static String format(String project, String location, String dataSource) {
@@ -118,12 +110,11 @@ public class LocationDataSourceName extends AnyDataSourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return LocationDataSourceNameType.instance();
+    throw new UnsupportedOperationException("LocationDataSourceName.getType() not supported");
   }
 
   @Override

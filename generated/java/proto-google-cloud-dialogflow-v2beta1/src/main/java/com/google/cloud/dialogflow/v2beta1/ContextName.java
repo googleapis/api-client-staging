@@ -67,14 +67,6 @@ public class ContextName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String, String)} instead.
-   */
-  @Deprecated
-  public static ContextName create(String project, String session, String context) {
-    return of(project, session, context);
-  }
-
   public static String format(String project, String session, String context) {
     return newBuilder()
       .setProject(project)
@@ -118,12 +110,11 @@ public class ContextName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return ContextNameType.instance();
+    throw new UnsupportedOperationException("ContextName.getType() not supported");
   }
 
   @Override

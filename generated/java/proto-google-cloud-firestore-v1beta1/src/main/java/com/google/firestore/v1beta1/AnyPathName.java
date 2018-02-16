@@ -74,14 +74,6 @@ public class AnyPathName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String, String, String)} instead.
-   */
-  @Deprecated
-  public static AnyPathName create(String project, String database, String document, String anyPath) {
-    return of(project, database, document, anyPath);
-  }
-
   public static String format(String project, String database, String document, String anyPath) {
     return newBuilder()
       .setProject(project)
@@ -126,12 +118,11 @@ public class AnyPathName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return AnyPathNameType.instance();
+    throw new UnsupportedOperationException("AnyPathName.getType() not supported");
   }
 
   @Override

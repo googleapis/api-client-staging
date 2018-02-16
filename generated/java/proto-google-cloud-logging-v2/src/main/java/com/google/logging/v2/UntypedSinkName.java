@@ -22,7 +22,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class UntypedSinkName extends AnySinkName {
+public class UntypedSinkName extends SinkName {
 
   private final String rawValue;
 

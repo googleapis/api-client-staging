@@ -67,14 +67,6 @@ public class DatabaseName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String, String)} instead.
-   */
-  @Deprecated
-  public static DatabaseName create(String project, String instance, String database) {
-    return of(project, instance, database);
-  }
-
   public static String format(String project, String instance, String database) {
     return newBuilder()
       .setProject(project)
@@ -118,12 +110,11 @@ public class DatabaseName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return DatabaseNameType.instance();
+    throw new UnsupportedOperationException("DatabaseName.getType() not supported");
   }
 
   @Override

@@ -53,14 +53,6 @@ public class UserName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String)} instead.
-   */
-  @Deprecated
-  public static UserName create(String user) {
-    return of(user);
-  }
-
   public static String format(String user) {
     return newBuilder()
       .setUser(user)
@@ -102,12 +94,11 @@ public class UserName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return UserNameType.instance();
+    throw new UnsupportedOperationException("UserName.getType() not supported");
   }
 
   @Override

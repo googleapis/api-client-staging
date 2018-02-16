@@ -60,14 +60,6 @@ public class SnapshotName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static SnapshotName create(String project, String snapshot) {
-    return of(project, snapshot);
-  }
-
   public static String format(String project, String snapshot) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class SnapshotName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return SnapshotNameType.instance();
+    throw new UnsupportedOperationException("SnapshotName.getType() not supported");
   }
 
   @Override

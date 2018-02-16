@@ -60,14 +60,6 @@ public class DlpJobName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static DlpJobName create(String project, String dlpJob) {
-    return of(project, dlpJob);
-  }
-
   public static String format(String project, String dlpJob) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class DlpJobName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return DlpJobNameType.instance();
+    throw new UnsupportedOperationException("DlpJobName.getType() not supported");
   }
 
   @Override

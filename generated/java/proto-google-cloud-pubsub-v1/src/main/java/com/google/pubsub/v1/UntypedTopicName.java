@@ -22,7 +22,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class UntypedTopicName extends AnyTopicName {
+public class UntypedTopicName extends TopicName {
 
   private final String rawValue;
 

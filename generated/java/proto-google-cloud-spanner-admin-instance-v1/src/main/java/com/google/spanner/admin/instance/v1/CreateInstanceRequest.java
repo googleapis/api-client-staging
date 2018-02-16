@@ -926,93 +926,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(projectName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithProjectName(com.google.spanner.admin.instance.v1.ProjectName value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ProjectName.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.spanner.admin.instance.v1.ProjectName getParentAsProjectName() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.spanner.admin.instance.v1.ProjectName.parse(str);
-    }
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setInstanceId(instanceName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setInstanceIdWithInstanceName(com.google.spanner.admin.instance.v1.InstanceName value) {
-      if (value == null) {
-        return setInstanceId("");
-      }
-      return setInstanceId(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * InstanceName.parse(protoBuilder.getInstanceId());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.spanner.admin.instance.v1.InstanceName getInstanceIdAsInstanceName() {
-      java.lang.String str = getInstanceId();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.spanner.admin.instance.v1.InstanceName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.spanner.admin.instance.v1.CreateInstanceRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ProjectName.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.spanner.admin.instance.v1.ProjectName getParentAsProjectName() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.spanner.admin.instance.v1.ProjectName.parse(str);
-  }
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * InstanceName.parse(protoObject.getInstanceId());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.spanner.admin.instance.v1.InstanceName getInstanceIdAsInstanceName() {
-    java.lang.String str = getInstanceId();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.spanner.admin.instance.v1.InstanceName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.CreateInstanceRequest)
   private static final com.google.spanner.admin.instance.v1.CreateInstanceRequest DEFAULT_INSTANCE;
   static {

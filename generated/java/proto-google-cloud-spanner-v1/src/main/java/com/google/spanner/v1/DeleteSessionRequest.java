@@ -509,51 +509,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(sessionName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithSessionName(com.google.spanner.v1.SessionName value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * SessionName.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.spanner.v1.SessionName getNameAsSessionName() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.spanner.v1.SessionName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.spanner.v1.DeleteSessionRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * SessionName.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.spanner.v1.SessionName getNameAsSessionName() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.spanner.v1.SessionName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.spanner.v1.DeleteSessionRequest)
   private static final com.google.spanner.v1.DeleteSessionRequest DEFAULT_INSTANCE;
   static {

@@ -1259,51 +1259,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(sessionEntityTypeName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithSessionEntityTypeName(com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * SessionEntityTypeName.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName getNameAsSessionEntityTypeName() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.SessionEntityType)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * SessionEntityTypeName.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName getNameAsSessionEntityTypeName() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.SessionEntityType)
   private static final com.google.cloud.dialogflow.v2beta1.SessionEntityType DEFAULT_INSTANCE;
   static {

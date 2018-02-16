@@ -53,14 +53,6 @@ public class ResultName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String)} instead.
-   */
-  @Deprecated
-  public static ResultName create(String result) {
-    return of(result);
-  }
-
   public static String format(String result) {
     return newBuilder()
       .setResult(result)
@@ -102,12 +94,11 @@ public class ResultName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return ResultNameType.instance();
+    throw new UnsupportedOperationException("ResultName.getType() not supported");
   }
 
   @Override

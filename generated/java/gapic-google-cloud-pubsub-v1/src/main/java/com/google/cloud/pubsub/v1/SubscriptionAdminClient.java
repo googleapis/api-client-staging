@@ -42,6 +42,7 @@ import com.google.pubsub.v1.ListSubscriptionsResponse;
 import com.google.pubsub.v1.ModifyAckDeadlineRequest;
 import com.google.pubsub.v1.ModifyPushConfigRequest;
 import com.google.pubsub.v1.ProjectName;
+import com.google.pubsub.v1.ProjectTopicName;
 import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
@@ -53,7 +54,6 @@ import com.google.pubsub.v1.StreamingPullRequest;
 import com.google.pubsub.v1.StreamingPullResponse;
 import com.google.pubsub.v1.Subscription;
 import com.google.pubsub.v1.SubscriptionName;
-import com.google.pubsub.v1.TopicName;
 import com.google.pubsub.v1.UpdateSnapshotRequest;
 import com.google.pubsub.v1.UpdateSubscriptionRequest;
 import java.io.IOException;
@@ -75,7 +75,7 @@ import javax.annotation.Generated;
  * <code>
  * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
  *   SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
- *   TopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+ *   ProjectTopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
  *   PushConfig pushConfig = PushConfig.newBuilder().build();
  *   int ackDeadlineSeconds = 0;
  *   Subscription response = subscriptionAdminClient.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
@@ -204,7 +204,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * <pre><code>
    * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
    *   SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-   *   TopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+   *   ProjectTopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
    *   PushConfig pushConfig = PushConfig.newBuilder().build();
    *   int ackDeadlineSeconds = 0;
    *   Subscription response = subscriptionAdminClient.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
@@ -238,7 +238,10 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Subscription createSubscription(
-      SubscriptionName name, TopicName topic, PushConfig pushConfig, int ackDeadlineSeconds) {
+      SubscriptionName name,
+      ProjectTopicName topic,
+      PushConfig pushConfig,
+      int ackDeadlineSeconds) {
 
     Subscription request =
         Subscription.newBuilder()
@@ -266,7 +269,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * <pre><code>
    * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
    *   SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-   *   AnyTopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+   *   TopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
    *   Subscription request = Subscription.newBuilder()
    *     .setName(name.toString())
    *     .setTopic(topic.toString())
@@ -298,7 +301,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * <pre><code>
    * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
    *   SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-   *   AnyTopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+   *   TopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
    *   Subscription request = Subscription.newBuilder()
    *     .setName(name.toString())
    *     .setTopic(topic.toString())

@@ -24,7 +24,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class FolderName extends AnyParentName {
+public class FolderName extends ParentName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("folders/{folder}");
@@ -51,14 +51,6 @@ public class FolderName extends AnyParentName {
     return newBuilder()
       .setFolder(folder)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String)} instead.
-   */
-  @Deprecated
-  public static FolderName create(String folder) {
-    return of(folder);
   }
 
   public static String format(String folder) {
@@ -102,12 +94,11 @@ public class FolderName extends AnyParentName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return FolderNameType.instance();
+    throw new UnsupportedOperationException("FolderName.getType() not supported");
   }
 
   @Override

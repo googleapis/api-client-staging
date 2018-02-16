@@ -22,7 +22,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class UntypedMetricName extends AnyMetricName {
+public class UntypedMetricName extends MetricName {
 
   private final String rawValue;
 

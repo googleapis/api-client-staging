@@ -60,14 +60,6 @@ public class AgentName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static AgentName create(String project, String agent) {
-    return of(project, agent);
-  }
-
   public static String format(String project, String agent) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class AgentName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return AgentNameType.instance();
+    throw new UnsupportedOperationException("AgentName.getType() not supported");
   }
 
   @Override

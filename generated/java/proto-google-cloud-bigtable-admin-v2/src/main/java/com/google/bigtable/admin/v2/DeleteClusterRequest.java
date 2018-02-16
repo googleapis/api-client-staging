@@ -516,51 +516,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(clusterName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithClusterName(com.google.bigtable.admin.v2.ClusterName value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ClusterName.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.bigtable.admin.v2.ClusterName getNameAsClusterName() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.bigtable.admin.v2.ClusterName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.bigtable.admin.v2.DeleteClusterRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ClusterName.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.bigtable.admin.v2.ClusterName getNameAsClusterName() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.bigtable.admin.v2.ClusterName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.bigtable.admin.v2.DeleteClusterRequest)
   private static final com.google.bigtable.admin.v2.DeleteClusterRequest DEFAULT_INSTANCE;
   static {

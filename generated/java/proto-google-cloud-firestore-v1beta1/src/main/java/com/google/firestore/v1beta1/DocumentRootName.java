@@ -60,14 +60,6 @@ public class DocumentRootName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static DocumentRootName create(String project, String database) {
-    return of(project, database);
-  }
-
   public static String format(String project, String database) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class DocumentRootName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return DocumentRootNameType.instance();
+    throw new UnsupportedOperationException("DocumentRootName.getType() not supported");
   }
 
   @Override

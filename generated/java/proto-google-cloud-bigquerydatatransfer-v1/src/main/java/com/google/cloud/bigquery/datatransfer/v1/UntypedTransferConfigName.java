@@ -22,7 +22,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class UntypedTransferConfigName extends AnyTransferConfigName {
+public class UntypedTransferConfigName extends TransferConfigName {
 
   private final String rawValue;
 

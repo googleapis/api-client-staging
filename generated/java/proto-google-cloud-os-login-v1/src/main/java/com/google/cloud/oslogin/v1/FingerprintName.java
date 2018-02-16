@@ -60,14 +60,6 @@ public class FingerprintName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static FingerprintName create(String user, String fingerprint) {
-    return of(user, fingerprint);
-  }
-
   public static String format(String user, String fingerprint) {
     return newBuilder()
       .setUser(user)
@@ -110,12 +102,11 @@ public class FingerprintName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return FingerprintNameType.instance();
+    throw new UnsupportedOperationException("FingerprintName.getType() not supported");
   }
 
   @Override

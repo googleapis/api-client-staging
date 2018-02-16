@@ -44,7 +44,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
- *   AnyDataSourceName name = LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]");
+ *   DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
  *   DataSource response = dataTransferServiceClient.getDataSource(name);
  * }
  * </code>
@@ -163,7 +163,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyDataSourceName name = LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]");
+   *   DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
    *   DataSource response = dataTransferServiceClient.getDataSource(name);
    * }
    * </code></pre>
@@ -172,7 +172,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     `projects/{project_id}/dataSources/{data_source_id}`
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final DataSource getDataSource(AnyDataSourceName name) {
+  public final DataSource getDataSource(DataSourceName name) {
 
     GetDataSourceRequest request =
         GetDataSourceRequest.newBuilder().setName(name == null ? null : name.toString()).build();
@@ -187,7 +187,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyDataSourceName name = LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]");
+   *   DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
    *   GetDataSourceRequest request = GetDataSourceRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -210,7 +210,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyDataSourceName name = LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]");
+   *   DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
    *   GetDataSourceRequest request = GetDataSourceRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -232,7 +232,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   for (DataSource element : dataTransferServiceClient.listDataSources(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
@@ -243,7 +243,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     form: `projects/{project_id}`
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final ListDataSourcesPagedResponse listDataSources(AnyParentName parent) {
+  public final ListDataSourcesPagedResponse listDataSources(ParentName parent) {
     ListDataSourcesRequest request =
         ListDataSourcesRequest.newBuilder()
             .setParent(parent == null ? null : parent.toString())
@@ -259,7 +259,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListDataSourcesRequest request = ListDataSourcesRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -284,7 +284,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListDataSourcesRequest request = ListDataSourcesRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -309,7 +309,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListDataSourcesRequest request = ListDataSourcesRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -341,7 +341,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   TransferConfig transferConfig = TransferConfig.newBuilder().build();
    *   TransferConfig response = dataTransferServiceClient.createTransferConfig(parent, transferConfig);
    * }
@@ -354,7 +354,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final TransferConfig createTransferConfig(
-      AnyParentName parent, TransferConfig transferConfig) {
+      ParentName parent, TransferConfig transferConfig) {
 
     CreateTransferConfigRequest request =
         CreateTransferConfigRequest.newBuilder()
@@ -372,7 +372,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   TransferConfig transferConfig = TransferConfig.newBuilder().build();
    *   CreateTransferConfigRequest request = CreateTransferConfigRequest.newBuilder()
    *     .setParent(parent.toString())
@@ -397,7 +397,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   TransferConfig transferConfig = TransferConfig.newBuilder().build();
    *   CreateTransferConfigRequest request = CreateTransferConfigRequest.newBuilder()
    *     .setParent(parent.toString())
@@ -501,7 +501,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName name = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   dataTransferServiceClient.deleteTransferConfig(name);
    * }
    * </code></pre>
@@ -510,7 +510,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     `projects/{project_id}/transferConfigs/{config_id}`
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final void deleteTransferConfig(AnyTransferConfigName name) {
+  public final void deleteTransferConfig(TransferConfigName name) {
 
     DeleteTransferConfigRequest request =
         DeleteTransferConfigRequest.newBuilder()
@@ -527,7 +527,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName name = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   DeleteTransferConfigRequest request = DeleteTransferConfigRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -550,7 +550,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName name = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   DeleteTransferConfigRequest request = DeleteTransferConfigRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -572,7 +572,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName name = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   TransferConfig response = dataTransferServiceClient.getTransferConfig(name);
    * }
    * </code></pre>
@@ -581,7 +581,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     `projects/{project_id}/transferConfigs/{config_id}`
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final TransferConfig getTransferConfig(AnyTransferConfigName name) {
+  public final TransferConfig getTransferConfig(TransferConfigName name) {
 
     GetTransferConfigRequest request =
         GetTransferConfigRequest.newBuilder()
@@ -598,7 +598,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName name = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   GetTransferConfigRequest request = GetTransferConfigRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -621,7 +621,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName name = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   GetTransferConfigRequest request = GetTransferConfigRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -643,7 +643,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   for (TransferConfig element : dataTransferServiceClient.listTransferConfigs(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
@@ -654,7 +654,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     `projects/{project_id}`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final ListTransferConfigsPagedResponse listTransferConfigs(AnyParentName parent) {
+  public final ListTransferConfigsPagedResponse listTransferConfigs(ParentName parent) {
     ListTransferConfigsRequest request =
         ListTransferConfigsRequest.newBuilder()
             .setParent(parent == null ? null : parent.toString())
@@ -670,7 +670,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListTransferConfigsRequest request = ListTransferConfigsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -696,7 +696,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListTransferConfigsRequest request = ListTransferConfigsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -721,7 +721,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyParentName parent = LocationName.of("[PROJECT]", "[LOCATION]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListTransferConfigsRequest request = ListTransferConfigsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -755,7 +755,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName parent = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   Timestamp startTime = Timestamp.newBuilder().build();
    *   Timestamp endTime = Timestamp.newBuilder().build();
    *   ScheduleTransferRunsResponse response = dataTransferServiceClient.scheduleTransferRuns(parent, startTime, endTime);
@@ -771,7 +771,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ScheduleTransferRunsResponse scheduleTransferRuns(
-      AnyTransferConfigName parent, Timestamp startTime, Timestamp endTime) {
+      TransferConfigName parent, Timestamp startTime, Timestamp endTime) {
 
     ScheduleTransferRunsRequest request =
         ScheduleTransferRunsRequest.newBuilder()
@@ -792,7 +792,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName parent = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   Timestamp startTime = Timestamp.newBuilder().build();
    *   Timestamp endTime = Timestamp.newBuilder().build();
    *   ScheduleTransferRunsRequest request = ScheduleTransferRunsRequest.newBuilder()
@@ -822,7 +822,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName parent = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   Timestamp startTime = Timestamp.newBuilder().build();
    *   Timestamp endTime = Timestamp.newBuilder().build();
    *   ScheduleTransferRunsRequest request = ScheduleTransferRunsRequest.newBuilder()
@@ -849,7 +849,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName name = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   TransferRun response = dataTransferServiceClient.getTransferRun(name);
    * }
    * </code></pre>
@@ -858,7 +858,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final TransferRun getTransferRun(AnyRunName name) {
+  public final TransferRun getTransferRun(RunName name) {
 
     GetTransferRunRequest request =
         GetTransferRunRequest.newBuilder().setName(name == null ? null : name.toString()).build();
@@ -873,7 +873,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName name = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   GetTransferRunRequest request = GetTransferRunRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -896,7 +896,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName name = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   GetTransferRunRequest request = GetTransferRunRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -918,7 +918,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName name = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   dataTransferServiceClient.deleteTransferRun(name);
    * }
    * </code></pre>
@@ -927,7 +927,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final void deleteTransferRun(AnyRunName name) {
+  public final void deleteTransferRun(RunName name) {
 
     DeleteTransferRunRequest request =
         DeleteTransferRunRequest.newBuilder()
@@ -944,7 +944,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName name = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   DeleteTransferRunRequest request = DeleteTransferRunRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -967,7 +967,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName name = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   DeleteTransferRunRequest request = DeleteTransferRunRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -989,7 +989,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName parent = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   for (TransferRun element : dataTransferServiceClient.listTransferRuns(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
@@ -1001,7 +1001,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     `projects/{project_id}/transferConfigs/{config_id}`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final ListTransferRunsPagedResponse listTransferRuns(AnyTransferConfigName parent) {
+  public final ListTransferRunsPagedResponse listTransferRuns(TransferConfigName parent) {
     ListTransferRunsRequest request =
         ListTransferRunsRequest.newBuilder()
             .setParent(parent == null ? null : parent.toString())
@@ -1017,7 +1017,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName parent = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   ListTransferRunsRequest request = ListTransferRunsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -1042,7 +1042,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName parent = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   ListTransferRunsRequest request = ListTransferRunsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -1067,7 +1067,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyTransferConfigName parent = LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]");
+   *   TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
    *   ListTransferRunsRequest request = ListTransferRunsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -1099,7 +1099,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName parent = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName parent = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   for (TransferMessage element : dataTransferServiceClient.listTransferLogs(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
@@ -1110,7 +1110,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *     `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final ListTransferLogsPagedResponse listTransferLogs(AnyRunName parent) {
+  public final ListTransferLogsPagedResponse listTransferLogs(RunName parent) {
     ListTransferLogsRequest request =
         ListTransferLogsRequest.newBuilder()
             .setParent(parent == null ? null : parent.toString())
@@ -1126,7 +1126,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName parent = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName parent = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   ListTransferLogsRequest request = ListTransferLogsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -1151,7 +1151,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName parent = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName parent = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   ListTransferLogsRequest request = ListTransferLogsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -1176,7 +1176,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyRunName parent = LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]");
+   *   RunName parent = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
    *   ListTransferLogsRequest request = ListTransferLogsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -1211,7 +1211,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyDataSourceName name = LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]");
+   *   DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
    *   CheckValidCredsResponse response = dataTransferServiceClient.checkValidCreds(name);
    * }
    * </code></pre>
@@ -1219,7 +1219,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    * @param name The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final CheckValidCredsResponse checkValidCreds(AnyDataSourceName name) {
+  public final CheckValidCredsResponse checkValidCreds(DataSourceName name) {
 
     CheckValidCredsRequest request =
         CheckValidCredsRequest.newBuilder().setName(name == null ? null : name.toString()).build();
@@ -1237,7 +1237,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyDataSourceName name = LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]");
+   *   DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
    *   CheckValidCredsRequest request = CheckValidCredsRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1263,7 +1263,7 @@ public class DataTransferServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
-   *   AnyDataSourceName name = LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]");
+   *   DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
    *   CheckValidCredsRequest request = CheckValidCredsRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();

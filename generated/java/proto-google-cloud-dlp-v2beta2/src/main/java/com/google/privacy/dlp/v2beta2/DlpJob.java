@@ -24,6 +24,7 @@ private static final long serialVersionUID = 0L;
     type_ = 0;
     state_ = 0;
     errorResults_ = java.util.Collections.emptyList();
+    jobTriggerName_ = "";
   }
 
   @java.lang.Override
@@ -146,6 +147,12 @@ private static final long serialVersionUID = 0L;
             }
             errorResults_.add(
                 input.readMessage(com.google.rpc.Status.parser(), extensionRegistry));
+            break;
+          }
+          case 82: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            jobTriggerName_ = s;
             break;
           }
         }
@@ -708,6 +715,50 @@ private static final long serialVersionUID = 0L;
     return errorResults_.get(index);
   }
 
+  public static final int JOB_TRIGGER_NAME_FIELD_NUMBER = 10;
+  private volatile java.lang.Object jobTriggerName_;
+  /**
+   * <pre>
+   * If created by a job trigger, the resource name of the trigger that
+   * instantiated the job.
+   * </pre>
+   *
+   * <code>string job_trigger_name = 10;</code>
+   */
+  public java.lang.String getJobTriggerName() {
+    java.lang.Object ref = jobTriggerName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      jobTriggerName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * If created by a job trigger, the resource name of the trigger that
+   * instantiated the job.
+   * </pre>
+   *
+   * <code>string job_trigger_name = 10;</code>
+   */
+  public com.google.protobuf.ByteString
+      getJobTriggerNameBytes() {
+    java.lang.Object ref = jobTriggerName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      jobTriggerName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -746,6 +797,9 @@ private static final long serialVersionUID = 0L;
     }
     for (int i = 0; i < errorResults_.size(); i++) {
       output.writeMessage(9, errorResults_.get(i));
+    }
+    if (!getJobTriggerNameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 10, jobTriggerName_);
     }
     unknownFields.writeTo(output);
   }
@@ -790,6 +844,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(9, errorResults_.get(i));
     }
+    if (!getJobTriggerNameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, jobTriggerName_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -827,6 +884,8 @@ private static final long serialVersionUID = 0L;
     }
     result = result && getErrorResultsList()
         .equals(other.getErrorResultsList());
+    result = result && getJobTriggerName()
+        .equals(other.getJobTriggerName());
     result = result && getDetailsCase().equals(
         other.getDetailsCase());
     if (!result) return false;
@@ -875,6 +934,8 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ERROR_RESULTS_FIELD_NUMBER;
       hash = (53 * hash) + getErrorResultsList().hashCode();
     }
+    hash = (37 * hash) + JOB_TRIGGER_NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getJobTriggerName().hashCode();
     switch (detailsCase_) {
       case 4:
         hash = (37 * hash) + RISK_DETAILS_FIELD_NUMBER;
@@ -1051,6 +1112,8 @@ private static final long serialVersionUID = 0L;
       } else {
         errorResultsBuilder_.clear();
       }
+      jobTriggerName_ = "";
+
       detailsCase_ = 0;
       details_ = null;
       return this;
@@ -1118,6 +1181,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.errorResults_ = errorResultsBuilder_.build();
       }
+      result.jobTriggerName_ = jobTriggerName_;
       result.bitField0_ = to_bitField0_;
       result.detailsCase_ = detailsCase_;
       onBuilt();
@@ -1205,6 +1269,10 @@ private static final long serialVersionUID = 0L;
             errorResultsBuilder_.addAllMessages(other.errorResults_);
           }
         }
+      }
+      if (!other.getJobTriggerName().isEmpty()) {
+        jobTriggerName_ = other.jobTriggerName_;
+        onChanged();
       }
       switch (other.getDetailsCase()) {
         case RISK_DETAILS: {
@@ -2592,6 +2660,100 @@ private static final long serialVersionUID = 0L;
         errorResults_ = null;
       }
       return errorResultsBuilder_;
+    }
+
+    private java.lang.Object jobTriggerName_ = "";
+    /**
+     * <pre>
+     * If created by a job trigger, the resource name of the trigger that
+     * instantiated the job.
+     * </pre>
+     *
+     * <code>string job_trigger_name = 10;</code>
+     */
+    public java.lang.String getJobTriggerName() {
+      java.lang.Object ref = jobTriggerName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        jobTriggerName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * If created by a job trigger, the resource name of the trigger that
+     * instantiated the job.
+     * </pre>
+     *
+     * <code>string job_trigger_name = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getJobTriggerNameBytes() {
+      java.lang.Object ref = jobTriggerName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        jobTriggerName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * If created by a job trigger, the resource name of the trigger that
+     * instantiated the job.
+     * </pre>
+     *
+     * <code>string job_trigger_name = 10;</code>
+     */
+    public Builder setJobTriggerName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      jobTriggerName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * If created by a job trigger, the resource name of the trigger that
+     * instantiated the job.
+     * </pre>
+     *
+     * <code>string job_trigger_name = 10;</code>
+     */
+    public Builder clearJobTriggerName() {
+      
+      jobTriggerName_ = getDefaultInstance().getJobTriggerName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * If created by a job trigger, the resource name of the trigger that
+     * instantiated the job.
+     * </pre>
+     *
+     * <code>string job_trigger_name = 10;</code>
+     */
+    public Builder setJobTriggerNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      jobTriggerName_ = value;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

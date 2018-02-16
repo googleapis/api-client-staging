@@ -112,7 +112,8 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Resource name of organization and deidentify template to be updated, for
-   * example `organizations/433245324/deidentifyTemplates/432452342`.
+   * example `organizations/433245324/deidentifyTemplates/432452342` or
+   * projects/project-id/deidentifyTemplates/432452342.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -132,7 +133,8 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Resource name of organization and deidentify template to be updated, for
-   * example `organizations/433245324/deidentifyTemplates/432452342`.
+   * example `organizations/433245324/deidentifyTemplates/432452342` or
+   * projects/project-id/deidentifyTemplates/432452342.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -568,7 +570,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Resource name of organization and deidentify template to be updated, for
-     * example `organizations/433245324/deidentifyTemplates/432452342`.
+     * example `organizations/433245324/deidentifyTemplates/432452342` or
+     * projects/project-id/deidentifyTemplates/432452342.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -588,7 +591,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Resource name of organization and deidentify template to be updated, for
-     * example `organizations/433245324/deidentifyTemplates/432452342`.
+     * example `organizations/433245324/deidentifyTemplates/432452342` or
+     * projects/project-id/deidentifyTemplates/432452342.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -609,7 +613,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Resource name of organization and deidentify template to be updated, for
-     * example `organizations/433245324/deidentifyTemplates/432452342`.
+     * example `organizations/433245324/deidentifyTemplates/432452342` or
+     * projects/project-id/deidentifyTemplates/432452342.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -627,7 +632,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Resource name of organization and deidentify template to be updated, for
-     * example `organizations/433245324/deidentifyTemplates/432452342`.
+     * example `organizations/433245324/deidentifyTemplates/432452342` or
+     * projects/project-id/deidentifyTemplates/432452342.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -641,7 +647,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Resource name of organization and deidentify template to be updated, for
-     * example `organizations/433245324/deidentifyTemplates/432452342`.
+     * example `organizations/433245324/deidentifyTemplates/432452342` or
+     * projects/project-id/deidentifyTemplates/432452342.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -974,51 +981,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(deidentifyTemplateNameOneof.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithDeidentifyTemplateNameOneof(com.google.privacy.dlp.v2beta2.DeidentifyTemplateNameOneof value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * DeidentifyTemplateNameOneof.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.privacy.dlp.v2beta2.DeidentifyTemplateNameOneof getNameAsDeidentifyTemplateNameOneof() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.privacy.dlp.v2beta2.DeidentifyTemplateNameOneof.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * DeidentifyTemplateNameOneof.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.privacy.dlp.v2beta2.DeidentifyTemplateNameOneof getNameAsDeidentifyTemplateNameOneof() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.privacy.dlp.v2beta2.DeidentifyTemplateNameOneof.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest)
   private static final com.google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest DEFAULT_INSTANCE;
   static {

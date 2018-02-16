@@ -24,7 +24,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class FolderLogName extends AnyLogName {
+public class FolderLogName extends LogName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("folders/{folder}/logs/{log}");
@@ -58,14 +58,6 @@ public class FolderLogName extends AnyLogName {
       .setFolder(folder)
       .setLog(log)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static FolderLogName create(String folder, String log) {
-    return of(folder, log);
   }
 
   public static String format(String folder, String log) {
@@ -110,12 +102,11 @@ public class FolderLogName extends AnyLogName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return FolderLogNameType.instance();
+    throw new UnsupportedOperationException("FolderLogName.getType() not supported");
   }
 
   @Override

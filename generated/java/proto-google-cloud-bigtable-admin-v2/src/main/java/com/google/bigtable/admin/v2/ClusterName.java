@@ -67,14 +67,6 @@ public class ClusterName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String, String)} instead.
-   */
-  @Deprecated
-  public static ClusterName create(String project, String instance, String cluster) {
-    return of(project, instance, cluster);
-  }
-
   public static String format(String project, String instance, String cluster) {
     return newBuilder()
       .setProject(project)
@@ -118,12 +110,11 @@ public class ClusterName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return ClusterNameType.instance();
+    throw new UnsupportedOperationException("ClusterName.getType() not supported");
   }
 
   @Override

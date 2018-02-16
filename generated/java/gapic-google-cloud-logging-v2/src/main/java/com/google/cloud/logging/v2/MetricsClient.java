@@ -22,14 +22,14 @@ import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.logging.v2.stub.MetricsServiceV2Stub;
 import com.google.cloud.logging.v2.stub.MetricsServiceV2StubSettings;
-import com.google.logging.v2.AnyMetricName;
-import com.google.logging.v2.AnyParentName;
 import com.google.logging.v2.CreateLogMetricRequest;
 import com.google.logging.v2.DeleteLogMetricRequest;
 import com.google.logging.v2.GetLogMetricRequest;
 import com.google.logging.v2.ListLogMetricsRequest;
 import com.google.logging.v2.ListLogMetricsResponse;
 import com.google.logging.v2.LogMetric;
+import com.google.logging.v2.MetricName;
+import com.google.logging.v2.ParentName;
 import com.google.logging.v2.UpdateLogMetricRequest;
 import com.google.protobuf.Empty;
 import java.io.IOException;
@@ -46,7 +46,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (MetricsClient metricsClient = MetricsClient.create()) {
- *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+ *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
  *   LogMetric response = metricsClient.getLogMetric(metricName);
  * }
  * </code>
@@ -162,7 +162,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyParentName parent = ProjectName.of("[PROJECT]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   for (LogMetric element : metricsClient.listLogMetrics(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
@@ -173,7 +173,7 @@ public class MetricsClient implements BackgroundResource {
    *     <p>"projects/[PROJECT_ID]"
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final ListLogMetricsPagedResponse listLogMetrics(AnyParentName parent) {
+  public final ListLogMetricsPagedResponse listLogMetrics(ParentName parent) {
     ListLogMetricsRequest request =
         ListLogMetricsRequest.newBuilder()
             .setParent(parent == null ? null : parent.toString())
@@ -189,7 +189,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyParentName parent = ProjectName.of("[PROJECT]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListLogMetricsRequest request = ListLogMetricsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -214,7 +214,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyParentName parent = ProjectName.of("[PROJECT]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListLogMetricsRequest request = ListLogMetricsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -239,7 +239,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyParentName parent = ProjectName.of("[PROJECT]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   ListLogMetricsRequest request = ListLogMetricsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -271,7 +271,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   LogMetric response = metricsClient.getLogMetric(metricName);
    * }
    * </code></pre>
@@ -280,7 +280,7 @@ public class MetricsClient implements BackgroundResource {
    *     <p>"projects/[PROJECT_ID]/metrics/[METRIC_ID]"
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final LogMetric getLogMetric(AnyMetricName metricName) {
+  public final LogMetric getLogMetric(MetricName metricName) {
 
     GetLogMetricRequest request =
         GetLogMetricRequest.newBuilder()
@@ -297,7 +297,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   GetLogMetricRequest request = GetLogMetricRequest.newBuilder()
    *     .setMetricName(metricName.toString())
    *     .build();
@@ -320,7 +320,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   GetLogMetricRequest request = GetLogMetricRequest.newBuilder()
    *     .setMetricName(metricName.toString())
    *     .build();
@@ -342,7 +342,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyParentName parent = ProjectName.of("[PROJECT]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   LogMetric response = metricsClient.createLogMetric(parent, metric);
    * }
@@ -354,7 +354,7 @@ public class MetricsClient implements BackgroundResource {
    * @param metric The new logs-based metric, which must not have an identifier that already exists.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final LogMetric createLogMetric(AnyParentName parent, LogMetric metric) {
+  public final LogMetric createLogMetric(ParentName parent, LogMetric metric) {
 
     CreateLogMetricRequest request =
         CreateLogMetricRequest.newBuilder()
@@ -372,7 +372,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyParentName parent = ProjectName.of("[PROJECT]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   CreateLogMetricRequest request = CreateLogMetricRequest.newBuilder()
    *     .setParent(parent.toString())
@@ -397,7 +397,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyParentName parent = ProjectName.of("[PROJECT]");
+   *   ParentName parent = ProjectName.of("[PROJECT]");
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   CreateLogMetricRequest request = CreateLogMetricRequest.newBuilder()
    *     .setParent(parent.toString())
@@ -421,7 +421,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   LogMetric response = metricsClient.updateLogMetric(metricName, metric);
    * }
@@ -435,7 +435,7 @@ public class MetricsClient implements BackgroundResource {
    * @param metric The updated metric.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final LogMetric updateLogMetric(AnyMetricName metricName, LogMetric metric) {
+  public final LogMetric updateLogMetric(MetricName metricName, LogMetric metric) {
 
     UpdateLogMetricRequest request =
         UpdateLogMetricRequest.newBuilder()
@@ -453,7 +453,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   UpdateLogMetricRequest request = UpdateLogMetricRequest.newBuilder()
    *     .setMetricName(metricName.toString())
@@ -478,7 +478,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   UpdateLogMetricRequest request = UpdateLogMetricRequest.newBuilder()
    *     .setMetricName(metricName.toString())
@@ -502,7 +502,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   metricsClient.deleteLogMetric(metricName);
    * }
    * </code></pre>
@@ -511,7 +511,7 @@ public class MetricsClient implements BackgroundResource {
    *     <p>"projects/[PROJECT_ID]/metrics/[METRIC_ID]"
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final void deleteLogMetric(AnyMetricName metricName) {
+  public final void deleteLogMetric(MetricName metricName) {
 
     DeleteLogMetricRequest request =
         DeleteLogMetricRequest.newBuilder()
@@ -528,7 +528,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   DeleteLogMetricRequest request = DeleteLogMetricRequest.newBuilder()
    *     .setMetricName(metricName.toString())
    *     .build();
@@ -551,7 +551,7 @@ public class MetricsClient implements BackgroundResource {
    *
    * <pre><code>
    * try (MetricsClient metricsClient = MetricsClient.create()) {
-   *   AnyMetricName metricName = MetricName.of("[PROJECT]", "[METRIC]");
+   *   MetricName metricName = ProjectMetricName.of("[PROJECT]", "[METRIC]");
    *   DeleteLogMetricRequest request = DeleteLogMetricRequest.newBuilder()
    *     .setMetricName(metricName.toString())
    *     .build();

@@ -30,7 +30,7 @@
  * <pre>
  * <code>
  * try (DataTransferServiceClient dataTransferServiceClient = DataTransferServiceClient.create()) {
- *   AnyDataSourceName name = LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]");
+ *   DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
  *   DataSource response = dataTransferServiceClient.getDataSource(name);
  * }
  * </code>

@@ -53,14 +53,6 @@ public class ProjectName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String)} instead.
-   */
-  @Deprecated
-  public static ProjectName create(String project) {
-    return of(project);
-  }
-
   public static String format(String project) {
     return newBuilder()
       .setProject(project)
@@ -102,12 +94,11 @@ public class ProjectName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return ProjectNameType.instance();
+    throw new UnsupportedOperationException("ProjectName.getType() not supported");
   }
 
   @Override

@@ -24,7 +24,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class BillingExclusionName extends AnyExclusionName {
+public class BillingExclusionName extends ExclusionName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("billingAccounts/{billing_account}/exclusions/{exclusion}");
@@ -58,14 +58,6 @@ public class BillingExclusionName extends AnyExclusionName {
       .setBillingAccount(billingAccount)
       .setExclusion(exclusion)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static BillingExclusionName create(String billingAccount, String exclusion) {
-    return of(billingAccount, exclusion);
   }
 
   public static String format(String billingAccount, String exclusion) {
@@ -110,12 +102,11 @@ public class BillingExclusionName extends AnyExclusionName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return BillingExclusionNameType.instance();
+    throw new UnsupportedOperationException("BillingExclusionName.getType() not supported");
   }
 
   @Override

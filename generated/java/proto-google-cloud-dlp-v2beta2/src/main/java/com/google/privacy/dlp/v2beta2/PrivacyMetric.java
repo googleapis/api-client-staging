@@ -4339,6 +4339,8 @@ private static final long serialVersionUID = 0L;
        * A column can be tagged with a InfoType to use the relevant public
        * dataset as a statistical model of population, if available. We
        * currently support US ZIP codes, region codes, ages and genders.
+       * To programmatically obtain the list of supported InfoTypes, use
+       * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -4349,6 +4351,8 @@ private static final long serialVersionUID = 0L;
        * A column can be tagged with a InfoType to use the relevant public
        * dataset as a statistical model of population, if available. We
        * currently support US ZIP codes, region codes, ages and genders.
+       * To programmatically obtain the list of supported InfoTypes, use
+       * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -4359,6 +4363,8 @@ private static final long serialVersionUID = 0L;
        * A column can be tagged with a InfoType to use the relevant public
        * dataset as a statistical model of population, if available. We
        * currently support US ZIP codes, region codes, ages and genders.
+       * To programmatically obtain the list of supported InfoTypes, use
+       * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -4614,6 +4620,8 @@ private static final long serialVersionUID = 0L;
        * A column can be tagged with a InfoType to use the relevant public
        * dataset as a statistical model of population, if available. We
        * currently support US ZIP codes, region codes, ages and genders.
+       * To programmatically obtain the list of supported InfoTypes, use
+       * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -4626,6 +4634,8 @@ private static final long serialVersionUID = 0L;
        * A column can be tagged with a InfoType to use the relevant public
        * dataset as a statistical model of population, if available. We
        * currently support US ZIP codes, region codes, ages and genders.
+       * To programmatically obtain the list of supported InfoTypes, use
+       * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -4641,6 +4651,8 @@ private static final long serialVersionUID = 0L;
        * A column can be tagged with a InfoType to use the relevant public
        * dataset as a statistical model of population, if available. We
        * currently support US ZIP codes, region codes, ages and genders.
+       * To programmatically obtain the list of supported InfoTypes, use
+       * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5317,6 +5329,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5329,6 +5343,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5351,6 +5367,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5373,6 +5391,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5393,6 +5413,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5421,6 +5443,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5446,6 +5470,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5458,6 +5484,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
@@ -5477,6 +5505,8 @@ private static final long serialVersionUID = 0L;
          * A column can be tagged with a InfoType to use the relevant public
          * dataset as a statistical model of population, if available. We
          * currently support US ZIP codes, region codes, ages and genders.
+         * To programmatically obtain the list of supported InfoTypes, use
+         * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>

@@ -10,7 +10,8 @@ public interface DeleteInspectTemplateRequestOrBuilder extends
   /**
    * <pre>
    * Resource name of the organization and inspectTemplate to be deleted, for
-   * example `organizations/433245324/inspectTemplates/432452342`.
+   * example `organizations/433245324/inspectTemplates/432452342` or
+   * projects/project-id/inspectTemplates/432452342.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -19,7 +20,8 @@ public interface DeleteInspectTemplateRequestOrBuilder extends
   /**
    * <pre>
    * Resource name of the organization and inspectTemplate to be deleted, for
-   * example `organizations/433245324/inspectTemplates/432452342`.
+   * example `organizations/433245324/inspectTemplates/432452342` or
+   * projects/project-id/inspectTemplates/432452342.
    * </pre>
    *
    * <code>string name = 1;</code>

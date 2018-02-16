@@ -39,7 +39,6 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.pubsub.v1.AcknowledgeRequest;
-import com.google.pubsub.v1.AnyTopicName;
 import com.google.pubsub.v1.CreateSnapshotRequest;
 import com.google.pubsub.v1.DeleteSnapshotRequest;
 import com.google.pubsub.v1.DeleteSubscriptionRequest;
@@ -51,6 +50,7 @@ import com.google.pubsub.v1.ListSubscriptionsResponse;
 import com.google.pubsub.v1.ModifyAckDeadlineRequest;
 import com.google.pubsub.v1.ModifyPushConfigRequest;
 import com.google.pubsub.v1.ProjectName;
+import com.google.pubsub.v1.ProjectTopicName;
 import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
@@ -124,7 +124,7 @@ public class SubscriptionAdminClientTest {
   @SuppressWarnings("all")
   public void createSubscriptionTest() {
     SubscriptionName name2 = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-    AnyTopicName topic2 = TopicName.of("[PROJECT]", "[TOPIC]");
+    TopicName topic2 = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
     int ackDeadlineSeconds2 = 921632575;
     boolean retainAckedMessages = false;
     Subscription expectedResponse =
@@ -137,7 +137,7 @@ public class SubscriptionAdminClientTest {
     mockSubscriber.addResponse(expectedResponse);
 
     SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-    TopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+    ProjectTopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
     PushConfig pushConfig = PushConfig.newBuilder().build();
     int ackDeadlineSeconds = 2135351438;
 
@@ -167,7 +167,7 @@ public class SubscriptionAdminClientTest {
 
     try {
       SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-      TopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+      ProjectTopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
       PushConfig pushConfig = PushConfig.newBuilder().build();
       int ackDeadlineSeconds = 2135351438;
 
@@ -182,7 +182,7 @@ public class SubscriptionAdminClientTest {
   @SuppressWarnings("all")
   public void getSubscriptionTest() {
     SubscriptionName name = SubscriptionName.of("[PROJECT]", "[SUBSCRIPTION]");
-    AnyTopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+    TopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
     int ackDeadlineSeconds = 2135351438;
     boolean retainAckedMessages = false;
     Subscription expectedResponse =
@@ -593,7 +593,7 @@ public class SubscriptionAdminClientTest {
   @SuppressWarnings("all")
   public void createSnapshotTest() {
     SnapshotName name2 = SnapshotName.of("[PROJECT]", "[SNAPSHOT]");
-    TopicName topic = TopicName.of("[PROJECT]", "[TOPIC]");
+    ProjectTopicName topic = ProjectTopicName.of("[PROJECT]", "[TOPIC]");
     Snapshot expectedResponse =
         Snapshot.newBuilder().setName(name2.toString()).setTopic(topic.toString()).build();
     mockSubscriber.addResponse(expectedResponse);

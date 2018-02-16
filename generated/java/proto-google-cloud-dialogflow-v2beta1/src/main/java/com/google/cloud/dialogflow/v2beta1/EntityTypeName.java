@@ -60,14 +60,6 @@ public class EntityTypeName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static EntityTypeName create(String project, String entityType) {
-    return of(project, entityType);
-  }
-
   public static String format(String project, String entityType) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class EntityTypeName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return EntityTypeNameType.instance();
+    throw new UnsupportedOperationException("EntityTypeName.getType() not supported");
   }
 
   @Override

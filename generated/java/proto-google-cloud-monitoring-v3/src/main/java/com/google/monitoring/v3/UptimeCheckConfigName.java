@@ -60,14 +60,6 @@ public class UptimeCheckConfigName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static UptimeCheckConfigName create(String project, String uptimeCheckConfig) {
-    return of(project, uptimeCheckConfig);
-  }
-
   public static String format(String project, String uptimeCheckConfig) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class UptimeCheckConfigName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return UptimeCheckConfigNameType.instance();
+    throw new UnsupportedOperationException("UptimeCheckConfigName.getType() not supported");
   }
 
   @Override

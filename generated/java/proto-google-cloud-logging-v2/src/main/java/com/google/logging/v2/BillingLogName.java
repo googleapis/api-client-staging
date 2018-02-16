@@ -24,7 +24,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class BillingLogName extends AnyLogName {
+public class BillingLogName extends LogName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("billingAccounts/{billing_account}/logs/{log}");
@@ -58,14 +58,6 @@ public class BillingLogName extends AnyLogName {
       .setBillingAccount(billingAccount)
       .setLog(log)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static BillingLogName create(String billingAccount, String log) {
-    return of(billingAccount, log);
   }
 
   public static String format(String billingAccount, String log) {
@@ -110,12 +102,11 @@ public class BillingLogName extends AnyLogName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return BillingLogNameType.instance();
+    throw new UnsupportedOperationException("BillingLogName.getType() not supported");
   }
 
   @Override

@@ -24,7 +24,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class LocationName extends AnyParentName {
+public class LocationName extends ParentName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/locations/{location}");
@@ -58,14 +58,6 @@ public class LocationName extends AnyParentName {
       .setProject(project)
       .setLocation(location)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static LocationName create(String project, String location) {
-    return of(project, location);
   }
 
   public static String format(String project, String location) {
@@ -110,12 +102,11 @@ public class LocationName extends AnyParentName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return LocationNameType.instance();
+    throw new UnsupportedOperationException("LocationName.getType() not supported");
   }
 
   @Override

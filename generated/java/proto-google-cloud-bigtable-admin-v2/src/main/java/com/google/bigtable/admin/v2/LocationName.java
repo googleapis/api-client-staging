@@ -60,14 +60,6 @@ public class LocationName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static LocationName create(String project, String location) {
-    return of(project, location);
-  }
-
   public static String format(String project, String location) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class LocationName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return LocationNameType.instance();
+    throw new UnsupportedOperationException("LocationName.getType() not supported");
   }
 
   @Override

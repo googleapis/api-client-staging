@@ -22,7 +22,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class UntypedRunName extends AnyRunName {
+public class UntypedRunName extends RunName {
 
   private final String rawValue;
 

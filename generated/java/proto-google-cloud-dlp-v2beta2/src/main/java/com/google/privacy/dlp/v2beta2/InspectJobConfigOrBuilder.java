@@ -103,4 +103,53 @@ public interface InspectJobConfigOrBuilder extends
    */
   com.google.protobuf.ByteString
       getInspectTemplateNameBytes();
+
+  /**
+   * <pre>
+   * Actions to execute at the completion of the job. Are executed in the order
+   * provided.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
+   */
+  java.util.List<com.google.privacy.dlp.v2beta2.Action> 
+      getActionsList();
+  /**
+   * <pre>
+   * Actions to execute at the completion of the job. Are executed in the order
+   * provided.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
+   */
+  com.google.privacy.dlp.v2beta2.Action getActions(int index);
+  /**
+   * <pre>
+   * Actions to execute at the completion of the job. Are executed in the order
+   * provided.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
+   */
+  int getActionsCount();
+  /**
+   * <pre>
+   * Actions to execute at the completion of the job. Are executed in the order
+   * provided.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
+   */
+  java.util.List<? extends com.google.privacy.dlp.v2beta2.ActionOrBuilder> 
+      getActionsOrBuilderList();
+  /**
+   * <pre>
+   * Actions to execute at the completion of the job. Are executed in the order
+   * provided.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
+   */
+  com.google.privacy.dlp.v2beta2.ActionOrBuilder getActionsOrBuilder(
+      int index);
 }

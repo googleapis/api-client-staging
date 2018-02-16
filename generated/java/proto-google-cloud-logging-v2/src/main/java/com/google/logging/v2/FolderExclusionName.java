@@ -24,7 +24,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class FolderExclusionName extends AnyExclusionName {
+public class FolderExclusionName extends ExclusionName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("folders/{folder}/exclusions/{exclusion}");
@@ -58,14 +58,6 @@ public class FolderExclusionName extends AnyExclusionName {
       .setFolder(folder)
       .setExclusion(exclusion)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static FolderExclusionName create(String folder, String exclusion) {
-    return of(folder, exclusion);
   }
 
   public static String format(String folder, String exclusion) {
@@ -110,12 +102,11 @@ public class FolderExclusionName extends AnyExclusionName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return FolderExclusionNameType.instance();
+    throw new UnsupportedOperationException("FolderExclusionName.getType() not supported");
   }
 
   @Override

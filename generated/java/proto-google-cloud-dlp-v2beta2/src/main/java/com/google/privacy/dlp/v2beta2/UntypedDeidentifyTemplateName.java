@@ -22,7 +22,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class UntypedDeidentifyTemplateName extends AnyDeidentifyTemplateName {
+public class UntypedDeidentifyTemplateName extends DeidentifyTemplateName {
 
   private final String rawValue;
 

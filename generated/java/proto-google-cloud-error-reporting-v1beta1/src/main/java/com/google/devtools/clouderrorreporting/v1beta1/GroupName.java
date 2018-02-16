@@ -60,14 +60,6 @@ public class GroupName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static GroupName create(String project, String group) {
-    return of(project, group);
-  }
-
   public static String format(String project, String group) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class GroupName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return GroupNameType.instance();
+    throw new UnsupportedOperationException("GroupName.getType() not supported");
   }
 
   @Override

@@ -60,14 +60,6 @@ public class InstanceConfigName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static InstanceConfigName create(String project, String instanceConfig) {
-    return of(project, instanceConfig);
-  }
-
   public static String format(String project, String instanceConfig) {
     return newBuilder()
       .setProject(project)
@@ -110,12 +102,11 @@ public class InstanceConfigName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return InstanceConfigNameType.instance();
+    throw new UnsupportedOperationException("InstanceConfigName.getType() not supported");
   }
 
   @Override

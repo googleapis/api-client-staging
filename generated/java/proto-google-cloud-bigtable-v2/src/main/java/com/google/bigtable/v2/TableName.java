@@ -67,14 +67,6 @@ public class TableName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String, String)} instead.
-   */
-  @Deprecated
-  public static TableName create(String project, String instance, String table) {
-    return of(project, instance, table);
-  }
-
   public static String format(String project, String instance, String table) {
     return newBuilder()
       .setProject(project)
@@ -118,12 +110,11 @@ public class TableName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return TableNameType.instance();
+    throw new UnsupportedOperationException("TableName.getType() not supported");
   }
 
   @Override

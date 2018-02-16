@@ -19,7 +19,7 @@ import com.google.api.resourcenames.ResourceNameType;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class DeletedTopic extends AnyTopicName {
+public class DeletedTopic extends TopicName {
 
   private static final String FIXED_VALUE = "_deleted-topic_";
 
@@ -31,17 +31,16 @@ public class DeletedTopic extends AnyTopicName {
     return instance;
   }
 
+  public static boolean matches(String value) {
+    return FIXED_VALUE.equals(value);
+  }
+
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return DeletedTopicType.instance();
-  }
-
-  public static boolean matches(String value) {
-    return FIXED_VALUE.equals(value);
+    throw new UnsupportedOperationException("DeletedTopic.getType() not supported");
   }
 
   @Override

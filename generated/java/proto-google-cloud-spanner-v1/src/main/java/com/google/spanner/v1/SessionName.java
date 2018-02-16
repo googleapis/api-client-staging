@@ -74,14 +74,6 @@ public class SessionName implements ResourceName {
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String, String, String)} instead.
-   */
-  @Deprecated
-  public static SessionName create(String project, String instance, String database, String session) {
-    return of(project, instance, database, session);
-  }
-
   public static String format(String project, String instance, String database, String session) {
     return newBuilder()
       .setProject(project)
@@ -126,12 +118,11 @@ public class SessionName implements ResourceName {
   }
 
   /**
-   * @deprecated This method is no longer necessary given the switch from the Oneof pattern to inheritance
-   * for one-of groupings.
+   * @deprecated This method is only present to satisfy the ResourceName interface.
    */
   @Deprecated
   public ResourceNameType getType() {
-    return SessionNameType.instance();
+    throw new UnsupportedOperationException("SessionName.getType() not supported");
   }
 
   @Override
