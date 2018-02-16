@@ -25,20 +25,20 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class InspectTemplate2Name implements ResourceName {
+public class ProjectDeidentifyTemplateName implements ResourceName {
 
   private static final PathTemplate PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("projects/{project}/inspectTemplates/{inspect_template}");
+      PathTemplate.createWithoutUrlEncoding("projects/{project}/deidentifyTemplates/{deidentify_template}");
 
   private final String project;
-  private final String inspectTemplate;
+  private final String deidentifyTemplate;
 
   public String getProject() {
     return project;
   }
 
-  public String getInspectTemplate() {
-    return inspectTemplate;
+  public String getDeidentifyTemplate() {
+    return deidentifyTemplate;
   }
 
   public static Builder newBuilder() {
@@ -49,15 +49,15 @@ public class InspectTemplate2Name implements ResourceName {
     return new Builder(this);
   }
 
-  private InspectTemplate2Name(Builder builder) {
+  private ProjectDeidentifyTemplateName(Builder builder) {
     project = Preconditions.checkNotNull(builder.getProject());
-    inspectTemplate = Preconditions.checkNotNull(builder.getInspectTemplate());
+    deidentifyTemplate = Preconditions.checkNotNull(builder.getDeidentifyTemplate());
   }
 
-  public static InspectTemplate2Name of(String project, String inspectTemplate) {
+  public static ProjectDeidentifyTemplateName of(String project, String deidentifyTemplate) {
     return newBuilder()
       .setProject(project)
-      .setInspectTemplate(inspectTemplate)
+      .setDeidentifyTemplate(deidentifyTemplate)
       .build();
   }
 
@@ -65,38 +65,38 @@ public class InspectTemplate2Name implements ResourceName {
    * @deprecated Use {@link #of(String, String)} instead.
    */
   @Deprecated
-  public static InspectTemplate2Name create(String project, String inspectTemplate) {
-    return of(project, inspectTemplate);
+  public static ProjectDeidentifyTemplateName create(String project, String deidentifyTemplate) {
+    return of(project, deidentifyTemplate);
   }
 
-  public static String format(String project, String inspectTemplate) {
+  public static String format(String project, String deidentifyTemplate) {
     return newBuilder()
       .setProject(project)
-      .setInspectTemplate(inspectTemplate)
+      .setDeidentifyTemplate(deidentifyTemplate)
       .build()
       .toString();
   }
 
-  public static InspectTemplate2Name parse(String formattedString) {
+  public static ProjectDeidentifyTemplateName parse(String formattedString) {
     if (formattedString.isEmpty()) {
       return null;
     }
     Map<String, String> matchMap =
-        PATH_TEMPLATE.validatedMatch(formattedString, "InspectTemplate2Name.parse: formattedString not in valid format");
-    return of(matchMap.get("project"), matchMap.get("inspect_template"));
+        PATH_TEMPLATE.validatedMatch(formattedString, "ProjectDeidentifyTemplateName.parse: formattedString not in valid format");
+    return of(matchMap.get("project"), matchMap.get("deidentify_template"));
   }
 
-  public static List<InspectTemplate2Name> parseList(List<String> formattedStrings) {
-    List<InspectTemplate2Name> list = new ArrayList<>(formattedStrings.size());
+  public static List<ProjectDeidentifyTemplateName> parseList(List<String> formattedStrings) {
+    List<ProjectDeidentifyTemplateName> list = new ArrayList<>(formattedStrings.size());
     for (String formattedString : formattedStrings) {
       list.add(parse(formattedString));
     }
     return list;
   }
 
-  public static List<String> toStringList(List<InspectTemplate2Name> values) {
+  public static List<String> toStringList(List<ProjectDeidentifyTemplateName> values) {
     List<String> list = new ArrayList<String>(values.size());
-    for (InspectTemplate2Name value : values) {
+    for (ProjectDeidentifyTemplateName value : values) {
       if (value == null) {
         list.add("");
       } else {
@@ -112,26 +112,26 @@ public class InspectTemplate2Name implements ResourceName {
 
   @Override
   public ResourceNameType getType() {
-    return InspectTemplate2NameType.instance();
+    return ProjectDeidentifyTemplateNameType.instance();
   }
 
   @Override
   public String toString() {
-    return PATH_TEMPLATE.instantiate("project", project, "inspect_template", inspectTemplate);
+    return PATH_TEMPLATE.instantiate("project", project, "deidentify_template", deidentifyTemplate);
   }
 
-  /** Builder for InspectTemplate2Name. */
+  /** Builder for ProjectDeidentifyTemplateName. */
   public static class Builder {
 
     private String project;
-    private String inspectTemplate;
+    private String deidentifyTemplate;
 
     public String getProject() {
       return project;
     }
 
-    public String getInspectTemplate() {
-      return inspectTemplate;
+    public String getDeidentifyTemplate() {
+      return deidentifyTemplate;
     }
 
     public Builder setProject(String project) {
@@ -139,21 +139,21 @@ public class InspectTemplate2Name implements ResourceName {
       return this;
     }
 
-    public Builder setInspectTemplate(String inspectTemplate) {
-      this.inspectTemplate = inspectTemplate;
+    public Builder setDeidentifyTemplate(String deidentifyTemplate) {
+      this.deidentifyTemplate = deidentifyTemplate;
       return this;
     }
 
     private Builder() {
     }
 
-    private Builder(InspectTemplate2Name inspectTemplate2Name) {
-      project = inspectTemplate2Name.project;
-      inspectTemplate = inspectTemplate2Name.inspectTemplate;
+    private Builder(ProjectDeidentifyTemplateName projectDeidentifyTemplateName) {
+      project = projectDeidentifyTemplateName.project;
+      deidentifyTemplate = projectDeidentifyTemplateName.deidentifyTemplate;
     }
 
-    public InspectTemplate2Name build() {
-      return new InspectTemplate2Name(this);
+    public ProjectDeidentifyTemplateName build() {
+      return new ProjectDeidentifyTemplateName(this);
     }
   }
 
@@ -162,10 +162,10 @@ public class InspectTemplate2Name implements ResourceName {
     if (o == this) {
       return true;
     }
-    if (o instanceof InspectTemplate2Name) {
-      InspectTemplate2Name that = (InspectTemplate2Name) o;
+    if (o instanceof ProjectDeidentifyTemplateName) {
+      ProjectDeidentifyTemplateName that = (ProjectDeidentifyTemplateName) o;
       return (this.project.equals(that.project))
-          && (this.inspectTemplate.equals(that.inspectTemplate));
+          && (this.deidentifyTemplate.equals(that.deidentifyTemplate));
     }
     return false;
   }
@@ -176,7 +176,7 @@ public class InspectTemplate2Name implements ResourceName {
     h *= 1000003;
     h ^= project.hashCode();
     h *= 1000003;
-    h ^= inspectTemplate.hashCode();
+    h ^= deidentifyTemplate.hashCode();
     return h;
   }
 }

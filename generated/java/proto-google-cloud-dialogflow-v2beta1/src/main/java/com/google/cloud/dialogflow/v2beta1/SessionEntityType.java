@@ -259,7 +259,11 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The unique identifier of this session entity type. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-   * Display Name&gt;`.
+   * Display Name&gt;`, or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;sessions/&lt;Session
+   * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+   * Note: Runtimes are under construction and will be available soon.
+   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -280,7 +284,11 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The unique identifier of this session entity type. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-   * Display Name&gt;`.
+   * Display Name&gt;`, or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;sessions/&lt;Session
+   * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+   * Note: Runtimes are under construction and will be available soon.
+   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -756,7 +764,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The unique identifier of this session entity type. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;`.
+     * Display Name&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;sessions/&lt;Session
+     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -777,7 +789,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The unique identifier of this session entity type. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;`.
+     * Display Name&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;sessions/&lt;Session
+     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -799,7 +815,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The unique identifier of this session entity type. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;`.
+     * Display Name&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;sessions/&lt;Session
+     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -818,7 +838,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The unique identifier of this session entity type. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;`.
+     * Display Name&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;sessions/&lt;Session
+     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -833,7 +857,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The unique identifier of this session entity type. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;`.
+     * Display Name&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;sessions/&lt;Session
+     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * </pre>
      *
      * <code>string name = 1;</code>

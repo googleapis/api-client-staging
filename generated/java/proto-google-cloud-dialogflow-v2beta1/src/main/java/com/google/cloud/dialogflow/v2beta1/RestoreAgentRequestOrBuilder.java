@@ -29,8 +29,6 @@ public interface RestoreAgentRequestOrBuilder extends
 
   /**
    * <pre>
-   * Warning: Restoring agents from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing the agent to restore.
    * Note: The URI must start with "gs://".
    * </pre>
@@ -40,8 +38,6 @@ public interface RestoreAgentRequestOrBuilder extends
   java.lang.String getAgentUri();
   /**
    * <pre>
-   * Warning: Restoring agents from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing the agent to restore.
    * Note: The URI must start with "gs://".
    * </pre>

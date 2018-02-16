@@ -15,10 +15,15 @@
  */
 package com.google.cloud.spanner.v1;
 
-import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
-
+import com.google.api.core.ApiFunction;
+import com.google.api.core.ApiFuture;
+import com.google.api.core.ApiFutures;
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
+import com.google.api.gax.paging.AbstractFixedSizeCollection;
+import com.google.api.gax.paging.AbstractPage;
+import com.google.api.gax.paging.AbstractPagedListResponse;
+import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.v1.stub.SpannerStub;
@@ -1110,5 +1115,78 @@ public class SpannerClient implements BackgroundResource {
   @Override
   public boolean awaitTermination(long duration, TimeUnit unit) throws InterruptedException {
     return stub.awaitTermination(duration, unit);
+  }
+
+  public static class ListSessionsPagedResponse
+      extends AbstractPagedListResponse<
+          ListSessionsRequest, ListSessionsResponse, Session, ListSessionsPage,
+          ListSessionsFixedSizeCollection> {
+
+    public static ApiFuture<ListSessionsPagedResponse> createAsync(
+        PageContext<ListSessionsRequest, ListSessionsResponse, Session> context,
+        ApiFuture<ListSessionsResponse> futureResponse) {
+      ApiFuture<ListSessionsPage> futurePage =
+          ListSessionsPage.createEmptyPage().createPageAsync(context, futureResponse);
+      return ApiFutures.transform(
+          futurePage,
+          new ApiFunction<ListSessionsPage, ListSessionsPagedResponse>() {
+            @Override
+            public ListSessionsPagedResponse apply(ListSessionsPage input) {
+              return new ListSessionsPagedResponse(input);
+            }
+          });
+    }
+
+    private ListSessionsPagedResponse(ListSessionsPage page) {
+      super(page, ListSessionsFixedSizeCollection.createEmptyCollection());
+    }
+  }
+
+  public static class ListSessionsPage
+      extends AbstractPage<ListSessionsRequest, ListSessionsResponse, Session, ListSessionsPage> {
+
+    private ListSessionsPage(
+        PageContext<ListSessionsRequest, ListSessionsResponse, Session> context,
+        ListSessionsResponse response) {
+      super(context, response);
+    }
+
+    private static ListSessionsPage createEmptyPage() {
+      return new ListSessionsPage(null, null);
+    }
+
+    @Override
+    protected ListSessionsPage createPage(
+        PageContext<ListSessionsRequest, ListSessionsResponse, Session> context,
+        ListSessionsResponse response) {
+      return new ListSessionsPage(context, response);
+    }
+
+    @Override
+    public ApiFuture<ListSessionsPage> createPageAsync(
+        PageContext<ListSessionsRequest, ListSessionsResponse, Session> context,
+        ApiFuture<ListSessionsResponse> futureResponse) {
+      return super.createPageAsync(context, futureResponse);
+    }
+  }
+
+  public static class ListSessionsFixedSizeCollection
+      extends AbstractFixedSizeCollection<
+          ListSessionsRequest, ListSessionsResponse, Session, ListSessionsPage,
+          ListSessionsFixedSizeCollection> {
+
+    private ListSessionsFixedSizeCollection(List<ListSessionsPage> pages, int collectionSize) {
+      super(pages, collectionSize);
+    }
+
+    private static ListSessionsFixedSizeCollection createEmptyCollection() {
+      return new ListSessionsFixedSizeCollection(null, 0);
+    }
+
+    @Override
+    protected ListSessionsFixedSizeCollection createCollection(
+        List<ListSessionsPage> pages, int collectionSize) {
+      return new ListSessionsFixedSizeCollection(pages, collectionSize);
+    }
   }
 }

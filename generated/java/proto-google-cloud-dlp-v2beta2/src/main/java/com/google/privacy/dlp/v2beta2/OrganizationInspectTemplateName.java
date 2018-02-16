@@ -25,20 +25,20 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class DeidentifyTemplateName implements ResourceName {
+public class OrganizationInspectTemplateName implements ResourceName {
 
   private static final PathTemplate PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("organizations/{organization}/deidentifyTemplates/{deidentify_template}");
+      PathTemplate.createWithoutUrlEncoding("organizations/{organization}/inspectTemplates/{inspect_template}");
 
   private final String organization;
-  private final String deidentifyTemplate;
+  private final String inspectTemplate;
 
   public String getOrganization() {
     return organization;
   }
 
-  public String getDeidentifyTemplate() {
-    return deidentifyTemplate;
+  public String getInspectTemplate() {
+    return inspectTemplate;
   }
 
   public static Builder newBuilder() {
@@ -49,15 +49,15 @@ public class DeidentifyTemplateName implements ResourceName {
     return new Builder(this);
   }
 
-  private DeidentifyTemplateName(Builder builder) {
+  private OrganizationInspectTemplateName(Builder builder) {
     organization = Preconditions.checkNotNull(builder.getOrganization());
-    deidentifyTemplate = Preconditions.checkNotNull(builder.getDeidentifyTemplate());
+    inspectTemplate = Preconditions.checkNotNull(builder.getInspectTemplate());
   }
 
-  public static DeidentifyTemplateName of(String organization, String deidentifyTemplate) {
+  public static OrganizationInspectTemplateName of(String organization, String inspectTemplate) {
     return newBuilder()
       .setOrganization(organization)
-      .setDeidentifyTemplate(deidentifyTemplate)
+      .setInspectTemplate(inspectTemplate)
       .build();
   }
 
@@ -65,38 +65,38 @@ public class DeidentifyTemplateName implements ResourceName {
    * @deprecated Use {@link #of(String, String)} instead.
    */
   @Deprecated
-  public static DeidentifyTemplateName create(String organization, String deidentifyTemplate) {
-    return of(organization, deidentifyTemplate);
+  public static OrganizationInspectTemplateName create(String organization, String inspectTemplate) {
+    return of(organization, inspectTemplate);
   }
 
-  public static String format(String organization, String deidentifyTemplate) {
+  public static String format(String organization, String inspectTemplate) {
     return newBuilder()
       .setOrganization(organization)
-      .setDeidentifyTemplate(deidentifyTemplate)
+      .setInspectTemplate(inspectTemplate)
       .build()
       .toString();
   }
 
-  public static DeidentifyTemplateName parse(String formattedString) {
+  public static OrganizationInspectTemplateName parse(String formattedString) {
     if (formattedString.isEmpty()) {
       return null;
     }
     Map<String, String> matchMap =
-        PATH_TEMPLATE.validatedMatch(formattedString, "DeidentifyTemplateName.parse: formattedString not in valid format");
-    return of(matchMap.get("organization"), matchMap.get("deidentify_template"));
+        PATH_TEMPLATE.validatedMatch(formattedString, "OrganizationInspectTemplateName.parse: formattedString not in valid format");
+    return of(matchMap.get("organization"), matchMap.get("inspect_template"));
   }
 
-  public static List<DeidentifyTemplateName> parseList(List<String> formattedStrings) {
-    List<DeidentifyTemplateName> list = new ArrayList<>(formattedStrings.size());
+  public static List<OrganizationInspectTemplateName> parseList(List<String> formattedStrings) {
+    List<OrganizationInspectTemplateName> list = new ArrayList<>(formattedStrings.size());
     for (String formattedString : formattedStrings) {
       list.add(parse(formattedString));
     }
     return list;
   }
 
-  public static List<String> toStringList(List<DeidentifyTemplateName> values) {
+  public static List<String> toStringList(List<OrganizationInspectTemplateName> values) {
     List<String> list = new ArrayList<String>(values.size());
-    for (DeidentifyTemplateName value : values) {
+    for (OrganizationInspectTemplateName value : values) {
       if (value == null) {
         list.add("");
       } else {
@@ -112,26 +112,26 @@ public class DeidentifyTemplateName implements ResourceName {
 
   @Override
   public ResourceNameType getType() {
-    return DeidentifyTemplateNameType.instance();
+    return OrganizationInspectTemplateNameType.instance();
   }
 
   @Override
   public String toString() {
-    return PATH_TEMPLATE.instantiate("organization", organization, "deidentify_template", deidentifyTemplate);
+    return PATH_TEMPLATE.instantiate("organization", organization, "inspect_template", inspectTemplate);
   }
 
-  /** Builder for DeidentifyTemplateName. */
+  /** Builder for OrganizationInspectTemplateName. */
   public static class Builder {
 
     private String organization;
-    private String deidentifyTemplate;
+    private String inspectTemplate;
 
     public String getOrganization() {
       return organization;
     }
 
-    public String getDeidentifyTemplate() {
-      return deidentifyTemplate;
+    public String getInspectTemplate() {
+      return inspectTemplate;
     }
 
     public Builder setOrganization(String organization) {
@@ -139,21 +139,21 @@ public class DeidentifyTemplateName implements ResourceName {
       return this;
     }
 
-    public Builder setDeidentifyTemplate(String deidentifyTemplate) {
-      this.deidentifyTemplate = deidentifyTemplate;
+    public Builder setInspectTemplate(String inspectTemplate) {
+      this.inspectTemplate = inspectTemplate;
       return this;
     }
 
     private Builder() {
     }
 
-    private Builder(DeidentifyTemplateName deidentifyTemplateName) {
-      organization = deidentifyTemplateName.organization;
-      deidentifyTemplate = deidentifyTemplateName.deidentifyTemplate;
+    private Builder(OrganizationInspectTemplateName organizationInspectTemplateName) {
+      organization = organizationInspectTemplateName.organization;
+      inspectTemplate = organizationInspectTemplateName.inspectTemplate;
     }
 
-    public DeidentifyTemplateName build() {
-      return new DeidentifyTemplateName(this);
+    public OrganizationInspectTemplateName build() {
+      return new OrganizationInspectTemplateName(this);
     }
   }
 
@@ -162,10 +162,10 @@ public class DeidentifyTemplateName implements ResourceName {
     if (o == this) {
       return true;
     }
-    if (o instanceof DeidentifyTemplateName) {
-      DeidentifyTemplateName that = (DeidentifyTemplateName) o;
+    if (o instanceof OrganizationInspectTemplateName) {
+      OrganizationInspectTemplateName that = (OrganizationInspectTemplateName) o;
       return (this.organization.equals(that.organization))
-          && (this.deidentifyTemplate.equals(that.deidentifyTemplate));
+          && (this.inspectTemplate.equals(that.inspectTemplate));
     }
     return false;
   }
@@ -176,7 +176,7 @@ public class DeidentifyTemplateName implements ResourceName {
     h *= 1000003;
     h ^= organization.hashCode();
     h *= 1000003;
-    h ^= deidentifyTemplate.hashCode();
+    h ^= inspectTemplate.hashCode();
     return h;
   }
 }

@@ -9,8 +9,7 @@ package com.google.cloud.dialogflow.v2beta1;
  * `StreamingDetectIntent` method.
  * Multiple request messages should be sent in order:
  * 1.  The first message must contain `session`, `query_input` plus optionally
- *     `query_params` and/or `single_utterance`. The message must not contain
- *     `input_audio`.
+ *     `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
  * 2.  If `query_input` was set to a streaming input audio config,
  *     all subsequent messages must contain only `input_audio`.
  *     Otherwise, finish the request stream.
@@ -133,7 +132,10 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The name of the session the query is sent to.
    * Format of the session name:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+   * Note: Runtimes are under construction and will be available soon.
+   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
    * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
    * a random number or some type of user identifier (preferably hashed).
    * The length of the session ID must not exceed 36 characters.
@@ -157,7 +159,10 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The name of the session the query is sent to.
    * Format of the session name:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+   * Note: Runtimes are under construction and will be available soon.
+   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
    * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
    * a random number or some type of user identifier (preferably hashed).
    * The length of the session ID must not exceed 36 characters.
@@ -499,8 +504,7 @@ private static final long serialVersionUID = 0L;
    * `StreamingDetectIntent` method.
    * Multiple request messages should be sent in order:
    * 1.  The first message must contain `session`, `query_input` plus optionally
-   *     `query_params` and/or `single_utterance`. The message must not contain
-   *     `input_audio`.
+   *     `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
    * 2.  If `query_input` was set to a streaming input audio config,
    *     all subsequent messages must contain only `input_audio`.
    *     Otherwise, finish the request stream.
@@ -683,7 +687,10 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
      * a random number or some type of user identifier (preferably hashed).
      * The length of the session ID must not exceed 36 characters.
@@ -707,7 +714,10 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
      * a random number or some type of user identifier (preferably hashed).
      * The length of the session ID must not exceed 36 characters.
@@ -732,7 +742,10 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
      * a random number or some type of user identifier (preferably hashed).
      * The length of the session ID must not exceed 36 characters.
@@ -754,7 +767,10 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
      * a random number or some type of user identifier (preferably hashed).
      * The length of the session ID must not exceed 36 characters.
@@ -772,7 +788,10 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+     * Note: Runtimes are under construction and will be available soon.
+     * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
      * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
      * a random number or some type of user identifier (preferably hashed).
      * The length of the session ID must not exceed 36 characters.
