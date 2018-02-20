@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -19,7 +19,7 @@ import com.google.api.resourcenames.ResourceNameType;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class DeletedTopic implements ResourceName {
+public class DeletedTopic extends TopicName {
 
   private static final String FIXED_VALUE = "_deleted-topic_";
 
@@ -31,13 +31,16 @@ public class DeletedTopic implements ResourceName {
     return instance;
   }
 
-  @Override
-  public ResourceNameType getType() {
-    return DeletedTopicType.instance();
-  }
-
   public static boolean matches(String value) {
     return FIXED_VALUE.equals(value);
+  }
+
+  /**
+   * @deprecated This method is only present to satisfy the ResourceName interface.
+   */
+  @Deprecated
+  public ResourceNameType getType() {
+    throw new UnsupportedOperationException("DeletedTopic.getType() not supported");
   }
 
   @Override

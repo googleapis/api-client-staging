@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -18,27 +18,26 @@ import com.google.common.base.Preconditions;
 import com.google.api.pathtemplate.PathTemplate;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
-import java.io.IOException;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class SubscriptionName implements ResourceName {
+public class ProjectTopicName extends TopicName {
 
   private static final PathTemplate PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("projects/{project}/subscriptions/{subscription}");
+      PathTemplate.createWithoutUrlEncoding("projects/{project}/topics/{topic}");
 
   private final String project;
-  private final String subscription;
+  private final String topic;
 
   public String getProject() {
     return project;
   }
 
-  public String getSubscription() {
-    return subscription;
+  public String getTopic() {
+    return topic;
   }
 
   public static Builder newBuilder() {
@@ -49,54 +48,46 @@ public class SubscriptionName implements ResourceName {
     return new Builder(this);
   }
 
-  private SubscriptionName(Builder builder) {
+  private ProjectTopicName(Builder builder) {
     project = Preconditions.checkNotNull(builder.getProject());
-    subscription = Preconditions.checkNotNull(builder.getSubscription());
+    topic = Preconditions.checkNotNull(builder.getTopic());
   }
 
-  public static SubscriptionName of(String project, String subscription) {
+  public static ProjectTopicName of(String project, String topic) {
     return newBuilder()
       .setProject(project)
-      .setSubscription(subscription)
+      .setTopic(topic)
       .build();
   }
 
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static SubscriptionName create(String project, String subscription) {
-    return of(project, subscription);
-  }
-
-  public static String format(String project, String subscription) {
+  public static String format(String project, String topic) {
     return newBuilder()
       .setProject(project)
-      .setSubscription(subscription)
+      .setTopic(topic)
       .build()
       .toString();
   }
 
-  public static SubscriptionName parse(String formattedString) {
+  public static ProjectTopicName parse(String formattedString) {
     if (formattedString.isEmpty()) {
       return null;
     }
     Map<String, String> matchMap =
-        PATH_TEMPLATE.validatedMatch(formattedString, "SubscriptionName.parse: formattedString not in valid format");
-    return of(matchMap.get("project"), matchMap.get("subscription"));
+        PATH_TEMPLATE.validatedMatch(formattedString, "ProjectTopicName.parse: formattedString not in valid format");
+    return of(matchMap.get("project"), matchMap.get("topic"));
   }
 
-  public static List<SubscriptionName> parseList(List<String> formattedStrings) {
-    List<SubscriptionName> list = new ArrayList<>(formattedStrings.size());
+  public static List<ProjectTopicName> parseList(List<String> formattedStrings) {
+    List<ProjectTopicName> list = new ArrayList<>(formattedStrings.size());
     for (String formattedString : formattedStrings) {
       list.add(parse(formattedString));
     }
     return list;
   }
 
-  public static List<String> toStringList(List<SubscriptionName> values) {
+  public static List<String> toStringList(List<ProjectTopicName> values) {
     List<String> list = new ArrayList<String>(values.size());
-    for (SubscriptionName value : values) {
+    for (ProjectTopicName value : values) {
       if (value == null) {
         list.add("");
       } else {
@@ -110,28 +101,31 @@ public class SubscriptionName implements ResourceName {
     return PATH_TEMPLATE.matches(formattedString);
   }
 
-  @Override
+  /**
+   * @deprecated This method is only present to satisfy the ResourceName interface.
+   */
+  @Deprecated
   public ResourceNameType getType() {
-    return SubscriptionNameType.instance();
+    throw new UnsupportedOperationException("ProjectTopicName.getType() not supported");
   }
 
   @Override
   public String toString() {
-    return PATH_TEMPLATE.instantiate("project", project, "subscription", subscription);
+    return PATH_TEMPLATE.instantiate("project", project, "topic", topic);
   }
 
-  /** Builder for SubscriptionName. */
+  /** Builder for ProjectTopicName. */
   public static class Builder {
 
     private String project;
-    private String subscription;
+    private String topic;
 
     public String getProject() {
       return project;
     }
 
-    public String getSubscription() {
-      return subscription;
+    public String getTopic() {
+      return topic;
     }
 
     public Builder setProject(String project) {
@@ -139,21 +133,21 @@ public class SubscriptionName implements ResourceName {
       return this;
     }
 
-    public Builder setSubscription(String subscription) {
-      this.subscription = subscription;
+    public Builder setTopic(String topic) {
+      this.topic = topic;
       return this;
     }
 
     private Builder() {
     }
 
-    private Builder(SubscriptionName subscriptionName) {
-      project = subscriptionName.project;
-      subscription = subscriptionName.subscription;
+    private Builder(ProjectTopicName projectTopicName) {
+      project = projectTopicName.project;
+      topic = projectTopicName.topic;
     }
 
-    public SubscriptionName build() {
-      return new SubscriptionName(this);
+    public ProjectTopicName build() {
+      return new ProjectTopicName(this);
     }
   }
 
@@ -162,10 +156,10 @@ public class SubscriptionName implements ResourceName {
     if (o == this) {
       return true;
     }
-    if (o instanceof SubscriptionName) {
-      SubscriptionName that = (SubscriptionName) o;
+    if (o instanceof ProjectTopicName) {
+      ProjectTopicName that = (ProjectTopicName) o;
       return (this.project.equals(that.project))
-          && (this.subscription.equals(that.subscription));
+          && (this.topic.equals(that.topic));
     }
     return false;
   }
@@ -176,7 +170,7 @@ public class SubscriptionName implements ResourceName {
     h *= 1000003;
     h ^= project.hashCode();
     h *= 1000003;
-    h ^= subscription.hashCode();
+    h ^= topic.hashCode();
     return h;
   }
 }

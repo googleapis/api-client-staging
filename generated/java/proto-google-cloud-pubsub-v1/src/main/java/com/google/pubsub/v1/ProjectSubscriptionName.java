@@ -24,15 +24,20 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class ProjectName implements ResourceName {
+public class ProjectSubscriptionName implements ResourceName {
 
   private static final PathTemplate PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("projects/{project}");
+      PathTemplate.createWithoutUrlEncoding("projects/{project}/subscriptions/{subscription}");
 
   private final String project;
+  private final String subscription;
 
   public String getProject() {
     return project;
+  }
+
+  public String getSubscription() {
+    return subscription;
   }
 
   public static Builder newBuilder() {
@@ -43,43 +48,46 @@ public class ProjectName implements ResourceName {
     return new Builder(this);
   }
 
-  private ProjectName(Builder builder) {
+  private ProjectSubscriptionName(Builder builder) {
     project = Preconditions.checkNotNull(builder.getProject());
+    subscription = Preconditions.checkNotNull(builder.getSubscription());
   }
 
-  public static ProjectName of(String project) {
+  public static ProjectSubscriptionName of(String project, String subscription) {
     return newBuilder()
       .setProject(project)
+      .setSubscription(subscription)
       .build();
   }
 
-  public static String format(String project) {
+  public static String format(String project, String subscription) {
     return newBuilder()
       .setProject(project)
+      .setSubscription(subscription)
       .build()
       .toString();
   }
 
-  public static ProjectName parse(String formattedString) {
+  public static ProjectSubscriptionName parse(String formattedString) {
     if (formattedString.isEmpty()) {
       return null;
     }
     Map<String, String> matchMap =
-        PATH_TEMPLATE.validatedMatch(formattedString, "ProjectName.parse: formattedString not in valid format");
-    return of(matchMap.get("project"));
+        PATH_TEMPLATE.validatedMatch(formattedString, "ProjectSubscriptionName.parse: formattedString not in valid format");
+    return of(matchMap.get("project"), matchMap.get("subscription"));
   }
 
-  public static List<ProjectName> parseList(List<String> formattedStrings) {
-    List<ProjectName> list = new ArrayList<>(formattedStrings.size());
+  public static List<ProjectSubscriptionName> parseList(List<String> formattedStrings) {
+    List<ProjectSubscriptionName> list = new ArrayList<>(formattedStrings.size());
     for (String formattedString : formattedStrings) {
       list.add(parse(formattedString));
     }
     return list;
   }
 
-  public static List<String> toStringList(List<ProjectName> values) {
+  public static List<String> toStringList(List<ProjectSubscriptionName> values) {
     List<String> list = new ArrayList<String>(values.size());
-    for (ProjectName value : values) {
+    for (ProjectSubscriptionName value : values) {
       if (value == null) {
         list.add("");
       } else {
@@ -98,21 +106,26 @@ public class ProjectName implements ResourceName {
    */
   @Deprecated
   public ResourceNameType getType() {
-    throw new UnsupportedOperationException("ProjectName.getType() not supported");
+    throw new UnsupportedOperationException("ProjectSubscriptionName.getType() not supported");
   }
 
   @Override
   public String toString() {
-    return PATH_TEMPLATE.instantiate("project", project);
+    return PATH_TEMPLATE.instantiate("project", project, "subscription", subscription);
   }
 
-  /** Builder for ProjectName. */
+  /** Builder for ProjectSubscriptionName. */
   public static class Builder {
 
     private String project;
+    private String subscription;
 
     public String getProject() {
       return project;
+    }
+
+    public String getSubscription() {
+      return subscription;
     }
 
     public Builder setProject(String project) {
@@ -120,15 +133,21 @@ public class ProjectName implements ResourceName {
       return this;
     }
 
+    public Builder setSubscription(String subscription) {
+      this.subscription = subscription;
+      return this;
+    }
+
     private Builder() {
     }
 
-    private Builder(ProjectName projectName) {
-      project = projectName.project;
+    private Builder(ProjectSubscriptionName projectSubscriptionName) {
+      project = projectSubscriptionName.project;
+      subscription = projectSubscriptionName.subscription;
     }
 
-    public ProjectName build() {
-      return new ProjectName(this);
+    public ProjectSubscriptionName build() {
+      return new ProjectSubscriptionName(this);
     }
   }
 
@@ -137,9 +156,10 @@ public class ProjectName implements ResourceName {
     if (o == this) {
       return true;
     }
-    if (o instanceof ProjectName) {
-      ProjectName that = (ProjectName) o;
-      return (this.project.equals(that.project));
+    if (o instanceof ProjectSubscriptionName) {
+      ProjectSubscriptionName that = (ProjectSubscriptionName) o;
+      return (this.project.equals(that.project))
+          && (this.subscription.equals(that.subscription));
     }
     return false;
   }
@@ -149,6 +169,8 @@ public class ProjectName implements ResourceName {
     int h = 1;
     h *= 1000003;
     h ^= project.hashCode();
+    h *= 1000003;
+    h ^= subscription.hashCode();
     return h;
   }
 }

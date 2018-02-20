@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -18,14 +18,13 @@ import com.google.common.base.Preconditions;
 import com.google.api.pathtemplate.PathTemplate;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
-import java.io.IOException;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class SnapshotName implements ResourceName {
+public class ProjectSnapshotName implements ResourceName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/snapshots/{snapshot}");
@@ -49,24 +48,16 @@ public class SnapshotName implements ResourceName {
     return new Builder(this);
   }
 
-  private SnapshotName(Builder builder) {
+  private ProjectSnapshotName(Builder builder) {
     project = Preconditions.checkNotNull(builder.getProject());
     snapshot = Preconditions.checkNotNull(builder.getSnapshot());
   }
 
-  public static SnapshotName of(String project, String snapshot) {
+  public static ProjectSnapshotName of(String project, String snapshot) {
     return newBuilder()
       .setProject(project)
       .setSnapshot(snapshot)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static SnapshotName create(String project, String snapshot) {
-    return of(project, snapshot);
   }
 
   public static String format(String project, String snapshot) {
@@ -77,26 +68,26 @@ public class SnapshotName implements ResourceName {
       .toString();
   }
 
-  public static SnapshotName parse(String formattedString) {
+  public static ProjectSnapshotName parse(String formattedString) {
     if (formattedString.isEmpty()) {
       return null;
     }
     Map<String, String> matchMap =
-        PATH_TEMPLATE.validatedMatch(formattedString, "SnapshotName.parse: formattedString not in valid format");
+        PATH_TEMPLATE.validatedMatch(formattedString, "ProjectSnapshotName.parse: formattedString not in valid format");
     return of(matchMap.get("project"), matchMap.get("snapshot"));
   }
 
-  public static List<SnapshotName> parseList(List<String> formattedStrings) {
-    List<SnapshotName> list = new ArrayList<>(formattedStrings.size());
+  public static List<ProjectSnapshotName> parseList(List<String> formattedStrings) {
+    List<ProjectSnapshotName> list = new ArrayList<>(formattedStrings.size());
     for (String formattedString : formattedStrings) {
       list.add(parse(formattedString));
     }
     return list;
   }
 
-  public static List<String> toStringList(List<SnapshotName> values) {
+  public static List<String> toStringList(List<ProjectSnapshotName> values) {
     List<String> list = new ArrayList<String>(values.size());
-    for (SnapshotName value : values) {
+    for (ProjectSnapshotName value : values) {
       if (value == null) {
         list.add("");
       } else {
@@ -110,9 +101,12 @@ public class SnapshotName implements ResourceName {
     return PATH_TEMPLATE.matches(formattedString);
   }
 
-  @Override
+  /**
+   * @deprecated This method is only present to satisfy the ResourceName interface.
+   */
+  @Deprecated
   public ResourceNameType getType() {
-    return SnapshotNameType.instance();
+    throw new UnsupportedOperationException("ProjectSnapshotName.getType() not supported");
   }
 
   @Override
@@ -120,7 +114,7 @@ public class SnapshotName implements ResourceName {
     return PATH_TEMPLATE.instantiate("project", project, "snapshot", snapshot);
   }
 
-  /** Builder for SnapshotName. */
+  /** Builder for ProjectSnapshotName. */
   public static class Builder {
 
     private String project;
@@ -147,13 +141,13 @@ public class SnapshotName implements ResourceName {
     private Builder() {
     }
 
-    private Builder(SnapshotName snapshotName) {
-      project = snapshotName.project;
-      snapshot = snapshotName.snapshot;
+    private Builder(ProjectSnapshotName projectSnapshotName) {
+      project = projectSnapshotName.project;
+      snapshot = projectSnapshotName.snapshot;
     }
 
-    public SnapshotName build() {
-      return new SnapshotName(this);
+    public ProjectSnapshotName build() {
+      return new ProjectSnapshotName(this);
     }
   }
 
@@ -162,8 +156,8 @@ public class SnapshotName implements ResourceName {
     if (o == this) {
       return true;
     }
-    if (o instanceof SnapshotName) {
-      SnapshotName that = (SnapshotName) o;
+    if (o instanceof ProjectSnapshotName) {
+      ProjectSnapshotName that = (ProjectSnapshotName) o;
       return (this.project.equals(that.project))
           && (this.snapshot.equals(that.snapshot));
     }
