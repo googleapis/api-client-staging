@@ -261,23 +261,16 @@ public class BigtableInstanceAdminClientTest {
 
   @Test
   @SuppressWarnings("all")
-  public void partialUpdateInstanceTest() throws Exception {
-    InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
-    String displayName = "displayName1615086568";
-    Instance expectedResponse =
-        Instance.newBuilder().setName(name.toString()).setDisplayName(displayName).build();
-    Operation resultOperation =
-        Operation.newBuilder()
-            .setName("partialUpdateInstanceTest")
-            .setDone(true)
-            .setResponse(Any.pack(expectedResponse))
-            .build();
-    mockBigtableInstanceAdmin.addResponse(resultOperation);
+  public void partialUpdateInstanceTest() {
+    String name = "name3373707";
+    boolean done = true;
+    Operation expectedResponse = Operation.newBuilder().setName(name).setDone(done).build();
+    mockBigtableInstanceAdmin.addResponse(expectedResponse);
 
     Instance instance = Instance.newBuilder().build();
     FieldMask updateMask = FieldMask.newBuilder().build();
 
-    Instance actualResponse = client.partialUpdateInstanceAsync(instance, updateMask).get();
+    Operation actualResponse = client.partialUpdateInstance(instance, updateMask);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockBigtableInstanceAdmin.getRequests();
@@ -303,12 +296,10 @@ public class BigtableInstanceAdminClientTest {
       Instance instance = Instance.newBuilder().build();
       FieldMask updateMask = FieldMask.newBuilder().build();
 
-      client.partialUpdateInstanceAsync(instance, updateMask).get();
+      client.partialUpdateInstance(instance, updateMask);
       Assert.fail("No exception raised");
-    } catch (ExecutionException e) {
-      Assert.assertEquals(InvalidArgumentException.class, e.getCause().getClass());
-      InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
-      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 
@@ -672,24 +663,16 @@ public class BigtableInstanceAdminClientTest {
 
   @Test
   @SuppressWarnings("all")
-  public void updateAppProfileTest() throws Exception {
+  public void updateAppProfileTest() {
     String name = "name3373707";
-    String etag = "etag3123477";
-    String description = "description-1724546052";
-    AppProfile expectedResponse =
-        AppProfile.newBuilder().setName(name).setEtag(etag).setDescription(description).build();
-    Operation resultOperation =
-        Operation.newBuilder()
-            .setName("updateAppProfileTest")
-            .setDone(true)
-            .setResponse(Any.pack(expectedResponse))
-            .build();
-    mockBigtableInstanceAdmin.addResponse(resultOperation);
+    boolean done = true;
+    Operation expectedResponse = Operation.newBuilder().setName(name).setDone(done).build();
+    mockBigtableInstanceAdmin.addResponse(expectedResponse);
 
     AppProfile appProfile = AppProfile.newBuilder().build();
     FieldMask updateMask = FieldMask.newBuilder().build();
 
-    AppProfile actualResponse = client.updateAppProfileAsync(appProfile, updateMask).get();
+    Operation actualResponse = client.updateAppProfile(appProfile, updateMask);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockBigtableInstanceAdmin.getRequests();
@@ -714,12 +697,10 @@ public class BigtableInstanceAdminClientTest {
       AppProfile appProfile = AppProfile.newBuilder().build();
       FieldMask updateMask = FieldMask.newBuilder().build();
 
-      client.updateAppProfileAsync(appProfile, updateMask).get();
+      client.updateAppProfile(appProfile, updateMask);
       Assert.fail("No exception raised");
-    } catch (ExecutionException e) {
-      Assert.assertEquals(InvalidArgumentException.class, e.getCause().getClass());
-      InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
-      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 

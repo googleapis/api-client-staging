@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The response message for [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
+ * The response message for
+ * [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.ListSessionEntityTypesResponse}
@@ -364,7 +365,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The response message for [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
+   * The response message for
+   * [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2beta1.SessionEntityTypes.ListSessionEntityTypes].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.ListSessionEntityTypesResponse}

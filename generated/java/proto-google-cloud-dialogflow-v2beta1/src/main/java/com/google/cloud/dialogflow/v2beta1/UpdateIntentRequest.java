@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [Intents.UpdateIntent][google.cloud.dialogflow.v2beta1.Intents.UpdateIntent].
+ * The request message for
+ * [Intents.UpdateIntent][google.cloud.dialogflow.v2beta1.Intents.UpdateIntent].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.UpdateIntentRequest}
@@ -451,7 +452,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [Intents.UpdateIntent][google.cloud.dialogflow.v2beta1.Intents.UpdateIntent].
+   * The request message for
+   * [Intents.UpdateIntent][google.cloud.dialogflow.v2beta1.Intents.UpdateIntent].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.UpdateIntentRequest}

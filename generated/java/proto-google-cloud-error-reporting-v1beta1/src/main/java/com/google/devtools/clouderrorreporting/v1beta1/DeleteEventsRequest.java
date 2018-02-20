@@ -537,51 +537,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setProjectName(projectName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setProjectNameWithProjectName(com.google.devtools.clouderrorreporting.v1beta1.ProjectName value) {
-      if (value == null) {
-        return setProjectName("");
-      }
-      return setProjectName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ProjectName.parse(protoBuilder.getProjectName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.devtools.clouderrorreporting.v1beta1.ProjectName getProjectNameAsProjectName() {
-      java.lang.String str = getProjectName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.devtools.clouderrorreporting.v1beta1.ProjectName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ProjectName.parse(protoObject.getProjectName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.devtools.clouderrorreporting.v1beta1.ProjectName getProjectNameAsProjectName() {
-    java.lang.String str = getProjectName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.devtools.clouderrorreporting.v1beta1.ProjectName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest)
   private static final com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest DEFAULT_INSTANCE;
   static {

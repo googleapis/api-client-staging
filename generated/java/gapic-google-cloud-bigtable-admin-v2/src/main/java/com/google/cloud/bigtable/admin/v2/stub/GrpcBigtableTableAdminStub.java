@@ -44,7 +44,6 @@ import com.google.bigtable.admin.v2.ListTablesRequest;
 import com.google.bigtable.admin.v2.ListTablesResponse;
 import com.google.bigtable.admin.v2.ModifyColumnFamiliesRequest;
 import com.google.bigtable.admin.v2.Snapshot;
-import com.google.bigtable.admin.v2.SnapshotTableMetadata;
 import com.google.bigtable.admin.v2.SnapshotTableRequest;
 import com.google.bigtable.admin.v2.Table;
 import com.google.longrunning.Operation;
@@ -200,8 +199,6 @@ public class GrpcBigtableTableAdminStub extends BigtableTableAdminStub {
   private final UnaryCallable<CheckConsistencyRequest, CheckConsistencyResponse>
       checkConsistencyCallable;
   private final UnaryCallable<SnapshotTableRequest, Operation> snapshotTableCallable;
-  private final OperationCallable<SnapshotTableRequest, Snapshot, SnapshotTableMetadata>
-      snapshotTableOperationCallable;
   private final UnaryCallable<GetSnapshotRequest, Snapshot> getSnapshotCallable;
   private final UnaryCallable<ListSnapshotsRequest, ListSnapshotsResponse> listSnapshotsCallable;
   private final UnaryCallable<ListSnapshotsRequest, ListSnapshotsPagedResponse>
@@ -330,12 +327,6 @@ public class GrpcBigtableTableAdminStub extends BigtableTableAdminStub {
     this.snapshotTableCallable =
         GrpcCallableFactory.createUnaryCallable(
             snapshotTableTransportSettings, settings.snapshotTableSettings(), clientContext);
-    this.snapshotTableOperationCallable =
-        GrpcCallableFactory.createOperationCallable(
-            snapshotTableTransportSettings,
-            settings.snapshotTableOperationSettings(),
-            clientContext,
-            this.operationsStub);
     this.getSnapshotCallable =
         GrpcCallableFactory.createUnaryCallable(
             getSnapshotTransportSettings, settings.getSnapshotSettings(), clientContext);
@@ -402,11 +393,6 @@ public class GrpcBigtableTableAdminStub extends BigtableTableAdminStub {
   public UnaryCallable<CheckConsistencyRequest, CheckConsistencyResponse>
       checkConsistencyCallable() {
     return checkConsistencyCallable;
-  }
-
-  public OperationCallable<SnapshotTableRequest, Snapshot, SnapshotTableMetadata>
-      snapshotTableOperationCallable() {
-    return snapshotTableOperationCallable;
   }
 
   public UnaryCallable<SnapshotTableRequest, Operation> snapshotTableCallable() {

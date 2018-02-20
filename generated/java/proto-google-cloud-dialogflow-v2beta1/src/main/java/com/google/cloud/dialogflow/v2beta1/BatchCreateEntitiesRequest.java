@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [EntityTypes.BatchCreateEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchCreateEntities].
+ * The request message for
+ * [EntityTypes.BatchCreateEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchCreateEntities].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest}
@@ -426,7 +427,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [EntityTypes.BatchCreateEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchCreateEntities].
+   * The request message for
+   * [EntityTypes.BatchCreateEntities][google.cloud.dialogflow.v2beta1.EntityTypes.BatchCreateEntities].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest}
@@ -1139,51 +1141,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(entityTypeName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithEntityTypeName(com.google.cloud.dialogflow.v2beta1.EntityTypeName value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * EntityTypeName.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.dialogflow.v2beta1.EntityTypeName getParentAsEntityTypeName() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.dialogflow.v2beta1.EntityTypeName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * EntityTypeName.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.dialogflow.v2beta1.EntityTypeName getParentAsEntityTypeName() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.dialogflow.v2beta1.EntityTypeName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest)
   private static final com.google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest DEFAULT_INSTANCE;
   static {

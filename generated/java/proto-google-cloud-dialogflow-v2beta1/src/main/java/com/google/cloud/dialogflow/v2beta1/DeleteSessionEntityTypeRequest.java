@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityType].
+ * The request message for
+ * [SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityType].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest}
@@ -87,10 +88,7 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The name of the entity type to delete. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-   * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-   * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-   * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-   * is not specified, we assume default 'sandbox' runtime.
+   * Display Name&gt;`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -111,10 +109,7 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The name of the entity type to delete. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-   * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-   * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-   * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-   * is not specified, we assume default 'sandbox' runtime.
+   * Display Name&gt;`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -285,7 +280,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityType].
+   * The request message for
+   * [SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.DeleteSessionEntityType].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest}
@@ -425,10 +421,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the entity type to delete. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -449,10 +442,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the entity type to delete. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -474,10 +464,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the entity type to delete. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -496,10 +483,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the entity type to delete. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -514,10 +498,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the entity type to delete. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -544,51 +525,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(sessionEntityTypeName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithSessionEntityTypeName(com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * SessionEntityTypeName.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName getNameAsSessionEntityTypeName() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * SessionEntityTypeName.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName getNameAsSessionEntityTypeName() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.dialogflow.v2beta1.SessionEntityTypeName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest)
   private static final com.google.cloud.dialogflow.v2beta1.DeleteSessionEntityTypeRequest DEFAULT_INSTANCE;
   static {

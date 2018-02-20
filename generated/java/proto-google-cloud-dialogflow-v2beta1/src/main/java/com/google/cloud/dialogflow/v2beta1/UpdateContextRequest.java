@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [Contexts.UpdateContext][google.cloud.dialogflow.v2beta1.Contexts.UpdateContext].
+ * The request message for
+ * [Contexts.UpdateContext][google.cloud.dialogflow.v2beta1.Contexts.UpdateContext].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.UpdateContextRequest}
@@ -340,7 +341,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [Contexts.UpdateContext][google.cloud.dialogflow.v2beta1.Contexts.UpdateContext].
+   * The request message for
+   * [Contexts.UpdateContext][google.cloud.dialogflow.v2beta1.Contexts.UpdateContext].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.UpdateContextRequest}

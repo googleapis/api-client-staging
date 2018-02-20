@@ -52,10 +52,8 @@ import com.google.bigtable.admin.v2.ListInstancesRequest;
 import com.google.bigtable.admin.v2.ListInstancesResponse;
 import com.google.bigtable.admin.v2.PartialUpdateInstanceRequest;
 import com.google.bigtable.admin.v2.ProjectName;
-import com.google.bigtable.admin.v2.UpdateAppProfileMetadata;
 import com.google.bigtable.admin.v2.UpdateAppProfileRequest;
 import com.google.bigtable.admin.v2.UpdateClusterMetadata;
-import com.google.bigtable.admin.v2.UpdateInstanceMetadata;
 import com.google.cloud.bigtable.admin.v2.stub.BigtableInstanceAdminStub;
 import com.google.cloud.bigtable.admin.v2.stub.BigtableInstanceAdminStubSettings;
 import com.google.iam.v1.GetIamPolicyRequest;
@@ -239,7 +237,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
 
     CreateInstanceRequest request =
         CreateInstanceRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setInstanceId(instanceId)
             .setInstance(instance)
             .putAllClusters(clusters)
@@ -353,7 +351,8 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    */
   public final Instance getInstance(InstanceName name) {
 
-    GetInstanceRequest request = GetInstanceRequest.newBuilder().setName(name.toString()).build();
+    GetInstanceRequest request =
+        GetInstanceRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getInstance(request);
   }
 
@@ -422,7 +421,9 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final ListInstancesResponse listInstances(ProjectName parent) {
 
     ListInstancesRequest request =
-        ListInstancesRequest.newBuilder().setParent(parent.toString()).build();
+        ListInstancesRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listInstances(request);
   }
 
@@ -473,6 +474,63 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
+   * Updates an instance within a project.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (BigtableInstanceAdminClient bigtableInstanceAdminClient = BigtableInstanceAdminClient.create()) {
+   *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
+   *   String displayName = "";
+   *   Instance.Type type = Instance.Type.TYPE_UNSPECIFIED;
+   *   Map&lt;String, String&gt; labels = new HashMap&lt;&gt;();
+   *   Instance request = Instance.newBuilder()
+   *     .setName(name.toString())
+   *     .setDisplayName(displayName)
+   *     .setType(type)
+   *     .putAllLabels(labels)
+   *     .build();
+   *   Instance response = bigtableInstanceAdminClient.updateInstance(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final Instance updateInstance(Instance request) {
+    return updateInstanceCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates an instance within a project.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (BigtableInstanceAdminClient bigtableInstanceAdminClient = BigtableInstanceAdminClient.create()) {
+   *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
+   *   String displayName = "";
+   *   Instance.Type type = Instance.Type.TYPE_UNSPECIFIED;
+   *   Map&lt;String, String&gt; labels = new HashMap&lt;&gt;();
+   *   Instance request = Instance.newBuilder()
+   *     .setName(name.toString())
+   *     .setDisplayName(displayName)
+   *     .setType(type)
+   *     .putAllLabels(labels)
+   *     .build();
+   *   ApiFuture&lt;Instance&gt; future = bigtableInstanceAdminClient.updateInstanceCallable().futureCall(request);
+   *   // Do something
+   *   Instance response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<Instance, Instance> updateInstanceCallable() {
+    return stub.updateInstanceCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
    * Partially updates an instance within a project.
    *
    * <p>Sample code:
@@ -481,7 +539,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    * try (BigtableInstanceAdminClient bigtableInstanceAdminClient = BigtableInstanceAdminClient.create()) {
    *   Instance instance = Instance.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
-   *   Instance response = bigtableInstanceAdminClient.partialUpdateInstanceAsync(instance, updateMask).get();
+   *   Operation response = bigtableInstanceAdminClient.partialUpdateInstance(instance, updateMask);
    * }
    * </code></pre>
    *
@@ -490,15 +548,14 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    *     set.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, UpdateInstanceMetadata> partialUpdateInstanceAsync(
-      Instance instance, FieldMask updateMask) {
+  public final Operation partialUpdateInstance(Instance instance, FieldMask updateMask) {
 
     PartialUpdateInstanceRequest request =
         PartialUpdateInstanceRequest.newBuilder()
             .setInstance(instance)
             .setUpdateMask(updateMask)
             .build();
-    return partialUpdateInstanceAsync(request);
+    return partialUpdateInstance(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -515,41 +572,15 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    *     .setInstance(instance)
    *     .setUpdateMask(updateMask)
    *     .build();
-   *   Instance response = bigtableInstanceAdminClient.partialUpdateInstanceAsync(request).get();
+   *   Operation response = bigtableInstanceAdminClient.partialUpdateInstance(request);
    * }
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, UpdateInstanceMetadata> partialUpdateInstanceAsync(
-      PartialUpdateInstanceRequest request) {
-    return partialUpdateInstanceOperationCallable().futureCall(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Partially updates an instance within a project.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (BigtableInstanceAdminClient bigtableInstanceAdminClient = BigtableInstanceAdminClient.create()) {
-   *   Instance instance = Instance.newBuilder().build();
-   *   FieldMask updateMask = FieldMask.newBuilder().build();
-   *   PartialUpdateInstanceRequest request = PartialUpdateInstanceRequest.newBuilder()
-   *     .setInstance(instance)
-   *     .setUpdateMask(updateMask)
-   *     .build();
-   *   OperationFuture&lt;Operation&gt; future = bigtableInstanceAdminClient.partialUpdateInstanceOperationCallable().futureCall(request);
-   *   // Do something
-   *   Instance response = future.get();
-   * }
-   * </code></pre>
-   */
-  public final OperationCallable<PartialUpdateInstanceRequest, Instance, UpdateInstanceMetadata>
-      partialUpdateInstanceOperationCallable() {
-    return stub.partialUpdateInstanceOperationCallable();
+  public final Operation partialUpdateInstance(PartialUpdateInstanceRequest request) {
+    return partialUpdateInstanceCallable().call(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -597,7 +628,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final void deleteInstance(InstanceName name) {
 
     DeleteInstanceRequest request =
-        DeleteInstanceRequest.newBuilder().setName(name.toString()).build();
+        DeleteInstanceRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteInstance(request);
   }
 
@@ -673,7 +704,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
 
     CreateClusterRequest request =
         CreateClusterRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setClusterId(clusterId)
             .setCluster(cluster)
             .build();
@@ -780,7 +811,8 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    */
   public final Cluster getCluster(ClusterName name) {
 
-    GetClusterRequest request = GetClusterRequest.newBuilder().setName(name.toString()).build();
+    GetClusterRequest request =
+        GetClusterRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getCluster(request);
   }
 
@@ -851,7 +883,9 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final ListClustersResponse listClusters(InstanceName parent) {
 
     ListClustersRequest request =
-        ListClustersRequest.newBuilder().setParent(parent.toString()).build();
+        ListClustersRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listClusters(request);
   }
 
@@ -1000,7 +1034,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final void deleteCluster(ClusterName name) {
 
     DeleteClusterRequest request =
-        DeleteClusterRequest.newBuilder().setName(name.toString()).build();
+        DeleteClusterRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteCluster(request);
   }
 
@@ -1082,7 +1116,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
 
     CreateAppProfileRequest request =
         CreateAppProfileRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setAppProfileId(appProfileId)
             .setAppProfile(appProfile)
             .build();
@@ -1177,7 +1211,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final AppProfile getAppProfile(AppProfileName name) {
 
     GetAppProfileRequest request =
-        GetAppProfileRequest.newBuilder().setName(name.toString()).build();
+        GetAppProfileRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getAppProfile(request);
   }
 
@@ -1262,7 +1296,9 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    */
   public final ListAppProfilesPagedResponse listAppProfiles(InstanceName parent) {
     ListAppProfilesRequest request =
-        ListAppProfilesRequest.newBuilder().setParent(parent.toString()).build();
+        ListAppProfilesRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listAppProfiles(request);
   }
 
@@ -1378,7 +1414,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    * try (BigtableInstanceAdminClient bigtableInstanceAdminClient = BigtableInstanceAdminClient.create()) {
    *   AppProfile appProfile = AppProfile.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
-   *   AppProfile response = bigtableInstanceAdminClient.updateAppProfileAsync(appProfile, updateMask).get();
+   *   Operation response = bigtableInstanceAdminClient.updateAppProfile(appProfile, updateMask);
    * }
    * </code></pre>
    *
@@ -1387,15 +1423,14 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    *     fields will be replaced.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<AppProfile, UpdateAppProfileMetadata> updateAppProfileAsync(
-      AppProfile appProfile, FieldMask updateMask) {
+  public final Operation updateAppProfile(AppProfile appProfile, FieldMask updateMask) {
 
     UpdateAppProfileRequest request =
         UpdateAppProfileRequest.newBuilder()
             .setAppProfile(appProfile)
             .setUpdateMask(updateMask)
             .build();
-    return updateAppProfileAsync(request);
+    return updateAppProfile(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1417,46 +1452,15 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    *     .setAppProfile(appProfile)
    *     .setUpdateMask(updateMask)
    *     .build();
-   *   AppProfile response = bigtableInstanceAdminClient.updateAppProfileAsync(request).get();
+   *   Operation response = bigtableInstanceAdminClient.updateAppProfile(request);
    * }
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<AppProfile, UpdateAppProfileMetadata> updateAppProfileAsync(
-      UpdateAppProfileRequest request) {
-    return updateAppProfileOperationCallable().futureCall(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Updates an app profile within an instance.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (BigtableInstanceAdminClient bigtableInstanceAdminClient = BigtableInstanceAdminClient.create()) {
-   *   AppProfile appProfile = AppProfile.newBuilder().build();
-   *   FieldMask updateMask = FieldMask.newBuilder().build();
-   *   UpdateAppProfileRequest request = UpdateAppProfileRequest.newBuilder()
-   *     .setAppProfile(appProfile)
-   *     .setUpdateMask(updateMask)
-   *     .build();
-   *   OperationFuture&lt;Operation&gt; future = bigtableInstanceAdminClient.updateAppProfileOperationCallable().futureCall(request);
-   *   // Do something
-   *   AppProfile response = future.get();
-   * }
-   * </code></pre>
-   */
-  public final OperationCallable<UpdateAppProfileRequest, AppProfile, UpdateAppProfileMetadata>
-      updateAppProfileOperationCallable() {
-    return stub.updateAppProfileOperationCallable();
+  public final Operation updateAppProfile(UpdateAppProfileRequest request) {
+    return updateAppProfileCallable().call(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1513,7 +1517,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
   public final void deleteAppProfile(AppProfileName name) {
 
     DeleteAppProfileRequest request =
-        DeleteAppProfileRequest.newBuilder().setName(name.toString()).build();
+        DeleteAppProfileRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteAppProfile(request);
   }
 

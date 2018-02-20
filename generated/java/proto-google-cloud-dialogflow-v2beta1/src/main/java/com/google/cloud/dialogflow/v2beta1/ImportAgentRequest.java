@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [Agents.ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent].
+ * The request message for
+ * [Agents.ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.ImportAgentRequest}
@@ -177,6 +178,8 @@ private static final long serialVersionUID = 0L;
   public static final int AGENT_URI_FIELD_NUMBER = 2;
   /**
    * <pre>
+   * Warning: Importing agents from a URI is not implemented yet.
+   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing the agent to import.
    * Note: The URI must start with "gs://".
    * </pre>
@@ -202,6 +205,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
+   * Warning: Importing agents from a URI is not implemented yet.
+   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing the agent to import.
    * Note: The URI must start with "gs://".
    * </pre>
@@ -447,7 +452,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [Agents.ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent].
+   * The request message for
+   * [Agents.ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.ImportAgentRequest}
@@ -717,6 +723,8 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
+     * Warning: Importing agents from a URI is not implemented yet.
+     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to import.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -742,6 +750,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * Warning: Importing agents from a URI is not implemented yet.
+     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to import.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -768,6 +778,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * Warning: Importing agents from a URI is not implemented yet.
+     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to import.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -786,6 +798,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * Warning: Importing agents from a URI is not implemented yet.
+     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to import.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -802,6 +816,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * Warning: Importing agents from a URI is not implemented yet.
+     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to import.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -908,51 +924,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(projectName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithProjectName(com.google.cloud.dialogflow.v2beta1.ProjectName value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ProjectName.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.dialogflow.v2beta1.ProjectName getParentAsProjectName() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.dialogflow.v2beta1.ProjectName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.ImportAgentRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ProjectName.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.dialogflow.v2beta1.ProjectName getParentAsProjectName() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.dialogflow.v2beta1.ProjectName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.ImportAgentRequest)
   private static final com.google.cloud.dialogflow.v2beta1.ImportAgentRequest DEFAULT_INSTANCE;
   static {

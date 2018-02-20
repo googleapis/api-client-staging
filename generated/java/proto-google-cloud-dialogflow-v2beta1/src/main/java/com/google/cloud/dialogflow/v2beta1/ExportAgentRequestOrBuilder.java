@@ -29,6 +29,8 @@ public interface ExportAgentRequestOrBuilder extends
 
   /**
    * <pre>
+   * Warning: Exporting agents to a URI is not implemented yet.
+   * This feature is coming soon.
    * Optional. The Google Cloud Storage URI to export the agent to.
    * Note: The URI must start with
    * "gs://". If left unspecified, the serialized agent is returned inline.
@@ -39,6 +41,8 @@ public interface ExportAgentRequestOrBuilder extends
   java.lang.String getAgentUri();
   /**
    * <pre>
+   * Warning: Exporting agents to a URI is not implemented yet.
+   * This feature is coming soon.
    * Optional. The Google Cloud Storage URI to export the agent to.
    * Note: The URI must start with
    * "gs://". If left unspecified, the serialized agent is returned inline.

@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
+ * The request message for
+ * [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.SearchAgentsRequest}
@@ -367,7 +368,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
+   * The request message for
+   * [Agents.SearchAgents][google.cloud.dialogflow.v2beta1.Agents.SearchAgents].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.SearchAgentsRequest}
@@ -749,51 +751,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(projectName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithProjectName(com.google.cloud.dialogflow.v2beta1.ProjectName value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ProjectName.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.dialogflow.v2beta1.ProjectName getParentAsProjectName() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.dialogflow.v2beta1.ProjectName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.SearchAgentsRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ProjectName.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.dialogflow.v2beta1.ProjectName getParentAsProjectName() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.dialogflow.v2beta1.ProjectName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.SearchAgentsRequest)
   private static final com.google.cloud.dialogflow.v2beta1.SearchAgentsRequest DEFAULT_INSTANCE;
   static {

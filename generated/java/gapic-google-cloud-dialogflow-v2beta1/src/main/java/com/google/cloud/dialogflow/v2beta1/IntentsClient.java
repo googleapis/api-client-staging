@@ -192,7 +192,9 @@ public class IntentsClient implements BackgroundResource {
    */
   public final ListIntentsPagedResponse listIntents(ProjectAgentName parent) {
     ListIntentsRequest request =
-        ListIntentsRequest.newBuilder().setParent(parent.toString()).build();
+        ListIntentsRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listIntents(request);
   }
 
@@ -223,7 +225,7 @@ public class IntentsClient implements BackgroundResource {
   public final ListIntentsPagedResponse listIntents(ProjectAgentName parent, String languageCode) {
     ListIntentsRequest request =
         ListIntentsRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setLanguageCode(languageCode)
             .build();
     return listIntents(request);
@@ -329,7 +331,8 @@ public class IntentsClient implements BackgroundResource {
    */
   public final Intent getIntent(IntentName name) {
 
-    GetIntentRequest request = GetIntentRequest.newBuilder().setName(name.toString()).build();
+    GetIntentRequest request =
+        GetIntentRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getIntent(request);
   }
 
@@ -359,7 +362,7 @@ public class IntentsClient implements BackgroundResource {
 
     GetIntentRequest request =
         GetIntentRequest.newBuilder()
-            .setName(name.toString())
+            .setName(name == null ? null : name.toString())
             .setLanguageCode(languageCode)
             .build();
     return getIntent(request);
@@ -432,7 +435,10 @@ public class IntentsClient implements BackgroundResource {
   public final Intent createIntent(ProjectAgentName parent, Intent intent) {
 
     CreateIntentRequest request =
-        CreateIntentRequest.newBuilder().setParent(parent.toString()).setIntent(intent).build();
+        CreateIntentRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .setIntent(intent)
+            .build();
     return createIntent(request);
   }
 
@@ -464,7 +470,7 @@ public class IntentsClient implements BackgroundResource {
 
     CreateIntentRequest request =
         CreateIntentRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .setIntent(intent)
             .setLanguageCode(languageCode)
             .build();
@@ -652,7 +658,8 @@ public class IntentsClient implements BackgroundResource {
    */
   public final void deleteIntent(IntentName name) {
 
-    DeleteIntentRequest request = DeleteIntentRequest.newBuilder().setName(name.toString()).build();
+    DeleteIntentRequest request =
+        DeleteIntentRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteIntent(request);
   }
 
@@ -812,7 +819,7 @@ public class IntentsClient implements BackgroundResource {
 
     BatchDeleteIntentsRequest request =
         BatchDeleteIntentsRequest.newBuilder()
-            .setParent(parent.toString())
+            .setParent(parent == null ? null : parent.toString())
             .addAllIntents(intents)
             .build();
     return batchDeleteIntentsAsync(request);

@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The response message for [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.ListEntityTypes].
+ * The response message for
+ * [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.ListEntityTypes].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.ListEntityTypesResponse}
@@ -364,7 +365,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The response message for [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.ListEntityTypes].
+   * The response message for
+   * [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2beta1.EntityTypes.ListEntityTypes].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.ListEntityTypesResponse}

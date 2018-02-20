@@ -170,15 +170,14 @@ public class ContextsClient implements BackgroundResource {
    * </code></pre>
    *
    * @param parent Required. The session to list all contexts from. Format: `projects/&lt;Project
-   *     ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-   *     ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-   *     under construction and will be available soon. If &lt;Runtime ID&gt; is not specified, we
-   *     assume default 'sandbox' runtime.
+   *     ID&gt;/agent/sessions/&lt;Session ID&gt;`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListContextsPagedResponse listContexts(SessionName parent) {
     ListContextsRequest request =
-        ListContextsRequest.newBuilder().setParent(parent.toString()).build();
+        ListContextsRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return listContexts(request);
   }
 
@@ -277,16 +276,13 @@ public class ContextsClient implements BackgroundResource {
    * </code></pre>
    *
    * @param name Required. The name of the context. Format: `projects/&lt;Project
-   *     ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;` or
-   *     `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-   *     ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will be
-   *     available soon. If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox'
-   *     runtime.
+   *     ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Context getContext(ContextName name) {
 
-    GetContextRequest request = GetContextRequest.newBuilder().setName(name.toString()).build();
+    GetContextRequest request =
+        GetContextRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     return getContext(request);
   }
 
@@ -350,17 +346,17 @@ public class ContextsClient implements BackgroundResource {
    * </code></pre>
    *
    * @param parent Required. The session to create a context for. Format: `projects/&lt;Project
-   *     ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-   *     ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-   *     under construction and will be available soon. If &lt;Runtime ID&gt; is not specified, we
-   *     assume default 'sandbox' runtime.
+   *     ID&gt;/agent/sessions/&lt;Session ID&gt;`.
    * @param context Required. The context to create.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Context createContext(SessionName parent, Context context) {
 
     CreateContextRequest request =
-        CreateContextRequest.newBuilder().setParent(parent.toString()).setContext(context).build();
+        CreateContextRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .setContext(context)
+            .build();
     return createContext(request);
   }
 
@@ -494,17 +490,13 @@ public class ContextsClient implements BackgroundResource {
    * </code></pre>
    *
    * @param name Required. The name of the context to delete. Format: `projects/&lt;Project
-   *     ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;` or
-   *     `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-   *     ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will be
-   *     available soon. If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox'
-   *     runtime.
+   *     ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final void deleteContext(ContextName name) {
 
     DeleteContextRequest request =
-        DeleteContextRequest.newBuilder().setName(name.toString()).build();
+        DeleteContextRequest.newBuilder().setName(name == null ? null : name.toString()).build();
     deleteContext(request);
   }
 
@@ -567,16 +559,15 @@ public class ContextsClient implements BackgroundResource {
    * </code></pre>
    *
    * @param parent Required. The name of the session to delete all contexts from. Format:
-   *     `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-   *     ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-   *     under construction and will be available soon. If &lt;Runtime ID&gt; is not specified we
-   *     assume default 'sandbox' runtime.
+   *     `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final void deleteAllContexts(SessionName parent) {
 
     DeleteAllContextsRequest request =
-        DeleteAllContextsRequest.newBuilder().setParent(parent.toString()).build();
+        DeleteAllContextsRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     deleteAllContexts(request);
   }
 

@@ -189,7 +189,8 @@ public class AgentsClient implements BackgroundResource {
    */
   public final Agent getAgent(ProjectName parent) {
 
-    GetAgentRequest request = GetAgentRequest.newBuilder().setParent(parent.toString()).build();
+    GetAgentRequest request =
+        GetAgentRequest.newBuilder().setParent(parent == null ? null : parent.toString()).build();
     return getAgent(request);
   }
 
@@ -264,7 +265,9 @@ public class AgentsClient implements BackgroundResource {
    */
   public final SearchAgentsPagedResponse searchAgents(ProjectName parent) {
     SearchAgentsRequest request =
-        SearchAgentsRequest.newBuilder().setParent(parent.toString()).build();
+        SearchAgentsRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return searchAgents(request);
   }
 
@@ -386,7 +389,8 @@ public class AgentsClient implements BackgroundResource {
    */
   public final OperationFuture<Empty, Struct> trainAgentAsync(ProjectName parent) {
 
-    TrainAgentRequest request = TrainAgentRequest.newBuilder().setParent(parent.toString()).build();
+    TrainAgentRequest request =
+        TrainAgentRequest.newBuilder().setParent(parent == null ? null : parent.toString()).build();
     return trainAgentAsync(request);
   }
 
@@ -490,7 +494,9 @@ public class AgentsClient implements BackgroundResource {
   public final OperationFuture<ExportAgentResponse, Struct> exportAgentAsync(ProjectName parent) {
 
     ExportAgentRequest request =
-        ExportAgentRequest.newBuilder().setParent(parent.toString()).build();
+        ExportAgentRequest.newBuilder()
+            .setParent(parent == null ? null : parent.toString())
+            .build();
     return exportAgentAsync(request);
   }
 

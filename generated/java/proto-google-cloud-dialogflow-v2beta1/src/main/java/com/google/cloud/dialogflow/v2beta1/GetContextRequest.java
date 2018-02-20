@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [Contexts.GetContext][google.cloud.dialogflow.v2beta1.Contexts.GetContext].
+ * The request message for
+ * [Contexts.GetContext][google.cloud.dialogflow.v2beta1.Contexts.GetContext].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.GetContextRequest}
@@ -86,11 +87,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Required. The name of the context. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
-   * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-   * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
-   * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
-   * 'sandbox' runtime.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -110,11 +107,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Required. The name of the context. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
-   * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-   * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
-   * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
-   * 'sandbox' runtime.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -285,7 +278,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [Contexts.GetContext][google.cloud.dialogflow.v2beta1.Contexts.GetContext].
+   * The request message for
+   * [Contexts.GetContext][google.cloud.dialogflow.v2beta1.Contexts.GetContext].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.GetContextRequest}
@@ -424,11 +418,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the context. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
-     * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-     * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
-     * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
-     * 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -448,11 +438,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the context. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
-     * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-     * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
-     * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
-     * 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -473,11 +459,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the context. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
-     * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-     * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
-     * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
-     * 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -495,11 +477,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the context. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
-     * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-     * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
-     * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
-     * 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -513,11 +491,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the context. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`
-     * or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-     * ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will
-     * be available soon. If &lt;Runtime ID&gt; is not specified, we assume default
-     * 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -544,51 +518,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(contextName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithContextName(com.google.cloud.dialogflow.v2beta1.ContextName value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ContextName.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.dialogflow.v2beta1.ContextName getNameAsContextName() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.dialogflow.v2beta1.ContextName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.GetContextRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ContextName.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.dialogflow.v2beta1.ContextName getNameAsContextName() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.dialogflow.v2beta1.ContextName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.GetContextRequest)
   private static final com.google.cloud.dialogflow.v2beta1.GetContextRequest DEFAULT_INSTANCE;
   static {

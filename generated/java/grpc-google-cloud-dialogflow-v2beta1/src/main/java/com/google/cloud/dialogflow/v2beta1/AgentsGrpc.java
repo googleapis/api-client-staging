@@ -161,7 +161,8 @@ public final class AgentsGrpc {
     /**
      * <pre>
      * Exports the specified agent to a ZIP file.
-     * Operation &lt;response: [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
+     * Operation &lt;response:
+     * [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
      *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
@@ -314,7 +315,8 @@ public final class AgentsGrpc {
     /**
      * <pre>
      * Exports the specified agent to a ZIP file.
-     * Operation &lt;response: [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
+     * Operation &lt;response:
+     * [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
      *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
@@ -420,7 +422,8 @@ public final class AgentsGrpc {
     /**
      * <pre>
      * Exports the specified agent to a ZIP file.
-     * Operation &lt;response: [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
+     * Operation &lt;response:
+     * [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
      *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
@@ -526,7 +529,8 @@ public final class AgentsGrpc {
     /**
      * <pre>
      * Exports the specified agent to a ZIP file.
-     * Operation &lt;response: [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
+     * Operation &lt;response:
+     * [ExportAgentResponse][google.cloud.dialogflow.v2beta1.ExportAgentResponse],
      *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */

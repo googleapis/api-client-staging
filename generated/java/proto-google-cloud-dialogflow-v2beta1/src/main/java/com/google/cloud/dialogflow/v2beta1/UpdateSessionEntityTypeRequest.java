@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityType].
+ * The request message for
+ * [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityType].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.UpdateSessionEntityTypeRequest}
@@ -106,10 +107,7 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The entity type to update. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-   * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-   * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-   * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-   * is not specified, we assume default 'sandbox' runtime.
+   * Display Name&gt;`.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -121,10 +119,7 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The entity type to update. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-   * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-   * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-   * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-   * is not specified, we assume default 'sandbox' runtime.
+   * Display Name&gt;`.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -136,10 +131,7 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The entity type to update. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-   * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-   * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-   * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-   * is not specified, we assume default 'sandbox' runtime.
+   * Display Name&gt;`.
    * </pre>
    *
    * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -355,7 +347,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityType].
+   * The request message for
+   * [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityTypes.UpdateSessionEntityType].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.UpdateSessionEntityTypeRequest}
@@ -518,10 +511,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -533,10 +523,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -552,10 +539,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -577,10 +561,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -600,10 +581,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -627,10 +605,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -650,10 +625,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -667,10 +639,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>
@@ -687,10 +656,7 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The entity type to update. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type
-     * Display Name&gt;` or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-     * ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note:
-     * Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt;
-     * is not specified, we assume default 'sandbox' runtime.
+     * Display Name&gt;`.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.SessionEntityType session_entity_type = 1;</code>

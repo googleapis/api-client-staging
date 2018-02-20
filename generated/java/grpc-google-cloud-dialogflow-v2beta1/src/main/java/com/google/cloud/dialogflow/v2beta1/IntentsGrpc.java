@@ -183,7 +183,8 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Updates/Creates multiple intents in the specified agent.
-     * Operation &lt;response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
+     * Operation &lt;response:
+     * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
      * </pre>
      */
     public void batchUpdateIntents(com.google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest request,
@@ -339,7 +340,8 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Updates/Creates multiple intents in the specified agent.
-     * Operation &lt;response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
+     * Operation &lt;response:
+     * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
      * </pre>
      */
     public void batchUpdateIntents(com.google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest request,
@@ -438,7 +440,8 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Updates/Creates multiple intents in the specified agent.
-     * Operation &lt;response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
+     * Operation &lt;response:
+     * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
      * </pre>
      */
     public com.google.longrunning.Operation batchUpdateIntents(com.google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest request) {
@@ -540,7 +543,8 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Updates/Creates multiple intents in the specified agent.
-     * Operation &lt;response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
+     * Operation &lt;response:
+     * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> batchUpdateIntents(

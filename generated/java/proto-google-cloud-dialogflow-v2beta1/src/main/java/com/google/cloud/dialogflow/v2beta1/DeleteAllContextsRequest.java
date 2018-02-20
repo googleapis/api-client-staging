@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
+ * The request message for
+ * [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest}
@@ -86,10 +87,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Required. The name of the session to delete all contexts from. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-   * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-   * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-   * specified we assume default 'sandbox' runtime.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
    * </pre>
    *
    * <code>string parent = 1;</code>
@@ -109,10 +107,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Required. The name of the session to delete all contexts from. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-   * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-   * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-   * specified we assume default 'sandbox' runtime.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
    * </pre>
    *
    * <code>string parent = 1;</code>
@@ -283,7 +278,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
+   * The request message for
+   * [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2beta1.Contexts.DeleteAllContexts].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest}
@@ -422,10 +418,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -445,10 +438,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -469,10 +459,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -490,10 +477,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -507,10 +491,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -537,51 +518,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(sessionName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithSessionName(com.google.cloud.dialogflow.v2beta1.SessionName value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * SessionName.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.dialogflow.v2beta1.SessionName getParentAsSessionName() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.dialogflow.v2beta1.SessionName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * SessionName.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.dialogflow.v2beta1.SessionName getParentAsSessionName() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.dialogflow.v2beta1.SessionName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest)
   private static final com.google.cloud.dialogflow.v2beta1.DeleteAllContextsRequest DEFAULT_INSTANCE;
   static {

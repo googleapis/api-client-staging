@@ -893,51 +893,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(userName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithUserName(com.google.cloud.oslogin.v1.UserName value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * UserName.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.cloud.oslogin.v1.UserName getParentAsUserName() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.cloud.oslogin.v1.UserName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.cloud.oslogin.v1.ImportSshPublicKeyRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * UserName.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.cloud.oslogin.v1.UserName getParentAsUserName() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.cloud.oslogin.v1.UserName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.cloud.oslogin.v1.ImportSshPublicKeyRequest)
   private static final com.google.cloud.oslogin.v1.ImportSshPublicKeyRequest DEFAULT_INSTANCE;
   static {

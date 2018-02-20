@@ -10,13 +10,8 @@ public interface ContextOrBuilder extends
   /**
    * <pre>
    * Required. The unique identifier of the context. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`,
-   * or
-   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-   * ID&gt;/contexts/&lt;Context ID&gt;`.
-   * Note: Runtimes are under construction and will be available soon.
-   * The Context ID is always converted to lowercase.
-   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * Note: The Context ID is always converted to lowercase.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -25,13 +20,8 @@ public interface ContextOrBuilder extends
   /**
    * <pre>
    * Required. The unique identifier of the context. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`,
-   * or
-   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-   * ID&gt;/contexts/&lt;Context ID&gt;`.
-   * Note: Runtimes are under construction and will be available soon.
-   * The Context ID is always converted to lowercase.
-   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.
+   * Note: The Context ID is always converted to lowercase.
    * </pre>
    *
    * <code>string name = 1;</code>

@@ -46,10 +46,8 @@ import com.google.bigtable.admin.v2.ListClustersResponse;
 import com.google.bigtable.admin.v2.ListInstancesRequest;
 import com.google.bigtable.admin.v2.ListInstancesResponse;
 import com.google.bigtable.admin.v2.PartialUpdateInstanceRequest;
-import com.google.bigtable.admin.v2.UpdateAppProfileMetadata;
 import com.google.bigtable.admin.v2.UpdateAppProfileRequest;
 import com.google.bigtable.admin.v2.UpdateClusterMetadata;
-import com.google.bigtable.admin.v2.UpdateInstanceMetadata;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -100,6 +98,13 @@ public class GrpcBigtableInstanceAdminStub extends BigtableInstanceAdminStub {
               .setResponseMarshaller(
                   ProtoUtils.marshaller(ListInstancesResponse.getDefaultInstance()))
               .build();
+  private static final MethodDescriptor<Instance, Instance> updateInstanceMethodDescriptor =
+      MethodDescriptor.<Instance, Instance>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.bigtable.admin.v2.BigtableInstanceAdmin/UpdateInstance")
+          .setRequestMarshaller(ProtoUtils.marshaller(Instance.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Instance.getDefaultInstance()))
+          .build();
   private static final MethodDescriptor<PartialUpdateInstanceRequest, Operation>
       partialUpdateInstanceMethodDescriptor =
           MethodDescriptor.<PartialUpdateInstanceRequest, Operation>newBuilder()
@@ -238,10 +243,9 @@ public class GrpcBigtableInstanceAdminStub extends BigtableInstanceAdminStub {
       createInstanceOperationCallable;
   private final UnaryCallable<GetInstanceRequest, Instance> getInstanceCallable;
   private final UnaryCallable<ListInstancesRequest, ListInstancesResponse> listInstancesCallable;
+  private final UnaryCallable<Instance, Instance> updateInstanceCallable;
   private final UnaryCallable<PartialUpdateInstanceRequest, Operation>
       partialUpdateInstanceCallable;
-  private final OperationCallable<PartialUpdateInstanceRequest, Instance, UpdateInstanceMetadata>
-      partialUpdateInstanceOperationCallable;
   private final UnaryCallable<DeleteInstanceRequest, Empty> deleteInstanceCallable;
   private final UnaryCallable<CreateClusterRequest, Operation> createClusterCallable;
   private final OperationCallable<CreateClusterRequest, Cluster, CreateClusterMetadata>
@@ -259,8 +263,6 @@ public class GrpcBigtableInstanceAdminStub extends BigtableInstanceAdminStub {
   private final UnaryCallable<ListAppProfilesRequest, ListAppProfilesPagedResponse>
       listAppProfilesPagedCallable;
   private final UnaryCallable<UpdateAppProfileRequest, Operation> updateAppProfileCallable;
-  private final OperationCallable<UpdateAppProfileRequest, AppProfile, UpdateAppProfileMetadata>
-      updateAppProfileOperationCallable;
   private final UnaryCallable<DeleteAppProfileRequest, Empty> deleteAppProfileCallable;
   private final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
   private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
@@ -298,6 +300,10 @@ public class GrpcBigtableInstanceAdminStub extends BigtableInstanceAdminStub {
     GrpcCallSettings<ListInstancesRequest, ListInstancesResponse> listInstancesTransportSettings =
         GrpcCallSettings.<ListInstancesRequest, ListInstancesResponse>newBuilder()
             .setMethodDescriptor(listInstancesMethodDescriptor)
+            .build();
+    GrpcCallSettings<Instance, Instance> updateInstanceTransportSettings =
+        GrpcCallSettings.<Instance, Instance>newBuilder()
+            .setMethodDescriptor(updateInstanceMethodDescriptor)
             .build();
     GrpcCallSettings<PartialUpdateInstanceRequest, Operation>
         partialUpdateInstanceTransportSettings =
@@ -378,17 +384,14 @@ public class GrpcBigtableInstanceAdminStub extends BigtableInstanceAdminStub {
     this.listInstancesCallable =
         GrpcCallableFactory.createUnaryCallable(
             listInstancesTransportSettings, settings.listInstancesSettings(), clientContext);
+    this.updateInstanceCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            updateInstanceTransportSettings, settings.updateInstanceSettings(), clientContext);
     this.partialUpdateInstanceCallable =
         GrpcCallableFactory.createUnaryCallable(
             partialUpdateInstanceTransportSettings,
             settings.partialUpdateInstanceSettings(),
             clientContext);
-    this.partialUpdateInstanceOperationCallable =
-        GrpcCallableFactory.createOperationCallable(
-            partialUpdateInstanceTransportSettings,
-            settings.partialUpdateInstanceOperationSettings(),
-            clientContext,
-            this.operationsStub);
     this.deleteInstanceCallable =
         GrpcCallableFactory.createUnaryCallable(
             deleteInstanceTransportSettings, settings.deleteInstanceSettings(), clientContext);
@@ -434,12 +437,6 @@ public class GrpcBigtableInstanceAdminStub extends BigtableInstanceAdminStub {
     this.updateAppProfileCallable =
         GrpcCallableFactory.createUnaryCallable(
             updateAppProfileTransportSettings, settings.updateAppProfileSettings(), clientContext);
-    this.updateAppProfileOperationCallable =
-        GrpcCallableFactory.createOperationCallable(
-            updateAppProfileTransportSettings,
-            settings.updateAppProfileOperationSettings(),
-            clientContext,
-            this.operationsStub);
     this.deleteAppProfileCallable =
         GrpcCallableFactory.createUnaryCallable(
             deleteAppProfileTransportSettings, settings.deleteAppProfileSettings(), clientContext);
@@ -479,9 +476,8 @@ public class GrpcBigtableInstanceAdminStub extends BigtableInstanceAdminStub {
     return listInstancesCallable;
   }
 
-  public OperationCallable<PartialUpdateInstanceRequest, Instance, UpdateInstanceMetadata>
-      partialUpdateInstanceOperationCallable() {
-    return partialUpdateInstanceOperationCallable;
+  public UnaryCallable<Instance, Instance> updateInstanceCallable() {
+    return updateInstanceCallable;
   }
 
   public UnaryCallable<PartialUpdateInstanceRequest, Operation> partialUpdateInstanceCallable() {
@@ -537,11 +533,6 @@ public class GrpcBigtableInstanceAdminStub extends BigtableInstanceAdminStub {
 
   public UnaryCallable<ListAppProfilesRequest, ListAppProfilesResponse> listAppProfilesCallable() {
     return listAppProfilesCallable;
-  }
-
-  public OperationCallable<UpdateAppProfileRequest, AppProfile, UpdateAppProfileMetadata>
-      updateAppProfileOperationCallable() {
-    return updateAppProfileOperationCallable;
   }
 
   public UnaryCallable<UpdateAppProfileRequest, Operation> updateAppProfileCallable() {

@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The response message for [Intents.ListIntents][google.cloud.dialogflow.v2beta1.Intents.ListIntents].
+ * The response message for
+ * [Intents.ListIntents][google.cloud.dialogflow.v2beta1.Intents.ListIntents].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.ListIntentsResponse}
@@ -364,7 +365,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The response message for [Intents.ListIntents][google.cloud.dialogflow.v2beta1.Intents.ListIntents].
+   * The response message for
+   * [Intents.ListIntents][google.cloud.dialogflow.v2beta1.Intents.ListIntents].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.ListIntentsResponse}

@@ -29,6 +29,8 @@ public interface BatchUpdateEntityTypesRequestOrBuilder extends
 
   /**
    * <pre>
+   * Warning: Importing entity types from a URI is not implemented yet.
+   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing entity types to update
    * or create. The file format can either be a serialized proto (of
    * EntityBatch type) or a JSON object. Note: The URI must start with
@@ -40,6 +42,8 @@ public interface BatchUpdateEntityTypesRequestOrBuilder extends
   java.lang.String getEntityTypeBatchUri();
   /**
    * <pre>
+   * Warning: Importing entity types from a URI is not implemented yet.
+   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing entity types to update
    * or create. The file format can either be a serialized proto (of
    * EntityBatch type) or a JSON object. Note: The URI must start with
