@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for
- * [Agents.TrainAgent][google.cloud.dialogflow.v2beta1.Agents.TrainAgent].
+ * The request message for [Agents.TrainAgent][google.cloud.dialogflow.v2beta1.Agents.TrainAgent].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.TrainAgentRequest}
@@ -278,8 +277,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for
-   * [Agents.TrainAgent][google.cloud.dialogflow.v2beta1.Agents.TrainAgent].
+   * The request message for [Agents.TrainAgent][google.cloud.dialogflow.v2beta1.Agents.TrainAgent].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.TrainAgentRequest}

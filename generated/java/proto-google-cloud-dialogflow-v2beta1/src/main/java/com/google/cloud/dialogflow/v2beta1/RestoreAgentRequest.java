@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for
- * [Agents.RestoreAgent][google.cloud.dialogflow.v2beta1.Agents.RestoreAgent].
+ * The request message for [Agents.RestoreAgent][google.cloud.dialogflow.v2beta1.Agents.RestoreAgent].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.RestoreAgentRequest}
@@ -178,8 +177,6 @@ private static final long serialVersionUID = 0L;
   public static final int AGENT_URI_FIELD_NUMBER = 2;
   /**
    * <pre>
-   * Warning: Restoring agents from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing the agent to restore.
    * Note: The URI must start with "gs://".
    * </pre>
@@ -205,8 +202,6 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Warning: Restoring agents from a URI is not implemented yet.
-   * This feature is coming soon.
    * The URI to a Google Cloud Storage file containing the agent to restore.
    * Note: The URI must start with "gs://".
    * </pre>
@@ -452,8 +447,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for
-   * [Agents.RestoreAgent][google.cloud.dialogflow.v2beta1.Agents.RestoreAgent].
+   * The request message for [Agents.RestoreAgent][google.cloud.dialogflow.v2beta1.Agents.RestoreAgent].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.RestoreAgentRequest}
@@ -723,8 +717,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * Warning: Restoring agents from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to restore.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -750,8 +742,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Restoring agents from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to restore.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -778,8 +768,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Restoring agents from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to restore.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -798,8 +786,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Restoring agents from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to restore.
      * Note: The URI must start with "gs://".
      * </pre>
@@ -816,8 +802,6 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Warning: Restoring agents from a URI is not implemented yet.
-     * This feature is coming soon.
      * The URI to a Google Cloud Storage file containing the agent to restore.
      * Note: The URI must start with "gs://".
      * </pre>

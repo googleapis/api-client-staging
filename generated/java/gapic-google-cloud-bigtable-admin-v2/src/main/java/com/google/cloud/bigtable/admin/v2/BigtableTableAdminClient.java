@@ -49,6 +49,7 @@ import com.google.bigtable.admin.v2.ModifyColumnFamiliesRequest;
 import com.google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification;
 import com.google.bigtable.admin.v2.Snapshot;
 import com.google.bigtable.admin.v2.SnapshotName;
+import com.google.bigtable.admin.v2.SnapshotTableMetadata;
 import com.google.bigtable.admin.v2.SnapshotTableRequest;
 import com.google.bigtable.admin.v2.Table;
 import com.google.bigtable.admin.v2.TableName;
@@ -1022,15 +1023,51 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *     .setSnapshotId(snapshotId)
    *     .setDescription(description)
    *     .build();
-   *   Operation response = bigtableTableAdminClient.snapshotTable(request);
+   *   Snapshot response = bigtableTableAdminClient.snapshotTableAsync(request).get();
    * }
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final Operation snapshotTable(SnapshotTableRequest request) {
-    return snapshotTableCallable().call(request);
+  public final OperationFuture<Snapshot, SnapshotTableMetadata> snapshotTableAsync(
+      SnapshotTableRequest request) {
+    return snapshotTableOperationCallable().futureCall(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
+   * available to most Cloud Bigtable customers. This feature might be changed in
+   * backward-incompatible ways and is not recommended for production use. It is not subject to any
+   * SLA or deprecation policy.
+   *
+   * <p>Creates a new snapshot in the specified cluster from the specified source table. The cluster
+   * and the table must be in the same instance.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
+   *   TableName name = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   String cluster = "";
+   *   String snapshotId = "";
+   *   String description = "";
+   *   SnapshotTableRequest request = SnapshotTableRequest.newBuilder()
+   *     .setName(name.toString())
+   *     .setCluster(cluster)
+   *     .setSnapshotId(snapshotId)
+   *     .setDescription(description)
+   *     .build();
+   *   OperationFuture&lt;Operation&gt; future = bigtableTableAdminClient.snapshotTableOperationCallable().futureCall(request);
+   *   // Do something
+   *   Snapshot response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final OperationCallable<SnapshotTableRequest, Snapshot, SnapshotTableMetadata>
+      snapshotTableOperationCallable() {
+    return stub.snapshotTableOperationCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD

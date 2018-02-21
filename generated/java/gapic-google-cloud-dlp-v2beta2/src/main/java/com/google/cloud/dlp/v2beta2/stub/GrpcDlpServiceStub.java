@@ -18,6 +18,7 @@ package com.google.cloud.dlp.v2beta2.stub;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListDeidentifyTemplatesPagedResponse;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListDlpJobsPagedResponse;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListInspectTemplatesPagedResponse;
+import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListJobTriggersPagedResponse;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
@@ -36,14 +37,17 @@ import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
 import com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.DeleteDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.DeleteInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DlpJob;
 import com.google.privacy.dlp.v2beta2.GetDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.GetDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.GetInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.GetJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentResponse;
 import com.google.privacy.dlp.v2beta2.InspectDataSourceRequest;
 import com.google.privacy.dlp.v2beta2.InspectTemplate;
+import com.google.privacy.dlp.v2beta2.JobTrigger;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesResponse;
 import com.google.privacy.dlp.v2beta2.ListDlpJobsRequest;
@@ -52,12 +56,15 @@ import com.google.privacy.dlp.v2beta2.ListInfoTypesRequest;
 import com.google.privacy.dlp.v2beta2.ListInfoTypesResponse;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesResponse;
+import com.google.privacy.dlp.v2beta2.ListJobTriggersRequest;
+import com.google.privacy.dlp.v2beta2.ListJobTriggersResponse;
 import com.google.privacy.dlp.v2beta2.RedactImageRequest;
 import com.google.privacy.dlp.v2beta2.RedactImageResponse;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.UpdateInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest;
 import com.google.protobuf.Empty;
 import io.grpc.MethodDescriptor;
 import io.grpc.protobuf.ProtoUtils;
@@ -266,6 +273,43 @@ public class GrpcDlpServiceStub extends DlpServiceStub {
           .setRequestMarshaller(ProtoUtils.marshaller(CancelDlpJobRequest.getDefaultInstance()))
           .setResponseMarshaller(ProtoUtils.marshaller(Empty.getDefaultInstance()))
           .build();
+  private static final MethodDescriptor<ListJobTriggersRequest, ListJobTriggersResponse>
+      listJobTriggersMethodDescriptor =
+          MethodDescriptor.<ListJobTriggersRequest, ListJobTriggersResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.privacy.dlp.v2beta2.DlpService/ListJobTriggers")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(ListJobTriggersRequest.getDefaultInstance()))
+              .setResponseMarshaller(
+                  ProtoUtils.marshaller(ListJobTriggersResponse.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<GetJobTriggerRequest, JobTrigger>
+      getJobTriggerMethodDescriptor =
+          MethodDescriptor.<GetJobTriggerRequest, JobTrigger>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.privacy.dlp.v2beta2.DlpService/GetJobTrigger")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(GetJobTriggerRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(JobTrigger.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<DeleteJobTriggerRequest, Empty>
+      deleteJobTriggerMethodDescriptor =
+          MethodDescriptor.<DeleteJobTriggerRequest, Empty>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.privacy.dlp.v2beta2.DlpService/DeleteJobTrigger")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(DeleteJobTriggerRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(Empty.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<UpdateJobTriggerRequest, JobTrigger>
+      updateJobTriggerMethodDescriptor =
+          MethodDescriptor.<UpdateJobTriggerRequest, JobTrigger>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.privacy.dlp.v2beta2.DlpService/UpdateJobTrigger")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(UpdateJobTriggerRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(JobTrigger.getDefaultInstance()))
+              .build();
 
   private final BackgroundResource backgroundResources;
 
@@ -307,6 +351,13 @@ public class GrpcDlpServiceStub extends DlpServiceStub {
   private final UnaryCallable<GetDlpJobRequest, DlpJob> getDlpJobCallable;
   private final UnaryCallable<DeleteDlpJobRequest, Empty> deleteDlpJobCallable;
   private final UnaryCallable<CancelDlpJobRequest, Empty> cancelDlpJobCallable;
+  private final UnaryCallable<ListJobTriggersRequest, ListJobTriggersResponse>
+      listJobTriggersCallable;
+  private final UnaryCallable<ListJobTriggersRequest, ListJobTriggersPagedResponse>
+      listJobTriggersPagedCallable;
+  private final UnaryCallable<GetJobTriggerRequest, JobTrigger> getJobTriggerCallable;
+  private final UnaryCallable<DeleteJobTriggerRequest, Empty> deleteJobTriggerCallable;
+  private final UnaryCallable<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerCallable;
 
   public static final GrpcDlpServiceStub create(DlpServiceStubSettings settings)
       throws IOException {
@@ -422,6 +473,23 @@ public class GrpcDlpServiceStub extends DlpServiceStub {
         GrpcCallSettings.<CancelDlpJobRequest, Empty>newBuilder()
             .setMethodDescriptor(cancelDlpJobMethodDescriptor)
             .build();
+    GrpcCallSettings<ListJobTriggersRequest, ListJobTriggersResponse>
+        listJobTriggersTransportSettings =
+            GrpcCallSettings.<ListJobTriggersRequest, ListJobTriggersResponse>newBuilder()
+                .setMethodDescriptor(listJobTriggersMethodDescriptor)
+                .build();
+    GrpcCallSettings<GetJobTriggerRequest, JobTrigger> getJobTriggerTransportSettings =
+        GrpcCallSettings.<GetJobTriggerRequest, JobTrigger>newBuilder()
+            .setMethodDescriptor(getJobTriggerMethodDescriptor)
+            .build();
+    GrpcCallSettings<DeleteJobTriggerRequest, Empty> deleteJobTriggerTransportSettings =
+        GrpcCallSettings.<DeleteJobTriggerRequest, Empty>newBuilder()
+            .setMethodDescriptor(deleteJobTriggerMethodDescriptor)
+            .build();
+    GrpcCallSettings<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerTransportSettings =
+        GrpcCallSettings.<UpdateJobTriggerRequest, JobTrigger>newBuilder()
+            .setMethodDescriptor(updateJobTriggerMethodDescriptor)
+            .build();
 
     this.inspectContentCallable =
         GrpcCallableFactory.createUnaryCallable(
@@ -527,6 +595,21 @@ public class GrpcDlpServiceStub extends DlpServiceStub {
     this.cancelDlpJobCallable =
         GrpcCallableFactory.createUnaryCallable(
             cancelDlpJobTransportSettings, settings.cancelDlpJobSettings(), clientContext);
+    this.listJobTriggersCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            listJobTriggersTransportSettings, settings.listJobTriggersSettings(), clientContext);
+    this.listJobTriggersPagedCallable =
+        GrpcCallableFactory.createPagedCallable(
+            listJobTriggersTransportSettings, settings.listJobTriggersSettings(), clientContext);
+    this.getJobTriggerCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            getJobTriggerTransportSettings, settings.getJobTriggerSettings(), clientContext);
+    this.deleteJobTriggerCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            deleteJobTriggerTransportSettings, settings.deleteJobTriggerSettings(), clientContext);
+    this.updateJobTriggerCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            updateJobTriggerTransportSettings, settings.updateJobTriggerSettings(), clientContext);
 
     backgroundResources = new BackgroundResourceAggregation(clientContext.getBackgroundResources());
   }
@@ -636,6 +719,27 @@ public class GrpcDlpServiceStub extends DlpServiceStub {
 
   public UnaryCallable<CancelDlpJobRequest, Empty> cancelDlpJobCallable() {
     return cancelDlpJobCallable;
+  }
+
+  public UnaryCallable<ListJobTriggersRequest, ListJobTriggersPagedResponse>
+      listJobTriggersPagedCallable() {
+    return listJobTriggersPagedCallable;
+  }
+
+  public UnaryCallable<ListJobTriggersRequest, ListJobTriggersResponse> listJobTriggersCallable() {
+    return listJobTriggersCallable;
+  }
+
+  public UnaryCallable<GetJobTriggerRequest, JobTrigger> getJobTriggerCallable() {
+    return getJobTriggerCallable;
+  }
+
+  public UnaryCallable<DeleteJobTriggerRequest, Empty> deleteJobTriggerCallable() {
+    return deleteJobTriggerCallable;
+  }
+
+  public UnaryCallable<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerCallable() {
+    return updateJobTriggerCallable;
   }
 
   @Override

@@ -5,8 +5,7 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for
- * [Intents.GetIntent][google.cloud.dialogflow.v2beta1.Intents.GetIntent].
+ * The request message for [Intents.GetIntent][google.cloud.dialogflow.v2beta1.Intents.GetIntent].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.GetIntentRequest}
@@ -386,8 +385,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The request message for
-   * [Intents.GetIntent][google.cloud.dialogflow.v2beta1.Intents.GetIntent].
+   * The request message for [Intents.GetIntent][google.cloud.dialogflow.v2beta1.Intents.GetIntent].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.GetIntentRequest}

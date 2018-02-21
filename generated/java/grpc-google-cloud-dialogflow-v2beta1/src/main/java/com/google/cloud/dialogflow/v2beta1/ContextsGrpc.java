@@ -17,10 +17,21 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 
 /**
  * <pre>
- * Manages contexts.
- * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
- * for more details about contexts.
- * #
+ * A context represents additional information included with user input or with
+ * an intent returned by the Dialogflow API. Contexts are helpful for
+ * differentiating user input which may be vague or have a different meaning
+ * depending on additional details from your application such as user setting
+ * and preferences, previous user input, where the user is in your application,
+ * geographic location, and so on.
+ * You can include contexts as input parameters of a
+ * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+ * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+ * or as output contexts included in the returned intent.
+ * Contexts expire when an intent is matched, after the number of `DetectIntent`
+ * requests specified by the `lifespan_count` parameter, or after 10 minutes
+ * if no intents are matched for a `DetectIntent` request.
+ * For more information about contexts, see the
+ * [Dialogflow documentation](https://dialogflow.com/docs/contexts).
  * </pre>
  */
 @javax.annotation.Generated(
@@ -113,10 +124,21 @@ public final class ContextsGrpc {
 
   /**
    * <pre>
-   * Manages contexts.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
-   * for more details about contexts.
-   * #
+   * A context represents additional information included with user input or with
+   * an intent returned by the Dialogflow API. Contexts are helpful for
+   * differentiating user input which may be vague or have a different meaning
+   * depending on additional details from your application such as user setting
+   * and preferences, previous user input, where the user is in your application,
+   * geographic location, and so on.
+   * You can include contexts as input parameters of a
+   * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+   * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+   * or as output contexts included in the returned intent.
+   * Contexts expire when an intent is matched, after the number of `DetectIntent`
+   * requests specified by the `lifespan_count` parameter, or after 10 minutes
+   * if no intents are matched for a `DetectIntent` request.
+   * For more information about contexts, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/contexts).
    * </pre>
    */
   public static abstract class ContextsImplBase implements io.grpc.BindableService {
@@ -231,10 +253,21 @@ public final class ContextsGrpc {
 
   /**
    * <pre>
-   * Manages contexts.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
-   * for more details about contexts.
-   * #
+   * A context represents additional information included with user input or with
+   * an intent returned by the Dialogflow API. Contexts are helpful for
+   * differentiating user input which may be vague or have a different meaning
+   * depending on additional details from your application such as user setting
+   * and preferences, previous user input, where the user is in your application,
+   * geographic location, and so on.
+   * You can include contexts as input parameters of a
+   * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+   * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+   * or as output contexts included in the returned intent.
+   * Contexts expire when an intent is matched, after the number of `DetectIntent`
+   * requests specified by the `lifespan_count` parameter, or after 10 minutes
+   * if no intents are matched for a `DetectIntent` request.
+   * For more information about contexts, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/contexts).
    * </pre>
    */
   public static final class ContextsStub extends io.grpc.stub.AbstractStub<ContextsStub> {
@@ -322,10 +355,21 @@ public final class ContextsGrpc {
 
   /**
    * <pre>
-   * Manages contexts.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
-   * for more details about contexts.
-   * #
+   * A context represents additional information included with user input or with
+   * an intent returned by the Dialogflow API. Contexts are helpful for
+   * differentiating user input which may be vague or have a different meaning
+   * depending on additional details from your application such as user setting
+   * and preferences, previous user input, where the user is in your application,
+   * geographic location, and so on.
+   * You can include contexts as input parameters of a
+   * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+   * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+   * or as output contexts included in the returned intent.
+   * Contexts expire when an intent is matched, after the number of `DetectIntent`
+   * requests specified by the `lifespan_count` parameter, or after 10 minutes
+   * if no intents are matched for a `DetectIntent` request.
+   * For more information about contexts, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/contexts).
    * </pre>
    */
   public static final class ContextsBlockingStub extends io.grpc.stub.AbstractStub<ContextsBlockingStub> {
@@ -407,10 +451,21 @@ public final class ContextsGrpc {
 
   /**
    * <pre>
-   * Manages contexts.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
-   * for more details about contexts.
-   * #
+   * A context represents additional information included with user input or with
+   * an intent returned by the Dialogflow API. Contexts are helpful for
+   * differentiating user input which may be vague or have a different meaning
+   * depending on additional details from your application such as user setting
+   * and preferences, previous user input, where the user is in your application,
+   * geographic location, and so on.
+   * You can include contexts as input parameters of a
+   * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
+   * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) request,
+   * or as output contexts included in the returned intent.
+   * Contexts expire when an intent is matched, after the number of `DetectIntent`
+   * requests specified by the `lifespan_count` parameter, or after 10 minutes
+   * if no intents are matched for a `DetectIntent` request.
+   * For more information about contexts, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/contexts).
    * </pre>
    */
   public static final class ContextsFutureStub extends io.grpc.stub.AbstractStub<ContextsFutureStub> {

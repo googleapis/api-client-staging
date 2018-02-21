@@ -78,6 +78,20 @@ private static final long serialVersionUID = 0L;
             typeCase_ = 2;
             break;
           }
+          case 26: {
+            com.google.privacy.dlp.v2beta2.BigQueryKey.Builder subBuilder = null;
+            if (typeCase_ == 3) {
+              subBuilder = ((com.google.privacy.dlp.v2beta2.BigQueryKey) type_).toBuilder();
+            }
+            type_ =
+                input.readMessage(com.google.privacy.dlp.v2beta2.BigQueryKey.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((com.google.privacy.dlp.v2beta2.BigQueryKey) type_);
+              type_ = subBuilder.buildPartial();
+            }
+            typeCase_ = 3;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -108,6 +122,7 @@ private static final long serialVersionUID = 0L;
       implements com.google.protobuf.Internal.EnumLite {
     CLOUD_STORAGE_KEY(1),
     DATASTORE_KEY(2),
+    BIG_QUERY_KEY(3),
     TYPE_NOT_SET(0);
     private final int value;
     private TypeCase(int value) {
@@ -125,6 +140,7 @@ private static final long serialVersionUID = 0L;
       switch (value) {
         case 1: return CLOUD_STORAGE_KEY;
         case 2: return DATASTORE_KEY;
+        case 3: return BIG_QUERY_KEY;
         case 0: return TYPE_NOT_SET;
         default: return null;
       }
@@ -192,6 +208,32 @@ private static final long serialVersionUID = 0L;
     return com.google.privacy.dlp.v2beta2.DatastoreKey.getDefaultInstance();
   }
 
+  public static final int BIG_QUERY_KEY_FIELD_NUMBER = 3;
+  /**
+   * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+   */
+  public boolean hasBigQueryKey() {
+    return typeCase_ == 3;
+  }
+  /**
+   * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+   */
+  public com.google.privacy.dlp.v2beta2.BigQueryKey getBigQueryKey() {
+    if (typeCase_ == 3) {
+       return (com.google.privacy.dlp.v2beta2.BigQueryKey) type_;
+    }
+    return com.google.privacy.dlp.v2beta2.BigQueryKey.getDefaultInstance();
+  }
+  /**
+   * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+   */
+  public com.google.privacy.dlp.v2beta2.BigQueryKeyOrBuilder getBigQueryKeyOrBuilder() {
+    if (typeCase_ == 3) {
+       return (com.google.privacy.dlp.v2beta2.BigQueryKey) type_;
+    }
+    return com.google.privacy.dlp.v2beta2.BigQueryKey.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -210,6 +252,9 @@ private static final long serialVersionUID = 0L;
     if (typeCase_ == 2) {
       output.writeMessage(2, (com.google.privacy.dlp.v2beta2.DatastoreKey) type_);
     }
+    if (typeCase_ == 3) {
+      output.writeMessage(3, (com.google.privacy.dlp.v2beta2.BigQueryKey) type_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -225,6 +270,10 @@ private static final long serialVersionUID = 0L;
     if (typeCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, (com.google.privacy.dlp.v2beta2.DatastoreKey) type_);
+    }
+    if (typeCase_ == 3) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, (com.google.privacy.dlp.v2beta2.BigQueryKey) type_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -254,6 +303,10 @@ private static final long serialVersionUID = 0L;
         result = result && getDatastoreKey()
             .equals(other.getDatastoreKey());
         break;
+      case 3:
+        result = result && getBigQueryKey()
+            .equals(other.getBigQueryKey());
+        break;
       case 0:
       default:
     }
@@ -276,6 +329,10 @@ private static final long serialVersionUID = 0L;
       case 2:
         hash = (37 * hash) + DATASTORE_KEY_FIELD_NUMBER;
         hash = (53 * hash) + getDatastoreKey().hashCode();
+        break;
+      case 3:
+        hash = (37 * hash) + BIG_QUERY_KEY_FIELD_NUMBER;
+        hash = (53 * hash) + getBigQueryKey().hashCode();
         break;
       case 0:
       default:
@@ -451,6 +508,13 @@ private static final long serialVersionUID = 0L;
           result.type_ = datastoreKeyBuilder_.build();
         }
       }
+      if (typeCase_ == 3) {
+        if (bigQueryKeyBuilder_ == null) {
+          result.type_ = type_;
+        } else {
+          result.type_ = bigQueryKeyBuilder_.build();
+        }
+      }
       result.typeCase_ = typeCase_;
       onBuilt();
       return result;
@@ -500,6 +564,10 @@ private static final long serialVersionUID = 0L;
         }
         case DATASTORE_KEY: {
           mergeDatastoreKey(other.getDatastoreKey());
+          break;
+        }
+        case BIG_QUERY_KEY: {
+          mergeBigQueryKey(other.getBigQueryKey());
           break;
         }
         case TYPE_NOT_SET: {
@@ -818,6 +886,142 @@ private static final long serialVersionUID = 0L;
       typeCase_ = 2;
       onChanged();;
       return datastoreKeyBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta2.BigQueryKey, com.google.privacy.dlp.v2beta2.BigQueryKey.Builder, com.google.privacy.dlp.v2beta2.BigQueryKeyOrBuilder> bigQueryKeyBuilder_;
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    public boolean hasBigQueryKey() {
+      return typeCase_ == 3;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.BigQueryKey getBigQueryKey() {
+      if (bigQueryKeyBuilder_ == null) {
+        if (typeCase_ == 3) {
+          return (com.google.privacy.dlp.v2beta2.BigQueryKey) type_;
+        }
+        return com.google.privacy.dlp.v2beta2.BigQueryKey.getDefaultInstance();
+      } else {
+        if (typeCase_ == 3) {
+          return bigQueryKeyBuilder_.getMessage();
+        }
+        return com.google.privacy.dlp.v2beta2.BigQueryKey.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    public Builder setBigQueryKey(com.google.privacy.dlp.v2beta2.BigQueryKey value) {
+      if (bigQueryKeyBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        type_ = value;
+        onChanged();
+      } else {
+        bigQueryKeyBuilder_.setMessage(value);
+      }
+      typeCase_ = 3;
+      return this;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    public Builder setBigQueryKey(
+        com.google.privacy.dlp.v2beta2.BigQueryKey.Builder builderForValue) {
+      if (bigQueryKeyBuilder_ == null) {
+        type_ = builderForValue.build();
+        onChanged();
+      } else {
+        bigQueryKeyBuilder_.setMessage(builderForValue.build());
+      }
+      typeCase_ = 3;
+      return this;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    public Builder mergeBigQueryKey(com.google.privacy.dlp.v2beta2.BigQueryKey value) {
+      if (bigQueryKeyBuilder_ == null) {
+        if (typeCase_ == 3 &&
+            type_ != com.google.privacy.dlp.v2beta2.BigQueryKey.getDefaultInstance()) {
+          type_ = com.google.privacy.dlp.v2beta2.BigQueryKey.newBuilder((com.google.privacy.dlp.v2beta2.BigQueryKey) type_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          type_ = value;
+        }
+        onChanged();
+      } else {
+        if (typeCase_ == 3) {
+          bigQueryKeyBuilder_.mergeFrom(value);
+        }
+        bigQueryKeyBuilder_.setMessage(value);
+      }
+      typeCase_ = 3;
+      return this;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    public Builder clearBigQueryKey() {
+      if (bigQueryKeyBuilder_ == null) {
+        if (typeCase_ == 3) {
+          typeCase_ = 0;
+          type_ = null;
+          onChanged();
+        }
+      } else {
+        if (typeCase_ == 3) {
+          typeCase_ = 0;
+          type_ = null;
+        }
+        bigQueryKeyBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.BigQueryKey.Builder getBigQueryKeyBuilder() {
+      return getBigQueryKeyFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.BigQueryKeyOrBuilder getBigQueryKeyOrBuilder() {
+      if ((typeCase_ == 3) && (bigQueryKeyBuilder_ != null)) {
+        return bigQueryKeyBuilder_.getMessageOrBuilder();
+      } else {
+        if (typeCase_ == 3) {
+          return (com.google.privacy.dlp.v2beta2.BigQueryKey) type_;
+        }
+        return com.google.privacy.dlp.v2beta2.BigQueryKey.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta2.BigQueryKey, com.google.privacy.dlp.v2beta2.BigQueryKey.Builder, com.google.privacy.dlp.v2beta2.BigQueryKeyOrBuilder> 
+        getBigQueryKeyFieldBuilder() {
+      if (bigQueryKeyBuilder_ == null) {
+        if (!(typeCase_ == 3)) {
+          type_ = com.google.privacy.dlp.v2beta2.BigQueryKey.getDefaultInstance();
+        }
+        bigQueryKeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.privacy.dlp.v2beta2.BigQueryKey, com.google.privacy.dlp.v2beta2.BigQueryKey.Builder, com.google.privacy.dlp.v2beta2.BigQueryKeyOrBuilder>(
+                (com.google.privacy.dlp.v2beta2.BigQueryKey) type_,
+                getParentForChildren(),
+                isClean());
+        type_ = null;
+      }
+      typeCase_ = 3;
+      onChanged();;
+      return bigQueryKeyBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

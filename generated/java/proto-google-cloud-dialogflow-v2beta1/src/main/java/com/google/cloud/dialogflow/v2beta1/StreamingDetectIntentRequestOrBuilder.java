@@ -11,7 +11,10 @@ public interface StreamingDetectIntentRequestOrBuilder extends
    * <pre>
    * Required. The name of the session the query is sent to.
    * Format of the session name:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+   * Note: Runtimes are under construction and will be available soon.
+   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
    * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
    * a random number or some type of user identifier (preferably hashed).
    * The length of the session ID must not exceed 36 characters.
@@ -24,7 +27,10 @@ public interface StreamingDetectIntentRequestOrBuilder extends
    * <pre>
    * Required. The name of the session the query is sent to.
    * Format of the session name:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`.
+   * Note: Runtimes are under construction and will be available soon.
+   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
    * It’s up to the API caller to choose an appropriate &lt;Session ID&gt;. It can be
    * a random number or some type of user identifier (preferably hashed).
    * The length of the session ID must not exceed 36 characters.

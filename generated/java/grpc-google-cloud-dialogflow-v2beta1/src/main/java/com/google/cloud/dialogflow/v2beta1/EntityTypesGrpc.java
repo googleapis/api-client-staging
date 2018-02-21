@@ -17,10 +17,27 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 
 /**
  * <pre>
- * Manages agent entity types.
- * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
- * for more details about entity types.
- * #
+ * Entities are extracted from user input and represent parameters that are
+ * meaningful to your application. For example, a date range, a proper name
+ * such as a geographic location or landmark, and so on. Entities represent
+ * actionable data for your application.
+ * When you define an entity, you can also include synonyms that all map to
+ * that entity. For example, "soft drink", "soda", "pop", and so on.
+ * There are three types of entities:
+ * *   **System** - entities that are defined by the Dialogflow API for common
+ *     data types such as date, time, currency, and so on. A system entity is
+ *     represented by the `EntityType` type.
+ * *   **Developer** - entities that are defined by you that represent
+ *     actionable data that is meaningful to your application. For example,
+ *     you could define a `pizza.sauce` entity for red or white pizza sauce,
+ *     a `pizza.cheese` entity for the different types of cheese on a pizza,
+ *     a `pizza.topping` entity for different toppings, and so on. A developer
+ *     entity is represented by the `EntityType` type.
+ * *   **User** - entities that are built for an individual user such as
+ *     favorites, preferences, playlists, and so on. A user entity is
+ *     represented by the [SessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityType] type.
+ * For more information about entity types, see the
+ * [Dialogflow documentation](https://dialogflow.com/docs/entities).
  * </pre>
  */
 @javax.annotation.Generated(
@@ -149,10 +166,27 @@ public final class EntityTypesGrpc {
 
   /**
    * <pre>
-   * Manages agent entity types.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
-   * for more details about entity types.
-   * #
+   * Entities are extracted from user input and represent parameters that are
+   * meaningful to your application. For example, a date range, a proper name
+   * such as a geographic location or landmark, and so on. Entities represent
+   * actionable data for your application.
+   * When you define an entity, you can also include synonyms that all map to
+   * that entity. For example, "soft drink", "soda", "pop", and so on.
+   * There are three types of entities:
+   * *   **System** - entities that are defined by the Dialogflow API for common
+   *     data types such as date, time, currency, and so on. A system entity is
+   *     represented by the `EntityType` type.
+   * *   **Developer** - entities that are defined by you that represent
+   *     actionable data that is meaningful to your application. For example,
+   *     you could define a `pizza.sauce` entity for red or white pizza sauce,
+   *     a `pizza.cheese` entity for the different types of cheese on a pizza,
+   *     a `pizza.topping` entity for different toppings, and so on. A developer
+   *     entity is represented by the `EntityType` type.
+   * *   **User** - entities that are built for an individual user such as
+   *     favorites, preferences, playlists, and so on. A user entity is
+   *     represented by the [SessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityType] type.
+   * For more information about entity types, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/entities).
    * </pre>
    */
   public static abstract class EntityTypesImplBase implements io.grpc.BindableService {
@@ -210,8 +244,7 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Updates/Creates multiple entity types in the specified agent.
-     * Operation &lt;response:
-     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
+     * Operation &lt;response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
      *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
@@ -347,10 +380,27 @@ public final class EntityTypesGrpc {
 
   /**
    * <pre>
-   * Manages agent entity types.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
-   * for more details about entity types.
-   * #
+   * Entities are extracted from user input and represent parameters that are
+   * meaningful to your application. For example, a date range, a proper name
+   * such as a geographic location or landmark, and so on. Entities represent
+   * actionable data for your application.
+   * When you define an entity, you can also include synonyms that all map to
+   * that entity. For example, "soft drink", "soda", "pop", and so on.
+   * There are three types of entities:
+   * *   **System** - entities that are defined by the Dialogflow API for common
+   *     data types such as date, time, currency, and so on. A system entity is
+   *     represented by the `EntityType` type.
+   * *   **Developer** - entities that are defined by you that represent
+   *     actionable data that is meaningful to your application. For example,
+   *     you could define a `pizza.sauce` entity for red or white pizza sauce,
+   *     a `pizza.cheese` entity for the different types of cheese on a pizza,
+   *     a `pizza.topping` entity for different toppings, and so on. A developer
+   *     entity is represented by the `EntityType` type.
+   * *   **User** - entities that are built for an individual user such as
+   *     favorites, preferences, playlists, and so on. A user entity is
+   *     represented by the [SessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityType] type.
+   * For more information about entity types, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/entities).
    * </pre>
    */
   public static final class EntityTypesStub extends io.grpc.stub.AbstractStub<EntityTypesStub> {
@@ -427,8 +477,7 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Updates/Creates multiple entity types in the specified agent.
-     * Operation &lt;response:
-     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
+     * Operation &lt;response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
      *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
@@ -494,10 +543,27 @@ public final class EntityTypesGrpc {
 
   /**
    * <pre>
-   * Manages agent entity types.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
-   * for more details about entity types.
-   * #
+   * Entities are extracted from user input and represent parameters that are
+   * meaningful to your application. For example, a date range, a proper name
+   * such as a geographic location or landmark, and so on. Entities represent
+   * actionable data for your application.
+   * When you define an entity, you can also include synonyms that all map to
+   * that entity. For example, "soft drink", "soda", "pop", and so on.
+   * There are three types of entities:
+   * *   **System** - entities that are defined by the Dialogflow API for common
+   *     data types such as date, time, currency, and so on. A system entity is
+   *     represented by the `EntityType` type.
+   * *   **Developer** - entities that are defined by you that represent
+   *     actionable data that is meaningful to your application. For example,
+   *     you could define a `pizza.sauce` entity for red or white pizza sauce,
+   *     a `pizza.cheese` entity for the different types of cheese on a pizza,
+   *     a `pizza.topping` entity for different toppings, and so on. A developer
+   *     entity is represented by the `EntityType` type.
+   * *   **User** - entities that are built for an individual user such as
+   *     favorites, preferences, playlists, and so on. A user entity is
+   *     represented by the [SessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityType] type.
+   * For more information about entity types, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/entities).
    * </pre>
    */
   public static final class EntityTypesBlockingStub extends io.grpc.stub.AbstractStub<EntityTypesBlockingStub> {
@@ -569,8 +635,7 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Updates/Creates multiple entity types in the specified agent.
-     * Operation &lt;response:
-     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
+     * Operation &lt;response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
      *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
@@ -631,10 +696,27 @@ public final class EntityTypesGrpc {
 
   /**
    * <pre>
-   * Manages agent entity types.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
-   * for more details about entity types.
-   * #
+   * Entities are extracted from user input and represent parameters that are
+   * meaningful to your application. For example, a date range, a proper name
+   * such as a geographic location or landmark, and so on. Entities represent
+   * actionable data for your application.
+   * When you define an entity, you can also include synonyms that all map to
+   * that entity. For example, "soft drink", "soda", "pop", and so on.
+   * There are three types of entities:
+   * *   **System** - entities that are defined by the Dialogflow API for common
+   *     data types such as date, time, currency, and so on. A system entity is
+   *     represented by the `EntityType` type.
+   * *   **Developer** - entities that are defined by you that represent
+   *     actionable data that is meaningful to your application. For example,
+   *     you could define a `pizza.sauce` entity for red or white pizza sauce,
+   *     a `pizza.cheese` entity for the different types of cheese on a pizza,
+   *     a `pizza.topping` entity for different toppings, and so on. A developer
+   *     entity is represented by the `EntityType` type.
+   * *   **User** - entities that are built for an individual user such as
+   *     favorites, preferences, playlists, and so on. A user entity is
+   *     represented by the [SessionEntityType][google.cloud.dialogflow.v2beta1.SessionEntityType] type.
+   * For more information about entity types, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/entities).
    * </pre>
    */
   public static final class EntityTypesFutureStub extends io.grpc.stub.AbstractStub<EntityTypesFutureStub> {
@@ -711,8 +793,7 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Updates/Creates multiple entity types in the specified agent.
-     * Operation &lt;response:
-     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
+     * Operation &lt;response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
      *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */

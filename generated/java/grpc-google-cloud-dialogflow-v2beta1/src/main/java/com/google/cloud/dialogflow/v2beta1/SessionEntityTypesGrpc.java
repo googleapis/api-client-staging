@@ -17,10 +17,16 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 
 /**
  * <pre>
- * Manages session entity types.
- * Session entity types can be redefined on a session level, allowing for
- * specific concepts, like a user's playlists.
- * #
+ * Entities are extracted from user input and represent parameters that are
+ * meaningful to your application. For example, a date range, a proper name
+ * such as a geographic location or landmark, and so on. Entities represent
+ * actionable data for your application.
+ * Session entity types are referred to as **User** entity types and are
+ * entities that are built for an individual user such as
+ * favorites, preferences, playlists, and so on. You can redefine a session
+ * entity type at the session level.
+ * For more information about entity types, see the
+ * [Dialogflow documentation](https://dialogflow.com/docs/entities).
  * </pre>
  */
 @javax.annotation.Generated(
@@ -104,10 +110,16 @@ public final class SessionEntityTypesGrpc {
 
   /**
    * <pre>
-   * Manages session entity types.
-   * Session entity types can be redefined on a session level, allowing for
-   * specific concepts, like a user's playlists.
-   * #
+   * Entities are extracted from user input and represent parameters that are
+   * meaningful to your application. For example, a date range, a proper name
+   * such as a geographic location or landmark, and so on. Entities represent
+   * actionable data for your application.
+   * Session entity types are referred to as **User** entity types and are
+   * entities that are built for an individual user such as
+   * favorites, preferences, playlists, and so on. You can redefine a session
+   * entity type at the session level.
+   * For more information about entity types, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/entities).
    * </pre>
    */
   public static abstract class SessionEntityTypesImplBase implements io.grpc.BindableService {
@@ -205,10 +217,16 @@ public final class SessionEntityTypesGrpc {
 
   /**
    * <pre>
-   * Manages session entity types.
-   * Session entity types can be redefined on a session level, allowing for
-   * specific concepts, like a user's playlists.
-   * #
+   * Entities are extracted from user input and represent parameters that are
+   * meaningful to your application. For example, a date range, a proper name
+   * such as a geographic location or landmark, and so on. Entities represent
+   * actionable data for your application.
+   * Session entity types are referred to as **User** entity types and are
+   * entities that are built for an individual user such as
+   * favorites, preferences, playlists, and so on. You can redefine a session
+   * entity type at the session level.
+   * For more information about entity types, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/entities).
    * </pre>
    */
   public static final class SessionEntityTypesStub extends io.grpc.stub.AbstractStub<SessionEntityTypesStub> {
@@ -285,10 +303,16 @@ public final class SessionEntityTypesGrpc {
 
   /**
    * <pre>
-   * Manages session entity types.
-   * Session entity types can be redefined on a session level, allowing for
-   * specific concepts, like a user's playlists.
-   * #
+   * Entities are extracted from user input and represent parameters that are
+   * meaningful to your application. For example, a date range, a proper name
+   * such as a geographic location or landmark, and so on. Entities represent
+   * actionable data for your application.
+   * Session entity types are referred to as **User** entity types and are
+   * entities that are built for an individual user such as
+   * favorites, preferences, playlists, and so on. You can redefine a session
+   * entity type at the session level.
+   * For more information about entity types, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/entities).
    * </pre>
    */
   public static final class SessionEntityTypesBlockingStub extends io.grpc.stub.AbstractStub<SessionEntityTypesBlockingStub> {
@@ -360,10 +384,16 @@ public final class SessionEntityTypesGrpc {
 
   /**
    * <pre>
-   * Manages session entity types.
-   * Session entity types can be redefined on a session level, allowing for
-   * specific concepts, like a user's playlists.
-   * #
+   * Entities are extracted from user input and represent parameters that are
+   * meaningful to your application. For example, a date range, a proper name
+   * such as a geographic location or landmark, and so on. Entities represent
+   * actionable data for your application.
+   * Session entity types are referred to as **User** entity types and are
+   * entities that are built for an individual user such as
+   * favorites, preferences, playlists, and so on. You can redefine a session
+   * entity type at the session level.
+   * For more information about entity types, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/entities).
    * </pre>
    */
   public static final class SessionEntityTypesFutureStub extends io.grpc.stub.AbstractStub<SessionEntityTypesFutureStub> {
