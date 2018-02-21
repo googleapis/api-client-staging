@@ -37,6 +37,27 @@ public interface CustomInfoTypeOrBuilder extends
 
   /**
    * <pre>
+   * Likelihood to return for this custom info type. This base value can be
+   * altered by a detection rule if the finding meets the criteria specified by
+   * the rule. Defaults to `VERY_LIKELY` if not specified.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.Likelihood likelihood = 6;</code>
+   */
+  int getLikelihoodValue();
+  /**
+   * <pre>
+   * Likelihood to return for this custom info type. This base value can be
+   * altered by a detection rule if the finding meets the criteria specified by
+   * the rule. Defaults to `VERY_LIKELY` if not specified.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.Likelihood likelihood = 6;</code>
+   */
+  com.google.privacy.dlp.v2beta2.Likelihood getLikelihood();
+
+  /**
+   * <pre>
    * Dictionary-based custom info type.
    * </pre>
    *
@@ -62,6 +83,31 @@ public interface CustomInfoTypeOrBuilder extends
 
   /**
    * <pre>
+   * Regex-based custom info type.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Regex regex = 3;</code>
+   */
+  boolean hasRegex();
+  /**
+   * <pre>
+   * Regex-based custom info type.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Regex regex = 3;</code>
+   */
+  com.google.privacy.dlp.v2beta2.CustomInfoType.Regex getRegex();
+  /**
+   * <pre>
+   * Regex-based custom info type.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Regex regex = 3;</code>
+   */
+  com.google.privacy.dlp.v2beta2.CustomInfoType.RegexOrBuilder getRegexOrBuilder();
+
+  /**
+   * <pre>
    * Surrogate info type.
    * </pre>
    *
@@ -84,6 +130,60 @@ public interface CustomInfoTypeOrBuilder extends
    * <code>.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
    */
   com.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateTypeOrBuilder getSurrogateTypeOrBuilder();
+
+  /**
+   * <pre>
+   * Set of detection rules to apply to all findings of this custom info type.
+   * Rules are applied in order that they are specified. Not supported for the
+   * `surrogate_type` custom info type.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule detection_rules = 7;</code>
+   */
+  java.util.List<com.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule> 
+      getDetectionRulesList();
+  /**
+   * <pre>
+   * Set of detection rules to apply to all findings of this custom info type.
+   * Rules are applied in order that they are specified. Not supported for the
+   * `surrogate_type` custom info type.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule detection_rules = 7;</code>
+   */
+  com.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule getDetectionRules(int index);
+  /**
+   * <pre>
+   * Set of detection rules to apply to all findings of this custom info type.
+   * Rules are applied in order that they are specified. Not supported for the
+   * `surrogate_type` custom info type.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule detection_rules = 7;</code>
+   */
+  int getDetectionRulesCount();
+  /**
+   * <pre>
+   * Set of detection rules to apply to all findings of this custom info type.
+   * Rules are applied in order that they are specified. Not supported for the
+   * `surrogate_type` custom info type.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule detection_rules = 7;</code>
+   */
+  java.util.List<? extends com.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRuleOrBuilder> 
+      getDetectionRulesOrBuilderList();
+  /**
+   * <pre>
+   * Set of detection rules to apply to all findings of this custom info type.
+   * Rules are applied in order that they are specified. Not supported for the
+   * `surrogate_type` custom info type.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule detection_rules = 7;</code>
+   */
+  com.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRuleOrBuilder getDetectionRulesOrBuilder(
+      int index);
 
   public com.google.privacy.dlp.v2beta2.CustomInfoType.TypeCase getTypeCase();
 }

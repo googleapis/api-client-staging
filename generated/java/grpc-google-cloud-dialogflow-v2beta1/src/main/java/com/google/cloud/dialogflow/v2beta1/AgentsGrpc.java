@@ -17,10 +17,26 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 
 /**
  * <pre>
- * Manages conversational agents.
- * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/agents)
- * for more details about agents.
- * #
+ * Agents are best described as Natural Language Understanding (NLU) modules
+ * that transform user requests into actionable data. You can include agents
+ * in your app, product, or service to determine user intent and respond to the
+ * user in a natural way.
+ * After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+ * [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+ * manage the flow of a conversation and match user input to predefined intents
+ * and actions.
+ * You can create an agent using both Dialogflow Standard Edition and
+ * Dialogflow Enterprise Edition. For details, see
+ * [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
+ * You can save your agent for backup or versioning by exporting the agent by
+ * using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+ * agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+ * Dialogflow provides several
+ * [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+ * conversation scenarios such as determining a date and time, converting
+ * currency, and so on.
+ * For more information about agents, see the
+ * [Dialogflow documentation](https://dialogflow.com/docs/agents).
  * </pre>
  */
 @javax.annotation.Generated(
@@ -113,10 +129,26 @@ public final class AgentsGrpc {
 
   /**
    * <pre>
-   * Manages conversational agents.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/agents)
-   * for more details about agents.
-   * #
+   * Agents are best described as Natural Language Understanding (NLU) modules
+   * that transform user requests into actionable data. You can include agents
+   * in your app, product, or service to determine user intent and respond to the
+   * user in a natural way.
+   * After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+   * [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+   * manage the flow of a conversation and match user input to predefined intents
+   * and actions.
+   * You can create an agent using both Dialogflow Standard Edition and
+   * Dialogflow Enterprise Edition. For details, see
+   * [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
+   * You can save your agent for backup or versioning by exporting the agent by
+   * using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+   * agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+   * Dialogflow provides several
+   * [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+   * conversation scenarios such as determining a date and time, converting
+   * currency, and so on.
+   * For more information about agents, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/agents).
    * </pre>
    */
   public static abstract class AgentsImplBase implements io.grpc.BindableService {
@@ -249,10 +281,26 @@ public final class AgentsGrpc {
 
   /**
    * <pre>
-   * Manages conversational agents.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/agents)
-   * for more details about agents.
-   * #
+   * Agents are best described as Natural Language Understanding (NLU) modules
+   * that transform user requests into actionable data. You can include agents
+   * in your app, product, or service to determine user intent and respond to the
+   * user in a natural way.
+   * After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+   * [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+   * manage the flow of a conversation and match user input to predefined intents
+   * and actions.
+   * You can create an agent using both Dialogflow Standard Edition and
+   * Dialogflow Enterprise Edition. For details, see
+   * [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
+   * You can save your agent for backup or versioning by exporting the agent by
+   * using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+   * agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+   * Dialogflow provides several
+   * [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+   * conversation scenarios such as determining a date and time, converting
+   * currency, and so on.
+   * For more information about agents, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/agents).
    * </pre>
    */
   public static final class AgentsStub extends io.grpc.stub.AbstractStub<AgentsStub> {
@@ -358,10 +406,26 @@ public final class AgentsGrpc {
 
   /**
    * <pre>
-   * Manages conversational agents.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/agents)
-   * for more details about agents.
-   * #
+   * Agents are best described as Natural Language Understanding (NLU) modules
+   * that transform user requests into actionable data. You can include agents
+   * in your app, product, or service to determine user intent and respond to the
+   * user in a natural way.
+   * After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+   * [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+   * manage the flow of a conversation and match user input to predefined intents
+   * and actions.
+   * You can create an agent using both Dialogflow Standard Edition and
+   * Dialogflow Enterprise Edition. For details, see
+   * [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
+   * You can save your agent for backup or versioning by exporting the agent by
+   * using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+   * agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+   * Dialogflow provides several
+   * [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+   * conversation scenarios such as determining a date and time, converting
+   * currency, and so on.
+   * For more information about agents, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/agents).
    * </pre>
    */
   public static final class AgentsBlockingStub extends io.grpc.stub.AbstractStub<AgentsBlockingStub> {
@@ -461,10 +525,26 @@ public final class AgentsGrpc {
 
   /**
    * <pre>
-   * Manages conversational agents.
-   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/agents)
-   * for more details about agents.
-   * #
+   * Agents are best described as Natural Language Understanding (NLU) modules
+   * that transform user requests into actionable data. You can include agents
+   * in your app, product, or service to determine user intent and respond to the
+   * user in a natural way.
+   * After you create an agent, you can add [Intents][google.cloud.dialogflow.v2beta1.Intents], [Contexts][google.cloud.dialogflow.v2beta1.Contexts],
+   * [Entity Types][google.cloud.dialogflow.v2beta1.EntityTypes], [Webhooks][google.cloud.dialogflow.v2beta1.WebhookRequest], and so on to
+   * manage the flow of a conversation and match user input to predefined intents
+   * and actions.
+   * You can create an agent using both Dialogflow Standard Edition and
+   * Dialogflow Enterprise Edition. For details, see
+   * [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
+   * You can save your agent for backup or versioning by exporting the agent by
+   * using the [ExportAgent][google.cloud.dialogflow.v2beta1.Agents.ExportAgent] method. You can import a saved
+   * agent by using the [ImportAgent][google.cloud.dialogflow.v2beta1.Agents.ImportAgent] method.
+   * Dialogflow provides several
+   * [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
+   * conversation scenarios such as determining a date and time, converting
+   * currency, and so on.
+   * For more information about agents, see the
+   * [Dialogflow documentation](https://dialogflow.com/docs/agents).
    * </pre>
    */
   public static final class AgentsFutureStub extends io.grpc.stub.AbstractStub<AgentsFutureStub> {

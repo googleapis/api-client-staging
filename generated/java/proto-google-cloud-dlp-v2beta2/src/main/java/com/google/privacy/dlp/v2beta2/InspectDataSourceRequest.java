@@ -22,6 +22,7 @@ private static final long serialVersionUID = 0L;
   }
   private InspectDataSourceRequest() {
     parent_ = "";
+    jobId_ = "";
   }
 
   @java.lang.Override
@@ -69,6 +70,12 @@ private static final long serialVersionUID = 0L;
               jobConfig_ = subBuilder.buildPartial();
             }
 
+            break;
+          }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            jobId_ = s;
             break;
           }
         }
@@ -170,6 +177,56 @@ private static final long serialVersionUID = 0L;
     return getJobConfig();
   }
 
+  public static final int JOB_ID_FIELD_NUMBER = 3;
+  private volatile java.lang.Object jobId_;
+  /**
+   * <pre>
+   * Optional job ID to use for the created job. If not provided, a job ID will
+   * automatically be generated. Must be unique within the project. The job ID
+   * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+   * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
+   * is 100 characters. Can be empty to allow the system to generate one.
+   * </pre>
+   *
+   * <code>string job_id = 3;</code>
+   */
+  public java.lang.String getJobId() {
+    java.lang.Object ref = jobId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      jobId_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * Optional job ID to use for the created job. If not provided, a job ID will
+   * automatically be generated. Must be unique within the project. The job ID
+   * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+   * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
+   * is 100 characters. Can be empty to allow the system to generate one.
+   * </pre>
+   *
+   * <code>string job_id = 3;</code>
+   */
+  public com.google.protobuf.ByteString
+      getJobIdBytes() {
+    java.lang.Object ref = jobId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      jobId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -188,6 +245,9 @@ private static final long serialVersionUID = 0L;
     if (jobConfig_ != null) {
       output.writeMessage(2, getJobConfig());
     }
+    if (!getJobIdBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, jobId_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -202,6 +262,9 @@ private static final long serialVersionUID = 0L;
     if (jobConfig_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getJobConfig());
+    }
+    if (!getJobIdBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, jobId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -226,6 +289,8 @@ private static final long serialVersionUID = 0L;
       result = result && getJobConfig()
           .equals(other.getJobConfig());
     }
+    result = result && getJobId()
+        .equals(other.getJobId());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -243,6 +308,8 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + JOB_CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getJobConfig().hashCode();
     }
+    hash = (37 * hash) + JOB_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getJobId().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -385,6 +452,8 @@ private static final long serialVersionUID = 0L;
         jobConfig_ = null;
         jobConfigBuilder_ = null;
       }
+      jobId_ = "";
+
       return this;
     }
 
@@ -413,6 +482,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.jobConfig_ = jobConfigBuilder_.build();
       }
+      result.jobId_ = jobId_;
       onBuilt();
       return result;
     }
@@ -460,6 +530,10 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasJobConfig()) {
         mergeJobConfig(other.getJobConfig());
+      }
+      if (!other.getJobId().isEmpty()) {
+        jobId_ = other.jobId_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -729,6 +803,115 @@ private static final long serialVersionUID = 0L;
       }
       return jobConfigBuilder_;
     }
+
+    private java.lang.Object jobId_ = "";
+    /**
+     * <pre>
+     * Optional job ID to use for the created job. If not provided, a job ID will
+     * automatically be generated. Must be unique within the project. The job ID
+     * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+     * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
+     * is 100 characters. Can be empty to allow the system to generate one.
+     * </pre>
+     *
+     * <code>string job_id = 3;</code>
+     */
+    public java.lang.String getJobId() {
+      java.lang.Object ref = jobId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        jobId_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Optional job ID to use for the created job. If not provided, a job ID will
+     * automatically be generated. Must be unique within the project. The job ID
+     * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+     * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
+     * is 100 characters. Can be empty to allow the system to generate one.
+     * </pre>
+     *
+     * <code>string job_id = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getJobIdBytes() {
+      java.lang.Object ref = jobId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        jobId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Optional job ID to use for the created job. If not provided, a job ID will
+     * automatically be generated. Must be unique within the project. The job ID
+     * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+     * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
+     * is 100 characters. Can be empty to allow the system to generate one.
+     * </pre>
+     *
+     * <code>string job_id = 3;</code>
+     */
+    public Builder setJobId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      jobId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional job ID to use for the created job. If not provided, a job ID will
+     * automatically be generated. Must be unique within the project. The job ID
+     * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+     * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
+     * is 100 characters. Can be empty to allow the system to generate one.
+     * </pre>
+     *
+     * <code>string job_id = 3;</code>
+     */
+    public Builder clearJobId() {
+      
+      jobId_ = getDefaultInstance().getJobId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional job ID to use for the created job. If not provided, a job ID will
+     * automatically be generated. Must be unique within the project. The job ID
+     * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+     * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
+     * is 100 characters. Can be empty to allow the system to generate one.
+     * </pre>
+     *
+     * <code>string job_id = 3;</code>
+     */
+    public Builder setJobIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      jobId_ = value;
+      onChanged();
+      return this;
+    }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFieldsProto3(unknownFields);
@@ -740,51 +923,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setParent(projectName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setParentWithProjectName(com.google.privacy.dlp.v2beta2.ProjectName value) {
-      if (value == null) {
-        return setParent("");
-      }
-      return setParent(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ProjectName.parse(protoBuilder.getParent());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.privacy.dlp.v2beta2.ProjectName getParentAsProjectName() {
-      java.lang.String str = getParent();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.privacy.dlp.v2beta2.ProjectName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.privacy.dlp.v2beta2.InspectDataSourceRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ProjectName.parse(protoObject.getParent());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.privacy.dlp.v2beta2.ProjectName getParentAsProjectName() {
-    java.lang.String str = getParent();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.privacy.dlp.v2beta2.ProjectName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.privacy.dlp.v2beta2.InspectDataSourceRequest)
   private static final com.google.privacy.dlp.v2beta2.InspectDataSourceRequest DEFAULT_INSTANCE;
   static {

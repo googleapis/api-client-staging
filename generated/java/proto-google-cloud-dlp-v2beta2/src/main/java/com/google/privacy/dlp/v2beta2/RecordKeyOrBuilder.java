@@ -33,5 +33,18 @@ public interface RecordKeyOrBuilder extends
    */
   com.google.privacy.dlp.v2beta2.DatastoreKeyOrBuilder getDatastoreKeyOrBuilder();
 
+  /**
+   * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+   */
+  boolean hasBigQueryKey();
+  /**
+   * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+   */
+  com.google.privacy.dlp.v2beta2.BigQueryKey getBigQueryKey();
+  /**
+   * <code>.google.privacy.dlp.v2beta2.BigQueryKey big_query_key = 3;</code>
+   */
+  com.google.privacy.dlp.v2beta2.BigQueryKeyOrBuilder getBigQueryKeyOrBuilder();
+
   public com.google.privacy.dlp.v2beta2.RecordKey.TypeCase getTypeCase();
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -18,7 +18,6 @@ import com.google.common.base.Preconditions;
 import com.google.api.pathtemplate.PathTemplate;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
-import java.io.IOException;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,14 +58,6 @@ public class MetricDescriptorName implements ResourceName {
       .setProject(project)
       .setMetricDescriptor(metricDescriptor)
       .build();
-  }
-
-  /**
-   * @deprecated Use {@link #of(String, String)} instead.
-   */
-  @Deprecated
-  public static MetricDescriptorName create(String project, String metricDescriptor) {
-    return of(project, metricDescriptor);
   }
 
   public static String format(String project, String metricDescriptor) {
@@ -110,9 +101,12 @@ public class MetricDescriptorName implements ResourceName {
     return PATH_TEMPLATE.matches(formattedString);
   }
 
-  @Override
+  /**
+   * @deprecated This method is only present to satisfy the ResourceName interface.
+   */
+  @Deprecated
   public ResourceNameType getType() {
-    return MetricDescriptorNameType.instance();
+    throw new UnsupportedOperationException("MetricDescriptorName.getType() not supported");
   }
 
   @Override

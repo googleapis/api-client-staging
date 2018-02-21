@@ -37,14 +37,17 @@ import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
 import com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.DeleteDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.DeleteInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DlpJob;
 import com.google.privacy.dlp.v2beta2.GetDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.GetDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.GetInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.GetJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentResponse;
 import com.google.privacy.dlp.v2beta2.InspectDataSourceRequest;
 import com.google.privacy.dlp.v2beta2.InspectTemplate;
+import com.google.privacy.dlp.v2beta2.JobTrigger;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesResponse;
 import com.google.privacy.dlp.v2beta2.ListDlpJobsRequest;
@@ -53,12 +56,15 @@ import com.google.privacy.dlp.v2beta2.ListInfoTypesRequest;
 import com.google.privacy.dlp.v2beta2.ListInfoTypesResponse;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesResponse;
+import com.google.privacy.dlp.v2beta2.ListJobTriggersRequest;
+import com.google.privacy.dlp.v2beta2.ListJobTriggersResponse;
 import com.google.privacy.dlp.v2beta2.RedactImageRequest;
 import com.google.privacy.dlp.v2beta2.RedactImageResponse;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.UpdateInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest;
 import com.google.protobuf.Empty;
 import java.io.IOException;
 import java.util.List;
@@ -569,7 +575,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateName name = OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]");
    *   UpdateInspectTemplateRequest request = UpdateInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -592,7 +598,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateName name = OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]");
    *   UpdateInspectTemplateRequest request = UpdateInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -738,7 +744,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateName name = OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]");
    *   DeleteInspectTemplateRequest request = DeleteInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -761,7 +767,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
+   *   InspectTemplateName name = OrganizationInspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]");
    *   DeleteInspectTemplateRequest request = DeleteInspectTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -832,7 +838,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   UpdateDeidentifyTemplateRequest request = UpdateDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -856,7 +862,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   UpdateDeidentifyTemplateRequest request = UpdateDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -879,7 +885,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   GetDeidentifyTemplateRequest request = GetDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -902,7 +908,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   GetDeidentifyTemplateRequest request = GetDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1008,7 +1014,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   DeleteDeidentifyTemplateRequest request = DeleteDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1031,7 +1037,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
+   *   DeidentifyTemplateName name = OrganizationDeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]");
    *   DeleteDeidentifyTemplateRequest request = DeleteDeidentifyTemplateRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -1264,6 +1270,223 @@ public class DlpServiceClient implements BackgroundResource {
    */
   public final UnaryCallable<CancelDlpJobRequest, Empty> cancelDlpJobCallable() {
     return stub.cancelDlpJobCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists job triggers.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectName parent = ProjectName.of("[PROJECT]");
+   *   ListJobTriggersRequest request = ListJobTriggersRequest.newBuilder()
+   *     .setParent(parent.toString())
+   *     .build();
+   *   for (JobTrigger element : dlpServiceClient.listJobTriggers(request).iterateAll()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final ListJobTriggersPagedResponse listJobTriggers(ListJobTriggersRequest request) {
+    return listJobTriggersPagedCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists job triggers.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectName parent = ProjectName.of("[PROJECT]");
+   *   ListJobTriggersRequest request = ListJobTriggersRequest.newBuilder()
+   *     .setParent(parent.toString())
+   *     .build();
+   *   ApiFuture&lt;ListJobTriggersPagedResponse&gt; future = dlpServiceClient.listJobTriggersPagedCallable().futureCall(request);
+   *   // Do something
+   *   for (JobTrigger element : future.get().iterateAll()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<ListJobTriggersRequest, ListJobTriggersPagedResponse>
+      listJobTriggersPagedCallable() {
+    return stub.listJobTriggersPagedCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists job triggers.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectName parent = ProjectName.of("[PROJECT]");
+   *   ListJobTriggersRequest request = ListJobTriggersRequest.newBuilder()
+   *     .setParent(parent.toString())
+   *     .build();
+   *   while (true) {
+   *     ListJobTriggersResponse response = dlpServiceClient.listJobTriggersCallable().call(request);
+   *     for (JobTrigger element : response.getJobTriggersList()) {
+   *       // doThingsWith(element);
+   *     }
+   *     String nextPageToken = response.getNextPageToken();
+   *     if (!Strings.isNullOrEmpty(nextPageToken)) {
+   *       request = request.toBuilder().setPageToken(nextPageToken).build();
+   *     } else {
+   *       break;
+   *     }
+   *   }
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<ListJobTriggersRequest, ListJobTriggersResponse>
+      listJobTriggersCallable() {
+    return stub.listJobTriggersCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Gets a job trigger.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectJobTriggerName name = ProjectJobTriggerName.of("[PROJECT]", "[JOB_TRIGGER]");
+   *   GetJobTriggerRequest request = GetJobTriggerRequest.newBuilder()
+   *     .setName(name.toString())
+   *     .build();
+   *   JobTrigger response = dlpServiceClient.getJobTrigger(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final JobTrigger getJobTrigger(GetJobTriggerRequest request) {
+    return getJobTriggerCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Gets a job trigger.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectJobTriggerName name = ProjectJobTriggerName.of("[PROJECT]", "[JOB_TRIGGER]");
+   *   GetJobTriggerRequest request = GetJobTriggerRequest.newBuilder()
+   *     .setName(name.toString())
+   *     .build();
+   *   ApiFuture&lt;JobTrigger&gt; future = dlpServiceClient.getJobTriggerCallable().futureCall(request);
+   *   // Do something
+   *   JobTrigger response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<GetJobTriggerRequest, JobTrigger> getJobTriggerCallable() {
+    return stub.getJobTriggerCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Deletes a job trigger.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectJobTriggerName name = ProjectJobTriggerName.of("[PROJECT]", "[JOB_TRIGGER]");
+   *   DeleteJobTriggerRequest request = DeleteJobTriggerRequest.newBuilder()
+   *     .setName(name.toString())
+   *     .build();
+   *   dlpServiceClient.deleteJobTrigger(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final void deleteJobTrigger(DeleteJobTriggerRequest request) {
+    deleteJobTriggerCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Deletes a job trigger.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectJobTriggerName name = ProjectJobTriggerName.of("[PROJECT]", "[JOB_TRIGGER]");
+   *   DeleteJobTriggerRequest request = DeleteJobTriggerRequest.newBuilder()
+   *     .setName(name.toString())
+   *     .build();
+   *   ApiFuture&lt;Void&gt; future = dlpServiceClient.deleteJobTriggerCallable().futureCall(request);
+   *   // Do something
+   *   future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<DeleteJobTriggerRequest, Empty> deleteJobTriggerCallable() {
+    return stub.deleteJobTriggerCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates a job trigger.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectJobTriggerName name = ProjectJobTriggerName.of("[PROJECT]", "[JOB_TRIGGER]");
+   *   UpdateJobTriggerRequest request = UpdateJobTriggerRequest.newBuilder()
+   *     .setName(name.toString())
+   *     .build();
+   *   JobTrigger response = dlpServiceClient.updateJobTrigger(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final JobTrigger updateJobTrigger(UpdateJobTriggerRequest request) {
+    return updateJobTriggerCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates a job trigger.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectJobTriggerName name = ProjectJobTriggerName.of("[PROJECT]", "[JOB_TRIGGER]");
+   *   UpdateJobTriggerRequest request = UpdateJobTriggerRequest.newBuilder()
+   *     .setName(name.toString())
+   *     .build();
+   *   ApiFuture&lt;JobTrigger&gt; future = dlpServiceClient.updateJobTriggerCallable().futureCall(request);
+   *   // Do something
+   *   JobTrigger response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerCallable() {
+    return stub.updateJobTriggerCallable();
   }
 
   @Override
@@ -1530,6 +1753,81 @@ public class DlpServiceClient implements BackgroundResource {
     protected ListDlpJobsFixedSizeCollection createCollection(
         List<ListDlpJobsPage> pages, int collectionSize) {
       return new ListDlpJobsFixedSizeCollection(pages, collectionSize);
+    }
+  }
+
+  public static class ListJobTriggersPagedResponse
+      extends AbstractPagedListResponse<
+          ListJobTriggersRequest, ListJobTriggersResponse, JobTrigger, ListJobTriggersPage,
+          ListJobTriggersFixedSizeCollection> {
+
+    public static ApiFuture<ListJobTriggersPagedResponse> createAsync(
+        PageContext<ListJobTriggersRequest, ListJobTriggersResponse, JobTrigger> context,
+        ApiFuture<ListJobTriggersResponse> futureResponse) {
+      ApiFuture<ListJobTriggersPage> futurePage =
+          ListJobTriggersPage.createEmptyPage().createPageAsync(context, futureResponse);
+      return ApiFutures.transform(
+          futurePage,
+          new ApiFunction<ListJobTriggersPage, ListJobTriggersPagedResponse>() {
+            @Override
+            public ListJobTriggersPagedResponse apply(ListJobTriggersPage input) {
+              return new ListJobTriggersPagedResponse(input);
+            }
+          });
+    }
+
+    private ListJobTriggersPagedResponse(ListJobTriggersPage page) {
+      super(page, ListJobTriggersFixedSizeCollection.createEmptyCollection());
+    }
+  }
+
+  public static class ListJobTriggersPage
+      extends AbstractPage<
+          ListJobTriggersRequest, ListJobTriggersResponse, JobTrigger, ListJobTriggersPage> {
+
+    private ListJobTriggersPage(
+        PageContext<ListJobTriggersRequest, ListJobTriggersResponse, JobTrigger> context,
+        ListJobTriggersResponse response) {
+      super(context, response);
+    }
+
+    private static ListJobTriggersPage createEmptyPage() {
+      return new ListJobTriggersPage(null, null);
+    }
+
+    @Override
+    protected ListJobTriggersPage createPage(
+        PageContext<ListJobTriggersRequest, ListJobTriggersResponse, JobTrigger> context,
+        ListJobTriggersResponse response) {
+      return new ListJobTriggersPage(context, response);
+    }
+
+    @Override
+    public ApiFuture<ListJobTriggersPage> createPageAsync(
+        PageContext<ListJobTriggersRequest, ListJobTriggersResponse, JobTrigger> context,
+        ApiFuture<ListJobTriggersResponse> futureResponse) {
+      return super.createPageAsync(context, futureResponse);
+    }
+  }
+
+  public static class ListJobTriggersFixedSizeCollection
+      extends AbstractFixedSizeCollection<
+          ListJobTriggersRequest, ListJobTriggersResponse, JobTrigger, ListJobTriggersPage,
+          ListJobTriggersFixedSizeCollection> {
+
+    private ListJobTriggersFixedSizeCollection(
+        List<ListJobTriggersPage> pages, int collectionSize) {
+      super(pages, collectionSize);
+    }
+
+    private static ListJobTriggersFixedSizeCollection createEmptyCollection() {
+      return new ListJobTriggersFixedSizeCollection(null, 0);
+    }
+
+    @Override
+    protected ListJobTriggersFixedSizeCollection createCollection(
+        List<ListJobTriggersPage> pages, int collectionSize) {
+      return new ListJobTriggersFixedSizeCollection(pages, collectionSize);
     }
   }
 }

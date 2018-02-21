@@ -516,51 +516,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setSnapshot(snapshotName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setSnapshotWithSnapshotName(com.google.pubsub.v1.SnapshotName value) {
-      if (value == null) {
-        return setSnapshot("");
-      }
-      return setSnapshot(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * SnapshotName.parse(protoBuilder.getSnapshot());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.pubsub.v1.SnapshotName getSnapshotAsSnapshotName() {
-      java.lang.String str = getSnapshot();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.pubsub.v1.SnapshotName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.pubsub.v1.DeleteSnapshotRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * SnapshotName.parse(protoObject.getSnapshot());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.pubsub.v1.SnapshotName getSnapshotAsSnapshotName() {
-    java.lang.String str = getSnapshot();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.pubsub.v1.SnapshotName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.pubsub.v1.DeleteSnapshotRequest)
   private static final com.google.pubsub.v1.DeleteSnapshotRequest DEFAULT_INSTANCE;
   static {

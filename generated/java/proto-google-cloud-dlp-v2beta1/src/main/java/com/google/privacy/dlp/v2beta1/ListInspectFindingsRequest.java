@@ -967,51 +967,9 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * protoBuilder.setName(resultName.toString());
-     * </code></pre>
-     */
-    @Deprecated
-    public final Builder setNameWithResultName(com.google.privacy.dlp.v2beta1.ResultName value) {
-      if (value == null) {
-        return setName("");
-      }
-      return setName(value.toString());
-    }
-    
-    /**
-     * @deprecated Use the following instead:
-     * <pre><code>
-     * ResultName.parse(protoBuilder.getName());
-     * </code></pre>
-     */
-    @Deprecated
-    public final com.google.privacy.dlp.v2beta1.ResultName getNameAsResultName() {
-      java.lang.String str = getName();
-      if (str.isEmpty()) {
-        return null;
-      }
-      return com.google.privacy.dlp.v2beta1.ResultName.parse(str);
-    }
     // @@protoc_insertion_point(builder_scope:google.privacy.dlp.v2beta1.ListInspectFindingsRequest)
   }
 
-  /**
-   * @deprecated Use the following instead:
-   * <pre><code>
-   * ResultName.parse(protoObject.getName());
-   * </code></pre>
-   */
-  @Deprecated
-  public final com.google.privacy.dlp.v2beta1.ResultName getNameAsResultName() {
-    java.lang.String str = getName();
-    if (str.isEmpty()) {
-      return null;
-    }
-    return com.google.privacy.dlp.v2beta1.ResultName.parse(str);
-  }
   // @@protoc_insertion_point(class_scope:google.privacy.dlp.v2beta1.ListInspectFindingsRequest)
   private static final com.google.privacy.dlp.v2beta1.ListInspectFindingsRequest DEFAULT_INSTANCE;
   static {
