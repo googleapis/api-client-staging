@@ -795,9 +795,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setParent(parentNameOneof.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setParentWithParentNameOneof(com.google.logging.v2.ParentNameOneof value) {
+      if (value == null) {
+        return setParent("");
+      }
+      return setParent(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * ParentNameOneof.parse(protoBuilder.getParent());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.logging.v2.ParentNameOneof getParentAsParentNameOneof() {
+      java.lang.String str = getParent();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.logging.v2.ParentNameOneof.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.logging.v2.ListExclusionsRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * ParentNameOneof.parse(protoObject.getParent());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.logging.v2.ParentNameOneof getParentAsParentNameOneof() {
+    java.lang.String str = getParent();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.logging.v2.ParentNameOneof.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.logging.v2.ListExclusionsRequest)
   private static final com.google.logging.v2.ListExclusionsRequest DEFAULT_INSTANCE;
   static {

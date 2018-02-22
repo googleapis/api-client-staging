@@ -18,7 +18,6 @@ package com.google.cloud.dlp.v2beta2;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListDeidentifyTemplatesPagedResponse;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListDlpJobsPagedResponse;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListInspectTemplatesPagedResponse;
-import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListJobTriggersPagedResponse;
 
 import com.google.api.core.ApiFunction;
 import com.google.api.core.BetaApi;
@@ -42,17 +41,14 @@ import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
 import com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.DeleteDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.DeleteInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DlpJob;
 import com.google.privacy.dlp.v2beta2.GetDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.GetDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.GetInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.GetJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentResponse;
 import com.google.privacy.dlp.v2beta2.InspectDataSourceRequest;
 import com.google.privacy.dlp.v2beta2.InspectTemplate;
-import com.google.privacy.dlp.v2beta2.JobTrigger;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesResponse;
 import com.google.privacy.dlp.v2beta2.ListDlpJobsRequest;
@@ -61,15 +57,12 @@ import com.google.privacy.dlp.v2beta2.ListInfoTypesRequest;
 import com.google.privacy.dlp.v2beta2.ListInfoTypesResponse;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesResponse;
-import com.google.privacy.dlp.v2beta2.ListJobTriggersRequest;
-import com.google.privacy.dlp.v2beta2.ListJobTriggersResponse;
 import com.google.privacy.dlp.v2beta2.RedactImageRequest;
 import com.google.privacy.dlp.v2beta2.RedactImageResponse;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.UpdateInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest;
 import com.google.protobuf.Empty;
 import java.io.IOException;
 import java.util.List;
@@ -223,28 +216,6 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
   /** Returns the object with the settings used for calls to cancelDlpJob. */
   public UnaryCallSettings<CancelDlpJobRequest, Empty> cancelDlpJobSettings() {
     return ((DlpServiceStubSettings) getStubSettings()).cancelDlpJobSettings();
-  }
-
-  /** Returns the object with the settings used for calls to listJobTriggers. */
-  public PagedCallSettings<
-          ListJobTriggersRequest, ListJobTriggersResponse, ListJobTriggersPagedResponse>
-      listJobTriggersSettings() {
-    return ((DlpServiceStubSettings) getStubSettings()).listJobTriggersSettings();
-  }
-
-  /** Returns the object with the settings used for calls to getJobTrigger. */
-  public UnaryCallSettings<GetJobTriggerRequest, JobTrigger> getJobTriggerSettings() {
-    return ((DlpServiceStubSettings) getStubSettings()).getJobTriggerSettings();
-  }
-
-  /** Returns the object with the settings used for calls to deleteJobTrigger. */
-  public UnaryCallSettings<DeleteJobTriggerRequest, Empty> deleteJobTriggerSettings() {
-    return ((DlpServiceStubSettings) getStubSettings()).deleteJobTriggerSettings();
-  }
-
-  /** Returns the object with the settings used for calls to updateJobTrigger. */
-  public UnaryCallSettings<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerSettings() {
-    return ((DlpServiceStubSettings) getStubSettings()).updateJobTriggerSettings();
   }
 
   public static final DlpServiceSettings create(DlpServiceStubSettings stub) throws IOException {
@@ -467,29 +438,6 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
     /** Returns the builder for the settings used for calls to cancelDlpJob. */
     public UnaryCallSettings.Builder<CancelDlpJobRequest, Empty> cancelDlpJobSettings() {
       return getStubSettingsBuilder().cancelDlpJobSettings();
-    }
-
-    /** Returns the builder for the settings used for calls to listJobTriggers. */
-    public PagedCallSettings.Builder<
-            ListJobTriggersRequest, ListJobTriggersResponse, ListJobTriggersPagedResponse>
-        listJobTriggersSettings() {
-      return getStubSettingsBuilder().listJobTriggersSettings();
-    }
-
-    /** Returns the builder for the settings used for calls to getJobTrigger. */
-    public UnaryCallSettings.Builder<GetJobTriggerRequest, JobTrigger> getJobTriggerSettings() {
-      return getStubSettingsBuilder().getJobTriggerSettings();
-    }
-
-    /** Returns the builder for the settings used for calls to deleteJobTrigger. */
-    public UnaryCallSettings.Builder<DeleteJobTriggerRequest, Empty> deleteJobTriggerSettings() {
-      return getStubSettingsBuilder().deleteJobTriggerSettings();
-    }
-
-    /** Returns the builder for the settings used for calls to updateJobTrigger. */
-    public UnaryCallSettings.Builder<UpdateJobTriggerRequest, JobTrigger>
-        updateJobTriggerSettings() {
-      return getStubSettingsBuilder().updateJobTriggerSettings();
     }
 
     @Override

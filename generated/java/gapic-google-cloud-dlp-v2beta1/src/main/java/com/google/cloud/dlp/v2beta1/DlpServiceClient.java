@@ -824,9 +824,7 @@ public class DlpServiceClient implements BackgroundResource {
   public final ListInspectFindingsResponse listInspectFindings(ResultName name) {
 
     ListInspectFindingsRequest request =
-        ListInspectFindingsRequest.newBuilder()
-            .setName(name == null ? null : name.toString())
-            .build();
+        ListInspectFindingsRequest.newBuilder().setName(name.toString()).build();
     return listInspectFindings(request);
   }
 

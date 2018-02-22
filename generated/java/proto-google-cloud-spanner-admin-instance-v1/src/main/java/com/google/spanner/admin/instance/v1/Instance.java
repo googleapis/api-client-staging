@@ -1742,9 +1742,93 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(instanceName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setNameWithInstanceName(com.google.spanner.admin.instance.v1.InstanceName value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * InstanceName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.spanner.admin.instance.v1.InstanceName getNameAsInstanceName() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.spanner.admin.instance.v1.InstanceName.parse(str);
+    }
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setConfig(instanceConfigName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setConfigWithInstanceConfigName(com.google.spanner.admin.instance.v1.InstanceConfigName value) {
+      if (value == null) {
+        return setConfig("");
+      }
+      return setConfig(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * InstanceConfigName.parse(protoBuilder.getConfig());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.spanner.admin.instance.v1.InstanceConfigName getConfigAsInstanceConfigName() {
+      java.lang.String str = getConfig();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.spanner.admin.instance.v1.InstanceConfigName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.spanner.admin.instance.v1.Instance)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * InstanceName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.spanner.admin.instance.v1.InstanceName getNameAsInstanceName() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.spanner.admin.instance.v1.InstanceName.parse(str);
+  }
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * InstanceConfigName.parse(protoObject.getConfig());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.spanner.admin.instance.v1.InstanceConfigName getConfigAsInstanceConfigName() {
+    java.lang.String str = getConfig();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.spanner.admin.instance.v1.InstanceConfigName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.Instance)
   private static final com.google.spanner.admin.instance.v1.Instance DEFAULT_INSTANCE;
   static {

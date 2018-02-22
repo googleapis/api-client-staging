@@ -173,9 +173,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
   public final ErrorGroup getGroup(GroupName groupName) {
 
     GetGroupRequest request =
-        GetGroupRequest.newBuilder()
-            .setGroupName(groupName == null ? null : groupName.toString())
-            .build();
+        GetGroupRequest.newBuilder().setGroupName(groupName.toString()).build();
     return getGroup(request);
   }
 

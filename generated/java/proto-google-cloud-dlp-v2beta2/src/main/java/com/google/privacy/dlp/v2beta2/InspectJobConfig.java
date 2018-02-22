@@ -17,7 +17,6 @@ private static final long serialVersionUID = 0L;
   }
   private InspectJobConfig() {
     inspectTemplateName_ = "";
-    actions_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -93,15 +92,6 @@ private static final long serialVersionUID = 0L;
             inspectTemplateName_ = s;
             break;
           }
-          case 42: {
-            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-              actions_ = new java.util.ArrayList<com.google.privacy.dlp.v2beta2.Action>();
-              mutable_bitField0_ |= 0x00000010;
-            }
-            actions_.add(
-                input.readMessage(com.google.privacy.dlp.v2beta2.Action.parser(), extensionRegistry));
-            break;
-          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -110,9 +100,6 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-        actions_ = java.util.Collections.unmodifiableList(actions_);
-      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -129,7 +116,6 @@ private static final long serialVersionUID = 0L;
             com.google.privacy.dlp.v2beta2.InspectJobConfig.class, com.google.privacy.dlp.v2beta2.InspectJobConfig.Builder.class);
   }
 
-  private int bitField0_;
   public static final int STORAGE_CONFIG_FIELD_NUMBER = 1;
   private com.google.privacy.dlp.v2beta2.StorageConfig storageConfig_;
   /**
@@ -275,66 +261,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int ACTIONS_FIELD_NUMBER = 5;
-  private java.util.List<com.google.privacy.dlp.v2beta2.Action> actions_;
-  /**
-   * <pre>
-   * Actions to execute at the completion of the job. Are executed in the order
-   * provided.
-   * </pre>
-   *
-   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-   */
-  public java.util.List<com.google.privacy.dlp.v2beta2.Action> getActionsList() {
-    return actions_;
-  }
-  /**
-   * <pre>
-   * Actions to execute at the completion of the job. Are executed in the order
-   * provided.
-   * </pre>
-   *
-   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-   */
-  public java.util.List<? extends com.google.privacy.dlp.v2beta2.ActionOrBuilder> 
-      getActionsOrBuilderList() {
-    return actions_;
-  }
-  /**
-   * <pre>
-   * Actions to execute at the completion of the job. Are executed in the order
-   * provided.
-   * </pre>
-   *
-   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-   */
-  public int getActionsCount() {
-    return actions_.size();
-  }
-  /**
-   * <pre>
-   * Actions to execute at the completion of the job. Are executed in the order
-   * provided.
-   * </pre>
-   *
-   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-   */
-  public com.google.privacy.dlp.v2beta2.Action getActions(int index) {
-    return actions_.get(index);
-  }
-  /**
-   * <pre>
-   * Actions to execute at the completion of the job. Are executed in the order
-   * provided.
-   * </pre>
-   *
-   * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-   */
-  public com.google.privacy.dlp.v2beta2.ActionOrBuilder getActionsOrBuilder(
-      int index) {
-    return actions_.get(index);
-  }
-
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -359,9 +285,6 @@ private static final long serialVersionUID = 0L;
     if (!getInspectTemplateNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 4, inspectTemplateName_);
     }
-    for (int i = 0; i < actions_.size(); i++) {
-      output.writeMessage(5, actions_.get(i));
-    }
     unknownFields.writeTo(output);
   }
 
@@ -384,10 +307,6 @@ private static final long serialVersionUID = 0L;
     }
     if (!getInspectTemplateNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, inspectTemplateName_);
-    }
-    for (int i = 0; i < actions_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, actions_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -422,8 +341,6 @@ private static final long serialVersionUID = 0L;
     }
     result = result && getInspectTemplateName()
         .equals(other.getInspectTemplateName());
-    result = result && getActionsList()
-        .equals(other.getActionsList());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -449,10 +366,6 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + INSPECT_TEMPLATE_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getInspectTemplateName().hashCode();
-    if (getActionsCount() > 0) {
-      hash = (37 * hash) + ACTIONS_FIELD_NUMBER;
-      hash = (53 * hash) + getActionsList().hashCode();
-    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -578,7 +491,6 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getActionsFieldBuilder();
       }
     }
     public Builder clear() {
@@ -603,12 +515,6 @@ private static final long serialVersionUID = 0L;
       }
       inspectTemplateName_ = "";
 
-      if (actionsBuilder_ == null) {
-        actions_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
-      } else {
-        actionsBuilder_.clear();
-      }
       return this;
     }
 
@@ -631,8 +537,6 @@ private static final long serialVersionUID = 0L;
 
     public com.google.privacy.dlp.v2beta2.InspectJobConfig buildPartial() {
       com.google.privacy.dlp.v2beta2.InspectJobConfig result = new com.google.privacy.dlp.v2beta2.InspectJobConfig(this);
-      int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
       if (storageConfigBuilder_ == null) {
         result.storageConfig_ = storageConfig_;
       } else {
@@ -649,16 +553,6 @@ private static final long serialVersionUID = 0L;
         result.inspectConfig_ = inspectConfigBuilder_.build();
       }
       result.inspectTemplateName_ = inspectTemplateName_;
-      if (actionsBuilder_ == null) {
-        if (((bitField0_ & 0x00000010) == 0x00000010)) {
-          actions_ = java.util.Collections.unmodifiableList(actions_);
-          bitField0_ = (bitField0_ & ~0x00000010);
-        }
-        result.actions_ = actions_;
-      } else {
-        result.actions_ = actionsBuilder_.build();
-      }
-      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -713,32 +607,6 @@ private static final long serialVersionUID = 0L;
         inspectTemplateName_ = other.inspectTemplateName_;
         onChanged();
       }
-      if (actionsBuilder_ == null) {
-        if (!other.actions_.isEmpty()) {
-          if (actions_.isEmpty()) {
-            actions_ = other.actions_;
-            bitField0_ = (bitField0_ & ~0x00000010);
-          } else {
-            ensureActionsIsMutable();
-            actions_.addAll(other.actions_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.actions_.isEmpty()) {
-          if (actionsBuilder_.isEmpty()) {
-            actionsBuilder_.dispose();
-            actionsBuilder_ = null;
-            actions_ = other.actions_;
-            bitField0_ = (bitField0_ & ~0x00000010);
-            actionsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getActionsFieldBuilder() : null;
-          } else {
-            actionsBuilder_.addAllMessages(other.actions_);
-          }
-        }
-      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -765,7 +633,6 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int bitField0_;
 
     private com.google.privacy.dlp.v2beta2.StorageConfig storageConfig_ = null;
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -1323,336 +1190,6 @@ private static final long serialVersionUID = 0L;
       inspectTemplateName_ = value;
       onChanged();
       return this;
-    }
-
-    private java.util.List<com.google.privacy.dlp.v2beta2.Action> actions_ =
-      java.util.Collections.emptyList();
-    private void ensureActionsIsMutable() {
-      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
-        actions_ = new java.util.ArrayList<com.google.privacy.dlp.v2beta2.Action>(actions_);
-        bitField0_ |= 0x00000010;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.google.privacy.dlp.v2beta2.Action, com.google.privacy.dlp.v2beta2.Action.Builder, com.google.privacy.dlp.v2beta2.ActionOrBuilder> actionsBuilder_;
-
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public java.util.List<com.google.privacy.dlp.v2beta2.Action> getActionsList() {
-      if (actionsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(actions_);
-      } else {
-        return actionsBuilder_.getMessageList();
-      }
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public int getActionsCount() {
-      if (actionsBuilder_ == null) {
-        return actions_.size();
-      } else {
-        return actionsBuilder_.getCount();
-      }
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public com.google.privacy.dlp.v2beta2.Action getActions(int index) {
-      if (actionsBuilder_ == null) {
-        return actions_.get(index);
-      } else {
-        return actionsBuilder_.getMessage(index);
-      }
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder setActions(
-        int index, com.google.privacy.dlp.v2beta2.Action value) {
-      if (actionsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureActionsIsMutable();
-        actions_.set(index, value);
-        onChanged();
-      } else {
-        actionsBuilder_.setMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder setActions(
-        int index, com.google.privacy.dlp.v2beta2.Action.Builder builderForValue) {
-      if (actionsBuilder_ == null) {
-        ensureActionsIsMutable();
-        actions_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        actionsBuilder_.setMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder addActions(com.google.privacy.dlp.v2beta2.Action value) {
-      if (actionsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureActionsIsMutable();
-        actions_.add(value);
-        onChanged();
-      } else {
-        actionsBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder addActions(
-        int index, com.google.privacy.dlp.v2beta2.Action value) {
-      if (actionsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureActionsIsMutable();
-        actions_.add(index, value);
-        onChanged();
-      } else {
-        actionsBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder addActions(
-        com.google.privacy.dlp.v2beta2.Action.Builder builderForValue) {
-      if (actionsBuilder_ == null) {
-        ensureActionsIsMutable();
-        actions_.add(builderForValue.build());
-        onChanged();
-      } else {
-        actionsBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder addActions(
-        int index, com.google.privacy.dlp.v2beta2.Action.Builder builderForValue) {
-      if (actionsBuilder_ == null) {
-        ensureActionsIsMutable();
-        actions_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        actionsBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder addAllActions(
-        java.lang.Iterable<? extends com.google.privacy.dlp.v2beta2.Action> values) {
-      if (actionsBuilder_ == null) {
-        ensureActionsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, actions_);
-        onChanged();
-      } else {
-        actionsBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder clearActions() {
-      if (actionsBuilder_ == null) {
-        actions_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
-        onChanged();
-      } else {
-        actionsBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public Builder removeActions(int index) {
-      if (actionsBuilder_ == null) {
-        ensureActionsIsMutable();
-        actions_.remove(index);
-        onChanged();
-      } else {
-        actionsBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public com.google.privacy.dlp.v2beta2.Action.Builder getActionsBuilder(
-        int index) {
-      return getActionsFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public com.google.privacy.dlp.v2beta2.ActionOrBuilder getActionsOrBuilder(
-        int index) {
-      if (actionsBuilder_ == null) {
-        return actions_.get(index);  } else {
-        return actionsBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public java.util.List<? extends com.google.privacy.dlp.v2beta2.ActionOrBuilder> 
-         getActionsOrBuilderList() {
-      if (actionsBuilder_ != null) {
-        return actionsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(actions_);
-      }
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public com.google.privacy.dlp.v2beta2.Action.Builder addActionsBuilder() {
-      return getActionsFieldBuilder().addBuilder(
-          com.google.privacy.dlp.v2beta2.Action.getDefaultInstance());
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public com.google.privacy.dlp.v2beta2.Action.Builder addActionsBuilder(
-        int index) {
-      return getActionsFieldBuilder().addBuilder(
-          index, com.google.privacy.dlp.v2beta2.Action.getDefaultInstance());
-    }
-    /**
-     * <pre>
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
-     * </pre>
-     *
-     * <code>repeated .google.privacy.dlp.v2beta2.Action actions = 5;</code>
-     */
-    public java.util.List<com.google.privacy.dlp.v2beta2.Action.Builder> 
-         getActionsBuilderList() {
-      return getActionsFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.google.privacy.dlp.v2beta2.Action, com.google.privacy.dlp.v2beta2.Action.Builder, com.google.privacy.dlp.v2beta2.ActionOrBuilder> 
-        getActionsFieldBuilder() {
-      if (actionsBuilder_ == null) {
-        actionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            com.google.privacy.dlp.v2beta2.Action, com.google.privacy.dlp.v2beta2.Action.Builder, com.google.privacy.dlp.v2beta2.ActionOrBuilder>(
-                actions_,
-                ((bitField0_ & 0x00000010) == 0x00000010),
-                getParentForChildren(),
-                isClean());
-        actions_ = null;
-      }
-      return actionsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
