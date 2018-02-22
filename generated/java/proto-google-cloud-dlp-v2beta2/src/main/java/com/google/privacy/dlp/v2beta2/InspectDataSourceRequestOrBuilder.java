@@ -49,30 +49,4 @@ public interface InspectDataSourceRequestOrBuilder extends
    * <code>.google.privacy.dlp.v2beta2.InspectJobConfig job_config = 2;</code>
    */
   com.google.privacy.dlp.v2beta2.InspectJobConfigOrBuilder getJobConfigOrBuilder();
-
-  /**
-   * <pre>
-   * Optional job ID to use for the created job. If not provided, a job ID will
-   * automatically be generated. Must be unique within the project. The job ID
-   * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
-   * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
-   * is 100 characters. Can be empty to allow the system to generate one.
-   * </pre>
-   *
-   * <code>string job_id = 3;</code>
-   */
-  java.lang.String getJobId();
-  /**
-   * <pre>
-   * Optional job ID to use for the created job. If not provided, a job ID will
-   * automatically be generated. Must be unique within the project. The job ID
-   * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
-   * it must match the regular expression: `[a-zA-Z&#92;&#92;d-]+`. The maximum length
-   * is 100 characters. Can be empty to allow the system to generate one.
-   * </pre>
-   *
-   * <code>string job_id = 3;</code>
-   */
-  com.google.protobuf.ByteString
-      getJobIdBytes();
 }

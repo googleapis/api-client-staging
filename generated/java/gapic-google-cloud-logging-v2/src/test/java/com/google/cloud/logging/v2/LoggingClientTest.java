@@ -34,10 +34,8 @@ import com.google.logging.v2.ListLogsRequest;
 import com.google.logging.v2.ListLogsResponse;
 import com.google.logging.v2.LogEntry;
 import com.google.logging.v2.LogName;
-import com.google.logging.v2.LogNames;
-import com.google.logging.v2.ParentName;
-import com.google.logging.v2.ParentNames;
-import com.google.logging.v2.ProjectLogName;
+import com.google.logging.v2.LogNameOneof;
+import com.google.logging.v2.ParentNameOneof;
 import com.google.logging.v2.ProjectName;
 import com.google.logging.v2.WriteLogEntriesRequest;
 import com.google.logging.v2.WriteLogEntriesResponse;
@@ -108,7 +106,7 @@ public class LoggingClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockLoggingServiceV2.addResponse(expectedResponse);
 
-    LogName logName = ProjectLogName.of("[PROJECT]", "[LOG]");
+    LogNameOneof logName = LogNameOneof.from(LogName.of("[PROJECT]", "[LOG]"));
 
     client.deleteLog(logName);
 
@@ -116,7 +114,7 @@ public class LoggingClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DeleteLogRequest actualRequest = (DeleteLogRequest) actualRequests.get(0);
 
-    Assert.assertEquals(logName, LogNames.parse(actualRequest.getLogName()));
+    Assert.assertEquals(logName, LogNameOneof.parse(actualRequest.getLogName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -130,7 +128,7 @@ public class LoggingClientTest {
     mockLoggingServiceV2.addException(exception);
 
     try {
-      LogName logName = ProjectLogName.of("[PROJECT]", "[LOG]");
+      LogNameOneof logName = LogNameOneof.from(LogName.of("[PROJECT]", "[LOG]"));
 
       client.deleteLog(logName);
       Assert.fail("No exception raised");
@@ -145,7 +143,7 @@ public class LoggingClientTest {
     WriteLogEntriesResponse expectedResponse = WriteLogEntriesResponse.newBuilder().build();
     mockLoggingServiceV2.addResponse(expectedResponse);
 
-    LogName logName = ProjectLogName.of("[PROJECT]", "[LOG]");
+    LogNameOneof logName = LogNameOneof.from(LogName.of("[PROJECT]", "[LOG]"));
     MonitoredResource resource = MonitoredResource.newBuilder().build();
     Map<String, String> labels = new HashMap<>();
     List<LogEntry> entries = new ArrayList<>();
@@ -158,7 +156,7 @@ public class LoggingClientTest {
     Assert.assertEquals(1, actualRequests.size());
     WriteLogEntriesRequest actualRequest = (WriteLogEntriesRequest) actualRequests.get(0);
 
-    Assert.assertEquals(logName, LogNames.parse(actualRequest.getLogName()));
+    Assert.assertEquals(logName, LogNameOneof.parse(actualRequest.getLogName()));
     Assert.assertEquals(resource, actualRequest.getResource());
     Assert.assertEquals(labels, actualRequest.getLabelsMap());
     Assert.assertEquals(entries, actualRequest.getEntriesList());
@@ -175,7 +173,7 @@ public class LoggingClientTest {
     mockLoggingServiceV2.addException(exception);
 
     try {
-      LogName logName = ProjectLogName.of("[PROJECT]", "[LOG]");
+      LogNameOneof logName = LogNameOneof.from(LogName.of("[PROJECT]", "[LOG]"));
       MonitoredResource resource = MonitoredResource.newBuilder().build();
       Map<String, String> labels = new HashMap<>();
       List<LogEntry> entries = new ArrayList<>();
@@ -255,7 +253,7 @@ public class LoggingClientTest {
             .build();
     mockLoggingServiceV2.addResponse(expectedResponse);
 
-    ParentName parent = ProjectName.of("[PROJECT]");
+    ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
 
     ListLogsPagedResponse pagedListResponse = client.listLogs(parent);
 
@@ -267,7 +265,7 @@ public class LoggingClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListLogsRequest actualRequest = (ListLogsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, ParentNames.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, ParentNameOneof.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -281,7 +279,7 @@ public class LoggingClientTest {
     mockLoggingServiceV2.addException(exception);
 
     try {
-      ParentName parent = ProjectName.of("[PROJECT]");
+      ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
 
       client.listLogs(parent);
       Assert.fail("No exception raised");

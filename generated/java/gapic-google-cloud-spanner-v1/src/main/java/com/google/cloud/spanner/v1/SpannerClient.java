@@ -208,9 +208,7 @@ public class SpannerClient implements BackgroundResource {
   public final Session createSession(DatabaseName database) {
 
     CreateSessionRequest request =
-        CreateSessionRequest.newBuilder()
-            .setDatabase(database == null ? null : database.toString())
-            .build();
+        CreateSessionRequest.newBuilder().setDatabase(database.toString()).build();
     return createSession(request);
   }
 
@@ -306,8 +304,7 @@ public class SpannerClient implements BackgroundResource {
    */
   public final Session getSession(SessionName name) {
 
-    GetSessionRequest request =
-        GetSessionRequest.newBuilder().setName(name == null ? null : name.toString()).build();
+    GetSessionRequest request = GetSessionRequest.newBuilder().setName(name.toString()).build();
     return getSession(request);
   }
 
@@ -481,7 +478,7 @@ public class SpannerClient implements BackgroundResource {
   public final void deleteSession(SessionName name) {
 
     DeleteSessionRequest request =
-        DeleteSessionRequest.newBuilder().setName(name == null ? null : name.toString()).build();
+        DeleteSessionRequest.newBuilder().setName(name.toString()).build();
     deleteSession(request);
   }
 
@@ -791,7 +788,7 @@ public class SpannerClient implements BackgroundResource {
 
     BeginTransactionRequest request =
         BeginTransactionRequest.newBuilder()
-            .setSession(session == null ? null : session.toString())
+            .setSession(session.toString())
             .setOptions(options)
             .build();
     return beginTransaction(request);
@@ -882,7 +879,7 @@ public class SpannerClient implements BackgroundResource {
 
     CommitRequest request =
         CommitRequest.newBuilder()
-            .setSession(session == null ? null : session.toString())
+            .setSession(session.toString())
             .setTransactionId(transactionId)
             .addAllMutations(mutations)
             .build();
@@ -927,7 +924,7 @@ public class SpannerClient implements BackgroundResource {
 
     CommitRequest request =
         CommitRequest.newBuilder()
-            .setSession(session == null ? null : session.toString())
+            .setSession(session.toString())
             .setSingleUseTransaction(singleUseTransaction)
             .addAllMutations(mutations)
             .build();
@@ -1023,7 +1020,7 @@ public class SpannerClient implements BackgroundResource {
 
     RollbackRequest request =
         RollbackRequest.newBuilder()
-            .setSession(session == null ? null : session.toString())
+            .setSession(session.toString())
             .setTransactionId(transactionId)
             .build();
     rollback(request);

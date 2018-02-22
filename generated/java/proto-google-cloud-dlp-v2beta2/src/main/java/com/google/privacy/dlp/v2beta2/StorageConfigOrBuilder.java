@@ -82,18 +82,5 @@ public interface StorageConfigOrBuilder extends
    */
   com.google.privacy.dlp.v2beta2.BigQueryOptionsOrBuilder getBigQueryOptionsOrBuilder();
 
-  /**
-   * <code>.google.privacy.dlp.v2beta2.StorageConfig.TimespanConfig timespan_config = 6;</code>
-   */
-  boolean hasTimespanConfig();
-  /**
-   * <code>.google.privacy.dlp.v2beta2.StorageConfig.TimespanConfig timespan_config = 6;</code>
-   */
-  com.google.privacy.dlp.v2beta2.StorageConfig.TimespanConfig getTimespanConfig();
-  /**
-   * <code>.google.privacy.dlp.v2beta2.StorageConfig.TimespanConfig timespan_config = 6;</code>
-   */
-  com.google.privacy.dlp.v2beta2.StorageConfig.TimespanConfigOrBuilder getTimespanConfigOrBuilder();
-
   public com.google.privacy.dlp.v2beta2.StorageConfig.TypeCase getTypeCase();
 }
