@@ -516,9 +516,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setTopic(topicName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setTopicWithTopicName(com.google.pubsub.v1.TopicName value) {
+      if (value == null) {
+        return setTopic("");
+      }
+      return setTopic(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * TopicName.parse(protoBuilder.getTopic());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.pubsub.v1.TopicName getTopicAsTopicName() {
+      java.lang.String str = getTopic();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.pubsub.v1.TopicName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.pubsub.v1.DeleteTopicRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * TopicName.parse(protoObject.getTopic());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.pubsub.v1.TopicName getTopicAsTopicName() {
+    java.lang.String str = getTopic();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.pubsub.v1.TopicName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.pubsub.v1.DeleteTopicRequest)
   private static final com.google.pubsub.v1.DeleteTopicRequest DEFAULT_INSTANCE;
   static {

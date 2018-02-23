@@ -21,7 +21,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private CloudStorageOptions() {
-    bytesLimitPerFile_ = 0L;
   }
 
   @java.lang.Override
@@ -63,11 +62,6 @@ private static final long serialVersionUID = 0L;
               fileSet_ = subBuilder.buildPartial();
             }
 
-            break;
-          }
-          case 32: {
-
-            bytesLimitPerFile_ = input.readInt64();
             break;
           }
         }
@@ -690,20 +684,6 @@ private static final long serialVersionUID = 0L;
     return getFileSet();
   }
 
-  public static final int BYTES_LIMIT_PER_FILE_FIELD_NUMBER = 4;
-  private long bytesLimitPerFile_;
-  /**
-   * <pre>
-   * Max number of bytes to scan from a file. If a scanned file's size is bigger
-   * than this value then the rest of the bytes are omitted.
-   * </pre>
-   *
-   * <code>int64 bytes_limit_per_file = 4;</code>
-   */
-  public long getBytesLimitPerFile() {
-    return bytesLimitPerFile_;
-  }
-
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -719,9 +699,6 @@ private static final long serialVersionUID = 0L;
     if (fileSet_ != null) {
       output.writeMessage(1, getFileSet());
     }
-    if (bytesLimitPerFile_ != 0L) {
-      output.writeInt64(4, bytesLimitPerFile_);
-    }
     unknownFields.writeTo(output);
   }
 
@@ -733,10 +710,6 @@ private static final long serialVersionUID = 0L;
     if (fileSet_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, getFileSet());
-    }
-    if (bytesLimitPerFile_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(4, bytesLimitPerFile_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -759,8 +732,6 @@ private static final long serialVersionUID = 0L;
       result = result && getFileSet()
           .equals(other.getFileSet());
     }
-    result = result && (getBytesLimitPerFile()
-        == other.getBytesLimitPerFile());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -776,9 +747,6 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + FILE_SET_FIELD_NUMBER;
       hash = (53 * hash) + getFileSet().hashCode();
     }
-    hash = (37 * hash) + BYTES_LIMIT_PER_FILE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getBytesLimitPerFile());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -919,8 +887,6 @@ private static final long serialVersionUID = 0L;
         fileSet_ = null;
         fileSetBuilder_ = null;
       }
-      bytesLimitPerFile_ = 0L;
-
       return this;
     }
 
@@ -948,7 +914,6 @@ private static final long serialVersionUID = 0L;
       } else {
         result.fileSet_ = fileSetBuilder_.build();
       }
-      result.bytesLimitPerFile_ = bytesLimitPerFile_;
       onBuilt();
       return result;
     }
@@ -992,9 +957,6 @@ private static final long serialVersionUID = 0L;
       if (other == com.google.privacy.dlp.v2beta2.CloudStorageOptions.getDefaultInstance()) return this;
       if (other.hasFileSet()) {
         mergeFileSet(other.getFileSet());
-      }
-      if (other.getBytesLimitPerFile() != 0L) {
-        setBytesLimitPerFile(other.getBytesLimitPerFile());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1138,47 +1100,6 @@ private static final long serialVersionUID = 0L;
         fileSet_ = null;
       }
       return fileSetBuilder_;
-    }
-
-    private long bytesLimitPerFile_ ;
-    /**
-     * <pre>
-     * Max number of bytes to scan from a file. If a scanned file's size is bigger
-     * than this value then the rest of the bytes are omitted.
-     * </pre>
-     *
-     * <code>int64 bytes_limit_per_file = 4;</code>
-     */
-    public long getBytesLimitPerFile() {
-      return bytesLimitPerFile_;
-    }
-    /**
-     * <pre>
-     * Max number of bytes to scan from a file. If a scanned file's size is bigger
-     * than this value then the rest of the bytes are omitted.
-     * </pre>
-     *
-     * <code>int64 bytes_limit_per_file = 4;</code>
-     */
-    public Builder setBytesLimitPerFile(long value) {
-      
-      bytesLimitPerFile_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Max number of bytes to scan from a file. If a scanned file's size is bigger
-     * than this value then the rest of the bytes are omitted.
-     * </pre>
-     *
-     * <code>int64 bytes_limit_per_file = 4;</code>
-     */
-    public Builder clearBytesLimitPerFile() {
-      
-      bytesLimitPerFile_ = 0L;
-      onChanged();
-      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
