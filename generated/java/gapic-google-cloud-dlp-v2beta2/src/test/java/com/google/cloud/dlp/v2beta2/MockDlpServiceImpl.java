@@ -26,18 +26,15 @@ import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
 import com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.DeleteDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.DeleteInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DlpJob;
 import com.google.privacy.dlp.v2beta2.DlpServiceGrpc.DlpServiceImplBase;
 import com.google.privacy.dlp.v2beta2.GetDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.GetDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.GetInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.GetJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentResponse;
 import com.google.privacy.dlp.v2beta2.InspectDataSourceRequest;
 import com.google.privacy.dlp.v2beta2.InspectTemplate;
-import com.google.privacy.dlp.v2beta2.JobTrigger;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesResponse;
 import com.google.privacy.dlp.v2beta2.ListDlpJobsRequest;
@@ -46,15 +43,12 @@ import com.google.privacy.dlp.v2beta2.ListInfoTypesRequest;
 import com.google.privacy.dlp.v2beta2.ListInfoTypesResponse;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesResponse;
-import com.google.privacy.dlp.v2beta2.ListJobTriggersRequest;
-import com.google.privacy.dlp.v2beta2.ListJobTriggersResponse;
 import com.google.privacy.dlp.v2beta2.RedactImageRequest;
 import com.google.privacy.dlp.v2beta2.RedactImageResponse;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.UpdateInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
 import io.grpc.stub.StreamObserver;
@@ -344,66 +338,6 @@ public class MockDlpServiceImpl extends DlpServiceImplBase {
   @Override
   public void deleteDeidentifyTemplate(
       DeleteDeidentifyTemplateRequest request, StreamObserver<Empty> responseObserver) {
-    Object response = responses.remove();
-    if (response instanceof Empty) {
-      requests.add(request);
-      responseObserver.onNext((Empty) response);
-      responseObserver.onCompleted();
-    } else if (response instanceof Exception) {
-      responseObserver.onError((Exception) response);
-    } else {
-      responseObserver.onError(new IllegalArgumentException("Unrecognized response type"));
-    }
-  }
-
-  @Override
-  public void updateJobTrigger(
-      UpdateJobTriggerRequest request, StreamObserver<JobTrigger> responseObserver) {
-    Object response = responses.remove();
-    if (response instanceof JobTrigger) {
-      requests.add(request);
-      responseObserver.onNext((JobTrigger) response);
-      responseObserver.onCompleted();
-    } else if (response instanceof Exception) {
-      responseObserver.onError((Exception) response);
-    } else {
-      responseObserver.onError(new IllegalArgumentException("Unrecognized response type"));
-    }
-  }
-
-  @Override
-  public void getJobTrigger(
-      GetJobTriggerRequest request, StreamObserver<JobTrigger> responseObserver) {
-    Object response = responses.remove();
-    if (response instanceof JobTrigger) {
-      requests.add(request);
-      responseObserver.onNext((JobTrigger) response);
-      responseObserver.onCompleted();
-    } else if (response instanceof Exception) {
-      responseObserver.onError((Exception) response);
-    } else {
-      responseObserver.onError(new IllegalArgumentException("Unrecognized response type"));
-    }
-  }
-
-  @Override
-  public void listJobTriggers(
-      ListJobTriggersRequest request, StreamObserver<ListJobTriggersResponse> responseObserver) {
-    Object response = responses.remove();
-    if (response instanceof ListJobTriggersResponse) {
-      requests.add(request);
-      responseObserver.onNext((ListJobTriggersResponse) response);
-      responseObserver.onCompleted();
-    } else if (response instanceof Exception) {
-      responseObserver.onError((Exception) response);
-    } else {
-      responseObserver.onError(new IllegalArgumentException("Unrecognized response type"));
-    }
-  }
-
-  @Override
-  public void deleteJobTrigger(
-      DeleteJobTriggerRequest request, StreamObserver<Empty> responseObserver) {
     Object response = responses.remove();
     if (response instanceof Empty) {
       requests.add(request);

@@ -189,51 +189,6 @@ public final class DlpServiceGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest,
-      com.google.privacy.dlp.v2beta2.JobTrigger> METHOD_CREATE_JOB_TRIGGER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.privacy.dlp.v2beta2.DlpService", "CreateJobTrigger"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.JobTrigger.getDefaultInstance()));
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest,
-      com.google.privacy.dlp.v2beta2.JobTrigger> METHOD_UPDATE_JOB_TRIGGER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.privacy.dlp.v2beta2.DlpService", "UpdateJobTrigger"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.JobTrigger.getDefaultInstance()));
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta2.GetJobTriggerRequest,
-      com.google.privacy.dlp.v2beta2.JobTrigger> METHOD_GET_JOB_TRIGGER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.privacy.dlp.v2beta2.DlpService", "GetJobTrigger"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.GetJobTriggerRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.JobTrigger.getDefaultInstance()));
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta2.ListJobTriggersRequest,
-      com.google.privacy.dlp.v2beta2.ListJobTriggersResponse> METHOD_LIST_JOB_TRIGGERS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.privacy.dlp.v2beta2.DlpService", "ListJobTriggers"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.ListJobTriggersRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.ListJobTriggersResponse.getDefaultInstance()));
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_JOB_TRIGGER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.privacy.dlp.v2beta2.DlpService", "DeleteJobTrigger"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta2.ListDlpJobsRequest,
       com.google.privacy.dlp.v2beta2.ListDlpJobsResponse> METHOD_LIST_DLP_JOBS =
       io.grpc.MethodDescriptor.create(
@@ -488,57 +443,6 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
-     * </pre>
-     */
-    public void createJobTrigger(com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest request,
-        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_JOB_TRIGGER, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Updates a job trigger.
-     * </pre>
-     */
-    public void updateJobTrigger(com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest request,
-        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_JOB_TRIGGER, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Gets a job trigger.
-     * </pre>
-     */
-    public void getJobTrigger(com.google.privacy.dlp.v2beta2.GetJobTriggerRequest request,
-        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_JOB_TRIGGER, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Lists job triggers.
-     * </pre>
-     */
-    public void listJobTriggers(com.google.privacy.dlp.v2beta2.ListJobTriggersRequest request,
-        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.ListJobTriggersResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_JOB_TRIGGERS, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Deletes a job trigger.
-     * </pre>
-     */
-    public void deleteJobTrigger(com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_JOB_TRIGGER, responseObserver);
-    }
-
-    /**
-     * <pre>
      * Lists DlpJobs that match the specified filter in the request.
      * </pre>
      */
@@ -702,41 +606,6 @@ public final class DlpServiceGrpc {
                 com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_DEIDENTIFY_TEMPLATE)))
-          .addMethod(
-            METHOD_CREATE_JOB_TRIGGER,
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest,
-                com.google.privacy.dlp.v2beta2.JobTrigger>(
-                  this, METHODID_CREATE_JOB_TRIGGER)))
-          .addMethod(
-            METHOD_UPDATE_JOB_TRIGGER,
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest,
-                com.google.privacy.dlp.v2beta2.JobTrigger>(
-                  this, METHODID_UPDATE_JOB_TRIGGER)))
-          .addMethod(
-            METHOD_GET_JOB_TRIGGER,
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.google.privacy.dlp.v2beta2.GetJobTriggerRequest,
-                com.google.privacy.dlp.v2beta2.JobTrigger>(
-                  this, METHODID_GET_JOB_TRIGGER)))
-          .addMethod(
-            METHOD_LIST_JOB_TRIGGERS,
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.google.privacy.dlp.v2beta2.ListJobTriggersRequest,
-                com.google.privacy.dlp.v2beta2.ListJobTriggersResponse>(
-                  this, METHODID_LIST_JOB_TRIGGERS)))
-          .addMethod(
-            METHOD_DELETE_JOB_TRIGGER,
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest,
-                com.google.protobuf.Empty>(
-                  this, METHODID_DELETE_JOB_TRIGGER)))
           .addMethod(
             METHOD_LIST_DLP_JOBS,
             asyncUnaryCall(
@@ -995,62 +864,6 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
-     * </pre>
-     */
-    public void createJobTrigger(com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest request,
-        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_JOB_TRIGGER, getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Updates a job trigger.
-     * </pre>
-     */
-    public void updateJobTrigger(com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest request,
-        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_JOB_TRIGGER, getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Gets a job trigger.
-     * </pre>
-     */
-    public void getJobTrigger(com.google.privacy.dlp.v2beta2.GetJobTriggerRequest request,
-        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_JOB_TRIGGER, getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Lists job triggers.
-     * </pre>
-     */
-    public void listJobTriggers(com.google.privacy.dlp.v2beta2.ListJobTriggersRequest request,
-        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.ListJobTriggersResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_JOB_TRIGGERS, getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Deletes a job trigger.
-     * </pre>
-     */
-    public void deleteJobTrigger(com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_JOB_TRIGGER, getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
      * Lists DlpJobs that match the specified filter in the request.
      * </pre>
      */
@@ -1303,57 +1116,6 @@ public final class DlpServiceGrpc {
     public com.google.protobuf.Empty deleteDeidentifyTemplate(com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_DELETE_DEIDENTIFY_TEMPLATE, getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
-     * </pre>
-     */
-    public com.google.privacy.dlp.v2beta2.JobTrigger createJobTrigger(com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_JOB_TRIGGER, getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Updates a job trigger.
-     * </pre>
-     */
-    public com.google.privacy.dlp.v2beta2.JobTrigger updateJobTrigger(com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_JOB_TRIGGER, getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Gets a job trigger.
-     * </pre>
-     */
-    public com.google.privacy.dlp.v2beta2.JobTrigger getJobTrigger(com.google.privacy.dlp.v2beta2.GetJobTriggerRequest request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_GET_JOB_TRIGGER, getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Lists job triggers.
-     * </pre>
-     */
-    public com.google.privacy.dlp.v2beta2.ListJobTriggersResponse listJobTriggers(com.google.privacy.dlp.v2beta2.ListJobTriggersRequest request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_LIST_JOB_TRIGGERS, getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Deletes a job trigger.
-     * </pre>
-     */
-    public com.google.protobuf.Empty deleteJobTrigger(com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_JOB_TRIGGER, getCallOptions(), request);
     }
 
     /**
@@ -1627,62 +1389,6 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2beta2.JobTrigger> createJobTrigger(
-        com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_JOB_TRIGGER, getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Updates a job trigger.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2beta2.JobTrigger> updateJobTrigger(
-        com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_JOB_TRIGGER, getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Gets a job trigger.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2beta2.JobTrigger> getJobTrigger(
-        com.google.privacy.dlp.v2beta2.GetJobTriggerRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_JOB_TRIGGER, getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Lists job triggers.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2beta2.ListJobTriggersResponse> listJobTriggers(
-        com.google.privacy.dlp.v2beta2.ListJobTriggersRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_JOB_TRIGGERS, getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Deletes a job trigger.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteJobTrigger(
-        com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_JOB_TRIGGER, getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
      * Lists DlpJobs that match the specified filter in the request.
      * </pre>
      */
@@ -1747,15 +1453,10 @@ public final class DlpServiceGrpc {
   private static final int METHODID_GET_DEIDENTIFY_TEMPLATE = 14;
   private static final int METHODID_LIST_DEIDENTIFY_TEMPLATES = 15;
   private static final int METHODID_DELETE_DEIDENTIFY_TEMPLATE = 16;
-  private static final int METHODID_CREATE_JOB_TRIGGER = 17;
-  private static final int METHODID_UPDATE_JOB_TRIGGER = 18;
-  private static final int METHODID_GET_JOB_TRIGGER = 19;
-  private static final int METHODID_LIST_JOB_TRIGGERS = 20;
-  private static final int METHODID_DELETE_JOB_TRIGGER = 21;
-  private static final int METHODID_LIST_DLP_JOBS = 22;
-  private static final int METHODID_GET_DLP_JOB = 23;
-  private static final int METHODID_DELETE_DLP_JOB = 24;
-  private static final int METHODID_CANCEL_DLP_JOB = 25;
+  private static final int METHODID_LIST_DLP_JOBS = 17;
+  private static final int METHODID_GET_DLP_JOB = 18;
+  private static final int METHODID_DELETE_DLP_JOB = 19;
+  private static final int METHODID_CANCEL_DLP_JOB = 20;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1842,26 +1543,6 @@ public final class DlpServiceGrpc {
           serviceImpl.deleteDeidentifyTemplate((com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
-        case METHODID_CREATE_JOB_TRIGGER:
-          serviceImpl.createJobTrigger((com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest) request,
-              (io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger>) responseObserver);
-          break;
-        case METHODID_UPDATE_JOB_TRIGGER:
-          serviceImpl.updateJobTrigger((com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest) request,
-              (io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger>) responseObserver);
-          break;
-        case METHODID_GET_JOB_TRIGGER:
-          serviceImpl.getJobTrigger((com.google.privacy.dlp.v2beta2.GetJobTriggerRequest) request,
-              (io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.JobTrigger>) responseObserver);
-          break;
-        case METHODID_LIST_JOB_TRIGGERS:
-          serviceImpl.listJobTriggers((com.google.privacy.dlp.v2beta2.ListJobTriggersRequest) request,
-              (io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.ListJobTriggersResponse>) responseObserver);
-          break;
-        case METHODID_DELETE_JOB_TRIGGER:
-          serviceImpl.deleteJobTrigger((com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest) request,
-              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
-          break;
         case METHODID_LIST_DLP_JOBS:
           serviceImpl.listDlpJobs((com.google.privacy.dlp.v2beta2.ListDlpJobsRequest) request,
               (io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta2.ListDlpJobsResponse>) responseObserver);
@@ -1928,11 +1609,6 @@ public final class DlpServiceGrpc {
               .addMethod(METHOD_GET_DEIDENTIFY_TEMPLATE)
               .addMethod(METHOD_LIST_DEIDENTIFY_TEMPLATES)
               .addMethod(METHOD_DELETE_DEIDENTIFY_TEMPLATE)
-              .addMethod(METHOD_CREATE_JOB_TRIGGER)
-              .addMethod(METHOD_UPDATE_JOB_TRIGGER)
-              .addMethod(METHOD_GET_JOB_TRIGGER)
-              .addMethod(METHOD_LIST_JOB_TRIGGERS)
-              .addMethod(METHOD_DELETE_JOB_TRIGGER)
               .addMethod(METHOD_LIST_DLP_JOBS)
               .addMethod(METHOD_GET_DLP_JOB)
               .addMethod(METHOD_DELETE_DLP_JOB)

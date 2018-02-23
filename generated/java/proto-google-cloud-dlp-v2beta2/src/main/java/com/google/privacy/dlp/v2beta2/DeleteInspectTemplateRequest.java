@@ -523,9 +523,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(inspectTemplateNameOneof.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setNameWithInspectTemplateNameOneof(com.google.privacy.dlp.v2beta2.InspectTemplateNameOneof value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * InspectTemplateNameOneof.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.privacy.dlp.v2beta2.InspectTemplateNameOneof getNameAsInspectTemplateNameOneof() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.privacy.dlp.v2beta2.InspectTemplateNameOneof.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.privacy.dlp.v2beta2.DeleteInspectTemplateRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * InspectTemplateNameOneof.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.privacy.dlp.v2beta2.InspectTemplateNameOneof getNameAsInspectTemplateNameOneof() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.privacy.dlp.v2beta2.InspectTemplateNameOneof.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.privacy.dlp.v2beta2.DeleteInspectTemplateRequest)
   private static final com.google.privacy.dlp.v2beta2.DeleteInspectTemplateRequest DEFAULT_INSTANCE;
   static {

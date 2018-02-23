@@ -759,9 +759,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setProject(projectName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setProjectWithProjectName(com.google.pubsub.v1.ProjectName value) {
+      if (value == null) {
+        return setProject("");
+      }
+      return setProject(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * ProjectName.parse(protoBuilder.getProject());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.pubsub.v1.ProjectName getProjectAsProjectName() {
+      java.lang.String str = getProject();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.pubsub.v1.ProjectName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.pubsub.v1.ListSubscriptionsRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * ProjectName.parse(protoObject.getProject());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.pubsub.v1.ProjectName getProjectAsProjectName() {
+    java.lang.String str = getProject();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.pubsub.v1.ProjectName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.pubsub.v1.ListSubscriptionsRequest)
   private static final com.google.pubsub.v1.ListSubscriptionsRequest DEFAULT_INSTANCE;
   static {

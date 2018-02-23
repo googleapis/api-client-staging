@@ -1214,9 +1214,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(groupName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setNameWithGroupName(com.google.monitoring.v3.GroupName value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * GroupName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.monitoring.v3.GroupName getNameAsGroupName() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.monitoring.v3.GroupName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.monitoring.v3.ListGroupMembersRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * GroupName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.monitoring.v3.GroupName getNameAsGroupName() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.monitoring.v3.GroupName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.monitoring.v3.ListGroupMembersRequest)
   private static final com.google.monitoring.v3.ListGroupMembersRequest DEFAULT_INSTANCE;
   static {

@@ -865,9 +865,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(topicName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setNameWithTopicName(com.google.pubsub.v1.TopicName value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * TopicName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.pubsub.v1.TopicName getNameAsTopicName() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.pubsub.v1.TopicName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.pubsub.v1.Topic)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * TopicName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.pubsub.v1.TopicName getNameAsTopicName() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.pubsub.v1.TopicName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.pubsub.v1.Topic)
   private static final com.google.pubsub.v1.Topic DEFAULT_INSTANCE;
   static {
