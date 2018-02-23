@@ -85,7 +85,9 @@ public class DataTransferServiceClientTest {
   @Test
   @SuppressWarnings("all")
   public void getDataSourceTest() {
-    DataSourceName name2 = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
+    DataSourceNameOneof name2 =
+        DataSourceNameOneof.from(
+            LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]"));
     String dataSourceId = "dataSourceId-1015796374";
     String displayName = "displayName1615086568";
     String description = "description-1724546052";
@@ -114,7 +116,9 @@ public class DataTransferServiceClientTest {
             .build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
+    DataSourceNameOneof name =
+        DataSourceNameOneof.from(
+            LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]"));
 
     DataSource actualResponse = client.getDataSource(name);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -123,7 +127,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetDataSourceRequest actualRequest = (GetDataSourceRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, DataSourceNames.parse(actualRequest.getName()));
+    Assert.assertEquals(name, DataSourceNameOneof.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -137,7 +141,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
+      DataSourceNameOneof name =
+          DataSourceNameOneof.from(
+              LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]"));
 
       client.getDataSource(name);
       Assert.fail("No exception raised");
@@ -159,7 +165,7 @@ public class DataTransferServiceClientTest {
             .build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    ParentName parent = ProjectName.of("[PROJECT]");
+    ParentNameOneof parent = ParentNameOneof.from(LocationName.of("[PROJECT]", "[LOCATION]"));
 
     ListDataSourcesPagedResponse pagedListResponse = client.listDataSources(parent);
 
@@ -171,7 +177,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListDataSourcesRequest actualRequest = (ListDataSourcesRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, ParentNames.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, ParentNameOneof.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -185,7 +191,7 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      ParentName parent = ProjectName.of("[PROJECT]");
+      ParentNameOneof parent = ParentNameOneof.from(LocationName.of("[PROJECT]", "[LOCATION]"));
 
       client.listDataSources(parent);
       Assert.fail("No exception raised");
@@ -197,7 +203,9 @@ public class DataTransferServiceClientTest {
   @Test
   @SuppressWarnings("all")
   public void createTransferConfigTest() {
-    TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+    TransferConfigNameOneof name =
+        TransferConfigNameOneof.from(
+            LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
     String destinationDatasetId = "destinationDatasetId1541564179";
     String displayName = "displayName1615086568";
     String dataSourceId = "dataSourceId-1015796374";
@@ -220,7 +228,7 @@ public class DataTransferServiceClientTest {
             .build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    ParentName parent = ProjectName.of("[PROJECT]");
+    ParentNameOneof parent = ParentNameOneof.from(LocationName.of("[PROJECT]", "[LOCATION]"));
     TransferConfig transferConfig = TransferConfig.newBuilder().build();
 
     TransferConfig actualResponse = client.createTransferConfig(parent, transferConfig);
@@ -230,7 +238,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CreateTransferConfigRequest actualRequest = (CreateTransferConfigRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, ParentNames.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, ParentNameOneof.parse(actualRequest.getParent()));
     Assert.assertEquals(transferConfig, actualRequest.getTransferConfig());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -245,7 +253,7 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      ParentName parent = ProjectName.of("[PROJECT]");
+      ParentNameOneof parent = ParentNameOneof.from(LocationName.of("[PROJECT]", "[LOCATION]"));
       TransferConfig transferConfig = TransferConfig.newBuilder().build();
 
       client.createTransferConfig(parent, transferConfig);
@@ -258,7 +266,9 @@ public class DataTransferServiceClientTest {
   @Test
   @SuppressWarnings("all")
   public void updateTransferConfigTest() {
-    TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+    TransferConfigNameOneof name =
+        TransferConfigNameOneof.from(
+            LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
     String destinationDatasetId = "destinationDatasetId1541564179";
     String displayName = "displayName1615086568";
     String dataSourceId = "dataSourceId-1015796374";
@@ -322,7 +332,9 @@ public class DataTransferServiceClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+    TransferConfigNameOneof name =
+        TransferConfigNameOneof.from(
+            LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
 
     client.deleteTransferConfig(name);
 
@@ -330,7 +342,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DeleteTransferConfigRequest actualRequest = (DeleteTransferConfigRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, TransferConfigNames.parse(actualRequest.getName()));
+    Assert.assertEquals(name, TransferConfigNameOneof.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -344,7 +356,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+      TransferConfigNameOneof name =
+          TransferConfigNameOneof.from(
+              LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
 
       client.deleteTransferConfig(name);
       Assert.fail("No exception raised");
@@ -356,7 +370,9 @@ public class DataTransferServiceClientTest {
   @Test
   @SuppressWarnings("all")
   public void getTransferConfigTest() {
-    TransferConfigName name2 = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+    TransferConfigNameOneof name2 =
+        TransferConfigNameOneof.from(
+            LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
     String destinationDatasetId = "destinationDatasetId1541564179";
     String displayName = "displayName1615086568";
     String dataSourceId = "dataSourceId-1015796374";
@@ -379,7 +395,9 @@ public class DataTransferServiceClientTest {
             .build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+    TransferConfigNameOneof name =
+        TransferConfigNameOneof.from(
+            LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
 
     TransferConfig actualResponse = client.getTransferConfig(name);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -388,7 +406,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetTransferConfigRequest actualRequest = (GetTransferConfigRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, TransferConfigNames.parse(actualRequest.getName()));
+    Assert.assertEquals(name, TransferConfigNameOneof.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -402,7 +420,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      TransferConfigName name = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+      TransferConfigNameOneof name =
+          TransferConfigNameOneof.from(
+              LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
 
       client.getTransferConfig(name);
       Assert.fail("No exception raised");
@@ -424,7 +444,7 @@ public class DataTransferServiceClientTest {
             .build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    ParentName parent = ProjectName.of("[PROJECT]");
+    ParentNameOneof parent = ParentNameOneof.from(LocationName.of("[PROJECT]", "[LOCATION]"));
 
     ListTransferConfigsPagedResponse pagedListResponse = client.listTransferConfigs(parent);
 
@@ -436,7 +456,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListTransferConfigsRequest actualRequest = (ListTransferConfigsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, ParentNames.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, ParentNameOneof.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -450,7 +470,7 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      ParentName parent = ProjectName.of("[PROJECT]");
+      ParentNameOneof parent = ParentNameOneof.from(LocationName.of("[PROJECT]", "[LOCATION]"));
 
       client.listTransferConfigs(parent);
       Assert.fail("No exception raised");
@@ -466,7 +486,9 @@ public class DataTransferServiceClientTest {
         ScheduleTransferRunsResponse.newBuilder().build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+    TransferConfigNameOneof parent =
+        TransferConfigNameOneof.from(
+            LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
     Timestamp startTime = Timestamp.newBuilder().build();
     Timestamp endTime = Timestamp.newBuilder().build();
 
@@ -478,7 +500,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ScheduleTransferRunsRequest actualRequest = (ScheduleTransferRunsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, TransferConfigNames.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, TransferConfigNameOneof.parse(actualRequest.getParent()));
     Assert.assertEquals(startTime, actualRequest.getStartTime());
     Assert.assertEquals(endTime, actualRequest.getEndTime());
     Assert.assertTrue(
@@ -494,7 +516,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+      TransferConfigNameOneof parent =
+          TransferConfigNameOneof.from(
+              LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
       Timestamp startTime = Timestamp.newBuilder().build();
       Timestamp endTime = Timestamp.newBuilder().build();
 
@@ -508,7 +532,9 @@ public class DataTransferServiceClientTest {
   @Test
   @SuppressWarnings("all")
   public void getTransferRunTest() {
-    RunName name2 = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
+    RunNameOneof name2 =
+        RunNameOneof.from(
+            LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]"));
     String destinationDatasetId = "destinationDatasetId1541564179";
     String dataSourceId = "dataSourceId-1015796374";
     long userId = 147132913L;
@@ -523,7 +549,9 @@ public class DataTransferServiceClientTest {
             .build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
+    RunNameOneof name =
+        RunNameOneof.from(
+            LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]"));
 
     TransferRun actualResponse = client.getTransferRun(name);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -532,7 +560,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetTransferRunRequest actualRequest = (GetTransferRunRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, RunNames.parse(actualRequest.getName()));
+    Assert.assertEquals(name, RunNameOneof.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -546,7 +574,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
+      RunNameOneof name =
+          RunNameOneof.from(
+              LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]"));
 
       client.getTransferRun(name);
       Assert.fail("No exception raised");
@@ -561,7 +591,9 @@ public class DataTransferServiceClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
+    RunNameOneof name =
+        RunNameOneof.from(
+            LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]"));
 
     client.deleteTransferRun(name);
 
@@ -569,7 +601,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DeleteTransferRunRequest actualRequest = (DeleteTransferRunRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, RunNames.parse(actualRequest.getName()));
+    Assert.assertEquals(name, RunNameOneof.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -583,7 +615,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      RunName name = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
+      RunNameOneof name =
+          RunNameOneof.from(
+              LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]"));
 
       client.deleteTransferRun(name);
       Assert.fail("No exception raised");
@@ -605,7 +639,9 @@ public class DataTransferServiceClientTest {
             .build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+    TransferConfigNameOneof parent =
+        TransferConfigNameOneof.from(
+            LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
 
     ListTransferRunsPagedResponse pagedListResponse = client.listTransferRuns(parent);
 
@@ -617,7 +653,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListTransferRunsRequest actualRequest = (ListTransferRunsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, TransferConfigNames.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, TransferConfigNameOneof.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -631,7 +667,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      TransferConfigName parent = ProjectTransferConfigName.of("[PROJECT]", "[TRANSFER_CONFIG]");
+      TransferConfigNameOneof parent =
+          TransferConfigNameOneof.from(
+              LocationTransferConfigName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]"));
 
       client.listTransferRuns(parent);
       Assert.fail("No exception raised");
@@ -653,7 +691,9 @@ public class DataTransferServiceClientTest {
             .build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    RunName parent = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
+    RunNameOneof parent =
+        RunNameOneof.from(
+            LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]"));
 
     ListTransferLogsPagedResponse pagedListResponse = client.listTransferLogs(parent);
 
@@ -665,7 +705,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListTransferLogsRequest actualRequest = (ListTransferLogsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, RunNames.parse(actualRequest.getParent()));
+    Assert.assertEquals(parent, RunNameOneof.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -679,7 +719,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      RunName parent = ProjectRunName.of("[PROJECT]", "[TRANSFER_CONFIG]", "[RUN]");
+      RunNameOneof parent =
+          RunNameOneof.from(
+              LocationRunName.of("[PROJECT]", "[LOCATION]", "[TRANSFER_CONFIG]", "[RUN]"));
 
       client.listTransferLogs(parent);
       Assert.fail("No exception raised");
@@ -696,7 +738,9 @@ public class DataTransferServiceClientTest {
         CheckValidCredsResponse.newBuilder().setHasValidCreds(hasValidCreds).build();
     mockDataTransferService.addResponse(expectedResponse);
 
-    DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
+    DataSourceNameOneof name =
+        DataSourceNameOneof.from(
+            LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]"));
 
     CheckValidCredsResponse actualResponse = client.checkValidCreds(name);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -705,7 +749,7 @@ public class DataTransferServiceClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CheckValidCredsRequest actualRequest = (CheckValidCredsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, DataSourceNames.parse(actualRequest.getName()));
+    Assert.assertEquals(name, DataSourceNameOneof.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -719,7 +763,9 @@ public class DataTransferServiceClientTest {
     mockDataTransferService.addException(exception);
 
     try {
-      DataSourceName name = ProjectDataSourceName.of("[PROJECT]", "[DATA_SOURCE]");
+      DataSourceNameOneof name =
+          DataSourceNameOneof.from(
+              LocationDataSourceName.of("[PROJECT]", "[LOCATION]", "[DATA_SOURCE]"));
 
       client.checkValidCreds(name);
       Assert.fail("No exception raised");

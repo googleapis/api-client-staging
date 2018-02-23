@@ -197,7 +197,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
       ProjectName projectName, QueryTimeRange timeRange) {
     ListGroupStatsRequest request =
         ListGroupStatsRequest.newBuilder()
-            .setProjectName(projectName == null ? null : projectName.toString())
+            .setProjectName(projectName.toString())
             .setTimeRange(timeRange)
             .build();
     return listGroupStats(request);
@@ -316,7 +316,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
   public final ListEventsPagedResponse listEvents(ProjectName projectName, String groupId) {
     ListEventsRequest request =
         ListEventsRequest.newBuilder()
-            .setProjectName(projectName == null ? null : projectName.toString())
+            .setProjectName(projectName.toString())
             .setGroupId(groupId)
             .build();
     return listEvents(request);
@@ -429,9 +429,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
   public final DeleteEventsResponse deleteEvents(ProjectName projectName) {
 
     DeleteEventsRequest request =
-        DeleteEventsRequest.newBuilder()
-            .setProjectName(projectName == null ? null : projectName.toString())
-            .build();
+        DeleteEventsRequest.newBuilder().setProjectName(projectName.toString()).build();
     return deleteEvents(request);
   }
 

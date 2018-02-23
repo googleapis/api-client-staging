@@ -921,9 +921,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setParent(organizationName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setParentWithOrganizationName(com.google.privacy.dlp.v2beta2.OrganizationName value) {
+      if (value == null) {
+        return setParent("");
+      }
+      return setParent(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * OrganizationName.parse(protoBuilder.getParent());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.privacy.dlp.v2beta2.OrganizationName getParentAsOrganizationName() {
+      java.lang.String str = getParent();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.privacy.dlp.v2beta2.OrganizationName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * OrganizationName.parse(protoObject.getParent());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.privacy.dlp.v2beta2.OrganizationName getParentAsOrganizationName() {
+    java.lang.String str = getParent();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.privacy.dlp.v2beta2.OrganizationName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest)
   private static final com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest DEFAULT_INSTANCE;
   static {

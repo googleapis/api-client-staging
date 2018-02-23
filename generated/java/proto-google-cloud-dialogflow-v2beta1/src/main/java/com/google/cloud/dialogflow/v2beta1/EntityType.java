@@ -2511,9 +2511,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(entityTypeName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setNameWithEntityTypeName(com.google.cloud.dialogflow.v2beta1.EntityTypeName value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * EntityTypeName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.cloud.dialogflow.v2beta1.EntityTypeName getNameAsEntityTypeName() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.cloud.dialogflow.v2beta1.EntityTypeName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.EntityType)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * EntityTypeName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.cloud.dialogflow.v2beta1.EntityTypeName getNameAsEntityTypeName() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.cloud.dialogflow.v2beta1.EntityTypeName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.EntityType)
   private static final com.google.cloud.dialogflow.v2beta1.EntityType DEFAULT_INSTANCE;
   static {

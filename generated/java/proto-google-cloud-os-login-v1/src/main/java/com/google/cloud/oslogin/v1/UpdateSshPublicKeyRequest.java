@@ -981,9 +981,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(fingerprintName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setNameWithFingerprintName(com.google.cloud.oslogin.v1.FingerprintName value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * FingerprintName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.cloud.oslogin.v1.FingerprintName getNameAsFingerprintName() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.cloud.oslogin.v1.FingerprintName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.cloud.oslogin.v1.UpdateSshPublicKeyRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * FingerprintName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.cloud.oslogin.v1.FingerprintName getNameAsFingerprintName() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.cloud.oslogin.v1.FingerprintName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.cloud.oslogin.v1.UpdateSshPublicKeyRequest)
   private static final com.google.cloud.oslogin.v1.UpdateSshPublicKeyRequest DEFAULT_INSTANCE;
   static {
