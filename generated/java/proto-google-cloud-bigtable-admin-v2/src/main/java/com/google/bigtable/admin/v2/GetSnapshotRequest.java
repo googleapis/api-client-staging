@@ -533,9 +533,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(snapshotName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setNameWithSnapshotName(com.google.bigtable.admin.v2.SnapshotName value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SnapshotName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.bigtable.admin.v2.SnapshotName getNameAsSnapshotName() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.bigtable.admin.v2.SnapshotName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.bigtable.admin.v2.GetSnapshotRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SnapshotName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.bigtable.admin.v2.SnapshotName getNameAsSnapshotName() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.bigtable.admin.v2.SnapshotName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.bigtable.admin.v2.GetSnapshotRequest)
   private static final com.google.bigtable.admin.v2.GetSnapshotRequest DEFAULT_INSTANCE;
   static {

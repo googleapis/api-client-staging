@@ -1149,9 +1149,51 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setSession(sessionName.toString());
+     * </code></pre>
+     */
+    @Deprecated
+    public final Builder setSessionWithSessionName(com.google.cloud.dialogflow.v2beta1.SessionName value) {
+      if (value == null) {
+        return setSession("");
+      }
+      return setSession(value.toString());
+    }
+    
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SessionName.parse(protoBuilder.getSession());
+     * </code></pre>
+     */
+    @Deprecated
+    public final com.google.cloud.dialogflow.v2beta1.SessionName getSessionAsSessionName() {
+      java.lang.String str = getSession();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.cloud.dialogflow.v2beta1.SessionName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.DetectIntentRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SessionName.parse(protoObject.getSession());
+   * </code></pre>
+   */
+  @Deprecated
+  public final com.google.cloud.dialogflow.v2beta1.SessionName getSessionAsSessionName() {
+    java.lang.String str = getSession();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.cloud.dialogflow.v2beta1.SessionName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.cloud.dialogflow.v2beta1.DetectIntentRequest)
   private static final com.google.cloud.dialogflow.v2beta1.DetectIntentRequest DEFAULT_INSTANCE;
   static {

@@ -17,32 +17,10 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 
 /**
  * <pre>
- * An intent represents a mapping between input from a user and an action to
- * be taken by your application. When you pass user input to the
- * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) method, the
- * Dialogflow API analyzes the input and searches
- * for a matching intent. If no match is found, the Dialogflow API returns a
- * fallback intent (`is_fallback` = true).
- * You can provide additional information for the Dialogflow API to use to
- * match user input to an intent by adding the following to your intent.
- * *   **Contexts** - provide additional context for intent analysis. For
- *     example, if an intent is related to an object in your application that
- *     plays music, you can provide a context to determine when to match the
- *     intent if the user input is “turn it off”.  You can include a context
- *     that matches the intent when there is previous user input of
- *     "play music", and not when there is previous user input of
- *     "turn on the light".
- * *   **Events** - allow for matching an intent by using an event name
- *     instead of user input. Your application can provide an event name and
- *     related parameters to the Dialogflow API to match an intent. For
- *     example, when your application starts, you can send a welcome event
- *     with a user name parameter to the Dialogflow API to match an intent with
- *     a personalized welcome message for the user.
- * *   **Training phrases** - provide examples of user input to train the
- *     Dialogflow API agent to better match intents.
- * For more information about intents, see the
- * [Dialogflow documentation](https://dialogflow.com/docs/intents).
+ * Manages agent intents.
+ * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+ * for more details about agent intents.
+ * #
  * </pre>
  */
 @javax.annotation.Generated(
@@ -144,32 +122,10 @@ public final class IntentsGrpc {
 
   /**
    * <pre>
-   * An intent represents a mapping between input from a user and an action to
-   * be taken by your application. When you pass user input to the
-   * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
-   * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) method, the
-   * Dialogflow API analyzes the input and searches
-   * for a matching intent. If no match is found, the Dialogflow API returns a
-   * fallback intent (`is_fallback` = true).
-   * You can provide additional information for the Dialogflow API to use to
-   * match user input to an intent by adding the following to your intent.
-   * *   **Contexts** - provide additional context for intent analysis. For
-   *     example, if an intent is related to an object in your application that
-   *     plays music, you can provide a context to determine when to match the
-   *     intent if the user input is “turn it off”.  You can include a context
-   *     that matches the intent when there is previous user input of
-   *     "play music", and not when there is previous user input of
-   *     "turn on the light".
-   * *   **Events** - allow for matching an intent by using an event name
-   *     instead of user input. Your application can provide an event name and
-   *     related parameters to the Dialogflow API to match an intent. For
-   *     example, when your application starts, you can send a welcome event
-   *     with a user name parameter to the Dialogflow API to match an intent with
-   *     a personalized welcome message for the user.
-   * *   **Training phrases** - provide examples of user input to train the
-   *     Dialogflow API agent to better match intents.
-   * For more information about intents, see the
-   * [Dialogflow documentation](https://dialogflow.com/docs/intents).
+   * Manages agent intents.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+   * for more details about agent intents.
+   * #
    * </pre>
    */
   public static abstract class IntentsImplBase implements io.grpc.BindableService {
@@ -303,32 +259,10 @@ public final class IntentsGrpc {
 
   /**
    * <pre>
-   * An intent represents a mapping between input from a user and an action to
-   * be taken by your application. When you pass user input to the
-   * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
-   * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) method, the
-   * Dialogflow API analyzes the input and searches
-   * for a matching intent. If no match is found, the Dialogflow API returns a
-   * fallback intent (`is_fallback` = true).
-   * You can provide additional information for the Dialogflow API to use to
-   * match user input to an intent by adding the following to your intent.
-   * *   **Contexts** - provide additional context for intent analysis. For
-   *     example, if an intent is related to an object in your application that
-   *     plays music, you can provide a context to determine when to match the
-   *     intent if the user input is “turn it off”.  You can include a context
-   *     that matches the intent when there is previous user input of
-   *     "play music", and not when there is previous user input of
-   *     "turn on the light".
-   * *   **Events** - allow for matching an intent by using an event name
-   *     instead of user input. Your application can provide an event name and
-   *     related parameters to the Dialogflow API to match an intent. For
-   *     example, when your application starts, you can send a welcome event
-   *     with a user name parameter to the Dialogflow API to match an intent with
-   *     a personalized welcome message for the user.
-   * *   **Training phrases** - provide examples of user input to train the
-   *     Dialogflow API agent to better match intents.
-   * For more information about intents, see the
-   * [Dialogflow documentation](https://dialogflow.com/docs/intents).
+   * Manages agent intents.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+   * for more details about agent intents.
+   * #
    * </pre>
    */
   public static final class IntentsStub extends io.grpc.stub.AbstractStub<IntentsStub> {
@@ -429,32 +363,10 @@ public final class IntentsGrpc {
 
   /**
    * <pre>
-   * An intent represents a mapping between input from a user and an action to
-   * be taken by your application. When you pass user input to the
-   * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
-   * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) method, the
-   * Dialogflow API analyzes the input and searches
-   * for a matching intent. If no match is found, the Dialogflow API returns a
-   * fallback intent (`is_fallback` = true).
-   * You can provide additional information for the Dialogflow API to use to
-   * match user input to an intent by adding the following to your intent.
-   * *   **Contexts** - provide additional context for intent analysis. For
-   *     example, if an intent is related to an object in your application that
-   *     plays music, you can provide a context to determine when to match the
-   *     intent if the user input is “turn it off”.  You can include a context
-   *     that matches the intent when there is previous user input of
-   *     "play music", and not when there is previous user input of
-   *     "turn on the light".
-   * *   **Events** - allow for matching an intent by using an event name
-   *     instead of user input. Your application can provide an event name and
-   *     related parameters to the Dialogflow API to match an intent. For
-   *     example, when your application starts, you can send a welcome event
-   *     with a user name parameter to the Dialogflow API to match an intent with
-   *     a personalized welcome message for the user.
-   * *   **Training phrases** - provide examples of user input to train the
-   *     Dialogflow API agent to better match intents.
-   * For more information about intents, see the
-   * [Dialogflow documentation](https://dialogflow.com/docs/intents).
+   * Manages agent intents.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+   * for more details about agent intents.
+   * #
    * </pre>
    */
   public static final class IntentsBlockingStub extends io.grpc.stub.AbstractStub<IntentsBlockingStub> {
@@ -548,32 +460,10 @@ public final class IntentsGrpc {
 
   /**
    * <pre>
-   * An intent represents a mapping between input from a user and an action to
-   * be taken by your application. When you pass user input to the
-   * [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
-   * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) method, the
-   * Dialogflow API analyzes the input and searches
-   * for a matching intent. If no match is found, the Dialogflow API returns a
-   * fallback intent (`is_fallback` = true).
-   * You can provide additional information for the Dialogflow API to use to
-   * match user input to an intent by adding the following to your intent.
-   * *   **Contexts** - provide additional context for intent analysis. For
-   *     example, if an intent is related to an object in your application that
-   *     plays music, you can provide a context to determine when to match the
-   *     intent if the user input is “turn it off”.  You can include a context
-   *     that matches the intent when there is previous user input of
-   *     "play music", and not when there is previous user input of
-   *     "turn on the light".
-   * *   **Events** - allow for matching an intent by using an event name
-   *     instead of user input. Your application can provide an event name and
-   *     related parameters to the Dialogflow API to match an intent. For
-   *     example, when your application starts, you can send a welcome event
-   *     with a user name parameter to the Dialogflow API to match an intent with
-   *     a personalized welcome message for the user.
-   * *   **Training phrases** - provide examples of user input to train the
-   *     Dialogflow API agent to better match intents.
-   * For more information about intents, see the
-   * [Dialogflow documentation](https://dialogflow.com/docs/intents).
+   * Manages agent intents.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+   * for more details about agent intents.
+   * #
    * </pre>
    */
   public static final class IntentsFutureStub extends io.grpc.stub.AbstractStub<IntentsFutureStub> {

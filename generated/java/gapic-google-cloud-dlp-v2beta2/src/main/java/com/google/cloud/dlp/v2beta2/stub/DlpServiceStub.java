@@ -18,7 +18,6 @@ package com.google.cloud.dlp.v2beta2.stub;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListDeidentifyTemplatesPagedResponse;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListDlpJobsPagedResponse;
 import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListInspectTemplatesPagedResponse;
-import static com.google.cloud.dlp.v2beta2.DlpServiceClient.ListJobTriggersPagedResponse;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
@@ -33,17 +32,14 @@ import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
 import com.google.privacy.dlp.v2beta2.DeleteDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.DeleteDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.DeleteInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.DeleteJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DlpJob;
 import com.google.privacy.dlp.v2beta2.GetDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.GetDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.GetInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.GetJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentRequest;
 import com.google.privacy.dlp.v2beta2.InspectContentResponse;
 import com.google.privacy.dlp.v2beta2.InspectDataSourceRequest;
 import com.google.privacy.dlp.v2beta2.InspectTemplate;
-import com.google.privacy.dlp.v2beta2.JobTrigger;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListDeidentifyTemplatesResponse;
 import com.google.privacy.dlp.v2beta2.ListDlpJobsRequest;
@@ -52,15 +48,12 @@ import com.google.privacy.dlp.v2beta2.ListInfoTypesRequest;
 import com.google.privacy.dlp.v2beta2.ListInfoTypesResponse;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesRequest;
 import com.google.privacy.dlp.v2beta2.ListInspectTemplatesResponse;
-import com.google.privacy.dlp.v2beta2.ListJobTriggersRequest;
-import com.google.privacy.dlp.v2beta2.ListJobTriggersResponse;
 import com.google.privacy.dlp.v2beta2.RedactImageRequest;
 import com.google.privacy.dlp.v2beta2.RedactImageResponse;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.ReidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.UpdateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.UpdateInspectTemplateRequest;
-import com.google.privacy.dlp.v2beta2.UpdateJobTriggerRequest;
 import com.google.protobuf.Empty;
 import javax.annotation.Generated;
 
@@ -180,26 +173,5 @@ public abstract class DlpServiceStub implements BackgroundResource {
 
   public UnaryCallable<CancelDlpJobRequest, Empty> cancelDlpJobCallable() {
     throw new UnsupportedOperationException("Not implemented: cancelDlpJobCallable()");
-  }
-
-  public UnaryCallable<ListJobTriggersRequest, ListJobTriggersPagedResponse>
-      listJobTriggersPagedCallable() {
-    throw new UnsupportedOperationException("Not implemented: listJobTriggersPagedCallable()");
-  }
-
-  public UnaryCallable<ListJobTriggersRequest, ListJobTriggersResponse> listJobTriggersCallable() {
-    throw new UnsupportedOperationException("Not implemented: listJobTriggersCallable()");
-  }
-
-  public UnaryCallable<GetJobTriggerRequest, JobTrigger> getJobTriggerCallable() {
-    throw new UnsupportedOperationException("Not implemented: getJobTriggerCallable()");
-  }
-
-  public UnaryCallable<DeleteJobTriggerRequest, Empty> deleteJobTriggerCallable() {
-    throw new UnsupportedOperationException("Not implemented: deleteJobTriggerCallable()");
-  }
-
-  public UnaryCallable<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerCallable() {
-    throw new UnsupportedOperationException("Not implemented: updateJobTriggerCallable()");
   }
 }

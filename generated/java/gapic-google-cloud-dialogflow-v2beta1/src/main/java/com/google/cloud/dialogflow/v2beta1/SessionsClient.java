@@ -27,10 +27,9 @@ import javax.annotation.Generated;
 
 // AUTO-GENERATED DOCUMENTATION AND SERVICE
 /**
- * Service Description: A session represents an interaction with a user. You retrieve user input and
- * pass it to the [DetectIntent][google.cloud.dialogflow.v2beta1.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2beta1.Sessions.StreamingDetectIntent]) method
- * to determine user intent and respond.
+ * Service Description: Manages user sessions.
+ *
+ * <p>#
  *
  * <p>This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -181,7 +180,7 @@ public class SessionsClient implements BackgroundResource {
 
     DetectIntentRequest request =
         DetectIntentRequest.newBuilder()
-            .setSession(session == null ? null : session.toString())
+            .setSession(session.toString())
             .setQueryInput(queryInput)
             .build();
     return detectIntent(request);

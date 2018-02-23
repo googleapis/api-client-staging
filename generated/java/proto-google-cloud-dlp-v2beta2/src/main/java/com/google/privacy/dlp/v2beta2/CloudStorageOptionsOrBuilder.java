@@ -19,14 +19,4 @@ public interface CloudStorageOptionsOrBuilder extends
    * <code>.google.privacy.dlp.v2beta2.CloudStorageOptions.FileSet file_set = 1;</code>
    */
   com.google.privacy.dlp.v2beta2.CloudStorageOptions.FileSetOrBuilder getFileSetOrBuilder();
-
-  /**
-   * <pre>
-   * Max number of bytes to scan from a file. If a scanned file's size is bigger
-   * than this value then the rest of the bytes are omitted.
-   * </pre>
-   *
-   * <code>int64 bytes_limit_per_file = 4;</code>
-   */
-  long getBytesLimitPerFile();
 }
