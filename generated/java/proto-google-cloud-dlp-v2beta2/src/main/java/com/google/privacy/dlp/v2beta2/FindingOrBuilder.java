@@ -127,4 +127,29 @@ public interface FindingOrBuilder extends
    * <code>.google.protobuf.Timestamp create_time = 6;</code>
    */
   com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder();
+
+  /**
+   * <pre>
+   * InfoType-dependent details parsed from quote.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+   */
+  boolean hasQuoteInfo();
+  /**
+   * <pre>
+   * InfoType-dependent details parsed from quote.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+   */
+  com.google.privacy.dlp.v2beta2.QuoteInfo getQuoteInfo();
+  /**
+   * <pre>
+   * InfoType-dependent details parsed from quote.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+   */
+  com.google.privacy.dlp.v2beta2.QuoteInfoOrBuilder getQuoteInfoOrBuilder();
 }

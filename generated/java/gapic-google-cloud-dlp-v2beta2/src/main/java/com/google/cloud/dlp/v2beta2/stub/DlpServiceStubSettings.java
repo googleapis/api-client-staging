@@ -50,6 +50,7 @@ import com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest;
 import com.google.privacy.dlp.v2beta2.CancelDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.CreateInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
@@ -170,6 +171,7 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
   private final UnaryCallSettings<GetJobTriggerRequest, JobTrigger> getJobTriggerSettings;
   private final UnaryCallSettings<DeleteJobTriggerRequest, Empty> deleteJobTriggerSettings;
   private final UnaryCallSettings<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerSettings;
+  private final UnaryCallSettings<CreateJobTriggerRequest, JobTrigger> createJobTriggerSettings;
 
   /** Returns the object with the settings used for calls to inspectContent. */
   public UnaryCallSettings<InspectContentRequest, InspectContentResponse> inspectContentSettings() {
@@ -314,6 +316,11 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
     return updateJobTriggerSettings;
   }
 
+  /** Returns the object with the settings used for calls to createJobTrigger. */
+  public UnaryCallSettings<CreateJobTriggerRequest, JobTrigger> createJobTriggerSettings() {
+    return createJobTriggerSettings;
+  }
+
   @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public DlpServiceStub createStub() throws IOException {
     if (getTransportChannelProvider()
@@ -407,6 +414,7 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
     getJobTriggerSettings = settingsBuilder.getJobTriggerSettings().build();
     deleteJobTriggerSettings = settingsBuilder.deleteJobTriggerSettings().build();
     updateJobTriggerSettings = settingsBuilder.updateJobTriggerSettings().build();
+    createJobTriggerSettings = settingsBuilder.createJobTriggerSettings().build();
   }
 
   private static final PagedListDescriptor<
@@ -697,6 +705,8 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
         deleteJobTriggerSettings;
     private final UnaryCallSettings.Builder<UpdateJobTriggerRequest, JobTrigger>
         updateJobTriggerSettings;
+    private final UnaryCallSettings.Builder<CreateJobTriggerRequest, JobTrigger>
+        createJobTriggerSettings;
 
     private static final ImmutableMap<String, ImmutableSet<StatusCode.Code>>
         RETRYABLE_CODE_DEFINITIONS;
@@ -791,6 +801,8 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
 
       updateJobTriggerSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
+      createJobTriggerSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
+
       unaryMethodSettingsBuilders =
           ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
               inspectContentSettings,
@@ -817,7 +829,8 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
               listJobTriggersSettings,
               getJobTriggerSettings,
               deleteJobTriggerSettings,
-              updateJobTriggerSettings);
+              updateJobTriggerSettings,
+              createJobTriggerSettings);
 
       initDefaults(this);
     }
@@ -958,6 +971,11 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
+      builder
+          .createJobTriggerSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
+
       return builder;
     }
 
@@ -989,6 +1007,7 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
       getJobTriggerSettings = settings.getJobTriggerSettings.toBuilder();
       deleteJobTriggerSettings = settings.deleteJobTriggerSettings.toBuilder();
       updateJobTriggerSettings = settings.updateJobTriggerSettings.toBuilder();
+      createJobTriggerSettings = settings.createJobTriggerSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
           ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
@@ -1016,7 +1035,8 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
               listJobTriggersSettings,
               getJobTriggerSettings,
               deleteJobTriggerSettings,
-              updateJobTriggerSettings);
+              updateJobTriggerSettings,
+              createJobTriggerSettings);
     }
 
     /**
@@ -1182,6 +1202,12 @@ public class DlpServiceStubSettings extends StubSettings<DlpServiceStubSettings>
     public UnaryCallSettings.Builder<UpdateJobTriggerRequest, JobTrigger>
         updateJobTriggerSettings() {
       return updateJobTriggerSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to createJobTrigger. */
+    public UnaryCallSettings.Builder<CreateJobTriggerRequest, JobTrigger>
+        createJobTriggerSettings() {
+      return createJobTriggerSettings;
     }
 
     @Override
