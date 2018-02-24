@@ -27,6 +27,7 @@ import com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest;
 import com.google.privacy.dlp.v2beta2.CancelDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.CreateInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
@@ -201,5 +202,9 @@ public abstract class DlpServiceStub implements BackgroundResource {
 
   public UnaryCallable<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerCallable() {
     throw new UnsupportedOperationException("Not implemented: updateJobTriggerCallable()");
+  }
+
+  public UnaryCallable<CreateJobTriggerRequest, JobTrigger> createJobTriggerCallable() {
+    throw new UnsupportedOperationException("Not implemented: createJobTriggerCallable()");
   }
 }

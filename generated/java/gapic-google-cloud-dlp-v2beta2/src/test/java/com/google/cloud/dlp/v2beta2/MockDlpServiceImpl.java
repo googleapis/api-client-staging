@@ -20,6 +20,7 @@ import com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest;
 import com.google.privacy.dlp.v2beta2.CancelDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.CreateInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
@@ -348,6 +349,21 @@ public class MockDlpServiceImpl extends DlpServiceImplBase {
     if (response instanceof Empty) {
       requests.add(request);
       responseObserver.onNext((Empty) response);
+      responseObserver.onCompleted();
+    } else if (response instanceof Exception) {
+      responseObserver.onError((Exception) response);
+    } else {
+      responseObserver.onError(new IllegalArgumentException("Unrecognized response type"));
+    }
+  }
+
+  @Override
+  public void createJobTrigger(
+      CreateJobTriggerRequest request, StreamObserver<JobTrigger> responseObserver) {
+    Object response = responses.remove();
+    if (response instanceof JobTrigger) {
+      requests.add(request);
+      responseObserver.onNext((JobTrigger) response);
       responseObserver.onCompleted();
     } else if (response instanceof Exception) {
       responseObserver.onError((Exception) response);

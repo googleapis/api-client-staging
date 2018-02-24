@@ -31,6 +31,7 @@ import com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest;
 import com.google.privacy.dlp.v2beta2.CancelDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.CreateInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
@@ -1487,6 +1488,53 @@ public class DlpServiceClient implements BackgroundResource {
    */
   public final UnaryCallable<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerCallable() {
     return stub.updateJobTriggerCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Creates a job to run DLP actions such as scanning storage for sensitive information on a set
+   * schedule.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectName parent = ProjectName.of("[PROJECT]");
+   *   CreateJobTriggerRequest request = CreateJobTriggerRequest.newBuilder()
+   *     .setParent(parent.toString())
+   *     .build();
+   *   JobTrigger response = dlpServiceClient.createJobTrigger(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final JobTrigger createJobTrigger(CreateJobTriggerRequest request) {
+    return createJobTriggerCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Creates a job to run DLP actions such as scanning storage for sensitive information on a set
+   * schedule.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   ProjectName parent = ProjectName.of("[PROJECT]");
+   *   CreateJobTriggerRequest request = CreateJobTriggerRequest.newBuilder()
+   *     .setParent(parent.toString())
+   *     .build();
+   *   ApiFuture&lt;JobTrigger&gt; future = dlpServiceClient.createJobTriggerCallable().futureCall(request);
+   *   // Do something
+   *   JobTrigger response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<CreateJobTriggerRequest, JobTrigger> createJobTriggerCallable() {
+    return stub.createJobTriggerCallable();
   }
 
   @Override

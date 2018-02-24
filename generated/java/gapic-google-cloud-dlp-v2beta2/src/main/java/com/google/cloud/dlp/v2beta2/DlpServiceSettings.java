@@ -36,6 +36,7 @@ import com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskRequest;
 import com.google.privacy.dlp.v2beta2.CancelDlpJobRequest;
 import com.google.privacy.dlp.v2beta2.CreateDeidentifyTemplateRequest;
 import com.google.privacy.dlp.v2beta2.CreateInspectTemplateRequest;
+import com.google.privacy.dlp.v2beta2.CreateJobTriggerRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentRequest;
 import com.google.privacy.dlp.v2beta2.DeidentifyContentResponse;
 import com.google.privacy.dlp.v2beta2.DeidentifyTemplate;
@@ -245,6 +246,11 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
   /** Returns the object with the settings used for calls to updateJobTrigger. */
   public UnaryCallSettings<UpdateJobTriggerRequest, JobTrigger> updateJobTriggerSettings() {
     return ((DlpServiceStubSettings) getStubSettings()).updateJobTriggerSettings();
+  }
+
+  /** Returns the object with the settings used for calls to createJobTrigger. */
+  public UnaryCallSettings<CreateJobTriggerRequest, JobTrigger> createJobTriggerSettings() {
+    return ((DlpServiceStubSettings) getStubSettings()).createJobTriggerSettings();
   }
 
   public static final DlpServiceSettings create(DlpServiceStubSettings stub) throws IOException {
@@ -490,6 +496,12 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
     public UnaryCallSettings.Builder<UpdateJobTriggerRequest, JobTrigger>
         updateJobTriggerSettings() {
       return getStubSettingsBuilder().updateJobTriggerSettings();
+    }
+
+    /** Returns the builder for the settings used for calls to createJobTrigger. */
+    public UnaryCallSettings.Builder<CreateJobTriggerRequest, JobTrigger>
+        createJobTriggerSettings() {
+      return getStubSettingsBuilder().createJobTriggerSettings();
     }
 
     @Override
