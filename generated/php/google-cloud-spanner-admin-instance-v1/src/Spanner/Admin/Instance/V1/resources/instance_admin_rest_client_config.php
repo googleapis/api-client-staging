@@ -11,14 +11,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'ListOperations' => [
                 'method' => 'get',
@@ -28,14 +28,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'CancelOperation' => [
                 'method' => 'post',
@@ -45,14 +45,14 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}:cancel',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
@@ -62,14 +62,14 @@ return [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
         'google.spanner.admin.instance.v1.InstanceAdmin' => [
@@ -82,7 +82,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetInstanceConfig' => [
                 'method' => 'get',
@@ -93,7 +93,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'ListInstances' => [
                 'method' => 'get',
@@ -104,7 +104,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetInstance' => [
                 'method' => 'get',
@@ -115,7 +115,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'CreateInstance' => [
                 'method' => 'post',
@@ -127,7 +127,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ]
+                ],
             ],
             'UpdateInstance' => [
                 'method' => 'patch',
@@ -140,7 +140,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteInstance' => [
                 'method' => 'delete',
@@ -151,7 +151,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
@@ -163,7 +163,7 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetIamPolicy' => [
                 'method' => 'post',
@@ -175,7 +175,7 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
@@ -187,8 +187,8 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
-    ]
+    ],
 ];
