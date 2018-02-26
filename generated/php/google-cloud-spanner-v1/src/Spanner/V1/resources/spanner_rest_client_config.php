@@ -11,14 +11,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'ListOperations' => [
                 'method' => 'get',
@@ -28,14 +28,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'CancelOperation' => [
                 'method' => 'post',
@@ -45,14 +45,14 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}:cancel',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
@@ -62,14 +62,14 @@ return [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
         'google.spanner.v1.Spanner' => [
@@ -83,7 +83,7 @@ return [
                             'getDatabase',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetSession' => [
                 'method' => 'get',
@@ -94,7 +94,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'ListSessions' => [
                 'method' => 'get',
@@ -105,7 +105,7 @@ return [
                             'getDatabase',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteSession' => [
                 'method' => 'delete',
@@ -116,7 +116,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'ExecuteSql' => [
                 'method' => 'post',
@@ -128,7 +128,7 @@ return [
                             'getSession',
                         ],
                     ],
-                ]
+                ],
             ],
             'Read' => [
                 'method' => 'post',
@@ -140,7 +140,7 @@ return [
                             'getSession',
                         ],
                     ],
-                ]
+                ],
             ],
             'BeginTransaction' => [
                 'method' => 'post',
@@ -152,7 +152,7 @@ return [
                             'getSession',
                         ],
                     ],
-                ]
+                ],
             ],
             'Commit' => [
                 'method' => 'post',
@@ -164,7 +164,7 @@ return [
                             'getSession',
                         ],
                     ],
-                ]
+                ],
             ],
             'Rollback' => [
                 'method' => 'post',
@@ -176,8 +176,32 @@ return [
                             'getSession',
                         ],
                     ],
-                ]
+                ],
+            ],
+            'PartitionQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:partitionQuery',
+                'body' => '*',
+                'placeholders' => [
+                    'session' => [
+                        'getters' => [
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
+            'PartitionRead' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:partitionRead',
+                'body' => '*',
+                'placeholders' => [
+                    'session' => [
+                        'getters' => [
+                            'getSession',
+                        ],
+                    ],
+                ],
             ],
         ],
-    ]
+    ],
 ];
