@@ -12,7 +12,7 @@ import shutil
 from tempfile import mkstemp
 from os import fdopen, remove
 
-#list of APIs that will be generated
+# list of APIs that will be generated
 APIS = [
     # shared package
     'core',
@@ -52,9 +52,21 @@ APIS = [
     'vision_v1p1beta1',
 ]
 
+# list of APIs which don't generate proto library
 PROTO_EXCLUSION = ['longrunning']
+
+# list of APIs which don't generate grpc library
 GRPC_EXCLUSION = ['appengine', 'longrunning']
-COPY_EXCLUSION = ['speech_v1p1beta1', 'dlp_v2beta2', 'datastore', 'spanner_admin_database', 'spanner_admin_instance', 'spanner']
+
+# list of APIs which `copy` subcommand doesn't copy from staging to gcj repo
+COPY_EXCLUSION = [
+        'speech_v1p1beta1',
+        'dlp_v2beta2',
+        'datastore',
+        'spanner_admin_database',
+        'spanner_admin_instance',
+        'spanner',
+]
 
 def get_artman_yaml(googleapis_repo):
   artman_yaml_files = []
