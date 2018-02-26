@@ -242,6 +242,31 @@ public class InstanceAdminClient implements BackgroundResource {
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
+   *   for (InstanceConfig element : instanceAdminClient.listInstanceConfigs(parent.toString()).iterateAll()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   *
+   * @param parent Required. The name of the project for which a list of supported instance
+   *     configurations is requested. Values are of the form `projects/&lt;project&gt;`.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final ListInstanceConfigsPagedResponse listInstanceConfigs(String parent) {
+    ListInstanceConfigsRequest request =
+        ListInstanceConfigsRequest.newBuilder().setParent(parent).build();
+    return listInstanceConfigs(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists the supported instance configurations for a given project.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
+   *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListInstanceConfigsRequest request = ListInstanceConfigsRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -351,6 +376,29 @@ public class InstanceAdminClient implements BackgroundResource {
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   InstanceConfigName name = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
+   *   InstanceConfig response = instanceAdminClient.getInstanceConfig(name.toString());
+   * }
+   * </code></pre>
+   *
+   * @param name Required. The name of the requested instance configuration. Values are of the form
+   *     `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final InstanceConfig getInstanceConfig(String name) {
+
+    GetInstanceConfigRequest request = GetInstanceConfigRequest.newBuilder().setName(name).build();
+    return getInstanceConfig(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Gets information about a particular instance configuration.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
+   *   InstanceConfigName name = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
    *   GetInstanceConfigRequest request = GetInstanceConfigRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -411,6 +459,30 @@ public class InstanceAdminClient implements BackgroundResource {
         ListInstancesRequest.newBuilder()
             .setParent(parent == null ? null : parent.toString())
             .build();
+    return listInstances(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists all instances in the given project.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
+   *   ProjectName parent = ProjectName.of("[PROJECT]");
+   *   for (Instance element : instanceAdminClient.listInstances(parent.toString()).iterateAll()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   *
+   * @param parent Required. The name of the project for which a list of instances is requested.
+   *     Values are of the form `projects/&lt;project&gt;`.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final ListInstancesPagedResponse listInstances(String parent) {
+    ListInstancesRequest request = ListInstancesRequest.newBuilder().setParent(parent).build();
     return listInstances(request);
   }
 
@@ -528,6 +600,29 @@ public class InstanceAdminClient implements BackgroundResource {
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
+   *   Instance response = instanceAdminClient.getInstance(name.toString());
+   * }
+   * </code></pre>
+   *
+   * @param name Required. The name of the requested instance. Values are of the form
+   *     `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final Instance getInstance(String name) {
+
+    GetInstanceRequest request = GetInstanceRequest.newBuilder().setName(name).build();
+    return getInstance(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Gets information about a particular instance.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
+   *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   GetInstanceRequest request = GetInstanceRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -622,6 +717,69 @@ public class InstanceAdminClient implements BackgroundResource {
         CreateInstanceRequest.newBuilder()
             .setParent(parent == null ? null : parent.toString())
             .setInstanceId(instanceId == null ? null : instanceId.toString())
+            .setInstance(instance)
+            .build();
+    return createInstanceAsync(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Creates an instance and begins preparing it to begin serving. The returned [long-running
+   * operation][google.longrunning.Operation] can be used to track the progress of preparing the new
+   * instance. The instance name is assigned by the caller. If the named instance already exists,
+   * `CreateInstance` returns `ALREADY_EXISTS`.
+   *
+   * <p>Immediately upon completion of this request:
+   *
+   * <p>&#42; The instance is readable via the API, with all requested attributes but no allocated
+   * resources. Its state is `CREATING`.
+   *
+   * <p>Until completion of the returned operation:
+   *
+   * <p>&#42; Cancelling the operation renders the instance immediately unreadable via the API.
+   * &#42; The instance can be deleted. &#42; All other attempts to modify the instance are
+   * rejected.
+   *
+   * <p>Upon completion of the returned operation:
+   *
+   * <p>&#42; Billing for all successfully-allocated resources begins (some types may have lower
+   * than the requested levels). &#42; Databases can be created in the instance. &#42; The
+   * instance's allocated resource levels are readable via the API. &#42; The instance's state
+   * becomes `READY`.
+   *
+   * <p>The returned [long-running operation][google.longrunning.Operation] will have a name of the
+   * format `&lt;instance_name&gt;/operations/&lt;operation_id&gt;` and can be used to track
+   * creation of the instance. The [metadata][google.longrunning.Operation.metadata] field type is
+   * [CreateInstanceMetadata][google.spanner.admin.instance.v1.CreateInstanceMetadata]. The
+   * [response][google.longrunning.Operation.response] field type is
+   * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
+   *   ProjectName parent = ProjectName.of("[PROJECT]");
+   *   InstanceName instanceId = InstanceName.of("[PROJECT]", "[INSTANCE]");
+   *   Instance instance = Instance.newBuilder().build();
+   *   Instance response = instanceAdminClient.createInstanceAsync(parent.toString(), instanceId.toString(), instance).get();
+   * }
+   * </code></pre>
+   *
+   * @param parent Required. The name of the project in which to create the instance. Values are of
+   *     the form `projects/&lt;project&gt;`.
+   * @param instanceId Required. The ID of the instance to create. Valid identifiers are of the form
+   *     `[a-z][-a-z0-9]&#42;[a-z0-9]` and must be between 6 and 30 characters in length.
+   * @param instance Required. The instance to create. The name may be omitted, but if specified
+   *     must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final OperationFuture<Instance, CreateInstanceMetadata> createInstanceAsync(
+      String parent, String instanceId, Instance instance) {
+
+    CreateInstanceRequest request =
+        CreateInstanceRequest.newBuilder()
+            .setParent(parent)
+            .setInstanceId(instanceId)
             .setInstance(instance)
             .build();
     return createInstanceAsync(request);
@@ -1057,6 +1215,38 @@ public class InstanceAdminClient implements BackgroundResource {
 
     DeleteInstanceRequest request =
         DeleteInstanceRequest.newBuilder().setName(name == null ? null : name.toString()).build();
+    deleteInstance(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Deletes an instance.
+   *
+   * <p>Immediately upon completion of the request:
+   *
+   * <p>&#42; Billing ceases for all of the instance's reserved resources.
+   *
+   * <p>Soon afterward:
+   *
+   * <p>&#42; The instance and &#42;all of its databases&#42; immediately and irrevocably disappear
+   * from the API. All data in the databases is permanently deleted.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
+   *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
+   *   instanceAdminClient.deleteInstance(name.toString());
+   * }
+   * </code></pre>
+   *
+   * @param name Required. The name of the instance to be deleted. Values are of the form
+   *     `projects/&lt;project&gt;/instances/&lt;instance&gt;`
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final void deleteInstance(String name) {
+
+    DeleteInstanceRequest request = DeleteInstanceRequest.newBuilder().setName(name).build();
     deleteInstance(request);
   }
 

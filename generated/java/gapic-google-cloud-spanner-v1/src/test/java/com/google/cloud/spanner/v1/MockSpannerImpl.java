@@ -28,6 +28,9 @@ import com.google.spanner.v1.GetSessionRequest;
 import com.google.spanner.v1.ListSessionsRequest;
 import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.PartialResultSet;
+import com.google.spanner.v1.PartitionQueryRequest;
+import com.google.spanner.v1.PartitionReadRequest;
+import com.google.spanner.v1.PartitionResponse;
 import com.google.spanner.v1.ReadRequest;
 import com.google.spanner.v1.ResultSet;
 import com.google.spanner.v1.RollbackRequest;
@@ -223,6 +226,36 @@ public class MockSpannerImpl extends SpannerImplBase {
     if (response instanceof Empty) {
       requests.add(request);
       responseObserver.onNext((Empty) response);
+      responseObserver.onCompleted();
+    } else if (response instanceof Exception) {
+      responseObserver.onError((Exception) response);
+    } else {
+      responseObserver.onError(new IllegalArgumentException("Unrecognized response type"));
+    }
+  }
+
+  @Override
+  public void partitionQuery(
+      PartitionQueryRequest request, StreamObserver<PartitionResponse> responseObserver) {
+    Object response = responses.remove();
+    if (response instanceof PartitionResponse) {
+      requests.add(request);
+      responseObserver.onNext((PartitionResponse) response);
+      responseObserver.onCompleted();
+    } else if (response instanceof Exception) {
+      responseObserver.onError((Exception) response);
+    } else {
+      responseObserver.onError(new IllegalArgumentException("Unrecognized response type"));
+    }
+  }
+
+  @Override
+  public void partitionRead(
+      PartitionReadRequest request, StreamObserver<PartitionResponse> responseObserver) {
+    Object response = responses.remove();
+    if (response instanceof PartitionResponse) {
+      requests.add(request);
+      responseObserver.onNext((PartitionResponse) response);
       responseObserver.onCompleted();
     } else if (response instanceof Exception) {
       responseObserver.onError((Exception) response);

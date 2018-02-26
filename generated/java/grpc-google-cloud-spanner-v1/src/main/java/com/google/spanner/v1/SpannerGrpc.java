@@ -131,6 +131,24 @@ public final class SpannerGrpc {
               "google.spanner.v1.Spanner", "Rollback"),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.RollbackRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.spanner.v1.PartitionQueryRequest,
+      com.google.spanner.v1.PartitionResponse> METHOD_PARTITION_QUERY =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.spanner.v1.Spanner", "PartitionQuery"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.PartitionQueryRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.PartitionResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.spanner.v1.PartitionReadRequest,
+      com.google.spanner.v1.PartitionResponse> METHOD_PARTITION_READ =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.spanner.v1.Spanner", "PartitionRead"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.PartitionReadRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.PartitionResponse.getDefaultInstance()));
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -332,6 +350,40 @@ public final class SpannerGrpc {
       asyncUnimplementedUnaryCall(METHOD_ROLLBACK, responseObserver);
     }
 
+    /**
+     * <pre>
+     * Creates a set of partition tokens that can be used to execute a query
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
+     * of the query result to read.  The same session and read-only transaction
+     * must be used by the PartitionQueryRequest used to create the
+     * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     * </pre>
+     */
+    public void partitionQuery(com.google.spanner.v1.PartitionQueryRequest request,
+        io.grpc.stub.StreamObserver<com.google.spanner.v1.PartitionResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_PARTITION_QUERY, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Creates a set of partition tokens that can be used to execute a read
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a subset of the read
+     * result to read.  The same session and read-only transaction must be used by
+     * the PartitionReadRequest used to create the partition tokens and the
+     * ReadRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     * </pre>
+     */
+    public void partitionRead(com.google.spanner.v1.PartitionReadRequest request,
+        io.grpc.stub.StreamObserver<com.google.spanner.v1.PartitionResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_PARTITION_READ, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -411,6 +463,20 @@ public final class SpannerGrpc {
                 com.google.spanner.v1.RollbackRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_ROLLBACK)))
+          .addMethod(
+            METHOD_PARTITION_QUERY,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.spanner.v1.PartitionQueryRequest,
+                com.google.spanner.v1.PartitionResponse>(
+                  this, METHODID_PARTITION_QUERY)))
+          .addMethod(
+            METHOD_PARTITION_READ,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.spanner.v1.PartitionReadRequest,
+                com.google.spanner.v1.PartitionResponse>(
+                  this, METHODID_PARTITION_READ)))
           .build();
     }
   }
@@ -616,6 +682,42 @@ public final class SpannerGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_ROLLBACK, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Creates a set of partition tokens that can be used to execute a query
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
+     * of the query result to read.  The same session and read-only transaction
+     * must be used by the PartitionQueryRequest used to create the
+     * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     * </pre>
+     */
+    public void partitionQuery(com.google.spanner.v1.PartitionQueryRequest request,
+        io.grpc.stub.StreamObserver<com.google.spanner.v1.PartitionResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_PARTITION_QUERY, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Creates a set of partition tokens that can be used to execute a read
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a subset of the read
+     * result to read.  The same session and read-only transaction must be used by
+     * the PartitionReadRequest used to create the partition tokens and the
+     * ReadRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     * </pre>
+     */
+    public void partitionRead(com.google.spanner.v1.PartitionReadRequest request,
+        io.grpc.stub.StreamObserver<com.google.spanner.v1.PartitionResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_PARTITION_READ, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -810,6 +912,40 @@ public final class SpannerGrpc {
       return blockingUnaryCall(
           getChannel(), METHOD_ROLLBACK, getCallOptions(), request);
     }
+
+    /**
+     * <pre>
+     * Creates a set of partition tokens that can be used to execute a query
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
+     * of the query result to read.  The same session and read-only transaction
+     * must be used by the PartitionQueryRequest used to create the
+     * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     * </pre>
+     */
+    public com.google.spanner.v1.PartitionResponse partitionQuery(com.google.spanner.v1.PartitionQueryRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_PARTITION_QUERY, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Creates a set of partition tokens that can be used to execute a read
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a subset of the read
+     * result to read.  The same session and read-only transaction must be used by
+     * the PartitionReadRequest used to create the partition tokens and the
+     * ReadRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     * </pre>
+     */
+    public com.google.spanner.v1.PartitionResponse partitionRead(com.google.spanner.v1.PartitionReadRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_PARTITION_READ, getCallOptions(), request);
+    }
   }
 
   /**
@@ -983,6 +1119,42 @@ public final class SpannerGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_ROLLBACK, getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Creates a set of partition tokens that can be used to execute a query
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
+     * of the query result to read.  The same session and read-only transaction
+     * must be used by the PartitionQueryRequest used to create the
+     * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.spanner.v1.PartitionResponse> partitionQuery(
+        com.google.spanner.v1.PartitionQueryRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_PARTITION_QUERY, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Creates a set of partition tokens that can be used to execute a read
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a subset of the read
+     * result to read.  The same session and read-only transaction must be used by
+     * the PartitionReadRequest used to create the partition tokens and the
+     * ReadRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.spanner.v1.PartitionResponse> partitionRead(
+        com.google.spanner.v1.PartitionReadRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_PARTITION_READ, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_SESSION = 0;
@@ -996,6 +1168,8 @@ public final class SpannerGrpc {
   private static final int METHODID_BEGIN_TRANSACTION = 8;
   private static final int METHODID_COMMIT = 9;
   private static final int METHODID_ROLLBACK = 10;
+  private static final int METHODID_PARTITION_QUERY = 11;
+  private static final int METHODID_PARTITION_READ = 12;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1058,6 +1232,14 @@ public final class SpannerGrpc {
           serviceImpl.rollback((com.google.spanner.v1.RollbackRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
+        case METHODID_PARTITION_QUERY:
+          serviceImpl.partitionQuery((com.google.spanner.v1.PartitionQueryRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.spanner.v1.PartitionResponse>) responseObserver);
+          break;
+        case METHODID_PARTITION_READ:
+          serviceImpl.partitionRead((com.google.spanner.v1.PartitionReadRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.spanner.v1.PartitionResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -1102,6 +1284,8 @@ public final class SpannerGrpc {
               .addMethod(METHOD_BEGIN_TRANSACTION)
               .addMethod(METHOD_COMMIT)
               .addMethod(METHOD_ROLLBACK)
+              .addMethod(METHOD_PARTITION_QUERY)
+              .addMethod(METHOD_PARTITION_READ)
               .build();
         }
       }

@@ -103,6 +103,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 58: {
+            com.google.privacy.dlp.v2beta2.QuoteInfo.Builder subBuilder = null;
+            if (quoteInfo_ != null) {
+              subBuilder = quoteInfo_.toBuilder();
+            }
+            quoteInfo_ = input.readMessage(com.google.privacy.dlp.v2beta2.QuoteInfo.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(quoteInfo_);
+              quoteInfo_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -303,6 +316,39 @@ private static final long serialVersionUID = 0L;
     return getCreateTime();
   }
 
+  public static final int QUOTE_INFO_FIELD_NUMBER = 7;
+  private com.google.privacy.dlp.v2beta2.QuoteInfo quoteInfo_;
+  /**
+   * <pre>
+   * InfoType-dependent details parsed from quote.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+   */
+  public boolean hasQuoteInfo() {
+    return quoteInfo_ != null;
+  }
+  /**
+   * <pre>
+   * InfoType-dependent details parsed from quote.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+   */
+  public com.google.privacy.dlp.v2beta2.QuoteInfo getQuoteInfo() {
+    return quoteInfo_ == null ? com.google.privacy.dlp.v2beta2.QuoteInfo.getDefaultInstance() : quoteInfo_;
+  }
+  /**
+   * <pre>
+   * InfoType-dependent details parsed from quote.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+   */
+  public com.google.privacy.dlp.v2beta2.QuoteInfoOrBuilder getQuoteInfoOrBuilder() {
+    return getQuoteInfo();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -330,6 +376,9 @@ private static final long serialVersionUID = 0L;
     if (createTime_ != null) {
       output.writeMessage(6, getCreateTime());
     }
+    if (quoteInfo_ != null) {
+      output.writeMessage(7, getQuoteInfo());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -356,6 +405,10 @@ private static final long serialVersionUID = 0L;
     if (createTime_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(6, getCreateTime());
+    }
+    if (quoteInfo_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(7, getQuoteInfo());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -391,6 +444,11 @@ private static final long serialVersionUID = 0L;
       result = result && getCreateTime()
           .equals(other.getCreateTime());
     }
+    result = result && (hasQuoteInfo() == other.hasQuoteInfo());
+    if (hasQuoteInfo()) {
+      result = result && getQuoteInfo()
+          .equals(other.getQuoteInfo());
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -417,6 +475,10 @@ private static final long serialVersionUID = 0L;
     if (hasCreateTime()) {
       hash = (37 * hash) + CREATE_TIME_FIELD_NUMBER;
       hash = (53 * hash) + getCreateTime().hashCode();
+    }
+    if (hasQuoteInfo()) {
+      hash = (37 * hash) + QUOTE_INFO_FIELD_NUMBER;
+      hash = (53 * hash) + getQuoteInfo().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -573,6 +635,12 @@ private static final long serialVersionUID = 0L;
         createTime_ = null;
         createTimeBuilder_ = null;
       }
+      if (quoteInfoBuilder_ == null) {
+        quoteInfo_ = null;
+      } else {
+        quoteInfo_ = null;
+        quoteInfoBuilder_ = null;
+      }
       return this;
     }
 
@@ -611,6 +679,11 @@ private static final long serialVersionUID = 0L;
         result.createTime_ = createTime_;
       } else {
         result.createTime_ = createTimeBuilder_.build();
+      }
+      if (quoteInfoBuilder_ == null) {
+        result.quoteInfo_ = quoteInfo_;
+      } else {
+        result.quoteInfo_ = quoteInfoBuilder_.build();
       }
       onBuilt();
       return result;
@@ -668,6 +741,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasCreateTime()) {
         mergeCreateTime(other.getCreateTime());
+      }
+      if (other.hasQuoteInfo()) {
+        mergeQuoteInfo(other.getQuoteInfo());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1335,6 +1411,159 @@ private static final long serialVersionUID = 0L;
         createTime_ = null;
       }
       return createTimeBuilder_;
+    }
+
+    private com.google.privacy.dlp.v2beta2.QuoteInfo quoteInfo_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta2.QuoteInfo, com.google.privacy.dlp.v2beta2.QuoteInfo.Builder, com.google.privacy.dlp.v2beta2.QuoteInfoOrBuilder> quoteInfoBuilder_;
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    public boolean hasQuoteInfo() {
+      return quoteInfoBuilder_ != null || quoteInfo_ != null;
+    }
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.QuoteInfo getQuoteInfo() {
+      if (quoteInfoBuilder_ == null) {
+        return quoteInfo_ == null ? com.google.privacy.dlp.v2beta2.QuoteInfo.getDefaultInstance() : quoteInfo_;
+      } else {
+        return quoteInfoBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    public Builder setQuoteInfo(com.google.privacy.dlp.v2beta2.QuoteInfo value) {
+      if (quoteInfoBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        quoteInfo_ = value;
+        onChanged();
+      } else {
+        quoteInfoBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    public Builder setQuoteInfo(
+        com.google.privacy.dlp.v2beta2.QuoteInfo.Builder builderForValue) {
+      if (quoteInfoBuilder_ == null) {
+        quoteInfo_ = builderForValue.build();
+        onChanged();
+      } else {
+        quoteInfoBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    public Builder mergeQuoteInfo(com.google.privacy.dlp.v2beta2.QuoteInfo value) {
+      if (quoteInfoBuilder_ == null) {
+        if (quoteInfo_ != null) {
+          quoteInfo_ =
+            com.google.privacy.dlp.v2beta2.QuoteInfo.newBuilder(quoteInfo_).mergeFrom(value).buildPartial();
+        } else {
+          quoteInfo_ = value;
+        }
+        onChanged();
+      } else {
+        quoteInfoBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    public Builder clearQuoteInfo() {
+      if (quoteInfoBuilder_ == null) {
+        quoteInfo_ = null;
+        onChanged();
+      } else {
+        quoteInfo_ = null;
+        quoteInfoBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.QuoteInfo.Builder getQuoteInfoBuilder() {
+      
+      onChanged();
+      return getQuoteInfoFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.QuoteInfoOrBuilder getQuoteInfoOrBuilder() {
+      if (quoteInfoBuilder_ != null) {
+        return quoteInfoBuilder_.getMessageOrBuilder();
+      } else {
+        return quoteInfo_ == null ?
+            com.google.privacy.dlp.v2beta2.QuoteInfo.getDefaultInstance() : quoteInfo_;
+      }
+    }
+    /**
+     * <pre>
+     * InfoType-dependent details parsed from quote.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.QuoteInfo quote_info = 7;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta2.QuoteInfo, com.google.privacy.dlp.v2beta2.QuoteInfo.Builder, com.google.privacy.dlp.v2beta2.QuoteInfoOrBuilder> 
+        getQuoteInfoFieldBuilder() {
+      if (quoteInfoBuilder_ == null) {
+        quoteInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.privacy.dlp.v2beta2.QuoteInfo, com.google.privacy.dlp.v2beta2.QuoteInfo.Builder, com.google.privacy.dlp.v2beta2.QuoteInfoOrBuilder>(
+                getQuoteInfo(),
+                getParentForChildren(),
+                isClean());
+        quoteInfo_ = null;
+      }
+      return quoteInfoBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

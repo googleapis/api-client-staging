@@ -124,5 +124,18 @@ public interface PrimitiveTransformationOrBuilder extends
    */
   com.google.privacy.dlp.v2beta2.CryptoHashConfigOrBuilder getCryptoHashConfigOrBuilder();
 
+  /**
+   * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+   */
+  boolean hasDateShiftConfig();
+  /**
+   * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+   */
+  com.google.privacy.dlp.v2beta2.DateShiftConfig getDateShiftConfig();
+  /**
+   * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+   */
+  com.google.privacy.dlp.v2beta2.DateShiftConfigOrBuilder getDateShiftConfigOrBuilder();
+
   public com.google.privacy.dlp.v2beta2.PrimitiveTransformation.TransformationCase getTransformationCase();
 }

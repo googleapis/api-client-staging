@@ -118,6 +118,12 @@ private static final long serialVersionUID = 0L;
             typeCase_ = 7;
             break;
           }
+          case 64: {
+            int rawValue = input.readEnum();
+            typeCase_ = 8;
+            type_ = rawValue;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -153,6 +159,7 @@ private static final long serialVersionUID = 0L;
     TIMESTAMP_VALUE(5),
     TIME_VALUE(6),
     DATE_VALUE(7),
+    DAY_OF_WEEK_VALUE(8),
     TYPE_NOT_SET(0);
     private final int value;
     private TypeCase(int value) {
@@ -175,6 +182,7 @@ private static final long serialVersionUID = 0L;
         case 5: return TIMESTAMP_VALUE;
         case 6: return TIME_VALUE;
         case 7: return DATE_VALUE;
+        case 8: return DAY_OF_WEEK_VALUE;
         case 0: return TYPE_NOT_SET;
         default: return null;
       }
@@ -344,6 +352,28 @@ private static final long serialVersionUID = 0L;
     return com.google.type.Date.getDefaultInstance();
   }
 
+  public static final int DAY_OF_WEEK_VALUE_FIELD_NUMBER = 8;
+  /**
+   * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+   */
+  public int getDayOfWeekValueValue() {
+    if (typeCase_ == 8) {
+      return (java.lang.Integer) type_;
+    }
+    return 0;
+  }
+  /**
+   * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+   */
+  public com.google.type.DayOfWeek getDayOfWeekValue() {
+    if (typeCase_ == 8) {
+      com.google.type.DayOfWeek result = com.google.type.DayOfWeek.valueOf(
+          (java.lang.Integer) type_);
+      return result == null ? com.google.type.DayOfWeek.UNRECOGNIZED : result;
+    }
+    return com.google.type.DayOfWeek.DAY_OF_WEEK_UNSPECIFIED;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -379,6 +409,9 @@ private static final long serialVersionUID = 0L;
     }
     if (typeCase_ == 7) {
       output.writeMessage(7, (com.google.type.Date) type_);
+    }
+    if (typeCase_ == 8) {
+      output.writeEnum(8, ((java.lang.Integer) type_));
     }
     unknownFields.writeTo(output);
   }
@@ -417,6 +450,10 @@ private static final long serialVersionUID = 0L;
     if (typeCase_ == 7) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(7, (com.google.type.Date) type_);
+    }
+    if (typeCase_ == 8) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(8, ((java.lang.Integer) type_));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -468,6 +505,10 @@ private static final long serialVersionUID = 0L;
         result = result && getDateValue()
             .equals(other.getDateValue());
         break;
+      case 8:
+        result = result && getDayOfWeekValueValue()
+            == other.getDayOfWeekValueValue();
+        break;
       case 0:
       default:
     }
@@ -513,6 +554,10 @@ private static final long serialVersionUID = 0L;
       case 7:
         hash = (37 * hash) + DATE_VALUE_FIELD_NUMBER;
         hash = (53 * hash) + getDateValue().hashCode();
+        break;
+      case 8:
+        hash = (37 * hash) + DAY_OF_WEEK_VALUE_FIELD_NUMBER;
+        hash = (53 * hash) + getDayOfWeekValueValue();
         break;
       case 0:
       default:
@@ -712,6 +757,9 @@ private static final long serialVersionUID = 0L;
           result.type_ = dateValueBuilder_.build();
         }
       }
+      if (typeCase_ == 8) {
+        result.type_ = type_;
+      }
       result.typeCase_ = typeCase_;
       onBuilt();
       return result;
@@ -783,6 +831,10 @@ private static final long serialVersionUID = 0L;
         }
         case DATE_VALUE: {
           mergeDateValue(other.getDateValue());
+          break;
+        }
+        case DAY_OF_WEEK_VALUE: {
+          setDayOfWeekValueValue(other.getDayOfWeekValueValue());
           break;
         }
         case TYPE_NOT_SET: {
@@ -1407,6 +1459,59 @@ private static final long serialVersionUID = 0L;
       typeCase_ = 7;
       onChanged();;
       return dateValueBuilder_;
+    }
+
+    /**
+     * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+     */
+    public int getDayOfWeekValueValue() {
+      if (typeCase_ == 8) {
+        return ((java.lang.Integer) type_).intValue();
+      }
+      return 0;
+    }
+    /**
+     * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+     */
+    public Builder setDayOfWeekValueValue(int value) {
+      typeCase_ = 8;
+      type_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+     */
+    public com.google.type.DayOfWeek getDayOfWeekValue() {
+      if (typeCase_ == 8) {
+        com.google.type.DayOfWeek result = com.google.type.DayOfWeek.valueOf(
+            (java.lang.Integer) type_);
+        return result == null ? com.google.type.DayOfWeek.UNRECOGNIZED : result;
+      }
+      return com.google.type.DayOfWeek.DAY_OF_WEEK_UNSPECIFIED;
+    }
+    /**
+     * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+     */
+    public Builder setDayOfWeekValue(com.google.type.DayOfWeek value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      typeCase_ = 8;
+      type_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+     */
+    public Builder clearDayOfWeekValue() {
+      if (typeCase_ == 8) {
+        typeCase_ = 0;
+        type_ = null;
+        onChanged();
+      }
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

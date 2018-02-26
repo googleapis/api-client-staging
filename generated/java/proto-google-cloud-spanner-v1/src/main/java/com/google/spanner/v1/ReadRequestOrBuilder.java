@@ -138,8 +138,10 @@ public interface ReadRequestOrBuilder extends
    * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
    * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
    * index keys in [index][google.spanner.v1.ReadRequest.index].
-   * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-   * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+   * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+   * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+   * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+   * empty, rows will be yielded in an unspecified order.
    * It is not an error for the `key_set` to name rows that do not
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
@@ -153,8 +155,10 @@ public interface ReadRequestOrBuilder extends
    * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
    * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
    * index keys in [index][google.spanner.v1.ReadRequest.index].
-   * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-   * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+   * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+   * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+   * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+   * empty, rows will be yielded in an unspecified order.
    * It is not an error for the `key_set` to name rows that do not
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
@@ -168,8 +172,10 @@ public interface ReadRequestOrBuilder extends
    * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
    * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
    * index keys in [index][google.spanner.v1.ReadRequest.index].
-   * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-   * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+   * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+   * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+   * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+   * empty, rows will be yielded in an unspecified order.
    * It is not an error for the `key_set` to name rows that do not
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
@@ -181,7 +187,8 @@ public interface ReadRequestOrBuilder extends
   /**
    * <pre>
    * If greater than zero, only the first `limit` rows are yielded. If `limit`
-   * is zero, the default is no limit.
+   * is zero, the default is no limit. A limit cannot be specified if
+   * `partition_token` is set.
    * </pre>
    *
    * <code>int64 limit = 8;</code>
@@ -201,4 +208,16 @@ public interface ReadRequestOrBuilder extends
    * <code>bytes resume_token = 9;</code>
    */
   com.google.protobuf.ByteString getResumeToken();
+
+  /**
+   * <pre>
+   * If present, results will be restricted to the specified partition
+   * previously created using PartitionRead().    There must be an exact
+   * match for the values of fields common to this message and the
+   * PartitionReadRequest message used to create this partition_token.
+   * </pre>
+   *
+   * <code>bytes partition_token = 10;</code>
+   */
+  com.google.protobuf.ByteString getPartitionToken();
 }
