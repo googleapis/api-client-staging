@@ -41,6 +41,9 @@ import com.google.spanner.v1.GetSessionRequest;
 import com.google.spanner.v1.ListSessionsRequest;
 import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.PartialResultSet;
+import com.google.spanner.v1.PartitionQueryRequest;
+import com.google.spanner.v1.PartitionReadRequest;
+import com.google.spanner.v1.PartitionResponse;
 import com.google.spanner.v1.ReadRequest;
 import com.google.spanner.v1.ResultSet;
 import com.google.spanner.v1.RollbackRequest;
@@ -134,6 +137,16 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
   /** Returns the object with the settings used for calls to rollback. */
   public UnaryCallSettings<RollbackRequest, Empty> rollbackSettings() {
     return ((SpannerStubSettings) getStubSettings()).rollbackSettings();
+  }
+
+  /** Returns the object with the settings used for calls to partitionQuery. */
+  public UnaryCallSettings<PartitionQueryRequest, PartitionResponse> partitionQuerySettings() {
+    return ((SpannerStubSettings) getStubSettings()).partitionQuerySettings();
+  }
+
+  /** Returns the object with the settings used for calls to partitionRead. */
+  public UnaryCallSettings<PartitionReadRequest, PartitionResponse> partitionReadSettings() {
+    return ((SpannerStubSettings) getStubSettings()).partitionReadSettings();
   }
 
   public static final SpannerSettings create(SpannerStubSettings stub) throws IOException {
@@ -289,6 +302,18 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
     /** Returns the builder for the settings used for calls to rollback. */
     public UnaryCallSettings.Builder<RollbackRequest, Empty> rollbackSettings() {
       return getStubSettingsBuilder().rollbackSettings();
+    }
+
+    /** Returns the builder for the settings used for calls to partitionQuery. */
+    public UnaryCallSettings.Builder<PartitionQueryRequest, PartitionResponse>
+        partitionQuerySettings() {
+      return getStubSettingsBuilder().partitionQuerySettings();
+    }
+
+    /** Returns the builder for the settings used for calls to partitionRead. */
+    public UnaryCallSettings.Builder<PartitionReadRequest, PartitionResponse>
+        partitionReadSettings() {
+      return getStubSettingsBuilder().partitionReadSettings();
     }
 
     @Override

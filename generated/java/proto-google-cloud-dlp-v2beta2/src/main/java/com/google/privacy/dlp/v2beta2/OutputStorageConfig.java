@@ -20,6 +20,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private OutputStorageConfig() {
+    outputSchema_ = 0;
   }
 
   @java.lang.Override
@@ -64,6 +65,12 @@ private static final long serialVersionUID = 0L;
             typeCase_ = 1;
             break;
           }
+          case 24: {
+            int rawValue = input.readEnum();
+
+            outputSchema_ = rawValue;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -86,6 +93,186 @@ private static final long serialVersionUID = 0L;
     return com.google.privacy.dlp.v2beta2.DlpProto.internal_static_google_privacy_dlp_v2beta2_OutputStorageConfig_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.google.privacy.dlp.v2beta2.OutputStorageConfig.class, com.google.privacy.dlp.v2beta2.OutputStorageConfig.Builder.class);
+  }
+
+  /**
+   * <pre>
+   * Predefined schemas for storing findings.
+   * </pre>
+   *
+   * Protobuf enum {@code google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema}
+   */
+  public enum OutputSchema
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>OUTPUT_SCHEMA_UNSPECIFIED = 0;</code>
+     */
+    OUTPUT_SCHEMA_UNSPECIFIED(0),
+    /**
+     * <pre>
+     * Basic schema including only `info_type`, `quote`, `certainty`, and
+     * `timestamp`.
+     * </pre>
+     *
+     * <code>BASIC_COLUMNS = 1;</code>
+     */
+    BASIC_COLUMNS(1),
+    /**
+     * <pre>
+     * Schema tailored to findings from scanning Google Cloud Storage.
+     * </pre>
+     *
+     * <code>GCS_COLUMNS = 2;</code>
+     */
+    GCS_COLUMNS(2),
+    /**
+     * <pre>
+     * Schema tailored to findings from scanning Google Datastore.
+     * </pre>
+     *
+     * <code>DATASTORE_COLUMNS = 3;</code>
+     */
+    DATASTORE_COLUMNS(3),
+    /**
+     * <pre>
+     * Schema tailored to findings from scanning Google BigQuery.
+     * </pre>
+     *
+     * <code>BIG_QUERY_COLUMNS = 4;</code>
+     */
+    BIG_QUERY_COLUMNS(4),
+    /**
+     * <pre>
+     * Schema containing all columns.
+     * </pre>
+     *
+     * <code>ALL_COLUMNS = 5;</code>
+     */
+    ALL_COLUMNS(5),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>OUTPUT_SCHEMA_UNSPECIFIED = 0;</code>
+     */
+    public static final int OUTPUT_SCHEMA_UNSPECIFIED_VALUE = 0;
+    /**
+     * <pre>
+     * Basic schema including only `info_type`, `quote`, `certainty`, and
+     * `timestamp`.
+     * </pre>
+     *
+     * <code>BASIC_COLUMNS = 1;</code>
+     */
+    public static final int BASIC_COLUMNS_VALUE = 1;
+    /**
+     * <pre>
+     * Schema tailored to findings from scanning Google Cloud Storage.
+     * </pre>
+     *
+     * <code>GCS_COLUMNS = 2;</code>
+     */
+    public static final int GCS_COLUMNS_VALUE = 2;
+    /**
+     * <pre>
+     * Schema tailored to findings from scanning Google Datastore.
+     * </pre>
+     *
+     * <code>DATASTORE_COLUMNS = 3;</code>
+     */
+    public static final int DATASTORE_COLUMNS_VALUE = 3;
+    /**
+     * <pre>
+     * Schema tailored to findings from scanning Google BigQuery.
+     * </pre>
+     *
+     * <code>BIG_QUERY_COLUMNS = 4;</code>
+     */
+    public static final int BIG_QUERY_COLUMNS_VALUE = 4;
+    /**
+     * <pre>
+     * Schema containing all columns.
+     * </pre>
+     *
+     * <code>ALL_COLUMNS = 5;</code>
+     */
+    public static final int ALL_COLUMNS_VALUE = 5;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static OutputSchema valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static OutputSchema forNumber(int value) {
+      switch (value) {
+        case 0: return OUTPUT_SCHEMA_UNSPECIFIED;
+        case 1: return BASIC_COLUMNS;
+        case 2: return GCS_COLUMNS;
+        case 3: return DATASTORE_COLUMNS;
+        case 4: return BIG_QUERY_COLUMNS;
+        case 5: return ALL_COLUMNS;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<OutputSchema>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        OutputSchema> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<OutputSchema>() {
+            public OutputSchema findValueByNumber(int number) {
+              return OutputSchema.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.google.privacy.dlp.v2beta2.OutputStorageConfig.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final OutputSchema[] VALUES = values();
+
+    public static OutputSchema valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private OutputSchema(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema)
   }
 
   private int typeCase_ = 0;
@@ -127,8 +314,10 @@ private static final long serialVersionUID = 0L;
   public static final int TABLE_FIELD_NUMBER = 1;
   /**
    * <pre>
-   * Store findings in a new table in an existing dataset. If table_id is not
-   * set a new one will be generated for you with the following format:
+   * Store findings in an existing table or a new table in an existing
+   * dataset. Each column in an existing table must have the same name, type,
+   * and mode of a field in the `Finding` object. If table_id is not set a new
+   * one will be generated for you with the following format:
    * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
    * generating the date details.
    * </pre>
@@ -140,8 +329,10 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Store findings in a new table in an existing dataset. If table_id is not
-   * set a new one will be generated for you with the following format:
+   * Store findings in an existing table or a new table in an existing
+   * dataset. Each column in an existing table must have the same name, type,
+   * and mode of a field in the `Finding` object. If table_id is not set a new
+   * one will be generated for you with the following format:
    * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
    * generating the date details.
    * </pre>
@@ -156,8 +347,10 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Store findings in a new table in an existing dataset. If table_id is not
-   * set a new one will be generated for you with the following format:
+   * Store findings in an existing table or a new table in an existing
+   * dataset. Each column in an existing table must have the same name, type,
+   * and mode of a field in the `Finding` object. If table_id is not set a new
+   * one will be generated for you with the following format:
    * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
    * generating the date details.
    * </pre>
@@ -169,6 +362,40 @@ private static final long serialVersionUID = 0L;
        return (com.google.privacy.dlp.v2beta2.BigQueryTable) type_;
     }
     return com.google.privacy.dlp.v2beta2.BigQueryTable.getDefaultInstance();
+  }
+
+  public static final int OUTPUT_SCHEMA_FIELD_NUMBER = 3;
+  private int outputSchema_;
+  /**
+   * <pre>
+   * Schema used for writing the findings. Columns are derived from the
+   * `Finding` object. If appending to an existing table, any columns from the
+   * predefined schema that are missing will be added. No columns in the
+   * existing table will be deleted.
+   * If unspecified, then all available columns will be used for a new table,
+   * and no changes will be made to an existing table.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
+   */
+  public int getOutputSchemaValue() {
+    return outputSchema_;
+  }
+  /**
+   * <pre>
+   * Schema used for writing the findings. Columns are derived from the
+   * `Finding` object. If appending to an existing table, any columns from the
+   * predefined schema that are missing will be added. No columns in the
+   * existing table will be deleted.
+   * If unspecified, then all available columns will be used for a new table,
+   * and no changes will be made to an existing table.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
+   */
+  public com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema getOutputSchema() {
+    com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema result = com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema.valueOf(outputSchema_);
+    return result == null ? com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -186,6 +413,9 @@ private static final long serialVersionUID = 0L;
     if (typeCase_ == 1) {
       output.writeMessage(1, (com.google.privacy.dlp.v2beta2.BigQueryTable) type_);
     }
+    if (outputSchema_ != com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema.OUTPUT_SCHEMA_UNSPECIFIED.getNumber()) {
+      output.writeEnum(3, outputSchema_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -197,6 +427,10 @@ private static final long serialVersionUID = 0L;
     if (typeCase_ == 1) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, (com.google.privacy.dlp.v2beta2.BigQueryTable) type_);
+    }
+    if (outputSchema_ != com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema.OUTPUT_SCHEMA_UNSPECIFIED.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(3, outputSchema_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -214,6 +448,7 @@ private static final long serialVersionUID = 0L;
     com.google.privacy.dlp.v2beta2.OutputStorageConfig other = (com.google.privacy.dlp.v2beta2.OutputStorageConfig) obj;
 
     boolean result = true;
+    result = result && outputSchema_ == other.outputSchema_;
     result = result && getTypeCase().equals(
         other.getTypeCase());
     if (!result) return false;
@@ -236,6 +471,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + OUTPUT_SCHEMA_FIELD_NUMBER;
+    hash = (53 * hash) + outputSchema_;
     switch (typeCase_) {
       case 1:
         hash = (37 * hash) + TABLE_FIELD_NUMBER;
@@ -377,6 +614,8 @@ private static final long serialVersionUID = 0L;
     }
     public Builder clear() {
       super.clear();
+      outputSchema_ = 0;
+
       typeCase_ = 0;
       type_ = null;
       return this;
@@ -408,6 +647,7 @@ private static final long serialVersionUID = 0L;
           result.type_ = tableBuilder_.build();
         }
       }
+      result.outputSchema_ = outputSchema_;
       result.typeCase_ = typeCase_;
       onBuilt();
       return result;
@@ -450,6 +690,9 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.google.privacy.dlp.v2beta2.OutputStorageConfig other) {
       if (other == com.google.privacy.dlp.v2beta2.OutputStorageConfig.getDefaultInstance()) return this;
+      if (other.outputSchema_ != 0) {
+        setOutputSchemaValue(other.getOutputSchemaValue());
+      }
       switch (other.getTypeCase()) {
         case TABLE: {
           mergeTable(other.getTable());
@@ -505,8 +748,10 @@ private static final long serialVersionUID = 0L;
         com.google.privacy.dlp.v2beta2.BigQueryTable, com.google.privacy.dlp.v2beta2.BigQueryTable.Builder, com.google.privacy.dlp.v2beta2.BigQueryTableOrBuilder> tableBuilder_;
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -518,8 +763,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -541,8 +788,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -564,8 +813,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -585,8 +836,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -614,8 +867,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -640,8 +895,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -653,8 +910,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -673,8 +932,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Store findings in a new table in an existing dataset. If table_id is not
-     * set a new one will be generated for you with the following format:
+     * Store findings in an existing table or a new table in an existing
+     * dataset. Each column in an existing table must have the same name, type,
+     * and mode of a field in the `Finding` object. If table_id is not set a new
+     * one will be generated for you with the following format:
      * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
      * generating the date details.
      * </pre>
@@ -698,6 +959,95 @@ private static final long serialVersionUID = 0L;
       typeCase_ = 1;
       onChanged();;
       return tableBuilder_;
+    }
+
+    private int outputSchema_ = 0;
+    /**
+     * <pre>
+     * Schema used for writing the findings. Columns are derived from the
+     * `Finding` object. If appending to an existing table, any columns from the
+     * predefined schema that are missing will be added. No columns in the
+     * existing table will be deleted.
+     * If unspecified, then all available columns will be used for a new table,
+     * and no changes will be made to an existing table.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
+     */
+    public int getOutputSchemaValue() {
+      return outputSchema_;
+    }
+    /**
+     * <pre>
+     * Schema used for writing the findings. Columns are derived from the
+     * `Finding` object. If appending to an existing table, any columns from the
+     * predefined schema that are missing will be added. No columns in the
+     * existing table will be deleted.
+     * If unspecified, then all available columns will be used for a new table,
+     * and no changes will be made to an existing table.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
+     */
+    public Builder setOutputSchemaValue(int value) {
+      outputSchema_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Schema used for writing the findings. Columns are derived from the
+     * `Finding` object. If appending to an existing table, any columns from the
+     * predefined schema that are missing will be added. No columns in the
+     * existing table will be deleted.
+     * If unspecified, then all available columns will be used for a new table,
+     * and no changes will be made to an existing table.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema getOutputSchema() {
+      com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema result = com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema.valueOf(outputSchema_);
+      return result == null ? com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema.UNRECOGNIZED : result;
+    }
+    /**
+     * <pre>
+     * Schema used for writing the findings. Columns are derived from the
+     * `Finding` object. If appending to an existing table, any columns from the
+     * predefined schema that are missing will be added. No columns in the
+     * existing table will be deleted.
+     * If unspecified, then all available columns will be used for a new table,
+     * and no changes will be made to an existing table.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
+     */
+    public Builder setOutputSchema(com.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      outputSchema_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Schema used for writing the findings. Columns are derived from the
+     * `Finding` object. If appending to an existing table, any columns from the
+     * predefined schema that are missing will be added. No columns in the
+     * existing table will be deleted.
+     * If unspecified, then all available columns will be used for a new table,
+     * and no changes will be made to an existing table.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
+     */
+    public Builder clearOutputSchema() {
+      
+      outputSchema_ = 0;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

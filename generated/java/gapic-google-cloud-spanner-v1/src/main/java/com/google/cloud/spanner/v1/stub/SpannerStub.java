@@ -32,6 +32,9 @@ import com.google.spanner.v1.GetSessionRequest;
 import com.google.spanner.v1.ListSessionsRequest;
 import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.PartialResultSet;
+import com.google.spanner.v1.PartitionQueryRequest;
+import com.google.spanner.v1.PartitionReadRequest;
+import com.google.spanner.v1.PartitionResponse;
 import com.google.spanner.v1.ReadRequest;
 import com.google.spanner.v1.ResultSet;
 import com.google.spanner.v1.RollbackRequest;
@@ -96,5 +99,13 @@ public abstract class SpannerStub implements BackgroundResource {
 
   public UnaryCallable<RollbackRequest, Empty> rollbackCallable() {
     throw new UnsupportedOperationException("Not implemented: rollbackCallable()");
+  }
+
+  public UnaryCallable<PartitionQueryRequest, PartitionResponse> partitionQueryCallable() {
+    throw new UnsupportedOperationException("Not implemented: partitionQueryCallable()");
+  }
+
+  public UnaryCallable<PartitionReadRequest, PartitionResponse> partitionReadCallable() {
+    throw new UnsupportedOperationException("Not implemented: partitionReadCallable()");
   }
 }

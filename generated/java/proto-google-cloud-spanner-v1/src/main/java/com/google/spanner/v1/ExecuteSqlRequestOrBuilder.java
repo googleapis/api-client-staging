@@ -227,7 +227,8 @@ public interface ExecuteSqlRequestOrBuilder extends
   /**
    * <pre>
    * Used to control the amount of debugging information returned in
-   * [ResultSetStats][google.spanner.v1.ResultSetStats].
+   * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+   * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
    * </pre>
    *
    * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
@@ -236,10 +237,23 @@ public interface ExecuteSqlRequestOrBuilder extends
   /**
    * <pre>
    * Used to control the amount of debugging information returned in
-   * [ResultSetStats][google.spanner.v1.ResultSetStats].
+   * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+   * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
    * </pre>
    *
    * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
    */
   com.google.spanner.v1.ExecuteSqlRequest.QueryMode getQueryMode();
+
+  /**
+   * <pre>
+   * If present, results will be restricted to the specified partition
+   * previously created using PartitionQuery().  There must be an exact
+   * match for the values of fields common to this message and the
+   * PartitionQueryRequest message used to create this partition_token.
+   * </pre>
+   *
+   * <code>bytes partition_token = 8;</code>
+   */
+  com.google.protobuf.ByteString getPartitionToken();
 }

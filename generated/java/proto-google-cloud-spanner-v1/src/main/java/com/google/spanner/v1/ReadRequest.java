@@ -27,6 +27,7 @@ private static final long serialVersionUID = 0L;
     columns_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     limit_ = 0L;
     resumeToken_ = com.google.protobuf.ByteString.EMPTY;
+    partitionToken_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -118,6 +119,11 @@ private static final long serialVersionUID = 0L;
           case 74: {
 
             resumeToken_ = input.readBytes();
+            break;
+          }
+          case 82: {
+
+            partitionToken_ = input.readBytes();
             break;
           }
         }
@@ -371,8 +377,10 @@ private static final long serialVersionUID = 0L;
    * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
    * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
    * index keys in [index][google.spanner.v1.ReadRequest.index].
-   * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-   * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+   * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+   * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+   * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+   * empty, rows will be yielded in an unspecified order.
    * It is not an error for the `key_set` to name rows that do not
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
@@ -388,8 +396,10 @@ private static final long serialVersionUID = 0L;
    * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
    * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
    * index keys in [index][google.spanner.v1.ReadRequest.index].
-   * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-   * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+   * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+   * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+   * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+   * empty, rows will be yielded in an unspecified order.
    * It is not an error for the `key_set` to name rows that do not
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
@@ -405,8 +415,10 @@ private static final long serialVersionUID = 0L;
    * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
    * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
    * index keys in [index][google.spanner.v1.ReadRequest.index].
-   * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-   * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+   * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+   * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+   * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+   * empty, rows will be yielded in an unspecified order.
    * It is not an error for the `key_set` to name rows that do not
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
@@ -422,7 +434,8 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * If greater than zero, only the first `limit` rows are yielded. If `limit`
-   * is zero, the default is no limit.
+   * is zero, the default is no limit. A limit cannot be specified if
+   * `partition_token` is set.
    * </pre>
    *
    * <code>int64 limit = 8;</code>
@@ -447,6 +460,22 @@ private static final long serialVersionUID = 0L;
    */
   public com.google.protobuf.ByteString getResumeToken() {
     return resumeToken_;
+  }
+
+  public static final int PARTITION_TOKEN_FIELD_NUMBER = 10;
+  private com.google.protobuf.ByteString partitionToken_;
+  /**
+   * <pre>
+   * If present, results will be restricted to the specified partition
+   * previously created using PartitionRead().    There must be an exact
+   * match for the values of fields common to this message and the
+   * PartitionReadRequest message used to create this partition_token.
+   * </pre>
+   *
+   * <code>bytes partition_token = 10;</code>
+   */
+  public com.google.protobuf.ByteString getPartitionToken() {
+    return partitionToken_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -484,6 +513,9 @@ private static final long serialVersionUID = 0L;
     }
     if (!resumeToken_.isEmpty()) {
       output.writeBytes(9, resumeToken_);
+    }
+    if (!partitionToken_.isEmpty()) {
+      output.writeBytes(10, partitionToken_);
     }
     unknownFields.writeTo(output);
   }
@@ -526,6 +558,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(9, resumeToken_);
     }
+    if (!partitionToken_.isEmpty()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(10, partitionToken_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -564,6 +600,8 @@ private static final long serialVersionUID = 0L;
         == other.getLimit());
     result = result && getResumeToken()
         .equals(other.getResumeToken());
+    result = result && getPartitionToken()
+        .equals(other.getPartitionToken());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -598,6 +636,8 @@ private static final long serialVersionUID = 0L;
         getLimit());
     hash = (37 * hash) + RESUME_TOKEN_FIELD_NUMBER;
     hash = (53 * hash) + getResumeToken().hashCode();
+    hash = (37 * hash) + PARTITION_TOKEN_FIELD_NUMBER;
+    hash = (53 * hash) + getPartitionToken().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -756,6 +796,8 @@ private static final long serialVersionUID = 0L;
 
       resumeToken_ = com.google.protobuf.ByteString.EMPTY;
 
+      partitionToken_ = com.google.protobuf.ByteString.EMPTY;
+
       return this;
     }
 
@@ -800,6 +842,7 @@ private static final long serialVersionUID = 0L;
       }
       result.limit_ = limit_;
       result.resumeToken_ = resumeToken_;
+      result.partitionToken_ = partitionToken_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -875,6 +918,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getResumeToken() != com.google.protobuf.ByteString.EMPTY) {
         setResumeToken(other.getResumeToken());
+      }
+      if (other.getPartitionToken() != com.google.protobuf.ByteString.EMPTY) {
+        setPartitionToken(other.getPartitionToken());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1491,8 +1537,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1508,8 +1556,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1529,8 +1579,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1556,8 +1608,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1581,8 +1635,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1610,8 +1666,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1635,8 +1693,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1654,8 +1714,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1676,8 +1738,10 @@ private static final long serialVersionUID = 0L;
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.ReadRequest.index].
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
@@ -1702,7 +1766,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
-     * is zero, the default is no limit.
+     * is zero, the default is no limit. A limit cannot be specified if
+     * `partition_token` is set.
      * </pre>
      *
      * <code>int64 limit = 8;</code>
@@ -1713,7 +1778,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
-     * is zero, the default is no limit.
+     * is zero, the default is no limit. A limit cannot be specified if
+     * `partition_token` is set.
      * </pre>
      *
      * <code>int64 limit = 8;</code>
@@ -1727,7 +1793,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
-     * is zero, the default is no limit.
+     * is zero, the default is no limit. A limit cannot be specified if
+     * `partition_token` is set.
      * </pre>
      *
      * <code>int64 limit = 8;</code>
@@ -1791,6 +1858,56 @@ private static final long serialVersionUID = 0L;
     public Builder clearResumeToken() {
       
       resumeToken_ = getDefaultInstance().getResumeToken();
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.ByteString partitionToken_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * If present, results will be restricted to the specified partition
+     * previously created using PartitionRead().    There must be an exact
+     * match for the values of fields common to this message and the
+     * PartitionReadRequest message used to create this partition_token.
+     * </pre>
+     *
+     * <code>bytes partition_token = 10;</code>
+     */
+    public com.google.protobuf.ByteString getPartitionToken() {
+      return partitionToken_;
+    }
+    /**
+     * <pre>
+     * If present, results will be restricted to the specified partition
+     * previously created using PartitionRead().    There must be an exact
+     * match for the values of fields common to this message and the
+     * PartitionReadRequest message used to create this partition_token.
+     * </pre>
+     *
+     * <code>bytes partition_token = 10;</code>
+     */
+    public Builder setPartitionToken(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      partitionToken_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * If present, results will be restricted to the specified partition
+     * previously created using PartitionRead().    There must be an exact
+     * match for the values of fields common to this message and the
+     * PartitionReadRequest message used to create this partition_token.
+     * </pre>
+     *
+     * <code>bytes partition_token = 10;</code>
+     */
+    public Builder clearPartitionToken() {
+      
+      partitionToken_ = getDefaultInstance().getPartitionToken();
       onChanged();
       return this;
     }

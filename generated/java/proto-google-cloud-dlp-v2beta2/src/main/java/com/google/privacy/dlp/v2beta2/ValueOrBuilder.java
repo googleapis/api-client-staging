@@ -71,5 +71,14 @@ public interface ValueOrBuilder extends
    */
   com.google.type.DateOrBuilder getDateValueOrBuilder();
 
+  /**
+   * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+   */
+  int getDayOfWeekValueValue();
+  /**
+   * <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
+   */
+  com.google.type.DayOfWeek getDayOfWeekValue();
+
   public com.google.privacy.dlp.v2beta2.Value.TypeCase getTypeCase();
 }

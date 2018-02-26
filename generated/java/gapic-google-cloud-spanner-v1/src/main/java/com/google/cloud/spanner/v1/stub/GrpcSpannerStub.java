@@ -36,6 +36,9 @@ import com.google.spanner.v1.GetSessionRequest;
 import com.google.spanner.v1.ListSessionsRequest;
 import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.PartialResultSet;
+import com.google.spanner.v1.PartitionQueryRequest;
+import com.google.spanner.v1.PartitionReadRequest;
+import com.google.spanner.v1.PartitionResponse;
 import com.google.spanner.v1.ReadRequest;
 import com.google.spanner.v1.ResultSet;
 import com.google.spanner.v1.RollbackRequest;
@@ -142,6 +145,24 @@ public class GrpcSpannerStub extends SpannerStub {
           .setRequestMarshaller(ProtoUtils.marshaller(RollbackRequest.getDefaultInstance()))
           .setResponseMarshaller(ProtoUtils.marshaller(Empty.getDefaultInstance()))
           .build();
+  private static final MethodDescriptor<PartitionQueryRequest, PartitionResponse>
+      partitionQueryMethodDescriptor =
+          MethodDescriptor.<PartitionQueryRequest, PartitionResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.v1.Spanner/PartitionQuery")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(PartitionQueryRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(PartitionResponse.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<PartitionReadRequest, PartitionResponse>
+      partitionReadMethodDescriptor =
+          MethodDescriptor.<PartitionReadRequest, PartitionResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.v1.Spanner/PartitionRead")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(PartitionReadRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(PartitionResponse.getDefaultInstance()))
+              .build();
 
   private final BackgroundResource backgroundResources;
 
@@ -159,6 +180,8 @@ public class GrpcSpannerStub extends SpannerStub {
   private final UnaryCallable<BeginTransactionRequest, Transaction> beginTransactionCallable;
   private final UnaryCallable<CommitRequest, CommitResponse> commitCallable;
   private final UnaryCallable<RollbackRequest, Empty> rollbackCallable;
+  private final UnaryCallable<PartitionQueryRequest, PartitionResponse> partitionQueryCallable;
+  private final UnaryCallable<PartitionReadRequest, PartitionResponse> partitionReadCallable;
 
   public static final GrpcSpannerStub create(SpannerStubSettings settings) throws IOException {
     return new GrpcSpannerStub(settings, ClientContext.create(settings));
@@ -219,6 +242,14 @@ public class GrpcSpannerStub extends SpannerStub {
         GrpcCallSettings.<RollbackRequest, Empty>newBuilder()
             .setMethodDescriptor(rollbackMethodDescriptor)
             .build();
+    GrpcCallSettings<PartitionQueryRequest, PartitionResponse> partitionQueryTransportSettings =
+        GrpcCallSettings.<PartitionQueryRequest, PartitionResponse>newBuilder()
+            .setMethodDescriptor(partitionQueryMethodDescriptor)
+            .build();
+    GrpcCallSettings<PartitionReadRequest, PartitionResponse> partitionReadTransportSettings =
+        GrpcCallSettings.<PartitionReadRequest, PartitionResponse>newBuilder()
+            .setMethodDescriptor(partitionReadMethodDescriptor)
+            .build();
 
     this.createSessionCallable =
         GrpcCallableFactory.createUnaryCallable(
@@ -258,6 +289,12 @@ public class GrpcSpannerStub extends SpannerStub {
     this.rollbackCallable =
         GrpcCallableFactory.createUnaryCallable(
             rollbackTransportSettings, settings.rollbackSettings(), clientContext);
+    this.partitionQueryCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            partitionQueryTransportSettings, settings.partitionQuerySettings(), clientContext);
+    this.partitionReadCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            partitionReadTransportSettings, settings.partitionReadSettings(), clientContext);
 
     backgroundResources = new BackgroundResourceAggregation(clientContext.getBackgroundResources());
   }
@@ -309,6 +346,14 @@ public class GrpcSpannerStub extends SpannerStub {
 
   public UnaryCallable<RollbackRequest, Empty> rollbackCallable() {
     return rollbackCallable;
+  }
+
+  public UnaryCallable<PartitionQueryRequest, PartitionResponse> partitionQueryCallable() {
+    return partitionQueryCallable;
+  }
+
+  public UnaryCallable<PartitionReadRequest, PartitionResponse> partitionReadCallable() {
+    return partitionReadCallable;
   }
 
   @Override

@@ -225,6 +225,30 @@ public class DatabaseAdminClient implements BackgroundResource {
    * <pre><code>
    * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
    *   InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
+   *   for (Database element : databaseAdminClient.listDatabases(parent.toString()).iterateAll()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   *
+   * @param parent Required. The instance whose databases should be listed. Values are of the form
+   *     `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final ListDatabasesPagedResponse listDatabases(String parent) {
+    ListDatabasesRequest request = ListDatabasesRequest.newBuilder().setParent(parent).build();
+    return listDatabases(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists Cloud Spanner databases.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
+   *   InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   ListDatabasesRequest request = ListDatabasesRequest.newBuilder()
    *     .setParent(parent.toString())
    *     .build();
@@ -332,6 +356,46 @@ public class DatabaseAdminClient implements BackgroundResource {
     CreateDatabaseRequest request =
         CreateDatabaseRequest.newBuilder()
             .setParent(parent == null ? null : parent.toString())
+            .setCreateStatement(createStatement)
+            .build();
+    return createDatabaseAsync(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Creates a new Cloud Spanner database and starts to prepare it for serving. The returned
+   * [long-running operation][google.longrunning.Operation] will have a name of the format
+   * `&lt;database_name&gt;/operations/&lt;operation_id&gt;` and can be used to track preparation of
+   * the database. The [metadata][google.longrunning.Operation.metadata] field type is
+   * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata]. The
+   * [response][google.longrunning.Operation.response] field type is
+   * [Database][google.spanner.admin.database.v1.Database], if successful.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
+   *   InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
+   *   String createStatement = "";
+   *   Database response = databaseAdminClient.createDatabaseAsync(parent.toString(), createStatement).get();
+   * }
+   * </code></pre>
+   *
+   * @param parent Required. The name of the instance that will serve the new database. Values are
+   *     of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+   * @param createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
+   *     new database. The database ID must conform to the regular expression
+   *     `[a-z][a-z0-9_\-]&#42;[a-z0-9]` and be between 2 and 30 characters in length. If the
+   *     database ID is a reserved word or if it contains a hyphen, the database ID must be enclosed
+   *     in backticks (`` ` ``).
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final OperationFuture<Database, CreateDatabaseMetadata> createDatabaseAsync(
+      String parent, String createStatement) {
+
+    CreateDatabaseRequest request =
+        CreateDatabaseRequest.newBuilder()
+            .setParent(parent)
             .setCreateStatement(createStatement)
             .build();
     return createDatabaseAsync(request);
@@ -463,6 +527,29 @@ public class DatabaseAdminClient implements BackgroundResource {
    * <pre><code>
    * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
    *   DatabaseName name = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+   *   Database response = databaseAdminClient.getDatabase(name.toString());
+   * }
+   * </code></pre>
+   *
+   * @param name Required. The name of the requested database. Values are of the form
+   *     `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final Database getDatabase(String name) {
+
+    GetDatabaseRequest request = GetDatabaseRequest.newBuilder().setName(name).build();
+    return getDatabase(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Gets the state of a Cloud Spanner database.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
+   *   DatabaseName name = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   GetDatabaseRequest request = GetDatabaseRequest.newBuilder()
    *     .setName(name.toString())
    *     .build();
@@ -529,6 +616,41 @@ public class DatabaseAdminClient implements BackgroundResource {
     UpdateDatabaseDdlRequest request =
         UpdateDatabaseDdlRequest.newBuilder()
             .setDatabase(database == null ? null : database.toString())
+            .addAllStatements(statements)
+            .build();
+    return updateDatabaseDdlAsync(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates the schema of a Cloud Spanner database by creating/altering/dropping tables, columns,
+   * indexes, etc. The returned [long-running operation][google.longrunning.Operation] will have a
+   * name of the format `&lt;database_name&gt;/operations/&lt;operation_id&gt;` and can be used to
+   * track execution of the schema change(s). The [metadata][google.longrunning.Operation.metadata]
+   * field type is
+   * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata]. The
+   * operation has no response.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
+   *   DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+   *   List&lt;String&gt; statements = new ArrayList&lt;&gt;();
+   *   Empty response = databaseAdminClient.updateDatabaseDdlAsync(database.toString(), statements).get();
+   * }
+   * </code></pre>
+   *
+   * @param database Required. The database to update.
+   * @param statements DDL statements to be applied to the database.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final OperationFuture<Empty, UpdateDatabaseDdlMetadata> updateDatabaseDdlAsync(
+      String database, List<String> statements) {
+
+    UpdateDatabaseDdlRequest request =
+        UpdateDatabaseDdlRequest.newBuilder()
+            .setDatabase(database)
             .addAllStatements(statements)
             .build();
     return updateDatabaseDdlAsync(request);
@@ -661,6 +783,28 @@ public class DatabaseAdminClient implements BackgroundResource {
    * <pre><code>
    * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
    *   DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+   *   databaseAdminClient.dropDatabase(database.toString());
+   * }
+   * </code></pre>
+   *
+   * @param database Required. The database to be dropped.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final void dropDatabase(String database) {
+
+    DropDatabaseRequest request = DropDatabaseRequest.newBuilder().setDatabase(database).build();
+    dropDatabase(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Drops (aka deletes) a Cloud Spanner database.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
+   *   DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   DropDatabaseRequest request = DropDatabaseRequest.newBuilder()
    *     .setDatabase(database.toString())
    *     .build();
@@ -721,6 +865,31 @@ public class DatabaseAdminClient implements BackgroundResource {
         GetDatabaseDdlRequest.newBuilder()
             .setDatabase(database == null ? null : database.toString())
             .build();
+    return getDatabaseDdl(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Returns the schema of a Cloud Spanner database as a list of formatted DDL statements. This
+   * method does not show pending schema updates, those may be queried using the
+   * [Operations][google.longrunning.Operations] API.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
+   *   DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+   *   GetDatabaseDdlResponse response = databaseAdminClient.getDatabaseDdl(database.toString());
+   * }
+   * </code></pre>
+   *
+   * @param database Required. The database whose schema we wish to get.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final GetDatabaseDdlResponse getDatabaseDdl(String database) {
+
+    GetDatabaseDdlRequest request =
+        GetDatabaseDdlRequest.newBuilder().setDatabase(database).build();
     return getDatabaseDdl(request);
   }
 

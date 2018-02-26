@@ -25,6 +25,7 @@ private static final long serialVersionUID = 0L;
     sql_ = "";
     resumeToken_ = com.google.protobuf.ByteString.EMPTY;
     queryMode_ = 0;
+    partitionToken_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -115,6 +116,11 @@ private static final long serialVersionUID = 0L;
             int rawValue = input.readEnum();
 
             queryMode_ = rawValue;
+            break;
+          }
+          case 66: {
+
+            partitionToken_ = input.readBytes();
             break;
           }
         }
@@ -616,7 +622,8 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Used to control the amount of debugging information returned in
-   * [ResultSetStats][google.spanner.v1.ResultSetStats].
+   * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+   * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
    * </pre>
    *
    * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
@@ -627,7 +634,8 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Used to control the amount of debugging information returned in
-   * [ResultSetStats][google.spanner.v1.ResultSetStats].
+   * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+   * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
    * </pre>
    *
    * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
@@ -635,6 +643,22 @@ private static final long serialVersionUID = 0L;
   public com.google.spanner.v1.ExecuteSqlRequest.QueryMode getQueryMode() {
     com.google.spanner.v1.ExecuteSqlRequest.QueryMode result = com.google.spanner.v1.ExecuteSqlRequest.QueryMode.valueOf(queryMode_);
     return result == null ? com.google.spanner.v1.ExecuteSqlRequest.QueryMode.UNRECOGNIZED : result;
+  }
+
+  public static final int PARTITION_TOKEN_FIELD_NUMBER = 8;
+  private com.google.protobuf.ByteString partitionToken_;
+  /**
+   * <pre>
+   * If present, results will be restricted to the specified partition
+   * previously created using PartitionQuery().  There must be an exact
+   * match for the values of fields common to this message and the
+   * PartitionQueryRequest message used to create this partition_token.
+   * </pre>
+   *
+   * <code>bytes partition_token = 8;</code>
+   */
+  public com.google.protobuf.ByteString getPartitionToken() {
+    return partitionToken_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -672,6 +696,9 @@ private static final long serialVersionUID = 0L;
     }
     if (queryMode_ != com.google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL.getNumber()) {
       output.writeEnum(7, queryMode_);
+    }
+    if (!partitionToken_.isEmpty()) {
+      output.writeBytes(8, partitionToken_);
     }
     unknownFields.writeTo(output);
   }
@@ -713,6 +740,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(7, queryMode_);
     }
+    if (!partitionToken_.isEmpty()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(8, partitionToken_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -748,6 +779,8 @@ private static final long serialVersionUID = 0L;
     result = result && getResumeToken()
         .equals(other.getResumeToken());
     result = result && queryMode_ == other.queryMode_;
+    result = result && getPartitionToken()
+        .equals(other.getPartitionToken());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -779,6 +812,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getResumeToken().hashCode();
     hash = (37 * hash) + QUERY_MODE_FIELD_NUMBER;
     hash = (53 * hash) + queryMode_;
+    hash = (37 * hash) + PARTITION_TOKEN_FIELD_NUMBER;
+    hash = (53 * hash) + getPartitionToken().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -956,6 +991,8 @@ private static final long serialVersionUID = 0L;
 
       queryMode_ = 0;
 
+      partitionToken_ = com.google.protobuf.ByteString.EMPTY;
+
       return this;
     }
 
@@ -996,6 +1033,7 @@ private static final long serialVersionUID = 0L;
       result.paramTypes_.makeImmutable();
       result.resumeToken_ = resumeToken_;
       result.queryMode_ = queryMode_;
+      result.partitionToken_ = partitionToken_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -1059,6 +1097,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.queryMode_ != 0) {
         setQueryModeValue(other.getQueryModeValue());
+      }
+      if (other.getPartitionToken() != com.google.protobuf.ByteString.EMPTY) {
+        setPartitionToken(other.getPartitionToken());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1924,7 +1965,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Used to control the amount of debugging information returned in
-     * [ResultSetStats][google.spanner.v1.ResultSetStats].
+     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      * </pre>
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
@@ -1935,7 +1977,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Used to control the amount of debugging information returned in
-     * [ResultSetStats][google.spanner.v1.ResultSetStats].
+     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      * </pre>
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
@@ -1948,7 +1991,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Used to control the amount of debugging information returned in
-     * [ResultSetStats][google.spanner.v1.ResultSetStats].
+     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      * </pre>
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
@@ -1960,7 +2004,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Used to control the amount of debugging information returned in
-     * [ResultSetStats][google.spanner.v1.ResultSetStats].
+     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      * </pre>
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
@@ -1977,7 +2022,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Used to control the amount of debugging information returned in
-     * [ResultSetStats][google.spanner.v1.ResultSetStats].
+     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      * </pre>
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
@@ -1985,6 +2031,56 @@ private static final long serialVersionUID = 0L;
     public Builder clearQueryMode() {
       
       queryMode_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.ByteString partitionToken_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * If present, results will be restricted to the specified partition
+     * previously created using PartitionQuery().  There must be an exact
+     * match for the values of fields common to this message and the
+     * PartitionQueryRequest message used to create this partition_token.
+     * </pre>
+     *
+     * <code>bytes partition_token = 8;</code>
+     */
+    public com.google.protobuf.ByteString getPartitionToken() {
+      return partitionToken_;
+    }
+    /**
+     * <pre>
+     * If present, results will be restricted to the specified partition
+     * previously created using PartitionQuery().  There must be an exact
+     * match for the values of fields common to this message and the
+     * PartitionQueryRequest message used to create this partition_token.
+     * </pre>
+     *
+     * <code>bytes partition_token = 8;</code>
+     */
+    public Builder setPartitionToken(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      partitionToken_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * If present, results will be restricted to the specified partition
+     * previously created using PartitionQuery().  There must be an exact
+     * match for the values of fields common to this message and the
+     * PartitionQueryRequest message used to create this partition_token.
+     * </pre>
+     *
+     * <code>bytes partition_token = 8;</code>
+     */
+    public Builder clearPartitionToken() {
+      
+      partitionToken_ = getDefaultInstance().getPartitionToken();
       onChanged();
       return this;
     }

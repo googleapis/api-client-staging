@@ -4038,7 +4038,13 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Proximity of the finding within which the entire hotword must reside.
-       * The total length of the window cannot exceed 1000 characters.
+       * The total length of the window cannot exceed 1000 characters. Note that
+       * the finding itself will be included in the window, so that hotwords may
+       * be used to match substrings of the finding itself. For example, the
+       * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+       * adjusted upwards if the area code is known to be the local area code of
+       * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+       * is the area code in question.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4047,7 +4053,13 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Proximity of the finding within which the entire hotword must reside.
-       * The total length of the window cannot exceed 1000 characters.
+       * The total length of the window cannot exceed 1000 characters. Note that
+       * the finding itself will be included in the window, so that hotwords may
+       * be used to match substrings of the finding itself. For example, the
+       * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+       * adjusted upwards if the area code is known to be the local area code of
+       * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+       * is the area code in question.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4056,7 +4068,13 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Proximity of the finding within which the entire hotword must reside.
-       * The total length of the window cannot exceed 1000 characters.
+       * The total length of the window cannot exceed 1000 characters. Note that
+       * the finding itself will be included in the window, so that hotwords may
+       * be used to match substrings of the finding itself. For example, the
+       * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+       * adjusted upwards if the area code is known to be the local area code of
+       * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+       * is the area code in question.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4237,7 +4255,13 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Proximity of the finding within which the entire hotword must reside.
-       * The total length of the window cannot exceed 1000 characters.
+       * The total length of the window cannot exceed 1000 characters. Note that
+       * the finding itself will be included in the window, so that hotwords may
+       * be used to match substrings of the finding itself. For example, the
+       * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+       * adjusted upwards if the area code is known to be the local area code of
+       * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+       * is the area code in question.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4248,7 +4272,13 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Proximity of the finding within which the entire hotword must reside.
-       * The total length of the window cannot exceed 1000 characters.
+       * The total length of the window cannot exceed 1000 characters. Note that
+       * the finding itself will be included in the window, so that hotwords may
+       * be used to match substrings of the finding itself. For example, the
+       * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+       * adjusted upwards if the area code is known to be the local area code of
+       * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+       * is the area code in question.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4259,7 +4289,13 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Proximity of the finding within which the entire hotword must reside.
-       * The total length of the window cannot exceed 1000 characters.
+       * The total length of the window cannot exceed 1000 characters. Note that
+       * the finding itself will be included in the window, so that hotwords may
+       * be used to match substrings of the finding itself. For example, the
+       * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+       * adjusted upwards if the area code is known to be the local area code of
+       * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+       * is the area code in question.
        * </pre>
        *
        * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4821,7 +4857,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4832,7 +4874,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4847,7 +4895,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4868,7 +4922,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4887,7 +4947,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4910,7 +4976,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4929,7 +5001,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4942,7 +5020,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
@@ -4958,7 +5042,13 @@ private static final long serialVersionUID = 0L;
         /**
          * <pre>
          * Proximity of the finding within which the entire hotword must reside.
-         * The total length of the window cannot exceed 1000 characters.
+         * The total length of the window cannot exceed 1000 characters. Note that
+         * the finding itself will be included in the window, so that hotwords may
+         * be used to match substrings of the finding itself. For example, the
+         * certainty of a phone number regex "&#92;(&#92;d{3}&#92;) &#92;d{3}-&#92;d{4}" could be
+         * adjusted upwards if the area code is known to be the local area code of
+         * a company office using the hotword regex "&#92;(xxx&#92;)", where "xxx"
+         * is the area code in question.
          * </pre>
          *
          * <code>.google.privacy.dlp.v2beta2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>

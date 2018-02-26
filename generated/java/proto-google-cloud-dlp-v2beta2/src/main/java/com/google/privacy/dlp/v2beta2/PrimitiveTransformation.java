@@ -176,6 +176,20 @@ private static final long serialVersionUID = 0L;
             transformationCase_ = 9;
             break;
           }
+          case 90: {
+            com.google.privacy.dlp.v2beta2.DateShiftConfig.Builder subBuilder = null;
+            if (transformationCase_ == 11) {
+              subBuilder = ((com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_).toBuilder();
+            }
+            transformation_ =
+                input.readMessage(com.google.privacy.dlp.v2beta2.DateShiftConfig.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_);
+              transformation_ = subBuilder.buildPartial();
+            }
+            transformationCase_ = 11;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -213,6 +227,7 @@ private static final long serialVersionUID = 0L;
     REPLACE_WITH_INFO_TYPE_CONFIG(7),
     TIME_PART_CONFIG(8),
     CRYPTO_HASH_CONFIG(9),
+    DATE_SHIFT_CONFIG(11),
     TRANSFORMATION_NOT_SET(0);
     private final int value;
     private TransformationCase(int value) {
@@ -237,6 +252,7 @@ private static final long serialVersionUID = 0L;
         case 7: return REPLACE_WITH_INFO_TYPE_CONFIG;
         case 8: return TIME_PART_CONFIG;
         case 9: return CRYPTO_HASH_CONFIG;
+        case 11: return DATE_SHIFT_CONFIG;
         case 0: return TRANSFORMATION_NOT_SET;
         default: return null;
       }
@@ -486,6 +502,32 @@ private static final long serialVersionUID = 0L;
     return com.google.privacy.dlp.v2beta2.CryptoHashConfig.getDefaultInstance();
   }
 
+  public static final int DATE_SHIFT_CONFIG_FIELD_NUMBER = 11;
+  /**
+   * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+   */
+  public boolean hasDateShiftConfig() {
+    return transformationCase_ == 11;
+  }
+  /**
+   * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+   */
+  public com.google.privacy.dlp.v2beta2.DateShiftConfig getDateShiftConfig() {
+    if (transformationCase_ == 11) {
+       return (com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_;
+    }
+    return com.google.privacy.dlp.v2beta2.DateShiftConfig.getDefaultInstance();
+  }
+  /**
+   * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+   */
+  public com.google.privacy.dlp.v2beta2.DateShiftConfigOrBuilder getDateShiftConfigOrBuilder() {
+    if (transformationCase_ == 11) {
+       return (com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_;
+    }
+    return com.google.privacy.dlp.v2beta2.DateShiftConfig.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -524,6 +566,9 @@ private static final long serialVersionUID = 0L;
     }
     if (transformationCase_ == 9) {
       output.writeMessage(9, (com.google.privacy.dlp.v2beta2.CryptoHashConfig) transformation_);
+    }
+    if (transformationCase_ == 11) {
+      output.writeMessage(11, (com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_);
     }
     unknownFields.writeTo(output);
   }
@@ -568,6 +613,10 @@ private static final long serialVersionUID = 0L;
     if (transformationCase_ == 9) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(9, (com.google.privacy.dlp.v2beta2.CryptoHashConfig) transformation_);
+    }
+    if (transformationCase_ == 11) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(11, (com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -625,6 +674,10 @@ private static final long serialVersionUID = 0L;
         result = result && getCryptoHashConfig()
             .equals(other.getCryptoHashConfig());
         break;
+      case 11:
+        result = result && getDateShiftConfig()
+            .equals(other.getDateShiftConfig());
+        break;
       case 0:
       default:
     }
@@ -675,6 +728,10 @@ private static final long serialVersionUID = 0L;
       case 9:
         hash = (37 * hash) + CRYPTO_HASH_CONFIG_FIELD_NUMBER;
         hash = (53 * hash) + getCryptoHashConfig().hashCode();
+        break;
+      case 11:
+        hash = (37 * hash) + DATE_SHIFT_CONFIG_FIELD_NUMBER;
+        hash = (53 * hash) + getDateShiftConfig().hashCode();
         break;
       case 0:
       default:
@@ -899,6 +956,13 @@ private static final long serialVersionUID = 0L;
           result.transformation_ = cryptoHashConfigBuilder_.build();
         }
       }
+      if (transformationCase_ == 11) {
+        if (dateShiftConfigBuilder_ == null) {
+          result.transformation_ = transformation_;
+        } else {
+          result.transformation_ = dateShiftConfigBuilder_.build();
+        }
+      }
       result.transformationCase_ = transformationCase_;
       onBuilt();
       return result;
@@ -976,6 +1040,10 @@ private static final long serialVersionUID = 0L;
         }
         case CRYPTO_HASH_CONFIG: {
           mergeCryptoHashConfig(other.getCryptoHashConfig());
+          break;
+        }
+        case DATE_SHIFT_CONFIG: {
+          mergeDateShiftConfig(other.getDateShiftConfig());
           break;
         }
         case TRANSFORMATION_NOT_SET: {
@@ -2246,6 +2314,142 @@ private static final long serialVersionUID = 0L;
       transformationCase_ = 9;
       onChanged();;
       return cryptoHashConfigBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta2.DateShiftConfig, com.google.privacy.dlp.v2beta2.DateShiftConfig.Builder, com.google.privacy.dlp.v2beta2.DateShiftConfigOrBuilder> dateShiftConfigBuilder_;
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    public boolean hasDateShiftConfig() {
+      return transformationCase_ == 11;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.DateShiftConfig getDateShiftConfig() {
+      if (dateShiftConfigBuilder_ == null) {
+        if (transformationCase_ == 11) {
+          return (com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_;
+        }
+        return com.google.privacy.dlp.v2beta2.DateShiftConfig.getDefaultInstance();
+      } else {
+        if (transformationCase_ == 11) {
+          return dateShiftConfigBuilder_.getMessage();
+        }
+        return com.google.privacy.dlp.v2beta2.DateShiftConfig.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    public Builder setDateShiftConfig(com.google.privacy.dlp.v2beta2.DateShiftConfig value) {
+      if (dateShiftConfigBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        transformation_ = value;
+        onChanged();
+      } else {
+        dateShiftConfigBuilder_.setMessage(value);
+      }
+      transformationCase_ = 11;
+      return this;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    public Builder setDateShiftConfig(
+        com.google.privacy.dlp.v2beta2.DateShiftConfig.Builder builderForValue) {
+      if (dateShiftConfigBuilder_ == null) {
+        transformation_ = builderForValue.build();
+        onChanged();
+      } else {
+        dateShiftConfigBuilder_.setMessage(builderForValue.build());
+      }
+      transformationCase_ = 11;
+      return this;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    public Builder mergeDateShiftConfig(com.google.privacy.dlp.v2beta2.DateShiftConfig value) {
+      if (dateShiftConfigBuilder_ == null) {
+        if (transformationCase_ == 11 &&
+            transformation_ != com.google.privacy.dlp.v2beta2.DateShiftConfig.getDefaultInstance()) {
+          transformation_ = com.google.privacy.dlp.v2beta2.DateShiftConfig.newBuilder((com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          transformation_ = value;
+        }
+        onChanged();
+      } else {
+        if (transformationCase_ == 11) {
+          dateShiftConfigBuilder_.mergeFrom(value);
+        }
+        dateShiftConfigBuilder_.setMessage(value);
+      }
+      transformationCase_ = 11;
+      return this;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    public Builder clearDateShiftConfig() {
+      if (dateShiftConfigBuilder_ == null) {
+        if (transformationCase_ == 11) {
+          transformationCase_ = 0;
+          transformation_ = null;
+          onChanged();
+        }
+      } else {
+        if (transformationCase_ == 11) {
+          transformationCase_ = 0;
+          transformation_ = null;
+        }
+        dateShiftConfigBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.DateShiftConfig.Builder getDateShiftConfigBuilder() {
+      return getDateShiftConfigFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    public com.google.privacy.dlp.v2beta2.DateShiftConfigOrBuilder getDateShiftConfigOrBuilder() {
+      if ((transformationCase_ == 11) && (dateShiftConfigBuilder_ != null)) {
+        return dateShiftConfigBuilder_.getMessageOrBuilder();
+      } else {
+        if (transformationCase_ == 11) {
+          return (com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_;
+        }
+        return com.google.privacy.dlp.v2beta2.DateShiftConfig.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.DateShiftConfig date_shift_config = 11;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta2.DateShiftConfig, com.google.privacy.dlp.v2beta2.DateShiftConfig.Builder, com.google.privacy.dlp.v2beta2.DateShiftConfigOrBuilder> 
+        getDateShiftConfigFieldBuilder() {
+      if (dateShiftConfigBuilder_ == null) {
+        if (!(transformationCase_ == 11)) {
+          transformation_ = com.google.privacy.dlp.v2beta2.DateShiftConfig.getDefaultInstance();
+        }
+        dateShiftConfigBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.privacy.dlp.v2beta2.DateShiftConfig, com.google.privacy.dlp.v2beta2.DateShiftConfig.Builder, com.google.privacy.dlp.v2beta2.DateShiftConfigOrBuilder>(
+                (com.google.privacy.dlp.v2beta2.DateShiftConfig) transformation_,
+                getParentForChildren(),
+                isClean());
+        transformation_ = null;
+      }
+      transformationCase_ = 11;
+      onChanged();;
+      return dateShiftConfigBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
