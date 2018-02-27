@@ -15,6 +15,7 @@
 package com.google.privacy.dlp.v2beta1;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
 import com.google.api.pathtemplate.PathTemplate;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
@@ -28,6 +29,8 @@ public class ResultName implements ResourceName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("inspect/results/{result}");
+
+  private volatile Map<String, String> fieldMap;
 
   private final String result;
 
@@ -91,6 +94,21 @@ public class ResultName implements ResourceName {
 
   public static boolean isParsableFrom(String formattedString) {
     return PATH_TEMPLATE.matches(formattedString);
+  }
+
+  public Map<String, String> getFieldValuesMap() {
+    if (fieldMap != null) {
+      return fieldMap;
+    }
+    ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
+    fieldMapBuilder.put("result", result);
+
+    fieldMap = fieldMapBuilder.build();
+    return fieldMap;
+  }
+
+  public String getFieldValue(String fieldName) {
+    return fieldMap.get(fieldName);
   }
 
   /**

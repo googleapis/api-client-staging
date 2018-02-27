@@ -15,6 +15,7 @@
 package com.google.cloud.bigquery.datatransfer.v1;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
 import com.google.api.pathtemplate.PathTemplate;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
@@ -28,6 +29,8 @@ public class LocationTransferConfigName extends TransferConfigName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/locations/{location}/transferConfigs/{transfer_config}");
+
+  private volatile Map<String, String> fieldMap;
 
   private final String project;
   private final String location;
@@ -107,6 +110,23 @@ public class LocationTransferConfigName extends TransferConfigName {
 
   public static boolean isParsableFrom(String formattedString) {
     return PATH_TEMPLATE.matches(formattedString);
+  }
+
+  public Map<String, String> getFieldValuesMap() {
+    if (fieldMap != null) {
+      return fieldMap;
+    }
+    ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
+    fieldMapBuilder.put("project", project);
+    fieldMapBuilder.put("location", location);
+    fieldMapBuilder.put("transferConfig", transferConfig);
+
+    fieldMap = fieldMapBuilder.build();
+    return fieldMap;
+  }
+
+  public String getFieldValue(String fieldName) {
+    return fieldMap.get(fieldName);
   }
 
   /**

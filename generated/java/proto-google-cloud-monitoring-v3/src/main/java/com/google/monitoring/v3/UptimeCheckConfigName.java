@@ -15,6 +15,7 @@
 package com.google.monitoring.v3;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
 import com.google.api.pathtemplate.PathTemplate;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
@@ -28,6 +29,8 @@ public class UptimeCheckConfigName implements ResourceName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/uptimeCheckConfigs/{uptime_check_config}");
+
+  private volatile Map<String, String> fieldMap;
 
   private final String project;
   private final String uptimeCheckConfig;
@@ -99,6 +102,22 @@ public class UptimeCheckConfigName implements ResourceName {
 
   public static boolean isParsableFrom(String formattedString) {
     return PATH_TEMPLATE.matches(formattedString);
+  }
+
+  public Map<String, String> getFieldValuesMap() {
+    if (fieldMap != null) {
+      return fieldMap;
+    }
+    ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
+    fieldMapBuilder.put("project", project);
+    fieldMapBuilder.put("uptimeCheckConfig", uptimeCheckConfig);
+
+    fieldMap = fieldMapBuilder.build();
+    return fieldMap;
+  }
+
+  public String getFieldValue(String fieldName) {
+    return fieldMap.get(fieldName);
   }
 
   /**
