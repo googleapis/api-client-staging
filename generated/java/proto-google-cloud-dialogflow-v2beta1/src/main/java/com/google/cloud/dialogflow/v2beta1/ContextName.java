@@ -30,7 +30,7 @@ public class ContextName implements ResourceName {
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/agent/sessions/{session}/contexts/{context}");
 
-  private volatile Map<String, String> fieldMap;
+  private volatile Map<String, String> fieldValuesMap;
 
   private final String project;
   private final String session;
@@ -113,20 +113,22 @@ public class ContextName implements ResourceName {
   }
 
   public Map<String, String> getFieldValuesMap() {
-    if (fieldMap != null) {
-      return fieldMap;
+    if (fieldValuesMap == null) {
+      synchronized (this) {
+        if (fieldValuesMap == null) {
+          ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
+          fieldMapBuilder.put("project", project);
+          fieldMapBuilder.put("session", session);
+          fieldMapBuilder.put("context", context);
+          fieldValuesMap = fieldMapBuilder.build();
+        }
+      }
     }
-    ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
-    fieldMapBuilder.put("project", project);
-    fieldMapBuilder.put("session", session);
-    fieldMapBuilder.put("context", context);
-
-    fieldMap = fieldMapBuilder.build();
-    return fieldMap;
+    return fieldValuesMap;
   }
 
   public String getFieldValue(String fieldName) {
-    return fieldMap.get(fieldName);
+    return getFieldValuesMap().get(fieldName);
   }
 
   /**

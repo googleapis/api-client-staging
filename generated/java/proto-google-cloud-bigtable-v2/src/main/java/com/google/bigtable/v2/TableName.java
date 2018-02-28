@@ -30,7 +30,7 @@ public class TableName implements ResourceName {
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/instances/{instance}/tables/{table}");
 
-  private volatile Map<String, String> fieldMap;
+  private volatile Map<String, String> fieldValuesMap;
 
   private final String project;
   private final String instance;
@@ -113,20 +113,22 @@ public class TableName implements ResourceName {
   }
 
   public Map<String, String> getFieldValuesMap() {
-    if (fieldMap != null) {
-      return fieldMap;
+    if (fieldValuesMap == null) {
+      synchronized (this) {
+        if (fieldValuesMap == null) {
+          ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
+          fieldMapBuilder.put("project", project);
+          fieldMapBuilder.put("instance", instance);
+          fieldMapBuilder.put("table", table);
+          fieldValuesMap = fieldMapBuilder.build();
+        }
+      }
     }
-    ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
-    fieldMapBuilder.put("project", project);
-    fieldMapBuilder.put("instance", instance);
-    fieldMapBuilder.put("table", table);
-
-    fieldMap = fieldMapBuilder.build();
-    return fieldMap;
+    return fieldValuesMap;
   }
 
   public String getFieldValue(String fieldName) {
-    return fieldMap.get(fieldName);
+    return getFieldValuesMap().get(fieldName);
   }
 
   /**

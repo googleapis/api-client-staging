@@ -30,7 +30,7 @@ public class LocationRunName extends RunName {
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/locations/{location}/transferConfigs/{transfer_config}/runs/{run}");
 
-  private volatile Map<String, String> fieldMap;
+  private volatile Map<String, String> fieldValuesMap;
 
   private final String project;
   private final String location;
@@ -121,21 +121,23 @@ public class LocationRunName extends RunName {
   }
 
   public Map<String, String> getFieldValuesMap() {
-    if (fieldMap != null) {
-      return fieldMap;
+    if (fieldValuesMap == null) {
+      synchronized (this) {
+        if (fieldValuesMap == null) {
+          ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
+          fieldMapBuilder.put("project", project);
+          fieldMapBuilder.put("location", location);
+          fieldMapBuilder.put("transferConfig", transferConfig);
+          fieldMapBuilder.put("run", run);
+          fieldValuesMap = fieldMapBuilder.build();
+        }
+      }
     }
-    ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
-    fieldMapBuilder.put("project", project);
-    fieldMapBuilder.put("location", location);
-    fieldMapBuilder.put("transferConfig", transferConfig);
-    fieldMapBuilder.put("run", run);
-
-    fieldMap = fieldMapBuilder.build();
-    return fieldMap;
+    return fieldValuesMap;
   }
 
   public String getFieldValue(String fieldName) {
-    return fieldMap.get(fieldName);
+    return getFieldValuesMap().get(fieldName);
   }
 
   /**

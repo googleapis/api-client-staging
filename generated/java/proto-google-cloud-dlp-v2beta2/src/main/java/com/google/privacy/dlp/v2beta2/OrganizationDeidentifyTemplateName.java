@@ -30,7 +30,7 @@ public class OrganizationDeidentifyTemplateName extends DeidentifyTemplateName {
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("organizations/{organization}/deidentifyTemplates/{deidentify_template}");
 
-  private volatile Map<String, String> fieldMap;
+  private volatile Map<String, String> fieldValuesMap;
 
   private final String organization;
   private final String deidentifyTemplate;
@@ -105,19 +105,21 @@ public class OrganizationDeidentifyTemplateName extends DeidentifyTemplateName {
   }
 
   public Map<String, String> getFieldValuesMap() {
-    if (fieldMap != null) {
-      return fieldMap;
+    if (fieldValuesMap == null) {
+      synchronized (this) {
+        if (fieldValuesMap == null) {
+          ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
+          fieldMapBuilder.put("organization", organization);
+          fieldMapBuilder.put("deidentifyTemplate", deidentifyTemplate);
+          fieldValuesMap = fieldMapBuilder.build();
+        }
+      }
     }
-    ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
-    fieldMapBuilder.put("organization", organization);
-    fieldMapBuilder.put("deidentifyTemplate", deidentifyTemplate);
-
-    fieldMap = fieldMapBuilder.build();
-    return fieldMap;
+    return fieldValuesMap;
   }
 
   public String getFieldValue(String fieldName) {
-    return fieldMap.get(fieldName);
+    return getFieldValuesMap().get(fieldName);
   }
 
   /**

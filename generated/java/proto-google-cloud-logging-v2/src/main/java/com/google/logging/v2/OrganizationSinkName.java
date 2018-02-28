@@ -30,7 +30,7 @@ public class OrganizationSinkName extends SinkName {
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("organizations/{organization}/sinks/{sink}");
 
-  private volatile Map<String, String> fieldMap;
+  private volatile Map<String, String> fieldValuesMap;
 
   private final String organization;
   private final String sink;
@@ -105,19 +105,21 @@ public class OrganizationSinkName extends SinkName {
   }
 
   public Map<String, String> getFieldValuesMap() {
-    if (fieldMap != null) {
-      return fieldMap;
+    if (fieldValuesMap == null) {
+      synchronized (this) {
+        if (fieldValuesMap == null) {
+          ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
+          fieldMapBuilder.put("organization", organization);
+          fieldMapBuilder.put("sink", sink);
+          fieldValuesMap = fieldMapBuilder.build();
+        }
+      }
     }
-    ImmutableMap.Builder<String, String> fieldMapBuilder = ImmutableMap.builder();
-    fieldMapBuilder.put("organization", organization);
-    fieldMapBuilder.put("sink", sink);
-
-    fieldMap = fieldMapBuilder.build();
-    return fieldMap;
+    return fieldValuesMap;
   }
 
   public String getFieldValue(String fieldName) {
-    return fieldMap.get(fieldName);
+    return getFieldValuesMap().get(fieldName);
   }
 
   /**
