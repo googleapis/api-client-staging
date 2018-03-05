@@ -156,20 +156,22 @@ public final class SessionProto {
       "LAW\020\003\022\026\n\022AUDIO_ENCODING_AMR\020\004\022\031\n\025AUDIO_E" +
       "NCODING_AMR_WB\020\005\022\033\n\027AUDIO_ENCODING_OGG_O" +
       "PUS\020\006\022)\n%AUDIO_ENCODING_SPEEX_WITH_HEADE" +
-      "R_BYTE\020\0072\355\002\n\010Sessions\022\303\001\n\014DetectIntent\0224" +
+      "R_BYTE\020\0072\274\003\n\010Sessions\022\222\002\n\014DetectIntent\0224" +
       ".google.cloud.dialogflow.v2beta1.DetectI",
       "ntentRequest\0325.google.cloud.dialogflow.v" +
-      "2beta1.DetectIntentResponse\"F\202\323\344\223\002@\";/v2" +
-      "beta1/{session=projects/*/agent/sessions" +
-      "/*}:detectIntent:\001*\022\232\001\n\025StreamingDetectI" +
-      "ntent\022=.google.cloud.dialogflow.v2beta1." +
-      "StreamingDetectIntentRequest\032>.google.cl" +
-      "oud.dialogflow.v2beta1.StreamingDetectIn" +
-      "tentResponse(\0010\001B\252\001\n#com.google.cloud.di" +
-      "alogflow.v2beta1B\014SessionProtoP\001ZIgoogle" +
-      ".golang.org/genproto/googleapis/cloud/di",
-      "alogflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Go" +
-      "ogle.Cloud.Dialogflow.V2beta1b\006proto3"
+      "2beta1.DetectIntentResponse\"\224\001\202\323\344\223\002\215\001\";/" +
+      "v2beta1/{session=projects/*/agent/sessio" +
+      "ns/*}:detectIntent:\001*ZK\"F/v2beta1/{sessi" +
+      "on=projects/*/agent/runtimes/*/sessions/" +
+      "*}:detectIntent:\001*\022\232\001\n\025StreamingDetectIn" +
+      "tent\022=.google.cloud.dialogflow.v2beta1.S" +
+      "treamingDetectIntentRequest\032>.google.clo" +
+      "ud.dialogflow.v2beta1.StreamingDetectInt" +
+      "entResponse(\0010\001B\252\001\n#com.google.cloud.dia",
+      "logflow.v2beta1B\014SessionProtoP\001ZIgoogle." +
+      "golang.org/genproto/googleapis/cloud/dia" +
+      "logflow/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Goo" +
+      "gle.Cloud.Dialogflow.V2beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

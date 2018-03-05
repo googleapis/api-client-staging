@@ -28,6 +28,7 @@ private static final long serialVersionUID = 0L;
     priority_ = 0;
     isFallback_ = false;
     mlEnabled_ = false;
+    mlDisabled_ = false;
     inputContextNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     events_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     trainingPhrases_ = java.util.Collections.emptyList();
@@ -105,26 +106,26 @@ private static final long serialVersionUID = 0L;
           }
           case 58: {
             java.lang.String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+            if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
               inputContextNames_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000040;
+              mutable_bitField0_ |= 0x00000080;
             }
             inputContextNames_.add(s);
             break;
           }
           case 66: {
             java.lang.String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+            if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
               events_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000080;
+              mutable_bitField0_ |= 0x00000100;
             }
             events_.add(s);
             break;
           }
           case 74: {
-            if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+            if (!((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
               trainingPhrases_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase>();
-              mutable_bitField0_ |= 0x00000100;
+              mutable_bitField0_ |= 0x00000200;
             }
             trainingPhrases_.add(
                 input.readMessage(com.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase.parser(), extensionRegistry));
@@ -137,9 +138,9 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 90: {
-            if (!((mutable_bitField0_ & 0x00000400) == 0x00000400)) {
+            if (!((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
               outputContexts_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Context>();
-              mutable_bitField0_ |= 0x00000400;
+              mutable_bitField0_ |= 0x00000800;
             }
             outputContexts_.add(
                 input.readMessage(com.google.cloud.dialogflow.v2beta1.Context.parser(), extensionRegistry));
@@ -151,18 +152,18 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 106: {
-            if (!((mutable_bitField0_ & 0x00001000) == 0x00001000)) {
+            if (!((mutable_bitField0_ & 0x00002000) == 0x00002000)) {
               parameters_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Intent.Parameter>();
-              mutable_bitField0_ |= 0x00001000;
+              mutable_bitField0_ |= 0x00002000;
             }
             parameters_.add(
                 input.readMessage(com.google.cloud.dialogflow.v2beta1.Intent.Parameter.parser(), extensionRegistry));
             break;
           }
           case 114: {
-            if (!((mutable_bitField0_ & 0x00002000) == 0x00002000)) {
+            if (!((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
               messages_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Intent.Message>();
-              mutable_bitField0_ |= 0x00002000;
+              mutable_bitField0_ |= 0x00004000;
             }
             messages_.add(
                 input.readMessage(com.google.cloud.dialogflow.v2beta1.Intent.Message.parser(), extensionRegistry));
@@ -170,9 +171,9 @@ private static final long serialVersionUID = 0L;
           }
           case 120: {
             int rawValue = input.readEnum();
-            if (!((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
+            if (!((mutable_bitField0_ & 0x00008000) == 0x00008000)) {
               defaultResponsePlatforms_ = new java.util.ArrayList<java.lang.Integer>();
-              mutable_bitField0_ |= 0x00004000;
+              mutable_bitField0_ |= 0x00008000;
             }
             defaultResponsePlatforms_.add(rawValue);
             break;
@@ -182,9 +183,9 @@ private static final long serialVersionUID = 0L;
             int oldLimit = input.pushLimit(length);
             while(input.getBytesUntilLimit() > 0) {
               int rawValue = input.readEnum();
-              if (!((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
+              if (!((mutable_bitField0_ & 0x00008000) == 0x00008000)) {
                 defaultResponsePlatforms_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00004000;
+                mutable_bitField0_ |= 0x00008000;
               }
               defaultResponsePlatforms_.add(rawValue);
             }
@@ -204,12 +205,17 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 146: {
-            if (!((mutable_bitField0_ & 0x00020000) == 0x00020000)) {
+            if (!((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
               followupIntentInfo_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfo>();
-              mutable_bitField0_ |= 0x00020000;
+              mutable_bitField0_ |= 0x00040000;
             }
             followupIntentInfo_.add(
                 input.readMessage(com.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfo.parser(), extensionRegistry));
+            break;
+          }
+          case 152: {
+
+            mlDisabled_ = input.readBool();
             break;
           }
         }
@@ -220,28 +226,28 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+      if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
         inputContextNames_ = inputContextNames_.getUnmodifiableView();
       }
-      if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+      if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
         events_ = events_.getUnmodifiableView();
       }
-      if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+      if (((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
         trainingPhrases_ = java.util.Collections.unmodifiableList(trainingPhrases_);
       }
-      if (((mutable_bitField0_ & 0x00000400) == 0x00000400)) {
+      if (((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
         outputContexts_ = java.util.Collections.unmodifiableList(outputContexts_);
       }
-      if (((mutable_bitField0_ & 0x00001000) == 0x00001000)) {
+      if (((mutable_bitField0_ & 0x00002000) == 0x00002000)) {
         parameters_ = java.util.Collections.unmodifiableList(parameters_);
       }
-      if (((mutable_bitField0_ & 0x00002000) == 0x00002000)) {
+      if (((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
         messages_ = java.util.Collections.unmodifiableList(messages_);
       }
-      if (((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
+      if (((mutable_bitField0_ & 0x00008000) == 0x00008000)) {
         defaultResponsePlatforms_ = java.util.Collections.unmodifiableList(defaultResponsePlatforms_);
       }
-      if (((mutable_bitField0_ & 0x00020000) == 0x00020000)) {
+      if (((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
         followupIntentInfo_ = java.util.Collections.unmodifiableList(followupIntentInfo_);
       }
       this.unknownFields = unknownFields.build();
@@ -4720,7 +4726,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The text response.
+     * Returns a text response.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -4728,7 +4734,7 @@ private static final long serialVersionUID = 0L;
     boolean hasText();
     /**
      * <pre>
-     * The text response.
+     * Returns a text response.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -4736,7 +4742,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.Text getText();
     /**
      * <pre>
-     * The text response.
+     * Returns a text response.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -4745,7 +4751,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The image response.
+     * Displays an image.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -4753,7 +4759,7 @@ private static final long serialVersionUID = 0L;
     boolean hasImage();
     /**
      * <pre>
-     * The image response.
+     * Displays an image.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -4761,7 +4767,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.Image getImage();
     /**
      * <pre>
-     * The image response.
+     * Displays an image.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -4770,7 +4776,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The quick replies response.
+     * Displays quick replies.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -4778,7 +4784,7 @@ private static final long serialVersionUID = 0L;
     boolean hasQuickReplies();
     /**
      * <pre>
-     * The quick replies response.
+     * Displays quick replies.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -4786,7 +4792,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies getQuickReplies();
     /**
      * <pre>
-     * The quick replies response.
+     * Displays quick replies.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -4795,7 +4801,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The card response.
+     * Displays a card.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -4803,7 +4809,7 @@ private static final long serialVersionUID = 0L;
     boolean hasCard();
     /**
      * <pre>
-     * The card response.
+     * Displays a card.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -4811,7 +4817,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.Card getCard();
     /**
      * <pre>
-     * The card response.
+     * Displays a card.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -4820,7 +4826,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The response containing a custom payload.
+     * Returns a response containing a custom payload.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -4828,7 +4834,7 @@ private static final long serialVersionUID = 0L;
     boolean hasPayload();
     /**
      * <pre>
-     * The response containing a custom payload.
+     * Returns a response containing a custom payload.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -4836,7 +4842,7 @@ private static final long serialVersionUID = 0L;
     com.google.protobuf.Struct getPayload();
     /**
      * <pre>
-     * The response containing a custom payload.
+     * Returns a response containing a custom payload.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -4845,7 +4851,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The voice and text-only responses for Actions on Google.
+     * Returns a voice or text-only response for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -4853,7 +4859,7 @@ private static final long serialVersionUID = 0L;
     boolean hasSimpleResponses();
     /**
      * <pre>
-     * The voice and text-only responses for Actions on Google.
+     * Returns a voice or text-only response for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -4861,7 +4867,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses getSimpleResponses();
     /**
      * <pre>
-     * The voice and text-only responses for Actions on Google.
+     * Returns a voice or text-only response for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -4870,7 +4876,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The basic card response for Actions on Google.
+     * Displays a basic card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -4878,7 +4884,7 @@ private static final long serialVersionUID = 0L;
     boolean hasBasicCard();
     /**
      * <pre>
-     * The basic card response for Actions on Google.
+     * Displays a basic card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -4886,7 +4892,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard getBasicCard();
     /**
      * <pre>
-     * The basic card response for Actions on Google.
+     * Displays a basic card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -4895,7 +4901,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The suggestion chips for Actions on Google.
+     * Displays suggestion chips for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -4903,7 +4909,7 @@ private static final long serialVersionUID = 0L;
     boolean hasSuggestions();
     /**
      * <pre>
-     * The suggestion chips for Actions on Google.
+     * Displays suggestion chips for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -4911,7 +4917,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions getSuggestions();
     /**
      * <pre>
-     * The suggestion chips for Actions on Google.
+     * Displays suggestion chips for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -4920,7 +4926,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The link out suggestion chip for Actions on Google.
+     * Displays a link out suggestion chip for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -4928,7 +4934,7 @@ private static final long serialVersionUID = 0L;
     boolean hasLinkOutSuggestion();
     /**
      * <pre>
-     * The link out suggestion chip for Actions on Google.
+     * Displays a link out suggestion chip for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -4936,7 +4942,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion getLinkOutSuggestion();
     /**
      * <pre>
-     * The link out suggestion chip for Actions on Google.
+     * Displays a link out suggestion chip for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -4945,7 +4951,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The list card response for Actions on Google.
+     * Displays a list card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -4953,7 +4959,7 @@ private static final long serialVersionUID = 0L;
     boolean hasListSelect();
     /**
      * <pre>
-     * The list card response for Actions on Google.
+     * Displays a list card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -4961,7 +4967,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect getListSelect();
     /**
      * <pre>
-     * The list card response for Actions on Google.
+     * Displays a list card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -4970,7 +4976,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * The carousel card response for Actions on Google.
+     * Displays a carousel card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -4978,7 +4984,7 @@ private static final long serialVersionUID = 0L;
     boolean hasCarouselSelect();
     /**
      * <pre>
-     * The carousel card response for Actions on Google.
+     * Displays a carousel card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -4986,7 +4992,7 @@ private static final long serialVersionUID = 0L;
     com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect getCarouselSelect();
     /**
      * <pre>
-     * The carousel card response for Actions on Google.
+     * Displays a carousel card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -22233,7 +22239,7 @@ private static final long serialVersionUID = 0L;
     public static final int TEXT_FIELD_NUMBER = 1;
     /**
      * <pre>
-     * The text response.
+     * Returns a text response.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -22243,7 +22249,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The text response.
+     * Returns a text response.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -22256,7 +22262,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The text response.
+     * Returns a text response.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -22271,7 +22277,7 @@ private static final long serialVersionUID = 0L;
     public static final int IMAGE_FIELD_NUMBER = 2;
     /**
      * <pre>
-     * The image response.
+     * Displays an image.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -22281,7 +22287,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The image response.
+     * Displays an image.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -22294,7 +22300,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The image response.
+     * Displays an image.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -22309,7 +22315,7 @@ private static final long serialVersionUID = 0L;
     public static final int QUICK_REPLIES_FIELD_NUMBER = 3;
     /**
      * <pre>
-     * The quick replies response.
+     * Displays quick replies.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -22319,7 +22325,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The quick replies response.
+     * Displays quick replies.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -22332,7 +22338,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The quick replies response.
+     * Displays quick replies.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -22347,7 +22353,7 @@ private static final long serialVersionUID = 0L;
     public static final int CARD_FIELD_NUMBER = 4;
     /**
      * <pre>
-     * The card response.
+     * Displays a card.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -22357,7 +22363,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The card response.
+     * Displays a card.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -22370,7 +22376,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The card response.
+     * Displays a card.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -22385,7 +22391,7 @@ private static final long serialVersionUID = 0L;
     public static final int PAYLOAD_FIELD_NUMBER = 5;
     /**
      * <pre>
-     * The response containing a custom payload.
+     * Returns a response containing a custom payload.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -22395,7 +22401,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The response containing a custom payload.
+     * Returns a response containing a custom payload.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -22408,7 +22414,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The response containing a custom payload.
+     * Returns a response containing a custom payload.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -22423,7 +22429,7 @@ private static final long serialVersionUID = 0L;
     public static final int SIMPLE_RESPONSES_FIELD_NUMBER = 7;
     /**
      * <pre>
-     * The voice and text-only responses for Actions on Google.
+     * Returns a voice or text-only response for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -22433,7 +22439,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The voice and text-only responses for Actions on Google.
+     * Returns a voice or text-only response for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -22446,7 +22452,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The voice and text-only responses for Actions on Google.
+     * Returns a voice or text-only response for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -22461,7 +22467,7 @@ private static final long serialVersionUID = 0L;
     public static final int BASIC_CARD_FIELD_NUMBER = 8;
     /**
      * <pre>
-     * The basic card response for Actions on Google.
+     * Displays a basic card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -22471,7 +22477,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The basic card response for Actions on Google.
+     * Displays a basic card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -22484,7 +22490,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The basic card response for Actions on Google.
+     * Displays a basic card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -22499,7 +22505,7 @@ private static final long serialVersionUID = 0L;
     public static final int SUGGESTIONS_FIELD_NUMBER = 9;
     /**
      * <pre>
-     * The suggestion chips for Actions on Google.
+     * Displays suggestion chips for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -22509,7 +22515,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The suggestion chips for Actions on Google.
+     * Displays suggestion chips for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -22522,7 +22528,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The suggestion chips for Actions on Google.
+     * Displays suggestion chips for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -22537,7 +22543,7 @@ private static final long serialVersionUID = 0L;
     public static final int LINK_OUT_SUGGESTION_FIELD_NUMBER = 10;
     /**
      * <pre>
-     * The link out suggestion chip for Actions on Google.
+     * Displays a link out suggestion chip for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -22547,7 +22553,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The link out suggestion chip for Actions on Google.
+     * Displays a link out suggestion chip for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -22560,7 +22566,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The link out suggestion chip for Actions on Google.
+     * Displays a link out suggestion chip for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -22575,7 +22581,7 @@ private static final long serialVersionUID = 0L;
     public static final int LIST_SELECT_FIELD_NUMBER = 11;
     /**
      * <pre>
-     * The list card response for Actions on Google.
+     * Displays a list card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -22585,7 +22591,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The list card response for Actions on Google.
+     * Displays a list card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -22598,7 +22604,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The list card response for Actions on Google.
+     * Displays a list card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -22613,7 +22619,7 @@ private static final long serialVersionUID = 0L;
     public static final int CAROUSEL_SELECT_FIELD_NUMBER = 12;
     /**
      * <pre>
-     * The carousel card response for Actions on Google.
+     * Displays a carousel card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -22623,7 +22629,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The carousel card response for Actions on Google.
+     * Displays a carousel card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -22636,7 +22642,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The carousel card response for Actions on Google.
+     * Displays a carousel card for Actions on Google.
      * </pre>
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -23282,7 +23288,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.Text, com.google.cloud.dialogflow.v2beta1.Intent.Message.Text.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.TextOrBuilder> textBuilder_;
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23292,7 +23298,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23312,7 +23318,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23332,7 +23338,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23350,7 +23356,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23376,7 +23382,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23399,7 +23405,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23409,7 +23415,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23426,7 +23432,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The text response.
+       * Returns a text response.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
@@ -23454,7 +23460,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.Image, com.google.cloud.dialogflow.v2beta1.Intent.Message.Image.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.ImageOrBuilder> imageBuilder_;
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23464,7 +23470,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23484,7 +23490,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23504,7 +23510,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23522,7 +23528,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23548,7 +23554,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23571,7 +23577,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23581,7 +23587,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23598,7 +23604,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The image response.
+       * Displays an image.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
@@ -23626,7 +23632,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies, com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickRepliesOrBuilder> quickRepliesBuilder_;
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23636,7 +23642,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23656,7 +23662,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23676,7 +23682,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23694,7 +23700,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23720,7 +23726,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23743,7 +23749,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23753,7 +23759,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23770,7 +23776,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The quick replies response.
+       * Displays quick replies.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
@@ -23798,7 +23804,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.Card, com.google.cloud.dialogflow.v2beta1.Intent.Message.Card.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.CardOrBuilder> cardBuilder_;
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23808,7 +23814,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23828,7 +23834,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23848,7 +23854,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23866,7 +23872,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23892,7 +23898,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23915,7 +23921,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23925,7 +23931,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23942,7 +23948,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The card response.
+       * Displays a card.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
@@ -23970,7 +23976,7 @@ private static final long serialVersionUID = 0L;
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> payloadBuilder_;
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -23980,7 +23986,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24000,7 +24006,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24020,7 +24026,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24038,7 +24044,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24064,7 +24070,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24087,7 +24093,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24097,7 +24103,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24114,7 +24120,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The response containing a custom payload.
+       * Returns a response containing a custom payload.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24142,7 +24148,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses, com.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponsesOrBuilder> simpleResponsesBuilder_;
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24152,7 +24158,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24172,7 +24178,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24192,7 +24198,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24210,7 +24216,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24236,7 +24242,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24259,7 +24265,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24269,7 +24275,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24286,7 +24292,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The voice and text-only responses for Actions on Google.
+       * Returns a voice or text-only response for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
@@ -24314,7 +24320,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard, com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCardOrBuilder> basicCardBuilder_;
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24324,7 +24330,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24344,7 +24350,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24364,7 +24370,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24382,7 +24388,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24408,7 +24414,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24431,7 +24437,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24441,7 +24447,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24458,7 +24464,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The basic card response for Actions on Google.
+       * Displays a basic card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
@@ -24486,7 +24492,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions, com.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.SuggestionsOrBuilder> suggestionsBuilder_;
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24496,7 +24502,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24516,7 +24522,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24536,7 +24542,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24554,7 +24560,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24580,7 +24586,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24603,7 +24609,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24613,7 +24619,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24630,7 +24636,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The suggestion chips for Actions on Google.
+       * Displays suggestion chips for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
@@ -24658,7 +24664,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion, com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestionOrBuilder> linkOutSuggestionBuilder_;
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24668,7 +24674,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24688,7 +24694,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24708,7 +24714,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24726,7 +24732,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24752,7 +24758,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24775,7 +24781,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24785,7 +24791,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24802,7 +24808,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The link out suggestion chip for Actions on Google.
+       * Displays a link out suggestion chip for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
@@ -24830,7 +24836,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect, com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelectOrBuilder> listSelectBuilder_;
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -24840,7 +24846,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -24860,7 +24866,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -24880,7 +24886,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -24898,7 +24904,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -24924,7 +24930,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -24947,7 +24953,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -24957,7 +24963,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -24974,7 +24980,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The list card response for Actions on Google.
+       * Displays a list card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
@@ -25002,7 +25008,7 @@ private static final long serialVersionUID = 0L;
           com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect, com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelectOrBuilder> carouselSelectBuilder_;
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -25012,7 +25018,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -25032,7 +25038,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -25052,7 +25058,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -25070,7 +25076,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -25096,7 +25102,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -25119,7 +25125,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -25129,7 +25135,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -25146,7 +25152,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * The carousel card response for Actions on Google.
+       * Displays a carousel card for Actions on Google.
        * </pre>
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
@@ -26189,12 +26195,35 @@ private static final long serialVersionUID = 0L;
    * Note: If `ml_enabled` setting is set to false, then this intent is not
    * taken into account during inference in `ML ONLY` match mode. Also,
    * auto-markup in the UI is turned off.
+   * DEPRECATED! Please use `ml_disabled` field instead.
+   * NOTE: If neither `ml_enabled` nor `ml_disabled` field is set, then the
+   * default value is determined as follows:
+   * - Before April 15th, 2018 the default is:
+   *   ml_enabled = false / ml_disabled = true.
+   * - After April 15th, 2018 the default is:
+   *   ml_enabled = true / ml_disabled = false.
    * </pre>
    *
    * <code>bool ml_enabled = 5;</code>
    */
   public boolean getMlEnabled() {
     return mlEnabled_;
+  }
+
+  public static final int ML_DISABLED_FIELD_NUMBER = 19;
+  private boolean mlDisabled_;
+  /**
+   * <pre>
+   * Optional. Indicates whether Machine Learning is disabled for the intent.
+   * Note: If `ml_disabled` setting is set to true, then this intent is not
+   * taken into account during inference in `ML ONLY` match mode. Also,
+   * auto-markup in the UI is turned off.
+   * </pre>
+   *
+   * <code>bool ml_disabled = 19;</code>
+   */
+  public boolean getMlDisabled() {
+    return mlDisabled_;
   }
 
   public static final int INPUT_CONTEXT_NAMES_FIELD_NUMBER = 7;
@@ -26904,6 +26933,9 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < followupIntentInfo_.size(); i++) {
       output.writeMessage(18, followupIntentInfo_.get(i));
     }
+    if (mlDisabled_ != false) {
+      output.writeBool(19, mlDisabled_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -26995,6 +27027,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(18, followupIntentInfo_.get(i));
     }
+    if (mlDisabled_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(19, mlDisabled_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -27022,6 +27058,8 @@ private static final long serialVersionUID = 0L;
         == other.getIsFallback());
     result = result && (getMlEnabled()
         == other.getMlEnabled());
+    result = result && (getMlDisabled()
+        == other.getMlDisabled());
     result = result && getInputContextNamesList()
         .equals(other.getInputContextNamesList());
     result = result && getEventsList()
@@ -27070,6 +27108,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ML_ENABLED_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getMlEnabled());
+    hash = (37 * hash) + ML_DISABLED_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getMlDisabled());
     if (getInputContextNamesCount() > 0) {
       hash = (37 * hash) + INPUT_CONTEXT_NAMES_FIELD_NUMBER;
       hash = (53 * hash) + getInputContextNamesList().hashCode();
@@ -27263,13 +27304,15 @@ private static final long serialVersionUID = 0L;
 
       mlEnabled_ = false;
 
+      mlDisabled_ = false;
+
       inputContextNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000040);
-      events_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       bitField0_ = (bitField0_ & ~0x00000080);
+      events_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000100);
       if (trainingPhrasesBuilder_ == null) {
         trainingPhrases_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
       } else {
         trainingPhrasesBuilder_.clear();
       }
@@ -27277,7 +27320,7 @@ private static final long serialVersionUID = 0L;
 
       if (outputContextsBuilder_ == null) {
         outputContexts_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000800);
       } else {
         outputContextsBuilder_.clear();
       }
@@ -27285,25 +27328,25 @@ private static final long serialVersionUID = 0L;
 
       if (parametersBuilder_ == null) {
         parameters_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00002000);
       } else {
         parametersBuilder_.clear();
       }
       if (messagesBuilder_ == null) {
         messages_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00004000);
       } else {
         messagesBuilder_.clear();
       }
       defaultResponsePlatforms_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00004000);
+      bitField0_ = (bitField0_ & ~0x00008000);
       rootFollowupIntentName_ = "";
 
       parentFollowupIntentName_ = "";
 
       if (followupIntentInfoBuilder_ == null) {
         followupIntentInfo_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00040000);
       } else {
         followupIntentInfoBuilder_.clear();
       }
@@ -27337,20 +27380,21 @@ private static final long serialVersionUID = 0L;
       result.priority_ = priority_;
       result.isFallback_ = isFallback_;
       result.mlEnabled_ = mlEnabled_;
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      result.mlDisabled_ = mlDisabled_;
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
         inputContextNames_ = inputContextNames_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
       }
       result.inputContextNames_ = inputContextNames_;
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
         events_ = events_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
       }
       result.events_ = events_;
       if (trainingPhrasesBuilder_ == null) {
-        if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        if (((bitField0_ & 0x00000200) == 0x00000200)) {
           trainingPhrases_ = java.util.Collections.unmodifiableList(trainingPhrases_);
-          bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00000200);
         }
         result.trainingPhrases_ = trainingPhrases_;
       } else {
@@ -27358,9 +27402,9 @@ private static final long serialVersionUID = 0L;
       }
       result.action_ = action_;
       if (outputContextsBuilder_ == null) {
-        if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        if (((bitField0_ & 0x00000800) == 0x00000800)) {
           outputContexts_ = java.util.Collections.unmodifiableList(outputContexts_);
-          bitField0_ = (bitField0_ & ~0x00000400);
+          bitField0_ = (bitField0_ & ~0x00000800);
         }
         result.outputContexts_ = outputContexts_;
       } else {
@@ -27368,34 +27412,34 @@ private static final long serialVersionUID = 0L;
       }
       result.resetContexts_ = resetContexts_;
       if (parametersBuilder_ == null) {
-        if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        if (((bitField0_ & 0x00002000) == 0x00002000)) {
           parameters_ = java.util.Collections.unmodifiableList(parameters_);
-          bitField0_ = (bitField0_ & ~0x00001000);
+          bitField0_ = (bitField0_ & ~0x00002000);
         }
         result.parameters_ = parameters_;
       } else {
         result.parameters_ = parametersBuilder_.build();
       }
       if (messagesBuilder_ == null) {
-        if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        if (((bitField0_ & 0x00004000) == 0x00004000)) {
           messages_ = java.util.Collections.unmodifiableList(messages_);
-          bitField0_ = (bitField0_ & ~0x00002000);
+          bitField0_ = (bitField0_ & ~0x00004000);
         }
         result.messages_ = messages_;
       } else {
         result.messages_ = messagesBuilder_.build();
       }
-      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
         defaultResponsePlatforms_ = java.util.Collections.unmodifiableList(defaultResponsePlatforms_);
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00008000);
       }
       result.defaultResponsePlatforms_ = defaultResponsePlatforms_;
       result.rootFollowupIntentName_ = rootFollowupIntentName_;
       result.parentFollowupIntentName_ = parentFollowupIntentName_;
       if (followupIntentInfoBuilder_ == null) {
-        if (((bitField0_ & 0x00020000) == 0x00020000)) {
+        if (((bitField0_ & 0x00040000) == 0x00040000)) {
           followupIntentInfo_ = java.util.Collections.unmodifiableList(followupIntentInfo_);
-          bitField0_ = (bitField0_ & ~0x00020000);
+          bitField0_ = (bitField0_ & ~0x00040000);
         }
         result.followupIntentInfo_ = followupIntentInfo_;
       } else {
@@ -27463,10 +27507,13 @@ private static final long serialVersionUID = 0L;
       if (other.getMlEnabled() != false) {
         setMlEnabled(other.getMlEnabled());
       }
+      if (other.getMlDisabled() != false) {
+        setMlDisabled(other.getMlDisabled());
+      }
       if (!other.inputContextNames_.isEmpty()) {
         if (inputContextNames_.isEmpty()) {
           inputContextNames_ = other.inputContextNames_;
-          bitField0_ = (bitField0_ & ~0x00000040);
+          bitField0_ = (bitField0_ & ~0x00000080);
         } else {
           ensureInputContextNamesIsMutable();
           inputContextNames_.addAll(other.inputContextNames_);
@@ -27476,7 +27523,7 @@ private static final long serialVersionUID = 0L;
       if (!other.events_.isEmpty()) {
         if (events_.isEmpty()) {
           events_ = other.events_;
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000100);
         } else {
           ensureEventsIsMutable();
           events_.addAll(other.events_);
@@ -27487,7 +27534,7 @@ private static final long serialVersionUID = 0L;
         if (!other.trainingPhrases_.isEmpty()) {
           if (trainingPhrases_.isEmpty()) {
             trainingPhrases_ = other.trainingPhrases_;
-            bitField0_ = (bitField0_ & ~0x00000100);
+            bitField0_ = (bitField0_ & ~0x00000200);
           } else {
             ensureTrainingPhrasesIsMutable();
             trainingPhrases_.addAll(other.trainingPhrases_);
@@ -27500,7 +27547,7 @@ private static final long serialVersionUID = 0L;
             trainingPhrasesBuilder_.dispose();
             trainingPhrasesBuilder_ = null;
             trainingPhrases_ = other.trainingPhrases_;
-            bitField0_ = (bitField0_ & ~0x00000100);
+            bitField0_ = (bitField0_ & ~0x00000200);
             trainingPhrasesBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getTrainingPhrasesFieldBuilder() : null;
@@ -27517,7 +27564,7 @@ private static final long serialVersionUID = 0L;
         if (!other.outputContexts_.isEmpty()) {
           if (outputContexts_.isEmpty()) {
             outputContexts_ = other.outputContexts_;
-            bitField0_ = (bitField0_ & ~0x00000400);
+            bitField0_ = (bitField0_ & ~0x00000800);
           } else {
             ensureOutputContextsIsMutable();
             outputContexts_.addAll(other.outputContexts_);
@@ -27530,7 +27577,7 @@ private static final long serialVersionUID = 0L;
             outputContextsBuilder_.dispose();
             outputContextsBuilder_ = null;
             outputContexts_ = other.outputContexts_;
-            bitField0_ = (bitField0_ & ~0x00000400);
+            bitField0_ = (bitField0_ & ~0x00000800);
             outputContextsBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getOutputContextsFieldBuilder() : null;
@@ -27546,7 +27593,7 @@ private static final long serialVersionUID = 0L;
         if (!other.parameters_.isEmpty()) {
           if (parameters_.isEmpty()) {
             parameters_ = other.parameters_;
-            bitField0_ = (bitField0_ & ~0x00001000);
+            bitField0_ = (bitField0_ & ~0x00002000);
           } else {
             ensureParametersIsMutable();
             parameters_.addAll(other.parameters_);
@@ -27559,7 +27606,7 @@ private static final long serialVersionUID = 0L;
             parametersBuilder_.dispose();
             parametersBuilder_ = null;
             parameters_ = other.parameters_;
-            bitField0_ = (bitField0_ & ~0x00001000);
+            bitField0_ = (bitField0_ & ~0x00002000);
             parametersBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getParametersFieldBuilder() : null;
@@ -27572,7 +27619,7 @@ private static final long serialVersionUID = 0L;
         if (!other.messages_.isEmpty()) {
           if (messages_.isEmpty()) {
             messages_ = other.messages_;
-            bitField0_ = (bitField0_ & ~0x00002000);
+            bitField0_ = (bitField0_ & ~0x00004000);
           } else {
             ensureMessagesIsMutable();
             messages_.addAll(other.messages_);
@@ -27585,7 +27632,7 @@ private static final long serialVersionUID = 0L;
             messagesBuilder_.dispose();
             messagesBuilder_ = null;
             messages_ = other.messages_;
-            bitField0_ = (bitField0_ & ~0x00002000);
+            bitField0_ = (bitField0_ & ~0x00004000);
             messagesBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getMessagesFieldBuilder() : null;
@@ -27597,7 +27644,7 @@ private static final long serialVersionUID = 0L;
       if (!other.defaultResponsePlatforms_.isEmpty()) {
         if (defaultResponsePlatforms_.isEmpty()) {
           defaultResponsePlatforms_ = other.defaultResponsePlatforms_;
-          bitField0_ = (bitField0_ & ~0x00004000);
+          bitField0_ = (bitField0_ & ~0x00008000);
         } else {
           ensureDefaultResponsePlatformsIsMutable();
           defaultResponsePlatforms_.addAll(other.defaultResponsePlatforms_);
@@ -27616,7 +27663,7 @@ private static final long serialVersionUID = 0L;
         if (!other.followupIntentInfo_.isEmpty()) {
           if (followupIntentInfo_.isEmpty()) {
             followupIntentInfo_ = other.followupIntentInfo_;
-            bitField0_ = (bitField0_ & ~0x00020000);
+            bitField0_ = (bitField0_ & ~0x00040000);
           } else {
             ensureFollowupIntentInfoIsMutable();
             followupIntentInfo_.addAll(other.followupIntentInfo_);
@@ -27629,7 +27676,7 @@ private static final long serialVersionUID = 0L;
             followupIntentInfoBuilder_.dispose();
             followupIntentInfoBuilder_ = null;
             followupIntentInfo_ = other.followupIntentInfo_;
-            bitField0_ = (bitField0_ & ~0x00020000);
+            bitField0_ = (bitField0_ & ~0x00040000);
             followupIntentInfoBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getFollowupIntentInfoFieldBuilder() : null;
@@ -28009,6 +28056,13 @@ private static final long serialVersionUID = 0L;
      * Note: If `ml_enabled` setting is set to false, then this intent is not
      * taken into account during inference in `ML ONLY` match mode. Also,
      * auto-markup in the UI is turned off.
+     * DEPRECATED! Please use `ml_disabled` field instead.
+     * NOTE: If neither `ml_enabled` nor `ml_disabled` field is set, then the
+     * default value is determined as follows:
+     * - Before April 15th, 2018 the default is:
+     *   ml_enabled = false / ml_disabled = true.
+     * - After April 15th, 2018 the default is:
+     *   ml_enabled = true / ml_disabled = false.
      * </pre>
      *
      * <code>bool ml_enabled = 5;</code>
@@ -28022,6 +28076,13 @@ private static final long serialVersionUID = 0L;
      * Note: If `ml_enabled` setting is set to false, then this intent is not
      * taken into account during inference in `ML ONLY` match mode. Also,
      * auto-markup in the UI is turned off.
+     * DEPRECATED! Please use `ml_disabled` field instead.
+     * NOTE: If neither `ml_enabled` nor `ml_disabled` field is set, then the
+     * default value is determined as follows:
+     * - Before April 15th, 2018 the default is:
+     *   ml_enabled = false / ml_disabled = true.
+     * - After April 15th, 2018 the default is:
+     *   ml_enabled = true / ml_disabled = false.
      * </pre>
      *
      * <code>bool ml_enabled = 5;</code>
@@ -28038,6 +28099,13 @@ private static final long serialVersionUID = 0L;
      * Note: If `ml_enabled` setting is set to false, then this intent is not
      * taken into account during inference in `ML ONLY` match mode. Also,
      * auto-markup in the UI is turned off.
+     * DEPRECATED! Please use `ml_disabled` field instead.
+     * NOTE: If neither `ml_enabled` nor `ml_disabled` field is set, then the
+     * default value is determined as follows:
+     * - Before April 15th, 2018 the default is:
+     *   ml_enabled = false / ml_disabled = true.
+     * - After April 15th, 2018 the default is:
+     *   ml_enabled = true / ml_disabled = false.
      * </pre>
      *
      * <code>bool ml_enabled = 5;</code>
@@ -28049,11 +28117,58 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private boolean mlDisabled_ ;
+    /**
+     * <pre>
+     * Optional. Indicates whether Machine Learning is disabled for the intent.
+     * Note: If `ml_disabled` setting is set to true, then this intent is not
+     * taken into account during inference in `ML ONLY` match mode. Also,
+     * auto-markup in the UI is turned off.
+     * </pre>
+     *
+     * <code>bool ml_disabled = 19;</code>
+     */
+    public boolean getMlDisabled() {
+      return mlDisabled_;
+    }
+    /**
+     * <pre>
+     * Optional. Indicates whether Machine Learning is disabled for the intent.
+     * Note: If `ml_disabled` setting is set to true, then this intent is not
+     * taken into account during inference in `ML ONLY` match mode. Also,
+     * auto-markup in the UI is turned off.
+     * </pre>
+     *
+     * <code>bool ml_disabled = 19;</code>
+     */
+    public Builder setMlDisabled(boolean value) {
+      
+      mlDisabled_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. Indicates whether Machine Learning is disabled for the intent.
+     * Note: If `ml_disabled` setting is set to true, then this intent is not
+     * taken into account during inference in `ML ONLY` match mode. Also,
+     * auto-markup in the UI is turned off.
+     * </pre>
+     *
+     * <code>bool ml_disabled = 19;</code>
+     */
+    public Builder clearMlDisabled() {
+      
+      mlDisabled_ = false;
+      onChanged();
+      return this;
+    }
+
     private com.google.protobuf.LazyStringList inputContextNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     private void ensureInputContextNamesIsMutable() {
-      if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (!((bitField0_ & 0x00000080) == 0x00000080)) {
         inputContextNames_ = new com.google.protobuf.LazyStringArrayList(inputContextNames_);
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
        }
     }
     /**
@@ -28172,7 +28287,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearInputContextNames() {
       inputContextNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000040);
+      bitField0_ = (bitField0_ & ~0x00000080);
       onChanged();
       return this;
     }
@@ -28199,9 +28314,9 @@ private static final long serialVersionUID = 0L;
 
     private com.google.protobuf.LazyStringList events_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     private void ensureEventsIsMutable() {
-      if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (!((bitField0_ & 0x00000100) == 0x00000100)) {
         events_ = new com.google.protobuf.LazyStringArrayList(events_);
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
        }
     }
     /**
@@ -28320,7 +28435,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearEvents() {
       events_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000080);
+      bitField0_ = (bitField0_ & ~0x00000100);
       onChanged();
       return this;
     }
@@ -28348,9 +28463,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<com.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase> trainingPhrases_ =
       java.util.Collections.emptyList();
     private void ensureTrainingPhrasesIsMutable() {
-      if (!((bitField0_ & 0x00000100) == 0x00000100)) {
+      if (!((bitField0_ & 0x00000200) == 0x00000200)) {
         trainingPhrases_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase>(trainingPhrases_);
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
        }
     }
 
@@ -28555,7 +28670,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearTrainingPhrases() {
       if (trainingPhrasesBuilder_ == null) {
         trainingPhrases_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         onChanged();
       } else {
         trainingPhrasesBuilder_.clear();
@@ -28667,7 +28782,7 @@ private static final long serialVersionUID = 0L;
         trainingPhrasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase, com.google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase.Builder, com.google.cloud.dialogflow.v2beta1.Intent.TrainingPhraseOrBuilder>(
                 trainingPhrases_,
-                ((bitField0_ & 0x00000100) == 0x00000100),
+                ((bitField0_ & 0x00000200) == 0x00000200),
                 getParentForChildren(),
                 isClean());
         trainingPhrases_ = null;
@@ -28767,9 +28882,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<com.google.cloud.dialogflow.v2beta1.Context> outputContexts_ =
       java.util.Collections.emptyList();
     private void ensureOutputContextsIsMutable() {
-      if (!((bitField0_ & 0x00000400) == 0x00000400)) {
+      if (!((bitField0_ & 0x00000800) == 0x00000800)) {
         outputContexts_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Context>(outputContexts_);
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000800;
        }
     }
 
@@ -29007,7 +29122,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearOutputContexts() {
       if (outputContextsBuilder_ == null) {
         outputContexts_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000800);
         onChanged();
       } else {
         outputContextsBuilder_.clear();
@@ -29140,7 +29255,7 @@ private static final long serialVersionUID = 0L;
         outputContextsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.google.cloud.dialogflow.v2beta1.Context, com.google.cloud.dialogflow.v2beta1.Context.Builder, com.google.cloud.dialogflow.v2beta1.ContextOrBuilder>(
                 outputContexts_,
-                ((bitField0_ & 0x00000400) == 0x00000400),
+                ((bitField0_ & 0x00000800) == 0x00000800),
                 getParentForChildren(),
                 isClean());
         outputContexts_ = null;
@@ -29192,9 +29307,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<com.google.cloud.dialogflow.v2beta1.Intent.Parameter> parameters_ =
       java.util.Collections.emptyList();
     private void ensureParametersIsMutable() {
-      if (!((bitField0_ & 0x00001000) == 0x00001000)) {
+      if (!((bitField0_ & 0x00002000) == 0x00002000)) {
         parameters_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Intent.Parameter>(parameters_);
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00002000;
        }
     }
 
@@ -29388,7 +29503,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearParameters() {
       if (parametersBuilder_ == null) {
         parameters_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00002000);
         onChanged();
       } else {
         parametersBuilder_.clear();
@@ -29493,7 +29608,7 @@ private static final long serialVersionUID = 0L;
         parametersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.google.cloud.dialogflow.v2beta1.Intent.Parameter, com.google.cloud.dialogflow.v2beta1.Intent.Parameter.Builder, com.google.cloud.dialogflow.v2beta1.Intent.ParameterOrBuilder>(
                 parameters_,
-                ((bitField0_ & 0x00001000) == 0x00001000),
+                ((bitField0_ & 0x00002000) == 0x00002000),
                 getParentForChildren(),
                 isClean());
         parameters_ = null;
@@ -29504,9 +29619,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<com.google.cloud.dialogflow.v2beta1.Intent.Message> messages_ =
       java.util.Collections.emptyList();
     private void ensureMessagesIsMutable() {
-      if (!((bitField0_ & 0x00002000) == 0x00002000)) {
+      if (!((bitField0_ & 0x00004000) == 0x00004000)) {
         messages_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Intent.Message>(messages_);
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00004000;
        }
     }
 
@@ -29711,7 +29826,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearMessages() {
       if (messagesBuilder_ == null) {
         messages_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00004000);
         onChanged();
       } else {
         messagesBuilder_.clear();
@@ -29823,7 +29938,7 @@ private static final long serialVersionUID = 0L;
         messagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.google.cloud.dialogflow.v2beta1.Intent.Message, com.google.cloud.dialogflow.v2beta1.Intent.Message.Builder, com.google.cloud.dialogflow.v2beta1.Intent.MessageOrBuilder>(
                 messages_,
-                ((bitField0_ & 0x00002000) == 0x00002000),
+                ((bitField0_ & 0x00004000) == 0x00004000),
                 getParentForChildren(),
                 isClean());
         messages_ = null;
@@ -29834,9 +29949,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<java.lang.Integer> defaultResponsePlatforms_ =
       java.util.Collections.emptyList();
     private void ensureDefaultResponsePlatformsIsMutable() {
-      if (!((bitField0_ & 0x00004000) == 0x00004000)) {
+      if (!((bitField0_ & 0x00008000) == 0x00008000)) {
         defaultResponsePlatforms_ = new java.util.ArrayList<java.lang.Integer>(defaultResponsePlatforms_);
-        bitField0_ |= 0x00004000;
+        bitField0_ |= 0x00008000;
       }
     }
     /**
@@ -29935,7 +30050,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearDefaultResponsePlatforms() {
       defaultResponsePlatforms_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00004000);
+      bitField0_ = (bitField0_ & ~0x00008000);
       onChanged();
       return this;
     }
@@ -30215,9 +30330,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<com.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfo> followupIntentInfo_ =
       java.util.Collections.emptyList();
     private void ensureFollowupIntentInfoIsMutable() {
-      if (!((bitField0_ & 0x00020000) == 0x00020000)) {
+      if (!((bitField0_ & 0x00040000) == 0x00040000)) {
         followupIntentInfo_ = new java.util.ArrayList<com.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfo>(followupIntentInfo_);
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x00040000;
        }
     }
 
@@ -30422,7 +30537,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearFollowupIntentInfo() {
       if (followupIntentInfoBuilder_ == null) {
         followupIntentInfo_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00040000);
         onChanged();
       } else {
         followupIntentInfoBuilder_.clear();
@@ -30534,7 +30649,7 @@ private static final long serialVersionUID = 0L;
         followupIntentInfoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfo, com.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfo.Builder, com.google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfoOrBuilder>(
                 followupIntentInfo_,
-                ((bitField0_ & 0x00020000) == 0x00020000),
+                ((bitField0_ & 0x00040000) == 0x00040000),
                 getParentForChildren(),
                 isClean());
         followupIntentInfo_ = null;

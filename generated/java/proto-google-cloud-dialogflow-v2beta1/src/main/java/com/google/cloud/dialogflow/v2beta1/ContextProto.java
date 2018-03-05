@@ -83,39 +83,50 @@ public final class ContextProto {
       "ogflow.v2beta1.Context\022/\n\013update_mask\030\002 " +
       "\001(\0132\032.google.protobuf.FieldMask\"$\n\024Delet" +
       "eContextRequest\022\014\n\004name\030\001 \001(\t\"*\n\030DeleteA",
-      "llContextsRequest\022\016\n\006parent\030\001 \001(\t2\277\010\n\010Co" +
-      "ntexts\022\273\001\n\014ListContexts\0224.google.cloud.d" +
+      "llContextsRequest\022\016\n\006parent\030\001 \001(\t2\377\013\n\010Co" +
+      "ntexts\022\201\002\n\014ListContexts\0224.google.cloud.d" +
       "ialogflow.v2beta1.ListContextsRequest\0325." +
       "google.cloud.dialogflow.v2beta1.ListCont" +
-      "extsResponse\">\202\323\344\223\0028\0226/v2beta1/{parent=p" +
-      "rojects/*/agent/sessions/*}/contexts\022\252\001\n" +
-      "\nGetContext\0222.google.cloud.dialogflow.v2" +
-      "beta1.GetContextRequest\032(.google.cloud.d" +
-      "ialogflow.v2beta1.Context\">\202\323\344\223\0028\0226/v2be" +
-      "ta1/{name=projects/*/agent/sessions/*/co",
-      "ntexts/*}\022\271\001\n\rCreateContext\0225.google.clo" +
-      "ud.dialogflow.v2beta1.CreateContextReque" +
-      "st\032(.google.cloud.dialogflow.v2beta1.Con" +
-      "text\"G\202\323\344\223\002A\"6/v2beta1/{parent=projects/" +
-      "*/agent/sessions/*}/contexts:\007context\022\301\001" +
-      "\n\rUpdateContext\0225.google.cloud.dialogflo" +
-      "w.v2beta1.UpdateContextRequest\032(.google." +
-      "cloud.dialogflow.v2beta1.Context\"O\202\323\344\223\002I" +
-      "2>/v2beta1/{context.name=projects/*/agen" +
-      "t/sessions/*/contexts/*}:\007context\022\236\001\n\rDe",
-      "leteContext\0225.google.cloud.dialogflow.v2" +
-      "beta1.DeleteContextRequest\032\026.google.prot" +
-      "obuf.Empty\">\202\323\344\223\0028*6/v2beta1/{name=proje" +
-      "cts/*/agent/sessions/*/contexts/*}\022\246\001\n\021D" +
-      "eleteAllContexts\0229.google.cloud.dialogfl" +
-      "ow.v2beta1.DeleteAllContextsRequest\032\026.go" +
-      "ogle.protobuf.Empty\">\202\323\344\223\0028*6/v2beta1/{p" +
-      "arent=projects/*/agent/sessions/*}/conte" +
-      "xtsB\252\001\n#com.google.cloud.dialogflow.v2be" +
-      "ta1B\014ContextProtoP\001ZIgoogle.golang.org/g",
-      "enproto/googleapis/cloud/dialogflow/v2be" +
-      "ta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Di" +
-      "alogflow.V2beta1b\006proto3"
+      "extsResponse\"\203\001\202\323\344\223\002}\0226/v2beta1/{parent=" +
+      "projects/*/agent/sessions/*}/contextsZC\022" +
+      "A/v2beta1/{parent=projects/*/agent/runti" +
+      "mes/*/sessions/*}/contexts\022\360\001\n\nGetContex" +
+      "t\0222.google.cloud.dialogflow.v2beta1.GetC" +
+      "ontextRequest\032(.google.cloud.dialogflow.",
+      "v2beta1.Context\"\203\001\202\323\344\223\002}\0226/v2beta1/{name" +
+      "=projects/*/agent/sessions/*/contexts/*}" +
+      "ZC\022A/v2beta1/{name=projects/*/agent/runt" +
+      "imes/*/sessions/*/contexts/*}\022\211\002\n\rCreate" +
+      "Context\0225.google.cloud.dialogflow.v2beta" +
+      "1.CreateContextRequest\032(.google.cloud.di" +
+      "alogflow.v2beta1.Context\"\226\001\202\323\344\223\002\217\001\"6/v2b" +
+      "eta1/{parent=projects/*/agent/sessions/*" +
+      "}/contexts:\007contextZL\"A/v2beta1/{parent=" +
+      "projects/*/agent/runtimes/*/sessions/*}/",
+      "contexts:\007context\022\231\002\n\rUpdateContext\0225.go" +
+      "ogle.cloud.dialogflow.v2beta1.UpdateCont" +
+      "extRequest\032(.google.cloud.dialogflow.v2b" +
+      "eta1.Context\"\246\001\202\323\344\223\002\237\0012>/v2beta1/{contex" +
+      "t.name=projects/*/agent/sessions/*/conte" +
+      "xts/*}:\007contextZT2I/v2beta1/{context.nam" +
+      "e=projects/*/agent/runtimes/*/sessions/*" +
+      "/contexts/*}:\007context\022\344\001\n\rDeleteContext\022" +
+      "5.google.cloud.dialogflow.v2beta1.Delete" +
+      "ContextRequest\032\026.google.protobuf.Empty\"\203",
+      "\001\202\323\344\223\002}*6/v2beta1/{name=projects/*/agent" +
+      "/sessions/*/contexts/*}ZC*A/v2beta1/{nam" +
+      "e=projects/*/agent/runtimes/*/sessions/*" +
+      "/contexts/*}\022\354\001\n\021DeleteAllContexts\0229.goo" +
+      "gle.cloud.dialogflow.v2beta1.DeleteAllCo" +
+      "ntextsRequest\032\026.google.protobuf.Empty\"\203\001" +
+      "\202\323\344\223\002}*6/v2beta1/{parent=projects/*/agen" +
+      "t/sessions/*}/contextsZC*A/v2beta1/{pare" +
+      "nt=projects/*/agent/runtimes/*/sessions/" +
+      "*}/contextsB\252\001\n#com.google.cloud.dialogf",
+      "low.v2beta1B\014ContextProtoP\001ZIgoogle.gola" +
+      "ng.org/genproto/googleapis/cloud/dialogf" +
+      "low/v2beta1;dialogflow\370\001\001\242\002\002DF\252\002\037Google." +
+      "Cloud.Dialogflow.V2beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

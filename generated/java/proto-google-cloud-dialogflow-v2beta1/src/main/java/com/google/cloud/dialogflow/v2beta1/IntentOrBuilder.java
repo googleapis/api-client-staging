@@ -91,11 +91,30 @@ public interface IntentOrBuilder extends
    * Note: If `ml_enabled` setting is set to false, then this intent is not
    * taken into account during inference in `ML ONLY` match mode. Also,
    * auto-markup in the UI is turned off.
+   * DEPRECATED! Please use `ml_disabled` field instead.
+   * NOTE: If neither `ml_enabled` nor `ml_disabled` field is set, then the
+   * default value is determined as follows:
+   * - Before April 15th, 2018 the default is:
+   *   ml_enabled = false / ml_disabled = true.
+   * - After April 15th, 2018 the default is:
+   *   ml_enabled = true / ml_disabled = false.
    * </pre>
    *
    * <code>bool ml_enabled = 5;</code>
    */
   boolean getMlEnabled();
+
+  /**
+   * <pre>
+   * Optional. Indicates whether Machine Learning is disabled for the intent.
+   * Note: If `ml_disabled` setting is set to true, then this intent is not
+   * taken into account during inference in `ML ONLY` match mode. Also,
+   * auto-markup in the UI is turned off.
+   * </pre>
+   *
+   * <code>bool ml_disabled = 19;</code>
+   */
+  boolean getMlDisabled();
 
   /**
    * <pre>

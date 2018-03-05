@@ -266,10 +266,14 @@ private static final long serialVersionUID = 0L;
   private boolean singleUtterance_;
   /**
    * <pre>
-   * Optional. If `true`, the recognizer will detect a single spoken utterance
-   * in input audio. When it detects that the user has paused or stopped
-   * speaking, it will cease recognition. This setting is ignored when
-   * `query_input` is a piece of text or an event.
+   * Optional. If `false` (default), recognition does not cease until the
+   * client closes the stream.
+   * If `true`, the recognizer will detect a single spoken utterance in input
+   * audio. Recognition ceases when it detects the audio's voice has
+   * stopped or paused. In this case, once a detected intent is received, the
+   * client should close the stream and start a new request with a new stream as
+   * needed.
+   * This setting is ignored when `query_input` is a piece of text or an event.
    * </pre>
    *
    * <code>bool single_utterance = 4;</code>
@@ -1156,10 +1160,14 @@ private static final long serialVersionUID = 0L;
     private boolean singleUtterance_ ;
     /**
      * <pre>
-     * Optional. If `true`, the recognizer will detect a single spoken utterance
-     * in input audio. When it detects that the user has paused or stopped
-     * speaking, it will cease recognition. This setting is ignored when
-     * `query_input` is a piece of text or an event.
+     * Optional. If `false` (default), recognition does not cease until the
+     * client closes the stream.
+     * If `true`, the recognizer will detect a single spoken utterance in input
+     * audio. Recognition ceases when it detects the audio's voice has
+     * stopped or paused. In this case, once a detected intent is received, the
+     * client should close the stream and start a new request with a new stream as
+     * needed.
+     * This setting is ignored when `query_input` is a piece of text or an event.
      * </pre>
      *
      * <code>bool single_utterance = 4;</code>
@@ -1169,10 +1177,14 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Optional. If `true`, the recognizer will detect a single spoken utterance
-     * in input audio. When it detects that the user has paused or stopped
-     * speaking, it will cease recognition. This setting is ignored when
-     * `query_input` is a piece of text or an event.
+     * Optional. If `false` (default), recognition does not cease until the
+     * client closes the stream.
+     * If `true`, the recognizer will detect a single spoken utterance in input
+     * audio. Recognition ceases when it detects the audio's voice has
+     * stopped or paused. In this case, once a detected intent is received, the
+     * client should close the stream and start a new request with a new stream as
+     * needed.
+     * This setting is ignored when `query_input` is a piece of text or an event.
      * </pre>
      *
      * <code>bool single_utterance = 4;</code>
@@ -1185,10 +1197,14 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Optional. If `true`, the recognizer will detect a single spoken utterance
-     * in input audio. When it detects that the user has paused or stopped
-     * speaking, it will cease recognition. This setting is ignored when
-     * `query_input` is a piece of text or an event.
+     * Optional. If `false` (default), recognition does not cease until the
+     * client closes the stream.
+     * If `true`, the recognizer will detect a single spoken utterance in input
+     * audio. Recognition ceases when it detects the audio's voice has
+     * stopped or paused. In this case, once a detected intent is received, the
+     * client should close the stream and start a new request with a new stream as
+     * needed.
+     * This setting is ignored when `query_input` is a piece of text or an event.
      * </pre>
      *
      * <code>bool single_utterance = 4;</code>
