@@ -33,10 +33,8 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
-use Google\ApiCore\ValidationException;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse;
@@ -82,17 +80,12 @@ use Grpc\ChannelCredentials;
  * ```
  * $dataTransferServiceClient = new DataTransferServiceClient();
  * try {
- *     $formattedName = $dataTransferServiceClient->locationDataSourceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE]');
+ *     $formattedName = $dataTransferServiceClient->projectDataSourceName('[PROJECT]', '[DATA_SOURCE]');
  *     $response = $dataTransferServiceClient->getDataSource($formattedName);
  * } finally {
  *     $dataTransferServiceClient->close();
  * }
  * ```
- *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parseName method to extract the individual identifiers contained within formatted names
- * that are returned by the API.
  *
  * @experimental
  */
@@ -125,16 +118,6 @@ class DataTransferServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $projectNameTemplate;
-    private static $locationNameTemplate;
-    private static $locationDataSourceNameTemplate;
-    private static $locationTransferConfigNameTemplate;
-    private static $locationRunNameTemplate;
-    private static $dataSourceNameTemplate;
-    private static $transferConfigNameTemplate;
-    private static $runNameTemplate;
-    private static $pathTemplateMap;
-
     private static function getClientDefaults()
     {
         return [
@@ -149,296 +132,6 @@ class DataTransferServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/data_transfer_service_descriptor_config.php',
             'versionFile' => __DIR__.'/../../VERSION',
         ];
-    }
-
-    private static function getProjectNameTemplate()
-    {
-        if (self::$projectNameTemplate == null) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
-    private static function getLocationNameTemplate()
-    {
-        if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
-        }
-
-        return self::$locationNameTemplate;
-    }
-
-    private static function getLocationDataSourceNameTemplate()
-    {
-        if (self::$locationDataSourceNameTemplate == null) {
-            self::$locationDataSourceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dataSources/{data_source}');
-        }
-
-        return self::$locationDataSourceNameTemplate;
-    }
-
-    private static function getLocationTransferConfigNameTemplate()
-    {
-        if (self::$locationTransferConfigNameTemplate == null) {
-            self::$locationTransferConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/transferConfigs/{transfer_config}');
-        }
-
-        return self::$locationTransferConfigNameTemplate;
-    }
-
-    private static function getLocationRunNameTemplate()
-    {
-        if (self::$locationRunNameTemplate == null) {
-            self::$locationRunNameTemplate = new PathTemplate('projects/{project}/locations/{location}/transferConfigs/{transfer_config}/runs/{run}');
-        }
-
-        return self::$locationRunNameTemplate;
-    }
-
-    private static function getDataSourceNameTemplate()
-    {
-        if (self::$dataSourceNameTemplate == null) {
-            self::$dataSourceNameTemplate = new PathTemplate('projects/{project}/dataSources/{data_source}');
-        }
-
-        return self::$dataSourceNameTemplate;
-    }
-
-    private static function getTransferConfigNameTemplate()
-    {
-        if (self::$transferConfigNameTemplate == null) {
-            self::$transferConfigNameTemplate = new PathTemplate('projects/{project}/transferConfigs/{transfer_config}');
-        }
-
-        return self::$transferConfigNameTemplate;
-    }
-
-    private static function getRunNameTemplate()
-    {
-        if (self::$runNameTemplate == null) {
-            self::$runNameTemplate = new PathTemplate('projects/{project}/transferConfigs/{transfer_config}/runs/{run}');
-        }
-
-        return self::$runNameTemplate;
-    }
-
-    private static function getPathTemplateMap()
-    {
-        if (self::$pathTemplateMap == null) {
-            self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
-                'location' => self::getLocationNameTemplate(),
-                'locationDataSource' => self::getLocationDataSourceNameTemplate(),
-                'locationTransferConfig' => self::getLocationTransferConfigNameTemplate(),
-                'locationRun' => self::getLocationRunNameTemplate(),
-                'dataSource' => self::getDataSourceNameTemplate(),
-                'transferConfig' => self::getTransferConfigNameTemplate(),
-                'run' => self::getRunNameTemplate(),
-            ];
-        }
-
-        return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a location resource.
-     *
-     * @param string $project
-     * @param string $location
-     *
-     * @return string The formatted location resource.
-     * @experimental
-     */
-    public static function locationName($project, $location)
-    {
-        return self::getLocationNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a location_data_source resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $dataSource
-     *
-     * @return string The formatted location_data_source resource.
-     * @experimental
-     */
-    public static function locationDataSourceName($project, $location, $dataSource)
-    {
-        return self::getLocationDataSourceNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'data_source' => $dataSource,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a location_transfer_config resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $transferConfig
-     *
-     * @return string The formatted location_transfer_config resource.
-     * @experimental
-     */
-    public static function locationTransferConfigName($project, $location, $transferConfig)
-    {
-        return self::getLocationTransferConfigNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'transfer_config' => $transferConfig,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a location_run resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $transferConfig
-     * @param string $run
-     *
-     * @return string The formatted location_run resource.
-     * @experimental
-     */
-    public static function locationRunName($project, $location, $transferConfig, $run)
-    {
-        return self::getLocationRunNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'transfer_config' => $transferConfig,
-            'run' => $run,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a data_source resource.
-     *
-     * @param string $project
-     * @param string $dataSource
-     *
-     * @return string The formatted data_source resource.
-     * @experimental
-     */
-    public static function dataSourceName($project, $dataSource)
-    {
-        return self::getDataSourceNameTemplate()->render([
-            'project' => $project,
-            'data_source' => $dataSource,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a transfer_config resource.
-     *
-     * @param string $project
-     * @param string $transferConfig
-     *
-     * @return string The formatted transfer_config resource.
-     * @experimental
-     */
-    public static function transferConfigName($project, $transferConfig)
-    {
-        return self::getTransferConfigNameTemplate()->render([
-            'project' => $project,
-            'transfer_config' => $transferConfig,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a run resource.
-     *
-     * @param string $project
-     * @param string $transferConfig
-     * @param string $run
-     *
-     * @return string The formatted run resource.
-     * @experimental
-     */
-    public static function runName($project, $transferConfig, $run)
-    {
-        return self::getRunNameTemplate()->render([
-            'project' => $project,
-            'transfer_config' => $transferConfig,
-            'run' => $run,
-        ]);
-    }
-
-    /**
-     * Parses a formatted name string and returns an associative array of the components in the name.
-     * The following name formats are supported:
-     * Template: Pattern
-     * - project: projects/{project}
-     * - location: projects/{project}/locations/{location}
-     * - locationDataSource: projects/{project}/locations/{location}/dataSources/{data_source}
-     * - locationTransferConfig: projects/{project}/locations/{location}/transferConfigs/{transfer_config}
-     * - locationRun: projects/{project}/locations/{location}/transferConfigs/{transfer_config}/runs/{run}
-     * - dataSource: projects/{project}/dataSources/{data_source}
-     * - transferConfig: projects/{project}/transferConfigs/{transfer_config}
-     * - run: projects/{project}/transferConfigs/{transfer_config}/runs/{run}.
-     *
-     * The optional $template argument can be supplied to specify a particular pattern, and must
-     * match one of the templates listed above. If no $template argument is provided, or if the
-     * $template argument does not match one of the templates listed, then parseName will check
-     * each of the supported templates, and return the first match.
-     *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
-     * @return array An associative array from name component IDs to component values.
-     *
-     * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
-     */
-    public static function parseName($formattedName, $template = null)
-    {
-        $templateMap = self::getPathTemplateMap();
-
-        if ($template) {
-            if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
-            }
-
-            return $templateMap[$template]->match($formattedName);
-        }
-
-        foreach ($templateMap as $templateName => $pathTemplate) {
-            try {
-                return $pathTemplate->match($formattedName);
-            } catch (ValidationException $ex) {
-                // Swallow the exception to continue trying other path templates
-            }
-        }
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -508,7 +201,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->locationDataSourceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE]');
+     *     $formattedName = $dataTransferServiceClient->projectDataSourceName('[PROJECT]', '[DATA_SOURCE]');
      *     $response = $dataTransferServiceClient->getDataSource($formattedName);
      * } finally {
      *     $dataTransferServiceClient->close();
@@ -553,7 +246,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $dataTransferServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $dataTransferServiceClient->listDataSources($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -624,7 +317,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $dataTransferServiceClient->projectName('[PROJECT]');
      *     $transferConfig = new TransferConfig();
      *     $response = $dataTransferServiceClient->createTransferConfig($formattedParent, $transferConfig);
      * } finally {
@@ -761,7 +454,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->locationTransferConfigName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]');
+     *     $formattedName = $dataTransferServiceClient->projectTransferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
      *     $dataTransferServiceClient->deleteTransferConfig($formattedName);
      * } finally {
      *     $dataTransferServiceClient->close();
@@ -803,7 +496,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->locationTransferConfigName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]');
+     *     $formattedName = $dataTransferServiceClient->projectTransferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
      *     $response = $dataTransferServiceClient->getTransferConfig($formattedName);
      * } finally {
      *     $dataTransferServiceClient->close();
@@ -847,7 +540,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $dataTransferServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -926,7 +619,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->locationTransferConfigName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]');
+     *     $formattedParent = $dataTransferServiceClient->projectTransferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
      *     $startTime = new Timestamp();
      *     $endTime = new Timestamp();
      *     $response = $dataTransferServiceClient->scheduleTransferRuns($formattedParent, $startTime, $endTime);
@@ -978,7 +671,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->locationRunName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]', '[RUN]');
+     *     $formattedName = $dataTransferServiceClient->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
      *     $response = $dataTransferServiceClient->getTransferRun($formattedName);
      * } finally {
      *     $dataTransferServiceClient->close();
@@ -1022,7 +715,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->locationRunName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]', '[RUN]');
+     *     $formattedName = $dataTransferServiceClient->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
      *     $dataTransferServiceClient->deleteTransferRun($formattedName);
      * } finally {
      *     $dataTransferServiceClient->close();
@@ -1064,7 +757,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->locationTransferConfigName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]');
+     *     $formattedParent = $dataTransferServiceClient->projectTransferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
      *     // Iterate through all elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferRuns($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -1148,7 +841,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->locationRunName('[PROJECT]', '[LOCATION]', '[TRANSFER_CONFIG]', '[RUN]');
+     *     $formattedParent = $dataTransferServiceClient->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
      *     // Iterate through all elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferLogs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -1231,7 +924,7 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->locationDataSourceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE]');
+     *     $formattedName = $dataTransferServiceClient->projectDataSourceName('[PROJECT]', '[DATA_SOURCE]');
      *     $response = $dataTransferServiceClient->checkValidCreds($formattedName);
      * } finally {
      *     $dataTransferServiceClient->close();
