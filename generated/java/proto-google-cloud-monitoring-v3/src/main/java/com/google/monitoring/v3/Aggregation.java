@@ -7,8 +7,9 @@ package com.google.monitoring.v3;
  * <pre>
  * Describes how to combine multiple time series to provide different views of
  * the data.  Aggregation consists of an alignment step on individual time
- * series (`per_series_aligner`) followed by an optional reduction of the data
- * across different time series (`cross_series_reducer`).  For more details, see
+ * series (`alignment_period` and `per_series_aligner`) followed by an optional
+ * reduction step of the data across the aligned time series
+ * (`cross_series_reducer` and `group_by_fields`).  For more details, see
  * [Aggregation](/monitoring/api/learn_more#aggregation).
  * </pre>
  *
@@ -145,6 +146,8 @@ private static final long serialVersionUID = 0L;
      * delta metric to a delta metric requires that the alignment
      * period be increased. The value type of the result is the same
      * as the value type of the input.
+     * One can think of this aligner as a rate but without time units; that
+     * is, the output is conceptually (second_point - first_point).
      * </pre>
      *
      * <code>ALIGN_DELTA = 1;</code>
@@ -156,6 +159,12 @@ private static final long serialVersionUID = 0L;
      * cumulative metrics and delta metrics with numeric values. The output is a
      * gauge metric with value type
      * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * One can think of this aligner as conceptually providing the slope of
+     * the line that passes through the value at the start and end of the
+     * window. In other words, this is conceptually ((y1 - y0)/(t1 - t0)),
+     * and the output unit is one that has a "/time" dimension.
+     * If, by rate, you are looking for percentage change, see the
+     * `ALIGN_PERCENT_CHANGE` aligner option.
      * </pre>
      *
      * <code>ALIGN_RATE = 2;</code>
@@ -270,6 +279,18 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Align time series via aggregation. The resulting data point in
+     * the alignment period is the count of False-valued data points in the
+     * period. This alignment is valid for gauge metrics with
+     * Boolean values. The value type of the output is
+     * [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * </pre>
+     *
+     * <code>ALIGN_COUNT_FALSE = 24;</code>
+     */
+    ALIGN_COUNT_FALSE(24),
+    /**
+     * <pre>
+     * Align time series via aggregation. The resulting data point in
      * the alignment period is the fraction of True-valued data points in the
      * period. This alignment is valid for gauge metrics with Boolean values.
      * The output value is in the range [0, 1] and has value type
@@ -327,6 +348,28 @@ private static final long serialVersionUID = 0L;
      * <code>ALIGN_PERCENTILE_05 = 21;</code>
      */
     ALIGN_PERCENTILE_05(21),
+    /**
+     * <pre>
+     * Align and convert to a percentage change. This alignment is valid for
+     * gauge and delta metrics with numeric values. This alignment conceptually
+     * computes the equivalent of "((current - previous)/previous)*100"
+     * where previous value is determined based on the alignmentPeriod.
+     * In the event that previous is 0 the calculated value is infinity with the
+     * exception that if both (current - previous) and previous are 0 the
+     * calculated value is 0.
+     * A 10 minute moving mean is computed at each point of the time window
+     * prior to the above calculation to smooth the metric and prevent false
+     * positives from very short lived spikes.
+     * Only applicable for data that is &gt;= 0. Any values &lt; 0 are treated as
+     * no data. While delta metrics are accepted by this alignment special care
+     * should be taken that the values for the metric will always be positive.
+     * The output is a gauge metric with value type
+     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * </pre>
+     *
+     * <code>ALIGN_PERCENT_CHANGE = 23;</code>
+     */
+    ALIGN_PERCENT_CHANGE(23),
     UNRECOGNIZED(-1),
     ;
 
@@ -347,6 +390,8 @@ private static final long serialVersionUID = 0L;
      * delta metric to a delta metric requires that the alignment
      * period be increased. The value type of the result is the same
      * as the value type of the input.
+     * One can think of this aligner as a rate but without time units; that
+     * is, the output is conceptually (second_point - first_point).
      * </pre>
      *
      * <code>ALIGN_DELTA = 1;</code>
@@ -358,6 +403,12 @@ private static final long serialVersionUID = 0L;
      * cumulative metrics and delta metrics with numeric values. The output is a
      * gauge metric with value type
      * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * One can think of this aligner as conceptually providing the slope of
+     * the line that passes through the value at the start and end of the
+     * window. In other words, this is conceptually ((y1 - y0)/(t1 - t0)),
+     * and the output unit is one that has a "/time" dimension.
+     * If, by rate, you are looking for percentage change, see the
+     * `ALIGN_PERCENT_CHANGE` aligner option.
      * </pre>
      *
      * <code>ALIGN_RATE = 2;</code>
@@ -472,6 +523,18 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Align time series via aggregation. The resulting data point in
+     * the alignment period is the count of False-valued data points in the
+     * period. This alignment is valid for gauge metrics with
+     * Boolean values. The value type of the output is
+     * [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * </pre>
+     *
+     * <code>ALIGN_COUNT_FALSE = 24;</code>
+     */
+    public static final int ALIGN_COUNT_FALSE_VALUE = 24;
+    /**
+     * <pre>
+     * Align time series via aggregation. The resulting data point in
      * the alignment period is the fraction of True-valued data points in the
      * period. This alignment is valid for gauge metrics with Boolean values.
      * The output value is in the range [0, 1] and has value type
@@ -529,6 +592,28 @@ private static final long serialVersionUID = 0L;
      * <code>ALIGN_PERCENTILE_05 = 21;</code>
      */
     public static final int ALIGN_PERCENTILE_05_VALUE = 21;
+    /**
+     * <pre>
+     * Align and convert to a percentage change. This alignment is valid for
+     * gauge and delta metrics with numeric values. This alignment conceptually
+     * computes the equivalent of "((current - previous)/previous)*100"
+     * where previous value is determined based on the alignmentPeriod.
+     * In the event that previous is 0 the calculated value is infinity with the
+     * exception that if both (current - previous) and previous are 0 the
+     * calculated value is 0.
+     * A 10 minute moving mean is computed at each point of the time window
+     * prior to the above calculation to smooth the metric and prevent false
+     * positives from very short lived spikes.
+     * Only applicable for data that is &gt;= 0. Any values &lt; 0 are treated as
+     * no data. While delta metrics are accepted by this alignment special care
+     * should be taken that the values for the metric will always be positive.
+     * The output is a gauge metric with value type
+     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * </pre>
+     *
+     * <code>ALIGN_PERCENT_CHANGE = 23;</code>
+     */
+    public static final int ALIGN_PERCENT_CHANGE_VALUE = 23;
 
 
     public final int getNumber() {
@@ -561,11 +646,13 @@ private static final long serialVersionUID = 0L;
         case 14: return ALIGN_SUM;
         case 15: return ALIGN_STDDEV;
         case 16: return ALIGN_COUNT_TRUE;
+        case 24: return ALIGN_COUNT_FALSE;
         case 17: return ALIGN_FRACTION_TRUE;
         case 18: return ALIGN_PERCENTILE_99;
         case 19: return ALIGN_PERCENTILE_95;
         case 20: return ALIGN_PERCENTILE_50;
         case 21: return ALIGN_PERCENTILE_05;
+        case 23: return ALIGN_PERCENT_CHANGE;
         default: return null;
       }
     }
@@ -717,6 +804,17 @@ private static final long serialVersionUID = 0L;
     REDUCE_COUNT_TRUE(7),
     /**
      * <pre>
+     * Reduce by computing the count of False-valued data points across time
+     * series for each alignment period. This reducer is valid for delta
+     * and gauge metrics of Boolean value type. The value type of
+     * the output is [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * </pre>
+     *
+     * <code>REDUCE_COUNT_FALSE = 15;</code>
+     */
+    REDUCE_COUNT_FALSE(15),
+    /**
+     * <pre>
      * Reduce by computing the fraction of True-valued data points across time
      * series for each alignment period. This reducer is valid for delta
      * and gauge metrics of Boolean value type. The output value is in the
@@ -863,6 +961,17 @@ private static final long serialVersionUID = 0L;
     public static final int REDUCE_COUNT_TRUE_VALUE = 7;
     /**
      * <pre>
+     * Reduce by computing the count of False-valued data points across time
+     * series for each alignment period. This reducer is valid for delta
+     * and gauge metrics of Boolean value type. The value type of
+     * the output is [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * </pre>
+     *
+     * <code>REDUCE_COUNT_FALSE = 15;</code>
+     */
+    public static final int REDUCE_COUNT_FALSE_VALUE = 15;
+    /**
+     * <pre>
      * Reduce by computing the fraction of True-valued data points across time
      * series for each alignment period. This reducer is valid for delta
      * and gauge metrics of Boolean value type. The output value is in the
@@ -945,6 +1054,7 @@ private static final long serialVersionUID = 0L;
         case 5: return REDUCE_STDDEV;
         case 6: return REDUCE_COUNT;
         case 7: return REDUCE_COUNT_TRUE;
+        case 15: return REDUCE_COUNT_FALSE;
         case 8: return REDUCE_FRACTION_TRUE;
         case 9: return REDUCE_PERCENTILE_99;
         case 10: return REDUCE_PERCENTILE_95;
@@ -1435,8 +1545,9 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Describes how to combine multiple time series to provide different views of
    * the data.  Aggregation consists of an alignment step on individual time
-   * series (`per_series_aligner`) followed by an optional reduction of the data
-   * across different time series (`cross_series_reducer`).  For more details, see
+   * series (`alignment_period` and `per_series_aligner`) followed by an optional
+   * reduction step of the data across the aligned time series
+   * (`cross_series_reducer` and `group_by_fields`).  For more details, see
    * [Aggregation](/monitoring/api/learn_more#aggregation).
    * </pre>
    *
