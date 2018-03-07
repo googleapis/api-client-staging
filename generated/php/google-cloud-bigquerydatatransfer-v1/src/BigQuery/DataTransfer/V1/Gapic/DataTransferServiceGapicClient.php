@@ -33,8 +33,10 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\ApiCore\ValidationException;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse;
@@ -87,6 +89,11 @@ use Grpc\ChannelCredentials;
  * }
  * ```
  *
+ * Many parameters require resource names to be formatted in a particular way. To assist
+ * with these names, this class includes a format method for each type of name, and additionally
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
+ *
  * @experimental
  */
 class DataTransferServiceGapicClient
@@ -118,6 +125,12 @@ class DataTransferServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
+    private static $projectDataSourceNameTemplate;
+    private static $projectNameTemplate;
+    private static $projectTransferConfigNameTemplate;
+    private static $projectRunNameTemplate;
+    private static $pathTemplateMap;
+
     private static function getClientDefaults()
     {
         return [
@@ -132,6 +145,172 @@ class DataTransferServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/data_transfer_service_descriptor_config.php',
             'versionFile' => __DIR__.'/../../VERSION',
         ];
+    }
+
+    private static function getProjectDataSourceNameTemplate()
+    {
+        if (self::$projectDataSourceNameTemplate == null) {
+            self::$projectDataSourceNameTemplate = new PathTemplate('projects/{project}/dataSources/{data_source}');
+        }
+
+        return self::$projectDataSourceNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
+    private static function getProjectTransferConfigNameTemplate()
+    {
+        if (self::$projectTransferConfigNameTemplate == null) {
+            self::$projectTransferConfigNameTemplate = new PathTemplate('projects/{project}/transferConfigs/{transfer_config}');
+        }
+
+        return self::$projectTransferConfigNameTemplate;
+    }
+
+    private static function getProjectRunNameTemplate()
+    {
+        if (self::$projectRunNameTemplate == null) {
+            self::$projectRunNameTemplate = new PathTemplate('projects/{project}/transferConfigs/{transfer_config}/runs/{run}');
+        }
+
+        return self::$projectRunNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'projectDataSource' => self::getProjectDataSourceNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
+                'projectTransferConfig' => self::getProjectTransferConfigNameTemplate(),
+                'projectRun' => self::getProjectRunNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_data_source resource.
+     *
+     * @param string $project
+     * @param string $dataSource
+     *
+     * @return string The formatted project_data_source resource.
+     * @experimental
+     */
+    public static function projectDataSourceName($project, $dataSource)
+    {
+        return self::getProjectDataSourceNameTemplate()->render([
+            'project' => $project,
+            'data_source' => $dataSource,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_transfer_config resource.
+     *
+     * @param string $project
+     * @param string $transferConfig
+     *
+     * @return string The formatted project_transfer_config resource.
+     * @experimental
+     */
+    public static function projectTransferConfigName($project, $transferConfig)
+    {
+        return self::getProjectTransferConfigNameTemplate()->render([
+            'project' => $project,
+            'transfer_config' => $transferConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_run resource.
+     *
+     * @param string $project
+     * @param string $transferConfig
+     * @param string $run
+     *
+     * @return string The formatted project_run resource.
+     * @experimental
+     */
+    public static function projectRunName($project, $transferConfig, $run)
+    {
+        return self::getProjectRunNameTemplate()->render([
+            'project' => $project,
+            'transfer_config' => $transferConfig,
+            'run' => $run,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - projectDataSource: projects/{project}/dataSources/{data_source}
+     * - project: projects/{project}
+     * - projectTransferConfig: projects/{project}/transferConfigs/{transfer_config}
+     * - projectRun: projects/{project}/transferConfigs/{transfer_config}/runs/{run}.
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
