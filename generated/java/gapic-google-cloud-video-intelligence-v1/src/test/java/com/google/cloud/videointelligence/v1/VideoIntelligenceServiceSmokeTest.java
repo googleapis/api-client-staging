@@ -15,15 +15,17 @@
  */
 package com.google.cloud.videointelligence.v1;
 
+import com.google.common.base.Preconditions;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 @javax.annotation.Generated("by GAPIC")
 public class VideoIntelligenceServiceSmokeTest {
+  private static final String PROJECT_ENV_NAME = "GOOGLE_CLOUD_PROJECT";
+  private static final String LEGACY_PROJECT_ENV_NAME = "GCLOUD_PROJECT";
+
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
@@ -43,8 +45,16 @@ public class VideoIntelligenceServiceSmokeTest {
       List<Feature> features = Arrays.asList(featuresElement);
 
       AnnotateVideoResponse response = client.annotateVideoAsync(inputUri, features).get();
-      System.out.println(
-          ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }
+  }
+
+  private static String getProjectId() {
+    String projectId = System.getProperty(PROJECT_ENV_NAME, System.getenv(PROJECT_ENV_NAME));
+    if (projectId == null) {
+      projectId =
+          System.getProperty(LEGACY_PROJECT_ENV_NAME, System.getenv(LEGACY_PROJECT_ENV_NAME));
+    }
+    Preconditions.checkArgument(projectId != null, "A project ID is required.");
+    return projectId;
   }
 }

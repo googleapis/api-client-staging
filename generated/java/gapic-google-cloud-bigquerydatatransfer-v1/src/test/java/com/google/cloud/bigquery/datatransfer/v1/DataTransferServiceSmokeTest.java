@@ -17,36 +17,19 @@ package com.google.cloud.bigquery.datatransfer.v1;
 
 import static com.google.cloud.bigquery.datatransfer.v1.DataTransferServiceClient.ListDataSourcesPagedResponse;
 
+import com.google.common.base.Preconditions;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 @javax.annotation.Generated("by GAPIC")
 public class DataTransferServiceSmokeTest {
+  private static final String PROJECT_ENV_NAME = "GOOGLE_CLOUD_PROJECT";
+  private static final String LEGACY_PROJECT_ENV_NAME = "GCLOUD_PROJECT";
+
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
-      Options options = new Options();
-      options.addOption("h", "help", false, "show usage");
-      options.addOption(
-          Option.builder()
-              .longOpt("project_id")
-              .desc("Project id")
-              .hasArg()
-              .argName("PROJECT-ID")
-              .required(true)
-              .build());
-      CommandLine cl = (new DefaultParser()).parse(options, args);
-      if (cl.hasOption("help")) {
-        HelpFormatter formater = new HelpFormatter();
-        formater.printHelp("DataTransferServiceSmokeTest", options);
-      }
-      executeNoCatch(cl.getOptionValue("project_id"));
+      executeNoCatch(getProjectId());
       System.out.println("OK");
     } catch (Exception e) {
       System.err.println("Failed with exception:");
@@ -60,7 +43,16 @@ public class DataTransferServiceSmokeTest {
       ParentName parent = ProjectName.of(projectId);
 
       ListDataSourcesPagedResponse pagedResponse = client.listDataSources(parent);
-      System.out.println(ReflectionToStringBuilder.toString(pagedResponse));
     }
+  }
+
+  private static String getProjectId() {
+    String projectId = System.getProperty(PROJECT_ENV_NAME, System.getenv(PROJECT_ENV_NAME));
+    if (projectId == null) {
+      projectId =
+          System.getProperty(LEGACY_PROJECT_ENV_NAME, System.getenv(LEGACY_PROJECT_ENV_NAME));
+    }
+    Preconditions.checkArgument(projectId != null, "A project ID is required.");
+    return projectId;
   }
 }

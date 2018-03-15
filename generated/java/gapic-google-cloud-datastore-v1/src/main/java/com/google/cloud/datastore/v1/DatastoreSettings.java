@@ -64,7 +64,7 @@ import javax.annotation.Generated;
  * <code>
  * DatastoreSettings.Builder datastoreSettingsBuilder =
  *     DatastoreSettings.newBuilder();
- * datastoreSettingsBuilder.lookupSettings().getRetrySettingsBuilder()
+ * datastoreSettingsBuilder.lookupSettings().getRetrySettings().toBuilder()
  *     .setTotalTimeout(Duration.ofSeconds(30));
  * DatastoreSettings datastoreSettings = datastoreSettingsBuilder.build();
  * </code>

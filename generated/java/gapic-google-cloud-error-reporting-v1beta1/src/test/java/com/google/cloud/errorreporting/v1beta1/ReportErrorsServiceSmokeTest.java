@@ -15,6 +15,7 @@
  */
 package com.google.cloud.errorreporting.v1beta1;
 
+import com.google.common.base.Preconditions;
 import com.google.devtools.clouderrorreporting.v1beta1.ErrorContext;
 import com.google.devtools.clouderrorreporting.v1beta1.ProjectName;
 import com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse;
@@ -23,35 +24,16 @@ import com.google.devtools.clouderrorreporting.v1beta1.ServiceContext;
 import com.google.devtools.clouderrorreporting.v1beta1.SourceLocation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 @javax.annotation.Generated("by GAPIC")
 public class ReportErrorsServiceSmokeTest {
+  private static final String PROJECT_ENV_NAME = "GOOGLE_CLOUD_PROJECT";
+  private static final String LEGACY_PROJECT_ENV_NAME = "GCLOUD_PROJECT";
+
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
-      Options options = new Options();
-      options.addOption("h", "help", false, "show usage");
-      options.addOption(
-          Option.builder()
-              .longOpt("project_id")
-              .desc("Project id")
-              .hasArg()
-              .argName("PROJECT-ID")
-              .required(true)
-              .build());
-      CommandLine cl = (new DefaultParser()).parse(options, args);
-      if (cl.hasOption("help")) {
-        HelpFormatter formater = new HelpFormatter();
-        formater.printHelp("ReportErrorsServiceSmokeTest", options);
-      }
-      executeNoCatch(cl.getOptionValue("project_id"));
+      executeNoCatch(getProjectId());
       System.out.println("OK");
     } catch (Exception e) {
       System.err.println("Failed with exception:");
@@ -84,8 +66,16 @@ public class ReportErrorsServiceSmokeTest {
               .build();
 
       ReportErrorEventResponse response = client.reportErrorEvent(projectName, event);
-      System.out.println(
-          ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }
+  }
+
+  private static String getProjectId() {
+    String projectId = System.getProperty(PROJECT_ENV_NAME, System.getenv(PROJECT_ENV_NAME));
+    if (projectId == null) {
+      projectId =
+          System.getProperty(LEGACY_PROJECT_ENV_NAME, System.getenv(LEGACY_PROJECT_ENV_NAME));
+    }
+    Preconditions.checkArgument(projectId != null, "A project ID is required.");
+    return projectId;
   }
 }

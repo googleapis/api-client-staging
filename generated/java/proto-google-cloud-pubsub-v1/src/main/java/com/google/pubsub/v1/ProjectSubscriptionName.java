@@ -25,7 +25,7 @@ import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class ProjectSubscriptionName implements ResourceName {
+public class ProjectSubscriptionName extends SubscriptionName {
 
   private static final PathTemplate PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/subscriptions/{subscription}");
