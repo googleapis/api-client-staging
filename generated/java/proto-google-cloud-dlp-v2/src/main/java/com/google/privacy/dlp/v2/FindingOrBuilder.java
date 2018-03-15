@@ -130,7 +130,9 @@ public interface FindingOrBuilder extends
 
   /**
    * <pre>
-   * InfoType-dependent details parsed from quote.
+   * Contains data parsed from quotes. Only populated if include_quote was set
+   * to true and a supported infoType was requested. Currently supported
+   * infoTypes: DATE, DATE_OF_BIRTH and TIME.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -138,7 +140,9 @@ public interface FindingOrBuilder extends
   boolean hasQuoteInfo();
   /**
    * <pre>
-   * InfoType-dependent details parsed from quote.
+   * Contains data parsed from quotes. Only populated if include_quote was set
+   * to true and a supported infoType was requested. Currently supported
+   * infoTypes: DATE, DATE_OF_BIRTH and TIME.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -146,7 +150,9 @@ public interface FindingOrBuilder extends
   com.google.privacy.dlp.v2.QuoteInfo getQuoteInfo();
   /**
    * <pre>
-   * InfoType-dependent details parsed from quote.
+   * Contains data parsed from quotes. Only populated if include_quote was set
+   * to true and a supported infoType was requested. Currently supported
+   * infoTypes: DATE, DATE_OF_BIRTH and TIME.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>

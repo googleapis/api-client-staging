@@ -16,6 +16,7 @@
 package com.google.cloud.logging.v2;
 
 import com.google.api.MonitoredResource;
+import com.google.common.base.Preconditions;
 import com.google.logging.v2.LogEntry;
 import com.google.logging.v2.LogName;
 import com.google.logging.v2.ProjectLogName;
@@ -26,35 +27,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 @javax.annotation.Generated("by GAPIC")
 public class LoggingSmokeTest {
+  private static final String PROJECT_ENV_NAME = "GOOGLE_CLOUD_PROJECT";
+  private static final String LEGACY_PROJECT_ENV_NAME = "GCLOUD_PROJECT";
+
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
-      Options options = new Options();
-      options.addOption("h", "help", false, "show usage");
-      options.addOption(
-          Option.builder()
-              .longOpt("project_id")
-              .desc("Project id")
-              .hasArg()
-              .argName("PROJECT-ID")
-              .required(true)
-              .build());
-      CommandLine cl = (new DefaultParser()).parse(options, args);
-      if (cl.hasOption("help")) {
-        HelpFormatter formater = new HelpFormatter();
-        formater.printHelp("LoggingSmokeTest", options);
-      }
-      executeNoCatch(cl.getOptionValue("project_id"));
+      executeNoCatch(getProjectId());
       System.out.println("OK");
     } catch (Exception e) {
       System.err.println("Failed with exception:");
@@ -71,8 +53,16 @@ public class LoggingSmokeTest {
       List<LogEntry> entries = new ArrayList<>();
 
       WriteLogEntriesResponse response = client.writeLogEntries(logName, resource, labels, entries);
-      System.out.println(
-          ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }
+  }
+
+  private static String getProjectId() {
+    String projectId = System.getProperty(PROJECT_ENV_NAME, System.getenv(PROJECT_ENV_NAME));
+    if (projectId == null) {
+      projectId =
+          System.getProperty(LEGACY_PROJECT_ENV_NAME, System.getenv(LEGACY_PROJECT_ENV_NAME));
+    }
+    Preconditions.checkArgument(projectId != null, "A project ID is required.");
+    return projectId;
   }
 }

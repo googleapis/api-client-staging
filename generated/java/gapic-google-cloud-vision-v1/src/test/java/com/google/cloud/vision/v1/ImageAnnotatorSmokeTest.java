@@ -16,15 +16,17 @@
 package com.google.cloud.vision.v1;
 
 import com.google.cloud.vision.v1.Feature.Type;
+import com.google.common.base.Preconditions;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 @javax.annotation.Generated("by GAPIC")
 public class ImageAnnotatorSmokeTest {
+  private static final String PROJECT_ENV_NAME = "GOOGLE_CLOUD_PROJECT";
+  private static final String LEGACY_PROJECT_ENV_NAME = "GCLOUD_PROJECT";
+
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
@@ -50,8 +52,16 @@ public class ImageAnnotatorSmokeTest {
       List<AnnotateImageRequest> requests = Arrays.asList(requestsElement);
 
       BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
-      System.out.println(
-          ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }
+  }
+
+  private static String getProjectId() {
+    String projectId = System.getProperty(PROJECT_ENV_NAME, System.getenv(PROJECT_ENV_NAME));
+    if (projectId == null) {
+      projectId =
+          System.getProperty(LEGACY_PROJECT_ENV_NAME, System.getenv(LEGACY_PROJECT_ENV_NAME));
+    }
+    Preconditions.checkArgument(projectId != null, "A project ID is required.");
+    return projectId;
   }
 }

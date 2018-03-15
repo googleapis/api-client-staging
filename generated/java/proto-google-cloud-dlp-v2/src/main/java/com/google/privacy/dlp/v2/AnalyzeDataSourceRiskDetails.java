@@ -1794,6 +1794,15 @@ private static final long serialVersionUID = 0L;
        */
       com.google.privacy.dlp.v2.ValueFrequencyOrBuilder getBucketValuesOrBuilder(
           int index);
+
+      /**
+       * <pre>
+       * Total number of distinct values in this bucket.
+       * </pre>
+       *
+       * <code>int64 bucket_value_count = 5;</code>
+       */
+      long getBucketValueCount();
     }
     /**
      * Protobuf type {@code google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket}
@@ -1812,6 +1821,7 @@ private static final long serialVersionUID = 0L;
         valueFrequencyUpperBound_ = 0L;
         bucketSize_ = 0L;
         bucketValues_ = java.util.Collections.emptyList();
+        bucketValueCount_ = 0L;
       }
 
       @java.lang.Override
@@ -1864,6 +1874,11 @@ private static final long serialVersionUID = 0L;
                 }
                 bucketValues_.add(
                     input.readMessage(com.google.privacy.dlp.v2.ValueFrequency.parser(), extensionRegistry));
+                break;
+              }
+              case 40: {
+
+                bucketValueCount_ = input.readInt64();
                 break;
               }
             }
@@ -1993,6 +2008,19 @@ private static final long serialVersionUID = 0L;
         return bucketValues_.get(index);
       }
 
+      public static final int BUCKET_VALUE_COUNT_FIELD_NUMBER = 5;
+      private long bucketValueCount_;
+      /**
+       * <pre>
+       * Total number of distinct values in this bucket.
+       * </pre>
+       *
+       * <code>int64 bucket_value_count = 5;</code>
+       */
+      public long getBucketValueCount() {
+        return bucketValueCount_;
+      }
+
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -2016,6 +2044,9 @@ private static final long serialVersionUID = 0L;
         }
         for (int i = 0; i < bucketValues_.size(); i++) {
           output.writeMessage(4, bucketValues_.get(i));
+        }
+        if (bucketValueCount_ != 0L) {
+          output.writeInt64(5, bucketValueCount_);
         }
         unknownFields.writeTo(output);
       }
@@ -2041,6 +2072,10 @@ private static final long serialVersionUID = 0L;
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(4, bucketValues_.get(i));
         }
+        if (bucketValueCount_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(5, bucketValueCount_);
+        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -2065,6 +2100,8 @@ private static final long serialVersionUID = 0L;
             == other.getBucketSize());
         result = result && getBucketValuesList()
             .equals(other.getBucketValuesList());
+        result = result && (getBucketValueCount()
+            == other.getBucketValueCount());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -2089,6 +2126,9 @@ private static final long serialVersionUID = 0L;
           hash = (37 * hash) + BUCKET_VALUES_FIELD_NUMBER;
           hash = (53 * hash) + getBucketValuesList().hashCode();
         }
+        hash = (37 * hash) + BUCKET_VALUE_COUNT_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getBucketValueCount());
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -2231,6 +2271,8 @@ private static final long serialVersionUID = 0L;
           } else {
             bucketValuesBuilder_.clear();
           }
+          bucketValueCount_ = 0L;
+
           return this;
         }
 
@@ -2267,6 +2309,7 @@ private static final long serialVersionUID = 0L;
           } else {
             result.bucketValues_ = bucketValuesBuilder_.build();
           }
+          result.bucketValueCount_ = bucketValueCount_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -2343,6 +2386,9 @@ private static final long serialVersionUID = 0L;
                 bucketValuesBuilder_.addAllMessages(other.bucketValues_);
               }
             }
+          }
+          if (other.getBucketValueCount() != 0L) {
+            setBucketValueCount(other.getBucketValueCount());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -2814,6 +2860,44 @@ private static final long serialVersionUID = 0L;
             bucketValues_ = null;
           }
           return bucketValuesBuilder_;
+        }
+
+        private long bucketValueCount_ ;
+        /**
+         * <pre>
+         * Total number of distinct values in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public long getBucketValueCount() {
+          return bucketValueCount_;
+        }
+        /**
+         * <pre>
+         * Total number of distinct values in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public Builder setBucketValueCount(long value) {
+          
+          bucketValueCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         * Total number of distinct values in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public Builder clearBucketValueCount() {
+          
+          bucketValueCount_ = 0L;
+          onChanged();
+          return this;
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4839,6 +4923,15 @@ private static final long serialVersionUID = 0L;
        */
       com.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityEquivalenceClassOrBuilder getBucketValuesOrBuilder(
           int index);
+
+      /**
+       * <pre>
+       * Total number of distinct equivalence classes in this bucket.
+       * </pre>
+       *
+       * <code>int64 bucket_value_count = 5;</code>
+       */
+      long getBucketValueCount();
     }
     /**
      * Protobuf type {@code google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket}
@@ -4857,6 +4950,7 @@ private static final long serialVersionUID = 0L;
         equivalenceClassSizeUpperBound_ = 0L;
         bucketSize_ = 0L;
         bucketValues_ = java.util.Collections.emptyList();
+        bucketValueCount_ = 0L;
       }
 
       @java.lang.Override
@@ -4909,6 +5003,11 @@ private static final long serialVersionUID = 0L;
                 }
                 bucketValues_.add(
                     input.readMessage(com.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityEquivalenceClass.parser(), extensionRegistry));
+                break;
+              }
+              case 40: {
+
+                bucketValueCount_ = input.readInt64();
                 break;
               }
             }
@@ -5038,6 +5137,19 @@ private static final long serialVersionUID = 0L;
         return bucketValues_.get(index);
       }
 
+      public static final int BUCKET_VALUE_COUNT_FIELD_NUMBER = 5;
+      private long bucketValueCount_;
+      /**
+       * <pre>
+       * Total number of distinct equivalence classes in this bucket.
+       * </pre>
+       *
+       * <code>int64 bucket_value_count = 5;</code>
+       */
+      public long getBucketValueCount() {
+        return bucketValueCount_;
+      }
+
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -5061,6 +5173,9 @@ private static final long serialVersionUID = 0L;
         }
         for (int i = 0; i < bucketValues_.size(); i++) {
           output.writeMessage(4, bucketValues_.get(i));
+        }
+        if (bucketValueCount_ != 0L) {
+          output.writeInt64(5, bucketValueCount_);
         }
         unknownFields.writeTo(output);
       }
@@ -5086,6 +5201,10 @@ private static final long serialVersionUID = 0L;
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(4, bucketValues_.get(i));
         }
+        if (bucketValueCount_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(5, bucketValueCount_);
+        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -5110,6 +5229,8 @@ private static final long serialVersionUID = 0L;
             == other.getBucketSize());
         result = result && getBucketValuesList()
             .equals(other.getBucketValuesList());
+        result = result && (getBucketValueCount()
+            == other.getBucketValueCount());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -5134,6 +5255,9 @@ private static final long serialVersionUID = 0L;
           hash = (37 * hash) + BUCKET_VALUES_FIELD_NUMBER;
           hash = (53 * hash) + getBucketValuesList().hashCode();
         }
+        hash = (37 * hash) + BUCKET_VALUE_COUNT_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getBucketValueCount());
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -5276,6 +5400,8 @@ private static final long serialVersionUID = 0L;
           } else {
             bucketValuesBuilder_.clear();
           }
+          bucketValueCount_ = 0L;
+
           return this;
         }
 
@@ -5312,6 +5438,7 @@ private static final long serialVersionUID = 0L;
           } else {
             result.bucketValues_ = bucketValuesBuilder_.build();
           }
+          result.bucketValueCount_ = bucketValueCount_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -5388,6 +5515,9 @@ private static final long serialVersionUID = 0L;
                 bucketValuesBuilder_.addAllMessages(other.bucketValues_);
               }
             }
+          }
+          if (other.getBucketValueCount() != 0L) {
+            setBucketValueCount(other.getBucketValueCount());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -5859,6 +5989,44 @@ private static final long serialVersionUID = 0L;
             bucketValues_ = null;
           }
           return bucketValuesBuilder_;
+        }
+
+        private long bucketValueCount_ ;
+        /**
+         * <pre>
+         * Total number of distinct equivalence classes in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public long getBucketValueCount() {
+          return bucketValueCount_;
+        }
+        /**
+         * <pre>
+         * Total number of distinct equivalence classes in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public Builder setBucketValueCount(long value) {
+          
+          bucketValueCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         * Total number of distinct equivalence classes in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public Builder clearBucketValueCount() {
+          
+          bucketValueCount_ = 0L;
+          onChanged();
+          return this;
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -8416,6 +8584,15 @@ private static final long serialVersionUID = 0L;
        */
       com.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityEquivalenceClassOrBuilder getBucketValuesOrBuilder(
           int index);
+
+      /**
+       * <pre>
+       * Total number of distinct equivalence classes in this bucket.
+       * </pre>
+       *
+       * <code>int64 bucket_value_count = 5;</code>
+       */
+      long getBucketValueCount();
     }
     /**
      * Protobuf type {@code google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket}
@@ -8434,6 +8611,7 @@ private static final long serialVersionUID = 0L;
         sensitiveValueFrequencyUpperBound_ = 0L;
         bucketSize_ = 0L;
         bucketValues_ = java.util.Collections.emptyList();
+        bucketValueCount_ = 0L;
       }
 
       @java.lang.Override
@@ -8486,6 +8664,11 @@ private static final long serialVersionUID = 0L;
                 }
                 bucketValues_.add(
                     input.readMessage(com.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityEquivalenceClass.parser(), extensionRegistry));
+                break;
+              }
+              case 40: {
+
+                bucketValueCount_ = input.readInt64();
                 break;
               }
             }
@@ -8617,6 +8800,19 @@ private static final long serialVersionUID = 0L;
         return bucketValues_.get(index);
       }
 
+      public static final int BUCKET_VALUE_COUNT_FIELD_NUMBER = 5;
+      private long bucketValueCount_;
+      /**
+       * <pre>
+       * Total number of distinct equivalence classes in this bucket.
+       * </pre>
+       *
+       * <code>int64 bucket_value_count = 5;</code>
+       */
+      public long getBucketValueCount() {
+        return bucketValueCount_;
+      }
+
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -8640,6 +8836,9 @@ private static final long serialVersionUID = 0L;
         }
         for (int i = 0; i < bucketValues_.size(); i++) {
           output.writeMessage(4, bucketValues_.get(i));
+        }
+        if (bucketValueCount_ != 0L) {
+          output.writeInt64(5, bucketValueCount_);
         }
         unknownFields.writeTo(output);
       }
@@ -8665,6 +8864,10 @@ private static final long serialVersionUID = 0L;
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(4, bucketValues_.get(i));
         }
+        if (bucketValueCount_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(5, bucketValueCount_);
+        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -8689,6 +8892,8 @@ private static final long serialVersionUID = 0L;
             == other.getBucketSize());
         result = result && getBucketValuesList()
             .equals(other.getBucketValuesList());
+        result = result && (getBucketValueCount()
+            == other.getBucketValueCount());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -8713,6 +8918,9 @@ private static final long serialVersionUID = 0L;
           hash = (37 * hash) + BUCKET_VALUES_FIELD_NUMBER;
           hash = (53 * hash) + getBucketValuesList().hashCode();
         }
+        hash = (37 * hash) + BUCKET_VALUE_COUNT_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getBucketValueCount());
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -8855,6 +9063,8 @@ private static final long serialVersionUID = 0L;
           } else {
             bucketValuesBuilder_.clear();
           }
+          bucketValueCount_ = 0L;
+
           return this;
         }
 
@@ -8891,6 +9101,7 @@ private static final long serialVersionUID = 0L;
           } else {
             result.bucketValues_ = bucketValuesBuilder_.build();
           }
+          result.bucketValueCount_ = bucketValueCount_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -8967,6 +9178,9 @@ private static final long serialVersionUID = 0L;
                 bucketValuesBuilder_.addAllMessages(other.bucketValues_);
               }
             }
+          }
+          if (other.getBucketValueCount() != 0L) {
+            setBucketValueCount(other.getBucketValueCount());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -9444,6 +9658,44 @@ private static final long serialVersionUID = 0L;
             bucketValues_ = null;
           }
           return bucketValuesBuilder_;
+        }
+
+        private long bucketValueCount_ ;
+        /**
+         * <pre>
+         * Total number of distinct equivalence classes in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public long getBucketValueCount() {
+          return bucketValueCount_;
+        }
+        /**
+         * <pre>
+         * Total number of distinct equivalence classes in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public Builder setBucketValueCount(long value) {
+          
+          bucketValueCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         * Total number of distinct equivalence classes in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 5;</code>
+         */
+        public Builder clearBucketValueCount() {
+          
+          bucketValueCount_ = 0L;
+          onChanged();
+          return this;
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -11444,6 +11696,15 @@ private static final long serialVersionUID = 0L;
        */
       com.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationQuasiIdValuesOrBuilder getBucketValuesOrBuilder(
           int index);
+
+      /**
+       * <pre>
+       * Total number of distinct quasi-identifier tuple values in this bucket.
+       * </pre>
+       *
+       * <code>int64 bucket_value_count = 7;</code>
+       */
+      long getBucketValueCount();
     }
     /**
      * <pre>
@@ -11473,6 +11734,7 @@ private static final long serialVersionUID = 0L;
         maxAnonymity_ = 0L;
         bucketSize_ = 0L;
         bucketValues_ = java.util.Collections.emptyList();
+        bucketValueCount_ = 0L;
       }
 
       @java.lang.Override
@@ -11525,6 +11787,11 @@ private static final long serialVersionUID = 0L;
                 }
                 bucketValues_.add(
                     input.readMessage(com.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationQuasiIdValues.parser(), extensionRegistry));
+                break;
+              }
+              case 56: {
+
+                bucketValueCount_ = input.readInt64();
                 break;
               }
             }
@@ -11654,6 +11921,19 @@ private static final long serialVersionUID = 0L;
         return bucketValues_.get(index);
       }
 
+      public static final int BUCKET_VALUE_COUNT_FIELD_NUMBER = 7;
+      private long bucketValueCount_;
+      /**
+       * <pre>
+       * Total number of distinct quasi-identifier tuple values in this bucket.
+       * </pre>
+       *
+       * <code>int64 bucket_value_count = 7;</code>
+       */
+      public long getBucketValueCount() {
+        return bucketValueCount_;
+      }
+
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -11677,6 +11957,9 @@ private static final long serialVersionUID = 0L;
         }
         for (int i = 0; i < bucketValues_.size(); i++) {
           output.writeMessage(6, bucketValues_.get(i));
+        }
+        if (bucketValueCount_ != 0L) {
+          output.writeInt64(7, bucketValueCount_);
         }
         unknownFields.writeTo(output);
       }
@@ -11702,6 +11985,10 @@ private static final long serialVersionUID = 0L;
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(6, bucketValues_.get(i));
         }
+        if (bucketValueCount_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(7, bucketValueCount_);
+        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -11726,6 +12013,8 @@ private static final long serialVersionUID = 0L;
             == other.getBucketSize());
         result = result && getBucketValuesList()
             .equals(other.getBucketValuesList());
+        result = result && (getBucketValueCount()
+            == other.getBucketValueCount());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -11750,6 +12039,9 @@ private static final long serialVersionUID = 0L;
           hash = (37 * hash) + BUCKET_VALUES_FIELD_NUMBER;
           hash = (53 * hash) + getBucketValuesList().hashCode();
         }
+        hash = (37 * hash) + BUCKET_VALUE_COUNT_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getBucketValueCount());
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -11903,6 +12195,8 @@ private static final long serialVersionUID = 0L;
           } else {
             bucketValuesBuilder_.clear();
           }
+          bucketValueCount_ = 0L;
+
           return this;
         }
 
@@ -11939,6 +12233,7 @@ private static final long serialVersionUID = 0L;
           } else {
             result.bucketValues_ = bucketValuesBuilder_.build();
           }
+          result.bucketValueCount_ = bucketValueCount_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -12015,6 +12310,9 @@ private static final long serialVersionUID = 0L;
                 bucketValuesBuilder_.addAllMessages(other.bucketValues_);
               }
             }
+          }
+          if (other.getBucketValueCount() != 0L) {
+            setBucketValueCount(other.getBucketValueCount());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -12486,6 +12784,44 @@ private static final long serialVersionUID = 0L;
             bucketValues_ = null;
           }
           return bucketValuesBuilder_;
+        }
+
+        private long bucketValueCount_ ;
+        /**
+         * <pre>
+         * Total number of distinct quasi-identifier tuple values in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 7;</code>
+         */
+        public long getBucketValueCount() {
+          return bucketValueCount_;
+        }
+        /**
+         * <pre>
+         * Total number of distinct quasi-identifier tuple values in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 7;</code>
+         */
+        public Builder setBucketValueCount(long value) {
+          
+          bucketValueCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         * Total number of distinct quasi-identifier tuple values in this bucket.
+         * </pre>
+         *
+         * <code>int64 bucket_value_count = 7;</code>
+         */
+        public Builder clearBucketValueCount() {
+          
+          bucketValueCount_ = 0L;
+          onChanged();
+          return this;
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {

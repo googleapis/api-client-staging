@@ -73,7 +73,7 @@ import org.threeten.bp.Duration;
  * <code>
  * DatastoreStubSettings.Builder datastoreSettingsBuilder =
  *     DatastoreStubSettings.newBuilder();
- * datastoreSettingsBuilder.lookupSettings().getRetrySettingsBuilder()
+ * datastoreSettingsBuilder.lookupSettings().getRetrySettings().toBuilder()
  *     .setTotalTimeout(Duration.ofSeconds(30));
  * DatastoreStubSettings datastoreSettings = datastoreSettingsBuilder.build();
  * </code>

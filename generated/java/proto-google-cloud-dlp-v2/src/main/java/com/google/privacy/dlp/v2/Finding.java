@@ -320,7 +320,9 @@ private static final long serialVersionUID = 0L;
   private com.google.privacy.dlp.v2.QuoteInfo quoteInfo_;
   /**
    * <pre>
-   * InfoType-dependent details parsed from quote.
+   * Contains data parsed from quotes. Only populated if include_quote was set
+   * to true and a supported infoType was requested. Currently supported
+   * infoTypes: DATE, DATE_OF_BIRTH and TIME.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -330,7 +332,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * InfoType-dependent details parsed from quote.
+   * Contains data parsed from quotes. Only populated if include_quote was set
+   * to true and a supported infoType was requested. Currently supported
+   * infoTypes: DATE, DATE_OF_BIRTH and TIME.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -340,7 +344,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * InfoType-dependent details parsed from quote.
+   * Contains data parsed from quotes. Only populated if include_quote was set
+   * to true and a supported infoType was requested. Currently supported
+   * infoTypes: DATE, DATE_OF_BIRTH and TIME.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1418,7 +1424,9 @@ private static final long serialVersionUID = 0L;
         com.google.privacy.dlp.v2.QuoteInfo, com.google.privacy.dlp.v2.QuoteInfo.Builder, com.google.privacy.dlp.v2.QuoteInfoOrBuilder> quoteInfoBuilder_;
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1428,7 +1436,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1442,7 +1452,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1462,7 +1474,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1480,7 +1494,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1502,7 +1518,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1520,7 +1538,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1532,7 +1552,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
@@ -1547,7 +1569,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * InfoType-dependent details parsed from quote.
+     * Contains data parsed from quotes. Only populated if include_quote was set
+     * to true and a supported infoType was requested. Currently supported
+     * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      * </pre>
      *
      * <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>

@@ -168,6 +168,9 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Max number of findings that will be returned for each item scanned.
+     * When set within `InspectDataSourceRequest`,
+     * the maximum returned is 1000 regardless if this is set higher.
+     * When set within `InspectContentRequest`, this field is ignored.
      * </pre>
      *
      * <code>int32 max_findings_per_item = 1;</code>
@@ -176,7 +179,9 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * Max total number of findings that will be returned per request/job.
+     * Max number of findings that will be returned per request/job.
+     * When set within `InspectContentRequest`, the maximum returned is 1000
+     * regardless if this is set higher.
      * </pre>
      *
      * <code>int32 max_findings_per_request = 2;</code>
@@ -1102,6 +1107,9 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Max number of findings that will be returned for each item scanned.
+     * When set within `InspectDataSourceRequest`,
+     * the maximum returned is 1000 regardless if this is set higher.
+     * When set within `InspectContentRequest`, this field is ignored.
      * </pre>
      *
      * <code>int32 max_findings_per_item = 1;</code>
@@ -1114,7 +1122,9 @@ private static final long serialVersionUID = 0L;
     private int maxFindingsPerRequest_;
     /**
      * <pre>
-     * Max total number of findings that will be returned per request/job.
+     * Max number of findings that will be returned per request/job.
+     * When set within `InspectContentRequest`, the maximum returned is 1000
+     * regardless if this is set higher.
      * </pre>
      *
      * <code>int32 max_findings_per_request = 2;</code>
@@ -1541,6 +1551,9 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Max number of findings that will be returned for each item scanned.
+       * When set within `InspectDataSourceRequest`,
+       * the maximum returned is 1000 regardless if this is set higher.
+       * When set within `InspectContentRequest`, this field is ignored.
        * </pre>
        *
        * <code>int32 max_findings_per_item = 1;</code>
@@ -1551,6 +1564,9 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Max number of findings that will be returned for each item scanned.
+       * When set within `InspectDataSourceRequest`,
+       * the maximum returned is 1000 regardless if this is set higher.
+       * When set within `InspectContentRequest`, this field is ignored.
        * </pre>
        *
        * <code>int32 max_findings_per_item = 1;</code>
@@ -1564,6 +1580,9 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Max number of findings that will be returned for each item scanned.
+       * When set within `InspectDataSourceRequest`,
+       * the maximum returned is 1000 regardless if this is set higher.
+       * When set within `InspectContentRequest`, this field is ignored.
        * </pre>
        *
        * <code>int32 max_findings_per_item = 1;</code>
@@ -1578,7 +1597,9 @@ private static final long serialVersionUID = 0L;
       private int maxFindingsPerRequest_ ;
       /**
        * <pre>
-       * Max total number of findings that will be returned per request/job.
+       * Max number of findings that will be returned per request/job.
+       * When set within `InspectContentRequest`, the maximum returned is 1000
+       * regardless if this is set higher.
        * </pre>
        *
        * <code>int32 max_findings_per_request = 2;</code>
@@ -1588,7 +1609,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Max total number of findings that will be returned per request/job.
+       * Max number of findings that will be returned per request/job.
+       * When set within `InspectContentRequest`, the maximum returned is 1000
+       * regardless if this is set higher.
        * </pre>
        *
        * <code>int32 max_findings_per_request = 2;</code>
@@ -1601,7 +1624,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Max total number of findings that will be returned per request/job.
+       * Max number of findings that will be returned per request/job.
+       * When set within `InspectContentRequest`, the maximum returned is 1000
+       * regardless if this is set higher.
        * </pre>
        *
        * <code>int32 max_findings_per_request = 2;</code>
