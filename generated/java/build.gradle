@@ -74,20 +74,22 @@ subprojects {
     }
 
     uploadArchives {
-      if (!project.hasProperty('ossrhUsername') || !project.hasProperty('ossrhPassword')) {
-        throw new GradleException("uploadArchives needs ossrhUsername and ossrhPassword "
-            + "to be set. They can be set inside your ~/.gradle/gradle.properties file.")
+      doFirst {
+        if (!project.hasProperty('ossrhUsername') || !project.hasProperty('ossrhPassword')) {
+          throw new GradleException("uploadArchives needs ossrhUsername and ossrhPassword "
+              + "to be set. They can be set inside your ~/.gradle/gradle.properties file.")
+        }
       }
 
       repositories {
         mavenDeployer {
           beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-          repository(url: "file:///usr/local/google/home/vam/_/_/94/") {
+          repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
             authentication(userName: ossrhUsername, password: ossrhPassword)
           }
 
-          snapshotRepository(url: "file:///usr/local/google/home/vam/_/_/94/") {
+          snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
             authentication(userName: ossrhUsername, password: ossrhPassword)
           }
 
