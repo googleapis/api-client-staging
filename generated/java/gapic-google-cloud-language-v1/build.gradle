@@ -17,8 +17,11 @@ repositories {
 }
 
 dependencies {
+  compile 'com.google.api:gax:1.19.0'
+  compile 'com.google.api:gax-grpc:1.19.0'
+  testCompile 'junit:junit:4.12'
+  testCompile 'com.google.api:gax-grpc:1.19.0:testlib'
   compile project(":proto-google-cloud-language-v1")
-  compile libraries.gax, libraries.gaxGrpc
   testCompile project(":grpc-google-cloud-language-v1")
 }
 

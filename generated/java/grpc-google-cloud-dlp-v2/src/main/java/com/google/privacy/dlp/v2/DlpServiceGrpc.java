@@ -17,7 +17,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 
 /**
  * <pre>
- * The DLP API is a service that allows clients
+ * The Cloud Data Loss Prevention (DLP) API is a service that allows clients
  * to detect the presence of Personally Identifiable Information (PII) and other
  * privacy-sensitive data in user-supplied, unstructured data streams, like text
  * blocks or images.
@@ -286,7 +286,7 @@ public final class DlpServiceGrpc {
 
   /**
    * <pre>
-   * The DLP API is a service that allows clients
+   * The Cloud Data Loss Prevention (DLP) API is a service that allows clients
    * to detect the presence of Personally Identifiable Information (PII) and other
    * privacy-sensitive data in user-supplied, unstructured data streams, like text
    * blocks or images.
@@ -335,7 +335,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Re-identify content that has been de-identified.
+     * Re-identifies content that has been de-identified.
      * </pre>
      */
     public void reidentifyContent(com.google.privacy.dlp.v2.ReidentifyContentRequest request,
@@ -396,7 +396,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes inspect templates.
+     * Deletes an inspect template.
      * </pre>
      */
     public void deleteInspectTemplate(com.google.privacy.dlp.v2.DeleteInspectTemplateRequest request,
@@ -406,7 +406,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates an Deidentify template for re-using frequently used configuration
+     * Creates a de-identify template for re-using frequently used configuration
      * for Deidentifying content, images, and storage.
      * </pre>
      */
@@ -417,7 +417,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the inspect template.
+     * Updates the de-identify template.
      * </pre>
      */
     public void updateDeidentifyTemplate(com.google.privacy.dlp.v2.UpdateDeidentifyTemplateRequest request,
@@ -427,7 +427,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets an inspect template.
+     * Gets a de-identify template.
      * </pre>
      */
     public void getDeidentifyTemplate(com.google.privacy.dlp.v2.GetDeidentifyTemplateRequest request,
@@ -437,7 +437,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists inspect templates.
+     * Lists de-identify templates.
      * </pre>
      */
     public void listDeidentifyTemplates(com.google.privacy.dlp.v2.ListDeidentifyTemplatesRequest request,
@@ -447,7 +447,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes inspect templates.
+     * Deletes a de-identify template.
      * </pre>
      */
     public void deleteDeidentifyTemplate(com.google.privacy.dlp.v2.DeleteDeidentifyTemplateRequest request,
@@ -457,8 +457,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
+     * Creates a job trigger to run DLP actions such as scanning storage for
+     * sensitive information on a set schedule.
      * </pre>
      */
     public void createJobTrigger(com.google.privacy.dlp.v2.CreateJobTriggerRequest request,
@@ -508,7 +508,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Create a new job to inspect storage or calculate risk metrics [How-to
+     * Creates a new job to inspect storage or calculate risk metrics [How-to
      * guide](/dlp/docs/compute-risk-analysis).
      * </pre>
      */
@@ -551,7 +551,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Starts asynchronous cancellation on a long-running DlpJob.  The server
+     * Starts asynchronous cancellation on a long-running DlpJob. The server
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
      * </pre>
@@ -744,7 +744,7 @@ public final class DlpServiceGrpc {
 
   /**
    * <pre>
-   * The DLP API is a service that allows clients
+   * The Cloud Data Loss Prevention (DLP) API is a service that allows clients
    * to detect the presence of Personally Identifiable Information (PII) and other
    * privacy-sensitive data in user-supplied, unstructured data streams, like text
    * blocks or images.
@@ -810,7 +810,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Re-identify content that has been de-identified.
+     * Re-identifies content that has been de-identified.
      * </pre>
      */
     public void reidentifyContent(com.google.privacy.dlp.v2.ReidentifyContentRequest request,
@@ -877,7 +877,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes inspect templates.
+     * Deletes an inspect template.
      * </pre>
      */
     public void deleteInspectTemplate(com.google.privacy.dlp.v2.DeleteInspectTemplateRequest request,
@@ -888,7 +888,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates an Deidentify template for re-using frequently used configuration
+     * Creates a de-identify template for re-using frequently used configuration
      * for Deidentifying content, images, and storage.
      * </pre>
      */
@@ -900,7 +900,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the inspect template.
+     * Updates the de-identify template.
      * </pre>
      */
     public void updateDeidentifyTemplate(com.google.privacy.dlp.v2.UpdateDeidentifyTemplateRequest request,
@@ -911,7 +911,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets an inspect template.
+     * Gets a de-identify template.
      * </pre>
      */
     public void getDeidentifyTemplate(com.google.privacy.dlp.v2.GetDeidentifyTemplateRequest request,
@@ -922,7 +922,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists inspect templates.
+     * Lists de-identify templates.
      * </pre>
      */
     public void listDeidentifyTemplates(com.google.privacy.dlp.v2.ListDeidentifyTemplatesRequest request,
@@ -933,7 +933,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes inspect templates.
+     * Deletes a de-identify template.
      * </pre>
      */
     public void deleteDeidentifyTemplate(com.google.privacy.dlp.v2.DeleteDeidentifyTemplateRequest request,
@@ -944,8 +944,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
+     * Creates a job trigger to run DLP actions such as scanning storage for
+     * sensitive information on a set schedule.
      * </pre>
      */
     public void createJobTrigger(com.google.privacy.dlp.v2.CreateJobTriggerRequest request,
@@ -1000,7 +1000,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Create a new job to inspect storage or calculate risk metrics [How-to
+     * Creates a new job to inspect storage or calculate risk metrics [How-to
      * guide](/dlp/docs/compute-risk-analysis).
      * </pre>
      */
@@ -1047,7 +1047,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Starts asynchronous cancellation on a long-running DlpJob.  The server
+     * Starts asynchronous cancellation on a long-running DlpJob. The server
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
      * </pre>
@@ -1061,7 +1061,7 @@ public final class DlpServiceGrpc {
 
   /**
    * <pre>
-   * The DLP API is a service that allows clients
+   * The Cloud Data Loss Prevention (DLP) API is a service that allows clients
    * to detect the presence of Personally Identifiable Information (PII) and other
    * privacy-sensitive data in user-supplied, unstructured data streams, like text
    * blocks or images.
@@ -1124,7 +1124,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Re-identify content that has been de-identified.
+     * Re-identifies content that has been de-identified.
      * </pre>
      */
     public com.google.privacy.dlp.v2.ReidentifyContentResponse reidentifyContent(com.google.privacy.dlp.v2.ReidentifyContentRequest request) {
@@ -1185,7 +1185,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes inspect templates.
+     * Deletes an inspect template.
      * </pre>
      */
     public com.google.protobuf.Empty deleteInspectTemplate(com.google.privacy.dlp.v2.DeleteInspectTemplateRequest request) {
@@ -1195,7 +1195,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates an Deidentify template for re-using frequently used configuration
+     * Creates a de-identify template for re-using frequently used configuration
      * for Deidentifying content, images, and storage.
      * </pre>
      */
@@ -1206,7 +1206,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the inspect template.
+     * Updates the de-identify template.
      * </pre>
      */
     public com.google.privacy.dlp.v2.DeidentifyTemplate updateDeidentifyTemplate(com.google.privacy.dlp.v2.UpdateDeidentifyTemplateRequest request) {
@@ -1216,7 +1216,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets an inspect template.
+     * Gets a de-identify template.
      * </pre>
      */
     public com.google.privacy.dlp.v2.DeidentifyTemplate getDeidentifyTemplate(com.google.privacy.dlp.v2.GetDeidentifyTemplateRequest request) {
@@ -1226,7 +1226,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists inspect templates.
+     * Lists de-identify templates.
      * </pre>
      */
     public com.google.privacy.dlp.v2.ListDeidentifyTemplatesResponse listDeidentifyTemplates(com.google.privacy.dlp.v2.ListDeidentifyTemplatesRequest request) {
@@ -1236,7 +1236,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes inspect templates.
+     * Deletes a de-identify template.
      * </pre>
      */
     public com.google.protobuf.Empty deleteDeidentifyTemplate(com.google.privacy.dlp.v2.DeleteDeidentifyTemplateRequest request) {
@@ -1246,8 +1246,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
+     * Creates a job trigger to run DLP actions such as scanning storage for
+     * sensitive information on a set schedule.
      * </pre>
      */
     public com.google.privacy.dlp.v2.JobTrigger createJobTrigger(com.google.privacy.dlp.v2.CreateJobTriggerRequest request) {
@@ -1297,7 +1297,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Create a new job to inspect storage or calculate risk metrics [How-to
+     * Creates a new job to inspect storage or calculate risk metrics [How-to
      * guide](/dlp/docs/compute-risk-analysis).
      * </pre>
      */
@@ -1340,7 +1340,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Starts asynchronous cancellation on a long-running DlpJob.  The server
+     * Starts asynchronous cancellation on a long-running DlpJob. The server
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
      * </pre>
@@ -1353,7 +1353,7 @@ public final class DlpServiceGrpc {
 
   /**
    * <pre>
-   * The DLP API is a service that allows clients
+   * The Cloud Data Loss Prevention (DLP) API is a service that allows clients
    * to detect the presence of Personally Identifiable Information (PII) and other
    * privacy-sensitive data in user-supplied, unstructured data streams, like text
    * blocks or images.
@@ -1419,7 +1419,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Re-identify content that has been de-identified.
+     * Re-identifies content that has been de-identified.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.ReidentifyContentResponse> reidentifyContent(
@@ -1486,7 +1486,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes inspect templates.
+     * Deletes an inspect template.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteInspectTemplate(
@@ -1497,7 +1497,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates an Deidentify template for re-using frequently used configuration
+     * Creates a de-identify template for re-using frequently used configuration
      * for Deidentifying content, images, and storage.
      * </pre>
      */
@@ -1509,7 +1509,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the inspect template.
+     * Updates the de-identify template.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.DeidentifyTemplate> updateDeidentifyTemplate(
@@ -1520,7 +1520,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets an inspect template.
+     * Gets a de-identify template.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.DeidentifyTemplate> getDeidentifyTemplate(
@@ -1531,7 +1531,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists inspect templates.
+     * Lists de-identify templates.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.ListDeidentifyTemplatesResponse> listDeidentifyTemplates(
@@ -1542,7 +1542,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes inspect templates.
+     * Deletes a de-identify template.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteDeidentifyTemplate(
@@ -1553,8 +1553,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
+     * Creates a job trigger to run DLP actions such as scanning storage for
+     * sensitive information on a set schedule.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.JobTrigger> createJobTrigger(
@@ -1609,7 +1609,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Create a new job to inspect storage or calculate risk metrics [How-to
+     * Creates a new job to inspect storage or calculate risk metrics [How-to
      * guide](/dlp/docs/compute-risk-analysis).
      * </pre>
      */
@@ -1656,7 +1656,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Starts asynchronous cancellation on a long-running DlpJob.  The server
+     * Starts asynchronous cancellation on a long-running DlpJob. The server
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
      * </pre>
