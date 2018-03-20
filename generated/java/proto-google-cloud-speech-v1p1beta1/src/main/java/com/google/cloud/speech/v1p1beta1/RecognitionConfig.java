@@ -29,6 +29,7 @@ private static final long serialVersionUID = 0L;
     speechContexts_ = java.util.Collections.emptyList();
     enableWordTimeOffsets_ = false;
     model_ = "";
+    useEnhanced_ = false;
   }
 
   @java.lang.Override
@@ -100,10 +101,28 @@ private static final long serialVersionUID = 0L;
             enableWordTimeOffsets_ = input.readBool();
             break;
           }
+          case 82: {
+            com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder subBuilder = null;
+            if (googleDataCollectionOptIn_ != null) {
+              subBuilder = googleDataCollectionOptIn_.toBuilder();
+            }
+            googleDataCollectionOptIn_ = input.readMessage(com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(googleDataCollectionOptIn_);
+              googleDataCollectionOptIn_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           case 106: {
             java.lang.String s = input.readStringRequireUtf8();
 
             model_ = s;
+            break;
+          }
+          case 112: {
+
+            useEnhanced_ = input.readBool();
             break;
           }
         }
@@ -137,20 +156,21 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * The encoding of the audio data sent in the request.
    * All encodings support only 1 channel (mono) audio.
-   * If you send a `FLAC` or `WAV` audio file format in the request,
-   * then if you specify an encoding in `AudioEncoding`, it must match the
-   * encoding described in the audio header. If it does not match, then the
-   * request returns an
-   * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error code. You can request
-   * recognition for `WAV` files that contain either `LINEAR16` or `MULAW`
-   * encoded audio.
-   * For audio file formats other than `FLAC` or `WAV`, you must
-   * specify the audio encoding in your `RecognitionConfig`.
    * For best results, the audio source should be captured and transmitted using
    * a lossless encoding (`FLAC` or `LINEAR16`). The accuracy of the speech
-   * recognition can be reduced if lossy codecs, which include the other codecs
-   * listed in this section, are used to capture or transmit the audio,
-   * particularly if background noise is present.
+   * recognition can be reduced if lossy codecs are used to capture or transmit
+   * audio, particularly if background noise is present. Lossy codecs include
+   * `MULAW`, `AMR`, `AMR_WB`, `OGG_OPUS`, and `SPEEX_WITH_HEADER_BYTE`.
+   * The `FLAC` and `WAV` audio file formats include a header that describes the
+   * included audio content. You can request recognition for `WAV` files that
+   * contain either `LINEAR16` or `MULAW` encoded audio.
+   * If you send `FLAC` or `WAV` audio file format in
+   * your request, you do not need to specify an `AudioEncoding`; the audio
+   * encoding format is determined from the file header. If you specify
+   * an `AudioEncoding` when you send  send `FLAC` or `WAV` audio, the
+   * encoding configuration must match the encoding described in the audio
+   * header; otherwise the request returns an
+   * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error code.
    * </pre>
    *
    * Protobuf enum {@code google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding}
@@ -175,7 +195,7 @@ private static final long serialVersionUID = 0L;
     LINEAR16(1),
     /**
      * <pre>
-     * [`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio
+     * `FLAC` (Free Lossless Audio
      * Codec) is the recommended encoding because it is
      * lossless--therefore recognition is not compromised--and
      * requires only about half the bandwidth of `LINEAR16`. `FLAC` stream
@@ -261,7 +281,7 @@ private static final long serialVersionUID = 0L;
     public static final int LINEAR16_VALUE = 1;
     /**
      * <pre>
-     * [`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio
+     * `FLAC` (Free Lossless Audio
      * Codec) is the recommended encoding because it is
      * lossless--therefore recognition is not compromised--and
      * requires only about half the bandwidth of `LINEAR16`. `FLAC` stream
@@ -411,7 +431,9 @@ private static final long serialVersionUID = 0L;
   private int encoding_;
   /**
    * <pre>
-   * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+   * Encoding of audio data sent in all `RecognitionAudio` messages.
+   * This field is optional for `FLAC` and `WAV` audio files and required
+   * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
    * </pre>
    *
    * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -421,7 +443,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+   * Encoding of audio data sent in all `RecognitionAudio` messages.
+   * This field is optional for `FLAC` and `WAV` audio files and required
+   * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
    * </pre>
    *
    * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -435,11 +459,13 @@ private static final long serialVersionUID = 0L;
   private int sampleRateHertz_;
   /**
    * <pre>
-   * *Required* Sample rate in Hertz of the audio data sent in all
+   * Sample rate in Hertz of the audio data sent in all
    * `RecognitionAudio` messages. Valid values are: 8000-48000.
    * 16000 is optimal. For best results, set the sampling rate of the audio
    * source to 16000 Hz. If that's not possible, use the native sample rate of
    * the audio source (instead of re-sampling).
+   * This field is optional for `FLAC` and `WAV` audio files and required
+   * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
    * </pre>
    *
    * <code>int32 sample_rate_hertz = 2;</code>
@@ -611,6 +637,34 @@ private static final long serialVersionUID = 0L;
    * best suited to your domain to get best results. If a model is not
    * explicitly specified, then we auto-select a model based on the parameters
    * in the RecognitionConfig.
+   * &lt;table&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+   *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that originated from a phone call (typically
+   *     recorded at an 8khz sampling rate).&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+   *         speakers. Ideally the audio is recorded at a 16khz or greater
+   *         sampling rate. This is a premium model that costs more than the
+   *         standard rate.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+   *         For example, long-form audio. Ideally the audio is high-fidelity,
+   *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   * &lt;/table&gt;
    * </pre>
    *
    * <code>string model = 13;</code>
@@ -633,6 +687,34 @@ private static final long serialVersionUID = 0L;
    * best suited to your domain to get best results. If a model is not
    * explicitly specified, then we auto-select a model based on the parameters
    * in the RecognitionConfig.
+   * &lt;table&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+   *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that originated from a phone call (typically
+   *     recorded at an 8khz sampling rate).&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+   *         speakers. Ideally the audio is recorded at a 16khz or greater
+   *         sampling rate. This is a premium model that costs more than the
+   *         standard rate.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+   *         For example, long-form audio. Ideally the audio is high-fidelity,
+   *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   * &lt;/table&gt;
    * </pre>
    *
    * <code>string model = 13;</code>
@@ -649,6 +731,70 @@ private static final long serialVersionUID = 0L;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
+  }
+
+  public static final int USE_ENHANCED_FIELD_NUMBER = 14;
+  private boolean useEnhanced_;
+  /**
+   * <pre>
+   * *Optional* Set to true to use an enhanced model for speech recognition.
+   * You must also set the `model` field to a valid, enhanced model. If
+   * `use_enhanced` is set to true and the `model` field is not set, then
+   * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+   * version of the specified model does not exist, then the speech is
+   * recognized using the standard version of the specified model.
+   * Enhanced speech models require that you enable audio logging for
+   * your request. To enable audio logging, set the `loggingConsentState` field
+   * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+   * You must also opt-in to the audio logging alpha using the instructions in
+   * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
+   * to true and you have not enabled audio logging, then you will receive
+   * an error.
+   * </pre>
+   *
+   * <code>bool use_enhanced = 14;</code>
+   */
+  public boolean getUseEnhanced() {
+    return useEnhanced_;
+  }
+
+  public static final int GOOGLE_DATA_COLLECTION_OPT_IN_FIELD_NUMBER = 10;
+  private com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig googleDataCollectionOptIn_;
+  /**
+   * <pre>
+   * *Optional* Contains settings to opt-in to allow Google to
+   * collect and use data from this request to improve Google's products and
+   * services.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+   */
+  public boolean hasGoogleDataCollectionOptIn() {
+    return googleDataCollectionOptIn_ != null;
+  }
+  /**
+   * <pre>
+   * *Optional* Contains settings to opt-in to allow Google to
+   * collect and use data from this request to improve Google's products and
+   * services.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+   */
+  public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig getGoogleDataCollectionOptIn() {
+    return googleDataCollectionOptIn_ == null ? com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.getDefaultInstance() : googleDataCollectionOptIn_;
+  }
+  /**
+   * <pre>
+   * *Optional* Contains settings to opt-in to allow Google to
+   * collect and use data from this request to improve Google's products and
+   * services.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+   */
+  public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder getGoogleDataCollectionOptInOrBuilder() {
+    return getGoogleDataCollectionOptIn();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -684,8 +830,14 @@ private static final long serialVersionUID = 0L;
     if (enableWordTimeOffsets_ != false) {
       output.writeBool(8, enableWordTimeOffsets_);
     }
+    if (googleDataCollectionOptIn_ != null) {
+      output.writeMessage(10, getGoogleDataCollectionOptIn());
+    }
     if (!getModelBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 13, model_);
+    }
+    if (useEnhanced_ != false) {
+      output.writeBool(14, useEnhanced_);
     }
     unknownFields.writeTo(output);
   }
@@ -722,8 +874,16 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(8, enableWordTimeOffsets_);
     }
+    if (googleDataCollectionOptIn_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(10, getGoogleDataCollectionOptIn());
+    }
     if (!getModelBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, model_);
+    }
+    if (useEnhanced_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(14, useEnhanced_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -756,6 +916,13 @@ private static final long serialVersionUID = 0L;
         == other.getEnableWordTimeOffsets());
     result = result && getModel()
         .equals(other.getModel());
+    result = result && (getUseEnhanced()
+        == other.getUseEnhanced());
+    result = result && (hasGoogleDataCollectionOptIn() == other.hasGoogleDataCollectionOptIn());
+    if (hasGoogleDataCollectionOptIn()) {
+      result = result && getGoogleDataCollectionOptIn()
+          .equals(other.getGoogleDataCollectionOptIn());
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -787,6 +954,13 @@ private static final long serialVersionUID = 0L;
         getEnableWordTimeOffsets());
     hash = (37 * hash) + MODEL_FIELD_NUMBER;
     hash = (53 * hash) + getModel().hashCode();
+    hash = (37 * hash) + USE_ENHANCED_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getUseEnhanced());
+    if (hasGoogleDataCollectionOptIn()) {
+      hash = (37 * hash) + GOOGLE_DATA_COLLECTION_OPT_IN_FIELD_NUMBER;
+      hash = (53 * hash) + getGoogleDataCollectionOptIn().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -942,6 +1116,14 @@ private static final long serialVersionUID = 0L;
 
       model_ = "";
 
+      useEnhanced_ = false;
+
+      if (googleDataCollectionOptInBuilder_ == null) {
+        googleDataCollectionOptIn_ = null;
+      } else {
+        googleDataCollectionOptIn_ = null;
+        googleDataCollectionOptInBuilder_ = null;
+      }
       return this;
     }
 
@@ -982,6 +1164,12 @@ private static final long serialVersionUID = 0L;
       }
       result.enableWordTimeOffsets_ = enableWordTimeOffsets_;
       result.model_ = model_;
+      result.useEnhanced_ = useEnhanced_;
+      if (googleDataCollectionOptInBuilder_ == null) {
+        result.googleDataCollectionOptIn_ = googleDataCollectionOptIn_;
+      } else {
+        result.googleDataCollectionOptIn_ = googleDataCollectionOptInBuilder_.build();
+      }
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -1073,6 +1261,12 @@ private static final long serialVersionUID = 0L;
         model_ = other.model_;
         onChanged();
       }
+      if (other.getUseEnhanced() != false) {
+        setUseEnhanced(other.getUseEnhanced());
+      }
+      if (other.hasGoogleDataCollectionOptIn()) {
+        mergeGoogleDataCollectionOptIn(other.getGoogleDataCollectionOptIn());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -1104,7 +1298,9 @@ private static final long serialVersionUID = 0L;
     private int encoding_ = 0;
     /**
      * <pre>
-     * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     * Encoding of audio data sent in all `RecognitionAudio` messages.
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -1114,7 +1310,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     * Encoding of audio data sent in all `RecognitionAudio` messages.
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -1126,7 +1324,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     * Encoding of audio data sent in all `RecognitionAudio` messages.
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -1137,7 +1337,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     * Encoding of audio data sent in all `RecognitionAudio` messages.
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -1153,7 +1355,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     * Encoding of audio data sent in all `RecognitionAudio` messages.
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -1168,11 +1372,13 @@ private static final long serialVersionUID = 0L;
     private int sampleRateHertz_ ;
     /**
      * <pre>
-     * *Required* Sample rate in Hertz of the audio data sent in all
+     * Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      * </pre>
      *
      * <code>int32 sample_rate_hertz = 2;</code>
@@ -1182,11 +1388,13 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Required* Sample rate in Hertz of the audio data sent in all
+     * Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      * </pre>
      *
      * <code>int32 sample_rate_hertz = 2;</code>
@@ -1199,11 +1407,13 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Required* Sample rate in Hertz of the audio data sent in all
+     * Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      * </pre>
      *
      * <code>int32 sample_rate_hertz = 2;</code>
@@ -1790,6 +2000,34 @@ private static final long serialVersionUID = 0L;
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
      * in the RecognitionConfig.
+     * &lt;table&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+     *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from a phone call (typically
+     *     recorded at an 8khz sampling rate).&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+     *         speakers. Ideally the audio is recorded at a 16khz or greater
+     *         sampling rate. This is a premium model that costs more than the
+     *         standard rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+     *         For example, long-form audio. Ideally the audio is high-fidelity,
+     *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     * &lt;/table&gt;
      * </pre>
      *
      * <code>string model = 13;</code>
@@ -1812,6 +2050,34 @@ private static final long serialVersionUID = 0L;
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
      * in the RecognitionConfig.
+     * &lt;table&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+     *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from a phone call (typically
+     *     recorded at an 8khz sampling rate).&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+     *         speakers. Ideally the audio is recorded at a 16khz or greater
+     *         sampling rate. This is a premium model that costs more than the
+     *         standard rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+     *         For example, long-form audio. Ideally the audio is high-fidelity,
+     *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     * &lt;/table&gt;
      * </pre>
      *
      * <code>string model = 13;</code>
@@ -1835,6 +2101,34 @@ private static final long serialVersionUID = 0L;
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
      * in the RecognitionConfig.
+     * &lt;table&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+     *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from a phone call (typically
+     *     recorded at an 8khz sampling rate).&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+     *         speakers. Ideally the audio is recorded at a 16khz or greater
+     *         sampling rate. This is a premium model that costs more than the
+     *         standard rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+     *         For example, long-form audio. Ideally the audio is high-fidelity,
+     *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     * &lt;/table&gt;
      * </pre>
      *
      * <code>string model = 13;</code>
@@ -1855,6 +2149,34 @@ private static final long serialVersionUID = 0L;
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
      * in the RecognitionConfig.
+     * &lt;table&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+     *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from a phone call (typically
+     *     recorded at an 8khz sampling rate).&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+     *         speakers. Ideally the audio is recorded at a 16khz or greater
+     *         sampling rate. This is a premium model that costs more than the
+     *         standard rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+     *         For example, long-form audio. Ideally the audio is high-fidelity,
+     *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     * &lt;/table&gt;
      * </pre>
      *
      * <code>string model = 13;</code>
@@ -1871,6 +2193,34 @@ private static final long serialVersionUID = 0L;
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
      * in the RecognitionConfig.
+     * &lt;table&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+     *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from a phone call (typically
+     *     recorded at an 8khz sampling rate).&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+     *         speakers. Ideally the audio is recorded at a 16khz or greater
+     *         sampling rate. This is a premium model that costs more than the
+     *         standard rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     *   &lt;tr&gt;
+     *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+     *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+     *         For example, long-form audio. Ideally the audio is high-fidelity,
+     *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+     *   &lt;/tr&gt;
+     * &lt;/table&gt;
      * </pre>
      *
      * <code>string model = 13;</code>
@@ -1885,6 +2235,251 @@ private static final long serialVersionUID = 0L;
       model_ = value;
       onChanged();
       return this;
+    }
+
+    private boolean useEnhanced_ ;
+    /**
+     * <pre>
+     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * You must also set the `model` field to a valid, enhanced model. If
+     * `use_enhanced` is set to true and the `model` field is not set, then
+     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+     * version of the specified model does not exist, then the speech is
+     * recognized using the standard version of the specified model.
+     * Enhanced speech models require that you enable audio logging for
+     * your request. To enable audio logging, set the `loggingConsentState` field
+     * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+     * You must also opt-in to the audio logging alpha using the instructions in
+     * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
+     * to true and you have not enabled audio logging, then you will receive
+     * an error.
+     * </pre>
+     *
+     * <code>bool use_enhanced = 14;</code>
+     */
+    public boolean getUseEnhanced() {
+      return useEnhanced_;
+    }
+    /**
+     * <pre>
+     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * You must also set the `model` field to a valid, enhanced model. If
+     * `use_enhanced` is set to true and the `model` field is not set, then
+     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+     * version of the specified model does not exist, then the speech is
+     * recognized using the standard version of the specified model.
+     * Enhanced speech models require that you enable audio logging for
+     * your request. To enable audio logging, set the `loggingConsentState` field
+     * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+     * You must also opt-in to the audio logging alpha using the instructions in
+     * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
+     * to true and you have not enabled audio logging, then you will receive
+     * an error.
+     * </pre>
+     *
+     * <code>bool use_enhanced = 14;</code>
+     */
+    public Builder setUseEnhanced(boolean value) {
+      
+      useEnhanced_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * You must also set the `model` field to a valid, enhanced model. If
+     * `use_enhanced` is set to true and the `model` field is not set, then
+     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+     * version of the specified model does not exist, then the speech is
+     * recognized using the standard version of the specified model.
+     * Enhanced speech models require that you enable audio logging for
+     * your request. To enable audio logging, set the `loggingConsentState` field
+     * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+     * You must also opt-in to the audio logging alpha using the instructions in
+     * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
+     * to true and you have not enabled audio logging, then you will receive
+     * an error.
+     * </pre>
+     *
+     * <code>bool use_enhanced = 14;</code>
+     */
+    public Builder clearUseEnhanced() {
+      
+      useEnhanced_ = false;
+      onChanged();
+      return this;
+    }
+
+    private com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig googleDataCollectionOptIn_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder> googleDataCollectionOptInBuilder_;
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    public boolean hasGoogleDataCollectionOptIn() {
+      return googleDataCollectionOptInBuilder_ != null || googleDataCollectionOptIn_ != null;
+    }
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig getGoogleDataCollectionOptIn() {
+      if (googleDataCollectionOptInBuilder_ == null) {
+        return googleDataCollectionOptIn_ == null ? com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.getDefaultInstance() : googleDataCollectionOptIn_;
+      } else {
+        return googleDataCollectionOptInBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    public Builder setGoogleDataCollectionOptIn(com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig value) {
+      if (googleDataCollectionOptInBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        googleDataCollectionOptIn_ = value;
+        onChanged();
+      } else {
+        googleDataCollectionOptInBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    public Builder setGoogleDataCollectionOptIn(
+        com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder builderForValue) {
+      if (googleDataCollectionOptInBuilder_ == null) {
+        googleDataCollectionOptIn_ = builderForValue.build();
+        onChanged();
+      } else {
+        googleDataCollectionOptInBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    public Builder mergeGoogleDataCollectionOptIn(com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig value) {
+      if (googleDataCollectionOptInBuilder_ == null) {
+        if (googleDataCollectionOptIn_ != null) {
+          googleDataCollectionOptIn_ =
+            com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.newBuilder(googleDataCollectionOptIn_).mergeFrom(value).buildPartial();
+        } else {
+          googleDataCollectionOptIn_ = value;
+        }
+        onChanged();
+      } else {
+        googleDataCollectionOptInBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    public Builder clearGoogleDataCollectionOptIn() {
+      if (googleDataCollectionOptInBuilder_ == null) {
+        googleDataCollectionOptIn_ = null;
+        onChanged();
+      } else {
+        googleDataCollectionOptIn_ = null;
+        googleDataCollectionOptInBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder getGoogleDataCollectionOptInBuilder() {
+      
+      onChanged();
+      return getGoogleDataCollectionOptInFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder getGoogleDataCollectionOptInOrBuilder() {
+      if (googleDataCollectionOptInBuilder_ != null) {
+        return googleDataCollectionOptInBuilder_.getMessageOrBuilder();
+      } else {
+        return googleDataCollectionOptIn_ == null ?
+            com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.getDefaultInstance() : googleDataCollectionOptIn_;
+      }
+    }
+    /**
+     * <pre>
+     * *Optional* Contains settings to opt-in to allow Google to
+     * collect and use data from this request to improve Google's products and
+     * services.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder> 
+        getGoogleDataCollectionOptInFieldBuilder() {
+      if (googleDataCollectionOptInBuilder_ == null) {
+        googleDataCollectionOptInBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder>(
+                getGoogleDataCollectionOptIn(),
+                getParentForChildren(),
+                isClean());
+        googleDataCollectionOptIn_ = null;
+      }
+      return googleDataCollectionOptInBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
