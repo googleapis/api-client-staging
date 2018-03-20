@@ -9,7 +9,9 @@ public interface RecognitionConfigOrBuilder extends
 
   /**
    * <pre>
-   * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+   * Encoding of audio data sent in all `RecognitionAudio` messages.
+   * This field is optional for `FLAC` and `WAV` audio files and required
+   * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
    * </pre>
    *
    * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -17,7 +19,9 @@ public interface RecognitionConfigOrBuilder extends
   int getEncodingValue();
   /**
    * <pre>
-   * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+   * Encoding of audio data sent in all `RecognitionAudio` messages.
+   * This field is optional for `FLAC` and `WAV` audio files and required
+   * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
    * </pre>
    *
    * <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
@@ -26,11 +30,13 @@ public interface RecognitionConfigOrBuilder extends
 
   /**
    * <pre>
-   * *Required* Sample rate in Hertz of the audio data sent in all
+   * Sample rate in Hertz of the audio data sent in all
    * `RecognitionAudio` messages. Valid values are: 8000-48000.
    * 16000 is optimal. For best results, set the sampling rate of the audio
    * source to 16000 Hz. If that's not possible, use the native sample rate of
    * the audio source (instead of re-sampling).
+   * This field is optional for `FLAC` and `WAV` audio files and required
+   * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
    * </pre>
    *
    * <code>int32 sample_rate_hertz = 2;</code>
@@ -151,6 +157,34 @@ public interface RecognitionConfigOrBuilder extends
    * best suited to your domain to get best results. If a model is not
    * explicitly specified, then we auto-select a model based on the parameters
    * in the RecognitionConfig.
+   * &lt;table&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+   *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that originated from a phone call (typically
+   *     recorded at an 8khz sampling rate).&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+   *         speakers. Ideally the audio is recorded at a 16khz or greater
+   *         sampling rate. This is a premium model that costs more than the
+   *         standard rate.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+   *         For example, long-form audio. Ideally the audio is high-fidelity,
+   *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   * &lt;/table&gt;
    * </pre>
    *
    * <code>string model = 13;</code>
@@ -162,10 +196,90 @@ public interface RecognitionConfigOrBuilder extends
    * best suited to your domain to get best results. If a model is not
    * explicitly specified, then we auto-select a model based on the parameters
    * in the RecognitionConfig.
+   * &lt;table&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+   *     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that originated from a phone call (typically
+   *     recorded at an 8khz sampling rate).&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that originated from from video or includes multiple
+   *         speakers. Ideally the audio is recorded at a 16khz or greater
+   *         sampling rate. This is a premium model that costs more than the
+   *         standard rate.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   *   &lt;tr&gt;
+   *     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;
+   *     &lt;td&gt;Best for audio that is not one of the specific audio models.
+   *         For example, long-form audio. Ideally the audio is high-fidelity,
+   *         recorded at a 16khz or greater sampling rate.&lt;/td&gt;
+   *   &lt;/tr&gt;
+   * &lt;/table&gt;
    * </pre>
    *
    * <code>string model = 13;</code>
    */
   com.google.protobuf.ByteString
       getModelBytes();
+
+  /**
+   * <pre>
+   * *Optional* Set to true to use an enhanced model for speech recognition.
+   * You must also set the `model` field to a valid, enhanced model. If
+   * `use_enhanced` is set to true and the `model` field is not set, then
+   * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+   * version of the specified model does not exist, then the speech is
+   * recognized using the standard version of the specified model.
+   * Enhanced speech models require that you enable audio logging for
+   * your request. To enable audio logging, set the `loggingConsentState` field
+   * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+   * You must also opt-in to the audio logging alpha using the instructions in
+   * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
+   * to true and you have not enabled audio logging, then you will receive
+   * an error.
+   * </pre>
+   *
+   * <code>bool use_enhanced = 14;</code>
+   */
+  boolean getUseEnhanced();
+
+  /**
+   * <pre>
+   * *Optional* Contains settings to opt-in to allow Google to
+   * collect and use data from this request to improve Google's products and
+   * services.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+   */
+  boolean hasGoogleDataCollectionOptIn();
+  /**
+   * <pre>
+   * *Optional* Contains settings to opt-in to allow Google to
+   * collect and use data from this request to improve Google's products and
+   * services.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+   */
+  com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig getGoogleDataCollectionOptIn();
+  /**
+   * <pre>
+   * *Optional* Contains settings to opt-in to allow Google to
+   * collect and use data from this request to improve Google's products and
+   * services.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
+   */
+  com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder getGoogleDataCollectionOptInOrBuilder();
 }

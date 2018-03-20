@@ -19,7 +19,7 @@ import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.core.BackgroundResourceAggregation;
 import com.google.api.gax.grpc.GrpcCallSettings;
-import com.google.api.gax.grpc.GrpcCallableFactory;
+import com.google.api.gax.grpc.GrpcStubCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.datastore.v1.AllocateIdsRequest;
@@ -121,12 +121,20 @@ public class GrpcDatastoreStub extends DatastoreStub {
   private final UnaryCallable<AllocateIdsRequest, AllocateIdsResponse> allocateIdsCallable;
   private final UnaryCallable<ReserveIdsRequest, ReserveIdsResponse> reserveIdsCallable;
 
+  private final GrpcStubCallableFactory callableFactory;
+
   public static final GrpcDatastoreStub create(DatastoreStubSettings settings) throws IOException {
     return new GrpcDatastoreStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcDatastoreStub create(ClientContext clientContext) throws IOException {
     return new GrpcDatastoreStub(DatastoreStubSettings.newBuilder().build(), clientContext);
+  }
+
+  public static final GrpcDatastoreStub create(
+      ClientContext clientContext, GrpcStubCallableFactory callableFactory) throws IOException {
+    return new GrpcDatastoreStub(
+        DatastoreStubSettings.newBuilder().build(), clientContext, callableFactory);
   }
 
   /**
@@ -136,6 +144,20 @@ public class GrpcDatastoreStub extends DatastoreStub {
    */
   protected GrpcDatastoreStub(DatastoreStubSettings settings, ClientContext clientContext)
       throws IOException {
+    this(settings, clientContext, new GrpcDatastoreCallableFactory());
+  }
+
+  /**
+   * Constructs an instance of GrpcDatastoreStub, using the given settings. This is protected so
+   * that it is easy to make a subclass, but otherwise, the static factory methods should be
+   * preferred.
+   */
+  protected GrpcDatastoreStub(
+      DatastoreStubSettings settings,
+      ClientContext clientContext,
+      GrpcStubCallableFactory callableFactory)
+      throws IOException {
+    this.callableFactory = callableFactory;
 
     GrpcCallSettings<LookupRequest, LookupResponse> lookupTransportSettings =
         GrpcCallSettings.<LookupRequest, LookupResponse>newBuilder()
@@ -168,25 +190,25 @@ public class GrpcDatastoreStub extends DatastoreStub {
             .build();
 
     this.lookupCallable =
-        GrpcCallableFactory.createUnaryCallable(
+        callableFactory.createUnaryCallable(
             lookupTransportSettings, settings.lookupSettings(), clientContext);
     this.runQueryCallable =
-        GrpcCallableFactory.createUnaryCallable(
+        callableFactory.createUnaryCallable(
             runQueryTransportSettings, settings.runQuerySettings(), clientContext);
     this.beginTransactionCallable =
-        GrpcCallableFactory.createUnaryCallable(
+        callableFactory.createUnaryCallable(
             beginTransactionTransportSettings, settings.beginTransactionSettings(), clientContext);
     this.commitCallable =
-        GrpcCallableFactory.createUnaryCallable(
+        callableFactory.createUnaryCallable(
             commitTransportSettings, settings.commitSettings(), clientContext);
     this.rollbackCallable =
-        GrpcCallableFactory.createUnaryCallable(
+        callableFactory.createUnaryCallable(
             rollbackTransportSettings, settings.rollbackSettings(), clientContext);
     this.allocateIdsCallable =
-        GrpcCallableFactory.createUnaryCallable(
+        callableFactory.createUnaryCallable(
             allocateIdsTransportSettings, settings.allocateIdsSettings(), clientContext);
     this.reserveIdsCallable =
-        GrpcCallableFactory.createUnaryCallable(
+        callableFactory.createUnaryCallable(
             reserveIdsTransportSettings, settings.reserveIdsSettings(), clientContext);
 
     backgroundResources = new BackgroundResourceAggregation(clientContext.getBackgroundResources());
