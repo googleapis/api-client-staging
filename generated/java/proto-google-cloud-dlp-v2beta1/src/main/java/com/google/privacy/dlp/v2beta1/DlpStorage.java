@@ -142,7 +142,7 @@ public final class DlpStorage {
       "ictionary\030\002 \001(\01325.google.privacy.dlp.v2b" +
       "eta1.CustomInfoType.DictionaryH\000\032\206\001\n\nDic" +
       "tionary\022S\n\tword_list\030\001 \001(\0132>.google.priv" +
-      "acy.dlp.v2beta1.CustomInfoType.Dictionar" +
+      "acy.dlp.v2beta1.CustomInfoType.Dictionar",
       "y.WordListH\000\032\031\n\010WordList\022\r\n\005words\030\001 \003(\tB" +
       "\010\n\006sourceB\006\n\004type\"\036\n\007FieldId\022\023\n\013column_n" +
       "ame\030\001 \001(\t\"7\n\013PartitionId\022\022\n\nproject_id\030\002" +
@@ -152,7 +152,7 @@ public final class DlpStorage {
       "\001 \001(\0132-.google.privacy.dlp.v2beta1.Prope" +
       "rtyReference\"\307\001\n\020DatastoreOptions\022=\n\014par" +
       "tition_id\030\001 \001(\0132\'.google.privacy.dlp.v2b" +
-      "eta1.PartitionId\0228\n\004kind\030\002 \001(\0132*.google." +
+      "eta1.PartitionId\0228\n\004kind\030\002 \001(\0132*.google.",
       "privacy.dlp.v2beta1.KindExpression\022:\n\npr" +
       "ojection\030\003 \003(\0132&.google.privacy.dlp.v2be" +
       "ta1.Projection\"x\n\023CloudStorageOptions\022I\n" +
@@ -162,7 +162,7 @@ public final class DlpStorage {
       "path\030\001 \001(\t\"\226\001\n\017BigQueryOptions\022B\n\017table_" +
       "reference\030\001 \001(\0132).google.privacy.dlp.v2b" +
       "eta1.BigQueryTable\022?\n\022identifying_fields" +
-      "\030\002 \003(\0132#.google.privacy.dlp.v2beta1.Fiel" +
+      "\030\002 \003(\0132#.google.privacy.dlp.v2beta1.Fiel",
       "dId\"\376\001\n\rStorageConfig\022I\n\021datastore_optio" +
       "ns\030\002 \001(\0132,.google.privacy.dlp.v2beta1.Da" +
       "tastoreOptionsH\000\022P\n\025cloud_storage_option" +
@@ -172,7 +172,7 @@ public final class DlpStorage {
       "eryOptionsH\000B\006\n\004type\":\n\017CloudStorageKey\022" +
       "\021\n\tfile_path\030\001 \001(\t\022\024\n\014start_offset\030\002 \001(\003" +
       "\"C\n\014DatastoreKey\0223\n\nentity_key\030\001 \001(\0132\037.g" +
-      "oogle.privacy.dlp.v2beta1.Key\"\305\001\n\003Key\022=\n" +
+      "oogle.privacy.dlp.v2beta1.Key\"\305\001\n\003Key\022=\n",
       "\014partition_id\030\001 \001(\0132\'.google.privacy.dlp" +
       ".v2beta1.PartitionId\0229\n\004path\030\002 \003(\0132+.goo" +
       "gle.privacy.dlp.v2beta1.Key.PathElement\032" +
@@ -182,7 +182,7 @@ public final class DlpStorage {
       "privacy.dlp.v2beta1.CloudStorageKeyH\000\022A\n" +
       "\rdatastore_key\030\002 \001(\0132(.google.privacy.dl" +
       "p.v2beta1.DatastoreKeyH\000B\006\n\004type\"I\n\rBigQ" +
-      "ueryTable\022\022\n\nproject_id\030\001 \001(\t\022\022\n\ndataset" +
+      "ueryTable\022\022\n\nproject_id\030\001 \001(\t\022\022\n\ndataset",
       "_id\030\002 \001(\t\022\020\n\010table_id\030\003 \001(\t\">\n\010EntityId\022" +
       "2\n\005field\030\001 \001(\0132#.google.privacy.dlp.v2be" +
       "ta1.FieldIdB\243\001\n\036com.google.privacy.dlp.v" +
