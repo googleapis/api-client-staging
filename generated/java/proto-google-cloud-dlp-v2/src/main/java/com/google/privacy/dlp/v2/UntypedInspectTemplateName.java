@@ -17,17 +17,21 @@ package com.google.privacy.dlp.v2;
 import com.google.common.base.Preconditions;
 import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
+import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
 public class UntypedInspectTemplateName extends InspectTemplateName {
 
   private final String rawValue;
+  private Map<String, String> valueMap;
 
   private UntypedInspectTemplateName(String rawValue) {
     this.rawValue = Preconditions.checkNotNull(rawValue);
+    this.valueMap = ImmutableMap.of("", rawValue);
   }
 
   public static UntypedInspectTemplateName from(ResourceName resourceName) {
@@ -60,6 +64,20 @@ public class UntypedInspectTemplateName extends InspectTemplateName {
 
   public static boolean isParsableFrom(String formattedString) {
     return true;
+  }
+
+  /**
+   * Return a map with a single value rawValue keyed on an empty String "".
+   */
+  public Map<String, String> getFieldValuesMap() {
+    return valueMap;
+  }
+
+  /**
+   * Return the initial rawValue if @param fieldName is an empty String, else return null.
+   */
+  public String getFieldValue(String fieldName) {
+    return valueMap.get(fieldName);
   }
 
   /**

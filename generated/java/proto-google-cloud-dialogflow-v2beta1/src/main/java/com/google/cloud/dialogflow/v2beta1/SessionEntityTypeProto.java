@@ -67,7 +67,7 @@ public final class SessionEntityTypeProto {
       "\021SessionEntityType\022\014\n\004name\030\001 \001(\t\022c\n\024enti" +
       "ty_override_mode\030\002 \001(\0162E.google.cloud.di" +
       "alogflow.v2beta1.SessionEntityType.Entit" +
-      "yOverrideMode\022D\n\010entities\030\003 \003(\01322.google" +
+      "yOverrideMode\022D\n\010entities\030\003 \003(\01322.google",
       ".cloud.dialogflow.v2beta1.EntityType.Ent" +
       "ity\"\202\001\n\022EntityOverrideMode\022$\n ENTITY_OVE" +
       "RRIDE_MODE_UNSPECIFIED\020\000\022!\n\035ENTITY_OVERR" +
@@ -77,7 +77,7 @@ public final class SessionEntityTypeProto {
       " \001(\005\022\022\n\npage_token\030\003 \001(\t\"\213\001\n\036ListSession" +
       "EntityTypesResponse\022P\n\024session_entity_ty" +
       "pes\030\001 \003(\01322.google.cloud.dialogflow.v2be" +
-      "ta1.SessionEntityType\022\027\n\017next_page_token" +
+      "ta1.SessionEntityType\022\027\n\017next_page_token",
       "\030\002 \001(\t\"+\n\033GetSessionEntityTypeRequest\022\014\n" +
       "\004name\030\001 \001(\t\"\201\001\n\036CreateSessionEntityTypeR" +
       "equest\022\016\n\006parent\030\001 \001(\t\022O\n\023session_entity" +
@@ -87,7 +87,7 @@ public final class SessionEntityTypeProto {
       "e\030\001 \001(\01322.google.cloud.dialogflow.v2beta" +
       "1.SessionEntityType\022/\n\013update_mask\030\002 \001(\013" +
       "2\032.google.protobuf.FieldMask\".\n\036DeleteSe" +
-      "ssionEntityTypeRequest\022\014\n\004name\030\001 \001(\t2\217\014\n" +
+      "ssionEntityTypeRequest\022\014\n\004name\030\001 \001(\t2\217\014\n",
       "\022SessionEntityTypes\022\246\002\n\026ListSessionEntit" +
       "yTypes\022>.google.cloud.dialogflow.v2beta1" +
       ".ListSessionEntityTypesRequest\032?.google." +
@@ -97,7 +97,7 @@ public final class SessionEntityTypeProto {
       "ypesZF\022D/v2beta1/{parent=projects/*/agen" +
       "t/runtimes/*/sessions/*}/entityTypes\022\225\002\n" +
       "\024GetSessionEntityType\022<.google.cloud.dia" +
-      "logflow.v2beta1.GetSessionEntityTypeRequ" +
+      "logflow.v2beta1.GetSessionEntityTypeRequ",
       "est\0322.google.cloud.dialogflow.v2beta1.Se" +
       "ssionEntityType\"\212\001\202\323\344\223\002\203\001\0229/v2beta1/{nam" +
       "e=projects/*/agent/sessions/*/entityType" +
@@ -107,7 +107,7 @@ public final class SessionEntityTypeProto {
       "dialogflow.v2beta1.CreateSessionEntityTy" +
       "peRequest\0322.google.cloud.dialogflow.v2be" +
       "ta1.SessionEntityType\"\264\001\202\323\344\223\002\255\001\"9/v2beta" +
-      "1/{parent=projects/*/agent/sessions/*}/e" +
+      "1/{parent=projects/*/agent/sessions/*}/e",
       "ntityTypes:\023session_entity_typeZ[\"D/v2be" +
       "ta1/{parent=projects/*/agent/runtimes/*/" +
       "sessions/*}/entityTypes:\023session_entity_" +
@@ -117,7 +117,7 @@ public final class SessionEntityTypeProto {
       "low.v2beta1.SessionEntityType\"\334\001\202\323\344\223\002\325\0012" +
       "M/v2beta1/{session_entity_type.name=proj" +
       "ects/*/agent/sessions/*/entityTypes/*}:\023" +
-      "session_entity_typeZo2X/v2beta1/{session" +
+      "session_entity_typeZo2X/v2beta1/{session",
       "_entity_type.name=projects/*/agent/runti" +
       "mes/*/sessions/*/entityTypes/*}:\023session" +
       "_entity_type\022\377\001\n\027DeleteSessionEntityType" +
@@ -127,7 +127,7 @@ public final class SessionEntityTypeProto {
       "ects/*/agent/sessions/*/entityTypes/*}ZF" +
       "*D/v2beta1/{name=projects/*/agent/runtim" +
       "es/*/sessions/*/entityTypes/*}B\264\001\n#com.g" +
-      "oogle.cloud.dialogflow.v2beta1B\026SessionE" +
+      "oogle.cloud.dialogflow.v2beta1B\026SessionE",
       "ntityTypeProtoP\001ZIgoogle.golang.org/genp" +
       "roto/googleapis/cloud/dialogflow/v2beta1" +
       ";dialogflow\370\001\001\242\002\002DF\252\002\037Google.Cloud.Dialo" +
