@@ -92,7 +92,7 @@ public final class VersionProto {
       "e\030\001 \001(\t\022\n\n\002id\030\002 \001(\t\022B\n\021automatic_scaling" +
       "\030\003 \001(\0132%.google.appengine.v1.AutomaticSc" +
       "alingH\000\022:\n\rbasic_scaling\030\004 \001(\0132!.google." +
-      "appengine.v1.BasicScalingH\000\022<\n\016manual_sc",
+      "appengine.v1.BasicScalingH\000\022<\n\016manual_sc" +
       "aling\030\005 \001(\0132\".google.appengine.v1.Manual" +
       "ScalingH\000\022A\n\020inbound_services\030\006 \003(\0162\'.go" +
       "ogle.appengine.v1.InboundServiceType\022\026\n\016" +
@@ -102,7 +102,7 @@ public final class VersionProto {
       "\n\007runtime\030\n \001(\t\022\022\n\nthreadsafe\030\013 \001(\010\022\n\n\002v" +
       "m\030\014 \001(\010\022E\n\rbeta_settings\030\r \003(\0132..google." +
       "appengine.v1.Version.BetaSettingsEntry\022\013" +
-      "\n\003env\030\016 \001(\t\022:\n\016serving_status\030\017 \001(\0162\".go",
+      "\n\003env\030\016 \001(\t\022:\n\016serving_status\030\017 \001(\0162\".go" +
       "ogle.appengine.v1.ServingStatus\022\022\n\ncreat" +
       "ed_by\030\020 \001(\t\022/\n\013create_time\030\021 \001(\0132\032.googl" +
       "e.protobuf.Timestamp\022\030\n\020disk_usage_bytes" +
@@ -112,7 +112,7 @@ public final class VersionProto {
       "aries\030f \003(\0132\034.google.appengine.v1.Librar" +
       "y\0229\n\napi_config\030g \001(\0132%.google.appengine" +
       ".v1.ApiConfigHandler\022E\n\renv_variables\030h " +
-      "\003(\0132..google.appengine.v1.Version.EnvVar",
+      "\003(\0132..google.appengine.v1.Version.EnvVar" +
       "iablesEntry\0225\n\022default_expiration\030i \001(\0132" +
       "\031.google.protobuf.Duration\0226\n\014health_che" +
       "ck\030j \001(\0132 .google.appengine.v1.HealthChe" +
@@ -122,7 +122,7 @@ public final class VersionProto {
       "sEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0323" +
       "\n\021EnvVariablesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
       "e\030\002 \001(\t:\0028\001B\t\n\007scaling\"\324\004\n\020AutomaticScal" +
-      "ing\0223\n\020cool_down_period\030\001 \001(\0132\031.google.p",
+      "ing\0223\n\020cool_down_period\030\001 \001(\0132\031.google.p" +
       "rotobuf.Duration\022<\n\017cpu_utilization\030\002 \001(" +
       "\0132#.google.appengine.v1.CpuUtilization\022\037" +
       "\n\027max_concurrent_requests\030\003 \001(\005\022\032\n\022max_i" +
@@ -132,7 +132,7 @@ public final class VersionProto {
       "tances\030\007 \001(\005\022\033\n\023min_total_instances\030\010 \001(" +
       "\005\0226\n\023min_pending_latency\030\t \001(\0132\031.google." +
       "protobuf.Duration\022D\n\023request_utilization" +
-      "\030\n \001(\0132\'.google.appengine.v1.RequestUtil",
+      "\030\n \001(\0132\'.google.appengine.v1.RequestUtil" +
       "ization\022>\n\020disk_utilization\030\013 \001(\0132$.goog" +
       "le.appengine.v1.DiskUtilization\022D\n\023netwo" +
       "rk_utilization\030\014 \001(\0132\'.google.appengine." +
@@ -142,7 +142,7 @@ public final class VersionProto {
       "caling\022\021\n\tinstances\030\001 \001(\005\"j\n\016CpuUtilizat" +
       "ion\022<\n\031aggregation_window_length\030\001 \001(\0132\031" +
       ".google.protobuf.Duration\022\032\n\022target_util" +
-      "ization\030\002 \001(\001\"a\n\022RequestUtilization\022\'\n\037t",
+      "ization\030\002 \001(\001\"a\n\022RequestUtilization\022\'\n\037t" +
       "arget_request_count_per_second\030\001 \001(\005\022\"\n\032" +
       "target_concurrent_requests\030\002 \001(\005\"\247\001\n\017Dis" +
       "kUtilization\022%\n\035target_write_bytes_per_s" +
@@ -152,7 +152,7 @@ public final class VersionProto {
       "(\005\"\270\001\n\022NetworkUtilization\022$\n\034target_sent" +
       "_bytes_per_second\030\001 \001(\005\022&\n\036target_sent_p" +
       "ackets_per_second\030\013 \001(\005\022(\n target_receiv" +
-      "ed_bytes_per_second\030\014 \001(\005\022*\n\"target_rece",
+      "ed_bytes_per_second\030\014 \001(\005\022*\n\"target_rece" +
       "ived_packets_per_second\030\r \001(\005\"F\n\007Network" +
       "\022\027\n\017forwarded_ports\030\001 \003(\t\022\024\n\014instance_ta" +
       "g\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\"<\n\tResources\022\013\n\003cp" +
@@ -162,7 +162,7 @@ public final class VersionProto {
       "AIL\020\001\022\037\n\033INBOUND_SERVICE_MAIL_BOUNCE\020\002\022\036" +
       "\n\032INBOUND_SERVICE_XMPP_ERROR\020\003\022 \n\034INBOUN" +
       "D_SERVICE_XMPP_MESSAGE\020\004\022\"\n\036INBOUND_SERV" +
-      "ICE_XMPP_SUBSCRIBE\020\005\022!\n\035INBOUND_SERVICE_",
+      "ICE_XMPP_SUBSCRIBE\020\005\022!\n\035INBOUND_SERVICE_" +
       "XMPP_PRESENCE\020\006\022$\n INBOUND_SERVICE_CHANN" +
       "EL_PRESENCE\020\007\022\032\n\026INBOUND_SERVICE_WARMUP\020" +
       "\t*I\n\rServingStatus\022\036\n\032SERVING_STATUS_UNS" +

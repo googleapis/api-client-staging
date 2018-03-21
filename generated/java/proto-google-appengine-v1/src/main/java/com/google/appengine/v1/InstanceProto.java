@@ -37,7 +37,7 @@ public final class InstanceProto {
       ".Availability\022\017\n\007vm_name\030\005 \001(\t\022\024\n\014vm_zon" +
       "e_name\030\006 \001(\t\022\r\n\005vm_id\030\007 \001(\t\022.\n\nstart_tim" +
       "e\030\010 \001(\0132\032.google.protobuf.Timestamp\022\020\n\010r" +
-      "equests\030\t \001(\005\022\016\n\006errors\030\n \001(\005\022\013\n\003qps\030\013 \001",
+      "equests\030\t \001(\005\022\016\n\006errors\030\n \001(\005\022\013\n\003qps\030\013 \001" +
       "(\002\022\027\n\017average_latency\030\014 \001(\005\022\024\n\014memory_us" +
       "age\030\r \001(\003\022\021\n\tvm_status\030\016 \001(\t\022\030\n\020vm_debug" +
       "_enabled\030\017 \001(\010\":\n\014Availability\022\017\n\013UNSPEC" +

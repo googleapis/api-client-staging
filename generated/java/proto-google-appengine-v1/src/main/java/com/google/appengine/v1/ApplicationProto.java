@@ -42,7 +42,7 @@ public final class ApplicationProto {
       "n\030\006 \001(\t\022\023\n\013location_id\030\007 \001(\t\022\023\n\013code_buc" +
       "ket\030\010 \001(\t\022<\n\031default_cookie_expiration\030\t" +
       " \001(\0132\031.google.protobuf.Duration\022\030\n\020defau" +
-      "lt_hostname\030\013 \001(\t\022\026\n\016default_bucket\030\014 \001(",
+      "lt_hostname\030\013 \001(\t\022\026\n\016default_bucket\030\014 \001(" +
       "\t\"@\n\017UrlDispatchRule\022\016\n\006domain\030\001 \001(\t\022\014\n\004" +
       "path\030\002 \001(\t\022\017\n\007service\030\003 \001(\tBk\n\027com.googl" +
       "e.appengine.v1B\020ApplicationProtoP\001Z<goog" +

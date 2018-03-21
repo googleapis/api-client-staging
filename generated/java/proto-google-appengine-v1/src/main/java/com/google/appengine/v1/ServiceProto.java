@@ -47,7 +47,7 @@ public final class ServiceProto {
       "lit.ShardBy\022G\n\013allocations\030\002 \003(\01322.googl" +
       "e.appengine.v1.TrafficSplit.AllocationsE" +
       "ntry\0322\n\020AllocationsEntry\022\013\n\003key\030\001 \001(\t\022\r\n" +
-      "\005value\030\002 \001(\001:\0028\001\".\n\007ShardBy\022\017\n\013UNSPECIFI",
+      "\005value\030\002 \001(\001:\0028\001\".\n\007ShardBy\022\017\n\013UNSPECIFI" +
       "ED\020\000\022\n\n\006COOKIE\020\001\022\006\n\002IP\020\002Bg\n\027com.google.a" +
       "ppengine.v1B\014ServiceProtoP\001Z<google.gola" +
       "ng.org/genproto/googleapis/appengine/v1;" +

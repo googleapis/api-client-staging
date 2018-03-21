@@ -47,7 +47,7 @@ public final class AuditDataProto {
       "gle.appengine.v1.CreateVersionMethodH\000B\010" +
       "\n\006method\"Q\n\023UpdateServiceMethod\022:\n\007reque" +
       "st\030\001 \001(\0132).google.appengine.v1.UpdateSer" +
-      "viceRequest\"Q\n\023CreateVersionMethod\022:\n\007re",
+      "viceRequest\"Q\n\023CreateVersionMethod\022:\n\007re" +
       "quest\030\001 \001(\0132).google.appengine.v1.Create" +
       "VersionRequestBi\n\027com.google.appengine.v" +
       "1B\016AuditDataProtoP\001Z<google.golang.org/g" +

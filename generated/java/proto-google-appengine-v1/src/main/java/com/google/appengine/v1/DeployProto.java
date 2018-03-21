@@ -57,7 +57,7 @@ public final class DeployProto {
       "engine.v1.ZipInfo\032K\n\nFilesEntry\022\013\n\003key\030\001" +
       " \001(\t\022,\n\005value\030\002 \001(\0132\035.google.appengine.v" +
       "1.FileInfo:\0028\001\"C\n\010FileInfo\022\022\n\nsource_url" +
-      "\030\001 \001(\t\022\020\n\010sha1_sum\030\002 \001(\t\022\021\n\tmime_type\030\003 ",
+      "\030\001 \001(\t\022\020\n\010sha1_sum\030\002 \001(\t\022\021\n\tmime_type\030\003 " +
       "\001(\t\"\036\n\rContainerInfo\022\r\n\005image\030\001 \001(\t\"2\n\007Z" +
       "ipInfo\022\022\n\nsource_url\030\003 \001(\t\022\023\n\013files_coun" +
       "t\030\004 \001(\005Bf\n\027com.google.appengine.v1B\013Depl" +
