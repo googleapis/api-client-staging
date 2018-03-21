@@ -17,10 +17,10 @@ repositories {
 }
 
 dependencies {
-  compile 'com.google.api:gax:1.19.0'
-  compile 'com.google.api:gax-grpc:1.19.0'
+  compile 'com.google.api:gax:1.20.0'
+  compile 'com.google.api:gax-grpc:1.20.0'
   testCompile 'junit:junit:4.12'
-  testCompile 'com.google.api:gax-grpc:1.19.0:testlib'
+  testCompile 'com.google.api:gax-grpc:1.20.0:testlib'
   compile project(":proto-google-cloud-error-reporting-v1beta1")
   testCompile project(":grpc-google-cloud-error-reporting-v1beta1")
 }

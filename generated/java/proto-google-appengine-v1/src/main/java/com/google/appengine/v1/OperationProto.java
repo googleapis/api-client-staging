@@ -37,7 +37,7 @@ public final class OperationProto {
       "otobuf.Timestamp\022\014\n\004user\030\004 \001(\t\022\016\n\006target" +
       "\030\005 \001(\tBi\n\027com.google.appengine.v1B\016Opera" +
       "tionProtoP\001Z<google.golang.org/genproto/" +
-      "googleapis/appengine/v1;appengineb\006proto",
+      "googleapis/appengine/v1;appengineb\006proto" +
       "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
