@@ -70,7 +70,7 @@ subprojects {
           developer {
             id 'pongad'
             name 'Michael Darakananda'
-            email 'michaelbausor@google.com'
+            email 'pongad@google.com'
           }
           developer {
             id 'michaelbausor'
