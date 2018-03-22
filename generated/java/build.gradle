@@ -92,6 +92,18 @@ subprojects {
             email 'neowu@google.co'
             organization 'Google LLC'
           }
+          developer {
+            id 'andreamlin'
+            name 'Andrea Lin'
+            email 'andrealin@google.com'
+            organization 'Google LLC'
+          }
+          developer {
+            id 'hzyi-google'
+            name 'Hanzhen Yi'
+            email 'hzyi@google.com'
+            organization 'Google LLC'
+          }
         }
       }
     }
