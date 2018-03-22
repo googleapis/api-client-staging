@@ -66,43 +66,36 @@ subprojects {
             id 'garrettjonesgoogle'
             name 'Garrett Jones'
             email 'garrettjones@google.com'
-            organization 'Google LLC'
           }
           developer {
             id 'pongad'
             name 'Michael Darakananda'
             email 'michaelbausor@google.com'
-            organization 'Google LLC'
           }
           developer {
             id 'michaelbausor'
             name 'Micheal Bausor'
             email 'michaelbausor@google.com'
-            organization 'Google LLC'
           }
           developer {
             id 'vam-google'
             name 'Vadym Matsishevskyi'
             email 'vam@google.com'
-            organization 'Google LLC'
           }
           developer {
             id 'neozwu'
             name 'Neo Wu'
             email 'neowu@google.co'
-            organization 'Google LLC'
           }
           developer {
             id 'andreamlin'
             name 'Andrea Lin'
             email 'andrealin@google.com'
-            organization 'Google LLC'
           }
           developer {
             id 'hzyi-google'
             name 'Hanzhen Yi'
             email 'hzyi@google.com'
-            organization 'Google LLC'
           }
         }
       }
