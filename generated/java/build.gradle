@@ -98,6 +98,10 @@ subprojects {
             email 'hzyi@google.com'
           }
         }
+
+        organization {
+          name 'Google LLC'
+        }
       }
     }
 
