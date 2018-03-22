@@ -60,6 +60,48 @@ subprojects {
             url 'https://www.apache.org/licenses/LICENSE-2.0.txt'
           }
         }
+
+        developers {
+          developer {
+            id 'garrettjonesgoogle'
+            name 'Garrett Jones'
+            email 'garrettjones@google.com'
+          }
+          developer {
+            id 'pongad'
+            name 'Michael Darakananda'
+            email 'pongad@google.com'
+          }
+          developer {
+            id 'michaelbausor'
+            name 'Micheal Bausor'
+            email 'michaelbausor@google.com'
+          }
+          developer {
+            id 'vam-google'
+            name 'Vadym Matsishevskyi'
+            email 'vam@google.com'
+          }
+          developer {
+            id 'neozwu'
+            name 'Neo Wu'
+            email 'neowu@google.co'
+          }
+          developer {
+            id 'andreamlin'
+            name 'Andrea Lin'
+            email 'andrealin@google.com'
+          }
+          developer {
+            id 'hzyi-google'
+            name 'Hanzhen Yi'
+            email 'hzyi@google.com'
+          }
+        }
+
+        organization {
+          name 'Google LLC'
+        }
       }
     }
 
@@ -96,7 +138,7 @@ subprojects {
               + "to be set. They can be set inside your ~/.gradle/gradle.properties file.")
         }
       }
-    } 
+    }
   }
 }
 
@@ -105,10 +147,12 @@ subprojects {
 apply plugin: 'java'
 
 task allDocs(type: Javadoc) {
-  def subProjects = subprojects.findAll {it.name.startsWith("proto-") || it.name.startsWith("grpc-")}
+  def subProjects = subprojects.findAll {
+    it.name.startsWith("proto-") || it.name.startsWith("grpc-")
+  }
 
-  source subProjects.collect {it.sourceSets.main.allJava}
-  classpath = files(subProjects.collect {it.sourceSets.main.compileClasspath})
+  source subProjects.collect { it.sourceSets.main.allJava }
+  classpath = files(subProjects.collect { it.sourceSets.main.compileClasspath })
   destinationDir = file("${buildDir}/javadoc/all/latest/apidocs")
 
   options.links += ["https://developers.google.com/protocol-buffers/docs/reference/java/"]
@@ -146,8 +190,8 @@ task commitDocs {
   doLast {
     def gitHashOut = new ByteArrayOutputStream()
     exec {
-        commandLine "git", "rev-parse", "HEAD"
-        standardOutput = gitHashOut
+      commandLine "git", "rev-parse", "HEAD"
+      standardOutput = gitHashOut
     }
     def gitHash = gitHashOut.toString().trim()
 
