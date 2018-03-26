@@ -9,7 +9,7 @@ public interface StreamingRecognitionResultOrBuilder extends
 
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -21,7 +21,7 @@ public interface StreamingRecognitionResultOrBuilder extends
       getAlternativesList();
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -32,7 +32,7 @@ public interface StreamingRecognitionResultOrBuilder extends
   com.google.cloud.speech.v1p1beta1.SpeechRecognitionAlternative getAlternatives(int index);
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -43,7 +43,7 @@ public interface StreamingRecognitionResultOrBuilder extends
   int getAlternativesCount();
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -55,7 +55,7 @@ public interface StreamingRecognitionResultOrBuilder extends
       getAlternativesOrBuilderList();
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -68,7 +68,7 @@ public interface StreamingRecognitionResultOrBuilder extends
 
   /**
    * <pre>
-   * *Output-only* If `false`, this `StreamingRecognitionResult` represents an
+   * Output only. If `false`, this `StreamingRecognitionResult` represents an
    * interim result that may change. If `true`, this is the final time the
    * speech service will return this particular `StreamingRecognitionResult`,
    * the recognizer will not return any further hypotheses for this portion of
@@ -81,7 +81,7 @@ public interface StreamingRecognitionResultOrBuilder extends
 
   /**
    * <pre>
-   * *Output-only* An estimate of the likelihood that the recognizer will not
+   * Output only. An estimate of the likelihood that the recognizer will not
    * change its guess about this interim result. Values range from 0.0
    * (completely unstable) to 1.0 (completely stable).
    * This field is only provided for interim results (`is_final=false`).

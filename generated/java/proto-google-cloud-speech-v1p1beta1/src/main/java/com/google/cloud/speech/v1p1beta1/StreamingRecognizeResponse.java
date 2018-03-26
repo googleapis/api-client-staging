@@ -280,7 +280,7 @@ private static final long serialVersionUID = 0L;
   private com.google.rpc.Status error_;
   /**
    * <pre>
-   * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+   * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
    * specifies the error for the operation.
    * </pre>
    *
@@ -291,7 +291,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+   * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
    * specifies the error for the operation.
    * </pre>
    *
@@ -302,7 +302,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+   * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
    * specifies the error for the operation.
    * </pre>
    *
@@ -316,7 +316,7 @@ private static final long serialVersionUID = 0L;
   private java.util.List<com.google.cloud.speech.v1p1beta1.StreamingRecognitionResult> results_;
   /**
    * <pre>
-   * *Output-only* This repeated list contains zero or more results that
+   * Output only. This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
    * It contains zero or one `is_final=true` result (the newly settled portion),
    * followed by zero or more `is_final=false` results (the interim results).
@@ -329,7 +329,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* This repeated list contains zero or more results that
+   * Output only. This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
    * It contains zero or one `is_final=true` result (the newly settled portion),
    * followed by zero or more `is_final=false` results (the interim results).
@@ -343,7 +343,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* This repeated list contains zero or more results that
+   * Output only. This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
    * It contains zero or one `is_final=true` result (the newly settled portion),
    * followed by zero or more `is_final=false` results (the interim results).
@@ -356,7 +356,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* This repeated list contains zero or more results that
+   * Output only. This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
    * It contains zero or one `is_final=true` result (the newly settled portion),
    * followed by zero or more `is_final=false` results (the interim results).
@@ -369,7 +369,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* This repeated list contains zero or more results that
+   * Output only. This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
    * It contains zero or one `is_final=true` result (the newly settled portion),
    * followed by zero or more `is_final=false` results (the interim results).
@@ -386,7 +386,7 @@ private static final long serialVersionUID = 0L;
   private int speechEventType_;
   /**
    * <pre>
-   * *Output-only* Indicates the type of speech event.
+   * Output only. Indicates the type of speech event.
    * </pre>
    *
    * <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
@@ -396,7 +396,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* Indicates the type of speech event.
+   * Output only. Indicates the type of speech event.
    * </pre>
    *
    * <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
@@ -821,7 +821,7 @@ private static final long serialVersionUID = 0L;
         com.google.rpc.Status, com.google.rpc.Status.Builder, com.google.rpc.StatusOrBuilder> errorBuilder_;
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -832,7 +832,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -847,7 +847,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -868,7 +868,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -887,7 +887,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -910,7 +910,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -929,7 +929,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -942,7 +942,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -958,7 +958,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
      * </pre>
      *
@@ -992,7 +992,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1009,7 +1009,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1026,7 +1026,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1043,7 +1043,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1067,7 +1067,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1088,7 +1088,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1111,7 +1111,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1135,7 +1135,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1156,7 +1156,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1177,7 +1177,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1199,7 +1199,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1219,7 +1219,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1239,7 +1239,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1253,7 +1253,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1270,7 +1270,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1288,7 +1288,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1302,7 +1302,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1317,7 +1317,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* This repeated list contains zero or more results that
+     * Output only. This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -1347,7 +1347,7 @@ private static final long serialVersionUID = 0L;
     private int speechEventType_ = 0;
     /**
      * <pre>
-     * *Output-only* Indicates the type of speech event.
+     * Output only. Indicates the type of speech event.
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
@@ -1357,7 +1357,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* Indicates the type of speech event.
+     * Output only. Indicates the type of speech event.
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
@@ -1369,7 +1369,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* Indicates the type of speech event.
+     * Output only. Indicates the type of speech event.
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
@@ -1380,7 +1380,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* Indicates the type of speech event.
+     * Output only. Indicates the type of speech event.
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
@@ -1396,7 +1396,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* Indicates the type of speech event.
+     * Output only. Indicates the type of speech event.
      * </pre>
      *
      * <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
