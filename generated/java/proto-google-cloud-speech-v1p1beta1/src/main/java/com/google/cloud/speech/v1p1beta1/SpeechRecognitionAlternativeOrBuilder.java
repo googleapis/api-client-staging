@@ -9,7 +9,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
 
   /**
    * <pre>
-   * *Output-only* Transcript text representing the words that the user spoke.
+   * Output only. Transcript text representing the words that the user spoke.
    * </pre>
    *
    * <code>string transcript = 1;</code>
@@ -17,7 +17,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
   java.lang.String getTranscript();
   /**
    * <pre>
-   * *Output-only* Transcript text representing the words that the user spoke.
+   * Output only. Transcript text representing the words that the user spoke.
    * </pre>
    *
    * <code>string transcript = 1;</code>
@@ -27,7 +27,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
 
   /**
    * <pre>
-   * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+   * Output only. The confidence estimate between 0.0 and 1.0. A higher number
    * indicates an estimated greater likelihood that the recognized words are
    * correct. This field is set only for the top alternative of a non-streaming
    * result or, of a streaming result where `is_final=true`.
@@ -42,7 +42,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
 
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -51,7 +51,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
       getWordsList();
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -59,7 +59,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
   com.google.cloud.speech.v1p1beta1.WordInfo getWords(int index);
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -67,7 +67,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
   int getWordsCount();
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -76,7 +76,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
       getWordsOrBuilderList();
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>

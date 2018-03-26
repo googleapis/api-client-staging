@@ -94,7 +94,7 @@ private static final long serialVersionUID = 0L;
   private java.util.List<com.google.cloud.speech.v1p1beta1.SpeechRecognitionAlternative> alternatives_;
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -107,7 +107,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -121,7 +121,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -134,7 +134,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -147,7 +147,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
    * These alternatives are ordered in terms of accuracy, with the top (first)
    * alternative being the most probable, as ranked by the recognizer.
@@ -501,7 +501,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -518,7 +518,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -535,7 +535,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -552,7 +552,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -576,7 +576,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -597,7 +597,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -620,7 +620,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -644,7 +644,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -665,7 +665,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -686,7 +686,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -708,7 +708,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -728,7 +728,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -748,7 +748,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -762,7 +762,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -779,7 +779,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -797,7 +797,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -811,7 +811,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -826,7 +826,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
