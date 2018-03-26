@@ -54,6 +54,11 @@ public enum TypeCode
    * <pre>
    * Encoded as `string` in RFC 3339 timestamp format. The time zone
    * must be present, and must be `"Z"`.
+   * If the schema has the column option
+   * `allow_commit_timestamp=true`, the placeholder string
+   * `"spanner.commit_timestamp()"` can be used to instruct the system
+   * to insert the commit timestamp associated with the transaction
+   * commit.
    * </pre>
    *
    * <code>TIMESTAMP = 4;</code>
@@ -142,6 +147,11 @@ public enum TypeCode
    * <pre>
    * Encoded as `string` in RFC 3339 timestamp format. The time zone
    * must be present, and must be `"Z"`.
+   * If the schema has the column option
+   * `allow_commit_timestamp=true`, the placeholder string
+   * `"spanner.commit_timestamp()"` can be used to instruct the system
+   * to insert the commit timestamp associated with the transaction
+   * commit.
    * </pre>
    *
    * <code>TIMESTAMP = 4;</code>

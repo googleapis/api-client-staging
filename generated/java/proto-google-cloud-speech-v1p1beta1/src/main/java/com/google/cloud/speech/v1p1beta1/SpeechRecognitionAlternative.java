@@ -108,7 +108,7 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object transcript_;
   /**
    * <pre>
-   * *Output-only* Transcript text representing the words that the user spoke.
+   * Output only. Transcript text representing the words that the user spoke.
    * </pre>
    *
    * <code>string transcript = 1;</code>
@@ -127,7 +127,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* Transcript text representing the words that the user spoke.
+   * Output only. Transcript text representing the words that the user spoke.
    * </pre>
    *
    * <code>string transcript = 1;</code>
@@ -150,7 +150,7 @@ private static final long serialVersionUID = 0L;
   private float confidence_;
   /**
    * <pre>
-   * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+   * Output only. The confidence estimate between 0.0 and 1.0. A higher number
    * indicates an estimated greater likelihood that the recognized words are
    * correct. This field is set only for the top alternative of a non-streaming
    * result or, of a streaming result where `is_final=true`.
@@ -169,7 +169,7 @@ private static final long serialVersionUID = 0L;
   private java.util.List<com.google.cloud.speech.v1p1beta1.WordInfo> words_;
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -179,7 +179,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -190,7 +190,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -200,7 +200,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -210,7 +210,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -589,7 +589,7 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object transcript_ = "";
     /**
      * <pre>
-     * *Output-only* Transcript text representing the words that the user spoke.
+     * Output only. Transcript text representing the words that the user spoke.
      * </pre>
      *
      * <code>string transcript = 1;</code>
@@ -608,7 +608,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* Transcript text representing the words that the user spoke.
+     * Output only. Transcript text representing the words that the user spoke.
      * </pre>
      *
      * <code>string transcript = 1;</code>
@@ -628,7 +628,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* Transcript text representing the words that the user spoke.
+     * Output only. Transcript text representing the words that the user spoke.
      * </pre>
      *
      * <code>string transcript = 1;</code>
@@ -645,7 +645,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* Transcript text representing the words that the user spoke.
+     * Output only. Transcript text representing the words that the user spoke.
      * </pre>
      *
      * <code>string transcript = 1;</code>
@@ -658,7 +658,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* Transcript text representing the words that the user spoke.
+     * Output only. Transcript text representing the words that the user spoke.
      * </pre>
      *
      * <code>string transcript = 1;</code>
@@ -678,7 +678,7 @@ private static final long serialVersionUID = 0L;
     private float confidence_ ;
     /**
      * <pre>
-     * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is set only for the top alternative of a non-streaming
      * result or, of a streaming result where `is_final=true`.
@@ -694,7 +694,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is set only for the top alternative of a non-streaming
      * result or, of a streaming result where `is_final=true`.
@@ -713,7 +713,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is set only for the top alternative of a non-streaming
      * result or, of a streaming result where `is_final=true`.
@@ -745,7 +745,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -759,7 +759,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -773,7 +773,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -787,7 +787,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -808,7 +808,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -826,7 +826,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -846,7 +846,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -867,7 +867,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -885,7 +885,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -903,7 +903,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -922,7 +922,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -939,7 +939,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -956,7 +956,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -967,7 +967,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -981,7 +981,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -996,7 +996,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -1007,7 +1007,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -1019,7 +1019,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * *Output-only* A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
