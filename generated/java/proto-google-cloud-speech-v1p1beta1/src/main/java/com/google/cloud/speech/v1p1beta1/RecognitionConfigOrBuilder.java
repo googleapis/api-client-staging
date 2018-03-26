@@ -153,6 +153,46 @@ public interface RecognitionConfigOrBuilder extends
 
   /**
    * <pre>
+   * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+   * This feature is only available in select languages. Setting this for
+   * requests in other languages has no effect at all.
+   * The default 'false' value does not add punctuation to result hypotheses.
+   * NOTE: "This is currently offered as an experimental service, complimentary
+   * to all users. In the future this may be exclusively available as a
+   * premium feature."
+   * </pre>
+   *
+   * <code>bool enable_automatic_punctuation = 11;</code>
+   */
+  boolean getEnableAutomaticPunctuation();
+
+  /**
+   * <pre>
+   * *Optional* Metadata regarding this request.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+   */
+  boolean hasMetadata();
+  /**
+   * <pre>
+   * *Optional* Metadata regarding this request.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+   */
+  com.google.cloud.speech.v1p1beta1.RecognitionMetadata getMetadata();
+  /**
+   * <pre>
+   * *Optional* Metadata regarding this request.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+   */
+  com.google.cloud.speech.v1p1beta1.RecognitionMetadataOrBuilder getMetadataOrBuilder();
+
+  /**
+   * <pre>
    * *Optional* Which model to select for the given request. Select the model
    * best suited to your domain to get best results. If a model is not
    * explicitly specified, then we auto-select a model based on the parameters
@@ -241,7 +281,7 @@ public interface RecognitionConfigOrBuilder extends
    * recognized using the standard version of the specified model.
    * Enhanced speech models require that you enable audio logging for
    * your request. To enable audio logging, set the `loggingConsentState` field
-   * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+   * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
    * You must also opt-in to the audio logging alpha using the instructions in
    * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
    * to true and you have not enabled audio logging, then you will receive

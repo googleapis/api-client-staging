@@ -28,6 +28,7 @@ private static final long serialVersionUID = 0L;
     profanityFilter_ = false;
     speechContexts_ = java.util.Collections.emptyList();
     enableWordTimeOffsets_ = false;
+    enableAutomaticPunctuation_ = false;
     model_ = "";
     useEnhanced_ = false;
   }
@@ -104,6 +105,19 @@ private static final long serialVersionUID = 0L;
             enableWordTimeOffsets_ = input.readBool();
             break;
           }
+          case 74: {
+            com.google.cloud.speech.v1p1beta1.RecognitionMetadata.Builder subBuilder = null;
+            if (metadata_ != null) {
+              subBuilder = metadata_.toBuilder();
+            }
+            metadata_ = input.readMessage(com.google.cloud.speech.v1p1beta1.RecognitionMetadata.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(metadata_);
+              metadata_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           case 82: {
             com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder subBuilder = null;
             if (googleDataCollectionOptIn_ != null) {
@@ -115,6 +129,11 @@ private static final long serialVersionUID = 0L;
               googleDataCollectionOptIn_ = subBuilder.buildPartial();
             }
 
+            break;
+          }
+          case 88: {
+
+            enableAutomaticPunctuation_ = input.readBool();
             break;
           }
           case 106: {
@@ -632,6 +651,58 @@ private static final long serialVersionUID = 0L;
     return enableWordTimeOffsets_;
   }
 
+  public static final int ENABLE_AUTOMATIC_PUNCTUATION_FIELD_NUMBER = 11;
+  private boolean enableAutomaticPunctuation_;
+  /**
+   * <pre>
+   * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+   * This feature is only available in select languages. Setting this for
+   * requests in other languages has no effect at all.
+   * The default 'false' value does not add punctuation to result hypotheses.
+   * NOTE: "This is currently offered as an experimental service, complimentary
+   * to all users. In the future this may be exclusively available as a
+   * premium feature."
+   * </pre>
+   *
+   * <code>bool enable_automatic_punctuation = 11;</code>
+   */
+  public boolean getEnableAutomaticPunctuation() {
+    return enableAutomaticPunctuation_;
+  }
+
+  public static final int METADATA_FIELD_NUMBER = 9;
+  private com.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata_;
+  /**
+   * <pre>
+   * *Optional* Metadata regarding this request.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+   */
+  public boolean hasMetadata() {
+    return metadata_ != null;
+  }
+  /**
+   * <pre>
+   * *Optional* Metadata regarding this request.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+   */
+  public com.google.cloud.speech.v1p1beta1.RecognitionMetadata getMetadata() {
+    return metadata_ == null ? com.google.cloud.speech.v1p1beta1.RecognitionMetadata.getDefaultInstance() : metadata_;
+  }
+  /**
+   * <pre>
+   * *Optional* Metadata regarding this request.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+   */
+  public com.google.cloud.speech.v1p1beta1.RecognitionMetadataOrBuilder getMetadataOrBuilder() {
+    return getMetadata();
+  }
+
   public static final int MODEL_FIELD_NUMBER = 13;
   private volatile java.lang.Object model_;
   /**
@@ -748,7 +819,7 @@ private static final long serialVersionUID = 0L;
    * recognized using the standard version of the specified model.
    * Enhanced speech models require that you enable audio logging for
    * your request. To enable audio logging, set the `loggingConsentState` field
-   * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+   * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
    * You must also opt-in to the audio logging alpha using the instructions in
    * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
    * to true and you have not enabled audio logging, then you will receive
@@ -833,8 +904,14 @@ private static final long serialVersionUID = 0L;
     if (enableWordTimeOffsets_ != false) {
       output.writeBool(8, enableWordTimeOffsets_);
     }
+    if (metadata_ != null) {
+      output.writeMessage(9, getMetadata());
+    }
     if (googleDataCollectionOptIn_ != null) {
       output.writeMessage(10, getGoogleDataCollectionOptIn());
+    }
+    if (enableAutomaticPunctuation_ != false) {
+      output.writeBool(11, enableAutomaticPunctuation_);
     }
     if (!getModelBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 13, model_);
@@ -877,9 +954,17 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(8, enableWordTimeOffsets_);
     }
+    if (metadata_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(9, getMetadata());
+    }
     if (googleDataCollectionOptIn_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(10, getGoogleDataCollectionOptIn());
+    }
+    if (enableAutomaticPunctuation_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(11, enableAutomaticPunctuation_);
     }
     if (!getModelBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, model_);
@@ -917,6 +1002,13 @@ private static final long serialVersionUID = 0L;
         .equals(other.getSpeechContextsList());
     result = result && (getEnableWordTimeOffsets()
         == other.getEnableWordTimeOffsets());
+    result = result && (getEnableAutomaticPunctuation()
+        == other.getEnableAutomaticPunctuation());
+    result = result && (hasMetadata() == other.hasMetadata());
+    if (hasMetadata()) {
+      result = result && getMetadata()
+          .equals(other.getMetadata());
+    }
     result = result && getModel()
         .equals(other.getModel());
     result = result && (getUseEnhanced()
@@ -955,6 +1047,13 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ENABLE_WORD_TIME_OFFSETS_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getEnableWordTimeOffsets());
+    hash = (37 * hash) + ENABLE_AUTOMATIC_PUNCTUATION_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getEnableAutomaticPunctuation());
+    if (hasMetadata()) {
+      hash = (37 * hash) + METADATA_FIELD_NUMBER;
+      hash = (53 * hash) + getMetadata().hashCode();
+    }
     hash = (37 * hash) + MODEL_FIELD_NUMBER;
     hash = (53 * hash) + getModel().hashCode();
     hash = (37 * hash) + USE_ENHANCED_FIELD_NUMBER;
@@ -1117,6 +1216,14 @@ private static final long serialVersionUID = 0L;
       }
       enableWordTimeOffsets_ = false;
 
+      enableAutomaticPunctuation_ = false;
+
+      if (metadataBuilder_ == null) {
+        metadata_ = null;
+      } else {
+        metadata_ = null;
+        metadataBuilder_ = null;
+      }
       model_ = "";
 
       useEnhanced_ = false;
@@ -1166,6 +1273,12 @@ private static final long serialVersionUID = 0L;
         result.speechContexts_ = speechContextsBuilder_.build();
       }
       result.enableWordTimeOffsets_ = enableWordTimeOffsets_;
+      result.enableAutomaticPunctuation_ = enableAutomaticPunctuation_;
+      if (metadataBuilder_ == null) {
+        result.metadata_ = metadata_;
+      } else {
+        result.metadata_ = metadataBuilder_.build();
+      }
       result.model_ = model_;
       result.useEnhanced_ = useEnhanced_;
       if (googleDataCollectionOptInBuilder_ == null) {
@@ -1259,6 +1372,12 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getEnableWordTimeOffsets() != false) {
         setEnableWordTimeOffsets(other.getEnableWordTimeOffsets());
+      }
+      if (other.getEnableAutomaticPunctuation() != false) {
+        setEnableAutomaticPunctuation(other.getEnableAutomaticPunctuation());
+      }
+      if (other.hasMetadata()) {
+        mergeMetadata(other.getMetadata());
       }
       if (!other.getModel().isEmpty()) {
         model_ = other.model_;
@@ -1996,6 +2115,215 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private boolean enableAutomaticPunctuation_ ;
+    /**
+     * <pre>
+     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * This feature is only available in select languages. Setting this for
+     * requests in other languages has no effect at all.
+     * The default 'false' value does not add punctuation to result hypotheses.
+     * NOTE: "This is currently offered as an experimental service, complimentary
+     * to all users. In the future this may be exclusively available as a
+     * premium feature."
+     * </pre>
+     *
+     * <code>bool enable_automatic_punctuation = 11;</code>
+     */
+    public boolean getEnableAutomaticPunctuation() {
+      return enableAutomaticPunctuation_;
+    }
+    /**
+     * <pre>
+     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * This feature is only available in select languages. Setting this for
+     * requests in other languages has no effect at all.
+     * The default 'false' value does not add punctuation to result hypotheses.
+     * NOTE: "This is currently offered as an experimental service, complimentary
+     * to all users. In the future this may be exclusively available as a
+     * premium feature."
+     * </pre>
+     *
+     * <code>bool enable_automatic_punctuation = 11;</code>
+     */
+    public Builder setEnableAutomaticPunctuation(boolean value) {
+      
+      enableAutomaticPunctuation_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * This feature is only available in select languages. Setting this for
+     * requests in other languages has no effect at all.
+     * The default 'false' value does not add punctuation to result hypotheses.
+     * NOTE: "This is currently offered as an experimental service, complimentary
+     * to all users. In the future this may be exclusively available as a
+     * premium feature."
+     * </pre>
+     *
+     * <code>bool enable_automatic_punctuation = 11;</code>
+     */
+    public Builder clearEnableAutomaticPunctuation() {
+      
+      enableAutomaticPunctuation_ = false;
+      onChanged();
+      return this;
+    }
+
+    private com.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.cloud.speech.v1p1beta1.RecognitionMetadata, com.google.cloud.speech.v1p1beta1.RecognitionMetadata.Builder, com.google.cloud.speech.v1p1beta1.RecognitionMetadataOrBuilder> metadataBuilder_;
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    public boolean hasMetadata() {
+      return metadataBuilder_ != null || metadata_ != null;
+    }
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    public com.google.cloud.speech.v1p1beta1.RecognitionMetadata getMetadata() {
+      if (metadataBuilder_ == null) {
+        return metadata_ == null ? com.google.cloud.speech.v1p1beta1.RecognitionMetadata.getDefaultInstance() : metadata_;
+      } else {
+        return metadataBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    public Builder setMetadata(com.google.cloud.speech.v1p1beta1.RecognitionMetadata value) {
+      if (metadataBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        metadata_ = value;
+        onChanged();
+      } else {
+        metadataBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    public Builder setMetadata(
+        com.google.cloud.speech.v1p1beta1.RecognitionMetadata.Builder builderForValue) {
+      if (metadataBuilder_ == null) {
+        metadata_ = builderForValue.build();
+        onChanged();
+      } else {
+        metadataBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    public Builder mergeMetadata(com.google.cloud.speech.v1p1beta1.RecognitionMetadata value) {
+      if (metadataBuilder_ == null) {
+        if (metadata_ != null) {
+          metadata_ =
+            com.google.cloud.speech.v1p1beta1.RecognitionMetadata.newBuilder(metadata_).mergeFrom(value).buildPartial();
+        } else {
+          metadata_ = value;
+        }
+        onChanged();
+      } else {
+        metadataBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    public Builder clearMetadata() {
+      if (metadataBuilder_ == null) {
+        metadata_ = null;
+        onChanged();
+      } else {
+        metadata_ = null;
+        metadataBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    public com.google.cloud.speech.v1p1beta1.RecognitionMetadata.Builder getMetadataBuilder() {
+      
+      onChanged();
+      return getMetadataFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    public com.google.cloud.speech.v1p1beta1.RecognitionMetadataOrBuilder getMetadataOrBuilder() {
+      if (metadataBuilder_ != null) {
+        return metadataBuilder_.getMessageOrBuilder();
+      } else {
+        return metadata_ == null ?
+            com.google.cloud.speech.v1p1beta1.RecognitionMetadata.getDefaultInstance() : metadata_;
+      }
+    }
+    /**
+     * <pre>
+     * *Optional* Metadata regarding this request.
+     * </pre>
+     *
+     * <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.cloud.speech.v1p1beta1.RecognitionMetadata, com.google.cloud.speech.v1p1beta1.RecognitionMetadata.Builder, com.google.cloud.speech.v1p1beta1.RecognitionMetadataOrBuilder> 
+        getMetadataFieldBuilder() {
+      if (metadataBuilder_ == null) {
+        metadataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.cloud.speech.v1p1beta1.RecognitionMetadata, com.google.cloud.speech.v1p1beta1.RecognitionMetadata.Builder, com.google.cloud.speech.v1p1beta1.RecognitionMetadataOrBuilder>(
+                getMetadata(),
+                getParentForChildren(),
+                isClean());
+        metadata_ = null;
+      }
+      return metadataBuilder_;
+    }
+
     private java.lang.Object model_ = "";
     /**
      * <pre>
@@ -2251,7 +2579,7 @@ private static final long serialVersionUID = 0L;
      * recognized using the standard version of the specified model.
      * Enhanced speech models require that you enable audio logging for
      * your request. To enable audio logging, set the `loggingConsentState` field
-     * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+     * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
      * You must also opt-in to the audio logging alpha using the instructions in
      * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
      * to true and you have not enabled audio logging, then you will receive
@@ -2273,7 +2601,7 @@ private static final long serialVersionUID = 0L;
      * recognized using the standard version of the specified model.
      * Enhanced speech models require that you enable audio logging for
      * your request. To enable audio logging, set the `loggingConsentState` field
-     * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+     * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
      * You must also opt-in to the audio logging alpha using the instructions in
      * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
      * to true and you have not enabled audio logging, then you will receive
@@ -2298,7 +2626,7 @@ private static final long serialVersionUID = 0L;
      * recognized using the standard version of the specified model.
      * Enhanced speech models require that you enable audio logging for
      * your request. To enable audio logging, set the `loggingConsentState` field
-     * to ENABLED in the [GoogleDataCollectionConfig][] section of your request.
+     * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
      * You must also opt-in to the audio logging alpha using the instructions in
      * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
      * to true and you have not enabled audio logging, then you will receive
