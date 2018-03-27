@@ -1,0 +1,218 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    maven {
+      url 'https://plugins.gradle.org/m2/'
+    }
+    mavenCentral()
+  }
+}
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'idea'
+  apply plugin: 'maven'
+  apply plugin: 'signing'
+
+  sourceCompatibility = 1.7
+  targetCompatibility = 1.7
+
+  signing {
+    required false
+    sign configurations.archives
+  }
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+
+  // Test Logging
+  // ------------
+  test {
+    testLogging {
+      events "passed", "skipped", "failed", "standardOut", "standardError"
+      exceptionFormat = 'full'
+    }
+  }
+
+  // Maven publishing tasks
+  // ------------
+  afterEvaluate {
+    if (!(project.name ==~ "^grpc-.+" || project.name ==~ "^proto-.+")) {
+      return
+    }
+
+
+    ext {
+      pomProject = {
+        name project.name
+        description project.description
+        url 'https://github.com/googleapis/api-client-staging'
+        scm {
+          url 'https://github.com/googleapis/api-client-staging'
+          connection 'scm:git:https://github.com/googleapis/api-client-staging.git'
+        }
+
+        licenses {
+          license {
+            name 'Apache-2.0'
+            url 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+
+        developers {
+          developer {
+            id 'garrettjonesgoogle'
+            name 'Garrett Jones'
+            email 'garrettjones@google.com'
+          }
+          developer {
+            id 'pongad'
+            name 'Michael Darakananda'
+            email 'pongad@google.com'
+          }
+          developer {
+            id 'michaelbausor'
+            name 'Micheal Bausor'
+            email 'michaelbausor@google.com'
+          }
+          developer {
+            id 'vam-google'
+            name 'Vadym Matsishevskyi'
+            email 'vam@google.com'
+          }
+          developer {
+            id 'neozwu'
+            name 'Neo Wu'
+            email 'neowu@google.co'
+          }
+          developer {
+            id 'andreamlin'
+            name 'Andrea Lin'
+            email 'andrealin@google.com'
+          }
+          developer {
+            id 'hzyi-google'
+            name 'Hanzhen Yi'
+            email 'hzyi@google.com'
+          }
+        }
+
+        organization {
+          name 'Google LLC'
+        }
+      }
+    }
+
+    install {
+      repositories {
+        mavenInstaller {
+          pom {
+            project pomProject
+          }
+        }
+      }
+    }
+
+    uploadArchives {
+      if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
+        repositories {
+          mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+              authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+              authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project pomProject
+          }
+        }
+      } else {
+        doFirst {
+          throw new GradleException("uploadArchives needs ossrhUsername and ossrhPassword "
+              + "to be set. They can be set inside your ~/.gradle/gradle.properties file.")
+        }
+      }
+    }
+  }
+}
+
+// Documentation publish tasks
+// -------------------
+apply plugin: 'java'
+
+task allDocs(type: Javadoc) {
+  def subProjects = subprojects.findAll {
+    it.name.startsWith("proto-") || it.name.startsWith("grpc-")
+  }
+
+  source subProjects.collect { it.sourceSets.main.allJava }
+  classpath = files(subProjects.collect { it.sourceSets.main.compileClasspath })
+  destinationDir = file("${buildDir}/javadoc/all/latest/apidocs")
+
+  options.links += ["https://developers.google.com/protocol-buffers/docs/reference/java/"]
+}
+
+task checkOutGhPages {
+  doLast {
+    exec {
+      commandLine "git", "clone", "--branch", "gh-pages", "--single-branch", "git@github.com:googleapis/googleapis.git", "tmp_gh-pages"
+    }
+  }
+}
+
+clean.doFirst {
+  delete "tmp_gh-pages"
+}
+
+task copyFilesToGhPages {
+  dependsOn 'allDocs'
+  dependsOn 'checkOutGhPages'
+
+  doLast {
+    def newSiteDirPath = "tmp_gh-pages/java/"
+    new File(newSiteDirPath).mkdirs()
+    copy {
+      from "${buildDir}/javadoc"
+      into newSiteDirPath
+    }
+  }
+}
+
+task commitDocs {
+  dependsOn 'copyFilesToGhPages'
+
+  doLast {
+    def gitHashOut = new ByteArrayOutputStream()
+    exec {
+      commandLine "git", "rev-parse", "HEAD"
+      standardOutput = gitHashOut
+    }
+    def gitHash = gitHashOut.toString().trim()
+
+    exec {
+      workingDir "tmp_gh-pages"
+      commandLine 'git', 'add', '.'
+    }
+
+    exec {
+      workingDir "tmp_gh-pages"
+      commandLine 'git', 'commit', '-m', "regenerate javadocs\n\napi-client-staging: ${gitHash}"
+    }
+  }
+}
+
+task pushDocs {
+  dependsOn 'commitDocs'
+  doLast {
+    exec {
+      workingDir "tmp_gh-pages"
+      commandLine 'git', 'push'
+    }
+  }
+}
