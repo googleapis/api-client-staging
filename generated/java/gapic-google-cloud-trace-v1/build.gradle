@@ -7,7 +7,7 @@ buildscript {
 apply plugin: 'java'
 
 description = 'GAPIC library for google-cloud-trace-v1'
-group = "com.google.api"
+group = 'com.google.api'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -21,8 +21,8 @@ dependencies {
   compile 'com.google.api:gax-grpc:1.20.0'
   testCompile 'junit:junit:4.12'
   testCompile 'com.google.api:gax-grpc:1.20.0:testlib'
-  compile project(":proto-google-cloud-trace-v1")
-  testCompile project(":grpc-google-cloud-trace-v1")
+  compile project(':proto-google-cloud-trace-v1')
+  testCompile project(':grpc-google-cloud-trace-v1')
 }
 
 sourceSets {
@@ -33,4 +33,5 @@ sourceSets {
   }
 }
 
-compileJava.options.encoding = "UTF-8"
+compileJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'
