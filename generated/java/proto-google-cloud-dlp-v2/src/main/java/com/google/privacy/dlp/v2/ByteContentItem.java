@@ -100,6 +100,10 @@ private static final long serialVersionUID = 0L;
      */
     BYTES_TYPE_UNSPECIFIED(0),
     /**
+     * <code>IMAGE = 6;</code>
+     */
+    IMAGE(6),
+    /**
      * <code>IMAGE_JPEG = 1;</code>
      */
     IMAGE_JPEG(1),
@@ -126,6 +130,10 @@ private static final long serialVersionUID = 0L;
      * <code>BYTES_TYPE_UNSPECIFIED = 0;</code>
      */
     public static final int BYTES_TYPE_UNSPECIFIED_VALUE = 0;
+    /**
+     * <code>IMAGE = 6;</code>
+     */
+    public static final int IMAGE_VALUE = 6;
     /**
      * <code>IMAGE_JPEG = 1;</code>
      */
@@ -167,6 +175,7 @@ private static final long serialVersionUID = 0L;
     public static BytesType forNumber(int value) {
       switch (value) {
         case 0: return BYTES_TYPE_UNSPECIFIED;
+        case 6: return IMAGE;
         case 1: return IMAGE_JPEG;
         case 2: return IMAGE_BMP;
         case 3: return IMAGE_PNG;

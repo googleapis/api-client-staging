@@ -345,7 +345,9 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Returns sensitive information types DLP supports.
+     * Returns a list of the sensitive information types that the DLP API
+     * supports. For more information, see [Listing supported predefined
+     * infoTypes](/dlp/docs/listing-infotypes).
      * </pre>
      */
     public void listInfoTypes(com.google.privacy.dlp.v2.ListInfoTypesRequest request,
@@ -821,7 +823,9 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Returns sensitive information types DLP supports.
+     * Returns a list of the sensitive information types that the DLP API
+     * supports. For more information, see [Listing supported predefined
+     * infoTypes](/dlp/docs/listing-infotypes).
      * </pre>
      */
     public void listInfoTypes(com.google.privacy.dlp.v2.ListInfoTypesRequest request,
@@ -1134,7 +1138,9 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Returns sensitive information types DLP supports.
+     * Returns a list of the sensitive information types that the DLP API
+     * supports. For more information, see [Listing supported predefined
+     * infoTypes](/dlp/docs/listing-infotypes).
      * </pre>
      */
     public com.google.privacy.dlp.v2.ListInfoTypesResponse listInfoTypes(com.google.privacy.dlp.v2.ListInfoTypesRequest request) {
@@ -1430,7 +1436,9 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Returns sensitive information types DLP supports.
+     * Returns a list of the sensitive information types that the DLP API
+     * supports. For more information, see [Listing supported predefined
+     * infoTypes](/dlp/docs/listing-infotypes).
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.ListInfoTypesResponse> listInfoTypes(

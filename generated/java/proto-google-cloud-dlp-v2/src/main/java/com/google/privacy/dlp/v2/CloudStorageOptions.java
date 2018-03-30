@@ -22,6 +22,7 @@ private static final long serialVersionUID = 0L;
   }
   private CloudStorageOptions() {
     bytesLimitPerFile_ = 0L;
+    fileTypes_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -73,6 +74,29 @@ private static final long serialVersionUID = 0L;
             bytesLimitPerFile_ = input.readInt64();
             break;
           }
+          case 40: {
+            int rawValue = input.readEnum();
+            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+              fileTypes_ = new java.util.ArrayList<java.lang.Integer>();
+              mutable_bitField0_ |= 0x00000004;
+            }
+            fileTypes_.add(rawValue);
+            break;
+          }
+          case 42: {
+            int length = input.readRawVarint32();
+            int oldLimit = input.pushLimit(length);
+            while(input.getBytesUntilLimit() > 0) {
+              int rawValue = input.readEnum();
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                fileTypes_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              fileTypes_.add(rawValue);
+            }
+            input.popLimit(oldLimit);
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -81,6 +105,9 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+        fileTypes_ = java.util.Collections.unmodifiableList(fileTypes_);
+      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -675,6 +702,7 @@ private static final long serialVersionUID = 0L;
 
   }
 
+  private int bitField0_;
   public static final int FILE_SET_FIELD_NUMBER = 1;
   private com.google.privacy.dlp.v2.CloudStorageOptions.FileSet fileSet_;
   /**
@@ -710,6 +738,81 @@ private static final long serialVersionUID = 0L;
     return bytesLimitPerFile_;
   }
 
+  public static final int FILE_TYPES_FIELD_NUMBER = 5;
+  private java.util.List<java.lang.Integer> fileTypes_;
+  private static final com.google.protobuf.Internal.ListAdapter.Converter<
+      java.lang.Integer, com.google.privacy.dlp.v2.FileType> fileTypes_converter_ =
+          new com.google.protobuf.Internal.ListAdapter.Converter<
+              java.lang.Integer, com.google.privacy.dlp.v2.FileType>() {
+            public com.google.privacy.dlp.v2.FileType convert(java.lang.Integer from) {
+              com.google.privacy.dlp.v2.FileType result = com.google.privacy.dlp.v2.FileType.valueOf(from);
+              return result == null ? com.google.privacy.dlp.v2.FileType.UNRECOGNIZED : result;
+            }
+          };
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  public java.util.List<com.google.privacy.dlp.v2.FileType> getFileTypesList() {
+    return new com.google.protobuf.Internal.ListAdapter<
+        java.lang.Integer, com.google.privacy.dlp.v2.FileType>(fileTypes_, fileTypes_converter_);
+  }
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  public int getFileTypesCount() {
+    return fileTypes_.size();
+  }
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  public com.google.privacy.dlp.v2.FileType getFileTypes(int index) {
+    return fileTypes_converter_.convert(fileTypes_.get(index));
+  }
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  public java.util.List<java.lang.Integer>
+  getFileTypesValueList() {
+    return fileTypes_;
+  }
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  public int getFileTypesValue(int index) {
+    return fileTypes_.get(index);
+  }
+  private int fileTypesMemoizedSerializedSize;
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -722,11 +825,19 @@ private static final long serialVersionUID = 0L;
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    getSerializedSize();
     if (fileSet_ != null) {
       output.writeMessage(1, getFileSet());
     }
     if (bytesLimitPerFile_ != 0L) {
       output.writeInt64(4, bytesLimitPerFile_);
+    }
+    if (getFileTypesList().size() > 0) {
+      output.writeUInt32NoTag(42);
+      output.writeUInt32NoTag(fileTypesMemoizedSerializedSize);
+    }
+    for (int i = 0; i < fileTypes_.size(); i++) {
+      output.writeEnumNoTag(fileTypes_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -743,6 +854,18 @@ private static final long serialVersionUID = 0L;
     if (bytesLimitPerFile_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(4, bytesLimitPerFile_);
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < fileTypes_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeEnumSizeNoTag(fileTypes_.get(i));
+      }
+      size += dataSize;
+      if (!getFileTypesList().isEmpty()) {  size += 1;
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32SizeNoTag(dataSize);
+      }fileTypesMemoizedSerializedSize = dataSize;
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -767,6 +890,7 @@ private static final long serialVersionUID = 0L;
     }
     result = result && (getBytesLimitPerFile()
         == other.getBytesLimitPerFile());
+    result = result && fileTypes_.equals(other.fileTypes_);
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -785,6 +909,10 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + BYTES_LIMIT_PER_FILE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getBytesLimitPerFile());
+    if (getFileTypesCount() > 0) {
+      hash = (37 * hash) + FILE_TYPES_FIELD_NUMBER;
+      hash = (53 * hash) + fileTypes_.hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -927,6 +1055,8 @@ private static final long serialVersionUID = 0L;
       }
       bytesLimitPerFile_ = 0L;
 
+      fileTypes_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000004);
       return this;
     }
 
@@ -949,12 +1079,20 @@ private static final long serialVersionUID = 0L;
 
     public com.google.privacy.dlp.v2.CloudStorageOptions buildPartial() {
       com.google.privacy.dlp.v2.CloudStorageOptions result = new com.google.privacy.dlp.v2.CloudStorageOptions(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (fileSetBuilder_ == null) {
         result.fileSet_ = fileSet_;
       } else {
         result.fileSet_ = fileSetBuilder_.build();
       }
       result.bytesLimitPerFile_ = bytesLimitPerFile_;
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        fileTypes_ = java.util.Collections.unmodifiableList(fileTypes_);
+        bitField0_ = (bitField0_ & ~0x00000004);
+      }
+      result.fileTypes_ = fileTypes_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -1002,6 +1140,16 @@ private static final long serialVersionUID = 0L;
       if (other.getBytesLimitPerFile() != 0L) {
         setBytesLimitPerFile(other.getBytesLimitPerFile());
       }
+      if (!other.fileTypes_.isEmpty()) {
+        if (fileTypes_.isEmpty()) {
+          fileTypes_ = other.fileTypes_;
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          ensureFileTypesIsMutable();
+          fileTypes_.addAll(other.fileTypes_);
+        }
+        onChanged();
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -1028,6 +1176,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
     private com.google.privacy.dlp.v2.CloudStorageOptions.FileSet fileSet_ = null;
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -1183,6 +1332,196 @@ private static final long serialVersionUID = 0L;
     public Builder clearBytesLimitPerFile() {
       
       bytesLimitPerFile_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Integer> fileTypes_ =
+      java.util.Collections.emptyList();
+    private void ensureFileTypesIsMutable() {
+      if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        fileTypes_ = new java.util.ArrayList<java.lang.Integer>(fileTypes_);
+        bitField0_ |= 0x00000004;
+      }
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public java.util.List<com.google.privacy.dlp.v2.FileType> getFileTypesList() {
+      return new com.google.protobuf.Internal.ListAdapter<
+          java.lang.Integer, com.google.privacy.dlp.v2.FileType>(fileTypes_, fileTypes_converter_);
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public int getFileTypesCount() {
+      return fileTypes_.size();
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public com.google.privacy.dlp.v2.FileType getFileTypes(int index) {
+      return fileTypes_converter_.convert(fileTypes_.get(index));
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public Builder setFileTypes(
+        int index, com.google.privacy.dlp.v2.FileType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureFileTypesIsMutable();
+      fileTypes_.set(index, value.getNumber());
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public Builder addFileTypes(com.google.privacy.dlp.v2.FileType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureFileTypesIsMutable();
+      fileTypes_.add(value.getNumber());
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public Builder addAllFileTypes(
+        java.lang.Iterable<? extends com.google.privacy.dlp.v2.FileType> values) {
+      ensureFileTypesIsMutable();
+      for (com.google.privacy.dlp.v2.FileType value : values) {
+        fileTypes_.add(value.getNumber());
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public Builder clearFileTypes() {
+      fileTypes_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000004);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public java.util.List<java.lang.Integer>
+    getFileTypesValueList() {
+      return java.util.Collections.unmodifiableList(fileTypes_);
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public int getFileTypesValue(int index) {
+      return fileTypes_.get(index);
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public Builder setFileTypesValue(
+        int index, int value) {
+      ensureFileTypesIsMutable();
+      fileTypes_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public Builder addFileTypesValue(int value) {
+      ensureFileTypesIsMutable();
+      fileTypes_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of file type groups to include in the scan.
+     * If empty, all files are scanned and available data format processors
+     * are applied.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+     */
+    public Builder addAllFileTypesValue(
+        java.lang.Iterable<java.lang.Integer> values) {
+      ensureFileTypesIsMutable();
+      for (int value : values) {
+        fileTypes_.add(value);
+      }
       onChanged();
       return this;
     }

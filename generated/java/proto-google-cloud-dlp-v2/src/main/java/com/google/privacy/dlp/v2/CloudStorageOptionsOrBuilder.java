@@ -29,4 +29,56 @@ public interface CloudStorageOptionsOrBuilder extends
    * <code>int64 bytes_limit_per_file = 4;</code>
    */
   long getBytesLimitPerFile();
+
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  java.util.List<com.google.privacy.dlp.v2.FileType> getFileTypesList();
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  int getFileTypesCount();
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  com.google.privacy.dlp.v2.FileType getFileTypes(int index);
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  java.util.List<java.lang.Integer>
+  getFileTypesValueList();
+  /**
+   * <pre>
+   * List of file type groups to include in the scan.
+   * If empty, all files are scanned and available data format processors
+   * are applied.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
+   */
+  int getFileTypesValue(int index);
 }

@@ -11,7 +11,6 @@ public interface InspectConfigOrBuilder extends
    * <pre>
    * Restricts what info_types to look for. The values must correspond to
    * InfoType values returned by ListInfoTypes or found in documentation.
-   * Empty info_types runs all enabled detectors.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
@@ -22,7 +21,6 @@ public interface InspectConfigOrBuilder extends
    * <pre>
    * Restricts what info_types to look for. The values must correspond to
    * InfoType values returned by ListInfoTypes or found in documentation.
-   * Empty info_types runs all enabled detectors.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
@@ -32,7 +30,6 @@ public interface InspectConfigOrBuilder extends
    * <pre>
    * Restricts what info_types to look for. The values must correspond to
    * InfoType values returned by ListInfoTypes or found in documentation.
-   * Empty info_types runs all enabled detectors.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
@@ -42,7 +39,6 @@ public interface InspectConfigOrBuilder extends
    * <pre>
    * Restricts what info_types to look for. The values must correspond to
    * InfoType values returned by ListInfoTypes or found in documentation.
-   * Empty info_types runs all enabled detectors.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
@@ -53,7 +49,6 @@ public interface InspectConfigOrBuilder extends
    * <pre>
    * Restricts what info_types to look for. The values must correspond to
    * InfoType values returned by ListInfoTypes or found in documentation.
-   * Empty info_types runs all enabled detectors.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
