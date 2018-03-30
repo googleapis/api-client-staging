@@ -17,12 +17,24 @@ repositories {
 }
 
 dependencies {
-  compile 'com.google.api:gax:1.20.0'
-  compile 'com.google.api:gax-grpc:1.20.0'
+  compile 'com.google.api:gax:1.23.0'
+  compile 'com.google.api:gax-grpc:1.23.0'
   testCompile 'junit:junit:4.12'
-  testCompile 'com.google.api:gax-grpc:1.20.0:testlib'
+  testCompile 'com.google.api:gax-grpc:1.23.0:testlib'
+  testCompile 'io.grpc:grpc-netty-shaded:1.10.1'
   compile project(':proto-google-cloud-firestore-v1beta1')
   testCompile project(':grpc-google-cloud-firestore-v1beta1')
+}
+
+task smokeTest(type: Test) {
+  filter {
+    includeTestsMatching "*SmokeTest"
+    setFailOnNoMatchingTests false
+  }
+}
+
+test {
+  exclude "**/*SmokeTest*"
 }
 
 sourceSets {

@@ -187,49 +187,52 @@ public final class DlpStorage {
       "\"\201\001\n\020DatastoreOptions\0228\n\014partition_id\030\001 " +
       "\001(\0132\".google.privacy.dlp.v2.PartitionId\022" +
       "3\n\004kind\030\002 \001(\0132%.google.privacy.dlp.v2.Ki" +
-      "ndExpression\"\221\001\n\023CloudStorageOptions\022D\n\010" +
+      "ndExpression\"\306\001\n\023CloudStorageOptions\022D\n\010" +
       "file_set\030\001 \001(\01322.google.privacy.dlp.v2.C" +
       "loudStorageOptions.FileSet\022\034\n\024bytes_limi" +
-      "t_per_file\030\004 \001(\003\032\026\n\007FileSet\022\013\n\003url\030\001 \001(\t" +
-      "\"\214\001\n\017BigQueryOptions\022=\n\017table_reference\030" +
-      "\001 \001(\0132$.google.privacy.dlp.v2.BigQueryTa" +
-      "ble\022:\n\022identifying_fields\030\002 \003(\0132\036.google" +
-      ".privacy.dlp.v2.FieldId\"\232\004\n\rStorageConfi" +
-      "g\022D\n\021datastore_options\030\002 \001(\0132\'.google.pr" +
-      "ivacy.dlp.v2.DatastoreOptionsH\000\022K\n\025cloud" +
-      "_storage_options\030\003 \001(\0132*.google.privacy." +
-      "dlp.v2.CloudStorageOptionsH\000\022C\n\021big_quer" +
-      "y_options\030\004 \001(\0132&.google.privacy.dlp.v2." +
-      "BigQueryOptionsH\000\022L\n\017timespan_config\030\006 \001" +
-      "(\01323.google.privacy.dlp.v2.StorageConfig" +
-      ".TimespanConfig\032\332\001\n\016TimespanConfig\022.\n\nst" +
-      "art_time\030\001 \001(\0132\032.google.protobuf.Timesta" +
-      "mp\022,\n\010end_time\030\002 \001(\0132\032.google.protobuf.T" +
-      "imestamp\0227\n\017timestamp_field\030\003 \001(\0132\036.goog" +
-      "le.privacy.dlp.v2.FieldId\0221\n)enable_auto" +
-      "_population_of_timespan_config\030\004 \001(\010B\006\n\004" +
-      "type\"`\n\013BigQueryKey\022=\n\017table_reference\030\001" +
-      " \001(\0132$.google.privacy.dlp.v2.BigQueryTab" +
-      "le\022\022\n\nrow_number\030\002 \001(\003\">\n\014DatastoreKey\022." +
-      "\n\nentity_key\030\001 \001(\0132\032.google.privacy.dlp." +
-      "v2.Key\"\273\001\n\003Key\0228\n\014partition_id\030\001 \001(\0132\".g" +
-      "oogle.privacy.dlp.v2.PartitionId\0224\n\004path" +
-      "\030\002 \003(\0132&.google.privacy.dlp.v2.Key.PathE" +
-      "lement\032D\n\013PathElement\022\014\n\004kind\030\001 \001(\t\022\014\n\002i" +
-      "d\030\002 \001(\003H\000\022\016\n\004name\030\003 \001(\tH\000B\t\n\007id_type\"\216\001\n" +
-      "\tRecordKey\022<\n\rdatastore_key\030\002 \001(\0132#.goog" +
-      "le.privacy.dlp.v2.DatastoreKeyH\000\022;\n\rbig_" +
-      "query_key\030\003 \001(\0132\".google.privacy.dlp.v2." +
-      "BigQueryKeyH\000B\006\n\004type\"I\n\rBigQueryTable\022\022" +
-      "\n\nproject_id\030\001 \001(\t\022\022\n\ndataset_id\030\002 \001(\t\022\020" +
-      "\n\010table_id\030\003 \001(\t*t\n\nLikelihood\022\032\n\026LIKELI" +
-      "HOOD_UNSPECIFIED\020\000\022\021\n\rVERY_UNLIKELY\020\001\022\014\n" +
-      "\010UNLIKELY\020\002\022\014\n\010POSSIBLE\020\003\022\n\n\006LIKELY\020\004\022\017\n" +
-      "\013VERY_LIKELY\020\005B\217\001\n\031com.google.privacy.dl" +
-      "p.v2B\nDlpStorageP\001Z8google.golang.org/ge" +
-      "nproto/googleapis/privacy/dlp/v2;dlp\252\002\023G" +
-      "oogle.Cloud.Dlp.V2\312\002\023Google\\Cloud\\Dlp\\V2" +
-      "b\006proto3"
+      "t_per_file\030\004 \001(\003\0223\n\nfile_types\030\005 \003(\0162\037.g" +
+      "oogle.privacy.dlp.v2.FileType\032\026\n\007FileSet" +
+      "\022\013\n\003url\030\001 \001(\t\"\214\001\n\017BigQueryOptions\022=\n\017tab" +
+      "le_reference\030\001 \001(\0132$.google.privacy.dlp." +
+      "v2.BigQueryTable\022:\n\022identifying_fields\030\002" +
+      " \003(\0132\036.google.privacy.dlp.v2.FieldId\"\232\004\n" +
+      "\rStorageConfig\022D\n\021datastore_options\030\002 \001(" +
+      "\0132\'.google.privacy.dlp.v2.DatastoreOptio" +
+      "nsH\000\022K\n\025cloud_storage_options\030\003 \001(\0132*.go" +
+      "ogle.privacy.dlp.v2.CloudStorageOptionsH" +
+      "\000\022C\n\021big_query_options\030\004 \001(\0132&.google.pr" +
+      "ivacy.dlp.v2.BigQueryOptionsH\000\022L\n\017timesp" +
+      "an_config\030\006 \001(\01323.google.privacy.dlp.v2." +
+      "StorageConfig.TimespanConfig\032\332\001\n\016Timespa" +
+      "nConfig\022.\n\nstart_time\030\001 \001(\0132\032.google.pro" +
+      "tobuf.Timestamp\022,\n\010end_time\030\002 \001(\0132\032.goog" +
+      "le.protobuf.Timestamp\0227\n\017timestamp_field" +
+      "\030\003 \001(\0132\036.google.privacy.dlp.v2.FieldId\0221" +
+      "\n)enable_auto_population_of_timespan_con" +
+      "fig\030\004 \001(\010B\006\n\004type\"`\n\013BigQueryKey\022=\n\017tabl" +
+      "e_reference\030\001 \001(\0132$.google.privacy.dlp.v" +
+      "2.BigQueryTable\022\022\n\nrow_number\030\002 \001(\003\">\n\014D" +
+      "atastoreKey\022.\n\nentity_key\030\001 \001(\0132\032.google" +
+      ".privacy.dlp.v2.Key\"\273\001\n\003Key\0228\n\014partition" +
+      "_id\030\001 \001(\0132\".google.privacy.dlp.v2.Partit" +
+      "ionId\0224\n\004path\030\002 \003(\0132&.google.privacy.dlp" +
+      ".v2.Key.PathElement\032D\n\013PathElement\022\014\n\004ki" +
+      "nd\030\001 \001(\t\022\014\n\002id\030\002 \001(\003H\000\022\016\n\004name\030\003 \001(\tH\000B\t" +
+      "\n\007id_type\"\216\001\n\tRecordKey\022<\n\rdatastore_key" +
+      "\030\002 \001(\0132#.google.privacy.dlp.v2.Datastore" +
+      "KeyH\000\022;\n\rbig_query_key\030\003 \001(\0132\".google.pr" +
+      "ivacy.dlp.v2.BigQueryKeyH\000B\006\n\004type\"I\n\rBi" +
+      "gQueryTable\022\022\n\nproject_id\030\001 \001(\t\022\022\n\ndatas" +
+      "et_id\030\002 \001(\t\022\020\n\010table_id\030\003 \001(\t*t\n\nLikelih" +
+      "ood\022\032\n\026LIKELIHOOD_UNSPECIFIED\020\000\022\021\n\rVERY_" +
+      "UNLIKELY\020\001\022\014\n\010UNLIKELY\020\002\022\014\n\010POSSIBLE\020\003\022\n" +
+      "\n\006LIKELY\020\004\022\017\n\013VERY_LIKELY\020\005*E\n\010FileType\022" +
+      "\031\n\025FILE_TYPE_UNSPECIFIED\020\000\022\017\n\013BINARY_FIL" +
+      "E\020\001\022\r\n\tTEXT_FILE\020\002B\217\001\n\031com.google.privac" +
+      "y.dlp.v2B\nDlpStorageP\001Z8google.golang.or" +
+      "g/genproto/googleapis/privacy/dlp/v2;dlp" +
+      "\252\002\023Google.Cloud.Dlp.V2\312\002\023Google\\Cloud\\Dl" +
+      "p\\V2b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -334,7 +337,7 @@ public final class DlpStorage {
     internal_static_google_privacy_dlp_v2_CloudStorageOptions_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_privacy_dlp_v2_CloudStorageOptions_descriptor,
-        new java.lang.String[] { "FileSet", "BytesLimitPerFile", });
+        new java.lang.String[] { "FileSet", "BytesLimitPerFile", "FileTypes", });
     internal_static_google_privacy_dlp_v2_CloudStorageOptions_FileSet_descriptor =
       internal_static_google_privacy_dlp_v2_CloudStorageOptions_descriptor.getNestedTypes().get(0);
     internal_static_google_privacy_dlp_v2_CloudStorageOptions_FileSet_fieldAccessorTable = new

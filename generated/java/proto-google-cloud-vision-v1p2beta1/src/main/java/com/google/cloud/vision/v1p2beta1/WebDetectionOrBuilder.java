@@ -244,8 +244,7 @@ public interface WebDetectionOrBuilder extends
 
   /**
    * <pre>
-   * The service's best guess as to the topic of the request image.
-   * Inferred from similar images on the open web.
+   * Best guess text labels for the request image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1p2beta1.WebDetection.WebLabel best_guess_labels = 8;</code>
@@ -254,8 +253,7 @@ public interface WebDetectionOrBuilder extends
       getBestGuessLabelsList();
   /**
    * <pre>
-   * The service's best guess as to the topic of the request image.
-   * Inferred from similar images on the open web.
+   * Best guess text labels for the request image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1p2beta1.WebDetection.WebLabel best_guess_labels = 8;</code>
@@ -263,8 +261,7 @@ public interface WebDetectionOrBuilder extends
   com.google.cloud.vision.v1p2beta1.WebDetection.WebLabel getBestGuessLabels(int index);
   /**
    * <pre>
-   * The service's best guess as to the topic of the request image.
-   * Inferred from similar images on the open web.
+   * Best guess text labels for the request image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1p2beta1.WebDetection.WebLabel best_guess_labels = 8;</code>
@@ -272,8 +269,7 @@ public interface WebDetectionOrBuilder extends
   int getBestGuessLabelsCount();
   /**
    * <pre>
-   * The service's best guess as to the topic of the request image.
-   * Inferred from similar images on the open web.
+   * Best guess text labels for the request image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1p2beta1.WebDetection.WebLabel best_guess_labels = 8;</code>
@@ -282,8 +278,7 @@ public interface WebDetectionOrBuilder extends
       getBestGuessLabelsOrBuilderList();
   /**
    * <pre>
-   * The service's best guess as to the topic of the request image.
-   * Inferred from similar images on the open web.
+   * Best guess text labels for the request image.
    * </pre>
    *
    * <code>repeated .google.cloud.vision.v1p2beta1.WebDetection.WebLabel best_guess_labels = 8;</code>
