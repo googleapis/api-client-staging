@@ -72,4 +72,7 @@ public abstract class DatastoreStub implements BackgroundResource {
   public UnaryCallable<ReserveIdsRequest, ReserveIdsResponse> reserveIdsCallable() {
     throw new UnsupportedOperationException("Not implemented: reserveIdsCallable()");
   }
+
+  @Override
+  public abstract void close();
 }
