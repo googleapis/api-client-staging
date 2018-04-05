@@ -244,7 +244,7 @@ public class GrpcDatastoreStub extends DatastoreStub {
   }
 
   @Override
-  public final void close() throws Exception {
+  public final void close() {
     shutdown();
   }
 
