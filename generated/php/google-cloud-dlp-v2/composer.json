@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Google LLC",
   "url": "https://github.com/googleapis/googleapis",
-  "description": "DLP API client for PHP",
+  "description": "Cloud Data Loss Prevention (DLP) API client for PHP",
   "require": {
     "google/gax": "^0.28.0",
     "google/protobuf": "^3.4.0",
