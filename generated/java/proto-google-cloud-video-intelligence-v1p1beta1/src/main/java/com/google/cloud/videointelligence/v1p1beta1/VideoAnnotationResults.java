@@ -24,7 +24,6 @@ private static final long serialVersionUID = 0L;
     segmentLabelAnnotations_ = java.util.Collections.emptyList();
     shotLabelAnnotations_ = java.util.Collections.emptyList();
     frameLabelAnnotations_ = java.util.Collections.emptyList();
-    faceDetectionAnnotations_ = java.util.Collections.emptyList();
     shotAnnotations_ = java.util.Collections.emptyList();
     speechTranscriptions_ = java.util.Collections.emptyList();
   }
@@ -94,9 +93,9 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 50: {
-            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
               shotAnnotations_ = new java.util.ArrayList<com.google.cloud.videointelligence.v1p1beta1.VideoSegment>();
-              mutable_bitField0_ |= 0x00000020;
+              mutable_bitField0_ |= 0x00000010;
             }
             shotAnnotations_.add(
                 input.readMessage(com.google.cloud.videointelligence.v1p1beta1.VideoSegment.parser(), extensionRegistry));
@@ -129,21 +128,12 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 90: {
-            if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+            if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
               speechTranscriptions_ = new java.util.ArrayList<com.google.cloud.videointelligence.v1p1beta1.SpeechTranscription>();
-              mutable_bitField0_ |= 0x00000080;
+              mutable_bitField0_ |= 0x00000040;
             }
             speechTranscriptions_.add(
                 input.readMessage(com.google.cloud.videointelligence.v1p1beta1.SpeechTranscription.parser(), extensionRegistry));
-            break;
-          }
-          case 106: {
-            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-              faceDetectionAnnotations_ = new java.util.ArrayList<com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation>();
-              mutable_bitField0_ |= 0x00000010;
-            }
-            faceDetectionAnnotations_.add(
-                input.readMessage(com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.parser(), extensionRegistry));
             break;
           }
         }
@@ -163,14 +153,11 @@ private static final long serialVersionUID = 0L;
       if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
         frameLabelAnnotations_ = java.util.Collections.unmodifiableList(frameLabelAnnotations_);
       }
-      if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
         shotAnnotations_ = java.util.Collections.unmodifiableList(shotAnnotations_);
       }
-      if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+      if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
         speechTranscriptions_ = java.util.Collections.unmodifiableList(speechTranscriptions_);
-      }
-      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-        faceDetectionAnnotations_ = java.util.Collections.unmodifiableList(faceDetectionAnnotations_);
       }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
@@ -413,61 +400,6 @@ private static final long serialVersionUID = 0L;
     return frameLabelAnnotations_.get(index);
   }
 
-  public static final int FACE_DETECTION_ANNOTATIONS_FIELD_NUMBER = 13;
-  private java.util.List<com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation> faceDetectionAnnotations_;
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  public java.util.List<com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation> getFaceDetectionAnnotationsList() {
-    return faceDetectionAnnotations_;
-  }
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  public java.util.List<? extends com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder> 
-      getFaceDetectionAnnotationsOrBuilderList() {
-    return faceDetectionAnnotations_;
-  }
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  public int getFaceDetectionAnnotationsCount() {
-    return faceDetectionAnnotations_.size();
-  }
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  public com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation getFaceDetectionAnnotations(int index) {
-    return faceDetectionAnnotations_.get(index);
-  }
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  public com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder getFaceDetectionAnnotationsOrBuilder(
-      int index) {
-    return faceDetectionAnnotations_.get(index);
-  }
-
   public static final int SHOT_ANNOTATIONS_FIELD_NUMBER = 6;
   private java.util.List<com.google.cloud.videointelligence.v1p1beta1.VideoSegment> shotAnnotations_;
   /**
@@ -683,9 +615,6 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < speechTranscriptions_.size(); i++) {
       output.writeMessage(11, speechTranscriptions_.get(i));
     }
-    for (int i = 0; i < faceDetectionAnnotations_.size(); i++) {
-      output.writeMessage(13, faceDetectionAnnotations_.get(i));
-    }
     unknownFields.writeTo(output);
   }
 
@@ -725,10 +654,6 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(11, speechTranscriptions_.get(i));
     }
-    for (int i = 0; i < faceDetectionAnnotations_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(13, faceDetectionAnnotations_.get(i));
-    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -753,8 +678,6 @@ private static final long serialVersionUID = 0L;
         .equals(other.getShotLabelAnnotationsList());
     result = result && getFrameLabelAnnotationsList()
         .equals(other.getFrameLabelAnnotationsList());
-    result = result && getFaceDetectionAnnotationsList()
-        .equals(other.getFaceDetectionAnnotationsList());
     result = result && getShotAnnotationsList()
         .equals(other.getShotAnnotationsList());
     result = result && (hasExplicitAnnotation() == other.hasExplicitAnnotation());
@@ -793,10 +716,6 @@ private static final long serialVersionUID = 0L;
     if (getFrameLabelAnnotationsCount() > 0) {
       hash = (37 * hash) + FRAME_LABEL_ANNOTATIONS_FIELD_NUMBER;
       hash = (53 * hash) + getFrameLabelAnnotationsList().hashCode();
-    }
-    if (getFaceDetectionAnnotationsCount() > 0) {
-      hash = (37 * hash) + FACE_DETECTION_ANNOTATIONS_FIELD_NUMBER;
-      hash = (53 * hash) + getFaceDetectionAnnotationsList().hashCode();
     }
     if (getShotAnnotationsCount() > 0) {
       hash = (37 * hash) + SHOT_ANNOTATIONS_FIELD_NUMBER;
@@ -946,7 +865,6 @@ private static final long serialVersionUID = 0L;
         getSegmentLabelAnnotationsFieldBuilder();
         getShotLabelAnnotationsFieldBuilder();
         getFrameLabelAnnotationsFieldBuilder();
-        getFaceDetectionAnnotationsFieldBuilder();
         getShotAnnotationsFieldBuilder();
         getSpeechTranscriptionsFieldBuilder();
       }
@@ -973,15 +891,9 @@ private static final long serialVersionUID = 0L;
       } else {
         frameLabelAnnotationsBuilder_.clear();
       }
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        faceDetectionAnnotations_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
-      } else {
-        faceDetectionAnnotationsBuilder_.clear();
-      }
       if (shotAnnotationsBuilder_ == null) {
         shotAnnotations_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
       } else {
         shotAnnotationsBuilder_.clear();
       }
@@ -993,7 +905,7 @@ private static final long serialVersionUID = 0L;
       }
       if (speechTranscriptionsBuilder_ == null) {
         speechTranscriptions_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000040);
       } else {
         speechTranscriptionsBuilder_.clear();
       }
@@ -1055,19 +967,10 @@ private static final long serialVersionUID = 0L;
       } else {
         result.frameLabelAnnotations_ = frameLabelAnnotationsBuilder_.build();
       }
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        if (((bitField0_ & 0x00000010) == 0x00000010)) {
-          faceDetectionAnnotations_ = java.util.Collections.unmodifiableList(faceDetectionAnnotations_);
-          bitField0_ = (bitField0_ & ~0x00000010);
-        }
-        result.faceDetectionAnnotations_ = faceDetectionAnnotations_;
-      } else {
-        result.faceDetectionAnnotations_ = faceDetectionAnnotationsBuilder_.build();
-      }
       if (shotAnnotationsBuilder_ == null) {
-        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
           shotAnnotations_ = java.util.Collections.unmodifiableList(shotAnnotations_);
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x00000010);
         }
         result.shotAnnotations_ = shotAnnotations_;
       } else {
@@ -1079,9 +982,9 @@ private static final long serialVersionUID = 0L;
         result.explicitAnnotation_ = explicitAnnotationBuilder_.build();
       }
       if (speechTranscriptionsBuilder_ == null) {
-        if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        if (((bitField0_ & 0x00000040) == 0x00000040)) {
           speechTranscriptions_ = java.util.Collections.unmodifiableList(speechTranscriptions_);
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000040);
         }
         result.speechTranscriptions_ = speechTranscriptions_;
       } else {
@@ -1216,37 +1119,11 @@ private static final long serialVersionUID = 0L;
           }
         }
       }
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        if (!other.faceDetectionAnnotations_.isEmpty()) {
-          if (faceDetectionAnnotations_.isEmpty()) {
-            faceDetectionAnnotations_ = other.faceDetectionAnnotations_;
-            bitField0_ = (bitField0_ & ~0x00000010);
-          } else {
-            ensureFaceDetectionAnnotationsIsMutable();
-            faceDetectionAnnotations_.addAll(other.faceDetectionAnnotations_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.faceDetectionAnnotations_.isEmpty()) {
-          if (faceDetectionAnnotationsBuilder_.isEmpty()) {
-            faceDetectionAnnotationsBuilder_.dispose();
-            faceDetectionAnnotationsBuilder_ = null;
-            faceDetectionAnnotations_ = other.faceDetectionAnnotations_;
-            bitField0_ = (bitField0_ & ~0x00000010);
-            faceDetectionAnnotationsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getFaceDetectionAnnotationsFieldBuilder() : null;
-          } else {
-            faceDetectionAnnotationsBuilder_.addAllMessages(other.faceDetectionAnnotations_);
-          }
-        }
-      }
       if (shotAnnotationsBuilder_ == null) {
         if (!other.shotAnnotations_.isEmpty()) {
           if (shotAnnotations_.isEmpty()) {
             shotAnnotations_ = other.shotAnnotations_;
-            bitField0_ = (bitField0_ & ~0x00000020);
+            bitField0_ = (bitField0_ & ~0x00000010);
           } else {
             ensureShotAnnotationsIsMutable();
             shotAnnotations_.addAll(other.shotAnnotations_);
@@ -1259,7 +1136,7 @@ private static final long serialVersionUID = 0L;
             shotAnnotationsBuilder_.dispose();
             shotAnnotationsBuilder_ = null;
             shotAnnotations_ = other.shotAnnotations_;
-            bitField0_ = (bitField0_ & ~0x00000020);
+            bitField0_ = (bitField0_ & ~0x00000010);
             shotAnnotationsBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getShotAnnotationsFieldBuilder() : null;
@@ -1275,7 +1152,7 @@ private static final long serialVersionUID = 0L;
         if (!other.speechTranscriptions_.isEmpty()) {
           if (speechTranscriptions_.isEmpty()) {
             speechTranscriptions_ = other.speechTranscriptions_;
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000040);
           } else {
             ensureSpeechTranscriptionsIsMutable();
             speechTranscriptions_.addAll(other.speechTranscriptions_);
@@ -1288,7 +1165,7 @@ private static final long serialVersionUID = 0L;
             speechTranscriptionsBuilder_.dispose();
             speechTranscriptionsBuilder_ = null;
             speechTranscriptions_ = other.speechTranscriptions_;
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000040);
             speechTranscriptionsBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getSpeechTranscriptionsFieldBuilder() : null;
@@ -2412,324 +2289,12 @@ private static final long serialVersionUID = 0L;
       return frameLabelAnnotationsBuilder_;
     }
 
-    private java.util.List<com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation> faceDetectionAnnotations_ =
-      java.util.Collections.emptyList();
-    private void ensureFaceDetectionAnnotationsIsMutable() {
-      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
-        faceDetectionAnnotations_ = new java.util.ArrayList<com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation>(faceDetectionAnnotations_);
-        bitField0_ |= 0x00000010;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder> faceDetectionAnnotationsBuilder_;
-
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public java.util.List<com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation> getFaceDetectionAnnotationsList() {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(faceDetectionAnnotations_);
-      } else {
-        return faceDetectionAnnotationsBuilder_.getMessageList();
-      }
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public int getFaceDetectionAnnotationsCount() {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        return faceDetectionAnnotations_.size();
-      } else {
-        return faceDetectionAnnotationsBuilder_.getCount();
-      }
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation getFaceDetectionAnnotations(int index) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        return faceDetectionAnnotations_.get(index);
-      } else {
-        return faceDetectionAnnotationsBuilder_.getMessage(index);
-      }
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder setFaceDetectionAnnotations(
-        int index, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation value) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureFaceDetectionAnnotationsIsMutable();
-        faceDetectionAnnotations_.set(index, value);
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.setMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder setFaceDetectionAnnotations(
-        int index, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder builderForValue) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        ensureFaceDetectionAnnotationsIsMutable();
-        faceDetectionAnnotations_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.setMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder addFaceDetectionAnnotations(com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation value) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureFaceDetectionAnnotationsIsMutable();
-        faceDetectionAnnotations_.add(value);
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder addFaceDetectionAnnotations(
-        int index, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation value) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureFaceDetectionAnnotationsIsMutable();
-        faceDetectionAnnotations_.add(index, value);
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder addFaceDetectionAnnotations(
-        com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder builderForValue) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        ensureFaceDetectionAnnotationsIsMutable();
-        faceDetectionAnnotations_.add(builderForValue.build());
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder addFaceDetectionAnnotations(
-        int index, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder builderForValue) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        ensureFaceDetectionAnnotationsIsMutable();
-        faceDetectionAnnotations_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder addAllFaceDetectionAnnotations(
-        java.lang.Iterable<? extends com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation> values) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        ensureFaceDetectionAnnotationsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, faceDetectionAnnotations_);
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder clearFaceDetectionAnnotations() {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        faceDetectionAnnotations_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public Builder removeFaceDetectionAnnotations(int index) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        ensureFaceDetectionAnnotationsIsMutable();
-        faceDetectionAnnotations_.remove(index);
-        onChanged();
-      } else {
-        faceDetectionAnnotationsBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder getFaceDetectionAnnotationsBuilder(
-        int index) {
-      return getFaceDetectionAnnotationsFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder getFaceDetectionAnnotationsOrBuilder(
-        int index) {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        return faceDetectionAnnotations_.get(index);  } else {
-        return faceDetectionAnnotationsBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public java.util.List<? extends com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder> 
-         getFaceDetectionAnnotationsOrBuilderList() {
-      if (faceDetectionAnnotationsBuilder_ != null) {
-        return faceDetectionAnnotationsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(faceDetectionAnnotations_);
-      }
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder addFaceDetectionAnnotationsBuilder() {
-      return getFaceDetectionAnnotationsFieldBuilder().addBuilder(
-          com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.getDefaultInstance());
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder addFaceDetectionAnnotationsBuilder(
-        int index) {
-      return getFaceDetectionAnnotationsFieldBuilder().addBuilder(
-          index, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.getDefaultInstance());
-    }
-    /**
-     * <pre>
-     * Face detection annotations.
-     * </pre>
-     *
-     * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     */
-    public java.util.List<com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder> 
-         getFaceDetectionAnnotationsBuilderList() {
-      return getFaceDetectionAnnotationsFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder> 
-        getFaceDetectionAnnotationsFieldBuilder() {
-      if (faceDetectionAnnotationsBuilder_ == null) {
-        faceDetectionAnnotationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation.Builder, com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder>(
-                faceDetectionAnnotations_,
-                ((bitField0_ & 0x00000010) == 0x00000010),
-                getParentForChildren(),
-                isClean());
-        faceDetectionAnnotations_ = null;
-      }
-      return faceDetectionAnnotationsBuilder_;
-    }
-
     private java.util.List<com.google.cloud.videointelligence.v1p1beta1.VideoSegment> shotAnnotations_ =
       java.util.Collections.emptyList();
     private void ensureShotAnnotationsIsMutable() {
-      if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
         shotAnnotations_ = new java.util.ArrayList<com.google.cloud.videointelligence.v1p1beta1.VideoSegment>(shotAnnotations_);
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
        }
     }
 
@@ -2923,7 +2488,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearShotAnnotations() {
       if (shotAnnotationsBuilder_ == null) {
         shotAnnotations_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
       } else {
         shotAnnotationsBuilder_.clear();
@@ -3028,7 +2593,7 @@ private static final long serialVersionUID = 0L;
         shotAnnotationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.google.cloud.videointelligence.v1p1beta1.VideoSegment, com.google.cloud.videointelligence.v1p1beta1.VideoSegment.Builder, com.google.cloud.videointelligence.v1p1beta1.VideoSegmentOrBuilder>(
                 shotAnnotations_,
-                ((bitField0_ & 0x00000020) == 0x00000020),
+                ((bitField0_ & 0x00000010) == 0x00000010),
                 getParentForChildren(),
                 isClean());
         shotAnnotations_ = null;
@@ -3192,9 +2757,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<com.google.cloud.videointelligence.v1p1beta1.SpeechTranscription> speechTranscriptions_ =
       java.util.Collections.emptyList();
     private void ensureSpeechTranscriptionsIsMutable() {
-      if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (!((bitField0_ & 0x00000040) == 0x00000040)) {
         speechTranscriptions_ = new java.util.ArrayList<com.google.cloud.videointelligence.v1p1beta1.SpeechTranscription>(speechTranscriptions_);
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000040;
        }
     }
 
@@ -3388,7 +2953,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearSpeechTranscriptions() {
       if (speechTranscriptionsBuilder_ == null) {
         speechTranscriptions_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
       } else {
         speechTranscriptionsBuilder_.clear();
@@ -3493,7 +3058,7 @@ private static final long serialVersionUID = 0L;
         speechTranscriptionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.google.cloud.videointelligence.v1p1beta1.SpeechTranscription, com.google.cloud.videointelligence.v1p1beta1.SpeechTranscription.Builder, com.google.cloud.videointelligence.v1p1beta1.SpeechTranscriptionOrBuilder>(
                 speechTranscriptions_,
-                ((bitField0_ & 0x00000080) == 0x00000080),
+                ((bitField0_ & 0x00000040) == 0x00000040),
                 getParentForChildren(),
                 isClean());
         speechTranscriptions_ = null;

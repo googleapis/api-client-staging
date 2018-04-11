@@ -11,7 +11,6 @@ package com.google.cloud.bigquery.datatransfer.v1;
  * When a new transfer configuration is created, the specified
  * `destination_dataset_id` is created when needed and shared with the
  * appropriate data source service account.
- * Next id: 20
  * </pre>
  *
  * Protobuf type {@code google.cloud.bigquery.datatransfer.v1.TransferConfig}
@@ -946,7 +945,6 @@ private static final long serialVersionUID = 0L;
    * When a new transfer configuration is created, the specified
    * `destination_dataset_id` is created when needed and shared with the
    * appropriate data source service account.
-   * Next id: 20
    * </pre>
    *
    * Protobuf type {@code google.cloud.bigquery.datatransfer.v1.TransferConfig}

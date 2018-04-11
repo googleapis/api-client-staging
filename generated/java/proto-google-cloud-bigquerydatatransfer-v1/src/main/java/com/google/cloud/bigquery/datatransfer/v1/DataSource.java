@@ -504,7 +504,7 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object name_;
   /**
    * <pre>
-   * Data source resource name.
+   * Output only. Data source resource name.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -523,7 +523,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Data source resource name.
+   * Output only. Data source resource name.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -773,9 +773,7 @@ private static final long serialVersionUID = 0L;
   private int transferType_;
   /**
    * <pre>
-   * Transfer type. Currently supports only batch transfers,
-   * which are transfers that use the BigQuery batch APIs (load or
-   * query) to ingest the data.
+   * Deprecated. This field has no effect.
    * </pre>
    *
    * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
@@ -785,9 +783,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Transfer type. Currently supports only batch transfers,
-   * which are transfers that use the BigQuery batch APIs (load or
-   * query) to ingest the data.
+   * Deprecated. This field has no effect.
    * </pre>
    *
    * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
@@ -1754,7 +1750,7 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object name_ = "";
     /**
      * <pre>
-     * Data source resource name.
+     * Output only. Data source resource name.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -1773,7 +1769,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Data source resource name.
+     * Output only. Data source resource name.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -1793,7 +1789,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Data source resource name.
+     * Output only. Data source resource name.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -1810,7 +1806,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Data source resource name.
+     * Output only. Data source resource name.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -1823,7 +1819,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Data source resource name.
+     * Output only. Data source resource name.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -2361,9 +2357,7 @@ private static final long serialVersionUID = 0L;
     private int transferType_ = 0;
     /**
      * <pre>
-     * Transfer type. Currently supports only batch transfers,
-     * which are transfers that use the BigQuery batch APIs (load or
-     * query) to ingest the data.
+     * Deprecated. This field has no effect.
      * </pre>
      *
      * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
@@ -2373,9 +2367,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Transfer type. Currently supports only batch transfers,
-     * which are transfers that use the BigQuery batch APIs (load or
-     * query) to ingest the data.
+     * Deprecated. This field has no effect.
      * </pre>
      *
      * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
@@ -2387,9 +2379,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Transfer type. Currently supports only batch transfers,
-     * which are transfers that use the BigQuery batch APIs (load or
-     * query) to ingest the data.
+     * Deprecated. This field has no effect.
      * </pre>
      *
      * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
@@ -2400,9 +2390,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Transfer type. Currently supports only batch transfers,
-     * which are transfers that use the BigQuery batch APIs (load or
-     * query) to ingest the data.
+     * Deprecated. This field has no effect.
      * </pre>
      *
      * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
@@ -2418,9 +2406,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Transfer type. Currently supports only batch transfers,
-     * which are transfers that use the BigQuery batch APIs (load or
-     * query) to ingest the data.
+     * Deprecated. This field has no effect.
      * </pre>
      *
      * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>

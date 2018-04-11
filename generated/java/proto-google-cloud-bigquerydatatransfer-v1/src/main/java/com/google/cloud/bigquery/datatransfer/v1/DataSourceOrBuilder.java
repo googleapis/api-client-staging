@@ -9,7 +9,7 @@ public interface DataSourceOrBuilder extends
 
   /**
    * <pre>
-   * Data source resource name.
+   * Output only. Data source resource name.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -17,7 +17,7 @@ public interface DataSourceOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * Data source resource name.
+   * Output only. Data source resource name.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -148,9 +148,7 @@ public interface DataSourceOrBuilder extends
 
   /**
    * <pre>
-   * Transfer type. Currently supports only batch transfers,
-   * which are transfers that use the BigQuery batch APIs (load or
-   * query) to ingest the data.
+   * Deprecated. This field has no effect.
    * </pre>
    *
    * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
@@ -158,9 +156,7 @@ public interface DataSourceOrBuilder extends
   int getTransferTypeValue();
   /**
    * <pre>
-   * Transfer type. Currently supports only batch transfers,
-   * which are transfers that use the BigQuery batch APIs (load or
-   * query) to ingest the data.
+   * Deprecated. This field has no effect.
    * </pre>
    *
    * <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
