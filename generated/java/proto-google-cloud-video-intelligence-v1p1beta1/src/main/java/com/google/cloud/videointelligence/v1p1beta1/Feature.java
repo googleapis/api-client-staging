@@ -46,14 +46,6 @@ public enum Feature
   EXPLICIT_CONTENT_DETECTION(3),
   /**
    * <pre>
-   * Face detection.
-   * </pre>
-   *
-   * <code>FACE_DETECTION = 8;</code>
-   */
-  FACE_DETECTION(8),
-  /**
-   * <pre>
    * Speech transcription.
    * </pre>
    *
@@ -97,14 +89,6 @@ public enum Feature
   public static final int EXPLICIT_CONTENT_DETECTION_VALUE = 3;
   /**
    * <pre>
-   * Face detection.
-   * </pre>
-   *
-   * <code>FACE_DETECTION = 8;</code>
-   */
-  public static final int FACE_DETECTION_VALUE = 8;
-  /**
-   * <pre>
    * Speech transcription.
    * </pre>
    *
@@ -135,7 +119,6 @@ public enum Feature
       case 1: return LABEL_DETECTION;
       case 2: return SHOT_CHANGE_DETECTION;
       case 3: return EXPLICIT_CONTENT_DETECTION;
-      case 8: return FACE_DETECTION;
       case 6: return SPEECH_TRANSCRIPTION;
       default: return null;
     }

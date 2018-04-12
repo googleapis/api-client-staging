@@ -40,11 +40,6 @@ public final class VideoIntelligenceServiceProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_google_cloud_videointelligence_v1p1beta1_ExplicitContentDetectionConfig_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_google_cloud_videointelligence_v1p1beta1_FaceConfig_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoSegment_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -84,31 +79,6 @@ public final class VideoIntelligenceServiceProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_google_cloud_videointelligence_v1p1beta1_NormalizedBoundingBox_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceSegment_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_google_cloud_videointelligence_v1p1beta1_FaceSegment_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionFrame_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionFrame_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAttribute_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAttribute_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_google_cloud_videointelligence_v1p1beta1_EmotionAttribute_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_google_cloud_videointelligence_v1p1beta1_EmotionAttribute_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAnnotation_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAnnotation_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoAnnotationResults_descriptor;
   static final 
@@ -176,7 +146,7 @@ public final class VideoIntelligenceServiceProto {
       "re\022M\n\rvideo_context\030\003 \001(\01326.google.cloud" +
       ".videointelligence.v1p1beta1.VideoContex" +
       "t\022\022\n\noutput_uri\030\004 \001(\t\022\023\n\013location_id\030\005 \001" +
-      "(\t\"\327\004\n\014VideoContext\022H\n\010segments\030\001 \003(\01326." +
+      "(\t\"\202\004\n\014VideoContext\022H\n\010segments\030\001 \003(\01326." +
       "google.cloud.videointelligence.v1p1beta1" +
       ".VideoSegment\022^\n\026label_detection_config\030" +
       "\002 \001(\0132>.google.cloud.videointelligence.v" +
@@ -188,133 +158,102 @@ public final class VideoIntelligenceServiceProto {
       "intelligence.v1p1beta1.ExplicitContentDe" +
       "tectionConfig\022h\n\033speech_transcription_co" +
       "nfig\030\006 \001(\0132C.google.cloud.videointellige" +
-      "nce.v1p1beta1.SpeechTranscriptionConfig\022" +
-      "S\n\025face_detection_config\030\007 \001(\01324.google." +
-      "cloud.videointelligence.v1p1beta1.FaceCo" +
-      "nfig\"\234\001\n\024LabelDetectionConfig\022Z\n\024label_d" +
-      "etection_mode\030\001 \001(\0162<.google.cloud.video" +
-      "intelligence.v1p1beta1.LabelDetectionMod" +
-      "e\022\031\n\021stationary_camera\030\002 \001(\010\022\r\n\005model\030\003 " +
-      "\001(\t\"*\n\031ShotChangeDetectionConfig\022\r\n\005mode" +
-      "l\030\001 \001(\t\"/\n\036ExplicitContentDetectionConfi" +
-      "g\022\r\n\005model\030\001 \001(\t\"U\n\nFaceConfig\022\r\n\005model\030" +
-      "\001 \001(\t\022\036\n\026include_bounding_boxes\030\002 \001(\010\022\030\n" +
-      "\020include_emotions\030\004 \001(\010\"x\n\014VideoSegment\022" +
-      "4\n\021start_time_offset\030\001 \001(\0132\031.google.prot" +
-      "obuf.Duration\0222\n\017end_time_offset\030\002 \001(\0132\031" +
-      ".google.protobuf.Duration\"k\n\014LabelSegmen" +
-      "t\022G\n\007segment\030\001 \001(\01326.google.cloud.videoi" +
-      "ntelligence.v1p1beta1.VideoSegment\022\022\n\nco" +
-      "nfidence\030\002 \001(\002\"P\n\nLabelFrame\022.\n\013time_off" +
-      "set\030\001 \001(\0132\031.google.protobuf.Duration\022\022\n\n" +
-      "confidence\030\002 \001(\002\"G\n\006Entity\022\021\n\tentity_id\030" +
-      "\001 \001(\t\022\023\n\013description\030\002 \001(\t\022\025\n\rlanguage_c" +
-      "ode\030\003 \001(\t\"\260\002\n\017LabelAnnotation\022@\n\006entity\030" +
-      "\001 \001(\01320.google.cloud.videointelligence.v" +
-      "1p1beta1.Entity\022K\n\021category_entities\030\002 \003" +
-      "(\01320.google.cloud.videointelligence.v1p1" +
-      "beta1.Entity\022H\n\010segments\030\003 \003(\01326.google." +
-      "cloud.videointelligence.v1p1beta1.LabelS" +
-      "egment\022D\n\006frames\030\004 \003(\01324.google.cloud.vi" +
-      "deointelligence.v1p1beta1.LabelFrame\"\234\001\n" +
-      "\024ExplicitContentFrame\022.\n\013time_offset\030\001 \001" +
-      "(\0132\031.google.protobuf.Duration\022T\n\026pornogr" +
-      "aphy_likelihood\030\002 \001(\01624.google.cloud.vid" +
-      "eointelligence.v1p1beta1.Likelihood\"k\n\031E" +
-      "xplicitContentAnnotation\022N\n\006frames\030\001 \003(\013" +
-      "2>.google.cloud.videointelligence.v1p1be" +
-      "ta1.ExplicitContentFrame\"Q\n\025NormalizedBo" +
-      "undingBox\022\014\n\004left\030\001 \001(\002\022\013\n\003top\030\002 \001(\002\022\r\n\005" +
-      "right\030\003 \001(\002\022\016\n\006bottom\030\004 \001(\002\"V\n\013FaceSegme" +
-      "nt\022G\n\007segment\030\001 \001(\01326.google.cloud.video" +
-      "intelligence.v1p1beta1.VideoSegment\"\232\001\n\022" +
-      "FaceDetectionFrame\022T\n\nattributes\030\001 \003(\0132@" +
-      ".google.cloud.videointelligence.v1p1beta" +
-      "1.FaceDetectionAttribute\022.\n\013time_offset\030" +
-      "\002 \001(\0132\031.google.protobuf.Duration\"\310\001\n\026Fac" +
-      "eDetectionAttribute\022`\n\027normalized_boundi" +
-      "ng_box\030\001 \001(\0132?.google.cloud.videointelli" +
-      "gence.v1p1beta1.NormalizedBoundingBox\022L\n" +
-      "\010emotions\030\002 \003(\0132:.google.cloud.videointe" +
-      "lligence.v1p1beta1.EmotionAttribute\"e\n\020E" +
-      "motionAttribute\022B\n\007emotion\030\001 \001(\01621.googl" +
-      "e.cloud.videointelligence.v1p1beta1.Emot" +
-      "ion\022\r\n\005score\030\002 \001(\002\"\260\001\n\027FaceDetectionAnno" +
-      "tation\022G\n\010segments\030\001 \003(\01325.google.cloud." +
-      "videointelligence.v1p1beta1.FaceSegment\022" +
-      "L\n\006frames\030\002 \003(\0132<.google.cloud.videointe" +
-      "lligence.v1p1beta1.FaceDetectionFrame\"\334\005" +
-      "\n\026VideoAnnotationResults\022\021\n\tinput_uri\030\001 " +
-      "\001(\t\022\\\n\031segment_label_annotations\030\002 \003(\01329" +
-      ".google.cloud.videointelligence.v1p1beta" +
-      "1.LabelAnnotation\022Y\n\026shot_label_annotati" +
-      "ons\030\003 \003(\01329.google.cloud.videointelligen" +
-      "ce.v1p1beta1.LabelAnnotation\022Z\n\027frame_la" +
-      "bel_annotations\030\004 \003(\01329.google.cloud.vid" +
-      "eointelligence.v1p1beta1.LabelAnnotation" +
-      "\022e\n\032face_detection_annotations\030\r \003(\0132A.g" +
-      "oogle.cloud.videointelligence.v1p1beta1." +
-      "FaceDetectionAnnotation\022P\n\020shot_annotati" +
-      "ons\030\006 \003(\01326.google.cloud.videointelligen" +
-      "ce.v1p1beta1.VideoSegment\022`\n\023explicit_an" +
-      "notation\030\007 \001(\0132C.google.cloud.videointel" +
-      "ligence.v1p1beta1.ExplicitContentAnnotat" +
-      "ion\022\\\n\025speech_transcriptions\030\013 \003(\0132=.goo" +
-      "gle.cloud.videointelligence.v1p1beta1.Sp" +
-      "eechTranscription\022!\n\005error\030\t \001(\0132\022.googl" +
-      "e.rpc.Status\"u\n\025AnnotateVideoResponse\022\\\n" +
-      "\022annotation_results\030\001 \003(\0132@.google.cloud" +
-      ".videointelligence.v1p1beta1.VideoAnnota" +
-      "tionResults\"\247\001\n\027VideoAnnotationProgress\022" +
-      "\021\n\tinput_uri\030\001 \001(\t\022\030\n\020progress_percent\030\002" +
-      " \001(\005\022.\n\nstart_time\030\003 \001(\0132\032.google.protob" +
-      "uf.Timestamp\022/\n\013update_time\030\004 \001(\0132\032.goog" +
-      "le.protobuf.Timestamp\"w\n\025AnnotateVideoPr" +
-      "ogress\022^\n\023annotation_progress\030\001 \003(\0132A.go" +
-      "ogle.cloud.videointelligence.v1p1beta1.V" +
-      "ideoAnnotationProgress\"\316\001\n\031SpeechTranscr" +
-      "iptionConfig\022\025\n\rlanguage_code\030\001 \001(\t\022\030\n\020m" +
-      "ax_alternatives\030\002 \001(\005\022\030\n\020filter_profanit" +
-      "y\030\003 \001(\010\022P\n\017speech_contexts\030\004 \003(\01327.googl" +
-      "e.cloud.videointelligence.v1p1beta1.Spee" +
-      "chContext\022\024\n\014audio_tracks\030\006 \003(\005\" \n\rSpeec" +
-      "hContext\022\017\n\007phrases\030\001 \003(\t\"s\n\023SpeechTrans" +
-      "cription\022\\\n\014alternatives\030\001 \003(\0132F.google." +
-      "cloud.videointelligence.v1p1beta1.Speech" +
-      "RecognitionAlternative\"\211\001\n\034SpeechRecogni" +
-      "tionAlternative\022\022\n\ntranscript\030\001 \001(\t\022\022\n\nc" +
-      "onfidence\030\002 \001(\002\022A\n\005words\030\003 \003(\01322.google." +
-      "cloud.videointelligence.v1p1beta1.WordIn" +
-      "fo\"t\n\010WordInfo\022-\n\nstart_time\030\001 \001(\0132\031.goo" +
-      "gle.protobuf.Duration\022+\n\010end_time\030\002 \001(\0132" +
-      "\031.google.protobuf.Duration\022\014\n\004word\030\003 \001(\t" +
-      "*\240\001\n\007Feature\022\027\n\023FEATURE_UNSPECIFIED\020\000\022\023\n" +
-      "\017LABEL_DETECTION\020\001\022\031\n\025SHOT_CHANGE_DETECT" +
-      "ION\020\002\022\036\n\032EXPLICIT_CONTENT_DETECTION\020\003\022\022\n" +
-      "\016FACE_DETECTION\020\010\022\030\n\024SPEECH_TRANSCRIPTIO" +
-      "N\020\006*r\n\022LabelDetectionMode\022$\n LABEL_DETEC" +
-      "TION_MODE_UNSPECIFIED\020\000\022\r\n\tSHOT_MODE\020\001\022\016" +
-      "\n\nFRAME_MODE\020\002\022\027\n\023SHOT_AND_FRAME_MODE\020\003*" +
-      "t\n\nLikelihood\022\032\n\026LIKELIHOOD_UNSPECIFIED\020" +
-      "\000\022\021\n\rVERY_UNLIKELY\020\001\022\014\n\010UNLIKELY\020\002\022\014\n\010PO" +
-      "SSIBLE\020\003\022\n\n\006LIKELY\020\004\022\017\n\013VERY_LIKELY\020\005*\341\001" +
-      "\n\007Emotion\022\027\n\023EMOTION_UNSPECIFIED\020\000\022\r\n\tAM" +
-      "USEMENT\020\001\022\t\n\005ANGER\020\002\022\021\n\rCONCENTRATION\020\003\022" +
-      "\017\n\013CONTENTMENT\020\004\022\n\n\006DESIRE\020\005\022\022\n\016DISAPPOI" +
-      "NTMENT\020\006\022\013\n\007DISGUST\020\007\022\013\n\007ELATION\020\010\022\021\n\rEM" +
-      "BARRASSMENT\020\t\022\014\n\010INTEREST\020\n\022\t\n\005PRIDE\020\013\022\013" +
-      "\n\007SADNESS\020\014\022\014\n\010SURPRISE\020\r2\262\001\n\030VideoIntel" +
-      "ligenceService\022\225\001\n\rAnnotateVideo\022>.googl" +
-      "e.cloud.videointelligence.v1p1beta1.Anno" +
-      "tateVideoRequest\032\035.google.longrunning.Op" +
-      "eration\"%\202\323\344\223\002\037\"\032/v1p1beta1/videos:annot" +
-      "ate:\001*B\200\002\n,com.google.cloud.videointelli" +
-      "gence.v1p1beta1B\035VideoIntelligenceServic" +
-      "eProtoP\001ZYgoogle.golang.org/genproto/goo" +
-      "gleapis/cloud/videointelligence/v1p1beta" +
-      "1;videointelligence\252\002(Google.Cloud.Video" +
-      "Intelligence.V1P1Beta1\312\002(Google\\Cloud\\Vi" +
-      "deoIntelligence\\V1p1beta1b\006proto3"
+      "nce.v1p1beta1.SpeechTranscriptionConfig\"" +
+      "\234\001\n\024LabelDetectionConfig\022Z\n\024label_detect" +
+      "ion_mode\030\001 \001(\0162<.google.cloud.videointel" +
+      "ligence.v1p1beta1.LabelDetectionMode\022\031\n\021" +
+      "stationary_camera\030\002 \001(\010\022\r\n\005model\030\003 \001(\t\"*" +
+      "\n\031ShotChangeDetectionConfig\022\r\n\005model\030\001 \001" +
+      "(\t\"/\n\036ExplicitContentDetectionConfig\022\r\n\005" +
+      "model\030\001 \001(\t\"x\n\014VideoSegment\0224\n\021start_tim" +
+      "e_offset\030\001 \001(\0132\031.google.protobuf.Duratio" +
+      "n\0222\n\017end_time_offset\030\002 \001(\0132\031.google.prot" +
+      "obuf.Duration\"k\n\014LabelSegment\022G\n\007segment" +
+      "\030\001 \001(\01326.google.cloud.videointelligence." +
+      "v1p1beta1.VideoSegment\022\022\n\nconfidence\030\002 \001" +
+      "(\002\"P\n\nLabelFrame\022.\n\013time_offset\030\001 \001(\0132\031." +
+      "google.protobuf.Duration\022\022\n\nconfidence\030\002" +
+      " \001(\002\"G\n\006Entity\022\021\n\tentity_id\030\001 \001(\t\022\023\n\013des" +
+      "cription\030\002 \001(\t\022\025\n\rlanguage_code\030\003 \001(\t\"\260\002" +
+      "\n\017LabelAnnotation\022@\n\006entity\030\001 \001(\01320.goog" +
+      "le.cloud.videointelligence.v1p1beta1.Ent" +
+      "ity\022K\n\021category_entities\030\002 \003(\01320.google." +
+      "cloud.videointelligence.v1p1beta1.Entity" +
+      "\022H\n\010segments\030\003 \003(\01326.google.cloud.videoi" +
+      "ntelligence.v1p1beta1.LabelSegment\022D\n\006fr" +
+      "ames\030\004 \003(\01324.google.cloud.videointellige" +
+      "nce.v1p1beta1.LabelFrame\"\234\001\n\024ExplicitCon" +
+      "tentFrame\022.\n\013time_offset\030\001 \001(\0132\031.google." +
+      "protobuf.Duration\022T\n\026pornography_likelih" +
+      "ood\030\002 \001(\01624.google.cloud.videointelligen" +
+      "ce.v1p1beta1.Likelihood\"k\n\031ExplicitConte" +
+      "ntAnnotation\022N\n\006frames\030\001 \003(\0132>.google.cl" +
+      "oud.videointelligence.v1p1beta1.Explicit" +
+      "ContentFrame\"Q\n\025NormalizedBoundingBox\022\014\n" +
+      "\004left\030\001 \001(\002\022\013\n\003top\030\002 \001(\002\022\r\n\005right\030\003 \001(\002\022" +
+      "\016\n\006bottom\030\004 \001(\002\"\365\004\n\026VideoAnnotationResul" +
+      "ts\022\021\n\tinput_uri\030\001 \001(\t\022\\\n\031segment_label_a" +
+      "nnotations\030\002 \003(\01329.google.cloud.videoint" +
+      "elligence.v1p1beta1.LabelAnnotation\022Y\n\026s" +
+      "hot_label_annotations\030\003 \003(\01329.google.clo" +
+      "ud.videointelligence.v1p1beta1.LabelAnno" +
+      "tation\022Z\n\027frame_label_annotations\030\004 \003(\0132" +
+      "9.google.cloud.videointelligence.v1p1bet" +
+      "a1.LabelAnnotation\022P\n\020shot_annotations\030\006" +
+      " \003(\01326.google.cloud.videointelligence.v1" +
+      "p1beta1.VideoSegment\022`\n\023explicit_annotat" +
+      "ion\030\007 \001(\0132C.google.cloud.videointelligen" +
+      "ce.v1p1beta1.ExplicitContentAnnotation\022\\" +
+      "\n\025speech_transcriptions\030\013 \003(\0132=.google.c" +
+      "loud.videointelligence.v1p1beta1.SpeechT" +
+      "ranscription\022!\n\005error\030\t \001(\0132\022.google.rpc" +
+      ".Status\"u\n\025AnnotateVideoResponse\022\\\n\022anno" +
+      "tation_results\030\001 \003(\0132@.google.cloud.vide" +
+      "ointelligence.v1p1beta1.VideoAnnotationR" +
+      "esults\"\247\001\n\027VideoAnnotationProgress\022\021\n\tin" +
+      "put_uri\030\001 \001(\t\022\030\n\020progress_percent\030\002 \001(\005\022" +
+      ".\n\nstart_time\030\003 \001(\0132\032.google.protobuf.Ti" +
+      "mestamp\022/\n\013update_time\030\004 \001(\0132\032.google.pr" +
+      "otobuf.Timestamp\"w\n\025AnnotateVideoProgres" +
+      "s\022^\n\023annotation_progress\030\001 \003(\0132A.google." +
+      "cloud.videointelligence.v1p1beta1.VideoA" +
+      "nnotationProgress\"\316\001\n\031SpeechTranscriptio" +
+      "nConfig\022\025\n\rlanguage_code\030\001 \001(\t\022\030\n\020max_al" +
+      "ternatives\030\002 \001(\005\022\030\n\020filter_profanity\030\003 \001" +
+      "(\010\022P\n\017speech_contexts\030\004 \003(\01327.google.clo" +
+      "ud.videointelligence.v1p1beta1.SpeechCon" +
+      "text\022\024\n\014audio_tracks\030\006 \003(\005\" \n\rSpeechCont" +
+      "ext\022\017\n\007phrases\030\001 \003(\t\"s\n\023SpeechTranscript" +
+      "ion\022\\\n\014alternatives\030\001 \003(\0132F.google.cloud" +
+      ".videointelligence.v1p1beta1.SpeechRecog" +
+      "nitionAlternative\"\211\001\n\034SpeechRecognitionA" +
+      "lternative\022\022\n\ntranscript\030\001 \001(\t\022\022\n\nconfid" +
+      "ence\030\002 \001(\002\022A\n\005words\030\003 \003(\01322.google.cloud" +
+      ".videointelligence.v1p1beta1.WordInfo\"t\n" +
+      "\010WordInfo\022-\n\nstart_time\030\001 \001(\0132\031.google.p" +
+      "rotobuf.Duration\022+\n\010end_time\030\002 \001(\0132\031.goo" +
+      "gle.protobuf.Duration\022\014\n\004word\030\003 \001(\t*\214\001\n\007" +
+      "Feature\022\027\n\023FEATURE_UNSPECIFIED\020\000\022\023\n\017LABE" +
+      "L_DETECTION\020\001\022\031\n\025SHOT_CHANGE_DETECTION\020\002" +
+      "\022\036\n\032EXPLICIT_CONTENT_DETECTION\020\003\022\030\n\024SPEE" +
+      "CH_TRANSCRIPTION\020\006*r\n\022LabelDetectionMode" +
+      "\022$\n LABEL_DETECTION_MODE_UNSPECIFIED\020\000\022\r" +
+      "\n\tSHOT_MODE\020\001\022\016\n\nFRAME_MODE\020\002\022\027\n\023SHOT_AN" +
+      "D_FRAME_MODE\020\003*t\n\nLikelihood\022\032\n\026LIKELIHO" +
+      "OD_UNSPECIFIED\020\000\022\021\n\rVERY_UNLIKELY\020\001\022\014\n\010U" +
+      "NLIKELY\020\002\022\014\n\010POSSIBLE\020\003\022\n\n\006LIKELY\020\004\022\017\n\013V" +
+      "ERY_LIKELY\020\0052\262\001\n\030VideoIntelligenceServic" +
+      "e\022\225\001\n\rAnnotateVideo\022>.google.cloud.video" +
+      "intelligence.v1p1beta1.AnnotateVideoRequ" +
+      "est\032\035.google.longrunning.Operation\"%\202\323\344\223" +
+      "\002\037\"\032/v1p1beta1/videos:annotate:\001*B\200\002\n,co" +
+      "m.google.cloud.videointelligence.v1p1bet" +
+      "a1B\035VideoIntelligenceServiceProtoP\001ZYgoo" +
+      "gle.golang.org/genproto/googleapis/cloud" +
+      "/videointelligence/v1p1beta1;videointell" +
+      "igence\252\002(Google.Cloud.VideoIntelligence." +
+      "V1P1Beta1\312\002(Google\\Cloud\\VideoIntelligen" +
+      "ce\\V1p1beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -344,7 +283,7 @@ public final class VideoIntelligenceServiceProto {
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoContext_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_VideoContext_descriptor,
-        new java.lang.String[] { "Segments", "LabelDetectionConfig", "ShotChangeDetectionConfig", "ExplicitContentDetectionConfig", "SpeechTranscriptionConfig", "FaceDetectionConfig", });
+        new java.lang.String[] { "Segments", "LabelDetectionConfig", "ShotChangeDetectionConfig", "ExplicitContentDetectionConfig", "SpeechTranscriptionConfig", });
     internal_static_google_cloud_videointelligence_v1p1beta1_LabelDetectionConfig_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_google_cloud_videointelligence_v1p1beta1_LabelDetectionConfig_fieldAccessorTable = new
@@ -363,140 +302,104 @@ public final class VideoIntelligenceServiceProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_ExplicitContentDetectionConfig_descriptor,
         new java.lang.String[] { "Model", });
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceConfig_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_google_cloud_videointelligence_v1p1beta1_FaceConfig_descriptor,
-        new java.lang.String[] { "Model", "IncludeBoundingBoxes", "IncludeEmotions", });
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoSegment_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoSegment_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_VideoSegment_descriptor,
         new java.lang.String[] { "StartTimeOffset", "EndTimeOffset", });
     internal_static_google_cloud_videointelligence_v1p1beta1_LabelSegment_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_google_cloud_videointelligence_v1p1beta1_LabelSegment_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_LabelSegment_descriptor,
         new java.lang.String[] { "Segment", "Confidence", });
     internal_static_google_cloud_videointelligence_v1p1beta1_LabelFrame_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_google_cloud_videointelligence_v1p1beta1_LabelFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_LabelFrame_descriptor,
         new java.lang.String[] { "TimeOffset", "Confidence", });
     internal_static_google_cloud_videointelligence_v1p1beta1_Entity_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_google_cloud_videointelligence_v1p1beta1_Entity_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_Entity_descriptor,
         new java.lang.String[] { "EntityId", "Description", "LanguageCode", });
     internal_static_google_cloud_videointelligence_v1p1beta1_LabelAnnotation_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_google_cloud_videointelligence_v1p1beta1_LabelAnnotation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_LabelAnnotation_descriptor,
         new java.lang.String[] { "Entity", "CategoryEntities", "Segments", "Frames", });
     internal_static_google_cloud_videointelligence_v1p1beta1_ExplicitContentFrame_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_google_cloud_videointelligence_v1p1beta1_ExplicitContentFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_ExplicitContentFrame_descriptor,
         new java.lang.String[] { "TimeOffset", "PornographyLikelihood", });
     internal_static_google_cloud_videointelligence_v1p1beta1_ExplicitContentAnnotation_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_google_cloud_videointelligence_v1p1beta1_ExplicitContentAnnotation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_ExplicitContentAnnotation_descriptor,
         new java.lang.String[] { "Frames", });
     internal_static_google_cloud_videointelligence_v1p1beta1_NormalizedBoundingBox_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_google_cloud_videointelligence_v1p1beta1_NormalizedBoundingBox_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_NormalizedBoundingBox_descriptor,
         new java.lang.String[] { "Left", "Top", "Right", "Bottom", });
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceSegment_descriptor =
-      getDescriptor().getMessageTypes().get(14);
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceSegment_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_google_cloud_videointelligence_v1p1beta1_FaceSegment_descriptor,
-        new java.lang.String[] { "Segment", });
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionFrame_descriptor =
-      getDescriptor().getMessageTypes().get(15);
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionFrame_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionFrame_descriptor,
-        new java.lang.String[] { "Attributes", "TimeOffset", });
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAttribute_descriptor =
-      getDescriptor().getMessageTypes().get(16);
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAttribute_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAttribute_descriptor,
-        new java.lang.String[] { "NormalizedBoundingBox", "Emotions", });
-    internal_static_google_cloud_videointelligence_v1p1beta1_EmotionAttribute_descriptor =
-      getDescriptor().getMessageTypes().get(17);
-    internal_static_google_cloud_videointelligence_v1p1beta1_EmotionAttribute_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_google_cloud_videointelligence_v1p1beta1_EmotionAttribute_descriptor,
-        new java.lang.String[] { "Emotion", "Score", });
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAnnotation_descriptor =
-      getDescriptor().getMessageTypes().get(18);
-    internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAnnotation_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_google_cloud_videointelligence_v1p1beta1_FaceDetectionAnnotation_descriptor,
-        new java.lang.String[] { "Segments", "Frames", });
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoAnnotationResults_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoAnnotationResults_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_VideoAnnotationResults_descriptor,
-        new java.lang.String[] { "InputUri", "SegmentLabelAnnotations", "ShotLabelAnnotations", "FrameLabelAnnotations", "FaceDetectionAnnotations", "ShotAnnotations", "ExplicitAnnotation", "SpeechTranscriptions", "Error", });
+        new java.lang.String[] { "InputUri", "SegmentLabelAnnotations", "ShotLabelAnnotations", "FrameLabelAnnotations", "ShotAnnotations", "ExplicitAnnotation", "SpeechTranscriptions", "Error", });
     internal_static_google_cloud_videointelligence_v1p1beta1_AnnotateVideoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_google_cloud_videointelligence_v1p1beta1_AnnotateVideoResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_AnnotateVideoResponse_descriptor,
         new java.lang.String[] { "AnnotationResults", });
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoAnnotationProgress_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_google_cloud_videointelligence_v1p1beta1_VideoAnnotationProgress_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_VideoAnnotationProgress_descriptor,
         new java.lang.String[] { "InputUri", "ProgressPercent", "StartTime", "UpdateTime", });
     internal_static_google_cloud_videointelligence_v1p1beta1_AnnotateVideoProgress_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_google_cloud_videointelligence_v1p1beta1_AnnotateVideoProgress_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_AnnotateVideoProgress_descriptor,
         new java.lang.String[] { "AnnotationProgress", });
     internal_static_google_cloud_videointelligence_v1p1beta1_SpeechTranscriptionConfig_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_google_cloud_videointelligence_v1p1beta1_SpeechTranscriptionConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_SpeechTranscriptionConfig_descriptor,
         new java.lang.String[] { "LanguageCode", "MaxAlternatives", "FilterProfanity", "SpeechContexts", "AudioTracks", });
     internal_static_google_cloud_videointelligence_v1p1beta1_SpeechContext_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_google_cloud_videointelligence_v1p1beta1_SpeechContext_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_SpeechContext_descriptor,
         new java.lang.String[] { "Phrases", });
     internal_static_google_cloud_videointelligence_v1p1beta1_SpeechTranscription_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_google_cloud_videointelligence_v1p1beta1_SpeechTranscription_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_SpeechTranscription_descriptor,
         new java.lang.String[] { "Alternatives", });
     internal_static_google_cloud_videointelligence_v1p1beta1_SpeechRecognitionAlternative_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_google_cloud_videointelligence_v1p1beta1_SpeechRecognitionAlternative_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_SpeechRecognitionAlternative_descriptor,
         new java.lang.String[] { "Transcript", "Confidence", "Words", });
     internal_static_google_cloud_videointelligence_v1p1beta1_WordInfo_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_google_cloud_videointelligence_v1p1beta1_WordInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_cloud_videointelligence_v1p1beta1_WordInfo_descriptor,

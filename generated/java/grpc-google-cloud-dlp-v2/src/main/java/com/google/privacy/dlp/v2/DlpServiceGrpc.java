@@ -357,7 +357,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates an inspect template for re-using frequently used configuration
+     * Creates an InspectTemplate for re-using frequently used configuration
      * for inspecting content, images, and storage.
      * </pre>
      */
@@ -368,7 +368,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the inspect template.
+     * Updates the InspectTemplate.
      * </pre>
      */
     public void updateInspectTemplate(com.google.privacy.dlp.v2.UpdateInspectTemplateRequest request,
@@ -378,7 +378,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets an inspect template.
+     * Gets an InspectTemplate.
      * </pre>
      */
     public void getInspectTemplate(com.google.privacy.dlp.v2.GetInspectTemplateRequest request,
@@ -388,7 +388,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists inspect templates.
+     * Lists InspectTemplates.
      * </pre>
      */
     public void listInspectTemplates(com.google.privacy.dlp.v2.ListInspectTemplatesRequest request,
@@ -398,7 +398,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes an inspect template.
+     * Deletes an InspectTemplate.
      * </pre>
      */
     public void deleteInspectTemplate(com.google.privacy.dlp.v2.DeleteInspectTemplateRequest request,
@@ -408,8 +408,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a de-identify template for re-using frequently used configuration
-     * for Deidentifying content, images, and storage.
+     * Creates a DeidentifyTemplate for re-using frequently used configuration
+     * for de-identifying content, images, and storage.
      * </pre>
      */
     public void createDeidentifyTemplate(com.google.privacy.dlp.v2.CreateDeidentifyTemplateRequest request,
@@ -419,7 +419,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the de-identify template.
+     * Updates the DeidentifyTemplate.
      * </pre>
      */
     public void updateDeidentifyTemplate(com.google.privacy.dlp.v2.UpdateDeidentifyTemplateRequest request,
@@ -429,7 +429,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets a de-identify template.
+     * Gets a DeidentifyTemplate.
      * </pre>
      */
     public void getDeidentifyTemplate(com.google.privacy.dlp.v2.GetDeidentifyTemplateRequest request,
@@ -439,7 +439,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists de-identify templates.
+     * Lists DeidentifyTemplates.
      * </pre>
      */
     public void listDeidentifyTemplates(com.google.privacy.dlp.v2.ListDeidentifyTemplatesRequest request,
@@ -449,7 +449,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a de-identify template.
+     * Deletes a DeidentifyTemplate.
      * </pre>
      */
     public void deleteDeidentifyTemplate(com.google.privacy.dlp.v2.DeleteDeidentifyTemplateRequest request,
@@ -510,8 +510,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new job to inspect storage or calculate risk metrics [How-to
-     * guide](/dlp/docs/compute-risk-analysis).
+     * Creates a new job to inspect storage or calculate risk metrics.
+     * [How-to guide](/dlp/docs/compute-risk-analysis).
      * </pre>
      */
     public void createDlpJob(com.google.privacy.dlp.v2.CreateDlpJobRequest request,
@@ -836,7 +836,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates an inspect template for re-using frequently used configuration
+     * Creates an InspectTemplate for re-using frequently used configuration
      * for inspecting content, images, and storage.
      * </pre>
      */
@@ -848,7 +848,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the inspect template.
+     * Updates the InspectTemplate.
      * </pre>
      */
     public void updateInspectTemplate(com.google.privacy.dlp.v2.UpdateInspectTemplateRequest request,
@@ -859,7 +859,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets an inspect template.
+     * Gets an InspectTemplate.
      * </pre>
      */
     public void getInspectTemplate(com.google.privacy.dlp.v2.GetInspectTemplateRequest request,
@@ -870,7 +870,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists inspect templates.
+     * Lists InspectTemplates.
      * </pre>
      */
     public void listInspectTemplates(com.google.privacy.dlp.v2.ListInspectTemplatesRequest request,
@@ -881,7 +881,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes an inspect template.
+     * Deletes an InspectTemplate.
      * </pre>
      */
     public void deleteInspectTemplate(com.google.privacy.dlp.v2.DeleteInspectTemplateRequest request,
@@ -892,8 +892,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a de-identify template for re-using frequently used configuration
-     * for Deidentifying content, images, and storage.
+     * Creates a DeidentifyTemplate for re-using frequently used configuration
+     * for de-identifying content, images, and storage.
      * </pre>
      */
     public void createDeidentifyTemplate(com.google.privacy.dlp.v2.CreateDeidentifyTemplateRequest request,
@@ -904,7 +904,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the de-identify template.
+     * Updates the DeidentifyTemplate.
      * </pre>
      */
     public void updateDeidentifyTemplate(com.google.privacy.dlp.v2.UpdateDeidentifyTemplateRequest request,
@@ -915,7 +915,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets a de-identify template.
+     * Gets a DeidentifyTemplate.
      * </pre>
      */
     public void getDeidentifyTemplate(com.google.privacy.dlp.v2.GetDeidentifyTemplateRequest request,
@@ -926,7 +926,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists de-identify templates.
+     * Lists DeidentifyTemplates.
      * </pre>
      */
     public void listDeidentifyTemplates(com.google.privacy.dlp.v2.ListDeidentifyTemplatesRequest request,
@@ -937,7 +937,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a de-identify template.
+     * Deletes a DeidentifyTemplate.
      * </pre>
      */
     public void deleteDeidentifyTemplate(com.google.privacy.dlp.v2.DeleteDeidentifyTemplateRequest request,
@@ -1004,8 +1004,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new job to inspect storage or calculate risk metrics [How-to
-     * guide](/dlp/docs/compute-risk-analysis).
+     * Creates a new job to inspect storage or calculate risk metrics.
+     * [How-to guide](/dlp/docs/compute-risk-analysis).
      * </pre>
      */
     public void createDlpJob(com.google.privacy.dlp.v2.CreateDlpJobRequest request,
@@ -1150,7 +1150,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates an inspect template for re-using frequently used configuration
+     * Creates an InspectTemplate for re-using frequently used configuration
      * for inspecting content, images, and storage.
      * </pre>
      */
@@ -1161,7 +1161,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the inspect template.
+     * Updates the InspectTemplate.
      * </pre>
      */
     public com.google.privacy.dlp.v2.InspectTemplate updateInspectTemplate(com.google.privacy.dlp.v2.UpdateInspectTemplateRequest request) {
@@ -1171,7 +1171,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets an inspect template.
+     * Gets an InspectTemplate.
      * </pre>
      */
     public com.google.privacy.dlp.v2.InspectTemplate getInspectTemplate(com.google.privacy.dlp.v2.GetInspectTemplateRequest request) {
@@ -1181,7 +1181,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists inspect templates.
+     * Lists InspectTemplates.
      * </pre>
      */
     public com.google.privacy.dlp.v2.ListInspectTemplatesResponse listInspectTemplates(com.google.privacy.dlp.v2.ListInspectTemplatesRequest request) {
@@ -1191,7 +1191,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes an inspect template.
+     * Deletes an InspectTemplate.
      * </pre>
      */
     public com.google.protobuf.Empty deleteInspectTemplate(com.google.privacy.dlp.v2.DeleteInspectTemplateRequest request) {
@@ -1201,8 +1201,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a de-identify template for re-using frequently used configuration
-     * for Deidentifying content, images, and storage.
+     * Creates a DeidentifyTemplate for re-using frequently used configuration
+     * for de-identifying content, images, and storage.
      * </pre>
      */
     public com.google.privacy.dlp.v2.DeidentifyTemplate createDeidentifyTemplate(com.google.privacy.dlp.v2.CreateDeidentifyTemplateRequest request) {
@@ -1212,7 +1212,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the de-identify template.
+     * Updates the DeidentifyTemplate.
      * </pre>
      */
     public com.google.privacy.dlp.v2.DeidentifyTemplate updateDeidentifyTemplate(com.google.privacy.dlp.v2.UpdateDeidentifyTemplateRequest request) {
@@ -1222,7 +1222,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets a de-identify template.
+     * Gets a DeidentifyTemplate.
      * </pre>
      */
     public com.google.privacy.dlp.v2.DeidentifyTemplate getDeidentifyTemplate(com.google.privacy.dlp.v2.GetDeidentifyTemplateRequest request) {
@@ -1232,7 +1232,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists de-identify templates.
+     * Lists DeidentifyTemplates.
      * </pre>
      */
     public com.google.privacy.dlp.v2.ListDeidentifyTemplatesResponse listDeidentifyTemplates(com.google.privacy.dlp.v2.ListDeidentifyTemplatesRequest request) {
@@ -1242,7 +1242,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a de-identify template.
+     * Deletes a DeidentifyTemplate.
      * </pre>
      */
     public com.google.protobuf.Empty deleteDeidentifyTemplate(com.google.privacy.dlp.v2.DeleteDeidentifyTemplateRequest request) {
@@ -1303,8 +1303,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new job to inspect storage or calculate risk metrics [How-to
-     * guide](/dlp/docs/compute-risk-analysis).
+     * Creates a new job to inspect storage or calculate risk metrics.
+     * [How-to guide](/dlp/docs/compute-risk-analysis).
      * </pre>
      */
     public com.google.privacy.dlp.v2.DlpJob createDlpJob(com.google.privacy.dlp.v2.CreateDlpJobRequest request) {
@@ -1449,7 +1449,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates an inspect template for re-using frequently used configuration
+     * Creates an InspectTemplate for re-using frequently used configuration
      * for inspecting content, images, and storage.
      * </pre>
      */
@@ -1461,7 +1461,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the inspect template.
+     * Updates the InspectTemplate.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.InspectTemplate> updateInspectTemplate(
@@ -1472,7 +1472,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets an inspect template.
+     * Gets an InspectTemplate.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.InspectTemplate> getInspectTemplate(
@@ -1483,7 +1483,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists inspect templates.
+     * Lists InspectTemplates.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.ListInspectTemplatesResponse> listInspectTemplates(
@@ -1494,7 +1494,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes an inspect template.
+     * Deletes an InspectTemplate.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteInspectTemplate(
@@ -1505,8 +1505,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a de-identify template for re-using frequently used configuration
-     * for Deidentifying content, images, and storage.
+     * Creates a DeidentifyTemplate for re-using frequently used configuration
+     * for de-identifying content, images, and storage.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.DeidentifyTemplate> createDeidentifyTemplate(
@@ -1517,7 +1517,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Updates the de-identify template.
+     * Updates the DeidentifyTemplate.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.DeidentifyTemplate> updateDeidentifyTemplate(
@@ -1528,7 +1528,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Gets a de-identify template.
+     * Gets a DeidentifyTemplate.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.DeidentifyTemplate> getDeidentifyTemplate(
@@ -1539,7 +1539,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Lists de-identify templates.
+     * Lists DeidentifyTemplates.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.ListDeidentifyTemplatesResponse> listDeidentifyTemplates(
@@ -1550,7 +1550,7 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a de-identify template.
+     * Deletes a DeidentifyTemplate.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteDeidentifyTemplate(
@@ -1617,8 +1617,8 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new job to inspect storage or calculate risk metrics [How-to
-     * guide](/dlp/docs/compute-risk-analysis).
+     * Creates a new job to inspect storage or calculate risk metrics.
+     * [How-to guide](/dlp/docs/compute-risk-analysis).
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2.DlpJob> createDlpJob(

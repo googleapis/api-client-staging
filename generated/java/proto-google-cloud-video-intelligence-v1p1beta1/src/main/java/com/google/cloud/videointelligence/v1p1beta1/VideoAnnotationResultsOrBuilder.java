@@ -176,50 +176,6 @@ public interface VideoAnnotationResultsOrBuilder extends
 
   /**
    * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  java.util.List<com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation> 
-      getFaceDetectionAnnotationsList();
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation getFaceDetectionAnnotations(int index);
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  int getFaceDetectionAnnotationsCount();
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  java.util.List<? extends com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder> 
-      getFaceDetectionAnnotationsOrBuilderList();
-  /**
-   * <pre>
-   * Face detection annotations.
-   * </pre>
-   *
-   * <code>repeated .google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-   */
-  com.google.cloud.videointelligence.v1p1beta1.FaceDetectionAnnotationOrBuilder getFaceDetectionAnnotationsOrBuilder(
-      int index);
-
-  /**
-   * <pre>
    * Shot annotations. Each shot is represented as a video segment.
    * </pre>
    *

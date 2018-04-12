@@ -6,7 +6,6 @@ package com.google.cloud.bigquery.datatransfer.v1;
 /**
  * <pre>
  * Represents a data transfer run.
- * Next id: 27
  * </pre>
  *
  * Protobuf type {@code google.cloud.bigquery.datatransfer.v1.TransferRun}
@@ -990,7 +989,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Represents a data transfer run.
-   * Next id: 27
    * </pre>
    *
    * Protobuf type {@code google.cloud.bigquery.datatransfer.v1.TransferRun}

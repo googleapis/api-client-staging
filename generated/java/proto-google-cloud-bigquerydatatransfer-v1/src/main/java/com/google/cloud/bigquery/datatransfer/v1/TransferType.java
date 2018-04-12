@@ -5,7 +5,7 @@ package com.google.cloud.bigquery.datatransfer.v1;
 
 /**
  * <pre>
- * Represents data transfer type.
+ * DEPRECATED. Represents data transfer type.
  * </pre>
  *
  * Protobuf enum {@code google.cloud.bigquery.datatransfer.v1.TransferType}

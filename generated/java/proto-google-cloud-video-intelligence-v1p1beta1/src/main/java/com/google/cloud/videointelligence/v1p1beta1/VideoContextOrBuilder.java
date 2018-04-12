@@ -160,29 +160,4 @@ public interface VideoContextOrBuilder extends
    * <code>.google.cloud.videointelligence.v1p1beta1.SpeechTranscriptionConfig speech_transcription_config = 6;</code>
    */
   com.google.cloud.videointelligence.v1p1beta1.SpeechTranscriptionConfigOrBuilder getSpeechTranscriptionConfigOrBuilder();
-
-  /**
-   * <pre>
-   * Config for FACE_DETECTION.
-   * </pre>
-   *
-   * <code>.google.cloud.videointelligence.v1p1beta1.FaceConfig face_detection_config = 7;</code>
-   */
-  boolean hasFaceDetectionConfig();
-  /**
-   * <pre>
-   * Config for FACE_DETECTION.
-   * </pre>
-   *
-   * <code>.google.cloud.videointelligence.v1p1beta1.FaceConfig face_detection_config = 7;</code>
-   */
-  com.google.cloud.videointelligence.v1p1beta1.FaceConfig getFaceDetectionConfig();
-  /**
-   * <pre>
-   * Config for FACE_DETECTION.
-   * </pre>
-   *
-   * <code>.google.cloud.videointelligence.v1p1beta1.FaceConfig face_detection_config = 7;</code>
-   */
-  com.google.cloud.videointelligence.v1p1beta1.FaceConfigOrBuilder getFaceDetectionConfigOrBuilder();
 }

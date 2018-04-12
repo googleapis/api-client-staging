@@ -109,7 +109,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * If run with an inspect template, a snapshot of it's state at the time of
+     * If run with an InspectTemplate, a snapshot of its state at the time of
      * this run.
      * </pre>
      *
@@ -118,7 +118,7 @@ private static final long serialVersionUID = 0L;
     boolean hasSnapshotInspectTemplate();
     /**
      * <pre>
-     * If run with an inspect template, a snapshot of it's state at the time of
+     * If run with an InspectTemplate, a snapshot of its state at the time of
      * this run.
      * </pre>
      *
@@ -127,7 +127,7 @@ private static final long serialVersionUID = 0L;
     com.google.privacy.dlp.v2.InspectTemplate getSnapshotInspectTemplate();
     /**
      * <pre>
-     * If run with an inspect template, a snapshot of it's state at the time of
+     * If run with an InspectTemplate, a snapshot of its state at the time of
      * this run.
      * </pre>
      *
@@ -248,7 +248,7 @@ private static final long serialVersionUID = 0L;
     private com.google.privacy.dlp.v2.InspectTemplate snapshotInspectTemplate_;
     /**
      * <pre>
-     * If run with an inspect template, a snapshot of it's state at the time of
+     * If run with an InspectTemplate, a snapshot of its state at the time of
      * this run.
      * </pre>
      *
@@ -259,7 +259,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If run with an inspect template, a snapshot of it's state at the time of
+     * If run with an InspectTemplate, a snapshot of its state at the time of
      * this run.
      * </pre>
      *
@@ -270,7 +270,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If run with an inspect template, a snapshot of it's state at the time of
+     * If run with an InspectTemplate, a snapshot of its state at the time of
      * this run.
      * </pre>
      *
@@ -632,7 +632,7 @@ private static final long serialVersionUID = 0L;
           com.google.privacy.dlp.v2.InspectTemplate, com.google.privacy.dlp.v2.InspectTemplate.Builder, com.google.privacy.dlp.v2.InspectTemplateOrBuilder> snapshotInspectTemplateBuilder_;
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *
@@ -643,7 +643,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *
@@ -658,7 +658,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *
@@ -679,7 +679,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *
@@ -698,7 +698,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *
@@ -721,7 +721,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *
@@ -740,7 +740,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *
@@ -753,7 +753,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *
@@ -769,7 +769,7 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * If run with an inspect template, a snapshot of it's state at the time of
+       * If run with an InspectTemplate, a snapshot of its state at the time of
        * this run.
        * </pre>
        *

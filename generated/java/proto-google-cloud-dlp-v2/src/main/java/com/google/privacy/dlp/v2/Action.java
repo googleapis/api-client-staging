@@ -728,7 +728,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Publish the results of a DlpJob to a pub sub channel.
-   * Compatible with: Inpect, Risk
+   * Compatible with: Inspect, Risk
    * </pre>
    *
    * Protobuf type {@code google.privacy.dlp.v2.Action.PublishToPubSub}
@@ -1008,7 +1008,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Publish the results of a DlpJob to a pub sub channel.
-     * Compatible with: Inpect, Risk
+     * Compatible with: Inspect, Risk
      * </pre>
      *
      * Protobuf type {@code google.privacy.dlp.v2.Action.PublishToPubSub}
