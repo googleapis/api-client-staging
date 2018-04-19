@@ -569,7 +569,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. The URI of the agent's avatar.
-   * Avatars are used throughout API.AI console and in the self-hosted
+   * Avatars are used throughout the Dialogflow console and in the self-hosted
    * [Web Demo](https://dialogflow.com/docs/integrations/web-demo) integration.
    * </pre>
    *
@@ -590,7 +590,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. The URI of the agent's avatar.
-   * Avatars are used throughout API.AI console and in the self-hosted
+   * Avatars are used throughout the Dialogflow console and in the self-hosted
    * [Web Demo](https://dialogflow.com/docs/integrations/web-demo) integration.
    * </pre>
    *
@@ -1753,7 +1753,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The URI of the agent's avatar.
-     * Avatars are used throughout API.AI console and in the self-hosted
+     * Avatars are used throughout the Dialogflow console and in the self-hosted
      * [Web Demo](https://dialogflow.com/docs/integrations/web-demo) integration.
      * </pre>
      *
@@ -1774,7 +1774,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The URI of the agent's avatar.
-     * Avatars are used throughout API.AI console and in the self-hosted
+     * Avatars are used throughout the Dialogflow console and in the self-hosted
      * [Web Demo](https://dialogflow.com/docs/integrations/web-demo) integration.
      * </pre>
      *
@@ -1796,7 +1796,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The URI of the agent's avatar.
-     * Avatars are used throughout API.AI console and in the self-hosted
+     * Avatars are used throughout the Dialogflow console and in the self-hosted
      * [Web Demo](https://dialogflow.com/docs/integrations/web-demo) integration.
      * </pre>
      *
@@ -1815,7 +1815,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The URI of the agent's avatar.
-     * Avatars are used throughout API.AI console and in the self-hosted
+     * Avatars are used throughout the Dialogflow console and in the self-hosted
      * [Web Demo](https://dialogflow.com/docs/integrations/web-demo) integration.
      * </pre>
      *
@@ -1830,7 +1830,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The URI of the agent's avatar.
-     * Avatars are used throughout API.AI console and in the self-hosted
+     * Avatars are used throughout the Dialogflow console and in the self-hosted
      * [Web Demo](https://dialogflow.com/docs/integrations/web-demo) integration.
      * </pre>
      *

@@ -90,9 +90,11 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The name of the session to delete all contexts from. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-   * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-   * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-   * specified we assume default 'sandbox' runtime.
+   * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
+   * ID&gt;`. Note: Environments and users are under construction and will be
+   * available soon. If &lt;Environment ID&gt; is not specified we assume default
+   * 'draft' environment. If &lt;User ID&gt; is not specified, we assume default
+   * '-' user.
    * </pre>
    *
    * <code>string parent = 1;</code>
@@ -113,9 +115,11 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Required. The name of the session to delete all contexts from. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-   * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-   * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-   * specified we assume default 'sandbox' runtime.
+   * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
+   * ID&gt;`. Note: Environments and users are under construction and will be
+   * available soon. If &lt;Environment ID&gt; is not specified we assume default
+   * 'draft' environment. If &lt;User ID&gt; is not specified, we assume default
+   * '-' user.
    * </pre>
    *
    * <code>string parent = 1;</code>
@@ -426,9 +430,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
+     * ID&gt;`. Note: Environments and users are under construction and will be
+     * available soon. If &lt;Environment ID&gt; is not specified we assume default
+     * 'draft' environment. If &lt;User ID&gt; is not specified, we assume default
+     * '-' user.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -449,9 +455,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
+     * ID&gt;`. Note: Environments and users are under construction and will be
+     * available soon. If &lt;Environment ID&gt; is not specified we assume default
+     * 'draft' environment. If &lt;User ID&gt; is not specified, we assume default
+     * '-' user.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -473,9 +481,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
+     * ID&gt;`. Note: Environments and users are under construction and will be
+     * available soon. If &lt;Environment ID&gt; is not specified we assume default
+     * 'draft' environment. If &lt;User ID&gt; is not specified, we assume default
+     * '-' user.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -494,9 +504,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
+     * ID&gt;`. Note: Environments and users are under construction and will be
+     * available soon. If &lt;Environment ID&gt; is not specified we assume default
+     * 'draft' environment. If &lt;User ID&gt; is not specified, we assume default
+     * '-' user.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -511,9 +523,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;` or `projects/&lt;Project
-     * ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;`. Note: Runtimes are
-     * under construction and will be available soon. If &lt;Runtime ID&gt; is not
-     * specified we assume default 'sandbox' runtime.
+     * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
+     * ID&gt;`. Note: Environments and users are under construction and will be
+     * available soon. If &lt;Environment ID&gt; is not specified we assume default
+     * 'draft' environment. If &lt;User ID&gt; is not specified, we assume default
+     * '-' user.
      * </pre>
      *
      * <code>string parent = 1;</code>

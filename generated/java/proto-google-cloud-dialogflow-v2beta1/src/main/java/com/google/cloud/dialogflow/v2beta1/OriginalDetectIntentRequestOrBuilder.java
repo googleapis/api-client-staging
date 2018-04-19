@@ -10,8 +10,7 @@ public interface OriginalDetectIntentRequestOrBuilder extends
   /**
    * <pre>
    * The source of this request, e.g., `google`, `facebook`, `slack`. It is set
-   * by Dialogflow-owned servers. Possible values of this field correspond to
-   * [Intent.Message.Platform][google.cloud.dialogflow.v2beta1.Intent.Message.Platform].
+   * by Dialogflow-owned servers.
    * </pre>
    *
    * <code>string source = 1;</code>
@@ -20,8 +19,7 @@ public interface OriginalDetectIntentRequestOrBuilder extends
   /**
    * <pre>
    * The source of this request, e.g., `google`, `facebook`, `slack`. It is set
-   * by Dialogflow-owned servers. Possible values of this field correspond to
-   * [Intent.Message.Platform][google.cloud.dialogflow.v2beta1.Intent.Message.Platform].
+   * by Dialogflow-owned servers.
    * </pre>
    *
    * <code>string source = 1;</code>

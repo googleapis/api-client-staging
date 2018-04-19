@@ -390,7 +390,7 @@ public interface IntentOrBuilder extends
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -400,7 +400,7 @@ public interface IntentOrBuilder extends
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -409,7 +409,7 @@ public interface IntentOrBuilder extends
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -418,7 +418,7 @@ public interface IntentOrBuilder extends
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -428,7 +428,7 @@ public interface IntentOrBuilder extends
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>

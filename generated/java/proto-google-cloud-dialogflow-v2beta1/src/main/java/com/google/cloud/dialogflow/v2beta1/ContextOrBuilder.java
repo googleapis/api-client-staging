@@ -12,11 +12,12 @@ public interface ContextOrBuilder extends
    * Required. The unique identifier of the context. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`,
    * or
-   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-   * ID&gt;/contexts/&lt;Context ID&gt;`.
-   * Note: Runtimes are under construction and will be available soon.
-   * The Context ID is always converted to lowercase.
-   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
+   * `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User
+   * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. Note: Environments and
+   * users are under construction and will be available soon. The Context ID is
+   * always converted to lowercase. If &lt;Environment ID&gt; is not specified, we
+   * assume default 'draft' environment. If &lt;User ID&gt; is not specified, we
+   * assume default '-' user.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -27,11 +28,12 @@ public interface ContextOrBuilder extends
    * Required. The unique identifier of the context. Format:
    * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`,
    * or
-   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session
-   * ID&gt;/contexts/&lt;Context ID&gt;`.
-   * Note: Runtimes are under construction and will be available soon.
-   * The Context ID is always converted to lowercase.
-   * If &lt;Runtime ID&gt; is not specified, we assume default 'sandbox' runtime.
+   * `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User
+   * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. Note: Environments and
+   * users are under construction and will be available soon. The Context ID is
+   * always converted to lowercase. If &lt;Environment ID&gt; is not specified, we
+   * assume default 'draft' environment. If &lt;User ID&gt; is not specified, we
+   * assume default '-' user.
    * </pre>
    *
    * <code>string name = 1;</code>

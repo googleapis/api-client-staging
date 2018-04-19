@@ -4838,7 +4838,9 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * Returns a response containing a custom payload.
+     * Returns a response containing a custom, platform-specific payload.
+     * See the Intent.Message.Platform type for a description of the
+     * structure that may be required for your platform.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -4846,7 +4848,9 @@ private static final long serialVersionUID = 0L;
     boolean hasPayload();
     /**
      * <pre>
-     * Returns a response containing a custom payload.
+     * Returns a response containing a custom, platform-specific payload.
+     * See the Intent.Message.Platform type for a description of the
+     * structure that may be required for your platform.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -4854,7 +4858,9 @@ private static final long serialVersionUID = 0L;
     com.google.protobuf.Struct getPayload();
     /**
      * <pre>
-     * Returns a response containing a custom payload.
+     * Returns a response containing a custom, platform-specific payload.
+     * See the Intent.Message.Platform type for a description of the
+     * structure that may be required for your platform.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -5032,7 +5038,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Corresponds to the `Response` field in API.AI console.
+   * Corresponds to the `Response` field in the Dialogflow console.
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.Intent.Message}
@@ -5341,6 +5347,66 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Actions on Google.
+       * When using Actions on Google, you can choose one of the specific
+       * Intent.Message types that mention support for Actions on Google,
+       * or you can use the advanced Intent.Message.payload field.
+       * The payload field provides access to AoG features not available in the
+       * specific message types.
+       * If using the Intent.Message.payload field, it should have a structure
+       * similar to the JSON message shown here. For more information, see
+       * [Actions on Google Webhook
+       * Format](https://developers.google.com/actions/dialogflow/webhook)
+       * &lt;pre&gt;{
+       *   "expectUserResponse": true,
+       *   "isSsml": false,
+       *   "noInputPrompts": [],
+       *   "richResponse": {
+       *     "items": [
+       *       {
+       *         "simpleResponse": {
+       *           "displayText": "hi",
+       *           "textToSpeech": "hello"
+       *         }
+       *       }
+       *     ],
+       *     "suggestions": [
+       *       {
+       *         "title": "Say this"
+       *       },
+       *       {
+       *         "title": "or this"
+       *       }
+       *     ]
+       *   },
+       *   "systemIntent": {
+       *     "data": {
+       *       "&#64;type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
+       *       "listSelect": {
+       *         "items": [
+       *           {
+       *             "optionInfo": {
+       *               "key": "key1",
+       *               "synonyms": [
+       *                 "key one"
+       *               ]
+       *             },
+       *             "title": "must not be empty, but unique"
+       *           },
+       *           {
+       *             "optionInfo": {
+       *               "key": "key2",
+       *               "synonyms": [
+       *                 "key two"
+       *               ]
+       *             },
+       *             "title": "must not be empty, but unique"
+       *           }
+       *         ]
+       *       }
+       *     },
+       *     "intent": "actions.intent.OPTION"
+       *   }
+       * }&lt;/pre&gt;
        * </pre>
        *
        * <code>ACTIONS_ON_GOOGLE = 8;</code>
@@ -5416,6 +5482,66 @@ private static final long serialVersionUID = 0L;
       /**
        * <pre>
        * Actions on Google.
+       * When using Actions on Google, you can choose one of the specific
+       * Intent.Message types that mention support for Actions on Google,
+       * or you can use the advanced Intent.Message.payload field.
+       * The payload field provides access to AoG features not available in the
+       * specific message types.
+       * If using the Intent.Message.payload field, it should have a structure
+       * similar to the JSON message shown here. For more information, see
+       * [Actions on Google Webhook
+       * Format](https://developers.google.com/actions/dialogflow/webhook)
+       * &lt;pre&gt;{
+       *   "expectUserResponse": true,
+       *   "isSsml": false,
+       *   "noInputPrompts": [],
+       *   "richResponse": {
+       *     "items": [
+       *       {
+       *         "simpleResponse": {
+       *           "displayText": "hi",
+       *           "textToSpeech": "hello"
+       *         }
+       *       }
+       *     ],
+       *     "suggestions": [
+       *       {
+       *         "title": "Say this"
+       *       },
+       *       {
+       *         "title": "or this"
+       *       }
+       *     ]
+       *   },
+       *   "systemIntent": {
+       *     "data": {
+       *       "&#64;type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
+       *       "listSelect": {
+       *         "items": [
+       *           {
+       *             "optionInfo": {
+       *               "key": "key1",
+       *               "synonyms": [
+       *                 "key one"
+       *               ]
+       *             },
+       *             "title": "must not be empty, but unique"
+       *           },
+       *           {
+       *             "optionInfo": {
+       *               "key": "key2",
+       *               "synonyms": [
+       *                 "key two"
+       *               ]
+       *             },
+       *             "title": "must not be empty, but unique"
+       *           }
+       *         ]
+       *       }
+       *     },
+       *     "intent": "actions.intent.OPTION"
+       *   }
+       * }&lt;/pre&gt;
        * </pre>
        *
        * <code>ACTIONS_ON_GOOGLE = 8;</code>
@@ -22460,7 +22586,9 @@ private static final long serialVersionUID = 0L;
     public static final int PAYLOAD_FIELD_NUMBER = 5;
     /**
      * <pre>
-     * Returns a response containing a custom payload.
+     * Returns a response containing a custom, platform-specific payload.
+     * See the Intent.Message.Platform type for a description of the
+     * structure that may be required for your platform.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -22470,7 +22598,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Returns a response containing a custom payload.
+     * Returns a response containing a custom, platform-specific payload.
+     * See the Intent.Message.Platform type for a description of the
+     * structure that may be required for your platform.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -22483,7 +22613,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Returns a response containing a custom payload.
+     * Returns a response containing a custom, platform-specific payload.
+     * See the Intent.Message.Platform type for a description of the
+     * structure that may be required for your platform.
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
@@ -23075,7 +23207,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Corresponds to the `Response` field in API.AI console.
+     * Corresponds to the `Response` field in the Dialogflow console.
      * </pre>
      *
      * Protobuf type {@code google.cloud.dialogflow.v2beta1.Intent.Message}
@@ -24045,7 +24177,9 @@ private static final long serialVersionUID = 0L;
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> payloadBuilder_;
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24055,7 +24189,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24075,7 +24211,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24095,7 +24233,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24113,7 +24253,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24139,7 +24281,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24162,7 +24306,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24172,7 +24318,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -24189,7 +24337,9 @@ private static final long serialVersionUID = 0L;
       }
       /**
        * <pre>
-       * Returns a response containing a custom payload.
+       * Returns a response containing a custom, platform-specific payload.
+       * See the Intent.Message.Platform type for a description of the
+       * structure that may be required for your platform.
        * </pre>
        *
        * <code>.google.protobuf.Struct payload = 5;</code>
@@ -26655,7 +26805,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -26666,7 +26816,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -26678,7 +26828,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -26689,7 +26839,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -26700,7 +26850,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. The collection of rich messages corresponding to the
-   * `Response` field in API.AI console.
+   * `Response` field in the Dialogflow console.
    * </pre>
    *
    * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29703,7 +29853,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29718,7 +29868,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29733,7 +29883,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29748,7 +29898,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29770,7 +29920,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29789,7 +29939,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29810,7 +29960,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29832,7 +29982,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29851,7 +30001,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29870,7 +30020,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29890,7 +30040,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29908,7 +30058,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29926,7 +30076,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29938,7 +30088,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29953,7 +30103,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29969,7 +30119,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29981,7 +30131,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
@@ -29994,7 +30144,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. The collection of rich messages corresponding to the
-     * `Response` field in API.AI console.
+     * `Response` field in the Dialogflow console.
      * </pre>
      *
      * <code>repeated .google.cloud.dialogflow.v2beta1.Intent.Message messages = 14;</code>
