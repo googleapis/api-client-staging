@@ -18,11 +18,14 @@ repositories {
 
 dependencies {
   compile 'com.google.api:gax:1.23.0'
+  testCompile 'com.google.api:gax:1.23.0:testlib'
   compile 'com.google.api:gax-grpc:1.23.0'
-  testCompile 'junit:junit:4.12'
   testCompile 'com.google.api:gax-grpc:1.23.0:testlib'
+  testCompile 'junit:junit:4.12'
   testCompile 'io.grpc:grpc-netty-shaded:1.10.1'
+  // Remove this line if you are bundling your proto-generated classes together with your client classes
   compile project(':proto-google-cloud-dataproc-v1')
+  // Remove this line if you are bundling your proto-generated classes together with your client classes
   testCompile project(':grpc-google-cloud-dataproc-v1')
 }
 

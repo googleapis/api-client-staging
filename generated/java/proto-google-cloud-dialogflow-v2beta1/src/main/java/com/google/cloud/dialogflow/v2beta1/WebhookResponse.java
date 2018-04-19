@@ -295,6 +295,27 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+   * See the related `fulfillment_messages[i].payload field`, which may be used
+   * as an alternative to this field.
+   * This field can be used for Actions on Google responses.
+   * It should have a structure similar to the JSON message shown here. For more
+   * information, see
+   * [Actions on Google Webhook
+   * Format](https://developers.google.com/actions/dialogflow/webhook)
+   * &lt;pre&gt;{
+   *   "google": {
+   *     "expectUserResponse": true,
+   *     "richResponse": {
+   *       "items": [
+   *         {
+   *           "simpleResponse": {
+   *             "textToSpeech": "this is a simple response"
+   *           }
+   *         }
+   *       ]
+   *     }
+   *   }
+   * }&lt;/pre&gt;
    * </pre>
    *
    * <code>.google.protobuf.Struct payload = 4;</code>
@@ -305,6 +326,27 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+   * See the related `fulfillment_messages[i].payload field`, which may be used
+   * as an alternative to this field.
+   * This field can be used for Actions on Google responses.
+   * It should have a structure similar to the JSON message shown here. For more
+   * information, see
+   * [Actions on Google Webhook
+   * Format](https://developers.google.com/actions/dialogflow/webhook)
+   * &lt;pre&gt;{
+   *   "google": {
+   *     "expectUserResponse": true,
+   *     "richResponse": {
+   *       "items": [
+   *         {
+   *           "simpleResponse": {
+   *             "textToSpeech": "this is a simple response"
+   *           }
+   *         }
+   *       ]
+   *     }
+   *   }
+   * }&lt;/pre&gt;
    * </pre>
    *
    * <code>.google.protobuf.Struct payload = 4;</code>
@@ -315,6 +357,27 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+   * See the related `fulfillment_messages[i].payload field`, which may be used
+   * as an alternative to this field.
+   * This field can be used for Actions on Google responses.
+   * It should have a structure similar to the JSON message shown here. For more
+   * information, see
+   * [Actions on Google Webhook
+   * Format](https://developers.google.com/actions/dialogflow/webhook)
+   * &lt;pre&gt;{
+   *   "google": {
+   *     "expectUserResponse": true,
+   *     "richResponse": {
+   *       "items": [
+   *         {
+   *           "simpleResponse": {
+   *             "textToSpeech": "this is a simple response"
+   *           }
+   *         }
+   *       ]
+   *     }
+   *   }
+   * }&lt;/pre&gt;
    * </pre>
    *
    * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1416,6 +1479,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1426,6 +1510,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1440,6 +1545,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1460,6 +1586,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1478,6 +1625,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1500,6 +1668,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1518,6 +1707,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1530,6 +1740,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
@@ -1545,6 +1776,27 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     * See the related `fulfillment_messages[i].payload field`, which may be used
+     * as an alternative to this field.
+     * This field can be used for Actions on Google responses.
+     * It should have a structure similar to the JSON message shown here. For more
+     * information, see
+     * [Actions on Google Webhook
+     * Format](https://developers.google.com/actions/dialogflow/webhook)
+     * &lt;pre&gt;{
+     *   "google": {
+     *     "expectUserResponse": true,
+     *     "richResponse": {
+     *       "items": [
+     *         {
+     *           "simpleResponse": {
+     *             "textToSpeech": "this is a simple response"
+     *           }
+     *         }
+     *       ]
+     *     }
+     *   }
+     * }&lt;/pre&gt;
      * </pre>
      *
      * <code>.google.protobuf.Struct payload = 4;</code>
