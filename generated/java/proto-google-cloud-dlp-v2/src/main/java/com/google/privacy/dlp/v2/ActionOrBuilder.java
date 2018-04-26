@@ -57,5 +57,30 @@ public interface ActionOrBuilder extends
    */
   com.google.privacy.dlp.v2.Action.PublishToPubSubOrBuilder getPubSubOrBuilder();
 
+  /**
+   * <pre>
+   * Publish summary to Cloud Security Command Center (Alpha).
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2.Action.PublishSummaryToCscc publish_summary_to_cscc = 3;</code>
+   */
+  boolean hasPublishSummaryToCscc();
+  /**
+   * <pre>
+   * Publish summary to Cloud Security Command Center (Alpha).
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2.Action.PublishSummaryToCscc publish_summary_to_cscc = 3;</code>
+   */
+  com.google.privacy.dlp.v2.Action.PublishSummaryToCscc getPublishSummaryToCscc();
+  /**
+   * <pre>
+   * Publish summary to Cloud Security Command Center (Alpha).
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2.Action.PublishSummaryToCscc publish_summary_to_cscc = 3;</code>
+   */
+  com.google.privacy.dlp.v2.Action.PublishSummaryToCsccOrBuilder getPublishSummaryToCsccOrBuilder();
+
   public com.google.privacy.dlp.v2.Action.ActionCase getActionCase();
 }

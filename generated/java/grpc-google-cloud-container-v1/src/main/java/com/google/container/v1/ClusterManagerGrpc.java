@@ -1,19 +1,19 @@
 package com.google.container.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/container/v1/cluster_service.proto")
 public final class ClusterManagerGrpc {
 
@@ -31,275 +31,1115 @@ public final class ClusterManagerGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListClustersMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.ListClustersRequest,
-      com.google.container.v1.ListClustersResponse> METHOD_LIST_CLUSTERS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "ListClusters"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.ListClustersRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.ListClustersResponse.getDefaultInstance()));
+      com.google.container.v1.ListClustersResponse> METHOD_LIST_CLUSTERS = getListClustersMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.ListClustersRequest,
+      com.google.container.v1.ListClustersResponse> getListClustersMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.ListClustersRequest,
+      com.google.container.v1.ListClustersResponse> getListClustersMethod() {
+    return getListClustersMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.ListClustersRequest,
+      com.google.container.v1.ListClustersResponse> getListClustersMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.ListClustersRequest, com.google.container.v1.ListClustersResponse> getListClustersMethod;
+    if ((getListClustersMethod = ClusterManagerGrpc.getListClustersMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getListClustersMethod = ClusterManagerGrpc.getListClustersMethod) == null) {
+          ClusterManagerGrpc.getListClustersMethod = getListClustersMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.ListClustersRequest, com.google.container.v1.ListClustersResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "ListClusters"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.ListClustersRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.ListClustersResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("ListClusters"))
+                  .build();
+          }
+        }
+     }
+     return getListClustersMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.GetClusterRequest,
-      com.google.container.v1.Cluster> METHOD_GET_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "GetCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.GetClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Cluster.getDefaultInstance()));
+      com.google.container.v1.Cluster> METHOD_GET_CLUSTER = getGetClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.GetClusterRequest,
+      com.google.container.v1.Cluster> getGetClusterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.GetClusterRequest,
+      com.google.container.v1.Cluster> getGetClusterMethod() {
+    return getGetClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.GetClusterRequest,
+      com.google.container.v1.Cluster> getGetClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.GetClusterRequest, com.google.container.v1.Cluster> getGetClusterMethod;
+    if ((getGetClusterMethod = ClusterManagerGrpc.getGetClusterMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getGetClusterMethod = ClusterManagerGrpc.getGetClusterMethod) == null) {
+          ClusterManagerGrpc.getGetClusterMethod = getGetClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.GetClusterRequest, com.google.container.v1.Cluster>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "GetCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.GetClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Cluster.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("GetCluster"))
+                  .build();
+          }
+        }
+     }
+     return getGetClusterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.CreateClusterRequest,
-      com.google.container.v1.Operation> METHOD_CREATE_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "CreateCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.CreateClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_CREATE_CLUSTER = getCreateClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.CreateClusterRequest,
+      com.google.container.v1.Operation> getCreateClusterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.CreateClusterRequest,
+      com.google.container.v1.Operation> getCreateClusterMethod() {
+    return getCreateClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.CreateClusterRequest,
+      com.google.container.v1.Operation> getCreateClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.CreateClusterRequest, com.google.container.v1.Operation> getCreateClusterMethod;
+    if ((getCreateClusterMethod = ClusterManagerGrpc.getCreateClusterMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getCreateClusterMethod = ClusterManagerGrpc.getCreateClusterMethod) == null) {
+          ClusterManagerGrpc.getCreateClusterMethod = getCreateClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.CreateClusterRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "CreateCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.CreateClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("CreateCluster"))
+                  .build();
+          }
+        }
+     }
+     return getCreateClusterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.UpdateClusterRequest,
-      com.google.container.v1.Operation> METHOD_UPDATE_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "UpdateCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.UpdateClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_UPDATE_CLUSTER = getUpdateClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.UpdateClusterRequest,
+      com.google.container.v1.Operation> getUpdateClusterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.UpdateClusterRequest,
+      com.google.container.v1.Operation> getUpdateClusterMethod() {
+    return getUpdateClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.UpdateClusterRequest,
+      com.google.container.v1.Operation> getUpdateClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.UpdateClusterRequest, com.google.container.v1.Operation> getUpdateClusterMethod;
+    if ((getUpdateClusterMethod = ClusterManagerGrpc.getUpdateClusterMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getUpdateClusterMethod = ClusterManagerGrpc.getUpdateClusterMethod) == null) {
+          ClusterManagerGrpc.getUpdateClusterMethod = getUpdateClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.UpdateClusterRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "UpdateCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.UpdateClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("UpdateCluster"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateClusterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateNodePoolMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.UpdateNodePoolRequest,
-      com.google.container.v1.Operation> METHOD_UPDATE_NODE_POOL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "UpdateNodePool"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.UpdateNodePoolRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_UPDATE_NODE_POOL = getUpdateNodePoolMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.UpdateNodePoolRequest,
+      com.google.container.v1.Operation> getUpdateNodePoolMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.UpdateNodePoolRequest,
+      com.google.container.v1.Operation> getUpdateNodePoolMethod() {
+    return getUpdateNodePoolMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.UpdateNodePoolRequest,
+      com.google.container.v1.Operation> getUpdateNodePoolMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.UpdateNodePoolRequest, com.google.container.v1.Operation> getUpdateNodePoolMethod;
+    if ((getUpdateNodePoolMethod = ClusterManagerGrpc.getUpdateNodePoolMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getUpdateNodePoolMethod = ClusterManagerGrpc.getUpdateNodePoolMethod) == null) {
+          ClusterManagerGrpc.getUpdateNodePoolMethod = getUpdateNodePoolMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.UpdateNodePoolRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "UpdateNodePool"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.UpdateNodePoolRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("UpdateNodePool"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateNodePoolMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetNodePoolAutoscalingMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolAutoscalingRequest,
-      com.google.container.v1.Operation> METHOD_SET_NODE_POOL_AUTOSCALING =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetNodePoolAutoscaling"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetNodePoolAutoscalingRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_NODE_POOL_AUTOSCALING = getSetNodePoolAutoscalingMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolAutoscalingRequest,
+      com.google.container.v1.Operation> getSetNodePoolAutoscalingMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolAutoscalingRequest,
+      com.google.container.v1.Operation> getSetNodePoolAutoscalingMethod() {
+    return getSetNodePoolAutoscalingMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolAutoscalingRequest,
+      com.google.container.v1.Operation> getSetNodePoolAutoscalingMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolAutoscalingRequest, com.google.container.v1.Operation> getSetNodePoolAutoscalingMethod;
+    if ((getSetNodePoolAutoscalingMethod = ClusterManagerGrpc.getSetNodePoolAutoscalingMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetNodePoolAutoscalingMethod = ClusterManagerGrpc.getSetNodePoolAutoscalingMethod) == null) {
+          ClusterManagerGrpc.getSetNodePoolAutoscalingMethod = getSetNodePoolAutoscalingMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetNodePoolAutoscalingRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetNodePoolAutoscaling"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetNodePoolAutoscalingRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetNodePoolAutoscaling"))
+                  .build();
+          }
+        }
+     }
+     return getSetNodePoolAutoscalingMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetLoggingServiceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetLoggingServiceRequest,
-      com.google.container.v1.Operation> METHOD_SET_LOGGING_SERVICE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetLoggingService"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetLoggingServiceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_LOGGING_SERVICE = getSetLoggingServiceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetLoggingServiceRequest,
+      com.google.container.v1.Operation> getSetLoggingServiceMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetLoggingServiceRequest,
+      com.google.container.v1.Operation> getSetLoggingServiceMethod() {
+    return getSetLoggingServiceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetLoggingServiceRequest,
+      com.google.container.v1.Operation> getSetLoggingServiceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetLoggingServiceRequest, com.google.container.v1.Operation> getSetLoggingServiceMethod;
+    if ((getSetLoggingServiceMethod = ClusterManagerGrpc.getSetLoggingServiceMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetLoggingServiceMethod = ClusterManagerGrpc.getSetLoggingServiceMethod) == null) {
+          ClusterManagerGrpc.getSetLoggingServiceMethod = getSetLoggingServiceMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetLoggingServiceRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetLoggingService"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetLoggingServiceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetLoggingService"))
+                  .build();
+          }
+        }
+     }
+     return getSetLoggingServiceMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetMonitoringServiceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetMonitoringServiceRequest,
-      com.google.container.v1.Operation> METHOD_SET_MONITORING_SERVICE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetMonitoringService"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetMonitoringServiceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_MONITORING_SERVICE = getSetMonitoringServiceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetMonitoringServiceRequest,
+      com.google.container.v1.Operation> getSetMonitoringServiceMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetMonitoringServiceRequest,
+      com.google.container.v1.Operation> getSetMonitoringServiceMethod() {
+    return getSetMonitoringServiceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetMonitoringServiceRequest,
+      com.google.container.v1.Operation> getSetMonitoringServiceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetMonitoringServiceRequest, com.google.container.v1.Operation> getSetMonitoringServiceMethod;
+    if ((getSetMonitoringServiceMethod = ClusterManagerGrpc.getSetMonitoringServiceMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetMonitoringServiceMethod = ClusterManagerGrpc.getSetMonitoringServiceMethod) == null) {
+          ClusterManagerGrpc.getSetMonitoringServiceMethod = getSetMonitoringServiceMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetMonitoringServiceRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetMonitoringService"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetMonitoringServiceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetMonitoringService"))
+                  .build();
+          }
+        }
+     }
+     return getSetMonitoringServiceMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetAddonsConfigMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetAddonsConfigRequest,
-      com.google.container.v1.Operation> METHOD_SET_ADDONS_CONFIG =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetAddonsConfig"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetAddonsConfigRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_ADDONS_CONFIG = getSetAddonsConfigMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetAddonsConfigRequest,
+      com.google.container.v1.Operation> getSetAddonsConfigMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetAddonsConfigRequest,
+      com.google.container.v1.Operation> getSetAddonsConfigMethod() {
+    return getSetAddonsConfigMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetAddonsConfigRequest,
+      com.google.container.v1.Operation> getSetAddonsConfigMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetAddonsConfigRequest, com.google.container.v1.Operation> getSetAddonsConfigMethod;
+    if ((getSetAddonsConfigMethod = ClusterManagerGrpc.getSetAddonsConfigMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetAddonsConfigMethod = ClusterManagerGrpc.getSetAddonsConfigMethod) == null) {
+          ClusterManagerGrpc.getSetAddonsConfigMethod = getSetAddonsConfigMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetAddonsConfigRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetAddonsConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetAddonsConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetAddonsConfig"))
+                  .build();
+          }
+        }
+     }
+     return getSetAddonsConfigMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetLocationsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetLocationsRequest,
-      com.google.container.v1.Operation> METHOD_SET_LOCATIONS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetLocations"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetLocationsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_LOCATIONS = getSetLocationsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetLocationsRequest,
+      com.google.container.v1.Operation> getSetLocationsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetLocationsRequest,
+      com.google.container.v1.Operation> getSetLocationsMethod() {
+    return getSetLocationsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetLocationsRequest,
+      com.google.container.v1.Operation> getSetLocationsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetLocationsRequest, com.google.container.v1.Operation> getSetLocationsMethod;
+    if ((getSetLocationsMethod = ClusterManagerGrpc.getSetLocationsMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetLocationsMethod = ClusterManagerGrpc.getSetLocationsMethod) == null) {
+          ClusterManagerGrpc.getSetLocationsMethod = getSetLocationsMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetLocationsRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetLocations"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetLocationsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetLocations"))
+                  .build();
+          }
+        }
+     }
+     return getSetLocationsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateMasterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.UpdateMasterRequest,
-      com.google.container.v1.Operation> METHOD_UPDATE_MASTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "UpdateMaster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.UpdateMasterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_UPDATE_MASTER = getUpdateMasterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.UpdateMasterRequest,
+      com.google.container.v1.Operation> getUpdateMasterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.UpdateMasterRequest,
+      com.google.container.v1.Operation> getUpdateMasterMethod() {
+    return getUpdateMasterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.UpdateMasterRequest,
+      com.google.container.v1.Operation> getUpdateMasterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.UpdateMasterRequest, com.google.container.v1.Operation> getUpdateMasterMethod;
+    if ((getUpdateMasterMethod = ClusterManagerGrpc.getUpdateMasterMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getUpdateMasterMethod = ClusterManagerGrpc.getUpdateMasterMethod) == null) {
+          ClusterManagerGrpc.getUpdateMasterMethod = getUpdateMasterMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.UpdateMasterRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "UpdateMaster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.UpdateMasterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("UpdateMaster"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateMasterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetMasterAuthMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetMasterAuthRequest,
-      com.google.container.v1.Operation> METHOD_SET_MASTER_AUTH =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetMasterAuth"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetMasterAuthRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_MASTER_AUTH = getSetMasterAuthMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetMasterAuthRequest,
+      com.google.container.v1.Operation> getSetMasterAuthMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetMasterAuthRequest,
+      com.google.container.v1.Operation> getSetMasterAuthMethod() {
+    return getSetMasterAuthMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetMasterAuthRequest,
+      com.google.container.v1.Operation> getSetMasterAuthMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetMasterAuthRequest, com.google.container.v1.Operation> getSetMasterAuthMethod;
+    if ((getSetMasterAuthMethod = ClusterManagerGrpc.getSetMasterAuthMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetMasterAuthMethod = ClusterManagerGrpc.getSetMasterAuthMethod) == null) {
+          ClusterManagerGrpc.getSetMasterAuthMethod = getSetMasterAuthMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetMasterAuthRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetMasterAuth"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetMasterAuthRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetMasterAuth"))
+                  .build();
+          }
+        }
+     }
+     return getSetMasterAuthMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.DeleteClusterRequest,
-      com.google.container.v1.Operation> METHOD_DELETE_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "DeleteCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.DeleteClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_DELETE_CLUSTER = getDeleteClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.DeleteClusterRequest,
+      com.google.container.v1.Operation> getDeleteClusterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.DeleteClusterRequest,
+      com.google.container.v1.Operation> getDeleteClusterMethod() {
+    return getDeleteClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.DeleteClusterRequest,
+      com.google.container.v1.Operation> getDeleteClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.DeleteClusterRequest, com.google.container.v1.Operation> getDeleteClusterMethod;
+    if ((getDeleteClusterMethod = ClusterManagerGrpc.getDeleteClusterMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getDeleteClusterMethod = ClusterManagerGrpc.getDeleteClusterMethod) == null) {
+          ClusterManagerGrpc.getDeleteClusterMethod = getDeleteClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.DeleteClusterRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "DeleteCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.DeleteClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("DeleteCluster"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteClusterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListOperationsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.ListOperationsRequest,
-      com.google.container.v1.ListOperationsResponse> METHOD_LIST_OPERATIONS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "ListOperations"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.ListOperationsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.ListOperationsResponse.getDefaultInstance()));
+      com.google.container.v1.ListOperationsResponse> METHOD_LIST_OPERATIONS = getListOperationsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.ListOperationsRequest,
+      com.google.container.v1.ListOperationsResponse> getListOperationsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.ListOperationsRequest,
+      com.google.container.v1.ListOperationsResponse> getListOperationsMethod() {
+    return getListOperationsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.ListOperationsRequest,
+      com.google.container.v1.ListOperationsResponse> getListOperationsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.ListOperationsRequest, com.google.container.v1.ListOperationsResponse> getListOperationsMethod;
+    if ((getListOperationsMethod = ClusterManagerGrpc.getListOperationsMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getListOperationsMethod = ClusterManagerGrpc.getListOperationsMethod) == null) {
+          ClusterManagerGrpc.getListOperationsMethod = getListOperationsMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.ListOperationsRequest, com.google.container.v1.ListOperationsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "ListOperations"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.ListOperationsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.ListOperationsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("ListOperations"))
+                  .build();
+          }
+        }
+     }
+     return getListOperationsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetOperationMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.GetOperationRequest,
-      com.google.container.v1.Operation> METHOD_GET_OPERATION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "GetOperation"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.GetOperationRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_GET_OPERATION = getGetOperationMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.GetOperationRequest,
+      com.google.container.v1.Operation> getGetOperationMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.GetOperationRequest,
+      com.google.container.v1.Operation> getGetOperationMethod() {
+    return getGetOperationMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.GetOperationRequest,
+      com.google.container.v1.Operation> getGetOperationMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.GetOperationRequest, com.google.container.v1.Operation> getGetOperationMethod;
+    if ((getGetOperationMethod = ClusterManagerGrpc.getGetOperationMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getGetOperationMethod = ClusterManagerGrpc.getGetOperationMethod) == null) {
+          ClusterManagerGrpc.getGetOperationMethod = getGetOperationMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.GetOperationRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "GetOperation"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.GetOperationRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("GetOperation"))
+                  .build();
+          }
+        }
+     }
+     return getGetOperationMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCancelOperationMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.CancelOperationRequest,
-      com.google.protobuf.Empty> METHOD_CANCEL_OPERATION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "CancelOperation"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.CancelOperationRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_CANCEL_OPERATION = getCancelOperationMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.CancelOperationRequest,
+      com.google.protobuf.Empty> getCancelOperationMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.CancelOperationRequest,
+      com.google.protobuf.Empty> getCancelOperationMethod() {
+    return getCancelOperationMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.CancelOperationRequest,
+      com.google.protobuf.Empty> getCancelOperationMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.CancelOperationRequest, com.google.protobuf.Empty> getCancelOperationMethod;
+    if ((getCancelOperationMethod = ClusterManagerGrpc.getCancelOperationMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getCancelOperationMethod = ClusterManagerGrpc.getCancelOperationMethod) == null) {
+          ClusterManagerGrpc.getCancelOperationMethod = getCancelOperationMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.CancelOperationRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "CancelOperation"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.CancelOperationRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("CancelOperation"))
+                  .build();
+          }
+        }
+     }
+     return getCancelOperationMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetServerConfigMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.GetServerConfigRequest,
-      com.google.container.v1.ServerConfig> METHOD_GET_SERVER_CONFIG =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "GetServerConfig"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.GetServerConfigRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.ServerConfig.getDefaultInstance()));
+      com.google.container.v1.ServerConfig> METHOD_GET_SERVER_CONFIG = getGetServerConfigMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.GetServerConfigRequest,
+      com.google.container.v1.ServerConfig> getGetServerConfigMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.GetServerConfigRequest,
+      com.google.container.v1.ServerConfig> getGetServerConfigMethod() {
+    return getGetServerConfigMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.GetServerConfigRequest,
+      com.google.container.v1.ServerConfig> getGetServerConfigMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.GetServerConfigRequest, com.google.container.v1.ServerConfig> getGetServerConfigMethod;
+    if ((getGetServerConfigMethod = ClusterManagerGrpc.getGetServerConfigMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getGetServerConfigMethod = ClusterManagerGrpc.getGetServerConfigMethod) == null) {
+          ClusterManagerGrpc.getGetServerConfigMethod = getGetServerConfigMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.GetServerConfigRequest, com.google.container.v1.ServerConfig>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "GetServerConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.GetServerConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.ServerConfig.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("GetServerConfig"))
+                  .build();
+          }
+        }
+     }
+     return getGetServerConfigMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListNodePoolsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.ListNodePoolsRequest,
-      com.google.container.v1.ListNodePoolsResponse> METHOD_LIST_NODE_POOLS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "ListNodePools"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.ListNodePoolsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.ListNodePoolsResponse.getDefaultInstance()));
+      com.google.container.v1.ListNodePoolsResponse> METHOD_LIST_NODE_POOLS = getListNodePoolsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.ListNodePoolsRequest,
+      com.google.container.v1.ListNodePoolsResponse> getListNodePoolsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.ListNodePoolsRequest,
+      com.google.container.v1.ListNodePoolsResponse> getListNodePoolsMethod() {
+    return getListNodePoolsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.ListNodePoolsRequest,
+      com.google.container.v1.ListNodePoolsResponse> getListNodePoolsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.ListNodePoolsRequest, com.google.container.v1.ListNodePoolsResponse> getListNodePoolsMethod;
+    if ((getListNodePoolsMethod = ClusterManagerGrpc.getListNodePoolsMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getListNodePoolsMethod = ClusterManagerGrpc.getListNodePoolsMethod) == null) {
+          ClusterManagerGrpc.getListNodePoolsMethod = getListNodePoolsMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.ListNodePoolsRequest, com.google.container.v1.ListNodePoolsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "ListNodePools"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.ListNodePoolsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.ListNodePoolsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("ListNodePools"))
+                  .build();
+          }
+        }
+     }
+     return getListNodePoolsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetNodePoolMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.GetNodePoolRequest,
-      com.google.container.v1.NodePool> METHOD_GET_NODE_POOL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "GetNodePool"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.GetNodePoolRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.NodePool.getDefaultInstance()));
+      com.google.container.v1.NodePool> METHOD_GET_NODE_POOL = getGetNodePoolMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.GetNodePoolRequest,
+      com.google.container.v1.NodePool> getGetNodePoolMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.GetNodePoolRequest,
+      com.google.container.v1.NodePool> getGetNodePoolMethod() {
+    return getGetNodePoolMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.GetNodePoolRequest,
+      com.google.container.v1.NodePool> getGetNodePoolMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.GetNodePoolRequest, com.google.container.v1.NodePool> getGetNodePoolMethod;
+    if ((getGetNodePoolMethod = ClusterManagerGrpc.getGetNodePoolMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getGetNodePoolMethod = ClusterManagerGrpc.getGetNodePoolMethod) == null) {
+          ClusterManagerGrpc.getGetNodePoolMethod = getGetNodePoolMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.GetNodePoolRequest, com.google.container.v1.NodePool>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "GetNodePool"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.GetNodePoolRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.NodePool.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("GetNodePool"))
+                  .build();
+          }
+        }
+     }
+     return getGetNodePoolMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateNodePoolMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.CreateNodePoolRequest,
-      com.google.container.v1.Operation> METHOD_CREATE_NODE_POOL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "CreateNodePool"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.CreateNodePoolRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_CREATE_NODE_POOL = getCreateNodePoolMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.CreateNodePoolRequest,
+      com.google.container.v1.Operation> getCreateNodePoolMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.CreateNodePoolRequest,
+      com.google.container.v1.Operation> getCreateNodePoolMethod() {
+    return getCreateNodePoolMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.CreateNodePoolRequest,
+      com.google.container.v1.Operation> getCreateNodePoolMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.CreateNodePoolRequest, com.google.container.v1.Operation> getCreateNodePoolMethod;
+    if ((getCreateNodePoolMethod = ClusterManagerGrpc.getCreateNodePoolMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getCreateNodePoolMethod = ClusterManagerGrpc.getCreateNodePoolMethod) == null) {
+          ClusterManagerGrpc.getCreateNodePoolMethod = getCreateNodePoolMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.CreateNodePoolRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "CreateNodePool"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.CreateNodePoolRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("CreateNodePool"))
+                  .build();
+          }
+        }
+     }
+     return getCreateNodePoolMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteNodePoolMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.DeleteNodePoolRequest,
-      com.google.container.v1.Operation> METHOD_DELETE_NODE_POOL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "DeleteNodePool"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.DeleteNodePoolRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_DELETE_NODE_POOL = getDeleteNodePoolMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.DeleteNodePoolRequest,
+      com.google.container.v1.Operation> getDeleteNodePoolMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.DeleteNodePoolRequest,
+      com.google.container.v1.Operation> getDeleteNodePoolMethod() {
+    return getDeleteNodePoolMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.DeleteNodePoolRequest,
+      com.google.container.v1.Operation> getDeleteNodePoolMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.DeleteNodePoolRequest, com.google.container.v1.Operation> getDeleteNodePoolMethod;
+    if ((getDeleteNodePoolMethod = ClusterManagerGrpc.getDeleteNodePoolMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getDeleteNodePoolMethod = ClusterManagerGrpc.getDeleteNodePoolMethod) == null) {
+          ClusterManagerGrpc.getDeleteNodePoolMethod = getDeleteNodePoolMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.DeleteNodePoolRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "DeleteNodePool"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.DeleteNodePoolRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("DeleteNodePool"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteNodePoolMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getRollbackNodePoolUpgradeMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.RollbackNodePoolUpgradeRequest,
-      com.google.container.v1.Operation> METHOD_ROLLBACK_NODE_POOL_UPGRADE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "RollbackNodePoolUpgrade"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.RollbackNodePoolUpgradeRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_ROLLBACK_NODE_POOL_UPGRADE = getRollbackNodePoolUpgradeMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.RollbackNodePoolUpgradeRequest,
+      com.google.container.v1.Operation> getRollbackNodePoolUpgradeMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.RollbackNodePoolUpgradeRequest,
+      com.google.container.v1.Operation> getRollbackNodePoolUpgradeMethod() {
+    return getRollbackNodePoolUpgradeMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.RollbackNodePoolUpgradeRequest,
+      com.google.container.v1.Operation> getRollbackNodePoolUpgradeMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.RollbackNodePoolUpgradeRequest, com.google.container.v1.Operation> getRollbackNodePoolUpgradeMethod;
+    if ((getRollbackNodePoolUpgradeMethod = ClusterManagerGrpc.getRollbackNodePoolUpgradeMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getRollbackNodePoolUpgradeMethod = ClusterManagerGrpc.getRollbackNodePoolUpgradeMethod) == null) {
+          ClusterManagerGrpc.getRollbackNodePoolUpgradeMethod = getRollbackNodePoolUpgradeMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.RollbackNodePoolUpgradeRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "RollbackNodePoolUpgrade"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.RollbackNodePoolUpgradeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("RollbackNodePoolUpgrade"))
+                  .build();
+          }
+        }
+     }
+     return getRollbackNodePoolUpgradeMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetNodePoolManagementMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolManagementRequest,
-      com.google.container.v1.Operation> METHOD_SET_NODE_POOL_MANAGEMENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetNodePoolManagement"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetNodePoolManagementRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_NODE_POOL_MANAGEMENT = getSetNodePoolManagementMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolManagementRequest,
+      com.google.container.v1.Operation> getSetNodePoolManagementMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolManagementRequest,
+      com.google.container.v1.Operation> getSetNodePoolManagementMethod() {
+    return getSetNodePoolManagementMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolManagementRequest,
+      com.google.container.v1.Operation> getSetNodePoolManagementMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolManagementRequest, com.google.container.v1.Operation> getSetNodePoolManagementMethod;
+    if ((getSetNodePoolManagementMethod = ClusterManagerGrpc.getSetNodePoolManagementMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetNodePoolManagementMethod = ClusterManagerGrpc.getSetNodePoolManagementMethod) == null) {
+          ClusterManagerGrpc.getSetNodePoolManagementMethod = getSetNodePoolManagementMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetNodePoolManagementRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetNodePoolManagement"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetNodePoolManagementRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetNodePoolManagement"))
+                  .build();
+          }
+        }
+     }
+     return getSetNodePoolManagementMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetLabelsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetLabelsRequest,
-      com.google.container.v1.Operation> METHOD_SET_LABELS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetLabels"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetLabelsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_LABELS = getSetLabelsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetLabelsRequest,
+      com.google.container.v1.Operation> getSetLabelsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetLabelsRequest,
+      com.google.container.v1.Operation> getSetLabelsMethod() {
+    return getSetLabelsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetLabelsRequest,
+      com.google.container.v1.Operation> getSetLabelsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetLabelsRequest, com.google.container.v1.Operation> getSetLabelsMethod;
+    if ((getSetLabelsMethod = ClusterManagerGrpc.getSetLabelsMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetLabelsMethod = ClusterManagerGrpc.getSetLabelsMethod) == null) {
+          ClusterManagerGrpc.getSetLabelsMethod = getSetLabelsMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetLabelsRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetLabels"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetLabelsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetLabels"))
+                  .build();
+          }
+        }
+     }
+     return getSetLabelsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetLegacyAbacMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetLegacyAbacRequest,
-      com.google.container.v1.Operation> METHOD_SET_LEGACY_ABAC =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetLegacyAbac"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetLegacyAbacRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_LEGACY_ABAC = getSetLegacyAbacMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetLegacyAbacRequest,
+      com.google.container.v1.Operation> getSetLegacyAbacMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetLegacyAbacRequest,
+      com.google.container.v1.Operation> getSetLegacyAbacMethod() {
+    return getSetLegacyAbacMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetLegacyAbacRequest,
+      com.google.container.v1.Operation> getSetLegacyAbacMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetLegacyAbacRequest, com.google.container.v1.Operation> getSetLegacyAbacMethod;
+    if ((getSetLegacyAbacMethod = ClusterManagerGrpc.getSetLegacyAbacMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetLegacyAbacMethod = ClusterManagerGrpc.getSetLegacyAbacMethod) == null) {
+          ClusterManagerGrpc.getSetLegacyAbacMethod = getSetLegacyAbacMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetLegacyAbacRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetLegacyAbac"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetLegacyAbacRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetLegacyAbac"))
+                  .build();
+          }
+        }
+     }
+     return getSetLegacyAbacMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getStartIPRotationMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.StartIPRotationRequest,
-      com.google.container.v1.Operation> METHOD_START_IPROTATION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "StartIPRotation"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.StartIPRotationRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_START_IPROTATION = getStartIPRotationMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.StartIPRotationRequest,
+      com.google.container.v1.Operation> getStartIPRotationMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.StartIPRotationRequest,
+      com.google.container.v1.Operation> getStartIPRotationMethod() {
+    return getStartIPRotationMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.StartIPRotationRequest,
+      com.google.container.v1.Operation> getStartIPRotationMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.StartIPRotationRequest, com.google.container.v1.Operation> getStartIPRotationMethod;
+    if ((getStartIPRotationMethod = ClusterManagerGrpc.getStartIPRotationMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getStartIPRotationMethod = ClusterManagerGrpc.getStartIPRotationMethod) == null) {
+          ClusterManagerGrpc.getStartIPRotationMethod = getStartIPRotationMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.StartIPRotationRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "StartIPRotation"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.StartIPRotationRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("StartIPRotation"))
+                  .build();
+          }
+        }
+     }
+     return getStartIPRotationMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCompleteIPRotationMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.CompleteIPRotationRequest,
-      com.google.container.v1.Operation> METHOD_COMPLETE_IPROTATION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "CompleteIPRotation"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.CompleteIPRotationRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_COMPLETE_IPROTATION = getCompleteIPRotationMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.CompleteIPRotationRequest,
+      com.google.container.v1.Operation> getCompleteIPRotationMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.CompleteIPRotationRequest,
+      com.google.container.v1.Operation> getCompleteIPRotationMethod() {
+    return getCompleteIPRotationMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.CompleteIPRotationRequest,
+      com.google.container.v1.Operation> getCompleteIPRotationMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.CompleteIPRotationRequest, com.google.container.v1.Operation> getCompleteIPRotationMethod;
+    if ((getCompleteIPRotationMethod = ClusterManagerGrpc.getCompleteIPRotationMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getCompleteIPRotationMethod = ClusterManagerGrpc.getCompleteIPRotationMethod) == null) {
+          ClusterManagerGrpc.getCompleteIPRotationMethod = getCompleteIPRotationMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.CompleteIPRotationRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "CompleteIPRotation"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.CompleteIPRotationRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("CompleteIPRotation"))
+                  .build();
+          }
+        }
+     }
+     return getCompleteIPRotationMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetNodePoolSizeMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolSizeRequest,
-      com.google.container.v1.Operation> METHOD_SET_NODE_POOL_SIZE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetNodePoolSize"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetNodePoolSizeRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_NODE_POOL_SIZE = getSetNodePoolSizeMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolSizeRequest,
+      com.google.container.v1.Operation> getSetNodePoolSizeMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolSizeRequest,
+      com.google.container.v1.Operation> getSetNodePoolSizeMethod() {
+    return getSetNodePoolSizeMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolSizeRequest,
+      com.google.container.v1.Operation> getSetNodePoolSizeMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetNodePoolSizeRequest, com.google.container.v1.Operation> getSetNodePoolSizeMethod;
+    if ((getSetNodePoolSizeMethod = ClusterManagerGrpc.getSetNodePoolSizeMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetNodePoolSizeMethod = ClusterManagerGrpc.getSetNodePoolSizeMethod) == null) {
+          ClusterManagerGrpc.getSetNodePoolSizeMethod = getSetNodePoolSizeMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetNodePoolSizeRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetNodePoolSize"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetNodePoolSizeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetNodePoolSize"))
+                  .build();
+          }
+        }
+     }
+     return getSetNodePoolSizeMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetNetworkPolicyMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetNetworkPolicyRequest,
-      com.google.container.v1.Operation> METHOD_SET_NETWORK_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetNetworkPolicy"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetNetworkPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_NETWORK_POLICY = getSetNetworkPolicyMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetNetworkPolicyRequest,
+      com.google.container.v1.Operation> getSetNetworkPolicyMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetNetworkPolicyRequest,
+      com.google.container.v1.Operation> getSetNetworkPolicyMethod() {
+    return getSetNetworkPolicyMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetNetworkPolicyRequest,
+      com.google.container.v1.Operation> getSetNetworkPolicyMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetNetworkPolicyRequest, com.google.container.v1.Operation> getSetNetworkPolicyMethod;
+    if ((getSetNetworkPolicyMethod = ClusterManagerGrpc.getSetNetworkPolicyMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetNetworkPolicyMethod = ClusterManagerGrpc.getSetNetworkPolicyMethod) == null) {
+          ClusterManagerGrpc.getSetNetworkPolicyMethod = getSetNetworkPolicyMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetNetworkPolicyRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetNetworkPolicy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetNetworkPolicyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetNetworkPolicy"))
+                  .build();
+          }
+        }
+     }
+     return getSetNetworkPolicyMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetMaintenancePolicyMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.container.v1.SetMaintenancePolicyRequest,
-      com.google.container.v1.Operation> METHOD_SET_MAINTENANCE_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.container.v1.ClusterManager", "SetMaintenancePolicy"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.SetMaintenancePolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.container.v1.Operation.getDefaultInstance()));
+      com.google.container.v1.Operation> METHOD_SET_MAINTENANCE_POLICY = getSetMaintenancePolicyMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.container.v1.SetMaintenancePolicyRequest,
+      com.google.container.v1.Operation> getSetMaintenancePolicyMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.container.v1.SetMaintenancePolicyRequest,
+      com.google.container.v1.Operation> getSetMaintenancePolicyMethod() {
+    return getSetMaintenancePolicyMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.container.v1.SetMaintenancePolicyRequest,
+      com.google.container.v1.Operation> getSetMaintenancePolicyMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.container.v1.SetMaintenancePolicyRequest, com.google.container.v1.Operation> getSetMaintenancePolicyMethod;
+    if ((getSetMaintenancePolicyMethod = ClusterManagerGrpc.getSetMaintenancePolicyMethod) == null) {
+      synchronized (ClusterManagerGrpc.class) {
+        if ((getSetMaintenancePolicyMethod = ClusterManagerGrpc.getSetMaintenancePolicyMethod) == null) {
+          ClusterManagerGrpc.getSetMaintenancePolicyMethod = getSetMaintenancePolicyMethod = 
+              io.grpc.MethodDescriptor.<com.google.container.v1.SetMaintenancePolicyRequest, com.google.container.v1.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.container.v1.ClusterManager", "SetMaintenancePolicy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.SetMaintenancePolicyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.container.v1.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterManagerMethodDescriptorSupplier("SetMaintenancePolicy"))
+                  .build();
+          }
+        }
+     }
+     return getSetMaintenancePolicyMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -317,7 +1157,7 @@ public final class ClusterManagerGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static ClusterManagerFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -339,7 +1179,7 @@ public final class ClusterManagerGrpc {
      */
     public void listClusters(com.google.container.v1.ListClustersRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.ListClustersResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_CLUSTERS, responseObserver);
+      asyncUnimplementedUnaryCall(getListClustersMethodHelper(), responseObserver);
     }
 
     /**
@@ -349,7 +1189,7 @@ public final class ClusterManagerGrpc {
      */
     public void getCluster(com.google.container.v1.GetClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Cluster> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getGetClusterMethodHelper(), responseObserver);
     }
 
     /**
@@ -368,7 +1208,7 @@ public final class ClusterManagerGrpc {
      */
     public void createCluster(com.google.container.v1.CreateClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateClusterMethodHelper(), responseObserver);
     }
 
     /**
@@ -378,7 +1218,7 @@ public final class ClusterManagerGrpc {
      */
     public void updateCluster(com.google.container.v1.UpdateClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateClusterMethodHelper(), responseObserver);
     }
 
     /**
@@ -388,7 +1228,7 @@ public final class ClusterManagerGrpc {
      */
     public void updateNodePool(com.google.container.v1.UpdateNodePoolRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_NODE_POOL, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateNodePoolMethodHelper(), responseObserver);
     }
 
     /**
@@ -398,7 +1238,7 @@ public final class ClusterManagerGrpc {
      */
     public void setNodePoolAutoscaling(com.google.container.v1.SetNodePoolAutoscalingRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_NODE_POOL_AUTOSCALING, responseObserver);
+      asyncUnimplementedUnaryCall(getSetNodePoolAutoscalingMethodHelper(), responseObserver);
     }
 
     /**
@@ -408,7 +1248,7 @@ public final class ClusterManagerGrpc {
      */
     public void setLoggingService(com.google.container.v1.SetLoggingServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_LOGGING_SERVICE, responseObserver);
+      asyncUnimplementedUnaryCall(getSetLoggingServiceMethodHelper(), responseObserver);
     }
 
     /**
@@ -418,7 +1258,7 @@ public final class ClusterManagerGrpc {
      */
     public void setMonitoringService(com.google.container.v1.SetMonitoringServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_MONITORING_SERVICE, responseObserver);
+      asyncUnimplementedUnaryCall(getSetMonitoringServiceMethodHelper(), responseObserver);
     }
 
     /**
@@ -428,7 +1268,7 @@ public final class ClusterManagerGrpc {
      */
     public void setAddonsConfig(com.google.container.v1.SetAddonsConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_ADDONS_CONFIG, responseObserver);
+      asyncUnimplementedUnaryCall(getSetAddonsConfigMethodHelper(), responseObserver);
     }
 
     /**
@@ -438,7 +1278,7 @@ public final class ClusterManagerGrpc {
      */
     public void setLocations(com.google.container.v1.SetLocationsRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_LOCATIONS, responseObserver);
+      asyncUnimplementedUnaryCall(getSetLocationsMethodHelper(), responseObserver);
     }
 
     /**
@@ -448,7 +1288,7 @@ public final class ClusterManagerGrpc {
      */
     public void updateMaster(com.google.container.v1.UpdateMasterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_MASTER, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateMasterMethodHelper(), responseObserver);
     }
 
     /**
@@ -460,7 +1300,7 @@ public final class ClusterManagerGrpc {
      */
     public void setMasterAuth(com.google.container.v1.SetMasterAuthRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_MASTER_AUTH, responseObserver);
+      asyncUnimplementedUnaryCall(getSetMasterAuthMethodHelper(), responseObserver);
     }
 
     /**
@@ -476,7 +1316,7 @@ public final class ClusterManagerGrpc {
      */
     public void deleteCluster(com.google.container.v1.DeleteClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteClusterMethodHelper(), responseObserver);
     }
 
     /**
@@ -486,7 +1326,7 @@ public final class ClusterManagerGrpc {
      */
     public void listOperations(com.google.container.v1.ListOperationsRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.ListOperationsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_OPERATIONS, responseObserver);
+      asyncUnimplementedUnaryCall(getListOperationsMethodHelper(), responseObserver);
     }
 
     /**
@@ -496,7 +1336,7 @@ public final class ClusterManagerGrpc {
      */
     public void getOperation(com.google.container.v1.GetOperationRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_OPERATION, responseObserver);
+      asyncUnimplementedUnaryCall(getGetOperationMethodHelper(), responseObserver);
     }
 
     /**
@@ -506,7 +1346,7 @@ public final class ClusterManagerGrpc {
      */
     public void cancelOperation(com.google.container.v1.CancelOperationRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CANCEL_OPERATION, responseObserver);
+      asyncUnimplementedUnaryCall(getCancelOperationMethodHelper(), responseObserver);
     }
 
     /**
@@ -516,7 +1356,7 @@ public final class ClusterManagerGrpc {
      */
     public void getServerConfig(com.google.container.v1.GetServerConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.ServerConfig> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_SERVER_CONFIG, responseObserver);
+      asyncUnimplementedUnaryCall(getGetServerConfigMethodHelper(), responseObserver);
     }
 
     /**
@@ -526,7 +1366,7 @@ public final class ClusterManagerGrpc {
      */
     public void listNodePools(com.google.container.v1.ListNodePoolsRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.ListNodePoolsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_NODE_POOLS, responseObserver);
+      asyncUnimplementedUnaryCall(getListNodePoolsMethodHelper(), responseObserver);
     }
 
     /**
@@ -536,7 +1376,7 @@ public final class ClusterManagerGrpc {
      */
     public void getNodePool(com.google.container.v1.GetNodePoolRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.NodePool> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_NODE_POOL, responseObserver);
+      asyncUnimplementedUnaryCall(getGetNodePoolMethodHelper(), responseObserver);
     }
 
     /**
@@ -546,7 +1386,7 @@ public final class ClusterManagerGrpc {
      */
     public void createNodePool(com.google.container.v1.CreateNodePoolRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_NODE_POOL, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateNodePoolMethodHelper(), responseObserver);
     }
 
     /**
@@ -556,7 +1396,7 @@ public final class ClusterManagerGrpc {
      */
     public void deleteNodePool(com.google.container.v1.DeleteNodePoolRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_NODE_POOL, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteNodePoolMethodHelper(), responseObserver);
     }
 
     /**
@@ -567,7 +1407,7 @@ public final class ClusterManagerGrpc {
      */
     public void rollbackNodePoolUpgrade(com.google.container.v1.RollbackNodePoolUpgradeRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_ROLLBACK_NODE_POOL_UPGRADE, responseObserver);
+      asyncUnimplementedUnaryCall(getRollbackNodePoolUpgradeMethodHelper(), responseObserver);
     }
 
     /**
@@ -577,7 +1417,7 @@ public final class ClusterManagerGrpc {
      */
     public void setNodePoolManagement(com.google.container.v1.SetNodePoolManagementRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_NODE_POOL_MANAGEMENT, responseObserver);
+      asyncUnimplementedUnaryCall(getSetNodePoolManagementMethodHelper(), responseObserver);
     }
 
     /**
@@ -587,7 +1427,7 @@ public final class ClusterManagerGrpc {
      */
     public void setLabels(com.google.container.v1.SetLabelsRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_LABELS, responseObserver);
+      asyncUnimplementedUnaryCall(getSetLabelsMethodHelper(), responseObserver);
     }
 
     /**
@@ -597,7 +1437,7 @@ public final class ClusterManagerGrpc {
      */
     public void setLegacyAbac(com.google.container.v1.SetLegacyAbacRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_LEGACY_ABAC, responseObserver);
+      asyncUnimplementedUnaryCall(getSetLegacyAbacMethodHelper(), responseObserver);
     }
 
     /**
@@ -607,7 +1447,7 @@ public final class ClusterManagerGrpc {
      */
     public void startIPRotation(com.google.container.v1.StartIPRotationRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_START_IPROTATION, responseObserver);
+      asyncUnimplementedUnaryCall(getStartIPRotationMethodHelper(), responseObserver);
     }
 
     /**
@@ -617,7 +1457,7 @@ public final class ClusterManagerGrpc {
      */
     public void completeIPRotation(com.google.container.v1.CompleteIPRotationRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_COMPLETE_IPROTATION, responseObserver);
+      asyncUnimplementedUnaryCall(getCompleteIPRotationMethodHelper(), responseObserver);
     }
 
     /**
@@ -627,7 +1467,7 @@ public final class ClusterManagerGrpc {
      */
     public void setNodePoolSize(com.google.container.v1.SetNodePoolSizeRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_NODE_POOL_SIZE, responseObserver);
+      asyncUnimplementedUnaryCall(getSetNodePoolSizeMethodHelper(), responseObserver);
     }
 
     /**
@@ -637,7 +1477,7 @@ public final class ClusterManagerGrpc {
      */
     public void setNetworkPolicy(com.google.container.v1.SetNetworkPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_NETWORK_POLICY, responseObserver);
+      asyncUnimplementedUnaryCall(getSetNetworkPolicyMethodHelper(), responseObserver);
     }
 
     /**
@@ -647,216 +1487,216 @@ public final class ClusterManagerGrpc {
      */
     public void setMaintenancePolicy(com.google.container.v1.SetMaintenancePolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_MAINTENANCE_POLICY, responseObserver);
+      asyncUnimplementedUnaryCall(getSetMaintenancePolicyMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_CLUSTERS,
+            getListClustersMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.ListClustersRequest,
                 com.google.container.v1.ListClustersResponse>(
                   this, METHODID_LIST_CLUSTERS)))
           .addMethod(
-            METHOD_GET_CLUSTER,
+            getGetClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.GetClusterRequest,
                 com.google.container.v1.Cluster>(
                   this, METHODID_GET_CLUSTER)))
           .addMethod(
-            METHOD_CREATE_CLUSTER,
+            getCreateClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.CreateClusterRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_CREATE_CLUSTER)))
           .addMethod(
-            METHOD_UPDATE_CLUSTER,
+            getUpdateClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.UpdateClusterRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_UPDATE_CLUSTER)))
           .addMethod(
-            METHOD_UPDATE_NODE_POOL,
+            getUpdateNodePoolMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.UpdateNodePoolRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_UPDATE_NODE_POOL)))
           .addMethod(
-            METHOD_SET_NODE_POOL_AUTOSCALING,
+            getSetNodePoolAutoscalingMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetNodePoolAutoscalingRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_NODE_POOL_AUTOSCALING)))
           .addMethod(
-            METHOD_SET_LOGGING_SERVICE,
+            getSetLoggingServiceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetLoggingServiceRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_LOGGING_SERVICE)))
           .addMethod(
-            METHOD_SET_MONITORING_SERVICE,
+            getSetMonitoringServiceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetMonitoringServiceRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_MONITORING_SERVICE)))
           .addMethod(
-            METHOD_SET_ADDONS_CONFIG,
+            getSetAddonsConfigMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetAddonsConfigRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_ADDONS_CONFIG)))
           .addMethod(
-            METHOD_SET_LOCATIONS,
+            getSetLocationsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetLocationsRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_LOCATIONS)))
           .addMethod(
-            METHOD_UPDATE_MASTER,
+            getUpdateMasterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.UpdateMasterRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_UPDATE_MASTER)))
           .addMethod(
-            METHOD_SET_MASTER_AUTH,
+            getSetMasterAuthMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetMasterAuthRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_MASTER_AUTH)))
           .addMethod(
-            METHOD_DELETE_CLUSTER,
+            getDeleteClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.DeleteClusterRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_DELETE_CLUSTER)))
           .addMethod(
-            METHOD_LIST_OPERATIONS,
+            getListOperationsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.ListOperationsRequest,
                 com.google.container.v1.ListOperationsResponse>(
                   this, METHODID_LIST_OPERATIONS)))
           .addMethod(
-            METHOD_GET_OPERATION,
+            getGetOperationMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.GetOperationRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_GET_OPERATION)))
           .addMethod(
-            METHOD_CANCEL_OPERATION,
+            getCancelOperationMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.CancelOperationRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_CANCEL_OPERATION)))
           .addMethod(
-            METHOD_GET_SERVER_CONFIG,
+            getGetServerConfigMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.GetServerConfigRequest,
                 com.google.container.v1.ServerConfig>(
                   this, METHODID_GET_SERVER_CONFIG)))
           .addMethod(
-            METHOD_LIST_NODE_POOLS,
+            getListNodePoolsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.ListNodePoolsRequest,
                 com.google.container.v1.ListNodePoolsResponse>(
                   this, METHODID_LIST_NODE_POOLS)))
           .addMethod(
-            METHOD_GET_NODE_POOL,
+            getGetNodePoolMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.GetNodePoolRequest,
                 com.google.container.v1.NodePool>(
                   this, METHODID_GET_NODE_POOL)))
           .addMethod(
-            METHOD_CREATE_NODE_POOL,
+            getCreateNodePoolMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.CreateNodePoolRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_CREATE_NODE_POOL)))
           .addMethod(
-            METHOD_DELETE_NODE_POOL,
+            getDeleteNodePoolMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.DeleteNodePoolRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_DELETE_NODE_POOL)))
           .addMethod(
-            METHOD_ROLLBACK_NODE_POOL_UPGRADE,
+            getRollbackNodePoolUpgradeMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.RollbackNodePoolUpgradeRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_ROLLBACK_NODE_POOL_UPGRADE)))
           .addMethod(
-            METHOD_SET_NODE_POOL_MANAGEMENT,
+            getSetNodePoolManagementMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetNodePoolManagementRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_NODE_POOL_MANAGEMENT)))
           .addMethod(
-            METHOD_SET_LABELS,
+            getSetLabelsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetLabelsRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_LABELS)))
           .addMethod(
-            METHOD_SET_LEGACY_ABAC,
+            getSetLegacyAbacMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetLegacyAbacRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_LEGACY_ABAC)))
           .addMethod(
-            METHOD_START_IPROTATION,
+            getStartIPRotationMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.StartIPRotationRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_START_IPROTATION)))
           .addMethod(
-            METHOD_COMPLETE_IPROTATION,
+            getCompleteIPRotationMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.CompleteIPRotationRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_COMPLETE_IPROTATION)))
           .addMethod(
-            METHOD_SET_NODE_POOL_SIZE,
+            getSetNodePoolSizeMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetNodePoolSizeRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_NODE_POOL_SIZE)))
           .addMethod(
-            METHOD_SET_NETWORK_POLICY,
+            getSetNetworkPolicyMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetNetworkPolicyRequest,
                 com.google.container.v1.Operation>(
                   this, METHODID_SET_NETWORK_POLICY)))
           .addMethod(
-            METHOD_SET_MAINTENANCE_POLICY,
+            getSetMaintenancePolicyMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.container.v1.SetMaintenancePolicyRequest,
@@ -896,7 +1736,7 @@ public final class ClusterManagerGrpc {
     public void listClusters(com.google.container.v1.ListClustersRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.ListClustersResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_CLUSTERS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListClustersMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -907,7 +1747,7 @@ public final class ClusterManagerGrpc {
     public void getCluster(com.google.container.v1.GetClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Cluster> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -927,7 +1767,7 @@ public final class ClusterManagerGrpc {
     public void createCluster(com.google.container.v1.CreateClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -938,7 +1778,7 @@ public final class ClusterManagerGrpc {
     public void updateCluster(com.google.container.v1.UpdateClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -949,7 +1789,7 @@ public final class ClusterManagerGrpc {
     public void updateNodePool(com.google.container.v1.UpdateNodePoolRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_NODE_POOL, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateNodePoolMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -960,7 +1800,7 @@ public final class ClusterManagerGrpc {
     public void setNodePoolAutoscaling(com.google.container.v1.SetNodePoolAutoscalingRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_NODE_POOL_AUTOSCALING, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetNodePoolAutoscalingMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -971,7 +1811,7 @@ public final class ClusterManagerGrpc {
     public void setLoggingService(com.google.container.v1.SetLoggingServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_LOGGING_SERVICE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetLoggingServiceMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -982,7 +1822,7 @@ public final class ClusterManagerGrpc {
     public void setMonitoringService(com.google.container.v1.SetMonitoringServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_MONITORING_SERVICE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetMonitoringServiceMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -993,7 +1833,7 @@ public final class ClusterManagerGrpc {
     public void setAddonsConfig(com.google.container.v1.SetAddonsConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_ADDONS_CONFIG, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetAddonsConfigMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1004,7 +1844,7 @@ public final class ClusterManagerGrpc {
     public void setLocations(com.google.container.v1.SetLocationsRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_LOCATIONS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetLocationsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1015,7 +1855,7 @@ public final class ClusterManagerGrpc {
     public void updateMaster(com.google.container.v1.UpdateMasterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_MASTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateMasterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1028,7 +1868,7 @@ public final class ClusterManagerGrpc {
     public void setMasterAuth(com.google.container.v1.SetMasterAuthRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_MASTER_AUTH, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetMasterAuthMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1045,7 +1885,7 @@ public final class ClusterManagerGrpc {
     public void deleteCluster(com.google.container.v1.DeleteClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1056,7 +1896,7 @@ public final class ClusterManagerGrpc {
     public void listOperations(com.google.container.v1.ListOperationsRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.ListOperationsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_OPERATIONS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListOperationsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1067,7 +1907,7 @@ public final class ClusterManagerGrpc {
     public void getOperation(com.google.container.v1.GetOperationRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_OPERATION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetOperationMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1078,7 +1918,7 @@ public final class ClusterManagerGrpc {
     public void cancelOperation(com.google.container.v1.CancelOperationRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CANCEL_OPERATION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCancelOperationMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1089,7 +1929,7 @@ public final class ClusterManagerGrpc {
     public void getServerConfig(com.google.container.v1.GetServerConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.ServerConfig> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_SERVER_CONFIG, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetServerConfigMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1100,7 +1940,7 @@ public final class ClusterManagerGrpc {
     public void listNodePools(com.google.container.v1.ListNodePoolsRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.ListNodePoolsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_NODE_POOLS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListNodePoolsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1111,7 +1951,7 @@ public final class ClusterManagerGrpc {
     public void getNodePool(com.google.container.v1.GetNodePoolRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.NodePool> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_NODE_POOL, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetNodePoolMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1122,7 +1962,7 @@ public final class ClusterManagerGrpc {
     public void createNodePool(com.google.container.v1.CreateNodePoolRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_NODE_POOL, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateNodePoolMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1133,7 +1973,7 @@ public final class ClusterManagerGrpc {
     public void deleteNodePool(com.google.container.v1.DeleteNodePoolRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_NODE_POOL, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteNodePoolMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1145,7 +1985,7 @@ public final class ClusterManagerGrpc {
     public void rollbackNodePoolUpgrade(com.google.container.v1.RollbackNodePoolUpgradeRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_ROLLBACK_NODE_POOL_UPGRADE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRollbackNodePoolUpgradeMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1156,7 +1996,7 @@ public final class ClusterManagerGrpc {
     public void setNodePoolManagement(com.google.container.v1.SetNodePoolManagementRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_NODE_POOL_MANAGEMENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetNodePoolManagementMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1167,7 +2007,7 @@ public final class ClusterManagerGrpc {
     public void setLabels(com.google.container.v1.SetLabelsRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_LABELS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetLabelsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1178,7 +2018,7 @@ public final class ClusterManagerGrpc {
     public void setLegacyAbac(com.google.container.v1.SetLegacyAbacRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_LEGACY_ABAC, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetLegacyAbacMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1189,7 +2029,7 @@ public final class ClusterManagerGrpc {
     public void startIPRotation(com.google.container.v1.StartIPRotationRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_START_IPROTATION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getStartIPRotationMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1200,7 +2040,7 @@ public final class ClusterManagerGrpc {
     public void completeIPRotation(com.google.container.v1.CompleteIPRotationRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_COMPLETE_IPROTATION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCompleteIPRotationMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1211,7 +2051,7 @@ public final class ClusterManagerGrpc {
     public void setNodePoolSize(com.google.container.v1.SetNodePoolSizeRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_NODE_POOL_SIZE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetNodePoolSizeMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1222,7 +2062,7 @@ public final class ClusterManagerGrpc {
     public void setNetworkPolicy(com.google.container.v1.SetNetworkPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_NETWORK_POLICY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetNetworkPolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1233,7 +2073,7 @@ public final class ClusterManagerGrpc {
     public void setMaintenancePolicy(com.google.container.v1.SetMaintenancePolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.container.v1.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_MAINTENANCE_POLICY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetMaintenancePolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -1266,7 +2106,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.ListClustersResponse listClusters(com.google.container.v1.ListClustersRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_CLUSTERS, getCallOptions(), request);
+          getChannel(), getListClustersMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1276,7 +2116,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Cluster getCluster(com.google.container.v1.GetClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_CLUSTER, getCallOptions(), request);
+          getChannel(), getGetClusterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1295,7 +2135,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation createCluster(com.google.container.v1.CreateClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_CLUSTER, getCallOptions(), request);
+          getChannel(), getCreateClusterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1305,7 +2145,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation updateCluster(com.google.container.v1.UpdateClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_CLUSTER, getCallOptions(), request);
+          getChannel(), getUpdateClusterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1315,7 +2155,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation updateNodePool(com.google.container.v1.UpdateNodePoolRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_NODE_POOL, getCallOptions(), request);
+          getChannel(), getUpdateNodePoolMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1325,7 +2165,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setNodePoolAutoscaling(com.google.container.v1.SetNodePoolAutoscalingRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_NODE_POOL_AUTOSCALING, getCallOptions(), request);
+          getChannel(), getSetNodePoolAutoscalingMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1335,7 +2175,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setLoggingService(com.google.container.v1.SetLoggingServiceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_LOGGING_SERVICE, getCallOptions(), request);
+          getChannel(), getSetLoggingServiceMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1345,7 +2185,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setMonitoringService(com.google.container.v1.SetMonitoringServiceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_MONITORING_SERVICE, getCallOptions(), request);
+          getChannel(), getSetMonitoringServiceMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1355,7 +2195,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setAddonsConfig(com.google.container.v1.SetAddonsConfigRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_ADDONS_CONFIG, getCallOptions(), request);
+          getChannel(), getSetAddonsConfigMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1365,7 +2205,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setLocations(com.google.container.v1.SetLocationsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_LOCATIONS, getCallOptions(), request);
+          getChannel(), getSetLocationsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1375,7 +2215,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation updateMaster(com.google.container.v1.UpdateMasterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_MASTER, getCallOptions(), request);
+          getChannel(), getUpdateMasterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1387,7 +2227,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setMasterAuth(com.google.container.v1.SetMasterAuthRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_MASTER_AUTH, getCallOptions(), request);
+          getChannel(), getSetMasterAuthMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1403,7 +2243,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation deleteCluster(com.google.container.v1.DeleteClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_CLUSTER, getCallOptions(), request);
+          getChannel(), getDeleteClusterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1413,7 +2253,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.ListOperationsResponse listOperations(com.google.container.v1.ListOperationsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_OPERATIONS, getCallOptions(), request);
+          getChannel(), getListOperationsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1423,7 +2263,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation getOperation(com.google.container.v1.GetOperationRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_OPERATION, getCallOptions(), request);
+          getChannel(), getGetOperationMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1433,7 +2273,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.protobuf.Empty cancelOperation(com.google.container.v1.CancelOperationRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CANCEL_OPERATION, getCallOptions(), request);
+          getChannel(), getCancelOperationMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1443,7 +2283,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.ServerConfig getServerConfig(com.google.container.v1.GetServerConfigRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_SERVER_CONFIG, getCallOptions(), request);
+          getChannel(), getGetServerConfigMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1453,7 +2293,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.ListNodePoolsResponse listNodePools(com.google.container.v1.ListNodePoolsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_NODE_POOLS, getCallOptions(), request);
+          getChannel(), getListNodePoolsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1463,7 +2303,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.NodePool getNodePool(com.google.container.v1.GetNodePoolRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_NODE_POOL, getCallOptions(), request);
+          getChannel(), getGetNodePoolMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1473,7 +2313,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation createNodePool(com.google.container.v1.CreateNodePoolRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_NODE_POOL, getCallOptions(), request);
+          getChannel(), getCreateNodePoolMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1483,7 +2323,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation deleteNodePool(com.google.container.v1.DeleteNodePoolRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_NODE_POOL, getCallOptions(), request);
+          getChannel(), getDeleteNodePoolMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1494,7 +2334,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation rollbackNodePoolUpgrade(com.google.container.v1.RollbackNodePoolUpgradeRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_ROLLBACK_NODE_POOL_UPGRADE, getCallOptions(), request);
+          getChannel(), getRollbackNodePoolUpgradeMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1504,7 +2344,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setNodePoolManagement(com.google.container.v1.SetNodePoolManagementRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_NODE_POOL_MANAGEMENT, getCallOptions(), request);
+          getChannel(), getSetNodePoolManagementMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1514,7 +2354,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setLabels(com.google.container.v1.SetLabelsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_LABELS, getCallOptions(), request);
+          getChannel(), getSetLabelsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1524,7 +2364,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setLegacyAbac(com.google.container.v1.SetLegacyAbacRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_LEGACY_ABAC, getCallOptions(), request);
+          getChannel(), getSetLegacyAbacMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1534,7 +2374,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation startIPRotation(com.google.container.v1.StartIPRotationRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_START_IPROTATION, getCallOptions(), request);
+          getChannel(), getStartIPRotationMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1544,7 +2384,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation completeIPRotation(com.google.container.v1.CompleteIPRotationRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_COMPLETE_IPROTATION, getCallOptions(), request);
+          getChannel(), getCompleteIPRotationMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1554,7 +2394,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setNodePoolSize(com.google.container.v1.SetNodePoolSizeRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_NODE_POOL_SIZE, getCallOptions(), request);
+          getChannel(), getSetNodePoolSizeMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1564,7 +2404,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setNetworkPolicy(com.google.container.v1.SetNetworkPolicyRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_NETWORK_POLICY, getCallOptions(), request);
+          getChannel(), getSetNetworkPolicyMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -1574,7 +2414,7 @@ public final class ClusterManagerGrpc {
      */
     public com.google.container.v1.Operation setMaintenancePolicy(com.google.container.v1.SetMaintenancePolicyRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_MAINTENANCE_POLICY, getCallOptions(), request);
+          getChannel(), getSetMaintenancePolicyMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -1608,7 +2448,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.ListClustersResponse> listClusters(
         com.google.container.v1.ListClustersRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_CLUSTERS, getCallOptions()), request);
+          getChannel().newCall(getListClustersMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1619,7 +2459,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Cluster> getCluster(
         com.google.container.v1.GetClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getGetClusterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1639,7 +2479,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> createCluster(
         com.google.container.v1.CreateClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getCreateClusterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1650,7 +2490,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> updateCluster(
         com.google.container.v1.UpdateClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getUpdateClusterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1661,7 +2501,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> updateNodePool(
         com.google.container.v1.UpdateNodePoolRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_NODE_POOL, getCallOptions()), request);
+          getChannel().newCall(getUpdateNodePoolMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1672,7 +2512,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setNodePoolAutoscaling(
         com.google.container.v1.SetNodePoolAutoscalingRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_NODE_POOL_AUTOSCALING, getCallOptions()), request);
+          getChannel().newCall(getSetNodePoolAutoscalingMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1683,7 +2523,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setLoggingService(
         com.google.container.v1.SetLoggingServiceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_LOGGING_SERVICE, getCallOptions()), request);
+          getChannel().newCall(getSetLoggingServiceMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1694,7 +2534,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setMonitoringService(
         com.google.container.v1.SetMonitoringServiceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_MONITORING_SERVICE, getCallOptions()), request);
+          getChannel().newCall(getSetMonitoringServiceMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1705,7 +2545,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setAddonsConfig(
         com.google.container.v1.SetAddonsConfigRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_ADDONS_CONFIG, getCallOptions()), request);
+          getChannel().newCall(getSetAddonsConfigMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1716,7 +2556,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setLocations(
         com.google.container.v1.SetLocationsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_LOCATIONS, getCallOptions()), request);
+          getChannel().newCall(getSetLocationsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1727,7 +2567,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> updateMaster(
         com.google.container.v1.UpdateMasterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_MASTER, getCallOptions()), request);
+          getChannel().newCall(getUpdateMasterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1740,7 +2580,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setMasterAuth(
         com.google.container.v1.SetMasterAuthRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_MASTER_AUTH, getCallOptions()), request);
+          getChannel().newCall(getSetMasterAuthMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1757,7 +2597,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> deleteCluster(
         com.google.container.v1.DeleteClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getDeleteClusterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1768,7 +2608,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.ListOperationsResponse> listOperations(
         com.google.container.v1.ListOperationsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_OPERATIONS, getCallOptions()), request);
+          getChannel().newCall(getListOperationsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1779,7 +2619,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> getOperation(
         com.google.container.v1.GetOperationRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_OPERATION, getCallOptions()), request);
+          getChannel().newCall(getGetOperationMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1790,7 +2630,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> cancelOperation(
         com.google.container.v1.CancelOperationRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CANCEL_OPERATION, getCallOptions()), request);
+          getChannel().newCall(getCancelOperationMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1801,7 +2641,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.ServerConfig> getServerConfig(
         com.google.container.v1.GetServerConfigRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_SERVER_CONFIG, getCallOptions()), request);
+          getChannel().newCall(getGetServerConfigMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1812,7 +2652,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.ListNodePoolsResponse> listNodePools(
         com.google.container.v1.ListNodePoolsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_NODE_POOLS, getCallOptions()), request);
+          getChannel().newCall(getListNodePoolsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1823,7 +2663,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.NodePool> getNodePool(
         com.google.container.v1.GetNodePoolRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_NODE_POOL, getCallOptions()), request);
+          getChannel().newCall(getGetNodePoolMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1834,7 +2674,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> createNodePool(
         com.google.container.v1.CreateNodePoolRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_NODE_POOL, getCallOptions()), request);
+          getChannel().newCall(getCreateNodePoolMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1845,7 +2685,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> deleteNodePool(
         com.google.container.v1.DeleteNodePoolRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_NODE_POOL, getCallOptions()), request);
+          getChannel().newCall(getDeleteNodePoolMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1857,7 +2697,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> rollbackNodePoolUpgrade(
         com.google.container.v1.RollbackNodePoolUpgradeRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_ROLLBACK_NODE_POOL_UPGRADE, getCallOptions()), request);
+          getChannel().newCall(getRollbackNodePoolUpgradeMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1868,7 +2708,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setNodePoolManagement(
         com.google.container.v1.SetNodePoolManagementRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_NODE_POOL_MANAGEMENT, getCallOptions()), request);
+          getChannel().newCall(getSetNodePoolManagementMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1879,7 +2719,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setLabels(
         com.google.container.v1.SetLabelsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_LABELS, getCallOptions()), request);
+          getChannel().newCall(getSetLabelsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1890,7 +2730,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setLegacyAbac(
         com.google.container.v1.SetLegacyAbacRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_LEGACY_ABAC, getCallOptions()), request);
+          getChannel().newCall(getSetLegacyAbacMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1901,7 +2741,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> startIPRotation(
         com.google.container.v1.StartIPRotationRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_START_IPROTATION, getCallOptions()), request);
+          getChannel().newCall(getStartIPRotationMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1912,7 +2752,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> completeIPRotation(
         com.google.container.v1.CompleteIPRotationRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_COMPLETE_IPROTATION, getCallOptions()), request);
+          getChannel().newCall(getCompleteIPRotationMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1923,7 +2763,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setNodePoolSize(
         com.google.container.v1.SetNodePoolSizeRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_NODE_POOL_SIZE, getCallOptions()), request);
+          getChannel().newCall(getSetNodePoolSizeMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1934,7 +2774,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setNetworkPolicy(
         com.google.container.v1.SetNetworkPolicyRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_NETWORK_POLICY, getCallOptions()), request);
+          getChannel().newCall(getSetNetworkPolicyMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1945,7 +2785,7 @@ public final class ClusterManagerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.container.v1.Operation> setMaintenancePolicy(
         com.google.container.v1.SetMaintenancePolicyRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_MAINTENANCE_POLICY, getCallOptions()), request);
+          getChannel().newCall(getSetMaintenancePolicyMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -2133,10 +2973,38 @@ public final class ClusterManagerGrpc {
     }
   }
 
-  private static final class ClusterManagerDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class ClusterManagerBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    ClusterManagerBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.container.v1.ClusterServiceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("ClusterManager");
+    }
+  }
+
+  private static final class ClusterManagerFileDescriptorSupplier
+      extends ClusterManagerBaseDescriptorSupplier {
+    ClusterManagerFileDescriptorSupplier() {}
+  }
+
+  private static final class ClusterManagerMethodDescriptorSupplier
+      extends ClusterManagerBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    ClusterManagerMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -2149,37 +3017,37 @@ public final class ClusterManagerGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new ClusterManagerDescriptorSupplier())
-              .addMethod(METHOD_LIST_CLUSTERS)
-              .addMethod(METHOD_GET_CLUSTER)
-              .addMethod(METHOD_CREATE_CLUSTER)
-              .addMethod(METHOD_UPDATE_CLUSTER)
-              .addMethod(METHOD_UPDATE_NODE_POOL)
-              .addMethod(METHOD_SET_NODE_POOL_AUTOSCALING)
-              .addMethod(METHOD_SET_LOGGING_SERVICE)
-              .addMethod(METHOD_SET_MONITORING_SERVICE)
-              .addMethod(METHOD_SET_ADDONS_CONFIG)
-              .addMethod(METHOD_SET_LOCATIONS)
-              .addMethod(METHOD_UPDATE_MASTER)
-              .addMethod(METHOD_SET_MASTER_AUTH)
-              .addMethod(METHOD_DELETE_CLUSTER)
-              .addMethod(METHOD_LIST_OPERATIONS)
-              .addMethod(METHOD_GET_OPERATION)
-              .addMethod(METHOD_CANCEL_OPERATION)
-              .addMethod(METHOD_GET_SERVER_CONFIG)
-              .addMethod(METHOD_LIST_NODE_POOLS)
-              .addMethod(METHOD_GET_NODE_POOL)
-              .addMethod(METHOD_CREATE_NODE_POOL)
-              .addMethod(METHOD_DELETE_NODE_POOL)
-              .addMethod(METHOD_ROLLBACK_NODE_POOL_UPGRADE)
-              .addMethod(METHOD_SET_NODE_POOL_MANAGEMENT)
-              .addMethod(METHOD_SET_LABELS)
-              .addMethod(METHOD_SET_LEGACY_ABAC)
-              .addMethod(METHOD_START_IPROTATION)
-              .addMethod(METHOD_COMPLETE_IPROTATION)
-              .addMethod(METHOD_SET_NODE_POOL_SIZE)
-              .addMethod(METHOD_SET_NETWORK_POLICY)
-              .addMethod(METHOD_SET_MAINTENANCE_POLICY)
+              .setSchemaDescriptor(new ClusterManagerFileDescriptorSupplier())
+              .addMethod(getListClustersMethodHelper())
+              .addMethod(getGetClusterMethodHelper())
+              .addMethod(getCreateClusterMethodHelper())
+              .addMethod(getUpdateClusterMethodHelper())
+              .addMethod(getUpdateNodePoolMethodHelper())
+              .addMethod(getSetNodePoolAutoscalingMethodHelper())
+              .addMethod(getSetLoggingServiceMethodHelper())
+              .addMethod(getSetMonitoringServiceMethodHelper())
+              .addMethod(getSetAddonsConfigMethodHelper())
+              .addMethod(getSetLocationsMethodHelper())
+              .addMethod(getUpdateMasterMethodHelper())
+              .addMethod(getSetMasterAuthMethodHelper())
+              .addMethod(getDeleteClusterMethodHelper())
+              .addMethod(getListOperationsMethodHelper())
+              .addMethod(getGetOperationMethodHelper())
+              .addMethod(getCancelOperationMethodHelper())
+              .addMethod(getGetServerConfigMethodHelper())
+              .addMethod(getListNodePoolsMethodHelper())
+              .addMethod(getGetNodePoolMethodHelper())
+              .addMethod(getCreateNodePoolMethodHelper())
+              .addMethod(getDeleteNodePoolMethodHelper())
+              .addMethod(getRollbackNodePoolUpgradeMethodHelper())
+              .addMethod(getSetNodePoolManagementMethodHelper())
+              .addMethod(getSetLabelsMethodHelper())
+              .addMethod(getSetLegacyAbacMethodHelper())
+              .addMethod(getStartIPRotationMethodHelper())
+              .addMethod(getCompleteIPRotationMethodHelper())
+              .addMethod(getSetNodePoolSizeMethodHelper())
+              .addMethod(getSetNetworkPolicyMethodHelper())
+              .addMethod(getSetMaintenancePolicyMethodHelper())
               .build();
         }
       }

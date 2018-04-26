@@ -1,19 +1,19 @@
 package com.google.cloud.videointelligence.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/cloud/videointelligence/v1/video_intelligence.proto")
 public final class VideoIntelligenceServiceGrpc {
 
@@ -31,14 +31,42 @@ public final class VideoIntelligenceServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getAnnotateVideoMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.videointelligence.v1.AnnotateVideoRequest,
-      com.google.longrunning.Operation> METHOD_ANNOTATE_VIDEO =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.videointelligence.v1.VideoIntelligenceService", "AnnotateVideo"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.videointelligence.v1.AnnotateVideoRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_ANNOTATE_VIDEO = getAnnotateVideoMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.videointelligence.v1.AnnotateVideoRequest,
+      com.google.longrunning.Operation> getAnnotateVideoMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.videointelligence.v1.AnnotateVideoRequest,
+      com.google.longrunning.Operation> getAnnotateVideoMethod() {
+    return getAnnotateVideoMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.videointelligence.v1.AnnotateVideoRequest,
+      com.google.longrunning.Operation> getAnnotateVideoMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.videointelligence.v1.AnnotateVideoRequest, com.google.longrunning.Operation> getAnnotateVideoMethod;
+    if ((getAnnotateVideoMethod = VideoIntelligenceServiceGrpc.getAnnotateVideoMethod) == null) {
+      synchronized (VideoIntelligenceServiceGrpc.class) {
+        if ((getAnnotateVideoMethod = VideoIntelligenceServiceGrpc.getAnnotateVideoMethod) == null) {
+          VideoIntelligenceServiceGrpc.getAnnotateVideoMethod = getAnnotateVideoMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.videointelligence.v1.AnnotateVideoRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.videointelligence.v1.VideoIntelligenceService", "AnnotateVideo"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.videointelligence.v1.AnnotateVideoRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new VideoIntelligenceServiceMethodDescriptorSupplier("AnnotateVideo"))
+                  .build();
+          }
+        }
+     }
+     return getAnnotateVideoMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -56,7 +84,7 @@ public final class VideoIntelligenceServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static VideoIntelligenceServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -80,13 +108,13 @@ public final class VideoIntelligenceServiceGrpc {
      */
     public void annotateVideo(com.google.cloud.videointelligence.v1.AnnotateVideoRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_ANNOTATE_VIDEO, responseObserver);
+      asyncUnimplementedUnaryCall(getAnnotateVideoMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_ANNOTATE_VIDEO,
+            getAnnotateVideoMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.videointelligence.v1.AnnotateVideoRequest,
@@ -128,7 +156,7 @@ public final class VideoIntelligenceServiceGrpc {
     public void annotateVideo(com.google.cloud.videointelligence.v1.AnnotateVideoRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_ANNOTATE_VIDEO, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getAnnotateVideoMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -163,7 +191,7 @@ public final class VideoIntelligenceServiceGrpc {
      */
     public com.google.longrunning.Operation annotateVideo(com.google.cloud.videointelligence.v1.AnnotateVideoRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_ANNOTATE_VIDEO, getCallOptions(), request);
+          getChannel(), getAnnotateVideoMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -199,7 +227,7 @@ public final class VideoIntelligenceServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> annotateVideo(
         com.google.cloud.videointelligence.v1.AnnotateVideoRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_ANNOTATE_VIDEO, getCallOptions()), request);
+          getChannel().newCall(getAnnotateVideoMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -242,10 +270,38 @@ public final class VideoIntelligenceServiceGrpc {
     }
   }
 
-  private static final class VideoIntelligenceServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class VideoIntelligenceServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    VideoIntelligenceServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.cloud.videointelligence.v1.VideoIntelligenceServiceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("VideoIntelligenceService");
+    }
+  }
+
+  private static final class VideoIntelligenceServiceFileDescriptorSupplier
+      extends VideoIntelligenceServiceBaseDescriptorSupplier {
+    VideoIntelligenceServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class VideoIntelligenceServiceMethodDescriptorSupplier
+      extends VideoIntelligenceServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    VideoIntelligenceServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -258,8 +314,8 @@ public final class VideoIntelligenceServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new VideoIntelligenceServiceDescriptorSupplier())
-              .addMethod(METHOD_ANNOTATE_VIDEO)
+              .setSchemaDescriptor(new VideoIntelligenceServiceFileDescriptorSupplier())
+              .addMethod(getAnnotateVideoMethodHelper())
               .build();
         }
       }

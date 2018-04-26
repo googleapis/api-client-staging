@@ -1,19 +1,19 @@
 package com.google.firestore.v1beta1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -34,7 +34,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/firestore/v1beta1/firestore.proto")
 public final class FirestoreGrpc {
 
@@ -44,122 +44,486 @@ public final class FirestoreGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetDocumentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.GetDocumentRequest,
-      com.google.firestore.v1beta1.Document> METHOD_GET_DOCUMENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "GetDocument"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.GetDocumentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.Document.getDefaultInstance()));
+      com.google.firestore.v1beta1.Document> METHOD_GET_DOCUMENT = getGetDocumentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.GetDocumentRequest,
+      com.google.firestore.v1beta1.Document> getGetDocumentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.GetDocumentRequest,
+      com.google.firestore.v1beta1.Document> getGetDocumentMethod() {
+    return getGetDocumentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.GetDocumentRequest,
+      com.google.firestore.v1beta1.Document> getGetDocumentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.GetDocumentRequest, com.google.firestore.v1beta1.Document> getGetDocumentMethod;
+    if ((getGetDocumentMethod = FirestoreGrpc.getGetDocumentMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getGetDocumentMethod = FirestoreGrpc.getGetDocumentMethod) == null) {
+          FirestoreGrpc.getGetDocumentMethod = getGetDocumentMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.GetDocumentRequest, com.google.firestore.v1beta1.Document>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "GetDocument"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.GetDocumentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.Document.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("GetDocument"))
+                  .build();
+          }
+        }
+     }
+     return getGetDocumentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListDocumentsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListDocumentsRequest,
-      com.google.firestore.v1beta1.ListDocumentsResponse> METHOD_LIST_DOCUMENTS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "ListDocuments"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.ListDocumentsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.ListDocumentsResponse.getDefaultInstance()));
+      com.google.firestore.v1beta1.ListDocumentsResponse> METHOD_LIST_DOCUMENTS = getListDocumentsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListDocumentsRequest,
+      com.google.firestore.v1beta1.ListDocumentsResponse> getListDocumentsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListDocumentsRequest,
+      com.google.firestore.v1beta1.ListDocumentsResponse> getListDocumentsMethod() {
+    return getListDocumentsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListDocumentsRequest,
+      com.google.firestore.v1beta1.ListDocumentsResponse> getListDocumentsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListDocumentsRequest, com.google.firestore.v1beta1.ListDocumentsResponse> getListDocumentsMethod;
+    if ((getListDocumentsMethod = FirestoreGrpc.getListDocumentsMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getListDocumentsMethod = FirestoreGrpc.getListDocumentsMethod) == null) {
+          FirestoreGrpc.getListDocumentsMethod = getListDocumentsMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.ListDocumentsRequest, com.google.firestore.v1beta1.ListDocumentsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "ListDocuments"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.ListDocumentsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.ListDocumentsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("ListDocuments"))
+                  .build();
+          }
+        }
+     }
+     return getListDocumentsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateDocumentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CreateDocumentRequest,
-      com.google.firestore.v1beta1.Document> METHOD_CREATE_DOCUMENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "CreateDocument"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.CreateDocumentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.Document.getDefaultInstance()));
+      com.google.firestore.v1beta1.Document> METHOD_CREATE_DOCUMENT = getCreateDocumentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CreateDocumentRequest,
+      com.google.firestore.v1beta1.Document> getCreateDocumentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CreateDocumentRequest,
+      com.google.firestore.v1beta1.Document> getCreateDocumentMethod() {
+    return getCreateDocumentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CreateDocumentRequest,
+      com.google.firestore.v1beta1.Document> getCreateDocumentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CreateDocumentRequest, com.google.firestore.v1beta1.Document> getCreateDocumentMethod;
+    if ((getCreateDocumentMethod = FirestoreGrpc.getCreateDocumentMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getCreateDocumentMethod = FirestoreGrpc.getCreateDocumentMethod) == null) {
+          FirestoreGrpc.getCreateDocumentMethod = getCreateDocumentMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.CreateDocumentRequest, com.google.firestore.v1beta1.Document>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "CreateDocument"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.CreateDocumentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.Document.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("CreateDocument"))
+                  .build();
+          }
+        }
+     }
+     return getCreateDocumentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateDocumentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.UpdateDocumentRequest,
-      com.google.firestore.v1beta1.Document> METHOD_UPDATE_DOCUMENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "UpdateDocument"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.UpdateDocumentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.Document.getDefaultInstance()));
+      com.google.firestore.v1beta1.Document> METHOD_UPDATE_DOCUMENT = getUpdateDocumentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.UpdateDocumentRequest,
+      com.google.firestore.v1beta1.Document> getUpdateDocumentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.UpdateDocumentRequest,
+      com.google.firestore.v1beta1.Document> getUpdateDocumentMethod() {
+    return getUpdateDocumentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.UpdateDocumentRequest,
+      com.google.firestore.v1beta1.Document> getUpdateDocumentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.UpdateDocumentRequest, com.google.firestore.v1beta1.Document> getUpdateDocumentMethod;
+    if ((getUpdateDocumentMethod = FirestoreGrpc.getUpdateDocumentMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getUpdateDocumentMethod = FirestoreGrpc.getUpdateDocumentMethod) == null) {
+          FirestoreGrpc.getUpdateDocumentMethod = getUpdateDocumentMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.UpdateDocumentRequest, com.google.firestore.v1beta1.Document>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "UpdateDocument"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.UpdateDocumentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.Document.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("UpdateDocument"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateDocumentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteDocumentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.DeleteDocumentRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_DOCUMENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "DeleteDocument"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.DeleteDocumentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_DOCUMENT = getDeleteDocumentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.DeleteDocumentRequest,
+      com.google.protobuf.Empty> getDeleteDocumentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.DeleteDocumentRequest,
+      com.google.protobuf.Empty> getDeleteDocumentMethod() {
+    return getDeleteDocumentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.DeleteDocumentRequest,
+      com.google.protobuf.Empty> getDeleteDocumentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.DeleteDocumentRequest, com.google.protobuf.Empty> getDeleteDocumentMethod;
+    if ((getDeleteDocumentMethod = FirestoreGrpc.getDeleteDocumentMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getDeleteDocumentMethod = FirestoreGrpc.getDeleteDocumentMethod) == null) {
+          FirestoreGrpc.getDeleteDocumentMethod = getDeleteDocumentMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.DeleteDocumentRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "DeleteDocument"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.DeleteDocumentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("DeleteDocument"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteDocumentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getBatchGetDocumentsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BatchGetDocumentsRequest,
-      com.google.firestore.v1beta1.BatchGetDocumentsResponse> METHOD_BATCH_GET_DOCUMENTS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "BatchGetDocuments"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.BatchGetDocumentsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.BatchGetDocumentsResponse.getDefaultInstance()));
+      com.google.firestore.v1beta1.BatchGetDocumentsResponse> METHOD_BATCH_GET_DOCUMENTS = getBatchGetDocumentsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BatchGetDocumentsRequest,
+      com.google.firestore.v1beta1.BatchGetDocumentsResponse> getBatchGetDocumentsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BatchGetDocumentsRequest,
+      com.google.firestore.v1beta1.BatchGetDocumentsResponse> getBatchGetDocumentsMethod() {
+    return getBatchGetDocumentsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BatchGetDocumentsRequest,
+      com.google.firestore.v1beta1.BatchGetDocumentsResponse> getBatchGetDocumentsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BatchGetDocumentsRequest, com.google.firestore.v1beta1.BatchGetDocumentsResponse> getBatchGetDocumentsMethod;
+    if ((getBatchGetDocumentsMethod = FirestoreGrpc.getBatchGetDocumentsMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getBatchGetDocumentsMethod = FirestoreGrpc.getBatchGetDocumentsMethod) == null) {
+          FirestoreGrpc.getBatchGetDocumentsMethod = getBatchGetDocumentsMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.BatchGetDocumentsRequest, com.google.firestore.v1beta1.BatchGetDocumentsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "BatchGetDocuments"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.BatchGetDocumentsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.BatchGetDocumentsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("BatchGetDocuments"))
+                  .build();
+          }
+        }
+     }
+     return getBatchGetDocumentsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getBeginTransactionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BeginTransactionRequest,
-      com.google.firestore.v1beta1.BeginTransactionResponse> METHOD_BEGIN_TRANSACTION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "BeginTransaction"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.BeginTransactionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.BeginTransactionResponse.getDefaultInstance()));
+      com.google.firestore.v1beta1.BeginTransactionResponse> METHOD_BEGIN_TRANSACTION = getBeginTransactionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BeginTransactionRequest,
+      com.google.firestore.v1beta1.BeginTransactionResponse> getBeginTransactionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BeginTransactionRequest,
+      com.google.firestore.v1beta1.BeginTransactionResponse> getBeginTransactionMethod() {
+    return getBeginTransactionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BeginTransactionRequest,
+      com.google.firestore.v1beta1.BeginTransactionResponse> getBeginTransactionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.BeginTransactionRequest, com.google.firestore.v1beta1.BeginTransactionResponse> getBeginTransactionMethod;
+    if ((getBeginTransactionMethod = FirestoreGrpc.getBeginTransactionMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getBeginTransactionMethod = FirestoreGrpc.getBeginTransactionMethod) == null) {
+          FirestoreGrpc.getBeginTransactionMethod = getBeginTransactionMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.BeginTransactionRequest, com.google.firestore.v1beta1.BeginTransactionResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "BeginTransaction"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.BeginTransactionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.BeginTransactionResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("BeginTransaction"))
+                  .build();
+          }
+        }
+     }
+     return getBeginTransactionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCommitMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CommitRequest,
-      com.google.firestore.v1beta1.CommitResponse> METHOD_COMMIT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "Commit"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.CommitRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.CommitResponse.getDefaultInstance()));
+      com.google.firestore.v1beta1.CommitResponse> METHOD_COMMIT = getCommitMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CommitRequest,
+      com.google.firestore.v1beta1.CommitResponse> getCommitMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CommitRequest,
+      com.google.firestore.v1beta1.CommitResponse> getCommitMethod() {
+    return getCommitMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CommitRequest,
+      com.google.firestore.v1beta1.CommitResponse> getCommitMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.CommitRequest, com.google.firestore.v1beta1.CommitResponse> getCommitMethod;
+    if ((getCommitMethod = FirestoreGrpc.getCommitMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getCommitMethod = FirestoreGrpc.getCommitMethod) == null) {
+          FirestoreGrpc.getCommitMethod = getCommitMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.CommitRequest, com.google.firestore.v1beta1.CommitResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "Commit"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.CommitRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.CommitResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("Commit"))
+                  .build();
+          }
+        }
+     }
+     return getCommitMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getRollbackMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RollbackRequest,
-      com.google.protobuf.Empty> METHOD_ROLLBACK =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "Rollback"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.RollbackRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_ROLLBACK = getRollbackMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RollbackRequest,
+      com.google.protobuf.Empty> getRollbackMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RollbackRequest,
+      com.google.protobuf.Empty> getRollbackMethod() {
+    return getRollbackMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RollbackRequest,
+      com.google.protobuf.Empty> getRollbackMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RollbackRequest, com.google.protobuf.Empty> getRollbackMethod;
+    if ((getRollbackMethod = FirestoreGrpc.getRollbackMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getRollbackMethod = FirestoreGrpc.getRollbackMethod) == null) {
+          FirestoreGrpc.getRollbackMethod = getRollbackMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.RollbackRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "Rollback"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.RollbackRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("Rollback"))
+                  .build();
+          }
+        }
+     }
+     return getRollbackMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getRunQueryMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RunQueryRequest,
-      com.google.firestore.v1beta1.RunQueryResponse> METHOD_RUN_QUERY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "RunQuery"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.RunQueryRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.RunQueryResponse.getDefaultInstance()));
+      com.google.firestore.v1beta1.RunQueryResponse> METHOD_RUN_QUERY = getRunQueryMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RunQueryRequest,
+      com.google.firestore.v1beta1.RunQueryResponse> getRunQueryMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RunQueryRequest,
+      com.google.firestore.v1beta1.RunQueryResponse> getRunQueryMethod() {
+    return getRunQueryMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RunQueryRequest,
+      com.google.firestore.v1beta1.RunQueryResponse> getRunQueryMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.RunQueryRequest, com.google.firestore.v1beta1.RunQueryResponse> getRunQueryMethod;
+    if ((getRunQueryMethod = FirestoreGrpc.getRunQueryMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getRunQueryMethod = FirestoreGrpc.getRunQueryMethod) == null) {
+          FirestoreGrpc.getRunQueryMethod = getRunQueryMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.RunQueryRequest, com.google.firestore.v1beta1.RunQueryResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "RunQuery"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.RunQueryRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.RunQueryResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("RunQuery"))
+                  .build();
+          }
+        }
+     }
+     return getRunQueryMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getWriteMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.WriteRequest,
-      com.google.firestore.v1beta1.WriteResponse> METHOD_WRITE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "Write"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.WriteRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.WriteResponse.getDefaultInstance()));
+      com.google.firestore.v1beta1.WriteResponse> METHOD_WRITE = getWriteMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.WriteRequest,
+      com.google.firestore.v1beta1.WriteResponse> getWriteMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.WriteRequest,
+      com.google.firestore.v1beta1.WriteResponse> getWriteMethod() {
+    return getWriteMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.WriteRequest,
+      com.google.firestore.v1beta1.WriteResponse> getWriteMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.WriteRequest, com.google.firestore.v1beta1.WriteResponse> getWriteMethod;
+    if ((getWriteMethod = FirestoreGrpc.getWriteMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getWriteMethod = FirestoreGrpc.getWriteMethod) == null) {
+          FirestoreGrpc.getWriteMethod = getWriteMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.WriteRequest, com.google.firestore.v1beta1.WriteResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "Write"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.WriteRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.WriteResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("Write"))
+                  .build();
+          }
+        }
+     }
+     return getWriteMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListenMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListenRequest,
-      com.google.firestore.v1beta1.ListenResponse> METHOD_LISTEN =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "Listen"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.ListenRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.ListenResponse.getDefaultInstance()));
+      com.google.firestore.v1beta1.ListenResponse> METHOD_LISTEN = getListenMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListenRequest,
+      com.google.firestore.v1beta1.ListenResponse> getListenMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListenRequest,
+      com.google.firestore.v1beta1.ListenResponse> getListenMethod() {
+    return getListenMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListenRequest,
+      com.google.firestore.v1beta1.ListenResponse> getListenMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListenRequest, com.google.firestore.v1beta1.ListenResponse> getListenMethod;
+    if ((getListenMethod = FirestoreGrpc.getListenMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getListenMethod = FirestoreGrpc.getListenMethod) == null) {
+          FirestoreGrpc.getListenMethod = getListenMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.ListenRequest, com.google.firestore.v1beta1.ListenResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "Listen"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.ListenRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.ListenResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("Listen"))
+                  .build();
+          }
+        }
+     }
+     return getListenMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListCollectionIdsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListCollectionIdsRequest,
-      com.google.firestore.v1beta1.ListCollectionIdsResponse> METHOD_LIST_COLLECTION_IDS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.firestore.v1beta1.Firestore", "ListCollectionIds"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.ListCollectionIdsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.firestore.v1beta1.ListCollectionIdsResponse.getDefaultInstance()));
+      com.google.firestore.v1beta1.ListCollectionIdsResponse> METHOD_LIST_COLLECTION_IDS = getListCollectionIdsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListCollectionIdsRequest,
+      com.google.firestore.v1beta1.ListCollectionIdsResponse> getListCollectionIdsMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListCollectionIdsRequest,
+      com.google.firestore.v1beta1.ListCollectionIdsResponse> getListCollectionIdsMethod() {
+    return getListCollectionIdsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListCollectionIdsRequest,
+      com.google.firestore.v1beta1.ListCollectionIdsResponse> getListCollectionIdsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.firestore.v1beta1.ListCollectionIdsRequest, com.google.firestore.v1beta1.ListCollectionIdsResponse> getListCollectionIdsMethod;
+    if ((getListCollectionIdsMethod = FirestoreGrpc.getListCollectionIdsMethod) == null) {
+      synchronized (FirestoreGrpc.class) {
+        if ((getListCollectionIdsMethod = FirestoreGrpc.getListCollectionIdsMethod) == null) {
+          FirestoreGrpc.getListCollectionIdsMethod = getListCollectionIdsMethod = 
+              io.grpc.MethodDescriptor.<com.google.firestore.v1beta1.ListCollectionIdsRequest, com.google.firestore.v1beta1.ListCollectionIdsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.firestore.v1beta1.Firestore", "ListCollectionIds"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.ListCollectionIdsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.firestore.v1beta1.ListCollectionIdsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FirestoreMethodDescriptorSupplier("ListCollectionIds"))
+                  .build();
+          }
+        }
+     }
+     return getListCollectionIdsMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -177,7 +541,7 @@ public final class FirestoreGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static FirestoreFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -211,7 +575,7 @@ public final class FirestoreGrpc {
      */
     public void getDocument(com.google.firestore.v1beta1.GetDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.Document> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_DOCUMENT, responseObserver);
+      asyncUnimplementedUnaryCall(getGetDocumentMethodHelper(), responseObserver);
     }
 
     /**
@@ -221,7 +585,7 @@ public final class FirestoreGrpc {
      */
     public void listDocuments(com.google.firestore.v1beta1.ListDocumentsRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.ListDocumentsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_DOCUMENTS, responseObserver);
+      asyncUnimplementedUnaryCall(getListDocumentsMethodHelper(), responseObserver);
     }
 
     /**
@@ -231,7 +595,7 @@ public final class FirestoreGrpc {
      */
     public void createDocument(com.google.firestore.v1beta1.CreateDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.Document> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_DOCUMENT, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateDocumentMethodHelper(), responseObserver);
     }
 
     /**
@@ -241,7 +605,7 @@ public final class FirestoreGrpc {
      */
     public void updateDocument(com.google.firestore.v1beta1.UpdateDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.Document> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_DOCUMENT, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateDocumentMethodHelper(), responseObserver);
     }
 
     /**
@@ -251,7 +615,7 @@ public final class FirestoreGrpc {
      */
     public void deleteDocument(com.google.firestore.v1beta1.DeleteDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_DOCUMENT, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteDocumentMethodHelper(), responseObserver);
     }
 
     /**
@@ -263,7 +627,7 @@ public final class FirestoreGrpc {
      */
     public void batchGetDocuments(com.google.firestore.v1beta1.BatchGetDocumentsRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.BatchGetDocumentsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_BATCH_GET_DOCUMENTS, responseObserver);
+      asyncUnimplementedUnaryCall(getBatchGetDocumentsMethodHelper(), responseObserver);
     }
 
     /**
@@ -273,7 +637,7 @@ public final class FirestoreGrpc {
      */
     public void beginTransaction(com.google.firestore.v1beta1.BeginTransactionRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.BeginTransactionResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_BEGIN_TRANSACTION, responseObserver);
+      asyncUnimplementedUnaryCall(getBeginTransactionMethodHelper(), responseObserver);
     }
 
     /**
@@ -283,7 +647,7 @@ public final class FirestoreGrpc {
      */
     public void commit(com.google.firestore.v1beta1.CommitRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.CommitResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_COMMIT, responseObserver);
+      asyncUnimplementedUnaryCall(getCommitMethodHelper(), responseObserver);
     }
 
     /**
@@ -293,7 +657,7 @@ public final class FirestoreGrpc {
      */
     public void rollback(com.google.firestore.v1beta1.RollbackRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_ROLLBACK, responseObserver);
+      asyncUnimplementedUnaryCall(getRollbackMethodHelper(), responseObserver);
     }
 
     /**
@@ -303,7 +667,7 @@ public final class FirestoreGrpc {
      */
     public void runQuery(com.google.firestore.v1beta1.RunQueryRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.RunQueryResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_RUN_QUERY, responseObserver);
+      asyncUnimplementedUnaryCall(getRunQueryMethodHelper(), responseObserver);
     }
 
     /**
@@ -313,7 +677,7 @@ public final class FirestoreGrpc {
      */
     public io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.WriteRequest> write(
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.WriteResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(METHOD_WRITE, responseObserver);
+      return asyncUnimplementedStreamingCall(getWriteMethodHelper(), responseObserver);
     }
 
     /**
@@ -323,7 +687,7 @@ public final class FirestoreGrpc {
      */
     public io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.ListenRequest> listen(
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.ListenResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(METHOD_LISTEN, responseObserver);
+      return asyncUnimplementedStreamingCall(getListenMethodHelper(), responseObserver);
     }
 
     /**
@@ -333,97 +697,97 @@ public final class FirestoreGrpc {
      */
     public void listCollectionIds(com.google.firestore.v1beta1.ListCollectionIdsRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.ListCollectionIdsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_COLLECTION_IDS, responseObserver);
+      asyncUnimplementedUnaryCall(getListCollectionIdsMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_GET_DOCUMENT,
+            getGetDocumentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.GetDocumentRequest,
                 com.google.firestore.v1beta1.Document>(
                   this, METHODID_GET_DOCUMENT)))
           .addMethod(
-            METHOD_LIST_DOCUMENTS,
+            getListDocumentsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.ListDocumentsRequest,
                 com.google.firestore.v1beta1.ListDocumentsResponse>(
                   this, METHODID_LIST_DOCUMENTS)))
           .addMethod(
-            METHOD_CREATE_DOCUMENT,
+            getCreateDocumentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.CreateDocumentRequest,
                 com.google.firestore.v1beta1.Document>(
                   this, METHODID_CREATE_DOCUMENT)))
           .addMethod(
-            METHOD_UPDATE_DOCUMENT,
+            getUpdateDocumentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.UpdateDocumentRequest,
                 com.google.firestore.v1beta1.Document>(
                   this, METHODID_UPDATE_DOCUMENT)))
           .addMethod(
-            METHOD_DELETE_DOCUMENT,
+            getDeleteDocumentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.DeleteDocumentRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_DOCUMENT)))
           .addMethod(
-            METHOD_BATCH_GET_DOCUMENTS,
+            getBatchGetDocumentsMethodHelper(),
             asyncServerStreamingCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.BatchGetDocumentsRequest,
                 com.google.firestore.v1beta1.BatchGetDocumentsResponse>(
                   this, METHODID_BATCH_GET_DOCUMENTS)))
           .addMethod(
-            METHOD_BEGIN_TRANSACTION,
+            getBeginTransactionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.BeginTransactionRequest,
                 com.google.firestore.v1beta1.BeginTransactionResponse>(
                   this, METHODID_BEGIN_TRANSACTION)))
           .addMethod(
-            METHOD_COMMIT,
+            getCommitMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.CommitRequest,
                 com.google.firestore.v1beta1.CommitResponse>(
                   this, METHODID_COMMIT)))
           .addMethod(
-            METHOD_ROLLBACK,
+            getRollbackMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.RollbackRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_ROLLBACK)))
           .addMethod(
-            METHOD_RUN_QUERY,
+            getRunQueryMethodHelper(),
             asyncServerStreamingCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.RunQueryRequest,
                 com.google.firestore.v1beta1.RunQueryResponse>(
                   this, METHODID_RUN_QUERY)))
           .addMethod(
-            METHOD_WRITE,
+            getWriteMethodHelper(),
             asyncBidiStreamingCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.WriteRequest,
                 com.google.firestore.v1beta1.WriteResponse>(
                   this, METHODID_WRITE)))
           .addMethod(
-            METHOD_LISTEN,
+            getListenMethodHelper(),
             asyncBidiStreamingCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.ListenRequest,
                 com.google.firestore.v1beta1.ListenResponse>(
                   this, METHODID_LISTEN)))
           .addMethod(
-            METHOD_LIST_COLLECTION_IDS,
+            getListCollectionIdsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.firestore.v1beta1.ListCollectionIdsRequest,
@@ -475,7 +839,7 @@ public final class FirestoreGrpc {
     public void getDocument(com.google.firestore.v1beta1.GetDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.Document> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_DOCUMENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetDocumentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -486,7 +850,7 @@ public final class FirestoreGrpc {
     public void listDocuments(com.google.firestore.v1beta1.ListDocumentsRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.ListDocumentsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_DOCUMENTS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListDocumentsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -497,7 +861,7 @@ public final class FirestoreGrpc {
     public void createDocument(com.google.firestore.v1beta1.CreateDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.Document> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_DOCUMENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateDocumentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -508,7 +872,7 @@ public final class FirestoreGrpc {
     public void updateDocument(com.google.firestore.v1beta1.UpdateDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.Document> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_DOCUMENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateDocumentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -519,7 +883,7 @@ public final class FirestoreGrpc {
     public void deleteDocument(com.google.firestore.v1beta1.DeleteDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_DOCUMENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteDocumentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -532,7 +896,7 @@ public final class FirestoreGrpc {
     public void batchGetDocuments(com.google.firestore.v1beta1.BatchGetDocumentsRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.BatchGetDocumentsResponse> responseObserver) {
       asyncServerStreamingCall(
-          getChannel().newCall(METHOD_BATCH_GET_DOCUMENTS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getBatchGetDocumentsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -543,7 +907,7 @@ public final class FirestoreGrpc {
     public void beginTransaction(com.google.firestore.v1beta1.BeginTransactionRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.BeginTransactionResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_BEGIN_TRANSACTION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getBeginTransactionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -554,7 +918,7 @@ public final class FirestoreGrpc {
     public void commit(com.google.firestore.v1beta1.CommitRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.CommitResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_COMMIT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCommitMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -565,7 +929,7 @@ public final class FirestoreGrpc {
     public void rollback(com.google.firestore.v1beta1.RollbackRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_ROLLBACK, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRollbackMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -576,7 +940,7 @@ public final class FirestoreGrpc {
     public void runQuery(com.google.firestore.v1beta1.RunQueryRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.RunQueryResponse> responseObserver) {
       asyncServerStreamingCall(
-          getChannel().newCall(METHOD_RUN_QUERY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRunQueryMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -587,7 +951,7 @@ public final class FirestoreGrpc {
     public io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.WriteRequest> write(
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.WriteResponse> responseObserver) {
       return asyncBidiStreamingCall(
-          getChannel().newCall(METHOD_WRITE, getCallOptions()), responseObserver);
+          getChannel().newCall(getWriteMethodHelper(), getCallOptions()), responseObserver);
     }
 
     /**
@@ -598,7 +962,7 @@ public final class FirestoreGrpc {
     public io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.ListenRequest> listen(
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.ListenResponse> responseObserver) {
       return asyncBidiStreamingCall(
-          getChannel().newCall(METHOD_LISTEN, getCallOptions()), responseObserver);
+          getChannel().newCall(getListenMethodHelper(), getCallOptions()), responseObserver);
     }
 
     /**
@@ -609,7 +973,7 @@ public final class FirestoreGrpc {
     public void listCollectionIds(com.google.firestore.v1beta1.ListCollectionIdsRequest request,
         io.grpc.stub.StreamObserver<com.google.firestore.v1beta1.ListCollectionIdsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_COLLECTION_IDS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListCollectionIdsMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -654,7 +1018,7 @@ public final class FirestoreGrpc {
      */
     public com.google.firestore.v1beta1.Document getDocument(com.google.firestore.v1beta1.GetDocumentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_DOCUMENT, getCallOptions(), request);
+          getChannel(), getGetDocumentMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -664,7 +1028,7 @@ public final class FirestoreGrpc {
      */
     public com.google.firestore.v1beta1.ListDocumentsResponse listDocuments(com.google.firestore.v1beta1.ListDocumentsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_DOCUMENTS, getCallOptions(), request);
+          getChannel(), getListDocumentsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -674,7 +1038,7 @@ public final class FirestoreGrpc {
      */
     public com.google.firestore.v1beta1.Document createDocument(com.google.firestore.v1beta1.CreateDocumentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_DOCUMENT, getCallOptions(), request);
+          getChannel(), getCreateDocumentMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -684,7 +1048,7 @@ public final class FirestoreGrpc {
      */
     public com.google.firestore.v1beta1.Document updateDocument(com.google.firestore.v1beta1.UpdateDocumentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_DOCUMENT, getCallOptions(), request);
+          getChannel(), getUpdateDocumentMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -694,7 +1058,7 @@ public final class FirestoreGrpc {
      */
     public com.google.protobuf.Empty deleteDocument(com.google.firestore.v1beta1.DeleteDocumentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_DOCUMENT, getCallOptions(), request);
+          getChannel(), getDeleteDocumentMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -707,7 +1071,7 @@ public final class FirestoreGrpc {
     public java.util.Iterator<com.google.firestore.v1beta1.BatchGetDocumentsResponse> batchGetDocuments(
         com.google.firestore.v1beta1.BatchGetDocumentsRequest request) {
       return blockingServerStreamingCall(
-          getChannel(), METHOD_BATCH_GET_DOCUMENTS, getCallOptions(), request);
+          getChannel(), getBatchGetDocumentsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -717,7 +1081,7 @@ public final class FirestoreGrpc {
      */
     public com.google.firestore.v1beta1.BeginTransactionResponse beginTransaction(com.google.firestore.v1beta1.BeginTransactionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_BEGIN_TRANSACTION, getCallOptions(), request);
+          getChannel(), getBeginTransactionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -727,7 +1091,7 @@ public final class FirestoreGrpc {
      */
     public com.google.firestore.v1beta1.CommitResponse commit(com.google.firestore.v1beta1.CommitRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_COMMIT, getCallOptions(), request);
+          getChannel(), getCommitMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -737,7 +1101,7 @@ public final class FirestoreGrpc {
      */
     public com.google.protobuf.Empty rollback(com.google.firestore.v1beta1.RollbackRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_ROLLBACK, getCallOptions(), request);
+          getChannel(), getRollbackMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -748,7 +1112,7 @@ public final class FirestoreGrpc {
     public java.util.Iterator<com.google.firestore.v1beta1.RunQueryResponse> runQuery(
         com.google.firestore.v1beta1.RunQueryRequest request) {
       return blockingServerStreamingCall(
-          getChannel(), METHOD_RUN_QUERY, getCallOptions(), request);
+          getChannel(), getRunQueryMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -758,7 +1122,7 @@ public final class FirestoreGrpc {
      */
     public com.google.firestore.v1beta1.ListCollectionIdsResponse listCollectionIds(com.google.firestore.v1beta1.ListCollectionIdsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_COLLECTION_IDS, getCallOptions(), request);
+          getChannel(), getListCollectionIdsMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -804,7 +1168,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.firestore.v1beta1.Document> getDocument(
         com.google.firestore.v1beta1.GetDocumentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_DOCUMENT, getCallOptions()), request);
+          getChannel().newCall(getGetDocumentMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -815,7 +1179,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.firestore.v1beta1.ListDocumentsResponse> listDocuments(
         com.google.firestore.v1beta1.ListDocumentsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_DOCUMENTS, getCallOptions()), request);
+          getChannel().newCall(getListDocumentsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -826,7 +1190,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.firestore.v1beta1.Document> createDocument(
         com.google.firestore.v1beta1.CreateDocumentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_DOCUMENT, getCallOptions()), request);
+          getChannel().newCall(getCreateDocumentMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -837,7 +1201,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.firestore.v1beta1.Document> updateDocument(
         com.google.firestore.v1beta1.UpdateDocumentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_DOCUMENT, getCallOptions()), request);
+          getChannel().newCall(getUpdateDocumentMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -848,7 +1212,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteDocument(
         com.google.firestore.v1beta1.DeleteDocumentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_DOCUMENT, getCallOptions()), request);
+          getChannel().newCall(getDeleteDocumentMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -859,7 +1223,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.firestore.v1beta1.BeginTransactionResponse> beginTransaction(
         com.google.firestore.v1beta1.BeginTransactionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_BEGIN_TRANSACTION, getCallOptions()), request);
+          getChannel().newCall(getBeginTransactionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -870,7 +1234,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.firestore.v1beta1.CommitResponse> commit(
         com.google.firestore.v1beta1.CommitRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_COMMIT, getCallOptions()), request);
+          getChannel().newCall(getCommitMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -881,7 +1245,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> rollback(
         com.google.firestore.v1beta1.RollbackRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_ROLLBACK, getCallOptions()), request);
+          getChannel().newCall(getRollbackMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -892,7 +1256,7 @@ public final class FirestoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.firestore.v1beta1.ListCollectionIdsResponse> listCollectionIds(
         com.google.firestore.v1beta1.ListCollectionIdsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_COLLECTION_IDS, getCallOptions()), request);
+          getChannel().newCall(getListCollectionIdsMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -993,10 +1357,38 @@ public final class FirestoreGrpc {
     }
   }
 
-  private static final class FirestoreDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class FirestoreBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    FirestoreBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.firestore.v1beta1.FirestoreProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Firestore");
+    }
+  }
+
+  private static final class FirestoreFileDescriptorSupplier
+      extends FirestoreBaseDescriptorSupplier {
+    FirestoreFileDescriptorSupplier() {}
+  }
+
+  private static final class FirestoreMethodDescriptorSupplier
+      extends FirestoreBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    FirestoreMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -1009,20 +1401,20 @@ public final class FirestoreGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new FirestoreDescriptorSupplier())
-              .addMethod(METHOD_GET_DOCUMENT)
-              .addMethod(METHOD_LIST_DOCUMENTS)
-              .addMethod(METHOD_CREATE_DOCUMENT)
-              .addMethod(METHOD_UPDATE_DOCUMENT)
-              .addMethod(METHOD_DELETE_DOCUMENT)
-              .addMethod(METHOD_BATCH_GET_DOCUMENTS)
-              .addMethod(METHOD_BEGIN_TRANSACTION)
-              .addMethod(METHOD_COMMIT)
-              .addMethod(METHOD_ROLLBACK)
-              .addMethod(METHOD_RUN_QUERY)
-              .addMethod(METHOD_WRITE)
-              .addMethod(METHOD_LISTEN)
-              .addMethod(METHOD_LIST_COLLECTION_IDS)
+              .setSchemaDescriptor(new FirestoreFileDescriptorSupplier())
+              .addMethod(getGetDocumentMethodHelper())
+              .addMethod(getListDocumentsMethodHelper())
+              .addMethod(getCreateDocumentMethodHelper())
+              .addMethod(getUpdateDocumentMethodHelper())
+              .addMethod(getDeleteDocumentMethodHelper())
+              .addMethod(getBatchGetDocumentsMethodHelper())
+              .addMethod(getBeginTransactionMethodHelper())
+              .addMethod(getCommitMethodHelper())
+              .addMethod(getRollbackMethodHelper())
+              .addMethod(getRunQueryMethodHelper())
+              .addMethod(getWriteMethodHelper())
+              .addMethod(getListenMethodHelper())
+              .addMethod(getListCollectionIdsMethodHelper())
               .build();
         }
       }

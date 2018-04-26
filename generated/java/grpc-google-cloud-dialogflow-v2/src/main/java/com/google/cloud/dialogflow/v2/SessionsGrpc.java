@@ -1,19 +1,19 @@
 package com.google.cloud.dialogflow.v2;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -24,7 +24,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/cloud/dialogflow/v2/session.proto")
 public final class SessionsGrpc {
 
@@ -34,23 +34,79 @@ public final class SessionsGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDetectIntentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.DetectIntentRequest,
-      com.google.cloud.dialogflow.v2.DetectIntentResponse> METHOD_DETECT_INTENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dialogflow.v2.Sessions", "DetectIntent"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.DetectIntentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.DetectIntentResponse.getDefaultInstance()));
+      com.google.cloud.dialogflow.v2.DetectIntentResponse> METHOD_DETECT_INTENT = getDetectIntentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.DetectIntentRequest,
+      com.google.cloud.dialogflow.v2.DetectIntentResponse> getDetectIntentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.DetectIntentRequest,
+      com.google.cloud.dialogflow.v2.DetectIntentResponse> getDetectIntentMethod() {
+    return getDetectIntentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.DetectIntentRequest,
+      com.google.cloud.dialogflow.v2.DetectIntentResponse> getDetectIntentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.DetectIntentRequest, com.google.cloud.dialogflow.v2.DetectIntentResponse> getDetectIntentMethod;
+    if ((getDetectIntentMethod = SessionsGrpc.getDetectIntentMethod) == null) {
+      synchronized (SessionsGrpc.class) {
+        if ((getDetectIntentMethod = SessionsGrpc.getDetectIntentMethod) == null) {
+          SessionsGrpc.getDetectIntentMethod = getDetectIntentMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dialogflow.v2.DetectIntentRequest, com.google.cloud.dialogflow.v2.DetectIntentResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dialogflow.v2.Sessions", "DetectIntent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.DetectIntentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.DetectIntentResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SessionsMethodDescriptorSupplier("DetectIntent"))
+                  .build();
+          }
+        }
+     }
+     return getDetectIntentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getStreamingDetectIntentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest,
-      com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse> METHOD_STREAMING_DETECT_INTENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING,
-          generateFullMethodName(
-              "google.cloud.dialogflow.v2.Sessions", "StreamingDetectIntent"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse.getDefaultInstance()));
+      com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse> METHOD_STREAMING_DETECT_INTENT = getStreamingDetectIntentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest,
+      com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse> getStreamingDetectIntentMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest,
+      com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse> getStreamingDetectIntentMethod() {
+    return getStreamingDetectIntentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest,
+      com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse> getStreamingDetectIntentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest, com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse> getStreamingDetectIntentMethod;
+    if ((getStreamingDetectIntentMethod = SessionsGrpc.getStreamingDetectIntentMethod) == null) {
+      synchronized (SessionsGrpc.class) {
+        if ((getStreamingDetectIntentMethod = SessionsGrpc.getStreamingDetectIntentMethod) == null) {
+          SessionsGrpc.getStreamingDetectIntentMethod = getStreamingDetectIntentMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest, com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dialogflow.v2.Sessions", "StreamingDetectIntent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SessionsMethodDescriptorSupplier("StreamingDetectIntent"))
+                  .build();
+          }
+        }
+     }
+     return getStreamingDetectIntentMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -68,7 +124,7 @@ public final class SessionsGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static SessionsFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -95,7 +151,7 @@ public final class SessionsGrpc {
      */
     public void detectIntent(com.google.cloud.dialogflow.v2.DetectIntentRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.DetectIntentResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DETECT_INTENT, responseObserver);
+      asyncUnimplementedUnaryCall(getDetectIntentMethodHelper(), responseObserver);
     }
 
     /**
@@ -107,20 +163,20 @@ public final class SessionsGrpc {
      */
     public io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest> streamingDetectIntent(
         io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(METHOD_STREAMING_DETECT_INTENT, responseObserver);
+      return asyncUnimplementedStreamingCall(getStreamingDetectIntentMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_DETECT_INTENT,
+            getDetectIntentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dialogflow.v2.DetectIntentRequest,
                 com.google.cloud.dialogflow.v2.DetectIntentResponse>(
                   this, METHODID_DETECT_INTENT)))
           .addMethod(
-            METHOD_STREAMING_DETECT_INTENT,
+            getStreamingDetectIntentMethodHelper(),
             asyncBidiStreamingCall(
               new MethodHandlers<
                 com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest,
@@ -165,7 +221,7 @@ public final class SessionsGrpc {
     public void detectIntent(com.google.cloud.dialogflow.v2.DetectIntentRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.DetectIntentResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DETECT_INTENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDetectIntentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -178,7 +234,7 @@ public final class SessionsGrpc {
     public io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.StreamingDetectIntentRequest> streamingDetectIntent(
         io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.StreamingDetectIntentResponse> responseObserver) {
       return asyncBidiStreamingCall(
-          getChannel().newCall(METHOD_STREAMING_DETECT_INTENT, getCallOptions()), responseObserver);
+          getChannel().newCall(getStreamingDetectIntentMethodHelper(), getCallOptions()), responseObserver);
     }
   }
 
@@ -216,7 +272,7 @@ public final class SessionsGrpc {
      */
     public com.google.cloud.dialogflow.v2.DetectIntentResponse detectIntent(com.google.cloud.dialogflow.v2.DetectIntentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DETECT_INTENT, getCallOptions(), request);
+          getChannel(), getDetectIntentMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -255,7 +311,7 @@ public final class SessionsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.dialogflow.v2.DetectIntentResponse> detectIntent(
         com.google.cloud.dialogflow.v2.DetectIntentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DETECT_INTENT, getCallOptions()), request);
+          getChannel().newCall(getDetectIntentMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -302,10 +358,38 @@ public final class SessionsGrpc {
     }
   }
 
-  private static final class SessionsDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class SessionsBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    SessionsBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.cloud.dialogflow.v2.SessionProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Sessions");
+    }
+  }
+
+  private static final class SessionsFileDescriptorSupplier
+      extends SessionsBaseDescriptorSupplier {
+    SessionsFileDescriptorSupplier() {}
+  }
+
+  private static final class SessionsMethodDescriptorSupplier
+      extends SessionsBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    SessionsMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -318,9 +402,9 @@ public final class SessionsGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new SessionsDescriptorSupplier())
-              .addMethod(METHOD_DETECT_INTENT)
-              .addMethod(METHOD_STREAMING_DETECT_INTENT)
+              .setSchemaDescriptor(new SessionsFileDescriptorSupplier())
+              .addMethod(getDetectIntentMethodHelper())
+              .addMethod(getStreamingDetectIntentMethodHelper())
               .build();
         }
       }

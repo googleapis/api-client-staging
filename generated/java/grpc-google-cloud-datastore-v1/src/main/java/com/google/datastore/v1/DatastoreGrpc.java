@@ -1,19 +1,19 @@
 package com.google.datastore.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -26,7 +26,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/datastore/v1/datastore.proto")
 public final class DatastoreGrpc {
 
@@ -36,68 +36,264 @@ public final class DatastoreGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getLookupMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.datastore.v1.LookupRequest,
-      com.google.datastore.v1.LookupResponse> METHOD_LOOKUP =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.datastore.v1.Datastore", "Lookup"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.LookupRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.LookupResponse.getDefaultInstance()));
+      com.google.datastore.v1.LookupResponse> METHOD_LOOKUP = getLookupMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.datastore.v1.LookupRequest,
+      com.google.datastore.v1.LookupResponse> getLookupMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.datastore.v1.LookupRequest,
+      com.google.datastore.v1.LookupResponse> getLookupMethod() {
+    return getLookupMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.datastore.v1.LookupRequest,
+      com.google.datastore.v1.LookupResponse> getLookupMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.datastore.v1.LookupRequest, com.google.datastore.v1.LookupResponse> getLookupMethod;
+    if ((getLookupMethod = DatastoreGrpc.getLookupMethod) == null) {
+      synchronized (DatastoreGrpc.class) {
+        if ((getLookupMethod = DatastoreGrpc.getLookupMethod) == null) {
+          DatastoreGrpc.getLookupMethod = getLookupMethod = 
+              io.grpc.MethodDescriptor.<com.google.datastore.v1.LookupRequest, com.google.datastore.v1.LookupResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.datastore.v1.Datastore", "Lookup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.LookupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.LookupResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatastoreMethodDescriptorSupplier("Lookup"))
+                  .build();
+          }
+        }
+     }
+     return getLookupMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getRunQueryMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.datastore.v1.RunQueryRequest,
-      com.google.datastore.v1.RunQueryResponse> METHOD_RUN_QUERY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.datastore.v1.Datastore", "RunQuery"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.RunQueryRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.RunQueryResponse.getDefaultInstance()));
+      com.google.datastore.v1.RunQueryResponse> METHOD_RUN_QUERY = getRunQueryMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.datastore.v1.RunQueryRequest,
+      com.google.datastore.v1.RunQueryResponse> getRunQueryMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.datastore.v1.RunQueryRequest,
+      com.google.datastore.v1.RunQueryResponse> getRunQueryMethod() {
+    return getRunQueryMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.datastore.v1.RunQueryRequest,
+      com.google.datastore.v1.RunQueryResponse> getRunQueryMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.datastore.v1.RunQueryRequest, com.google.datastore.v1.RunQueryResponse> getRunQueryMethod;
+    if ((getRunQueryMethod = DatastoreGrpc.getRunQueryMethod) == null) {
+      synchronized (DatastoreGrpc.class) {
+        if ((getRunQueryMethod = DatastoreGrpc.getRunQueryMethod) == null) {
+          DatastoreGrpc.getRunQueryMethod = getRunQueryMethod = 
+              io.grpc.MethodDescriptor.<com.google.datastore.v1.RunQueryRequest, com.google.datastore.v1.RunQueryResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.datastore.v1.Datastore", "RunQuery"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.RunQueryRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.RunQueryResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatastoreMethodDescriptorSupplier("RunQuery"))
+                  .build();
+          }
+        }
+     }
+     return getRunQueryMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getBeginTransactionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.datastore.v1.BeginTransactionRequest,
-      com.google.datastore.v1.BeginTransactionResponse> METHOD_BEGIN_TRANSACTION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.datastore.v1.Datastore", "BeginTransaction"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.BeginTransactionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.BeginTransactionResponse.getDefaultInstance()));
+      com.google.datastore.v1.BeginTransactionResponse> METHOD_BEGIN_TRANSACTION = getBeginTransactionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.datastore.v1.BeginTransactionRequest,
+      com.google.datastore.v1.BeginTransactionResponse> getBeginTransactionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.datastore.v1.BeginTransactionRequest,
+      com.google.datastore.v1.BeginTransactionResponse> getBeginTransactionMethod() {
+    return getBeginTransactionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.datastore.v1.BeginTransactionRequest,
+      com.google.datastore.v1.BeginTransactionResponse> getBeginTransactionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.datastore.v1.BeginTransactionRequest, com.google.datastore.v1.BeginTransactionResponse> getBeginTransactionMethod;
+    if ((getBeginTransactionMethod = DatastoreGrpc.getBeginTransactionMethod) == null) {
+      synchronized (DatastoreGrpc.class) {
+        if ((getBeginTransactionMethod = DatastoreGrpc.getBeginTransactionMethod) == null) {
+          DatastoreGrpc.getBeginTransactionMethod = getBeginTransactionMethod = 
+              io.grpc.MethodDescriptor.<com.google.datastore.v1.BeginTransactionRequest, com.google.datastore.v1.BeginTransactionResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.datastore.v1.Datastore", "BeginTransaction"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.BeginTransactionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.BeginTransactionResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatastoreMethodDescriptorSupplier("BeginTransaction"))
+                  .build();
+          }
+        }
+     }
+     return getBeginTransactionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCommitMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.datastore.v1.CommitRequest,
-      com.google.datastore.v1.CommitResponse> METHOD_COMMIT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.datastore.v1.Datastore", "Commit"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.CommitRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.CommitResponse.getDefaultInstance()));
+      com.google.datastore.v1.CommitResponse> METHOD_COMMIT = getCommitMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.datastore.v1.CommitRequest,
+      com.google.datastore.v1.CommitResponse> getCommitMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.datastore.v1.CommitRequest,
+      com.google.datastore.v1.CommitResponse> getCommitMethod() {
+    return getCommitMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.datastore.v1.CommitRequest,
+      com.google.datastore.v1.CommitResponse> getCommitMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.datastore.v1.CommitRequest, com.google.datastore.v1.CommitResponse> getCommitMethod;
+    if ((getCommitMethod = DatastoreGrpc.getCommitMethod) == null) {
+      synchronized (DatastoreGrpc.class) {
+        if ((getCommitMethod = DatastoreGrpc.getCommitMethod) == null) {
+          DatastoreGrpc.getCommitMethod = getCommitMethod = 
+              io.grpc.MethodDescriptor.<com.google.datastore.v1.CommitRequest, com.google.datastore.v1.CommitResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.datastore.v1.Datastore", "Commit"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.CommitRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.CommitResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatastoreMethodDescriptorSupplier("Commit"))
+                  .build();
+          }
+        }
+     }
+     return getCommitMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getRollbackMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.datastore.v1.RollbackRequest,
-      com.google.datastore.v1.RollbackResponse> METHOD_ROLLBACK =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.datastore.v1.Datastore", "Rollback"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.RollbackRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.RollbackResponse.getDefaultInstance()));
+      com.google.datastore.v1.RollbackResponse> METHOD_ROLLBACK = getRollbackMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.datastore.v1.RollbackRequest,
+      com.google.datastore.v1.RollbackResponse> getRollbackMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.datastore.v1.RollbackRequest,
+      com.google.datastore.v1.RollbackResponse> getRollbackMethod() {
+    return getRollbackMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.datastore.v1.RollbackRequest,
+      com.google.datastore.v1.RollbackResponse> getRollbackMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.datastore.v1.RollbackRequest, com.google.datastore.v1.RollbackResponse> getRollbackMethod;
+    if ((getRollbackMethod = DatastoreGrpc.getRollbackMethod) == null) {
+      synchronized (DatastoreGrpc.class) {
+        if ((getRollbackMethod = DatastoreGrpc.getRollbackMethod) == null) {
+          DatastoreGrpc.getRollbackMethod = getRollbackMethod = 
+              io.grpc.MethodDescriptor.<com.google.datastore.v1.RollbackRequest, com.google.datastore.v1.RollbackResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.datastore.v1.Datastore", "Rollback"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.RollbackRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.RollbackResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatastoreMethodDescriptorSupplier("Rollback"))
+                  .build();
+          }
+        }
+     }
+     return getRollbackMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getAllocateIdsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.datastore.v1.AllocateIdsRequest,
-      com.google.datastore.v1.AllocateIdsResponse> METHOD_ALLOCATE_IDS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.datastore.v1.Datastore", "AllocateIds"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.AllocateIdsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.AllocateIdsResponse.getDefaultInstance()));
+      com.google.datastore.v1.AllocateIdsResponse> METHOD_ALLOCATE_IDS = getAllocateIdsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.datastore.v1.AllocateIdsRequest,
+      com.google.datastore.v1.AllocateIdsResponse> getAllocateIdsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.datastore.v1.AllocateIdsRequest,
+      com.google.datastore.v1.AllocateIdsResponse> getAllocateIdsMethod() {
+    return getAllocateIdsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.datastore.v1.AllocateIdsRequest,
+      com.google.datastore.v1.AllocateIdsResponse> getAllocateIdsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.datastore.v1.AllocateIdsRequest, com.google.datastore.v1.AllocateIdsResponse> getAllocateIdsMethod;
+    if ((getAllocateIdsMethod = DatastoreGrpc.getAllocateIdsMethod) == null) {
+      synchronized (DatastoreGrpc.class) {
+        if ((getAllocateIdsMethod = DatastoreGrpc.getAllocateIdsMethod) == null) {
+          DatastoreGrpc.getAllocateIdsMethod = getAllocateIdsMethod = 
+              io.grpc.MethodDescriptor.<com.google.datastore.v1.AllocateIdsRequest, com.google.datastore.v1.AllocateIdsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.datastore.v1.Datastore", "AllocateIds"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.AllocateIdsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.AllocateIdsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatastoreMethodDescriptorSupplier("AllocateIds"))
+                  .build();
+          }
+        }
+     }
+     return getAllocateIdsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getReserveIdsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.datastore.v1.ReserveIdsRequest,
-      com.google.datastore.v1.ReserveIdsResponse> METHOD_RESERVE_IDS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.datastore.v1.Datastore", "ReserveIds"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.ReserveIdsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.datastore.v1.ReserveIdsResponse.getDefaultInstance()));
+      com.google.datastore.v1.ReserveIdsResponse> METHOD_RESERVE_IDS = getReserveIdsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.datastore.v1.ReserveIdsRequest,
+      com.google.datastore.v1.ReserveIdsResponse> getReserveIdsMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.datastore.v1.ReserveIdsRequest,
+      com.google.datastore.v1.ReserveIdsResponse> getReserveIdsMethod() {
+    return getReserveIdsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.datastore.v1.ReserveIdsRequest,
+      com.google.datastore.v1.ReserveIdsResponse> getReserveIdsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.datastore.v1.ReserveIdsRequest, com.google.datastore.v1.ReserveIdsResponse> getReserveIdsMethod;
+    if ((getReserveIdsMethod = DatastoreGrpc.getReserveIdsMethod) == null) {
+      synchronized (DatastoreGrpc.class) {
+        if ((getReserveIdsMethod = DatastoreGrpc.getReserveIdsMethod) == null) {
+          DatastoreGrpc.getReserveIdsMethod = getReserveIdsMethod = 
+              io.grpc.MethodDescriptor.<com.google.datastore.v1.ReserveIdsRequest, com.google.datastore.v1.ReserveIdsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.datastore.v1.Datastore", "ReserveIds"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.ReserveIdsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.datastore.v1.ReserveIdsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatastoreMethodDescriptorSupplier("ReserveIds"))
+                  .build();
+          }
+        }
+     }
+     return getReserveIdsMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -115,7 +311,7 @@ public final class DatastoreGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static DatastoreFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -141,7 +337,7 @@ public final class DatastoreGrpc {
      */
     public void lookup(com.google.datastore.v1.LookupRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.LookupResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LOOKUP, responseObserver);
+      asyncUnimplementedUnaryCall(getLookupMethodHelper(), responseObserver);
     }
 
     /**
@@ -151,7 +347,7 @@ public final class DatastoreGrpc {
      */
     public void runQuery(com.google.datastore.v1.RunQueryRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.RunQueryResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_RUN_QUERY, responseObserver);
+      asyncUnimplementedUnaryCall(getRunQueryMethodHelper(), responseObserver);
     }
 
     /**
@@ -161,7 +357,7 @@ public final class DatastoreGrpc {
      */
     public void beginTransaction(com.google.datastore.v1.BeginTransactionRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.BeginTransactionResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_BEGIN_TRANSACTION, responseObserver);
+      asyncUnimplementedUnaryCall(getBeginTransactionMethodHelper(), responseObserver);
     }
 
     /**
@@ -172,7 +368,7 @@ public final class DatastoreGrpc {
      */
     public void commit(com.google.datastore.v1.CommitRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.CommitResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_COMMIT, responseObserver);
+      asyncUnimplementedUnaryCall(getCommitMethodHelper(), responseObserver);
     }
 
     /**
@@ -182,7 +378,7 @@ public final class DatastoreGrpc {
      */
     public void rollback(com.google.datastore.v1.RollbackRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.RollbackResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_ROLLBACK, responseObserver);
+      asyncUnimplementedUnaryCall(getRollbackMethodHelper(), responseObserver);
     }
 
     /**
@@ -193,7 +389,7 @@ public final class DatastoreGrpc {
      */
     public void allocateIds(com.google.datastore.v1.AllocateIdsRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.AllocateIdsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_ALLOCATE_IDS, responseObserver);
+      asyncUnimplementedUnaryCall(getAllocateIdsMethodHelper(), responseObserver);
     }
 
     /**
@@ -204,55 +400,55 @@ public final class DatastoreGrpc {
      */
     public void reserveIds(com.google.datastore.v1.ReserveIdsRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.ReserveIdsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_RESERVE_IDS, responseObserver);
+      asyncUnimplementedUnaryCall(getReserveIdsMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LOOKUP,
+            getLookupMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.datastore.v1.LookupRequest,
                 com.google.datastore.v1.LookupResponse>(
                   this, METHODID_LOOKUP)))
           .addMethod(
-            METHOD_RUN_QUERY,
+            getRunQueryMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.datastore.v1.RunQueryRequest,
                 com.google.datastore.v1.RunQueryResponse>(
                   this, METHODID_RUN_QUERY)))
           .addMethod(
-            METHOD_BEGIN_TRANSACTION,
+            getBeginTransactionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.datastore.v1.BeginTransactionRequest,
                 com.google.datastore.v1.BeginTransactionResponse>(
                   this, METHODID_BEGIN_TRANSACTION)))
           .addMethod(
-            METHOD_COMMIT,
+            getCommitMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.datastore.v1.CommitRequest,
                 com.google.datastore.v1.CommitResponse>(
                   this, METHODID_COMMIT)))
           .addMethod(
-            METHOD_ROLLBACK,
+            getRollbackMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.datastore.v1.RollbackRequest,
                 com.google.datastore.v1.RollbackResponse>(
                   this, METHODID_ROLLBACK)))
           .addMethod(
-            METHOD_ALLOCATE_IDS,
+            getAllocateIdsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.datastore.v1.AllocateIdsRequest,
                 com.google.datastore.v1.AllocateIdsResponse>(
                   this, METHODID_ALLOCATE_IDS)))
           .addMethod(
-            METHOD_RESERVE_IDS,
+            getReserveIdsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.datastore.v1.ReserveIdsRequest,
@@ -296,7 +492,7 @@ public final class DatastoreGrpc {
     public void lookup(com.google.datastore.v1.LookupRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.LookupResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LOOKUP, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getLookupMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -307,7 +503,7 @@ public final class DatastoreGrpc {
     public void runQuery(com.google.datastore.v1.RunQueryRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.RunQueryResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_RUN_QUERY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRunQueryMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -318,7 +514,7 @@ public final class DatastoreGrpc {
     public void beginTransaction(com.google.datastore.v1.BeginTransactionRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.BeginTransactionResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_BEGIN_TRANSACTION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getBeginTransactionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -330,7 +526,7 @@ public final class DatastoreGrpc {
     public void commit(com.google.datastore.v1.CommitRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.CommitResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_COMMIT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCommitMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -341,7 +537,7 @@ public final class DatastoreGrpc {
     public void rollback(com.google.datastore.v1.RollbackRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.RollbackResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_ROLLBACK, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRollbackMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -353,7 +549,7 @@ public final class DatastoreGrpc {
     public void allocateIds(com.google.datastore.v1.AllocateIdsRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.AllocateIdsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_ALLOCATE_IDS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getAllocateIdsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -365,7 +561,7 @@ public final class DatastoreGrpc {
     public void reserveIds(com.google.datastore.v1.ReserveIdsRequest request,
         io.grpc.stub.StreamObserver<com.google.datastore.v1.ReserveIdsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_RESERVE_IDS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getReserveIdsMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -402,7 +598,7 @@ public final class DatastoreGrpc {
      */
     public com.google.datastore.v1.LookupResponse lookup(com.google.datastore.v1.LookupRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LOOKUP, getCallOptions(), request);
+          getChannel(), getLookupMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -412,7 +608,7 @@ public final class DatastoreGrpc {
      */
     public com.google.datastore.v1.RunQueryResponse runQuery(com.google.datastore.v1.RunQueryRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_RUN_QUERY, getCallOptions(), request);
+          getChannel(), getRunQueryMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -422,7 +618,7 @@ public final class DatastoreGrpc {
      */
     public com.google.datastore.v1.BeginTransactionResponse beginTransaction(com.google.datastore.v1.BeginTransactionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_BEGIN_TRANSACTION, getCallOptions(), request);
+          getChannel(), getBeginTransactionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -433,7 +629,7 @@ public final class DatastoreGrpc {
      */
     public com.google.datastore.v1.CommitResponse commit(com.google.datastore.v1.CommitRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_COMMIT, getCallOptions(), request);
+          getChannel(), getCommitMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -443,7 +639,7 @@ public final class DatastoreGrpc {
      */
     public com.google.datastore.v1.RollbackResponse rollback(com.google.datastore.v1.RollbackRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_ROLLBACK, getCallOptions(), request);
+          getChannel(), getRollbackMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -454,7 +650,7 @@ public final class DatastoreGrpc {
      */
     public com.google.datastore.v1.AllocateIdsResponse allocateIds(com.google.datastore.v1.AllocateIdsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_ALLOCATE_IDS, getCallOptions(), request);
+          getChannel(), getAllocateIdsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -465,7 +661,7 @@ public final class DatastoreGrpc {
      */
     public com.google.datastore.v1.ReserveIdsResponse reserveIds(com.google.datastore.v1.ReserveIdsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_RESERVE_IDS, getCallOptions(), request);
+          getChannel(), getReserveIdsMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -503,7 +699,7 @@ public final class DatastoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.datastore.v1.LookupResponse> lookup(
         com.google.datastore.v1.LookupRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LOOKUP, getCallOptions()), request);
+          getChannel().newCall(getLookupMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -514,7 +710,7 @@ public final class DatastoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.datastore.v1.RunQueryResponse> runQuery(
         com.google.datastore.v1.RunQueryRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_RUN_QUERY, getCallOptions()), request);
+          getChannel().newCall(getRunQueryMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -525,7 +721,7 @@ public final class DatastoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.datastore.v1.BeginTransactionResponse> beginTransaction(
         com.google.datastore.v1.BeginTransactionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_BEGIN_TRANSACTION, getCallOptions()), request);
+          getChannel().newCall(getBeginTransactionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -537,7 +733,7 @@ public final class DatastoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.datastore.v1.CommitResponse> commit(
         com.google.datastore.v1.CommitRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_COMMIT, getCallOptions()), request);
+          getChannel().newCall(getCommitMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -548,7 +744,7 @@ public final class DatastoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.datastore.v1.RollbackResponse> rollback(
         com.google.datastore.v1.RollbackRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_ROLLBACK, getCallOptions()), request);
+          getChannel().newCall(getRollbackMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -560,7 +756,7 @@ public final class DatastoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.datastore.v1.AllocateIdsResponse> allocateIds(
         com.google.datastore.v1.AllocateIdsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_ALLOCATE_IDS, getCallOptions()), request);
+          getChannel().newCall(getAllocateIdsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -572,7 +768,7 @@ public final class DatastoreGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.datastore.v1.ReserveIdsResponse> reserveIds(
         com.google.datastore.v1.ReserveIdsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_RESERVE_IDS, getCallOptions()), request);
+          getChannel().newCall(getReserveIdsMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -645,10 +841,38 @@ public final class DatastoreGrpc {
     }
   }
 
-  private static final class DatastoreDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class DatastoreBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    DatastoreBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.datastore.v1.DatastoreProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Datastore");
+    }
+  }
+
+  private static final class DatastoreFileDescriptorSupplier
+      extends DatastoreBaseDescriptorSupplier {
+    DatastoreFileDescriptorSupplier() {}
+  }
+
+  private static final class DatastoreMethodDescriptorSupplier
+      extends DatastoreBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    DatastoreMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -661,14 +885,14 @@ public final class DatastoreGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new DatastoreDescriptorSupplier())
-              .addMethod(METHOD_LOOKUP)
-              .addMethod(METHOD_RUN_QUERY)
-              .addMethod(METHOD_BEGIN_TRANSACTION)
-              .addMethod(METHOD_COMMIT)
-              .addMethod(METHOD_ROLLBACK)
-              .addMethod(METHOD_ALLOCATE_IDS)
-              .addMethod(METHOD_RESERVE_IDS)
+              .setSchemaDescriptor(new DatastoreFileDescriptorSupplier())
+              .addMethod(getLookupMethodHelper())
+              .addMethod(getRunQueryMethodHelper())
+              .addMethod(getBeginTransactionMethodHelper())
+              .addMethod(getCommitMethodHelper())
+              .addMethod(getRollbackMethodHelper())
+              .addMethod(getAllocateIdsMethodHelper())
+              .addMethod(getReserveIdsMethodHelper())
               .build();
         }
       }

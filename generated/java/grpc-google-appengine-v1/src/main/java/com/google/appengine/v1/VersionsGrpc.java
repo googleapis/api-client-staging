@@ -1,19 +1,19 @@
 package com.google.appengine.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/appengine/v1/appengine.proto")
 public final class VersionsGrpc {
 
@@ -31,50 +31,190 @@ public final class VersionsGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListVersionsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.ListVersionsRequest,
-      com.google.appengine.v1.ListVersionsResponse> METHOD_LIST_VERSIONS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Versions", "ListVersions"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.ListVersionsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.ListVersionsResponse.getDefaultInstance()));
+      com.google.appengine.v1.ListVersionsResponse> METHOD_LIST_VERSIONS = getListVersionsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.ListVersionsRequest,
+      com.google.appengine.v1.ListVersionsResponse> getListVersionsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.ListVersionsRequest,
+      com.google.appengine.v1.ListVersionsResponse> getListVersionsMethod() {
+    return getListVersionsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.ListVersionsRequest,
+      com.google.appengine.v1.ListVersionsResponse> getListVersionsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.ListVersionsRequest, com.google.appengine.v1.ListVersionsResponse> getListVersionsMethod;
+    if ((getListVersionsMethod = VersionsGrpc.getListVersionsMethod) == null) {
+      synchronized (VersionsGrpc.class) {
+        if ((getListVersionsMethod = VersionsGrpc.getListVersionsMethod) == null) {
+          VersionsGrpc.getListVersionsMethod = getListVersionsMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.ListVersionsRequest, com.google.appengine.v1.ListVersionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Versions", "ListVersions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.ListVersionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.ListVersionsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new VersionsMethodDescriptorSupplier("ListVersions"))
+                  .build();
+          }
+        }
+     }
+     return getListVersionsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetVersionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.GetVersionRequest,
-      com.google.appengine.v1.Version> METHOD_GET_VERSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Versions", "GetVersion"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.GetVersionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.Version.getDefaultInstance()));
+      com.google.appengine.v1.Version> METHOD_GET_VERSION = getGetVersionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.GetVersionRequest,
+      com.google.appengine.v1.Version> getGetVersionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.GetVersionRequest,
+      com.google.appengine.v1.Version> getGetVersionMethod() {
+    return getGetVersionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.GetVersionRequest,
+      com.google.appengine.v1.Version> getGetVersionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.GetVersionRequest, com.google.appengine.v1.Version> getGetVersionMethod;
+    if ((getGetVersionMethod = VersionsGrpc.getGetVersionMethod) == null) {
+      synchronized (VersionsGrpc.class) {
+        if ((getGetVersionMethod = VersionsGrpc.getGetVersionMethod) == null) {
+          VersionsGrpc.getGetVersionMethod = getGetVersionMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.GetVersionRequest, com.google.appengine.v1.Version>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Versions", "GetVersion"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.GetVersionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.Version.getDefaultInstance()))
+                  .setSchemaDescriptor(new VersionsMethodDescriptorSupplier("GetVersion"))
+                  .build();
+          }
+        }
+     }
+     return getGetVersionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateVersionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.CreateVersionRequest,
-      com.google.longrunning.Operation> METHOD_CREATE_VERSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Versions", "CreateVersion"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.CreateVersionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_CREATE_VERSION = getCreateVersionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.CreateVersionRequest,
+      com.google.longrunning.Operation> getCreateVersionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.CreateVersionRequest,
+      com.google.longrunning.Operation> getCreateVersionMethod() {
+    return getCreateVersionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.CreateVersionRequest,
+      com.google.longrunning.Operation> getCreateVersionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.CreateVersionRequest, com.google.longrunning.Operation> getCreateVersionMethod;
+    if ((getCreateVersionMethod = VersionsGrpc.getCreateVersionMethod) == null) {
+      synchronized (VersionsGrpc.class) {
+        if ((getCreateVersionMethod = VersionsGrpc.getCreateVersionMethod) == null) {
+          VersionsGrpc.getCreateVersionMethod = getCreateVersionMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.CreateVersionRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Versions", "CreateVersion"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.CreateVersionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new VersionsMethodDescriptorSupplier("CreateVersion"))
+                  .build();
+          }
+        }
+     }
+     return getCreateVersionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateVersionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateVersionRequest,
-      com.google.longrunning.Operation> METHOD_UPDATE_VERSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Versions", "UpdateVersion"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.UpdateVersionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_UPDATE_VERSION = getUpdateVersionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateVersionRequest,
+      com.google.longrunning.Operation> getUpdateVersionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateVersionRequest,
+      com.google.longrunning.Operation> getUpdateVersionMethod() {
+    return getUpdateVersionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateVersionRequest,
+      com.google.longrunning.Operation> getUpdateVersionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateVersionRequest, com.google.longrunning.Operation> getUpdateVersionMethod;
+    if ((getUpdateVersionMethod = VersionsGrpc.getUpdateVersionMethod) == null) {
+      synchronized (VersionsGrpc.class) {
+        if ((getUpdateVersionMethod = VersionsGrpc.getUpdateVersionMethod) == null) {
+          VersionsGrpc.getUpdateVersionMethod = getUpdateVersionMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.UpdateVersionRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Versions", "UpdateVersion"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.UpdateVersionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new VersionsMethodDescriptorSupplier("UpdateVersion"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateVersionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteVersionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteVersionRequest,
-      com.google.longrunning.Operation> METHOD_DELETE_VERSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Versions", "DeleteVersion"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.DeleteVersionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_DELETE_VERSION = getDeleteVersionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteVersionRequest,
+      com.google.longrunning.Operation> getDeleteVersionMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteVersionRequest,
+      com.google.longrunning.Operation> getDeleteVersionMethod() {
+    return getDeleteVersionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteVersionRequest,
+      com.google.longrunning.Operation> getDeleteVersionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteVersionRequest, com.google.longrunning.Operation> getDeleteVersionMethod;
+    if ((getDeleteVersionMethod = VersionsGrpc.getDeleteVersionMethod) == null) {
+      synchronized (VersionsGrpc.class) {
+        if ((getDeleteVersionMethod = VersionsGrpc.getDeleteVersionMethod) == null) {
+          VersionsGrpc.getDeleteVersionMethod = getDeleteVersionMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.DeleteVersionRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Versions", "DeleteVersion"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.DeleteVersionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new VersionsMethodDescriptorSupplier("DeleteVersion"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteVersionMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -92,7 +232,7 @@ public final class VersionsGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static VersionsFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -113,7 +253,7 @@ public final class VersionsGrpc {
      */
     public void listVersions(com.google.appengine.v1.ListVersionsRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.ListVersionsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_VERSIONS, responseObserver);
+      asyncUnimplementedUnaryCall(getListVersionsMethodHelper(), responseObserver);
     }
 
     /**
@@ -125,7 +265,7 @@ public final class VersionsGrpc {
      */
     public void getVersion(com.google.appengine.v1.GetVersionRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.Version> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_VERSION, responseObserver);
+      asyncUnimplementedUnaryCall(getGetVersionMethodHelper(), responseObserver);
     }
 
     /**
@@ -135,7 +275,7 @@ public final class VersionsGrpc {
      */
     public void createVersion(com.google.appengine.v1.CreateVersionRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_VERSION, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateVersionMethodHelper(), responseObserver);
     }
 
     /**
@@ -158,7 +298,7 @@ public final class VersionsGrpc {
      */
     public void updateVersion(com.google.appengine.v1.UpdateVersionRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_VERSION, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateVersionMethodHelper(), responseObserver);
     }
 
     /**
@@ -168,41 +308,41 @@ public final class VersionsGrpc {
      */
     public void deleteVersion(com.google.appengine.v1.DeleteVersionRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_VERSION, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteVersionMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_VERSIONS,
+            getListVersionsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.ListVersionsRequest,
                 com.google.appengine.v1.ListVersionsResponse>(
                   this, METHODID_LIST_VERSIONS)))
           .addMethod(
-            METHOD_GET_VERSION,
+            getGetVersionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.GetVersionRequest,
                 com.google.appengine.v1.Version>(
                   this, METHODID_GET_VERSION)))
           .addMethod(
-            METHOD_CREATE_VERSION,
+            getCreateVersionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.CreateVersionRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_CREATE_VERSION)))
           .addMethod(
-            METHOD_UPDATE_VERSION,
+            getUpdateVersionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.UpdateVersionRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_UPDATE_VERSION)))
           .addMethod(
-            METHOD_DELETE_VERSION,
+            getDeleteVersionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.DeleteVersionRequest,
@@ -241,7 +381,7 @@ public final class VersionsGrpc {
     public void listVersions(com.google.appengine.v1.ListVersionsRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.ListVersionsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_VERSIONS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListVersionsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -254,7 +394,7 @@ public final class VersionsGrpc {
     public void getVersion(com.google.appengine.v1.GetVersionRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.Version> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_VERSION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetVersionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -265,7 +405,7 @@ public final class VersionsGrpc {
     public void createVersion(com.google.appengine.v1.CreateVersionRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_VERSION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateVersionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -289,7 +429,7 @@ public final class VersionsGrpc {
     public void updateVersion(com.google.appengine.v1.UpdateVersionRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_VERSION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateVersionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -300,7 +440,7 @@ public final class VersionsGrpc {
     public void deleteVersion(com.google.appengine.v1.DeleteVersionRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_VERSION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteVersionMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -332,7 +472,7 @@ public final class VersionsGrpc {
      */
     public com.google.appengine.v1.ListVersionsResponse listVersions(com.google.appengine.v1.ListVersionsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_VERSIONS, getCallOptions(), request);
+          getChannel(), getListVersionsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -344,7 +484,7 @@ public final class VersionsGrpc {
      */
     public com.google.appengine.v1.Version getVersion(com.google.appengine.v1.GetVersionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_VERSION, getCallOptions(), request);
+          getChannel(), getGetVersionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -354,7 +494,7 @@ public final class VersionsGrpc {
      */
     public com.google.longrunning.Operation createVersion(com.google.appengine.v1.CreateVersionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_VERSION, getCallOptions(), request);
+          getChannel(), getCreateVersionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -377,7 +517,7 @@ public final class VersionsGrpc {
      */
     public com.google.longrunning.Operation updateVersion(com.google.appengine.v1.UpdateVersionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_VERSION, getCallOptions(), request);
+          getChannel(), getUpdateVersionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -387,7 +527,7 @@ public final class VersionsGrpc {
      */
     public com.google.longrunning.Operation deleteVersion(com.google.appengine.v1.DeleteVersionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_VERSION, getCallOptions(), request);
+          getChannel(), getDeleteVersionMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -420,7 +560,7 @@ public final class VersionsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.appengine.v1.ListVersionsResponse> listVersions(
         com.google.appengine.v1.ListVersionsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_VERSIONS, getCallOptions()), request);
+          getChannel().newCall(getListVersionsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -433,7 +573,7 @@ public final class VersionsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.appengine.v1.Version> getVersion(
         com.google.appengine.v1.GetVersionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_VERSION, getCallOptions()), request);
+          getChannel().newCall(getGetVersionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -444,7 +584,7 @@ public final class VersionsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> createVersion(
         com.google.appengine.v1.CreateVersionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_VERSION, getCallOptions()), request);
+          getChannel().newCall(getCreateVersionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -468,7 +608,7 @@ public final class VersionsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> updateVersion(
         com.google.appengine.v1.UpdateVersionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_VERSION, getCallOptions()), request);
+          getChannel().newCall(getUpdateVersionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -479,7 +619,7 @@ public final class VersionsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> deleteVersion(
         com.google.appengine.v1.DeleteVersionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_VERSION, getCallOptions()), request);
+          getChannel().newCall(getDeleteVersionMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -542,10 +682,38 @@ public final class VersionsGrpc {
     }
   }
 
-  private static final class VersionsDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class VersionsBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    VersionsBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.appengine.v1.AppengineProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Versions");
+    }
+  }
+
+  private static final class VersionsFileDescriptorSupplier
+      extends VersionsBaseDescriptorSupplier {
+    VersionsFileDescriptorSupplier() {}
+  }
+
+  private static final class VersionsMethodDescriptorSupplier
+      extends VersionsBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    VersionsMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -558,12 +726,12 @@ public final class VersionsGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new VersionsDescriptorSupplier())
-              .addMethod(METHOD_LIST_VERSIONS)
-              .addMethod(METHOD_GET_VERSION)
-              .addMethod(METHOD_CREATE_VERSION)
-              .addMethod(METHOD_UPDATE_VERSION)
-              .addMethod(METHOD_DELETE_VERSION)
+              .setSchemaDescriptor(new VersionsFileDescriptorSupplier())
+              .addMethod(getListVersionsMethodHelper())
+              .addMethod(getGetVersionMethodHelper())
+              .addMethod(getCreateVersionMethodHelper())
+              .addMethod(getUpdateVersionMethodHelper())
+              .addMethod(getDeleteVersionMethodHelper())
               .build();
         }
       }

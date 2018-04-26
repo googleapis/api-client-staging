@@ -1,19 +1,19 @@
 package com.google.cloud.dataproc.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -22,7 +22,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/cloud/dataproc/v1/clusters.proto")
 public final class ClusterControllerGrpc {
 
@@ -32,59 +32,227 @@ public final class ClusterControllerGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.CreateClusterRequest,
-      com.google.longrunning.Operation> METHOD_CREATE_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dataproc.v1.ClusterController", "CreateCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dataproc.v1.CreateClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_CREATE_CLUSTER = getCreateClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.CreateClusterRequest,
+      com.google.longrunning.Operation> getCreateClusterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.CreateClusterRequest,
+      com.google.longrunning.Operation> getCreateClusterMethod() {
+    return getCreateClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.CreateClusterRequest,
+      com.google.longrunning.Operation> getCreateClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.CreateClusterRequest, com.google.longrunning.Operation> getCreateClusterMethod;
+    if ((getCreateClusterMethod = ClusterControllerGrpc.getCreateClusterMethod) == null) {
+      synchronized (ClusterControllerGrpc.class) {
+        if ((getCreateClusterMethod = ClusterControllerGrpc.getCreateClusterMethod) == null) {
+          ClusterControllerGrpc.getCreateClusterMethod = getCreateClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dataproc.v1.CreateClusterRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dataproc.v1.ClusterController", "CreateCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dataproc.v1.CreateClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterControllerMethodDescriptorSupplier("CreateCluster"))
+                  .build();
+          }
+        }
+     }
+     return getCreateClusterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.UpdateClusterRequest,
-      com.google.longrunning.Operation> METHOD_UPDATE_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dataproc.v1.ClusterController", "UpdateCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dataproc.v1.UpdateClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_UPDATE_CLUSTER = getUpdateClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.UpdateClusterRequest,
+      com.google.longrunning.Operation> getUpdateClusterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.UpdateClusterRequest,
+      com.google.longrunning.Operation> getUpdateClusterMethod() {
+    return getUpdateClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.UpdateClusterRequest,
+      com.google.longrunning.Operation> getUpdateClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.UpdateClusterRequest, com.google.longrunning.Operation> getUpdateClusterMethod;
+    if ((getUpdateClusterMethod = ClusterControllerGrpc.getUpdateClusterMethod) == null) {
+      synchronized (ClusterControllerGrpc.class) {
+        if ((getUpdateClusterMethod = ClusterControllerGrpc.getUpdateClusterMethod) == null) {
+          ClusterControllerGrpc.getUpdateClusterMethod = getUpdateClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dataproc.v1.UpdateClusterRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dataproc.v1.ClusterController", "UpdateCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dataproc.v1.UpdateClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterControllerMethodDescriptorSupplier("UpdateCluster"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateClusterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DeleteClusterRequest,
-      com.google.longrunning.Operation> METHOD_DELETE_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dataproc.v1.ClusterController", "DeleteCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dataproc.v1.DeleteClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_DELETE_CLUSTER = getDeleteClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DeleteClusterRequest,
+      com.google.longrunning.Operation> getDeleteClusterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DeleteClusterRequest,
+      com.google.longrunning.Operation> getDeleteClusterMethod() {
+    return getDeleteClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DeleteClusterRequest,
+      com.google.longrunning.Operation> getDeleteClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DeleteClusterRequest, com.google.longrunning.Operation> getDeleteClusterMethod;
+    if ((getDeleteClusterMethod = ClusterControllerGrpc.getDeleteClusterMethod) == null) {
+      synchronized (ClusterControllerGrpc.class) {
+        if ((getDeleteClusterMethod = ClusterControllerGrpc.getDeleteClusterMethod) == null) {
+          ClusterControllerGrpc.getDeleteClusterMethod = getDeleteClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dataproc.v1.DeleteClusterRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dataproc.v1.ClusterController", "DeleteCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dataproc.v1.DeleteClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterControllerMethodDescriptorSupplier("DeleteCluster"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteClusterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.GetClusterRequest,
-      com.google.cloud.dataproc.v1.Cluster> METHOD_GET_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dataproc.v1.ClusterController", "GetCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dataproc.v1.GetClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dataproc.v1.Cluster.getDefaultInstance()));
+      com.google.cloud.dataproc.v1.Cluster> METHOD_GET_CLUSTER = getGetClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.GetClusterRequest,
+      com.google.cloud.dataproc.v1.Cluster> getGetClusterMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.GetClusterRequest,
+      com.google.cloud.dataproc.v1.Cluster> getGetClusterMethod() {
+    return getGetClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.GetClusterRequest,
+      com.google.cloud.dataproc.v1.Cluster> getGetClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.GetClusterRequest, com.google.cloud.dataproc.v1.Cluster> getGetClusterMethod;
+    if ((getGetClusterMethod = ClusterControllerGrpc.getGetClusterMethod) == null) {
+      synchronized (ClusterControllerGrpc.class) {
+        if ((getGetClusterMethod = ClusterControllerGrpc.getGetClusterMethod) == null) {
+          ClusterControllerGrpc.getGetClusterMethod = getGetClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dataproc.v1.GetClusterRequest, com.google.cloud.dataproc.v1.Cluster>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dataproc.v1.ClusterController", "GetCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dataproc.v1.GetClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dataproc.v1.Cluster.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterControllerMethodDescriptorSupplier("GetCluster"))
+                  .build();
+          }
+        }
+     }
+     return getGetClusterMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListClustersMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.ListClustersRequest,
-      com.google.cloud.dataproc.v1.ListClustersResponse> METHOD_LIST_CLUSTERS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dataproc.v1.ClusterController", "ListClusters"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dataproc.v1.ListClustersRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dataproc.v1.ListClustersResponse.getDefaultInstance()));
+      com.google.cloud.dataproc.v1.ListClustersResponse> METHOD_LIST_CLUSTERS = getListClustersMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.ListClustersRequest,
+      com.google.cloud.dataproc.v1.ListClustersResponse> getListClustersMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.ListClustersRequest,
+      com.google.cloud.dataproc.v1.ListClustersResponse> getListClustersMethod() {
+    return getListClustersMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.ListClustersRequest,
+      com.google.cloud.dataproc.v1.ListClustersResponse> getListClustersMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.ListClustersRequest, com.google.cloud.dataproc.v1.ListClustersResponse> getListClustersMethod;
+    if ((getListClustersMethod = ClusterControllerGrpc.getListClustersMethod) == null) {
+      synchronized (ClusterControllerGrpc.class) {
+        if ((getListClustersMethod = ClusterControllerGrpc.getListClustersMethod) == null) {
+          ClusterControllerGrpc.getListClustersMethod = getListClustersMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dataproc.v1.ListClustersRequest, com.google.cloud.dataproc.v1.ListClustersResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dataproc.v1.ClusterController", "ListClusters"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dataproc.v1.ListClustersRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dataproc.v1.ListClustersResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterControllerMethodDescriptorSupplier("ListClusters"))
+                  .build();
+          }
+        }
+     }
+     return getListClustersMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDiagnoseClusterMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DiagnoseClusterRequest,
-      com.google.longrunning.Operation> METHOD_DIAGNOSE_CLUSTER =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dataproc.v1.ClusterController", "DiagnoseCluster"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dataproc.v1.DiagnoseClusterRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_DIAGNOSE_CLUSTER = getDiagnoseClusterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DiagnoseClusterRequest,
+      com.google.longrunning.Operation> getDiagnoseClusterMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DiagnoseClusterRequest,
+      com.google.longrunning.Operation> getDiagnoseClusterMethod() {
+    return getDiagnoseClusterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DiagnoseClusterRequest,
+      com.google.longrunning.Operation> getDiagnoseClusterMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dataproc.v1.DiagnoseClusterRequest, com.google.longrunning.Operation> getDiagnoseClusterMethod;
+    if ((getDiagnoseClusterMethod = ClusterControllerGrpc.getDiagnoseClusterMethod) == null) {
+      synchronized (ClusterControllerGrpc.class) {
+        if ((getDiagnoseClusterMethod = ClusterControllerGrpc.getDiagnoseClusterMethod) == null) {
+          ClusterControllerGrpc.getDiagnoseClusterMethod = getDiagnoseClusterMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dataproc.v1.DiagnoseClusterRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dataproc.v1.ClusterController", "DiagnoseCluster"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dataproc.v1.DiagnoseClusterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClusterControllerMethodDescriptorSupplier("DiagnoseCluster"))
+                  .build();
+          }
+        }
+     }
+     return getDiagnoseClusterMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -102,7 +270,7 @@ public final class ClusterControllerGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static ClusterControllerFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -124,7 +292,7 @@ public final class ClusterControllerGrpc {
      */
     public void createCluster(com.google.cloud.dataproc.v1.CreateClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateClusterMethodHelper(), responseObserver);
     }
 
     /**
@@ -134,7 +302,7 @@ public final class ClusterControllerGrpc {
      */
     public void updateCluster(com.google.cloud.dataproc.v1.UpdateClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateClusterMethodHelper(), responseObserver);
     }
 
     /**
@@ -144,7 +312,7 @@ public final class ClusterControllerGrpc {
      */
     public void deleteCluster(com.google.cloud.dataproc.v1.DeleteClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteClusterMethodHelper(), responseObserver);
     }
 
     /**
@@ -154,7 +322,7 @@ public final class ClusterControllerGrpc {
      */
     public void getCluster(com.google.cloud.dataproc.v1.GetClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dataproc.v1.Cluster> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getGetClusterMethodHelper(), responseObserver);
     }
 
     /**
@@ -164,7 +332,7 @@ public final class ClusterControllerGrpc {
      */
     public void listClusters(com.google.cloud.dataproc.v1.ListClustersRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dataproc.v1.ListClustersResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_CLUSTERS, responseObserver);
+      asyncUnimplementedUnaryCall(getListClustersMethodHelper(), responseObserver);
     }
 
     /**
@@ -176,48 +344,48 @@ public final class ClusterControllerGrpc {
      */
     public void diagnoseCluster(com.google.cloud.dataproc.v1.DiagnoseClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DIAGNOSE_CLUSTER, responseObserver);
+      asyncUnimplementedUnaryCall(getDiagnoseClusterMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_CREATE_CLUSTER,
+            getCreateClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dataproc.v1.CreateClusterRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_CREATE_CLUSTER)))
           .addMethod(
-            METHOD_UPDATE_CLUSTER,
+            getUpdateClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dataproc.v1.UpdateClusterRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_UPDATE_CLUSTER)))
           .addMethod(
-            METHOD_DELETE_CLUSTER,
+            getDeleteClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dataproc.v1.DeleteClusterRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_DELETE_CLUSTER)))
           .addMethod(
-            METHOD_GET_CLUSTER,
+            getGetClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dataproc.v1.GetClusterRequest,
                 com.google.cloud.dataproc.v1.Cluster>(
                   this, METHODID_GET_CLUSTER)))
           .addMethod(
-            METHOD_LIST_CLUSTERS,
+            getListClustersMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dataproc.v1.ListClustersRequest,
                 com.google.cloud.dataproc.v1.ListClustersResponse>(
                   this, METHODID_LIST_CLUSTERS)))
           .addMethod(
-            METHOD_DIAGNOSE_CLUSTER,
+            getDiagnoseClusterMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dataproc.v1.DiagnoseClusterRequest,
@@ -257,7 +425,7 @@ public final class ClusterControllerGrpc {
     public void createCluster(com.google.cloud.dataproc.v1.CreateClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -268,7 +436,7 @@ public final class ClusterControllerGrpc {
     public void updateCluster(com.google.cloud.dataproc.v1.UpdateClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -279,7 +447,7 @@ public final class ClusterControllerGrpc {
     public void deleteCluster(com.google.cloud.dataproc.v1.DeleteClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -290,7 +458,7 @@ public final class ClusterControllerGrpc {
     public void getCluster(com.google.cloud.dataproc.v1.GetClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dataproc.v1.Cluster> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -301,7 +469,7 @@ public final class ClusterControllerGrpc {
     public void listClusters(com.google.cloud.dataproc.v1.ListClustersRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dataproc.v1.ListClustersResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_CLUSTERS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListClustersMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -314,7 +482,7 @@ public final class ClusterControllerGrpc {
     public void diagnoseCluster(com.google.cloud.dataproc.v1.DiagnoseClusterRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DIAGNOSE_CLUSTER, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDiagnoseClusterMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -347,7 +515,7 @@ public final class ClusterControllerGrpc {
      */
     public com.google.longrunning.Operation createCluster(com.google.cloud.dataproc.v1.CreateClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_CLUSTER, getCallOptions(), request);
+          getChannel(), getCreateClusterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -357,7 +525,7 @@ public final class ClusterControllerGrpc {
      */
     public com.google.longrunning.Operation updateCluster(com.google.cloud.dataproc.v1.UpdateClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_CLUSTER, getCallOptions(), request);
+          getChannel(), getUpdateClusterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -367,7 +535,7 @@ public final class ClusterControllerGrpc {
      */
     public com.google.longrunning.Operation deleteCluster(com.google.cloud.dataproc.v1.DeleteClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_CLUSTER, getCallOptions(), request);
+          getChannel(), getDeleteClusterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -377,7 +545,7 @@ public final class ClusterControllerGrpc {
      */
     public com.google.cloud.dataproc.v1.Cluster getCluster(com.google.cloud.dataproc.v1.GetClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_CLUSTER, getCallOptions(), request);
+          getChannel(), getGetClusterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -387,7 +555,7 @@ public final class ClusterControllerGrpc {
      */
     public com.google.cloud.dataproc.v1.ListClustersResponse listClusters(com.google.cloud.dataproc.v1.ListClustersRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_CLUSTERS, getCallOptions(), request);
+          getChannel(), getListClustersMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -399,7 +567,7 @@ public final class ClusterControllerGrpc {
      */
     public com.google.longrunning.Operation diagnoseCluster(com.google.cloud.dataproc.v1.DiagnoseClusterRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DIAGNOSE_CLUSTER, getCallOptions(), request);
+          getChannel(), getDiagnoseClusterMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -433,7 +601,7 @@ public final class ClusterControllerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> createCluster(
         com.google.cloud.dataproc.v1.CreateClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getCreateClusterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -444,7 +612,7 @@ public final class ClusterControllerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> updateCluster(
         com.google.cloud.dataproc.v1.UpdateClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getUpdateClusterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -455,7 +623,7 @@ public final class ClusterControllerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> deleteCluster(
         com.google.cloud.dataproc.v1.DeleteClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getDeleteClusterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -466,7 +634,7 @@ public final class ClusterControllerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.dataproc.v1.Cluster> getCluster(
         com.google.cloud.dataproc.v1.GetClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getGetClusterMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -477,7 +645,7 @@ public final class ClusterControllerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.dataproc.v1.ListClustersResponse> listClusters(
         com.google.cloud.dataproc.v1.ListClustersRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_CLUSTERS, getCallOptions()), request);
+          getChannel().newCall(getListClustersMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -490,7 +658,7 @@ public final class ClusterControllerGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> diagnoseCluster(
         com.google.cloud.dataproc.v1.DiagnoseClusterRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DIAGNOSE_CLUSTER, getCallOptions()), request);
+          getChannel().newCall(getDiagnoseClusterMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -558,10 +726,38 @@ public final class ClusterControllerGrpc {
     }
   }
 
-  private static final class ClusterControllerDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class ClusterControllerBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    ClusterControllerBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.cloud.dataproc.v1.ClustersProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("ClusterController");
+    }
+  }
+
+  private static final class ClusterControllerFileDescriptorSupplier
+      extends ClusterControllerBaseDescriptorSupplier {
+    ClusterControllerFileDescriptorSupplier() {}
+  }
+
+  private static final class ClusterControllerMethodDescriptorSupplier
+      extends ClusterControllerBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    ClusterControllerMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -574,13 +770,13 @@ public final class ClusterControllerGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new ClusterControllerDescriptorSupplier())
-              .addMethod(METHOD_CREATE_CLUSTER)
-              .addMethod(METHOD_UPDATE_CLUSTER)
-              .addMethod(METHOD_DELETE_CLUSTER)
-              .addMethod(METHOD_GET_CLUSTER)
-              .addMethod(METHOD_LIST_CLUSTERS)
-              .addMethod(METHOD_DIAGNOSE_CLUSTER)
+              .setSchemaDescriptor(new ClusterControllerFileDescriptorSupplier())
+              .addMethod(getCreateClusterMethodHelper())
+              .addMethod(getUpdateClusterMethodHelper())
+              .addMethod(getDeleteClusterMethodHelper())
+              .addMethod(getGetClusterMethodHelper())
+              .addMethod(getListClustersMethodHelper())
+              .addMethod(getDiagnoseClusterMethodHelper())
               .build();
         }
       }

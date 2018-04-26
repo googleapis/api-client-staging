@@ -1578,6 +1578,55 @@ private static final long serialVersionUID = 0L;
      */
     com.google.privacy.dlp.v2.FieldIdOrBuilder getQuasiIdsOrBuilder(
         int index);
+
+    /**
+     * <pre>
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     */
+    boolean hasEntityId();
+    /**
+     * <pre>
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     */
+    com.google.privacy.dlp.v2.EntityId getEntityId();
+    /**
+     * <pre>
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     */
+    com.google.privacy.dlp.v2.EntityIdOrBuilder getEntityIdOrBuilder();
   }
   /**
    * <pre>
@@ -1639,6 +1688,19 @@ private static final long serialVersionUID = 0L;
                   input.readMessage(com.google.privacy.dlp.v2.FieldId.parser(), extensionRegistry));
               break;
             }
+            case 18: {
+              com.google.privacy.dlp.v2.EntityId.Builder subBuilder = null;
+              if (entityId_ != null) {
+                subBuilder = entityId_.toBuilder();
+              }
+              entityId_ = input.readMessage(com.google.privacy.dlp.v2.EntityId.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(entityId_);
+                entityId_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1666,6 +1728,7 @@ private static final long serialVersionUID = 0L;
               com.google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig.class, com.google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig.Builder.class);
     }
 
+    private int bitField0_;
     public static final int QUASI_IDS_FIELD_NUMBER = 1;
     private java.util.List<com.google.privacy.dlp.v2.FieldId> quasiIds_;
     /**
@@ -1741,6 +1804,63 @@ private static final long serialVersionUID = 0L;
       return quasiIds_.get(index);
     }
 
+    public static final int ENTITY_ID_FIELD_NUMBER = 2;
+    private com.google.privacy.dlp.v2.EntityId entityId_;
+    /**
+     * <pre>
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     */
+    public boolean hasEntityId() {
+      return entityId_ != null;
+    }
+    /**
+     * <pre>
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     */
+    public com.google.privacy.dlp.v2.EntityId getEntityId() {
+      return entityId_ == null ? com.google.privacy.dlp.v2.EntityId.getDefaultInstance() : entityId_;
+    }
+    /**
+     * <pre>
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     */
+    public com.google.privacy.dlp.v2.EntityIdOrBuilder getEntityIdOrBuilder() {
+      return getEntityId();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1756,6 +1876,9 @@ private static final long serialVersionUID = 0L;
       for (int i = 0; i < quasiIds_.size(); i++) {
         output.writeMessage(1, quasiIds_.get(i));
       }
+      if (entityId_ != null) {
+        output.writeMessage(2, getEntityId());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1767,6 +1890,10 @@ private static final long serialVersionUID = 0L;
       for (int i = 0; i < quasiIds_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, quasiIds_.get(i));
+      }
+      if (entityId_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getEntityId());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1786,6 +1913,11 @@ private static final long serialVersionUID = 0L;
       boolean result = true;
       result = result && getQuasiIdsList()
           .equals(other.getQuasiIdsList());
+      result = result && (hasEntityId() == other.hasEntityId());
+      if (hasEntityId()) {
+        result = result && getEntityId()
+            .equals(other.getEntityId());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1800,6 +1932,10 @@ private static final long serialVersionUID = 0L;
       if (getQuasiIdsCount() > 0) {
         hash = (37 * hash) + QUASI_IDS_FIELD_NUMBER;
         hash = (53 * hash) + getQuasiIdsList().hashCode();
+      }
+      if (hasEntityId()) {
+        hash = (37 * hash) + ENTITY_ID_FIELD_NUMBER;
+        hash = (53 * hash) + getEntityId().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1941,6 +2077,12 @@ private static final long serialVersionUID = 0L;
         } else {
           quasiIdsBuilder_.clear();
         }
+        if (entityIdBuilder_ == null) {
+          entityId_ = null;
+        } else {
+          entityId_ = null;
+          entityIdBuilder_ = null;
+        }
         return this;
       }
 
@@ -1964,6 +2106,7 @@ private static final long serialVersionUID = 0L;
       public com.google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig buildPartial() {
         com.google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig result = new com.google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig(this);
         int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (quasiIdsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             quasiIds_ = java.util.Collections.unmodifiableList(quasiIds_);
@@ -1973,6 +2116,12 @@ private static final long serialVersionUID = 0L;
         } else {
           result.quasiIds_ = quasiIdsBuilder_.build();
         }
+        if (entityIdBuilder_ == null) {
+          result.entityId_ = entityId_;
+        } else {
+          result.entityId_ = entityIdBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -2039,6 +2188,9 @@ private static final long serialVersionUID = 0L;
               quasiIdsBuilder_.addAllMessages(other.quasiIds_);
             }
           }
+        }
+        if (other.hasEntityId()) {
+          mergeEntityId(other.getEntityId());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2450,6 +2602,231 @@ private static final long serialVersionUID = 0L;
           quasiIds_ = null;
         }
         return quasiIdsBuilder_;
+      }
+
+      private com.google.privacy.dlp.v2.EntityId entityId_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.privacy.dlp.v2.EntityId, com.google.privacy.dlp.v2.EntityId.Builder, com.google.privacy.dlp.v2.EntityIdOrBuilder> entityIdBuilder_;
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      public boolean hasEntityId() {
+        return entityIdBuilder_ != null || entityId_ != null;
+      }
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      public com.google.privacy.dlp.v2.EntityId getEntityId() {
+        if (entityIdBuilder_ == null) {
+          return entityId_ == null ? com.google.privacy.dlp.v2.EntityId.getDefaultInstance() : entityId_;
+        } else {
+          return entityIdBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      public Builder setEntityId(com.google.privacy.dlp.v2.EntityId value) {
+        if (entityIdBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          entityId_ = value;
+          onChanged();
+        } else {
+          entityIdBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      public Builder setEntityId(
+          com.google.privacy.dlp.v2.EntityId.Builder builderForValue) {
+        if (entityIdBuilder_ == null) {
+          entityId_ = builderForValue.build();
+          onChanged();
+        } else {
+          entityIdBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      public Builder mergeEntityId(com.google.privacy.dlp.v2.EntityId value) {
+        if (entityIdBuilder_ == null) {
+          if (entityId_ != null) {
+            entityId_ =
+              com.google.privacy.dlp.v2.EntityId.newBuilder(entityId_).mergeFrom(value).buildPartial();
+          } else {
+            entityId_ = value;
+          }
+          onChanged();
+        } else {
+          entityIdBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      public Builder clearEntityId() {
+        if (entityIdBuilder_ == null) {
+          entityId_ = null;
+          onChanged();
+        } else {
+          entityId_ = null;
+          entityIdBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      public com.google.privacy.dlp.v2.EntityId.Builder getEntityIdBuilder() {
+        
+        onChanged();
+        return getEntityIdFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      public com.google.privacy.dlp.v2.EntityIdOrBuilder getEntityIdOrBuilder() {
+        if (entityIdBuilder_ != null) {
+          return entityIdBuilder_.getMessageOrBuilder();
+        } else {
+          return entityId_ == null ?
+              com.google.privacy.dlp.v2.EntityId.getDefaultInstance() : entityId_;
+        }
+      }
+      /**
+       * <pre>
+       * Optional message indicating that multiple rows might be associated to a
+       * single individual. If the same entity_id is associated to multiple
+       * quasi-identifier tuples over distict rows, we consider the entire
+       * collection of tuples as the composite quasi-identifier. This collection
+       * is a multiset: the order in which the different tuples appear in the
+       * dataset is ignored, but their frequency is taken into account.
+       * Important note: a maximum of 1000 rows can be associated to a single
+       * entity ID. If more rows are associated with the same entity ID, some
+       * might be ignored.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.privacy.dlp.v2.EntityId, com.google.privacy.dlp.v2.EntityId.Builder, com.google.privacy.dlp.v2.EntityIdOrBuilder> 
+          getEntityIdFieldBuilder() {
+        if (entityIdBuilder_ == null) {
+          entityIdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.privacy.dlp.v2.EntityId, com.google.privacy.dlp.v2.EntityId.Builder, com.google.privacy.dlp.v2.EntityIdOrBuilder>(
+                  getEntityId(),
+                  getParentForChildren(),
+                  isClean());
+          entityId_ = null;
+        }
+        return entityIdBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {

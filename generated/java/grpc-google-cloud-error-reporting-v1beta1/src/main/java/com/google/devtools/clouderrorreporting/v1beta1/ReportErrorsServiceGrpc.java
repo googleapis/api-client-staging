@@ -1,19 +1,19 @@
 package com.google.devtools.clouderrorreporting.v1beta1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/devtools/clouderrorreporting/v1beta1/report_errors_service.proto")
 public final class ReportErrorsServiceGrpc {
 
@@ -31,14 +31,42 @@ public final class ReportErrorsServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getReportErrorEventMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest,
-      com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> METHOD_REPORT_ERROR_EVENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.devtools.clouderrorreporting.v1beta1.ReportErrorsService", "ReportErrorEvent"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse.getDefaultInstance()));
+      com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> METHOD_REPORT_ERROR_EVENT = getReportErrorEventMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> getReportErrorEventMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> getReportErrorEventMethod() {
+    return getReportErrorEventMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> getReportErrorEventMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest, com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> getReportErrorEventMethod;
+    if ((getReportErrorEventMethod = ReportErrorsServiceGrpc.getReportErrorEventMethod) == null) {
+      synchronized (ReportErrorsServiceGrpc.class) {
+        if ((getReportErrorEventMethod = ReportErrorsServiceGrpc.getReportErrorEventMethod) == null) {
+          ReportErrorsServiceGrpc.getReportErrorEventMethod = getReportErrorEventMethod = 
+              io.grpc.MethodDescriptor.<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest, com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.devtools.clouderrorreporting.v1beta1.ReportErrorsService", "ReportErrorEvent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ReportErrorsServiceMethodDescriptorSupplier("ReportErrorEvent"))
+                  .build();
+          }
+        }
+     }
+     return getReportErrorEventMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -56,7 +84,7 @@ public final class ReportErrorsServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static ReportErrorsServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -83,13 +111,13 @@ public final class ReportErrorsServiceGrpc {
      */
     public void reportErrorEvent(com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_REPORT_ERROR_EVENT, responseObserver);
+      asyncUnimplementedUnaryCall(getReportErrorEventMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_REPORT_ERROR_EVENT,
+            getReportErrorEventMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest,
@@ -134,7 +162,7 @@ public final class ReportErrorsServiceGrpc {
     public void reportErrorEvent(com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_REPORT_ERROR_EVENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getReportErrorEventMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -172,7 +200,7 @@ public final class ReportErrorsServiceGrpc {
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse reportErrorEvent(com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_REPORT_ERROR_EVENT, getCallOptions(), request);
+          getChannel(), getReportErrorEventMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -211,7 +239,7 @@ public final class ReportErrorsServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse> reportErrorEvent(
         com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_REPORT_ERROR_EVENT, getCallOptions()), request);
+          getChannel().newCall(getReportErrorEventMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -254,10 +282,38 @@ public final class ReportErrorsServiceGrpc {
     }
   }
 
-  private static final class ReportErrorsServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class ReportErrorsServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    ReportErrorsServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.devtools.clouderrorreporting.v1beta1.ReportErrorsServiceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("ReportErrorsService");
+    }
+  }
+
+  private static final class ReportErrorsServiceFileDescriptorSupplier
+      extends ReportErrorsServiceBaseDescriptorSupplier {
+    ReportErrorsServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class ReportErrorsServiceMethodDescriptorSupplier
+      extends ReportErrorsServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    ReportErrorsServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -270,8 +326,8 @@ public final class ReportErrorsServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new ReportErrorsServiceDescriptorSupplier())
-              .addMethod(METHOD_REPORT_ERROR_EVENT)
+              .setSchemaDescriptor(new ReportErrorsServiceFileDescriptorSupplier())
+              .addMethod(getReportErrorEventMethodHelper())
               .build();
         }
       }

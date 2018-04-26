@@ -1,19 +1,19 @@
 package com.google.cloud.speech.v1p1beta1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/cloud/speech/v1p1beta1/cloud_speech.proto")
 public final class SpeechGrpc {
 
@@ -31,32 +31,116 @@ public final class SpeechGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getRecognizeMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.RecognizeRequest,
-      com.google.cloud.speech.v1p1beta1.RecognizeResponse> METHOD_RECOGNIZE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.speech.v1p1beta1.Speech", "Recognize"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.speech.v1p1beta1.RecognizeRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.speech.v1p1beta1.RecognizeResponse.getDefaultInstance()));
+      com.google.cloud.speech.v1p1beta1.RecognizeResponse> METHOD_RECOGNIZE = getRecognizeMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.RecognizeRequest,
+      com.google.cloud.speech.v1p1beta1.RecognizeResponse> getRecognizeMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.RecognizeRequest,
+      com.google.cloud.speech.v1p1beta1.RecognizeResponse> getRecognizeMethod() {
+    return getRecognizeMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.RecognizeRequest,
+      com.google.cloud.speech.v1p1beta1.RecognizeResponse> getRecognizeMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.RecognizeRequest, com.google.cloud.speech.v1p1beta1.RecognizeResponse> getRecognizeMethod;
+    if ((getRecognizeMethod = SpeechGrpc.getRecognizeMethod) == null) {
+      synchronized (SpeechGrpc.class) {
+        if ((getRecognizeMethod = SpeechGrpc.getRecognizeMethod) == null) {
+          SpeechGrpc.getRecognizeMethod = getRecognizeMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.speech.v1p1beta1.RecognizeRequest, com.google.cloud.speech.v1p1beta1.RecognizeResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.speech.v1p1beta1.Speech", "Recognize"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.speech.v1p1beta1.RecognizeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.speech.v1p1beta1.RecognizeResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SpeechMethodDescriptorSupplier("Recognize"))
+                  .build();
+          }
+        }
+     }
+     return getRecognizeMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getLongRunningRecognizeMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest,
-      com.google.longrunning.Operation> METHOD_LONG_RUNNING_RECOGNIZE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.speech.v1p1beta1.Speech", "LongRunningRecognize"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_LONG_RUNNING_RECOGNIZE = getLongRunningRecognizeMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest,
+      com.google.longrunning.Operation> getLongRunningRecognizeMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest,
+      com.google.longrunning.Operation> getLongRunningRecognizeMethod() {
+    return getLongRunningRecognizeMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest,
+      com.google.longrunning.Operation> getLongRunningRecognizeMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest, com.google.longrunning.Operation> getLongRunningRecognizeMethod;
+    if ((getLongRunningRecognizeMethod = SpeechGrpc.getLongRunningRecognizeMethod) == null) {
+      synchronized (SpeechGrpc.class) {
+        if ((getLongRunningRecognizeMethod = SpeechGrpc.getLongRunningRecognizeMethod) == null) {
+          SpeechGrpc.getLongRunningRecognizeMethod = getLongRunningRecognizeMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.speech.v1p1beta1.Speech", "LongRunningRecognize"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new SpeechMethodDescriptorSupplier("LongRunningRecognize"))
+                  .build();
+          }
+        }
+     }
+     return getLongRunningRecognizeMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getStreamingRecognizeMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest,
-      com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse> METHOD_STREAMING_RECOGNIZE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING,
-          generateFullMethodName(
-              "google.cloud.speech.v1p1beta1.Speech", "StreamingRecognize"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.getDefaultInstance()));
+      com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse> METHOD_STREAMING_RECOGNIZE = getStreamingRecognizeMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest,
+      com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse> getStreamingRecognizeMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest,
+      com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse> getStreamingRecognizeMethod() {
+    return getStreamingRecognizeMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest,
+      com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse> getStreamingRecognizeMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest, com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse> getStreamingRecognizeMethod;
+    if ((getStreamingRecognizeMethod = SpeechGrpc.getStreamingRecognizeMethod) == null) {
+      synchronized (SpeechGrpc.class) {
+        if ((getStreamingRecognizeMethod = SpeechGrpc.getStreamingRecognizeMethod) == null) {
+          SpeechGrpc.getStreamingRecognizeMethod = getStreamingRecognizeMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest, com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.speech.v1p1beta1.Speech", "StreamingRecognize"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SpeechMethodDescriptorSupplier("StreamingRecognize"))
+                  .build();
+          }
+        }
+     }
+     return getStreamingRecognizeMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -74,7 +158,7 @@ public final class SpeechGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static SpeechFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -96,7 +180,7 @@ public final class SpeechGrpc {
      */
     public void recognize(com.google.cloud.speech.v1p1beta1.RecognizeRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.speech.v1p1beta1.RecognizeResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_RECOGNIZE, responseObserver);
+      asyncUnimplementedUnaryCall(getRecognizeMethodHelper(), responseObserver);
     }
 
     /**
@@ -109,7 +193,7 @@ public final class SpeechGrpc {
      */
     public void longRunningRecognize(com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LONG_RUNNING_RECOGNIZE, responseObserver);
+      asyncUnimplementedUnaryCall(getLongRunningRecognizeMethodHelper(), responseObserver);
     }
 
     /**
@@ -120,27 +204,27 @@ public final class SpeechGrpc {
      */
     public io.grpc.stub.StreamObserver<com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest> streamingRecognize(
         io.grpc.stub.StreamObserver<com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(METHOD_STREAMING_RECOGNIZE, responseObserver);
+      return asyncUnimplementedStreamingCall(getStreamingRecognizeMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_RECOGNIZE,
+            getRecognizeMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.speech.v1p1beta1.RecognizeRequest,
                 com.google.cloud.speech.v1p1beta1.RecognizeResponse>(
                   this, METHODID_RECOGNIZE)))
           .addMethod(
-            METHOD_LONG_RUNNING_RECOGNIZE,
+            getLongRunningRecognizeMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_LONG_RUNNING_RECOGNIZE)))
           .addMethod(
-            METHOD_STREAMING_RECOGNIZE,
+            getStreamingRecognizeMethodHelper(),
             asyncBidiStreamingCall(
               new MethodHandlers<
                 com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest,
@@ -180,7 +264,7 @@ public final class SpeechGrpc {
     public void recognize(com.google.cloud.speech.v1p1beta1.RecognizeRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.speech.v1p1beta1.RecognizeResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_RECOGNIZE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRecognizeMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -194,7 +278,7 @@ public final class SpeechGrpc {
     public void longRunningRecognize(com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LONG_RUNNING_RECOGNIZE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getLongRunningRecognizeMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -206,7 +290,7 @@ public final class SpeechGrpc {
     public io.grpc.stub.StreamObserver<com.google.cloud.speech.v1p1beta1.StreamingRecognizeRequest> streamingRecognize(
         io.grpc.stub.StreamObserver<com.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse> responseObserver) {
       return asyncBidiStreamingCall(
-          getChannel().newCall(METHOD_STREAMING_RECOGNIZE, getCallOptions()), responseObserver);
+          getChannel().newCall(getStreamingRecognizeMethodHelper(), getCallOptions()), responseObserver);
     }
   }
 
@@ -239,7 +323,7 @@ public final class SpeechGrpc {
      */
     public com.google.cloud.speech.v1p1beta1.RecognizeResponse recognize(com.google.cloud.speech.v1p1beta1.RecognizeRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_RECOGNIZE, getCallOptions(), request);
+          getChannel(), getRecognizeMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -252,7 +336,7 @@ public final class SpeechGrpc {
      */
     public com.google.longrunning.Operation longRunningRecognize(com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LONG_RUNNING_RECOGNIZE, getCallOptions(), request);
+          getChannel(), getLongRunningRecognizeMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -286,7 +370,7 @@ public final class SpeechGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.speech.v1p1beta1.RecognizeResponse> recognize(
         com.google.cloud.speech.v1p1beta1.RecognizeRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_RECOGNIZE, getCallOptions()), request);
+          getChannel().newCall(getRecognizeMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -300,7 +384,7 @@ public final class SpeechGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> longRunningRecognize(
         com.google.cloud.speech.v1p1beta1.LongRunningRecognizeRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LONG_RUNNING_RECOGNIZE, getCallOptions()), request);
+          getChannel().newCall(getLongRunningRecognizeMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -352,10 +436,38 @@ public final class SpeechGrpc {
     }
   }
 
-  private static final class SpeechDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class SpeechBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    SpeechBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.cloud.speech.v1p1beta1.SpeechProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Speech");
+    }
+  }
+
+  private static final class SpeechFileDescriptorSupplier
+      extends SpeechBaseDescriptorSupplier {
+    SpeechFileDescriptorSupplier() {}
+  }
+
+  private static final class SpeechMethodDescriptorSupplier
+      extends SpeechBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    SpeechMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -368,10 +480,10 @@ public final class SpeechGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new SpeechDescriptorSupplier())
-              .addMethod(METHOD_RECOGNIZE)
-              .addMethod(METHOD_LONG_RUNNING_RECOGNIZE)
-              .addMethod(METHOD_STREAMING_RECOGNIZE)
+              .setSchemaDescriptor(new SpeechFileDescriptorSupplier())
+              .addMethod(getRecognizeMethodHelper())
+              .addMethod(getLongRunningRecognizeMethodHelper())
+              .addMethod(getStreamingRecognizeMethodHelper())
               .build();
         }
       }

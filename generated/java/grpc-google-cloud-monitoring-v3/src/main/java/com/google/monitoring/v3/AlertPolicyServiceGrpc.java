@@ -1,19 +1,19 @@
 package com.google.monitoring.v3;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -29,7 +29,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/monitoring/v3/alert_service.proto")
 public final class AlertPolicyServiceGrpc {
 
@@ -39,50 +39,190 @@ public final class AlertPolicyServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListAlertPoliciesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.ListAlertPoliciesRequest,
-      com.google.monitoring.v3.ListAlertPoliciesResponse> METHOD_LIST_ALERT_POLICIES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.AlertPolicyService", "ListAlertPolicies"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListAlertPoliciesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListAlertPoliciesResponse.getDefaultInstance()));
+      com.google.monitoring.v3.ListAlertPoliciesResponse> METHOD_LIST_ALERT_POLICIES = getListAlertPoliciesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.ListAlertPoliciesRequest,
+      com.google.monitoring.v3.ListAlertPoliciesResponse> getListAlertPoliciesMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListAlertPoliciesRequest,
+      com.google.monitoring.v3.ListAlertPoliciesResponse> getListAlertPoliciesMethod() {
+    return getListAlertPoliciesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListAlertPoliciesRequest,
+      com.google.monitoring.v3.ListAlertPoliciesResponse> getListAlertPoliciesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.ListAlertPoliciesRequest, com.google.monitoring.v3.ListAlertPoliciesResponse> getListAlertPoliciesMethod;
+    if ((getListAlertPoliciesMethod = AlertPolicyServiceGrpc.getListAlertPoliciesMethod) == null) {
+      synchronized (AlertPolicyServiceGrpc.class) {
+        if ((getListAlertPoliciesMethod = AlertPolicyServiceGrpc.getListAlertPoliciesMethod) == null) {
+          AlertPolicyServiceGrpc.getListAlertPoliciesMethod = getListAlertPoliciesMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.ListAlertPoliciesRequest, com.google.monitoring.v3.ListAlertPoliciesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.AlertPolicyService", "ListAlertPolicies"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListAlertPoliciesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListAlertPoliciesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new AlertPolicyServiceMethodDescriptorSupplier("ListAlertPolicies"))
+                  .build();
+          }
+        }
+     }
+     return getListAlertPoliciesMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetAlertPolicyMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.GetAlertPolicyRequest,
-      com.google.monitoring.v3.AlertPolicy> METHOD_GET_ALERT_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.AlertPolicyService", "GetAlertPolicy"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.GetAlertPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.AlertPolicy.getDefaultInstance()));
+      com.google.monitoring.v3.AlertPolicy> METHOD_GET_ALERT_POLICY = getGetAlertPolicyMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.GetAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getGetAlertPolicyMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getGetAlertPolicyMethod() {
+    return getGetAlertPolicyMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getGetAlertPolicyMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.GetAlertPolicyRequest, com.google.monitoring.v3.AlertPolicy> getGetAlertPolicyMethod;
+    if ((getGetAlertPolicyMethod = AlertPolicyServiceGrpc.getGetAlertPolicyMethod) == null) {
+      synchronized (AlertPolicyServiceGrpc.class) {
+        if ((getGetAlertPolicyMethod = AlertPolicyServiceGrpc.getGetAlertPolicyMethod) == null) {
+          AlertPolicyServiceGrpc.getGetAlertPolicyMethod = getGetAlertPolicyMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.GetAlertPolicyRequest, com.google.monitoring.v3.AlertPolicy>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.AlertPolicyService", "GetAlertPolicy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.GetAlertPolicyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.AlertPolicy.getDefaultInstance()))
+                  .setSchemaDescriptor(new AlertPolicyServiceMethodDescriptorSupplier("GetAlertPolicy"))
+                  .build();
+          }
+        }
+     }
+     return getGetAlertPolicyMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateAlertPolicyMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateAlertPolicyRequest,
-      com.google.monitoring.v3.AlertPolicy> METHOD_CREATE_ALERT_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.AlertPolicyService", "CreateAlertPolicy"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.CreateAlertPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.AlertPolicy.getDefaultInstance()));
+      com.google.monitoring.v3.AlertPolicy> METHOD_CREATE_ALERT_POLICY = getCreateAlertPolicyMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getCreateAlertPolicyMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getCreateAlertPolicyMethod() {
+    return getCreateAlertPolicyMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getCreateAlertPolicyMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateAlertPolicyRequest, com.google.monitoring.v3.AlertPolicy> getCreateAlertPolicyMethod;
+    if ((getCreateAlertPolicyMethod = AlertPolicyServiceGrpc.getCreateAlertPolicyMethod) == null) {
+      synchronized (AlertPolicyServiceGrpc.class) {
+        if ((getCreateAlertPolicyMethod = AlertPolicyServiceGrpc.getCreateAlertPolicyMethod) == null) {
+          AlertPolicyServiceGrpc.getCreateAlertPolicyMethod = getCreateAlertPolicyMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.CreateAlertPolicyRequest, com.google.monitoring.v3.AlertPolicy>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.AlertPolicyService", "CreateAlertPolicy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.CreateAlertPolicyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.AlertPolicy.getDefaultInstance()))
+                  .setSchemaDescriptor(new AlertPolicyServiceMethodDescriptorSupplier("CreateAlertPolicy"))
+                  .build();
+          }
+        }
+     }
+     return getCreateAlertPolicyMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteAlertPolicyMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteAlertPolicyRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_ALERT_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.AlertPolicyService", "DeleteAlertPolicy"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.DeleteAlertPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_ALERT_POLICY = getDeleteAlertPolicyMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteAlertPolicyRequest,
+      com.google.protobuf.Empty> getDeleteAlertPolicyMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteAlertPolicyRequest,
+      com.google.protobuf.Empty> getDeleteAlertPolicyMethod() {
+    return getDeleteAlertPolicyMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteAlertPolicyRequest,
+      com.google.protobuf.Empty> getDeleteAlertPolicyMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteAlertPolicyRequest, com.google.protobuf.Empty> getDeleteAlertPolicyMethod;
+    if ((getDeleteAlertPolicyMethod = AlertPolicyServiceGrpc.getDeleteAlertPolicyMethod) == null) {
+      synchronized (AlertPolicyServiceGrpc.class) {
+        if ((getDeleteAlertPolicyMethod = AlertPolicyServiceGrpc.getDeleteAlertPolicyMethod) == null) {
+          AlertPolicyServiceGrpc.getDeleteAlertPolicyMethod = getDeleteAlertPolicyMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.DeleteAlertPolicyRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.AlertPolicyService", "DeleteAlertPolicy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.DeleteAlertPolicyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new AlertPolicyServiceMethodDescriptorSupplier("DeleteAlertPolicy"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteAlertPolicyMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateAlertPolicyMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateAlertPolicyRequest,
-      com.google.monitoring.v3.AlertPolicy> METHOD_UPDATE_ALERT_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.AlertPolicyService", "UpdateAlertPolicy"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.UpdateAlertPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.AlertPolicy.getDefaultInstance()));
+      com.google.monitoring.v3.AlertPolicy> METHOD_UPDATE_ALERT_POLICY = getUpdateAlertPolicyMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getUpdateAlertPolicyMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getUpdateAlertPolicyMethod() {
+    return getUpdateAlertPolicyMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateAlertPolicyRequest,
+      com.google.monitoring.v3.AlertPolicy> getUpdateAlertPolicyMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateAlertPolicyRequest, com.google.monitoring.v3.AlertPolicy> getUpdateAlertPolicyMethod;
+    if ((getUpdateAlertPolicyMethod = AlertPolicyServiceGrpc.getUpdateAlertPolicyMethod) == null) {
+      synchronized (AlertPolicyServiceGrpc.class) {
+        if ((getUpdateAlertPolicyMethod = AlertPolicyServiceGrpc.getUpdateAlertPolicyMethod) == null) {
+          AlertPolicyServiceGrpc.getUpdateAlertPolicyMethod = getUpdateAlertPolicyMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.UpdateAlertPolicyRequest, com.google.monitoring.v3.AlertPolicy>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.AlertPolicyService", "UpdateAlertPolicy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.UpdateAlertPolicyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.AlertPolicy.getDefaultInstance()))
+                  .setSchemaDescriptor(new AlertPolicyServiceMethodDescriptorSupplier("UpdateAlertPolicy"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateAlertPolicyMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -100,7 +240,7 @@ public final class AlertPolicyServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static AlertPolicyServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -129,7 +269,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public void listAlertPolicies(com.google.monitoring.v3.ListAlertPoliciesRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListAlertPoliciesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_ALERT_POLICIES, responseObserver);
+      asyncUnimplementedUnaryCall(getListAlertPoliciesMethodHelper(), responseObserver);
     }
 
     /**
@@ -139,7 +279,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public void getAlertPolicy(com.google.monitoring.v3.GetAlertPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.AlertPolicy> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_ALERT_POLICY, responseObserver);
+      asyncUnimplementedUnaryCall(getGetAlertPolicyMethodHelper(), responseObserver);
     }
 
     /**
@@ -149,7 +289,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public void createAlertPolicy(com.google.monitoring.v3.CreateAlertPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.AlertPolicy> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_ALERT_POLICY, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateAlertPolicyMethodHelper(), responseObserver);
     }
 
     /**
@@ -159,7 +299,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public void deleteAlertPolicy(com.google.monitoring.v3.DeleteAlertPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_ALERT_POLICY, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteAlertPolicyMethodHelper(), responseObserver);
     }
 
     /**
@@ -172,41 +312,41 @@ public final class AlertPolicyServiceGrpc {
      */
     public void updateAlertPolicy(com.google.monitoring.v3.UpdateAlertPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.AlertPolicy> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_ALERT_POLICY, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateAlertPolicyMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_ALERT_POLICIES,
+            getListAlertPoliciesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.ListAlertPoliciesRequest,
                 com.google.monitoring.v3.ListAlertPoliciesResponse>(
                   this, METHODID_LIST_ALERT_POLICIES)))
           .addMethod(
-            METHOD_GET_ALERT_POLICY,
+            getGetAlertPolicyMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.GetAlertPolicyRequest,
                 com.google.monitoring.v3.AlertPolicy>(
                   this, METHODID_GET_ALERT_POLICY)))
           .addMethod(
-            METHOD_CREATE_ALERT_POLICY,
+            getCreateAlertPolicyMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.CreateAlertPolicyRequest,
                 com.google.monitoring.v3.AlertPolicy>(
                   this, METHODID_CREATE_ALERT_POLICY)))
           .addMethod(
-            METHOD_DELETE_ALERT_POLICY,
+            getDeleteAlertPolicyMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.DeleteAlertPolicyRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_ALERT_POLICY)))
           .addMethod(
-            METHOD_UPDATE_ALERT_POLICY,
+            getUpdateAlertPolicyMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.UpdateAlertPolicyRequest,
@@ -253,7 +393,7 @@ public final class AlertPolicyServiceGrpc {
     public void listAlertPolicies(com.google.monitoring.v3.ListAlertPoliciesRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListAlertPoliciesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_ALERT_POLICIES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListAlertPoliciesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -264,7 +404,7 @@ public final class AlertPolicyServiceGrpc {
     public void getAlertPolicy(com.google.monitoring.v3.GetAlertPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.AlertPolicy> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_ALERT_POLICY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetAlertPolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -275,7 +415,7 @@ public final class AlertPolicyServiceGrpc {
     public void createAlertPolicy(com.google.monitoring.v3.CreateAlertPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.AlertPolicy> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_ALERT_POLICY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateAlertPolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -286,7 +426,7 @@ public final class AlertPolicyServiceGrpc {
     public void deleteAlertPolicy(com.google.monitoring.v3.DeleteAlertPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_ALERT_POLICY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteAlertPolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -300,7 +440,7 @@ public final class AlertPolicyServiceGrpc {
     public void updateAlertPolicy(com.google.monitoring.v3.UpdateAlertPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.AlertPolicy> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_ALERT_POLICY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateAlertPolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -340,7 +480,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public com.google.monitoring.v3.ListAlertPoliciesResponse listAlertPolicies(com.google.monitoring.v3.ListAlertPoliciesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_ALERT_POLICIES, getCallOptions(), request);
+          getChannel(), getListAlertPoliciesMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -350,7 +490,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public com.google.monitoring.v3.AlertPolicy getAlertPolicy(com.google.monitoring.v3.GetAlertPolicyRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_ALERT_POLICY, getCallOptions(), request);
+          getChannel(), getGetAlertPolicyMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -360,7 +500,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public com.google.monitoring.v3.AlertPolicy createAlertPolicy(com.google.monitoring.v3.CreateAlertPolicyRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_ALERT_POLICY, getCallOptions(), request);
+          getChannel(), getCreateAlertPolicyMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -370,7 +510,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public com.google.protobuf.Empty deleteAlertPolicy(com.google.monitoring.v3.DeleteAlertPolicyRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_ALERT_POLICY, getCallOptions(), request);
+          getChannel(), getDeleteAlertPolicyMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -383,7 +523,7 @@ public final class AlertPolicyServiceGrpc {
      */
     public com.google.monitoring.v3.AlertPolicy updateAlertPolicy(com.google.monitoring.v3.UpdateAlertPolicyRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_ALERT_POLICY, getCallOptions(), request);
+          getChannel(), getUpdateAlertPolicyMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -424,7 +564,7 @@ public final class AlertPolicyServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.ListAlertPoliciesResponse> listAlertPolicies(
         com.google.monitoring.v3.ListAlertPoliciesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_ALERT_POLICIES, getCallOptions()), request);
+          getChannel().newCall(getListAlertPoliciesMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -435,7 +575,7 @@ public final class AlertPolicyServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.AlertPolicy> getAlertPolicy(
         com.google.monitoring.v3.GetAlertPolicyRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_ALERT_POLICY, getCallOptions()), request);
+          getChannel().newCall(getGetAlertPolicyMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -446,7 +586,7 @@ public final class AlertPolicyServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.AlertPolicy> createAlertPolicy(
         com.google.monitoring.v3.CreateAlertPolicyRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_ALERT_POLICY, getCallOptions()), request);
+          getChannel().newCall(getCreateAlertPolicyMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -457,7 +597,7 @@ public final class AlertPolicyServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteAlertPolicy(
         com.google.monitoring.v3.DeleteAlertPolicyRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_ALERT_POLICY, getCallOptions()), request);
+          getChannel().newCall(getDeleteAlertPolicyMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -471,7 +611,7 @@ public final class AlertPolicyServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.AlertPolicy> updateAlertPolicy(
         com.google.monitoring.v3.UpdateAlertPolicyRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_ALERT_POLICY, getCallOptions()), request);
+          getChannel().newCall(getUpdateAlertPolicyMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -534,10 +674,38 @@ public final class AlertPolicyServiceGrpc {
     }
   }
 
-  private static final class AlertPolicyServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class AlertPolicyServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    AlertPolicyServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.monitoring.v3.AlertServiceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("AlertPolicyService");
+    }
+  }
+
+  private static final class AlertPolicyServiceFileDescriptorSupplier
+      extends AlertPolicyServiceBaseDescriptorSupplier {
+    AlertPolicyServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class AlertPolicyServiceMethodDescriptorSupplier
+      extends AlertPolicyServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    AlertPolicyServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -550,12 +718,12 @@ public final class AlertPolicyServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new AlertPolicyServiceDescriptorSupplier())
-              .addMethod(METHOD_LIST_ALERT_POLICIES)
-              .addMethod(METHOD_GET_ALERT_POLICY)
-              .addMethod(METHOD_CREATE_ALERT_POLICY)
-              .addMethod(METHOD_DELETE_ALERT_POLICY)
-              .addMethod(METHOD_UPDATE_ALERT_POLICY)
+              .setSchemaDescriptor(new AlertPolicyServiceFileDescriptorSupplier())
+              .addMethod(getListAlertPoliciesMethodHelper())
+              .addMethod(getGetAlertPolicyMethodHelper())
+              .addMethod(getCreateAlertPolicyMethodHelper())
+              .addMethod(getDeleteAlertPolicyMethodHelper())
+              .addMethod(getUpdateAlertPolicyMethodHelper())
               .build();
         }
       }

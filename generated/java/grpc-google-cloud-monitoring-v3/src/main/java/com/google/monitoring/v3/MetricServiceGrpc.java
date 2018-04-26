@@ -1,19 +1,19 @@
 package com.google.monitoring.v3;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -22,7 +22,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/monitoring/v3/metric_service.proto")
 public final class MetricServiceGrpc {
 
@@ -32,77 +32,301 @@ public final class MetricServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListMonitoredResourceDescriptorsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest,
-      com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.MetricService", "ListMonitoredResourceDescriptors"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse.getDefaultInstance()));
+      com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS = getListMonitoredResourceDescriptorsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest,
+      com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> getListMonitoredResourceDescriptorsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest,
+      com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> getListMonitoredResourceDescriptorsMethod() {
+    return getListMonitoredResourceDescriptorsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest,
+      com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> getListMonitoredResourceDescriptorsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest, com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> getListMonitoredResourceDescriptorsMethod;
+    if ((getListMonitoredResourceDescriptorsMethod = MetricServiceGrpc.getListMonitoredResourceDescriptorsMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getListMonitoredResourceDescriptorsMethod = MetricServiceGrpc.getListMonitoredResourceDescriptorsMethod) == null) {
+          MetricServiceGrpc.getListMonitoredResourceDescriptorsMethod = getListMonitoredResourceDescriptorsMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest, com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.MetricService", "ListMonitoredResourceDescriptors"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("ListMonitoredResourceDescriptors"))
+                  .build();
+          }
+        }
+     }
+     return getListMonitoredResourceDescriptorsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetMonitoredResourceDescriptorMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest,
-      com.google.api.MonitoredResourceDescriptor> METHOD_GET_MONITORED_RESOURCE_DESCRIPTOR =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.MetricService", "GetMonitoredResourceDescriptor"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.api.MonitoredResourceDescriptor.getDefaultInstance()));
+      com.google.api.MonitoredResourceDescriptor> METHOD_GET_MONITORED_RESOURCE_DESCRIPTOR = getGetMonitoredResourceDescriptorMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest,
+      com.google.api.MonitoredResourceDescriptor> getGetMonitoredResourceDescriptorMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest,
+      com.google.api.MonitoredResourceDescriptor> getGetMonitoredResourceDescriptorMethod() {
+    return getGetMonitoredResourceDescriptorMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest,
+      com.google.api.MonitoredResourceDescriptor> getGetMonitoredResourceDescriptorMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest, com.google.api.MonitoredResourceDescriptor> getGetMonitoredResourceDescriptorMethod;
+    if ((getGetMonitoredResourceDescriptorMethod = MetricServiceGrpc.getGetMonitoredResourceDescriptorMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getGetMonitoredResourceDescriptorMethod = MetricServiceGrpc.getGetMonitoredResourceDescriptorMethod) == null) {
+          MetricServiceGrpc.getGetMonitoredResourceDescriptorMethod = getGetMonitoredResourceDescriptorMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest, com.google.api.MonitoredResourceDescriptor>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.MetricService", "GetMonitoredResourceDescriptor"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.api.MonitoredResourceDescriptor.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("GetMonitoredResourceDescriptor"))
+                  .build();
+          }
+        }
+     }
+     return getGetMonitoredResourceDescriptorMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListMetricDescriptorsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMetricDescriptorsRequest,
-      com.google.monitoring.v3.ListMetricDescriptorsResponse> METHOD_LIST_METRIC_DESCRIPTORS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.MetricService", "ListMetricDescriptors"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListMetricDescriptorsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListMetricDescriptorsResponse.getDefaultInstance()));
+      com.google.monitoring.v3.ListMetricDescriptorsResponse> METHOD_LIST_METRIC_DESCRIPTORS = getListMetricDescriptorsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMetricDescriptorsRequest,
+      com.google.monitoring.v3.ListMetricDescriptorsResponse> getListMetricDescriptorsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMetricDescriptorsRequest,
+      com.google.monitoring.v3.ListMetricDescriptorsResponse> getListMetricDescriptorsMethod() {
+    return getListMetricDescriptorsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMetricDescriptorsRequest,
+      com.google.monitoring.v3.ListMetricDescriptorsResponse> getListMetricDescriptorsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.ListMetricDescriptorsRequest, com.google.monitoring.v3.ListMetricDescriptorsResponse> getListMetricDescriptorsMethod;
+    if ((getListMetricDescriptorsMethod = MetricServiceGrpc.getListMetricDescriptorsMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getListMetricDescriptorsMethod = MetricServiceGrpc.getListMetricDescriptorsMethod) == null) {
+          MetricServiceGrpc.getListMetricDescriptorsMethod = getListMetricDescriptorsMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.ListMetricDescriptorsRequest, com.google.monitoring.v3.ListMetricDescriptorsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.MetricService", "ListMetricDescriptors"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListMetricDescriptorsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListMetricDescriptorsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("ListMetricDescriptors"))
+                  .build();
+          }
+        }
+     }
+     return getListMetricDescriptorsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetMetricDescriptorMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMetricDescriptorRequest,
-      com.google.api.MetricDescriptor> METHOD_GET_METRIC_DESCRIPTOR =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.MetricService", "GetMetricDescriptor"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.GetMetricDescriptorRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.api.MetricDescriptor.getDefaultInstance()));
+      com.google.api.MetricDescriptor> METHOD_GET_METRIC_DESCRIPTOR = getGetMetricDescriptorMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMetricDescriptorRequest,
+      com.google.api.MetricDescriptor> getGetMetricDescriptorMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMetricDescriptorRequest,
+      com.google.api.MetricDescriptor> getGetMetricDescriptorMethod() {
+    return getGetMetricDescriptorMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMetricDescriptorRequest,
+      com.google.api.MetricDescriptor> getGetMetricDescriptorMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.GetMetricDescriptorRequest, com.google.api.MetricDescriptor> getGetMetricDescriptorMethod;
+    if ((getGetMetricDescriptorMethod = MetricServiceGrpc.getGetMetricDescriptorMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getGetMetricDescriptorMethod = MetricServiceGrpc.getGetMetricDescriptorMethod) == null) {
+          MetricServiceGrpc.getGetMetricDescriptorMethod = getGetMetricDescriptorMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.GetMetricDescriptorRequest, com.google.api.MetricDescriptor>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.MetricService", "GetMetricDescriptor"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.GetMetricDescriptorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.api.MetricDescriptor.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("GetMetricDescriptor"))
+                  .build();
+          }
+        }
+     }
+     return getGetMetricDescriptorMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateMetricDescriptorMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateMetricDescriptorRequest,
-      com.google.api.MetricDescriptor> METHOD_CREATE_METRIC_DESCRIPTOR =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.MetricService", "CreateMetricDescriptor"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.CreateMetricDescriptorRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.api.MetricDescriptor.getDefaultInstance()));
+      com.google.api.MetricDescriptor> METHOD_CREATE_METRIC_DESCRIPTOR = getCreateMetricDescriptorMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateMetricDescriptorRequest,
+      com.google.api.MetricDescriptor> getCreateMetricDescriptorMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateMetricDescriptorRequest,
+      com.google.api.MetricDescriptor> getCreateMetricDescriptorMethod() {
+    return getCreateMetricDescriptorMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateMetricDescriptorRequest,
+      com.google.api.MetricDescriptor> getCreateMetricDescriptorMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateMetricDescriptorRequest, com.google.api.MetricDescriptor> getCreateMetricDescriptorMethod;
+    if ((getCreateMetricDescriptorMethod = MetricServiceGrpc.getCreateMetricDescriptorMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getCreateMetricDescriptorMethod = MetricServiceGrpc.getCreateMetricDescriptorMethod) == null) {
+          MetricServiceGrpc.getCreateMetricDescriptorMethod = getCreateMetricDescriptorMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.CreateMetricDescriptorRequest, com.google.api.MetricDescriptor>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.MetricService", "CreateMetricDescriptor"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.CreateMetricDescriptorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.api.MetricDescriptor.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("CreateMetricDescriptor"))
+                  .build();
+          }
+        }
+     }
+     return getCreateMetricDescriptorMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteMetricDescriptorMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteMetricDescriptorRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_METRIC_DESCRIPTOR =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.MetricService", "DeleteMetricDescriptor"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.DeleteMetricDescriptorRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_METRIC_DESCRIPTOR = getDeleteMetricDescriptorMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteMetricDescriptorRequest,
+      com.google.protobuf.Empty> getDeleteMetricDescriptorMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteMetricDescriptorRequest,
+      com.google.protobuf.Empty> getDeleteMetricDescriptorMethod() {
+    return getDeleteMetricDescriptorMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteMetricDescriptorRequest,
+      com.google.protobuf.Empty> getDeleteMetricDescriptorMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteMetricDescriptorRequest, com.google.protobuf.Empty> getDeleteMetricDescriptorMethod;
+    if ((getDeleteMetricDescriptorMethod = MetricServiceGrpc.getDeleteMetricDescriptorMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getDeleteMetricDescriptorMethod = MetricServiceGrpc.getDeleteMetricDescriptorMethod) == null) {
+          MetricServiceGrpc.getDeleteMetricDescriptorMethod = getDeleteMetricDescriptorMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.DeleteMetricDescriptorRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.MetricService", "DeleteMetricDescriptor"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.DeleteMetricDescriptorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("DeleteMetricDescriptor"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteMetricDescriptorMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListTimeSeriesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.ListTimeSeriesRequest,
-      com.google.monitoring.v3.ListTimeSeriesResponse> METHOD_LIST_TIME_SERIES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.MetricService", "ListTimeSeries"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListTimeSeriesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListTimeSeriesResponse.getDefaultInstance()));
+      com.google.monitoring.v3.ListTimeSeriesResponse> METHOD_LIST_TIME_SERIES = getListTimeSeriesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.ListTimeSeriesRequest,
+      com.google.monitoring.v3.ListTimeSeriesResponse> getListTimeSeriesMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListTimeSeriesRequest,
+      com.google.monitoring.v3.ListTimeSeriesResponse> getListTimeSeriesMethod() {
+    return getListTimeSeriesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListTimeSeriesRequest,
+      com.google.monitoring.v3.ListTimeSeriesResponse> getListTimeSeriesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.ListTimeSeriesRequest, com.google.monitoring.v3.ListTimeSeriesResponse> getListTimeSeriesMethod;
+    if ((getListTimeSeriesMethod = MetricServiceGrpc.getListTimeSeriesMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getListTimeSeriesMethod = MetricServiceGrpc.getListTimeSeriesMethod) == null) {
+          MetricServiceGrpc.getListTimeSeriesMethod = getListTimeSeriesMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.ListTimeSeriesRequest, com.google.monitoring.v3.ListTimeSeriesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.MetricService", "ListTimeSeries"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListTimeSeriesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListTimeSeriesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("ListTimeSeries"))
+                  .build();
+          }
+        }
+     }
+     return getListTimeSeriesMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateTimeSeriesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateTimeSeriesRequest,
-      com.google.protobuf.Empty> METHOD_CREATE_TIME_SERIES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.MetricService", "CreateTimeSeries"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.CreateTimeSeriesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_CREATE_TIME_SERIES = getCreateTimeSeriesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateTimeSeriesRequest,
+      com.google.protobuf.Empty> getCreateTimeSeriesMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateTimeSeriesRequest,
+      com.google.protobuf.Empty> getCreateTimeSeriesMethod() {
+    return getCreateTimeSeriesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateTimeSeriesRequest,
+      com.google.protobuf.Empty> getCreateTimeSeriesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateTimeSeriesRequest, com.google.protobuf.Empty> getCreateTimeSeriesMethod;
+    if ((getCreateTimeSeriesMethod = MetricServiceGrpc.getCreateTimeSeriesMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getCreateTimeSeriesMethod = MetricServiceGrpc.getCreateTimeSeriesMethod) == null) {
+          MetricServiceGrpc.getCreateTimeSeriesMethod = getCreateTimeSeriesMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.CreateTimeSeriesRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.MetricService", "CreateTimeSeries"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.CreateTimeSeriesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("CreateTimeSeries"))
+                  .build();
+          }
+        }
+     }
+     return getCreateTimeSeriesMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -120,7 +344,7 @@ public final class MetricServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static MetricServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -142,7 +366,7 @@ public final class MetricServiceGrpc {
      */
     public void listMonitoredResourceDescriptors(com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS, responseObserver);
+      asyncUnimplementedUnaryCall(getListMonitoredResourceDescriptorsMethodHelper(), responseObserver);
     }
 
     /**
@@ -152,7 +376,7 @@ public final class MetricServiceGrpc {
      */
     public void getMonitoredResourceDescriptor(com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest request,
         io.grpc.stub.StreamObserver<com.google.api.MonitoredResourceDescriptor> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_MONITORED_RESOURCE_DESCRIPTOR, responseObserver);
+      asyncUnimplementedUnaryCall(getGetMonitoredResourceDescriptorMethodHelper(), responseObserver);
     }
 
     /**
@@ -162,7 +386,7 @@ public final class MetricServiceGrpc {
      */
     public void listMetricDescriptors(com.google.monitoring.v3.ListMetricDescriptorsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListMetricDescriptorsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_METRIC_DESCRIPTORS, responseObserver);
+      asyncUnimplementedUnaryCall(getListMetricDescriptorsMethodHelper(), responseObserver);
     }
 
     /**
@@ -172,7 +396,7 @@ public final class MetricServiceGrpc {
      */
     public void getMetricDescriptor(com.google.monitoring.v3.GetMetricDescriptorRequest request,
         io.grpc.stub.StreamObserver<com.google.api.MetricDescriptor> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_METRIC_DESCRIPTOR, responseObserver);
+      asyncUnimplementedUnaryCall(getGetMetricDescriptorMethodHelper(), responseObserver);
     }
 
     /**
@@ -184,7 +408,7 @@ public final class MetricServiceGrpc {
      */
     public void createMetricDescriptor(com.google.monitoring.v3.CreateMetricDescriptorRequest request,
         io.grpc.stub.StreamObserver<com.google.api.MetricDescriptor> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_METRIC_DESCRIPTOR, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateMetricDescriptorMethodHelper(), responseObserver);
     }
 
     /**
@@ -195,7 +419,7 @@ public final class MetricServiceGrpc {
      */
     public void deleteMetricDescriptor(com.google.monitoring.v3.DeleteMetricDescriptorRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_METRIC_DESCRIPTOR, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteMetricDescriptorMethodHelper(), responseObserver);
     }
 
     /**
@@ -205,7 +429,7 @@ public final class MetricServiceGrpc {
      */
     public void listTimeSeries(com.google.monitoring.v3.ListTimeSeriesRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListTimeSeriesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_TIME_SERIES, responseObserver);
+      asyncUnimplementedUnaryCall(getListTimeSeriesMethodHelper(), responseObserver);
     }
 
     /**
@@ -218,62 +442,62 @@ public final class MetricServiceGrpc {
      */
     public void createTimeSeries(com.google.monitoring.v3.CreateTimeSeriesRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_TIME_SERIES, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateTimeSeriesMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS,
+            getListMonitoredResourceDescriptorsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest,
                 com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse>(
                   this, METHODID_LIST_MONITORED_RESOURCE_DESCRIPTORS)))
           .addMethod(
-            METHOD_GET_MONITORED_RESOURCE_DESCRIPTOR,
+            getGetMonitoredResourceDescriptorMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest,
                 com.google.api.MonitoredResourceDescriptor>(
                   this, METHODID_GET_MONITORED_RESOURCE_DESCRIPTOR)))
           .addMethod(
-            METHOD_LIST_METRIC_DESCRIPTORS,
+            getListMetricDescriptorsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.ListMetricDescriptorsRequest,
                 com.google.monitoring.v3.ListMetricDescriptorsResponse>(
                   this, METHODID_LIST_METRIC_DESCRIPTORS)))
           .addMethod(
-            METHOD_GET_METRIC_DESCRIPTOR,
+            getGetMetricDescriptorMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.GetMetricDescriptorRequest,
                 com.google.api.MetricDescriptor>(
                   this, METHODID_GET_METRIC_DESCRIPTOR)))
           .addMethod(
-            METHOD_CREATE_METRIC_DESCRIPTOR,
+            getCreateMetricDescriptorMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.CreateMetricDescriptorRequest,
                 com.google.api.MetricDescriptor>(
                   this, METHODID_CREATE_METRIC_DESCRIPTOR)))
           .addMethod(
-            METHOD_DELETE_METRIC_DESCRIPTOR,
+            getDeleteMetricDescriptorMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.DeleteMetricDescriptorRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_METRIC_DESCRIPTOR)))
           .addMethod(
-            METHOD_LIST_TIME_SERIES,
+            getListTimeSeriesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.ListTimeSeriesRequest,
                 com.google.monitoring.v3.ListTimeSeriesResponse>(
                   this, METHODID_LIST_TIME_SERIES)))
           .addMethod(
-            METHOD_CREATE_TIME_SERIES,
+            getCreateTimeSeriesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.CreateTimeSeriesRequest,
@@ -313,7 +537,7 @@ public final class MetricServiceGrpc {
     public void listMonitoredResourceDescriptors(com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListMonitoredResourceDescriptorsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -324,7 +548,7 @@ public final class MetricServiceGrpc {
     public void getMonitoredResourceDescriptor(com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest request,
         io.grpc.stub.StreamObserver<com.google.api.MonitoredResourceDescriptor> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_MONITORED_RESOURCE_DESCRIPTOR, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetMonitoredResourceDescriptorMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -335,7 +559,7 @@ public final class MetricServiceGrpc {
     public void listMetricDescriptors(com.google.monitoring.v3.ListMetricDescriptorsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListMetricDescriptorsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_METRIC_DESCRIPTORS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListMetricDescriptorsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -346,7 +570,7 @@ public final class MetricServiceGrpc {
     public void getMetricDescriptor(com.google.monitoring.v3.GetMetricDescriptorRequest request,
         io.grpc.stub.StreamObserver<com.google.api.MetricDescriptor> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_METRIC_DESCRIPTOR, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetMetricDescriptorMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -359,7 +583,7 @@ public final class MetricServiceGrpc {
     public void createMetricDescriptor(com.google.monitoring.v3.CreateMetricDescriptorRequest request,
         io.grpc.stub.StreamObserver<com.google.api.MetricDescriptor> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_METRIC_DESCRIPTOR, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateMetricDescriptorMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -371,7 +595,7 @@ public final class MetricServiceGrpc {
     public void deleteMetricDescriptor(com.google.monitoring.v3.DeleteMetricDescriptorRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_METRIC_DESCRIPTOR, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteMetricDescriptorMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -382,7 +606,7 @@ public final class MetricServiceGrpc {
     public void listTimeSeries(com.google.monitoring.v3.ListTimeSeriesRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListTimeSeriesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_TIME_SERIES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListTimeSeriesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -396,7 +620,7 @@ public final class MetricServiceGrpc {
     public void createTimeSeries(com.google.monitoring.v3.CreateTimeSeriesRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_TIME_SERIES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateTimeSeriesMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -429,7 +653,7 @@ public final class MetricServiceGrpc {
      */
     public com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse listMonitoredResourceDescriptors(com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS, getCallOptions(), request);
+          getChannel(), getListMonitoredResourceDescriptorsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -439,7 +663,7 @@ public final class MetricServiceGrpc {
      */
     public com.google.api.MonitoredResourceDescriptor getMonitoredResourceDescriptor(com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_MONITORED_RESOURCE_DESCRIPTOR, getCallOptions(), request);
+          getChannel(), getGetMonitoredResourceDescriptorMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -449,7 +673,7 @@ public final class MetricServiceGrpc {
      */
     public com.google.monitoring.v3.ListMetricDescriptorsResponse listMetricDescriptors(com.google.monitoring.v3.ListMetricDescriptorsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_METRIC_DESCRIPTORS, getCallOptions(), request);
+          getChannel(), getListMetricDescriptorsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -459,7 +683,7 @@ public final class MetricServiceGrpc {
      */
     public com.google.api.MetricDescriptor getMetricDescriptor(com.google.monitoring.v3.GetMetricDescriptorRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_METRIC_DESCRIPTOR, getCallOptions(), request);
+          getChannel(), getGetMetricDescriptorMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -471,7 +695,7 @@ public final class MetricServiceGrpc {
      */
     public com.google.api.MetricDescriptor createMetricDescriptor(com.google.monitoring.v3.CreateMetricDescriptorRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_METRIC_DESCRIPTOR, getCallOptions(), request);
+          getChannel(), getCreateMetricDescriptorMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -482,7 +706,7 @@ public final class MetricServiceGrpc {
      */
     public com.google.protobuf.Empty deleteMetricDescriptor(com.google.monitoring.v3.DeleteMetricDescriptorRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_METRIC_DESCRIPTOR, getCallOptions(), request);
+          getChannel(), getDeleteMetricDescriptorMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -492,7 +716,7 @@ public final class MetricServiceGrpc {
      */
     public com.google.monitoring.v3.ListTimeSeriesResponse listTimeSeries(com.google.monitoring.v3.ListTimeSeriesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_TIME_SERIES, getCallOptions(), request);
+          getChannel(), getListTimeSeriesMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -505,7 +729,7 @@ public final class MetricServiceGrpc {
      */
     public com.google.protobuf.Empty createTimeSeries(com.google.monitoring.v3.CreateTimeSeriesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_TIME_SERIES, getCallOptions(), request);
+          getChannel(), getCreateTimeSeriesMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -539,7 +763,7 @@ public final class MetricServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse> listMonitoredResourceDescriptors(
         com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS, getCallOptions()), request);
+          getChannel().newCall(getListMonitoredResourceDescriptorsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -550,7 +774,7 @@ public final class MetricServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.api.MonitoredResourceDescriptor> getMonitoredResourceDescriptor(
         com.google.monitoring.v3.GetMonitoredResourceDescriptorRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_MONITORED_RESOURCE_DESCRIPTOR, getCallOptions()), request);
+          getChannel().newCall(getGetMonitoredResourceDescriptorMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -561,7 +785,7 @@ public final class MetricServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.ListMetricDescriptorsResponse> listMetricDescriptors(
         com.google.monitoring.v3.ListMetricDescriptorsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_METRIC_DESCRIPTORS, getCallOptions()), request);
+          getChannel().newCall(getListMetricDescriptorsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -572,7 +796,7 @@ public final class MetricServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.api.MetricDescriptor> getMetricDescriptor(
         com.google.monitoring.v3.GetMetricDescriptorRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_METRIC_DESCRIPTOR, getCallOptions()), request);
+          getChannel().newCall(getGetMetricDescriptorMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -585,7 +809,7 @@ public final class MetricServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.api.MetricDescriptor> createMetricDescriptor(
         com.google.monitoring.v3.CreateMetricDescriptorRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_METRIC_DESCRIPTOR, getCallOptions()), request);
+          getChannel().newCall(getCreateMetricDescriptorMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -597,7 +821,7 @@ public final class MetricServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteMetricDescriptor(
         com.google.monitoring.v3.DeleteMetricDescriptorRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_METRIC_DESCRIPTOR, getCallOptions()), request);
+          getChannel().newCall(getDeleteMetricDescriptorMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -608,7 +832,7 @@ public final class MetricServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.ListTimeSeriesResponse> listTimeSeries(
         com.google.monitoring.v3.ListTimeSeriesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_TIME_SERIES, getCallOptions()), request);
+          getChannel().newCall(getListTimeSeriesMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -622,7 +846,7 @@ public final class MetricServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> createTimeSeries(
         com.google.monitoring.v3.CreateTimeSeriesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_TIME_SERIES, getCallOptions()), request);
+          getChannel().newCall(getCreateTimeSeriesMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -700,10 +924,38 @@ public final class MetricServiceGrpc {
     }
   }
 
-  private static final class MetricServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class MetricServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    MetricServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.monitoring.v3.MetricServiceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("MetricService");
+    }
+  }
+
+  private static final class MetricServiceFileDescriptorSupplier
+      extends MetricServiceBaseDescriptorSupplier {
+    MetricServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class MetricServiceMethodDescriptorSupplier
+      extends MetricServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    MetricServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -716,15 +968,15 @@ public final class MetricServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new MetricServiceDescriptorSupplier())
-              .addMethod(METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS)
-              .addMethod(METHOD_GET_MONITORED_RESOURCE_DESCRIPTOR)
-              .addMethod(METHOD_LIST_METRIC_DESCRIPTORS)
-              .addMethod(METHOD_GET_METRIC_DESCRIPTOR)
-              .addMethod(METHOD_CREATE_METRIC_DESCRIPTOR)
-              .addMethod(METHOD_DELETE_METRIC_DESCRIPTOR)
-              .addMethod(METHOD_LIST_TIME_SERIES)
-              .addMethod(METHOD_CREATE_TIME_SERIES)
+              .setSchemaDescriptor(new MetricServiceFileDescriptorSupplier())
+              .addMethod(getListMonitoredResourceDescriptorsMethodHelper())
+              .addMethod(getGetMonitoredResourceDescriptorMethodHelper())
+              .addMethod(getListMetricDescriptorsMethodHelper())
+              .addMethod(getGetMetricDescriptorMethodHelper())
+              .addMethod(getCreateMetricDescriptorMethodHelper())
+              .addMethod(getDeleteMetricDescriptorMethodHelper())
+              .addMethod(getListTimeSeriesMethodHelper())
+              .addMethod(getCreateTimeSeriesMethodHelper())
               .build();
         }
       }

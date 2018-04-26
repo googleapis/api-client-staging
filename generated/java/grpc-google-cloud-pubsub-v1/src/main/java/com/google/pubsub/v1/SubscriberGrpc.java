@@ -1,19 +1,19 @@
 package com.google.pubsub.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -22,7 +22,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/pubsub/v1/pubsub.proto")
 public final class SubscriberGrpc {
 
@@ -32,140 +32,560 @@ public final class SubscriberGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateSubscriptionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.Subscription,
-      com.google.pubsub.v1.Subscription> METHOD_CREATE_SUBSCRIPTION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "CreateSubscription"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Subscription.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Subscription.getDefaultInstance()));
+      com.google.pubsub.v1.Subscription> METHOD_CREATE_SUBSCRIPTION = getCreateSubscriptionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.Subscription,
+      com.google.pubsub.v1.Subscription> getCreateSubscriptionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.Subscription,
+      com.google.pubsub.v1.Subscription> getCreateSubscriptionMethod() {
+    return getCreateSubscriptionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.Subscription,
+      com.google.pubsub.v1.Subscription> getCreateSubscriptionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.Subscription, com.google.pubsub.v1.Subscription> getCreateSubscriptionMethod;
+    if ((getCreateSubscriptionMethod = SubscriberGrpc.getCreateSubscriptionMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getCreateSubscriptionMethod = SubscriberGrpc.getCreateSubscriptionMethod) == null) {
+          SubscriberGrpc.getCreateSubscriptionMethod = getCreateSubscriptionMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.Subscription, com.google.pubsub.v1.Subscription>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "CreateSubscription"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Subscription.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Subscription.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("CreateSubscription"))
+                  .build();
+          }
+        }
+     }
+     return getCreateSubscriptionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetSubscriptionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.GetSubscriptionRequest,
-      com.google.pubsub.v1.Subscription> METHOD_GET_SUBSCRIPTION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "GetSubscription"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.GetSubscriptionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Subscription.getDefaultInstance()));
+      com.google.pubsub.v1.Subscription> METHOD_GET_SUBSCRIPTION = getGetSubscriptionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.GetSubscriptionRequest,
+      com.google.pubsub.v1.Subscription> getGetSubscriptionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.GetSubscriptionRequest,
+      com.google.pubsub.v1.Subscription> getGetSubscriptionMethod() {
+    return getGetSubscriptionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.GetSubscriptionRequest,
+      com.google.pubsub.v1.Subscription> getGetSubscriptionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.GetSubscriptionRequest, com.google.pubsub.v1.Subscription> getGetSubscriptionMethod;
+    if ((getGetSubscriptionMethod = SubscriberGrpc.getGetSubscriptionMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getGetSubscriptionMethod = SubscriberGrpc.getGetSubscriptionMethod) == null) {
+          SubscriberGrpc.getGetSubscriptionMethod = getGetSubscriptionMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.GetSubscriptionRequest, com.google.pubsub.v1.Subscription>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "GetSubscription"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.GetSubscriptionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Subscription.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("GetSubscription"))
+                  .build();
+          }
+        }
+     }
+     return getGetSubscriptionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateSubscriptionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSubscriptionRequest,
-      com.google.pubsub.v1.Subscription> METHOD_UPDATE_SUBSCRIPTION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "UpdateSubscription"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.UpdateSubscriptionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Subscription.getDefaultInstance()));
+      com.google.pubsub.v1.Subscription> METHOD_UPDATE_SUBSCRIPTION = getUpdateSubscriptionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSubscriptionRequest,
+      com.google.pubsub.v1.Subscription> getUpdateSubscriptionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSubscriptionRequest,
+      com.google.pubsub.v1.Subscription> getUpdateSubscriptionMethod() {
+    return getUpdateSubscriptionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSubscriptionRequest,
+      com.google.pubsub.v1.Subscription> getUpdateSubscriptionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSubscriptionRequest, com.google.pubsub.v1.Subscription> getUpdateSubscriptionMethod;
+    if ((getUpdateSubscriptionMethod = SubscriberGrpc.getUpdateSubscriptionMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getUpdateSubscriptionMethod = SubscriberGrpc.getUpdateSubscriptionMethod) == null) {
+          SubscriberGrpc.getUpdateSubscriptionMethod = getUpdateSubscriptionMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.UpdateSubscriptionRequest, com.google.pubsub.v1.Subscription>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "UpdateSubscription"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.UpdateSubscriptionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Subscription.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("UpdateSubscription"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateSubscriptionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListSubscriptionsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSubscriptionsRequest,
-      com.google.pubsub.v1.ListSubscriptionsResponse> METHOD_LIST_SUBSCRIPTIONS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "ListSubscriptions"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ListSubscriptionsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ListSubscriptionsResponse.getDefaultInstance()));
+      com.google.pubsub.v1.ListSubscriptionsResponse> METHOD_LIST_SUBSCRIPTIONS = getListSubscriptionsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSubscriptionsRequest,
+      com.google.pubsub.v1.ListSubscriptionsResponse> getListSubscriptionsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSubscriptionsRequest,
+      com.google.pubsub.v1.ListSubscriptionsResponse> getListSubscriptionsMethod() {
+    return getListSubscriptionsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSubscriptionsRequest,
+      com.google.pubsub.v1.ListSubscriptionsResponse> getListSubscriptionsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSubscriptionsRequest, com.google.pubsub.v1.ListSubscriptionsResponse> getListSubscriptionsMethod;
+    if ((getListSubscriptionsMethod = SubscriberGrpc.getListSubscriptionsMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getListSubscriptionsMethod = SubscriberGrpc.getListSubscriptionsMethod) == null) {
+          SubscriberGrpc.getListSubscriptionsMethod = getListSubscriptionsMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.ListSubscriptionsRequest, com.google.pubsub.v1.ListSubscriptionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "ListSubscriptions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ListSubscriptionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ListSubscriptionsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("ListSubscriptions"))
+                  .build();
+          }
+        }
+     }
+     return getListSubscriptionsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteSubscriptionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSubscriptionRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_SUBSCRIPTION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "DeleteSubscription"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.DeleteSubscriptionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_SUBSCRIPTION = getDeleteSubscriptionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSubscriptionRequest,
+      com.google.protobuf.Empty> getDeleteSubscriptionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSubscriptionRequest,
+      com.google.protobuf.Empty> getDeleteSubscriptionMethod() {
+    return getDeleteSubscriptionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSubscriptionRequest,
+      com.google.protobuf.Empty> getDeleteSubscriptionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSubscriptionRequest, com.google.protobuf.Empty> getDeleteSubscriptionMethod;
+    if ((getDeleteSubscriptionMethod = SubscriberGrpc.getDeleteSubscriptionMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getDeleteSubscriptionMethod = SubscriberGrpc.getDeleteSubscriptionMethod) == null) {
+          SubscriberGrpc.getDeleteSubscriptionMethod = getDeleteSubscriptionMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.DeleteSubscriptionRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "DeleteSubscription"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.DeleteSubscriptionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("DeleteSubscription"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteSubscriptionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getModifyAckDeadlineMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyAckDeadlineRequest,
-      com.google.protobuf.Empty> METHOD_MODIFY_ACK_DEADLINE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "ModifyAckDeadline"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ModifyAckDeadlineRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_MODIFY_ACK_DEADLINE = getModifyAckDeadlineMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyAckDeadlineRequest,
+      com.google.protobuf.Empty> getModifyAckDeadlineMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyAckDeadlineRequest,
+      com.google.protobuf.Empty> getModifyAckDeadlineMethod() {
+    return getModifyAckDeadlineMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyAckDeadlineRequest,
+      com.google.protobuf.Empty> getModifyAckDeadlineMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyAckDeadlineRequest, com.google.protobuf.Empty> getModifyAckDeadlineMethod;
+    if ((getModifyAckDeadlineMethod = SubscriberGrpc.getModifyAckDeadlineMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getModifyAckDeadlineMethod = SubscriberGrpc.getModifyAckDeadlineMethod) == null) {
+          SubscriberGrpc.getModifyAckDeadlineMethod = getModifyAckDeadlineMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.ModifyAckDeadlineRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "ModifyAckDeadline"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ModifyAckDeadlineRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("ModifyAckDeadline"))
+                  .build();
+          }
+        }
+     }
+     return getModifyAckDeadlineMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getAcknowledgeMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.AcknowledgeRequest,
-      com.google.protobuf.Empty> METHOD_ACKNOWLEDGE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "Acknowledge"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.AcknowledgeRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_ACKNOWLEDGE = getAcknowledgeMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.AcknowledgeRequest,
+      com.google.protobuf.Empty> getAcknowledgeMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.AcknowledgeRequest,
+      com.google.protobuf.Empty> getAcknowledgeMethod() {
+    return getAcknowledgeMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.AcknowledgeRequest,
+      com.google.protobuf.Empty> getAcknowledgeMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.AcknowledgeRequest, com.google.protobuf.Empty> getAcknowledgeMethod;
+    if ((getAcknowledgeMethod = SubscriberGrpc.getAcknowledgeMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getAcknowledgeMethod = SubscriberGrpc.getAcknowledgeMethod) == null) {
+          SubscriberGrpc.getAcknowledgeMethod = getAcknowledgeMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.AcknowledgeRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "Acknowledge"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.AcknowledgeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("Acknowledge"))
+                  .build();
+          }
+        }
+     }
+     return getAcknowledgeMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getPullMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.PullRequest,
-      com.google.pubsub.v1.PullResponse> METHOD_PULL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "Pull"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.PullRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.PullResponse.getDefaultInstance()));
+      com.google.pubsub.v1.PullResponse> METHOD_PULL = getPullMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.PullRequest,
+      com.google.pubsub.v1.PullResponse> getPullMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.PullRequest,
+      com.google.pubsub.v1.PullResponse> getPullMethod() {
+    return getPullMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.PullRequest,
+      com.google.pubsub.v1.PullResponse> getPullMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.PullRequest, com.google.pubsub.v1.PullResponse> getPullMethod;
+    if ((getPullMethod = SubscriberGrpc.getPullMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getPullMethod = SubscriberGrpc.getPullMethod) == null) {
+          SubscriberGrpc.getPullMethod = getPullMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.PullRequest, com.google.pubsub.v1.PullResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "Pull"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.PullRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.PullResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("Pull"))
+                  .build();
+          }
+        }
+     }
+     return getPullMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getStreamingPullMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.StreamingPullRequest,
-      com.google.pubsub.v1.StreamingPullResponse> METHOD_STREAMING_PULL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "StreamingPull"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.StreamingPullRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.StreamingPullResponse.getDefaultInstance()));
+      com.google.pubsub.v1.StreamingPullResponse> METHOD_STREAMING_PULL = getStreamingPullMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.StreamingPullRequest,
+      com.google.pubsub.v1.StreamingPullResponse> getStreamingPullMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.StreamingPullRequest,
+      com.google.pubsub.v1.StreamingPullResponse> getStreamingPullMethod() {
+    return getStreamingPullMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.StreamingPullRequest,
+      com.google.pubsub.v1.StreamingPullResponse> getStreamingPullMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.StreamingPullRequest, com.google.pubsub.v1.StreamingPullResponse> getStreamingPullMethod;
+    if ((getStreamingPullMethod = SubscriberGrpc.getStreamingPullMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getStreamingPullMethod = SubscriberGrpc.getStreamingPullMethod) == null) {
+          SubscriberGrpc.getStreamingPullMethod = getStreamingPullMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.StreamingPullRequest, com.google.pubsub.v1.StreamingPullResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "StreamingPull"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.StreamingPullRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.StreamingPullResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("StreamingPull"))
+                  .build();
+          }
+        }
+     }
+     return getStreamingPullMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getModifyPushConfigMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyPushConfigRequest,
-      com.google.protobuf.Empty> METHOD_MODIFY_PUSH_CONFIG =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "ModifyPushConfig"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ModifyPushConfigRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_MODIFY_PUSH_CONFIG = getModifyPushConfigMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyPushConfigRequest,
+      com.google.protobuf.Empty> getModifyPushConfigMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyPushConfigRequest,
+      com.google.protobuf.Empty> getModifyPushConfigMethod() {
+    return getModifyPushConfigMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyPushConfigRequest,
+      com.google.protobuf.Empty> getModifyPushConfigMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.ModifyPushConfigRequest, com.google.protobuf.Empty> getModifyPushConfigMethod;
+    if ((getModifyPushConfigMethod = SubscriberGrpc.getModifyPushConfigMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getModifyPushConfigMethod = SubscriberGrpc.getModifyPushConfigMethod) == null) {
+          SubscriberGrpc.getModifyPushConfigMethod = getModifyPushConfigMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.ModifyPushConfigRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "ModifyPushConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ModifyPushConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("ModifyPushConfig"))
+                  .build();
+          }
+        }
+     }
+     return getModifyPushConfigMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListSnapshotsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSnapshotsRequest,
-      com.google.pubsub.v1.ListSnapshotsResponse> METHOD_LIST_SNAPSHOTS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "ListSnapshots"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ListSnapshotsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ListSnapshotsResponse.getDefaultInstance()));
+      com.google.pubsub.v1.ListSnapshotsResponse> METHOD_LIST_SNAPSHOTS = getListSnapshotsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSnapshotsRequest,
+      com.google.pubsub.v1.ListSnapshotsResponse> getListSnapshotsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSnapshotsRequest,
+      com.google.pubsub.v1.ListSnapshotsResponse> getListSnapshotsMethod() {
+    return getListSnapshotsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSnapshotsRequest,
+      com.google.pubsub.v1.ListSnapshotsResponse> getListSnapshotsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.ListSnapshotsRequest, com.google.pubsub.v1.ListSnapshotsResponse> getListSnapshotsMethod;
+    if ((getListSnapshotsMethod = SubscriberGrpc.getListSnapshotsMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getListSnapshotsMethod = SubscriberGrpc.getListSnapshotsMethod) == null) {
+          SubscriberGrpc.getListSnapshotsMethod = getListSnapshotsMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.ListSnapshotsRequest, com.google.pubsub.v1.ListSnapshotsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "ListSnapshots"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ListSnapshotsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ListSnapshotsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("ListSnapshots"))
+                  .build();
+          }
+        }
+     }
+     return getListSnapshotsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateSnapshotMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.CreateSnapshotRequest,
-      com.google.pubsub.v1.Snapshot> METHOD_CREATE_SNAPSHOT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "CreateSnapshot"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.CreateSnapshotRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Snapshot.getDefaultInstance()));
+      com.google.pubsub.v1.Snapshot> METHOD_CREATE_SNAPSHOT = getCreateSnapshotMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.CreateSnapshotRequest,
+      com.google.pubsub.v1.Snapshot> getCreateSnapshotMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.CreateSnapshotRequest,
+      com.google.pubsub.v1.Snapshot> getCreateSnapshotMethod() {
+    return getCreateSnapshotMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.CreateSnapshotRequest,
+      com.google.pubsub.v1.Snapshot> getCreateSnapshotMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.CreateSnapshotRequest, com.google.pubsub.v1.Snapshot> getCreateSnapshotMethod;
+    if ((getCreateSnapshotMethod = SubscriberGrpc.getCreateSnapshotMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getCreateSnapshotMethod = SubscriberGrpc.getCreateSnapshotMethod) == null) {
+          SubscriberGrpc.getCreateSnapshotMethod = getCreateSnapshotMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.CreateSnapshotRequest, com.google.pubsub.v1.Snapshot>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "CreateSnapshot"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.CreateSnapshotRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Snapshot.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("CreateSnapshot"))
+                  .build();
+          }
+        }
+     }
+     return getCreateSnapshotMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateSnapshotMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSnapshotRequest,
-      com.google.pubsub.v1.Snapshot> METHOD_UPDATE_SNAPSHOT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "UpdateSnapshot"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.UpdateSnapshotRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Snapshot.getDefaultInstance()));
+      com.google.pubsub.v1.Snapshot> METHOD_UPDATE_SNAPSHOT = getUpdateSnapshotMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSnapshotRequest,
+      com.google.pubsub.v1.Snapshot> getUpdateSnapshotMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSnapshotRequest,
+      com.google.pubsub.v1.Snapshot> getUpdateSnapshotMethod() {
+    return getUpdateSnapshotMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSnapshotRequest,
+      com.google.pubsub.v1.Snapshot> getUpdateSnapshotMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSnapshotRequest, com.google.pubsub.v1.Snapshot> getUpdateSnapshotMethod;
+    if ((getUpdateSnapshotMethod = SubscriberGrpc.getUpdateSnapshotMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getUpdateSnapshotMethod = SubscriberGrpc.getUpdateSnapshotMethod) == null) {
+          SubscriberGrpc.getUpdateSnapshotMethod = getUpdateSnapshotMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.UpdateSnapshotRequest, com.google.pubsub.v1.Snapshot>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "UpdateSnapshot"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.UpdateSnapshotRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Snapshot.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("UpdateSnapshot"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateSnapshotMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteSnapshotMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSnapshotRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_SNAPSHOT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "DeleteSnapshot"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.DeleteSnapshotRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_SNAPSHOT = getDeleteSnapshotMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSnapshotRequest,
+      com.google.protobuf.Empty> getDeleteSnapshotMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSnapshotRequest,
+      com.google.protobuf.Empty> getDeleteSnapshotMethod() {
+    return getDeleteSnapshotMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSnapshotRequest,
+      com.google.protobuf.Empty> getDeleteSnapshotMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSnapshotRequest, com.google.protobuf.Empty> getDeleteSnapshotMethod;
+    if ((getDeleteSnapshotMethod = SubscriberGrpc.getDeleteSnapshotMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getDeleteSnapshotMethod = SubscriberGrpc.getDeleteSnapshotMethod) == null) {
+          SubscriberGrpc.getDeleteSnapshotMethod = getDeleteSnapshotMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.DeleteSnapshotRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "DeleteSnapshot"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.DeleteSnapshotRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("DeleteSnapshot"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteSnapshotMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSeekMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.SeekRequest,
-      com.google.pubsub.v1.SeekResponse> METHOD_SEEK =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Subscriber", "Seek"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.SeekRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.SeekResponse.getDefaultInstance()));
+      com.google.pubsub.v1.SeekResponse> METHOD_SEEK = getSeekMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.SeekRequest,
+      com.google.pubsub.v1.SeekResponse> getSeekMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.SeekRequest,
+      com.google.pubsub.v1.SeekResponse> getSeekMethod() {
+    return getSeekMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.SeekRequest,
+      com.google.pubsub.v1.SeekResponse> getSeekMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.SeekRequest, com.google.pubsub.v1.SeekResponse> getSeekMethod;
+    if ((getSeekMethod = SubscriberGrpc.getSeekMethod) == null) {
+      synchronized (SubscriberGrpc.class) {
+        if ((getSeekMethod = SubscriberGrpc.getSeekMethod) == null) {
+          SubscriberGrpc.getSeekMethod = getSeekMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.SeekRequest, com.google.pubsub.v1.SeekResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Subscriber", "Seek"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.SeekRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.SeekResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SubscriberMethodDescriptorSupplier("Seek"))
+                  .build();
+          }
+        }
+     }
+     return getSeekMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -183,7 +603,7 @@ public final class SubscriberGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static SubscriberFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -213,7 +633,7 @@ public final class SubscriberGrpc {
      */
     public void createSubscription(com.google.pubsub.v1.Subscription request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Subscription> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_SUBSCRIPTION, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateSubscriptionMethodHelper(), responseObserver);
     }
 
     /**
@@ -223,7 +643,7 @@ public final class SubscriberGrpc {
      */
     public void getSubscription(com.google.pubsub.v1.GetSubscriptionRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Subscription> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_SUBSCRIPTION, responseObserver);
+      asyncUnimplementedUnaryCall(getGetSubscriptionMethodHelper(), responseObserver);
     }
 
     /**
@@ -238,7 +658,7 @@ public final class SubscriberGrpc {
      */
     public void updateSubscription(com.google.pubsub.v1.UpdateSubscriptionRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Subscription> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_SUBSCRIPTION, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateSubscriptionMethodHelper(), responseObserver);
     }
 
     /**
@@ -248,7 +668,7 @@ public final class SubscriberGrpc {
      */
     public void listSubscriptions(com.google.pubsub.v1.ListSubscriptionsRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.ListSubscriptionsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_SUBSCRIPTIONS, responseObserver);
+      asyncUnimplementedUnaryCall(getListSubscriptionsMethodHelper(), responseObserver);
     }
 
     /**
@@ -262,7 +682,7 @@ public final class SubscriberGrpc {
      */
     public void deleteSubscription(com.google.pubsub.v1.DeleteSubscriptionRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_SUBSCRIPTION, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteSubscriptionMethodHelper(), responseObserver);
     }
 
     /**
@@ -276,7 +696,7 @@ public final class SubscriberGrpc {
      */
     public void modifyAckDeadline(com.google.pubsub.v1.ModifyAckDeadlineRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_MODIFY_ACK_DEADLINE, responseObserver);
+      asyncUnimplementedUnaryCall(getModifyAckDeadlineMethodHelper(), responseObserver);
     }
 
     /**
@@ -291,7 +711,7 @@ public final class SubscriberGrpc {
      */
     public void acknowledge(com.google.pubsub.v1.AcknowledgeRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_ACKNOWLEDGE, responseObserver);
+      asyncUnimplementedUnaryCall(getAcknowledgeMethodHelper(), responseObserver);
     }
 
     /**
@@ -304,7 +724,7 @@ public final class SubscriberGrpc {
      */
     public void pull(com.google.pubsub.v1.PullRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.PullResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_PULL, responseObserver);
+      asyncUnimplementedUnaryCall(getPullMethodHelper(), responseObserver);
     }
 
     /**
@@ -324,7 +744,7 @@ public final class SubscriberGrpc {
      */
     public io.grpc.stub.StreamObserver<com.google.pubsub.v1.StreamingPullRequest> streamingPull(
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.StreamingPullResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(METHOD_STREAMING_PULL, responseObserver);
+      return asyncUnimplementedStreamingCall(getStreamingPullMethodHelper(), responseObserver);
     }
 
     /**
@@ -338,7 +758,7 @@ public final class SubscriberGrpc {
      */
     public void modifyPushConfig(com.google.pubsub.v1.ModifyPushConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_MODIFY_PUSH_CONFIG, responseObserver);
+      asyncUnimplementedUnaryCall(getModifyPushConfigMethodHelper(), responseObserver);
     }
 
     /**
@@ -348,7 +768,7 @@ public final class SubscriberGrpc {
      */
     public void listSnapshots(com.google.pubsub.v1.ListSnapshotsRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.ListSnapshotsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_SNAPSHOTS, responseObserver);
+      asyncUnimplementedUnaryCall(getListSnapshotsMethodHelper(), responseObserver);
     }
 
     /**
@@ -366,7 +786,7 @@ public final class SubscriberGrpc {
      */
     public void createSnapshot(com.google.pubsub.v1.CreateSnapshotRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Snapshot> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_SNAPSHOT, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateSnapshotMethodHelper(), responseObserver);
     }
 
     /**
@@ -381,7 +801,7 @@ public final class SubscriberGrpc {
      */
     public void updateSnapshot(com.google.pubsub.v1.UpdateSnapshotRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Snapshot> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_SNAPSHOT, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateSnapshotMethodHelper(), responseObserver);
     }
 
     /**
@@ -394,7 +814,7 @@ public final class SubscriberGrpc {
      */
     public void deleteSnapshot(com.google.pubsub.v1.DeleteSnapshotRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_SNAPSHOT, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteSnapshotMethodHelper(), responseObserver);
     }
 
     /**
@@ -405,111 +825,111 @@ public final class SubscriberGrpc {
      */
     public void seek(com.google.pubsub.v1.SeekRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.SeekResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SEEK, responseObserver);
+      asyncUnimplementedUnaryCall(getSeekMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_CREATE_SUBSCRIPTION,
+            getCreateSubscriptionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.Subscription,
                 com.google.pubsub.v1.Subscription>(
                   this, METHODID_CREATE_SUBSCRIPTION)))
           .addMethod(
-            METHOD_GET_SUBSCRIPTION,
+            getGetSubscriptionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.GetSubscriptionRequest,
                 com.google.pubsub.v1.Subscription>(
                   this, METHODID_GET_SUBSCRIPTION)))
           .addMethod(
-            METHOD_UPDATE_SUBSCRIPTION,
+            getUpdateSubscriptionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.UpdateSubscriptionRequest,
                 com.google.pubsub.v1.Subscription>(
                   this, METHODID_UPDATE_SUBSCRIPTION)))
           .addMethod(
-            METHOD_LIST_SUBSCRIPTIONS,
+            getListSubscriptionsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.ListSubscriptionsRequest,
                 com.google.pubsub.v1.ListSubscriptionsResponse>(
                   this, METHODID_LIST_SUBSCRIPTIONS)))
           .addMethod(
-            METHOD_DELETE_SUBSCRIPTION,
+            getDeleteSubscriptionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.DeleteSubscriptionRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_SUBSCRIPTION)))
           .addMethod(
-            METHOD_MODIFY_ACK_DEADLINE,
+            getModifyAckDeadlineMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.ModifyAckDeadlineRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_MODIFY_ACK_DEADLINE)))
           .addMethod(
-            METHOD_ACKNOWLEDGE,
+            getAcknowledgeMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.AcknowledgeRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_ACKNOWLEDGE)))
           .addMethod(
-            METHOD_PULL,
+            getPullMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.PullRequest,
                 com.google.pubsub.v1.PullResponse>(
                   this, METHODID_PULL)))
           .addMethod(
-            METHOD_STREAMING_PULL,
+            getStreamingPullMethodHelper(),
             asyncBidiStreamingCall(
               new MethodHandlers<
                 com.google.pubsub.v1.StreamingPullRequest,
                 com.google.pubsub.v1.StreamingPullResponse>(
                   this, METHODID_STREAMING_PULL)))
           .addMethod(
-            METHOD_MODIFY_PUSH_CONFIG,
+            getModifyPushConfigMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.ModifyPushConfigRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_MODIFY_PUSH_CONFIG)))
           .addMethod(
-            METHOD_LIST_SNAPSHOTS,
+            getListSnapshotsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.ListSnapshotsRequest,
                 com.google.pubsub.v1.ListSnapshotsResponse>(
                   this, METHODID_LIST_SNAPSHOTS)))
           .addMethod(
-            METHOD_CREATE_SNAPSHOT,
+            getCreateSnapshotMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.CreateSnapshotRequest,
                 com.google.pubsub.v1.Snapshot>(
                   this, METHODID_CREATE_SNAPSHOT)))
           .addMethod(
-            METHOD_UPDATE_SNAPSHOT,
+            getUpdateSnapshotMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.UpdateSnapshotRequest,
                 com.google.pubsub.v1.Snapshot>(
                   this, METHODID_UPDATE_SNAPSHOT)))
           .addMethod(
-            METHOD_DELETE_SNAPSHOT,
+            getDeleteSnapshotMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.DeleteSnapshotRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_SNAPSHOT)))
           .addMethod(
-            METHOD_SEEK,
+            getSeekMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.SeekRequest,
@@ -557,7 +977,7 @@ public final class SubscriberGrpc {
     public void createSubscription(com.google.pubsub.v1.Subscription request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Subscription> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_SUBSCRIPTION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateSubscriptionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -568,7 +988,7 @@ public final class SubscriberGrpc {
     public void getSubscription(com.google.pubsub.v1.GetSubscriptionRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Subscription> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_SUBSCRIPTION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetSubscriptionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -584,7 +1004,7 @@ public final class SubscriberGrpc {
     public void updateSubscription(com.google.pubsub.v1.UpdateSubscriptionRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Subscription> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_SUBSCRIPTION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateSubscriptionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -595,7 +1015,7 @@ public final class SubscriberGrpc {
     public void listSubscriptions(com.google.pubsub.v1.ListSubscriptionsRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.ListSubscriptionsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_SUBSCRIPTIONS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListSubscriptionsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -610,7 +1030,7 @@ public final class SubscriberGrpc {
     public void deleteSubscription(com.google.pubsub.v1.DeleteSubscriptionRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_SUBSCRIPTION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteSubscriptionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -625,7 +1045,7 @@ public final class SubscriberGrpc {
     public void modifyAckDeadline(com.google.pubsub.v1.ModifyAckDeadlineRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_MODIFY_ACK_DEADLINE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getModifyAckDeadlineMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -641,7 +1061,7 @@ public final class SubscriberGrpc {
     public void acknowledge(com.google.pubsub.v1.AcknowledgeRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_ACKNOWLEDGE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getAcknowledgeMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -655,7 +1075,7 @@ public final class SubscriberGrpc {
     public void pull(com.google.pubsub.v1.PullRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.PullResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_PULL, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getPullMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -676,7 +1096,7 @@ public final class SubscriberGrpc {
     public io.grpc.stub.StreamObserver<com.google.pubsub.v1.StreamingPullRequest> streamingPull(
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.StreamingPullResponse> responseObserver) {
       return asyncBidiStreamingCall(
-          getChannel().newCall(METHOD_STREAMING_PULL, getCallOptions()), responseObserver);
+          getChannel().newCall(getStreamingPullMethodHelper(), getCallOptions()), responseObserver);
     }
 
     /**
@@ -691,7 +1111,7 @@ public final class SubscriberGrpc {
     public void modifyPushConfig(com.google.pubsub.v1.ModifyPushConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_MODIFY_PUSH_CONFIG, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getModifyPushConfigMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -702,7 +1122,7 @@ public final class SubscriberGrpc {
     public void listSnapshots(com.google.pubsub.v1.ListSnapshotsRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.ListSnapshotsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_SNAPSHOTS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListSnapshotsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -721,7 +1141,7 @@ public final class SubscriberGrpc {
     public void createSnapshot(com.google.pubsub.v1.CreateSnapshotRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Snapshot> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_SNAPSHOT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateSnapshotMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -737,7 +1157,7 @@ public final class SubscriberGrpc {
     public void updateSnapshot(com.google.pubsub.v1.UpdateSnapshotRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Snapshot> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_SNAPSHOT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateSnapshotMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -751,7 +1171,7 @@ public final class SubscriberGrpc {
     public void deleteSnapshot(com.google.pubsub.v1.DeleteSnapshotRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_SNAPSHOT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteSnapshotMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -763,7 +1183,7 @@ public final class SubscriberGrpc {
     public void seek(com.google.pubsub.v1.SeekRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.SeekResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SEEK, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSeekMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -804,7 +1224,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.Subscription createSubscription(com.google.pubsub.v1.Subscription request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_SUBSCRIPTION, getCallOptions(), request);
+          getChannel(), getCreateSubscriptionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -814,7 +1234,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.Subscription getSubscription(com.google.pubsub.v1.GetSubscriptionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_SUBSCRIPTION, getCallOptions(), request);
+          getChannel(), getGetSubscriptionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -829,7 +1249,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.Subscription updateSubscription(com.google.pubsub.v1.UpdateSubscriptionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_SUBSCRIPTION, getCallOptions(), request);
+          getChannel(), getUpdateSubscriptionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -839,7 +1259,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.ListSubscriptionsResponse listSubscriptions(com.google.pubsub.v1.ListSubscriptionsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_SUBSCRIPTIONS, getCallOptions(), request);
+          getChannel(), getListSubscriptionsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -853,7 +1273,7 @@ public final class SubscriberGrpc {
      */
     public com.google.protobuf.Empty deleteSubscription(com.google.pubsub.v1.DeleteSubscriptionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_SUBSCRIPTION, getCallOptions(), request);
+          getChannel(), getDeleteSubscriptionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -867,7 +1287,7 @@ public final class SubscriberGrpc {
      */
     public com.google.protobuf.Empty modifyAckDeadline(com.google.pubsub.v1.ModifyAckDeadlineRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_MODIFY_ACK_DEADLINE, getCallOptions(), request);
+          getChannel(), getModifyAckDeadlineMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -882,7 +1302,7 @@ public final class SubscriberGrpc {
      */
     public com.google.protobuf.Empty acknowledge(com.google.pubsub.v1.AcknowledgeRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_ACKNOWLEDGE, getCallOptions(), request);
+          getChannel(), getAcknowledgeMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -895,7 +1315,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.PullResponse pull(com.google.pubsub.v1.PullRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_PULL, getCallOptions(), request);
+          getChannel(), getPullMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -909,7 +1329,7 @@ public final class SubscriberGrpc {
      */
     public com.google.protobuf.Empty modifyPushConfig(com.google.pubsub.v1.ModifyPushConfigRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_MODIFY_PUSH_CONFIG, getCallOptions(), request);
+          getChannel(), getModifyPushConfigMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -919,7 +1339,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.ListSnapshotsResponse listSnapshots(com.google.pubsub.v1.ListSnapshotsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_SNAPSHOTS, getCallOptions(), request);
+          getChannel(), getListSnapshotsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -937,7 +1357,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.Snapshot createSnapshot(com.google.pubsub.v1.CreateSnapshotRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_SNAPSHOT, getCallOptions(), request);
+          getChannel(), getCreateSnapshotMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -952,7 +1372,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.Snapshot updateSnapshot(com.google.pubsub.v1.UpdateSnapshotRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_SNAPSHOT, getCallOptions(), request);
+          getChannel(), getUpdateSnapshotMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -965,7 +1385,7 @@ public final class SubscriberGrpc {
      */
     public com.google.protobuf.Empty deleteSnapshot(com.google.pubsub.v1.DeleteSnapshotRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_SNAPSHOT, getCallOptions(), request);
+          getChannel(), getDeleteSnapshotMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -976,7 +1396,7 @@ public final class SubscriberGrpc {
      */
     public com.google.pubsub.v1.SeekResponse seek(com.google.pubsub.v1.SeekRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SEEK, getCallOptions(), request);
+          getChannel(), getSeekMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -1018,7 +1438,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Subscription> createSubscription(
         com.google.pubsub.v1.Subscription request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_SUBSCRIPTION, getCallOptions()), request);
+          getChannel().newCall(getCreateSubscriptionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1029,7 +1449,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Subscription> getSubscription(
         com.google.pubsub.v1.GetSubscriptionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_SUBSCRIPTION, getCallOptions()), request);
+          getChannel().newCall(getGetSubscriptionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1045,7 +1465,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Subscription> updateSubscription(
         com.google.pubsub.v1.UpdateSubscriptionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_SUBSCRIPTION, getCallOptions()), request);
+          getChannel().newCall(getUpdateSubscriptionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1056,7 +1476,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.ListSubscriptionsResponse> listSubscriptions(
         com.google.pubsub.v1.ListSubscriptionsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_SUBSCRIPTIONS, getCallOptions()), request);
+          getChannel().newCall(getListSubscriptionsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1071,7 +1491,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteSubscription(
         com.google.pubsub.v1.DeleteSubscriptionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_SUBSCRIPTION, getCallOptions()), request);
+          getChannel().newCall(getDeleteSubscriptionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1086,7 +1506,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> modifyAckDeadline(
         com.google.pubsub.v1.ModifyAckDeadlineRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_MODIFY_ACK_DEADLINE, getCallOptions()), request);
+          getChannel().newCall(getModifyAckDeadlineMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1102,7 +1522,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> acknowledge(
         com.google.pubsub.v1.AcknowledgeRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_ACKNOWLEDGE, getCallOptions()), request);
+          getChannel().newCall(getAcknowledgeMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1116,7 +1536,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.PullResponse> pull(
         com.google.pubsub.v1.PullRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_PULL, getCallOptions()), request);
+          getChannel().newCall(getPullMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1131,7 +1551,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> modifyPushConfig(
         com.google.pubsub.v1.ModifyPushConfigRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_MODIFY_PUSH_CONFIG, getCallOptions()), request);
+          getChannel().newCall(getModifyPushConfigMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1142,7 +1562,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.ListSnapshotsResponse> listSnapshots(
         com.google.pubsub.v1.ListSnapshotsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_SNAPSHOTS, getCallOptions()), request);
+          getChannel().newCall(getListSnapshotsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1161,7 +1581,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Snapshot> createSnapshot(
         com.google.pubsub.v1.CreateSnapshotRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_SNAPSHOT, getCallOptions()), request);
+          getChannel().newCall(getCreateSnapshotMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1177,7 +1597,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Snapshot> updateSnapshot(
         com.google.pubsub.v1.UpdateSnapshotRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_SNAPSHOT, getCallOptions()), request);
+          getChannel().newCall(getUpdateSnapshotMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1191,7 +1611,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteSnapshot(
         com.google.pubsub.v1.DeleteSnapshotRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_SNAPSHOT, getCallOptions()), request);
+          getChannel().newCall(getDeleteSnapshotMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -1203,7 +1623,7 @@ public final class SubscriberGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.SeekResponse> seek(
         com.google.pubsub.v1.SeekRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SEEK, getCallOptions()), request);
+          getChannel().newCall(getSeekMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -1315,10 +1735,38 @@ public final class SubscriberGrpc {
     }
   }
 
-  private static final class SubscriberDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class SubscriberBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    SubscriberBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.pubsub.v1.PubsubProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Subscriber");
+    }
+  }
+
+  private static final class SubscriberFileDescriptorSupplier
+      extends SubscriberBaseDescriptorSupplier {
+    SubscriberFileDescriptorSupplier() {}
+  }
+
+  private static final class SubscriberMethodDescriptorSupplier
+      extends SubscriberBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    SubscriberMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -1331,22 +1779,22 @@ public final class SubscriberGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new SubscriberDescriptorSupplier())
-              .addMethod(METHOD_CREATE_SUBSCRIPTION)
-              .addMethod(METHOD_GET_SUBSCRIPTION)
-              .addMethod(METHOD_UPDATE_SUBSCRIPTION)
-              .addMethod(METHOD_LIST_SUBSCRIPTIONS)
-              .addMethod(METHOD_DELETE_SUBSCRIPTION)
-              .addMethod(METHOD_MODIFY_ACK_DEADLINE)
-              .addMethod(METHOD_ACKNOWLEDGE)
-              .addMethod(METHOD_PULL)
-              .addMethod(METHOD_STREAMING_PULL)
-              .addMethod(METHOD_MODIFY_PUSH_CONFIG)
-              .addMethod(METHOD_LIST_SNAPSHOTS)
-              .addMethod(METHOD_CREATE_SNAPSHOT)
-              .addMethod(METHOD_UPDATE_SNAPSHOT)
-              .addMethod(METHOD_DELETE_SNAPSHOT)
-              .addMethod(METHOD_SEEK)
+              .setSchemaDescriptor(new SubscriberFileDescriptorSupplier())
+              .addMethod(getCreateSubscriptionMethodHelper())
+              .addMethod(getGetSubscriptionMethodHelper())
+              .addMethod(getUpdateSubscriptionMethodHelper())
+              .addMethod(getListSubscriptionsMethodHelper())
+              .addMethod(getDeleteSubscriptionMethodHelper())
+              .addMethod(getModifyAckDeadlineMethodHelper())
+              .addMethod(getAcknowledgeMethodHelper())
+              .addMethod(getPullMethodHelper())
+              .addMethod(getStreamingPullMethodHelper())
+              .addMethod(getModifyPushConfigMethodHelper())
+              .addMethod(getListSnapshotsMethodHelper())
+              .addMethod(getCreateSnapshotMethodHelper())
+              .addMethod(getUpdateSnapshotMethodHelper())
+              .addMethod(getDeleteSnapshotMethodHelper())
+              .addMethod(getSeekMethodHelper())
               .build();
         }
       }

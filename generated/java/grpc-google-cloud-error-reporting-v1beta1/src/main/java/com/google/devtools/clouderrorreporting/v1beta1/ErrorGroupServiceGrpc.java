@@ -1,19 +1,19 @@
 package com.google.devtools.clouderrorreporting.v1beta1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/devtools/clouderrorreporting/v1beta1/error_group_service.proto")
 public final class ErrorGroupServiceGrpc {
 
@@ -31,23 +31,79 @@ public final class ErrorGroupServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetGroupMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest,
-      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> METHOD_GET_GROUP =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService", "GetGroup"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.getDefaultInstance()));
+      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> METHOD_GET_GROUP = getGetGroupMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getGetGroupMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getGetGroupMethod() {
+    return getGetGroupMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getGetGroupMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest, com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getGetGroupMethod;
+    if ((getGetGroupMethod = ErrorGroupServiceGrpc.getGetGroupMethod) == null) {
+      synchronized (ErrorGroupServiceGrpc.class) {
+        if ((getGetGroupMethod = ErrorGroupServiceGrpc.getGetGroupMethod) == null) {
+          ErrorGroupServiceGrpc.getGetGroupMethod = getGetGroupMethod = 
+              io.grpc.MethodDescriptor.<com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest, com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService", "GetGroup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.getDefaultInstance()))
+                  .setSchemaDescriptor(new ErrorGroupServiceMethodDescriptorSupplier("GetGroup"))
+                  .build();
+          }
+        }
+     }
+     return getGetGroupMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateGroupMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest,
-      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> METHOD_UPDATE_GROUP =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService", "UpdateGroup"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.getDefaultInstance()));
+      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> METHOD_UPDATE_GROUP = getUpdateGroupMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getUpdateGroupMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getUpdateGroupMethod() {
+    return getUpdateGroupMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest,
+      com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getUpdateGroupMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest, com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getUpdateGroupMethod;
+    if ((getUpdateGroupMethod = ErrorGroupServiceGrpc.getUpdateGroupMethod) == null) {
+      synchronized (ErrorGroupServiceGrpc.class) {
+        if ((getUpdateGroupMethod = ErrorGroupServiceGrpc.getUpdateGroupMethod) == null) {
+          ErrorGroupServiceGrpc.getUpdateGroupMethod = getUpdateGroupMethod = 
+              io.grpc.MethodDescriptor.<com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest, com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService", "UpdateGroup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.getDefaultInstance()))
+                  .setSchemaDescriptor(new ErrorGroupServiceMethodDescriptorSupplier("UpdateGroup"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateGroupMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -65,7 +121,7 @@ public final class ErrorGroupServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static ErrorGroupServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -86,7 +142,7 @@ public final class ErrorGroupServiceGrpc {
      */
     public void getGroup(com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_GROUP, responseObserver);
+      asyncUnimplementedUnaryCall(getGetGroupMethodHelper(), responseObserver);
     }
 
     /**
@@ -97,20 +153,20 @@ public final class ErrorGroupServiceGrpc {
      */
     public void updateGroup(com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_GROUP, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateGroupMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_GET_GROUP,
+            getGetGroupMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest,
                 com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup>(
                   this, METHODID_GET_GROUP)))
           .addMethod(
-            METHOD_UPDATE_GROUP,
+            getUpdateGroupMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest,
@@ -149,7 +205,7 @@ public final class ErrorGroupServiceGrpc {
     public void getGroup(com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_GROUP, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetGroupMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -161,7 +217,7 @@ public final class ErrorGroupServiceGrpc {
     public void updateGroup(com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_GROUP, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateGroupMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -193,7 +249,7 @@ public final class ErrorGroupServiceGrpc {
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup getGroup(com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_GROUP, getCallOptions(), request);
+          getChannel(), getGetGroupMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -204,7 +260,7 @@ public final class ErrorGroupServiceGrpc {
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup updateGroup(com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_GROUP, getCallOptions(), request);
+          getChannel(), getUpdateGroupMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -237,7 +293,7 @@ public final class ErrorGroupServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> getGroup(
         com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_GROUP, getCallOptions()), request);
+          getChannel().newCall(getGetGroupMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -249,7 +305,7 @@ public final class ErrorGroupServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup> updateGroup(
         com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_GROUP, getCallOptions()), request);
+          getChannel().newCall(getUpdateGroupMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -297,10 +353,38 @@ public final class ErrorGroupServiceGrpc {
     }
   }
 
-  private static final class ErrorGroupServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class ErrorGroupServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    ErrorGroupServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupServiceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("ErrorGroupService");
+    }
+  }
+
+  private static final class ErrorGroupServiceFileDescriptorSupplier
+      extends ErrorGroupServiceBaseDescriptorSupplier {
+    ErrorGroupServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class ErrorGroupServiceMethodDescriptorSupplier
+      extends ErrorGroupServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    ErrorGroupServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -313,9 +397,9 @@ public final class ErrorGroupServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new ErrorGroupServiceDescriptorSupplier())
-              .addMethod(METHOD_GET_GROUP)
-              .addMethod(METHOD_UPDATE_GROUP)
+              .setSchemaDescriptor(new ErrorGroupServiceFileDescriptorSupplier())
+              .addMethod(getGetGroupMethodHelper())
+              .addMethod(getUpdateGroupMethodHelper())
               .build();
         }
       }
