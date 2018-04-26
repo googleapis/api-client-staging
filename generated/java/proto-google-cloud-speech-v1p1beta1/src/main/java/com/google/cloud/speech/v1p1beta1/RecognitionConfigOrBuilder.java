@@ -279,47 +279,13 @@ public interface RecognitionConfigOrBuilder extends
    * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
    * version of the specified model does not exist, then the speech is
    * recognized using the standard version of the specified model.
-   * Enhanced speech models require that you enable audio logging for
-   * your request. To enable audio logging, set the `loggingConsentState` field
-   * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
-   * You must also opt-in to the audio logging alpha using the instructions in
-   * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
-   * to true and you have not enabled audio logging, then you will receive
-   * an error.
+   * Enhanced speech models require that you opt-in to the audio logging using
+   * instructions in the [alpha documentation](/speech/data-sharing). If you set
+   * `use_enhanced` to true and you have not enabled audio logging, then you
+   * will receive an error.
    * </pre>
    *
    * <code>bool use_enhanced = 14;</code>
    */
   boolean getUseEnhanced();
-
-  /**
-   * <pre>
-   * *Optional* Contains settings to opt-in to allow Google to
-   * collect and use data from this request to improve Google's products and
-   * services.
-   * </pre>
-   *
-   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-   */
-  boolean hasGoogleDataCollectionOptIn();
-  /**
-   * <pre>
-   * *Optional* Contains settings to opt-in to allow Google to
-   * collect and use data from this request to improve Google's products and
-   * services.
-   * </pre>
-   *
-   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-   */
-  com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig getGoogleDataCollectionOptIn();
-  /**
-   * <pre>
-   * *Optional* Contains settings to opt-in to allow Google to
-   * collect and use data from this request to improve Google's products and
-   * services.
-   * </pre>
-   *
-   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-   */
-  com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder getGoogleDataCollectionOptInOrBuilder();
 }

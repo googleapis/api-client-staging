@@ -1,19 +1,19 @@
 package com.google.monitoring.v3;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -31,7 +31,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/monitoring/v3/group_service.proto")
 public final class GroupServiceGrpc {
 
@@ -41,59 +41,227 @@ public final class GroupServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListGroupsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupsRequest,
-      com.google.monitoring.v3.ListGroupsResponse> METHOD_LIST_GROUPS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.GroupService", "ListGroups"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListGroupsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListGroupsResponse.getDefaultInstance()));
+      com.google.monitoring.v3.ListGroupsResponse> METHOD_LIST_GROUPS = getListGroupsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupsRequest,
+      com.google.monitoring.v3.ListGroupsResponse> getListGroupsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupsRequest,
+      com.google.monitoring.v3.ListGroupsResponse> getListGroupsMethod() {
+    return getListGroupsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupsRequest,
+      com.google.monitoring.v3.ListGroupsResponse> getListGroupsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupsRequest, com.google.monitoring.v3.ListGroupsResponse> getListGroupsMethod;
+    if ((getListGroupsMethod = GroupServiceGrpc.getListGroupsMethod) == null) {
+      synchronized (GroupServiceGrpc.class) {
+        if ((getListGroupsMethod = GroupServiceGrpc.getListGroupsMethod) == null) {
+          GroupServiceGrpc.getListGroupsMethod = getListGroupsMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.ListGroupsRequest, com.google.monitoring.v3.ListGroupsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.GroupService", "ListGroups"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListGroupsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListGroupsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new GroupServiceMethodDescriptorSupplier("ListGroups"))
+                  .build();
+          }
+        }
+     }
+     return getListGroupsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetGroupMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.GetGroupRequest,
-      com.google.monitoring.v3.Group> METHOD_GET_GROUP =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.GroupService", "GetGroup"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.GetGroupRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.Group.getDefaultInstance()));
+      com.google.monitoring.v3.Group> METHOD_GET_GROUP = getGetGroupMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.GetGroupRequest,
+      com.google.monitoring.v3.Group> getGetGroupMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetGroupRequest,
+      com.google.monitoring.v3.Group> getGetGroupMethod() {
+    return getGetGroupMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetGroupRequest,
+      com.google.monitoring.v3.Group> getGetGroupMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.GetGroupRequest, com.google.monitoring.v3.Group> getGetGroupMethod;
+    if ((getGetGroupMethod = GroupServiceGrpc.getGetGroupMethod) == null) {
+      synchronized (GroupServiceGrpc.class) {
+        if ((getGetGroupMethod = GroupServiceGrpc.getGetGroupMethod) == null) {
+          GroupServiceGrpc.getGetGroupMethod = getGetGroupMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.GetGroupRequest, com.google.monitoring.v3.Group>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.GroupService", "GetGroup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.GetGroupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.Group.getDefaultInstance()))
+                  .setSchemaDescriptor(new GroupServiceMethodDescriptorSupplier("GetGroup"))
+                  .build();
+          }
+        }
+     }
+     return getGetGroupMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateGroupMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateGroupRequest,
-      com.google.monitoring.v3.Group> METHOD_CREATE_GROUP =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.GroupService", "CreateGroup"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.CreateGroupRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.Group.getDefaultInstance()));
+      com.google.monitoring.v3.Group> METHOD_CREATE_GROUP = getCreateGroupMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateGroupRequest,
+      com.google.monitoring.v3.Group> getCreateGroupMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateGroupRequest,
+      com.google.monitoring.v3.Group> getCreateGroupMethod() {
+    return getCreateGroupMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateGroupRequest,
+      com.google.monitoring.v3.Group> getCreateGroupMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateGroupRequest, com.google.monitoring.v3.Group> getCreateGroupMethod;
+    if ((getCreateGroupMethod = GroupServiceGrpc.getCreateGroupMethod) == null) {
+      synchronized (GroupServiceGrpc.class) {
+        if ((getCreateGroupMethod = GroupServiceGrpc.getCreateGroupMethod) == null) {
+          GroupServiceGrpc.getCreateGroupMethod = getCreateGroupMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.CreateGroupRequest, com.google.monitoring.v3.Group>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.GroupService", "CreateGroup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.CreateGroupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.Group.getDefaultInstance()))
+                  .setSchemaDescriptor(new GroupServiceMethodDescriptorSupplier("CreateGroup"))
+                  .build();
+          }
+        }
+     }
+     return getCreateGroupMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateGroupMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateGroupRequest,
-      com.google.monitoring.v3.Group> METHOD_UPDATE_GROUP =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.GroupService", "UpdateGroup"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.UpdateGroupRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.Group.getDefaultInstance()));
+      com.google.monitoring.v3.Group> METHOD_UPDATE_GROUP = getUpdateGroupMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateGroupRequest,
+      com.google.monitoring.v3.Group> getUpdateGroupMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateGroupRequest,
+      com.google.monitoring.v3.Group> getUpdateGroupMethod() {
+    return getUpdateGroupMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateGroupRequest,
+      com.google.monitoring.v3.Group> getUpdateGroupMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateGroupRequest, com.google.monitoring.v3.Group> getUpdateGroupMethod;
+    if ((getUpdateGroupMethod = GroupServiceGrpc.getUpdateGroupMethod) == null) {
+      synchronized (GroupServiceGrpc.class) {
+        if ((getUpdateGroupMethod = GroupServiceGrpc.getUpdateGroupMethod) == null) {
+          GroupServiceGrpc.getUpdateGroupMethod = getUpdateGroupMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.UpdateGroupRequest, com.google.monitoring.v3.Group>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.GroupService", "UpdateGroup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.UpdateGroupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.Group.getDefaultInstance()))
+                  .setSchemaDescriptor(new GroupServiceMethodDescriptorSupplier("UpdateGroup"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateGroupMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteGroupMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteGroupRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_GROUP =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.GroupService", "DeleteGroup"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.DeleteGroupRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_GROUP = getDeleteGroupMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteGroupRequest,
+      com.google.protobuf.Empty> getDeleteGroupMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteGroupRequest,
+      com.google.protobuf.Empty> getDeleteGroupMethod() {
+    return getDeleteGroupMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteGroupRequest,
+      com.google.protobuf.Empty> getDeleteGroupMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteGroupRequest, com.google.protobuf.Empty> getDeleteGroupMethod;
+    if ((getDeleteGroupMethod = GroupServiceGrpc.getDeleteGroupMethod) == null) {
+      synchronized (GroupServiceGrpc.class) {
+        if ((getDeleteGroupMethod = GroupServiceGrpc.getDeleteGroupMethod) == null) {
+          GroupServiceGrpc.getDeleteGroupMethod = getDeleteGroupMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.DeleteGroupRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.GroupService", "DeleteGroup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.DeleteGroupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new GroupServiceMethodDescriptorSupplier("DeleteGroup"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteGroupMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListGroupMembersMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupMembersRequest,
-      com.google.monitoring.v3.ListGroupMembersResponse> METHOD_LIST_GROUP_MEMBERS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.GroupService", "ListGroupMembers"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListGroupMembersRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListGroupMembersResponse.getDefaultInstance()));
+      com.google.monitoring.v3.ListGroupMembersResponse> METHOD_LIST_GROUP_MEMBERS = getListGroupMembersMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupMembersRequest,
+      com.google.monitoring.v3.ListGroupMembersResponse> getListGroupMembersMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupMembersRequest,
+      com.google.monitoring.v3.ListGroupMembersResponse> getListGroupMembersMethod() {
+    return getListGroupMembersMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupMembersRequest,
+      com.google.monitoring.v3.ListGroupMembersResponse> getListGroupMembersMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.ListGroupMembersRequest, com.google.monitoring.v3.ListGroupMembersResponse> getListGroupMembersMethod;
+    if ((getListGroupMembersMethod = GroupServiceGrpc.getListGroupMembersMethod) == null) {
+      synchronized (GroupServiceGrpc.class) {
+        if ((getListGroupMembersMethod = GroupServiceGrpc.getListGroupMembersMethod) == null) {
+          GroupServiceGrpc.getListGroupMembersMethod = getListGroupMembersMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.ListGroupMembersRequest, com.google.monitoring.v3.ListGroupMembersResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.GroupService", "ListGroupMembers"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListGroupMembersRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListGroupMembersResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new GroupServiceMethodDescriptorSupplier("ListGroupMembers"))
+                  .build();
+          }
+        }
+     }
+     return getListGroupMembersMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -111,7 +279,7 @@ public final class GroupServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static GroupServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -142,7 +310,7 @@ public final class GroupServiceGrpc {
      */
     public void listGroups(com.google.monitoring.v3.ListGroupsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListGroupsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_GROUPS, responseObserver);
+      asyncUnimplementedUnaryCall(getListGroupsMethodHelper(), responseObserver);
     }
 
     /**
@@ -152,7 +320,7 @@ public final class GroupServiceGrpc {
      */
     public void getGroup(com.google.monitoring.v3.GetGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.Group> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_GROUP, responseObserver);
+      asyncUnimplementedUnaryCall(getGetGroupMethodHelper(), responseObserver);
     }
 
     /**
@@ -162,7 +330,7 @@ public final class GroupServiceGrpc {
      */
     public void createGroup(com.google.monitoring.v3.CreateGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.Group> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_GROUP, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateGroupMethodHelper(), responseObserver);
     }
 
     /**
@@ -173,7 +341,7 @@ public final class GroupServiceGrpc {
      */
     public void updateGroup(com.google.monitoring.v3.UpdateGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.Group> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_GROUP, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateGroupMethodHelper(), responseObserver);
     }
 
     /**
@@ -183,7 +351,7 @@ public final class GroupServiceGrpc {
      */
     public void deleteGroup(com.google.monitoring.v3.DeleteGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_GROUP, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteGroupMethodHelper(), responseObserver);
     }
 
     /**
@@ -193,48 +361,48 @@ public final class GroupServiceGrpc {
      */
     public void listGroupMembers(com.google.monitoring.v3.ListGroupMembersRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListGroupMembersResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_GROUP_MEMBERS, responseObserver);
+      asyncUnimplementedUnaryCall(getListGroupMembersMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_GROUPS,
+            getListGroupsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.ListGroupsRequest,
                 com.google.monitoring.v3.ListGroupsResponse>(
                   this, METHODID_LIST_GROUPS)))
           .addMethod(
-            METHOD_GET_GROUP,
+            getGetGroupMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.GetGroupRequest,
                 com.google.monitoring.v3.Group>(
                   this, METHODID_GET_GROUP)))
           .addMethod(
-            METHOD_CREATE_GROUP,
+            getCreateGroupMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.CreateGroupRequest,
                 com.google.monitoring.v3.Group>(
                   this, METHODID_CREATE_GROUP)))
           .addMethod(
-            METHOD_UPDATE_GROUP,
+            getUpdateGroupMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.UpdateGroupRequest,
                 com.google.monitoring.v3.Group>(
                   this, METHODID_UPDATE_GROUP)))
           .addMethod(
-            METHOD_DELETE_GROUP,
+            getDeleteGroupMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.DeleteGroupRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_GROUP)))
           .addMethod(
-            METHOD_LIST_GROUP_MEMBERS,
+            getListGroupMembersMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.ListGroupMembersRequest,
@@ -283,7 +451,7 @@ public final class GroupServiceGrpc {
     public void listGroups(com.google.monitoring.v3.ListGroupsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListGroupsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_GROUPS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListGroupsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -294,7 +462,7 @@ public final class GroupServiceGrpc {
     public void getGroup(com.google.monitoring.v3.GetGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.Group> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_GROUP, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetGroupMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -305,7 +473,7 @@ public final class GroupServiceGrpc {
     public void createGroup(com.google.monitoring.v3.CreateGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.Group> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_GROUP, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateGroupMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -317,7 +485,7 @@ public final class GroupServiceGrpc {
     public void updateGroup(com.google.monitoring.v3.UpdateGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.Group> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_GROUP, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateGroupMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -328,7 +496,7 @@ public final class GroupServiceGrpc {
     public void deleteGroup(com.google.monitoring.v3.DeleteGroupRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_GROUP, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteGroupMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -339,7 +507,7 @@ public final class GroupServiceGrpc {
     public void listGroupMembers(com.google.monitoring.v3.ListGroupMembersRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListGroupMembersResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_GROUP_MEMBERS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListGroupMembersMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -381,7 +549,7 @@ public final class GroupServiceGrpc {
      */
     public com.google.monitoring.v3.ListGroupsResponse listGroups(com.google.monitoring.v3.ListGroupsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_GROUPS, getCallOptions(), request);
+          getChannel(), getListGroupsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -391,7 +559,7 @@ public final class GroupServiceGrpc {
      */
     public com.google.monitoring.v3.Group getGroup(com.google.monitoring.v3.GetGroupRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_GROUP, getCallOptions(), request);
+          getChannel(), getGetGroupMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -401,7 +569,7 @@ public final class GroupServiceGrpc {
      */
     public com.google.monitoring.v3.Group createGroup(com.google.monitoring.v3.CreateGroupRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_GROUP, getCallOptions(), request);
+          getChannel(), getCreateGroupMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -412,7 +580,7 @@ public final class GroupServiceGrpc {
      */
     public com.google.monitoring.v3.Group updateGroup(com.google.monitoring.v3.UpdateGroupRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_GROUP, getCallOptions(), request);
+          getChannel(), getUpdateGroupMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -422,7 +590,7 @@ public final class GroupServiceGrpc {
      */
     public com.google.protobuf.Empty deleteGroup(com.google.monitoring.v3.DeleteGroupRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_GROUP, getCallOptions(), request);
+          getChannel(), getDeleteGroupMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -432,7 +600,7 @@ public final class GroupServiceGrpc {
      */
     public com.google.monitoring.v3.ListGroupMembersResponse listGroupMembers(com.google.monitoring.v3.ListGroupMembersRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_GROUP_MEMBERS, getCallOptions(), request);
+          getChannel(), getListGroupMembersMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -475,7 +643,7 @@ public final class GroupServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.ListGroupsResponse> listGroups(
         com.google.monitoring.v3.ListGroupsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_GROUPS, getCallOptions()), request);
+          getChannel().newCall(getListGroupsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -486,7 +654,7 @@ public final class GroupServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.Group> getGroup(
         com.google.monitoring.v3.GetGroupRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_GROUP, getCallOptions()), request);
+          getChannel().newCall(getGetGroupMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -497,7 +665,7 @@ public final class GroupServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.Group> createGroup(
         com.google.monitoring.v3.CreateGroupRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_GROUP, getCallOptions()), request);
+          getChannel().newCall(getCreateGroupMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -509,7 +677,7 @@ public final class GroupServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.Group> updateGroup(
         com.google.monitoring.v3.UpdateGroupRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_GROUP, getCallOptions()), request);
+          getChannel().newCall(getUpdateGroupMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -520,7 +688,7 @@ public final class GroupServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteGroup(
         com.google.monitoring.v3.DeleteGroupRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_GROUP, getCallOptions()), request);
+          getChannel().newCall(getDeleteGroupMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -531,7 +699,7 @@ public final class GroupServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.ListGroupMembersResponse> listGroupMembers(
         com.google.monitoring.v3.ListGroupMembersRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_GROUP_MEMBERS, getCallOptions()), request);
+          getChannel().newCall(getListGroupMembersMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -599,10 +767,38 @@ public final class GroupServiceGrpc {
     }
   }
 
-  private static final class GroupServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class GroupServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    GroupServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.monitoring.v3.GroupServiceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("GroupService");
+    }
+  }
+
+  private static final class GroupServiceFileDescriptorSupplier
+      extends GroupServiceBaseDescriptorSupplier {
+    GroupServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class GroupServiceMethodDescriptorSupplier
+      extends GroupServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    GroupServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -615,13 +811,13 @@ public final class GroupServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new GroupServiceDescriptorSupplier())
-              .addMethod(METHOD_LIST_GROUPS)
-              .addMethod(METHOD_GET_GROUP)
-              .addMethod(METHOD_CREATE_GROUP)
-              .addMethod(METHOD_UPDATE_GROUP)
-              .addMethod(METHOD_DELETE_GROUP)
-              .addMethod(METHOD_LIST_GROUP_MEMBERS)
+              .setSchemaDescriptor(new GroupServiceFileDescriptorSupplier())
+              .addMethod(getListGroupsMethodHelper())
+              .addMethod(getGetGroupMethodHelper())
+              .addMethod(getCreateGroupMethodHelper())
+              .addMethod(getUpdateGroupMethodHelper())
+              .addMethod(getDeleteGroupMethodHelper())
+              .addMethod(getListGroupMembersMethodHelper())
               .build();
         }
       }

@@ -1,19 +1,19 @@
 package com.google.appengine.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/appengine/v1/appengine.proto")
 public final class InstancesGrpc {
 
@@ -31,41 +31,153 @@ public final class InstancesGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListInstancesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.ListInstancesRequest,
-      com.google.appengine.v1.ListInstancesResponse> METHOD_LIST_INSTANCES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Instances", "ListInstances"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.ListInstancesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.ListInstancesResponse.getDefaultInstance()));
+      com.google.appengine.v1.ListInstancesResponse> METHOD_LIST_INSTANCES = getListInstancesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.ListInstancesRequest,
+      com.google.appengine.v1.ListInstancesResponse> getListInstancesMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.ListInstancesRequest,
+      com.google.appengine.v1.ListInstancesResponse> getListInstancesMethod() {
+    return getListInstancesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.ListInstancesRequest,
+      com.google.appengine.v1.ListInstancesResponse> getListInstancesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.ListInstancesRequest, com.google.appengine.v1.ListInstancesResponse> getListInstancesMethod;
+    if ((getListInstancesMethod = InstancesGrpc.getListInstancesMethod) == null) {
+      synchronized (InstancesGrpc.class) {
+        if ((getListInstancesMethod = InstancesGrpc.getListInstancesMethod) == null) {
+          InstancesGrpc.getListInstancesMethod = getListInstancesMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.ListInstancesRequest, com.google.appengine.v1.ListInstancesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Instances", "ListInstances"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.ListInstancesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.ListInstancesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new InstancesMethodDescriptorSupplier("ListInstances"))
+                  .build();
+          }
+        }
+     }
+     return getListInstancesMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetInstanceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.GetInstanceRequest,
-      com.google.appengine.v1.Instance> METHOD_GET_INSTANCE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Instances", "GetInstance"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.GetInstanceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.Instance.getDefaultInstance()));
+      com.google.appengine.v1.Instance> METHOD_GET_INSTANCE = getGetInstanceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.GetInstanceRequest,
+      com.google.appengine.v1.Instance> getGetInstanceMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.GetInstanceRequest,
+      com.google.appengine.v1.Instance> getGetInstanceMethod() {
+    return getGetInstanceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.GetInstanceRequest,
+      com.google.appengine.v1.Instance> getGetInstanceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.GetInstanceRequest, com.google.appengine.v1.Instance> getGetInstanceMethod;
+    if ((getGetInstanceMethod = InstancesGrpc.getGetInstanceMethod) == null) {
+      synchronized (InstancesGrpc.class) {
+        if ((getGetInstanceMethod = InstancesGrpc.getGetInstanceMethod) == null) {
+          InstancesGrpc.getGetInstanceMethod = getGetInstanceMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.GetInstanceRequest, com.google.appengine.v1.Instance>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Instances", "GetInstance"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.GetInstanceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.Instance.getDefaultInstance()))
+                  .setSchemaDescriptor(new InstancesMethodDescriptorSupplier("GetInstance"))
+                  .build();
+          }
+        }
+     }
+     return getGetInstanceMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteInstanceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteInstanceRequest,
-      com.google.longrunning.Operation> METHOD_DELETE_INSTANCE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Instances", "DeleteInstance"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.DeleteInstanceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_DELETE_INSTANCE = getDeleteInstanceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteInstanceRequest,
+      com.google.longrunning.Operation> getDeleteInstanceMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteInstanceRequest,
+      com.google.longrunning.Operation> getDeleteInstanceMethod() {
+    return getDeleteInstanceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteInstanceRequest,
+      com.google.longrunning.Operation> getDeleteInstanceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteInstanceRequest, com.google.longrunning.Operation> getDeleteInstanceMethod;
+    if ((getDeleteInstanceMethod = InstancesGrpc.getDeleteInstanceMethod) == null) {
+      synchronized (InstancesGrpc.class) {
+        if ((getDeleteInstanceMethod = InstancesGrpc.getDeleteInstanceMethod) == null) {
+          InstancesGrpc.getDeleteInstanceMethod = getDeleteInstanceMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.DeleteInstanceRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Instances", "DeleteInstance"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.DeleteInstanceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new InstancesMethodDescriptorSupplier("DeleteInstance"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteInstanceMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDebugInstanceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.DebugInstanceRequest,
-      com.google.longrunning.Operation> METHOD_DEBUG_INSTANCE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Instances", "DebugInstance"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.DebugInstanceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_DEBUG_INSTANCE = getDebugInstanceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.DebugInstanceRequest,
+      com.google.longrunning.Operation> getDebugInstanceMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.DebugInstanceRequest,
+      com.google.longrunning.Operation> getDebugInstanceMethod() {
+    return getDebugInstanceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.DebugInstanceRequest,
+      com.google.longrunning.Operation> getDebugInstanceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.DebugInstanceRequest, com.google.longrunning.Operation> getDebugInstanceMethod;
+    if ((getDebugInstanceMethod = InstancesGrpc.getDebugInstanceMethod) == null) {
+      synchronized (InstancesGrpc.class) {
+        if ((getDebugInstanceMethod = InstancesGrpc.getDebugInstanceMethod) == null) {
+          InstancesGrpc.getDebugInstanceMethod = getDebugInstanceMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.DebugInstanceRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Instances", "DebugInstance"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.DebugInstanceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new InstancesMethodDescriptorSupplier("DebugInstance"))
+                  .build();
+          }
+        }
+     }
+     return getDebugInstanceMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -83,7 +195,7 @@ public final class InstancesGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static InstancesFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -104,7 +216,7 @@ public final class InstancesGrpc {
      */
     public void listInstances(com.google.appengine.v1.ListInstancesRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.ListInstancesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_INSTANCES, responseObserver);
+      asyncUnimplementedUnaryCall(getListInstancesMethodHelper(), responseObserver);
     }
 
     /**
@@ -114,7 +226,7 @@ public final class InstancesGrpc {
      */
     public void getInstance(com.google.appengine.v1.GetInstanceRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.Instance> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_INSTANCE, responseObserver);
+      asyncUnimplementedUnaryCall(getGetInstanceMethodHelper(), responseObserver);
     }
 
     /**
@@ -124,7 +236,7 @@ public final class InstancesGrpc {
      */
     public void deleteInstance(com.google.appengine.v1.DeleteInstanceRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_INSTANCE, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteInstanceMethodHelper(), responseObserver);
     }
 
     /**
@@ -140,34 +252,34 @@ public final class InstancesGrpc {
      */
     public void debugInstance(com.google.appengine.v1.DebugInstanceRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DEBUG_INSTANCE, responseObserver);
+      asyncUnimplementedUnaryCall(getDebugInstanceMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_INSTANCES,
+            getListInstancesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.ListInstancesRequest,
                 com.google.appengine.v1.ListInstancesResponse>(
                   this, METHODID_LIST_INSTANCES)))
           .addMethod(
-            METHOD_GET_INSTANCE,
+            getGetInstanceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.GetInstanceRequest,
                 com.google.appengine.v1.Instance>(
                   this, METHODID_GET_INSTANCE)))
           .addMethod(
-            METHOD_DELETE_INSTANCE,
+            getDeleteInstanceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.DeleteInstanceRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_DELETE_INSTANCE)))
           .addMethod(
-            METHOD_DEBUG_INSTANCE,
+            getDebugInstanceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.DebugInstanceRequest,
@@ -206,7 +318,7 @@ public final class InstancesGrpc {
     public void listInstances(com.google.appengine.v1.ListInstancesRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.ListInstancesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_INSTANCES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListInstancesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -217,7 +329,7 @@ public final class InstancesGrpc {
     public void getInstance(com.google.appengine.v1.GetInstanceRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.Instance> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_INSTANCE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetInstanceMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -228,7 +340,7 @@ public final class InstancesGrpc {
     public void deleteInstance(com.google.appengine.v1.DeleteInstanceRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_INSTANCE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteInstanceMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -245,7 +357,7 @@ public final class InstancesGrpc {
     public void debugInstance(com.google.appengine.v1.DebugInstanceRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DEBUG_INSTANCE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDebugInstanceMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -277,7 +389,7 @@ public final class InstancesGrpc {
      */
     public com.google.appengine.v1.ListInstancesResponse listInstances(com.google.appengine.v1.ListInstancesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_INSTANCES, getCallOptions(), request);
+          getChannel(), getListInstancesMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -287,7 +399,7 @@ public final class InstancesGrpc {
      */
     public com.google.appengine.v1.Instance getInstance(com.google.appengine.v1.GetInstanceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_INSTANCE, getCallOptions(), request);
+          getChannel(), getGetInstanceMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -297,7 +409,7 @@ public final class InstancesGrpc {
      */
     public com.google.longrunning.Operation deleteInstance(com.google.appengine.v1.DeleteInstanceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_INSTANCE, getCallOptions(), request);
+          getChannel(), getDeleteInstanceMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -313,7 +425,7 @@ public final class InstancesGrpc {
      */
     public com.google.longrunning.Operation debugInstance(com.google.appengine.v1.DebugInstanceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DEBUG_INSTANCE, getCallOptions(), request);
+          getChannel(), getDebugInstanceMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -346,7 +458,7 @@ public final class InstancesGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.appengine.v1.ListInstancesResponse> listInstances(
         com.google.appengine.v1.ListInstancesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_INSTANCES, getCallOptions()), request);
+          getChannel().newCall(getListInstancesMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -357,7 +469,7 @@ public final class InstancesGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.appengine.v1.Instance> getInstance(
         com.google.appengine.v1.GetInstanceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_INSTANCE, getCallOptions()), request);
+          getChannel().newCall(getGetInstanceMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -368,7 +480,7 @@ public final class InstancesGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> deleteInstance(
         com.google.appengine.v1.DeleteInstanceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_INSTANCE, getCallOptions()), request);
+          getChannel().newCall(getDeleteInstanceMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -385,7 +497,7 @@ public final class InstancesGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> debugInstance(
         com.google.appengine.v1.DebugInstanceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DEBUG_INSTANCE, getCallOptions()), request);
+          getChannel().newCall(getDebugInstanceMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -443,10 +555,38 @@ public final class InstancesGrpc {
     }
   }
 
-  private static final class InstancesDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class InstancesBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    InstancesBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.appengine.v1.AppengineProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Instances");
+    }
+  }
+
+  private static final class InstancesFileDescriptorSupplier
+      extends InstancesBaseDescriptorSupplier {
+    InstancesFileDescriptorSupplier() {}
+  }
+
+  private static final class InstancesMethodDescriptorSupplier
+      extends InstancesBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    InstancesMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -459,11 +599,11 @@ public final class InstancesGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new InstancesDescriptorSupplier())
-              .addMethod(METHOD_LIST_INSTANCES)
-              .addMethod(METHOD_GET_INSTANCE)
-              .addMethod(METHOD_DELETE_INSTANCE)
-              .addMethod(METHOD_DEBUG_INSTANCE)
+              .setSchemaDescriptor(new InstancesFileDescriptorSupplier())
+              .addMethod(getListInstancesMethodHelper())
+              .addMethod(getGetInstanceMethodHelper())
+              .addMethod(getDeleteInstanceMethodHelper())
+              .addMethod(getDebugInstanceMethodHelper())
               .build();
         }
       }

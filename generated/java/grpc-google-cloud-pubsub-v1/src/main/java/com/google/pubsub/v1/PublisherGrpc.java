@@ -1,19 +1,19 @@
 package com.google.pubsub.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -22,7 +22,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/pubsub/v1/pubsub.proto")
 public final class PublisherGrpc {
 
@@ -32,68 +32,264 @@ public final class PublisherGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateTopicMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.Topic,
-      com.google.pubsub.v1.Topic> METHOD_CREATE_TOPIC =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Publisher", "CreateTopic"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Topic.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Topic.getDefaultInstance()));
+      com.google.pubsub.v1.Topic> METHOD_CREATE_TOPIC = getCreateTopicMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.Topic,
+      com.google.pubsub.v1.Topic> getCreateTopicMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.Topic,
+      com.google.pubsub.v1.Topic> getCreateTopicMethod() {
+    return getCreateTopicMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.Topic,
+      com.google.pubsub.v1.Topic> getCreateTopicMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.Topic, com.google.pubsub.v1.Topic> getCreateTopicMethod;
+    if ((getCreateTopicMethod = PublisherGrpc.getCreateTopicMethod) == null) {
+      synchronized (PublisherGrpc.class) {
+        if ((getCreateTopicMethod = PublisherGrpc.getCreateTopicMethod) == null) {
+          PublisherGrpc.getCreateTopicMethod = getCreateTopicMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.Topic, com.google.pubsub.v1.Topic>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Publisher", "CreateTopic"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Topic.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Topic.getDefaultInstance()))
+                  .setSchemaDescriptor(new PublisherMethodDescriptorSupplier("CreateTopic"))
+                  .build();
+          }
+        }
+     }
+     return getCreateTopicMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateTopicMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateTopicRequest,
-      com.google.pubsub.v1.Topic> METHOD_UPDATE_TOPIC =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Publisher", "UpdateTopic"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.UpdateTopicRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Topic.getDefaultInstance()));
+      com.google.pubsub.v1.Topic> METHOD_UPDATE_TOPIC = getUpdateTopicMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateTopicRequest,
+      com.google.pubsub.v1.Topic> getUpdateTopicMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateTopicRequest,
+      com.google.pubsub.v1.Topic> getUpdateTopicMethod() {
+    return getUpdateTopicMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateTopicRequest,
+      com.google.pubsub.v1.Topic> getUpdateTopicMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateTopicRequest, com.google.pubsub.v1.Topic> getUpdateTopicMethod;
+    if ((getUpdateTopicMethod = PublisherGrpc.getUpdateTopicMethod) == null) {
+      synchronized (PublisherGrpc.class) {
+        if ((getUpdateTopicMethod = PublisherGrpc.getUpdateTopicMethod) == null) {
+          PublisherGrpc.getUpdateTopicMethod = getUpdateTopicMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.UpdateTopicRequest, com.google.pubsub.v1.Topic>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Publisher", "UpdateTopic"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.UpdateTopicRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Topic.getDefaultInstance()))
+                  .setSchemaDescriptor(new PublisherMethodDescriptorSupplier("UpdateTopic"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateTopicMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getPublishMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.PublishRequest,
-      com.google.pubsub.v1.PublishResponse> METHOD_PUBLISH =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Publisher", "Publish"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.PublishRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.PublishResponse.getDefaultInstance()));
+      com.google.pubsub.v1.PublishResponse> METHOD_PUBLISH = getPublishMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.PublishRequest,
+      com.google.pubsub.v1.PublishResponse> getPublishMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.PublishRequest,
+      com.google.pubsub.v1.PublishResponse> getPublishMethod() {
+    return getPublishMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.PublishRequest,
+      com.google.pubsub.v1.PublishResponse> getPublishMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.PublishRequest, com.google.pubsub.v1.PublishResponse> getPublishMethod;
+    if ((getPublishMethod = PublisherGrpc.getPublishMethod) == null) {
+      synchronized (PublisherGrpc.class) {
+        if ((getPublishMethod = PublisherGrpc.getPublishMethod) == null) {
+          PublisherGrpc.getPublishMethod = getPublishMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.PublishRequest, com.google.pubsub.v1.PublishResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Publisher", "Publish"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.PublishRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.PublishResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new PublisherMethodDescriptorSupplier("Publish"))
+                  .build();
+          }
+        }
+     }
+     return getPublishMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetTopicMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.GetTopicRequest,
-      com.google.pubsub.v1.Topic> METHOD_GET_TOPIC =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Publisher", "GetTopic"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.GetTopicRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Topic.getDefaultInstance()));
+      com.google.pubsub.v1.Topic> METHOD_GET_TOPIC = getGetTopicMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.GetTopicRequest,
+      com.google.pubsub.v1.Topic> getGetTopicMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.GetTopicRequest,
+      com.google.pubsub.v1.Topic> getGetTopicMethod() {
+    return getGetTopicMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.GetTopicRequest,
+      com.google.pubsub.v1.Topic> getGetTopicMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.GetTopicRequest, com.google.pubsub.v1.Topic> getGetTopicMethod;
+    if ((getGetTopicMethod = PublisherGrpc.getGetTopicMethod) == null) {
+      synchronized (PublisherGrpc.class) {
+        if ((getGetTopicMethod = PublisherGrpc.getGetTopicMethod) == null) {
+          PublisherGrpc.getGetTopicMethod = getGetTopicMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.GetTopicRequest, com.google.pubsub.v1.Topic>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Publisher", "GetTopic"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.GetTopicRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.Topic.getDefaultInstance()))
+                  .setSchemaDescriptor(new PublisherMethodDescriptorSupplier("GetTopic"))
+                  .build();
+          }
+        }
+     }
+     return getGetTopicMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListTopicsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicsRequest,
-      com.google.pubsub.v1.ListTopicsResponse> METHOD_LIST_TOPICS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Publisher", "ListTopics"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ListTopicsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ListTopicsResponse.getDefaultInstance()));
+      com.google.pubsub.v1.ListTopicsResponse> METHOD_LIST_TOPICS = getListTopicsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicsRequest,
+      com.google.pubsub.v1.ListTopicsResponse> getListTopicsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicsRequest,
+      com.google.pubsub.v1.ListTopicsResponse> getListTopicsMethod() {
+    return getListTopicsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicsRequest,
+      com.google.pubsub.v1.ListTopicsResponse> getListTopicsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicsRequest, com.google.pubsub.v1.ListTopicsResponse> getListTopicsMethod;
+    if ((getListTopicsMethod = PublisherGrpc.getListTopicsMethod) == null) {
+      synchronized (PublisherGrpc.class) {
+        if ((getListTopicsMethod = PublisherGrpc.getListTopicsMethod) == null) {
+          PublisherGrpc.getListTopicsMethod = getListTopicsMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.ListTopicsRequest, com.google.pubsub.v1.ListTopicsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Publisher", "ListTopics"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ListTopicsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ListTopicsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new PublisherMethodDescriptorSupplier("ListTopics"))
+                  .build();
+          }
+        }
+     }
+     return getListTopicsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListTopicSubscriptionsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicSubscriptionsRequest,
-      com.google.pubsub.v1.ListTopicSubscriptionsResponse> METHOD_LIST_TOPIC_SUBSCRIPTIONS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Publisher", "ListTopicSubscriptions"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ListTopicSubscriptionsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.ListTopicSubscriptionsResponse.getDefaultInstance()));
+      com.google.pubsub.v1.ListTopicSubscriptionsResponse> METHOD_LIST_TOPIC_SUBSCRIPTIONS = getListTopicSubscriptionsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicSubscriptionsRequest,
+      com.google.pubsub.v1.ListTopicSubscriptionsResponse> getListTopicSubscriptionsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicSubscriptionsRequest,
+      com.google.pubsub.v1.ListTopicSubscriptionsResponse> getListTopicSubscriptionsMethod() {
+    return getListTopicSubscriptionsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicSubscriptionsRequest,
+      com.google.pubsub.v1.ListTopicSubscriptionsResponse> getListTopicSubscriptionsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.ListTopicSubscriptionsRequest, com.google.pubsub.v1.ListTopicSubscriptionsResponse> getListTopicSubscriptionsMethod;
+    if ((getListTopicSubscriptionsMethod = PublisherGrpc.getListTopicSubscriptionsMethod) == null) {
+      synchronized (PublisherGrpc.class) {
+        if ((getListTopicSubscriptionsMethod = PublisherGrpc.getListTopicSubscriptionsMethod) == null) {
+          PublisherGrpc.getListTopicSubscriptionsMethod = getListTopicSubscriptionsMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.ListTopicSubscriptionsRequest, com.google.pubsub.v1.ListTopicSubscriptionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Publisher", "ListTopicSubscriptions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ListTopicSubscriptionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.ListTopicSubscriptionsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new PublisherMethodDescriptorSupplier("ListTopicSubscriptions"))
+                  .build();
+          }
+        }
+     }
+     return getListTopicSubscriptionsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteTopicMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteTopicRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_TOPIC =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.pubsub.v1.Publisher", "DeleteTopic"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.DeleteTopicRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_TOPIC = getDeleteTopicMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteTopicRequest,
+      com.google.protobuf.Empty> getDeleteTopicMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteTopicRequest,
+      com.google.protobuf.Empty> getDeleteTopicMethod() {
+    return getDeleteTopicMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteTopicRequest,
+      com.google.protobuf.Empty> getDeleteTopicMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteTopicRequest, com.google.protobuf.Empty> getDeleteTopicMethod;
+    if ((getDeleteTopicMethod = PublisherGrpc.getDeleteTopicMethod) == null) {
+      synchronized (PublisherGrpc.class) {
+        if ((getDeleteTopicMethod = PublisherGrpc.getDeleteTopicMethod) == null) {
+          PublisherGrpc.getDeleteTopicMethod = getDeleteTopicMethod = 
+              io.grpc.MethodDescriptor.<com.google.pubsub.v1.DeleteTopicRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.pubsub.v1.Publisher", "DeleteTopic"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.pubsub.v1.DeleteTopicRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new PublisherMethodDescriptorSupplier("DeleteTopic"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteTopicMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -111,7 +307,7 @@ public final class PublisherGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static PublisherFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -133,7 +329,7 @@ public final class PublisherGrpc {
      */
     public void createTopic(com.google.pubsub.v1.Topic request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_TOPIC, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateTopicMethodHelper(), responseObserver);
     }
 
     /**
@@ -148,7 +344,7 @@ public final class PublisherGrpc {
      */
     public void updateTopic(com.google.pubsub.v1.UpdateTopicRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_TOPIC, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateTopicMethodHelper(), responseObserver);
     }
 
     /**
@@ -160,7 +356,7 @@ public final class PublisherGrpc {
      */
     public void publish(com.google.pubsub.v1.PublishRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.PublishResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_PUBLISH, responseObserver);
+      asyncUnimplementedUnaryCall(getPublishMethodHelper(), responseObserver);
     }
 
     /**
@@ -170,7 +366,7 @@ public final class PublisherGrpc {
      */
     public void getTopic(com.google.pubsub.v1.GetTopicRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_TOPIC, responseObserver);
+      asyncUnimplementedUnaryCall(getGetTopicMethodHelper(), responseObserver);
     }
 
     /**
@@ -180,7 +376,7 @@ public final class PublisherGrpc {
      */
     public void listTopics(com.google.pubsub.v1.ListTopicsRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.ListTopicsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_TOPICS, responseObserver);
+      asyncUnimplementedUnaryCall(getListTopicsMethodHelper(), responseObserver);
     }
 
     /**
@@ -190,7 +386,7 @@ public final class PublisherGrpc {
      */
     public void listTopicSubscriptions(com.google.pubsub.v1.ListTopicSubscriptionsRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.ListTopicSubscriptionsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_TOPIC_SUBSCRIPTIONS, responseObserver);
+      asyncUnimplementedUnaryCall(getListTopicSubscriptionsMethodHelper(), responseObserver);
     }
 
     /**
@@ -204,55 +400,55 @@ public final class PublisherGrpc {
      */
     public void deleteTopic(com.google.pubsub.v1.DeleteTopicRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_TOPIC, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteTopicMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_CREATE_TOPIC,
+            getCreateTopicMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.Topic,
                 com.google.pubsub.v1.Topic>(
                   this, METHODID_CREATE_TOPIC)))
           .addMethod(
-            METHOD_UPDATE_TOPIC,
+            getUpdateTopicMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.UpdateTopicRequest,
                 com.google.pubsub.v1.Topic>(
                   this, METHODID_UPDATE_TOPIC)))
           .addMethod(
-            METHOD_PUBLISH,
+            getPublishMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.PublishRequest,
                 com.google.pubsub.v1.PublishResponse>(
                   this, METHODID_PUBLISH)))
           .addMethod(
-            METHOD_GET_TOPIC,
+            getGetTopicMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.GetTopicRequest,
                 com.google.pubsub.v1.Topic>(
                   this, METHODID_GET_TOPIC)))
           .addMethod(
-            METHOD_LIST_TOPICS,
+            getListTopicsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.ListTopicsRequest,
                 com.google.pubsub.v1.ListTopicsResponse>(
                   this, METHODID_LIST_TOPICS)))
           .addMethod(
-            METHOD_LIST_TOPIC_SUBSCRIPTIONS,
+            getListTopicSubscriptionsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.ListTopicSubscriptionsRequest,
                 com.google.pubsub.v1.ListTopicSubscriptionsResponse>(
                   this, METHODID_LIST_TOPIC_SUBSCRIPTIONS)))
           .addMethod(
-            METHOD_DELETE_TOPIC,
+            getDeleteTopicMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.pubsub.v1.DeleteTopicRequest,
@@ -292,7 +488,7 @@ public final class PublisherGrpc {
     public void createTopic(com.google.pubsub.v1.Topic request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_TOPIC, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateTopicMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -308,7 +504,7 @@ public final class PublisherGrpc {
     public void updateTopic(com.google.pubsub.v1.UpdateTopicRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_TOPIC, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateTopicMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -321,7 +517,7 @@ public final class PublisherGrpc {
     public void publish(com.google.pubsub.v1.PublishRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.PublishResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_PUBLISH, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getPublishMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -332,7 +528,7 @@ public final class PublisherGrpc {
     public void getTopic(com.google.pubsub.v1.GetTopicRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_TOPIC, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetTopicMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -343,7 +539,7 @@ public final class PublisherGrpc {
     public void listTopics(com.google.pubsub.v1.ListTopicsRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.ListTopicsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_TOPICS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListTopicsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -354,7 +550,7 @@ public final class PublisherGrpc {
     public void listTopicSubscriptions(com.google.pubsub.v1.ListTopicSubscriptionsRequest request,
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.ListTopicSubscriptionsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_TOPIC_SUBSCRIPTIONS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListTopicSubscriptionsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -369,7 +565,7 @@ public final class PublisherGrpc {
     public void deleteTopic(com.google.pubsub.v1.DeleteTopicRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_TOPIC, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteTopicMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -402,7 +598,7 @@ public final class PublisherGrpc {
      */
     public com.google.pubsub.v1.Topic createTopic(com.google.pubsub.v1.Topic request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_TOPIC, getCallOptions(), request);
+          getChannel(), getCreateTopicMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -417,7 +613,7 @@ public final class PublisherGrpc {
      */
     public com.google.pubsub.v1.Topic updateTopic(com.google.pubsub.v1.UpdateTopicRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_TOPIC, getCallOptions(), request);
+          getChannel(), getUpdateTopicMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -429,7 +625,7 @@ public final class PublisherGrpc {
      */
     public com.google.pubsub.v1.PublishResponse publish(com.google.pubsub.v1.PublishRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_PUBLISH, getCallOptions(), request);
+          getChannel(), getPublishMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -439,7 +635,7 @@ public final class PublisherGrpc {
      */
     public com.google.pubsub.v1.Topic getTopic(com.google.pubsub.v1.GetTopicRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_TOPIC, getCallOptions(), request);
+          getChannel(), getGetTopicMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -449,7 +645,7 @@ public final class PublisherGrpc {
      */
     public com.google.pubsub.v1.ListTopicsResponse listTopics(com.google.pubsub.v1.ListTopicsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_TOPICS, getCallOptions(), request);
+          getChannel(), getListTopicsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -459,7 +655,7 @@ public final class PublisherGrpc {
      */
     public com.google.pubsub.v1.ListTopicSubscriptionsResponse listTopicSubscriptions(com.google.pubsub.v1.ListTopicSubscriptionsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_TOPIC_SUBSCRIPTIONS, getCallOptions(), request);
+          getChannel(), getListTopicSubscriptionsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -473,7 +669,7 @@ public final class PublisherGrpc {
      */
     public com.google.protobuf.Empty deleteTopic(com.google.pubsub.v1.DeleteTopicRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_TOPIC, getCallOptions(), request);
+          getChannel(), getDeleteTopicMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -507,7 +703,7 @@ public final class PublisherGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Topic> createTopic(
         com.google.pubsub.v1.Topic request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_TOPIC, getCallOptions()), request);
+          getChannel().newCall(getCreateTopicMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -523,7 +719,7 @@ public final class PublisherGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Topic> updateTopic(
         com.google.pubsub.v1.UpdateTopicRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_TOPIC, getCallOptions()), request);
+          getChannel().newCall(getUpdateTopicMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -536,7 +732,7 @@ public final class PublisherGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.PublishResponse> publish(
         com.google.pubsub.v1.PublishRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_PUBLISH, getCallOptions()), request);
+          getChannel().newCall(getPublishMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -547,7 +743,7 @@ public final class PublisherGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Topic> getTopic(
         com.google.pubsub.v1.GetTopicRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_TOPIC, getCallOptions()), request);
+          getChannel().newCall(getGetTopicMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -558,7 +754,7 @@ public final class PublisherGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.ListTopicsResponse> listTopics(
         com.google.pubsub.v1.ListTopicsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_TOPICS, getCallOptions()), request);
+          getChannel().newCall(getListTopicsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -569,7 +765,7 @@ public final class PublisherGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.ListTopicSubscriptionsResponse> listTopicSubscriptions(
         com.google.pubsub.v1.ListTopicSubscriptionsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_TOPIC_SUBSCRIPTIONS, getCallOptions()), request);
+          getChannel().newCall(getListTopicSubscriptionsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -584,7 +780,7 @@ public final class PublisherGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteTopic(
         com.google.pubsub.v1.DeleteTopicRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_TOPIC, getCallOptions()), request);
+          getChannel().newCall(getDeleteTopicMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -657,10 +853,38 @@ public final class PublisherGrpc {
     }
   }
 
-  private static final class PublisherDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class PublisherBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    PublisherBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.pubsub.v1.PubsubProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Publisher");
+    }
+  }
+
+  private static final class PublisherFileDescriptorSupplier
+      extends PublisherBaseDescriptorSupplier {
+    PublisherFileDescriptorSupplier() {}
+  }
+
+  private static final class PublisherMethodDescriptorSupplier
+      extends PublisherBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    PublisherMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -673,14 +897,14 @@ public final class PublisherGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new PublisherDescriptorSupplier())
-              .addMethod(METHOD_CREATE_TOPIC)
-              .addMethod(METHOD_UPDATE_TOPIC)
-              .addMethod(METHOD_PUBLISH)
-              .addMethod(METHOD_GET_TOPIC)
-              .addMethod(METHOD_LIST_TOPICS)
-              .addMethod(METHOD_LIST_TOPIC_SUBSCRIPTIONS)
-              .addMethod(METHOD_DELETE_TOPIC)
+              .setSchemaDescriptor(new PublisherFileDescriptorSupplier())
+              .addMethod(getCreateTopicMethodHelper())
+              .addMethod(getUpdateTopicMethodHelper())
+              .addMethod(getPublishMethodHelper())
+              .addMethod(getGetTopicMethodHelper())
+              .addMethod(getListTopicsMethodHelper())
+              .addMethod(getListTopicSubscriptionsMethodHelper())
+              .addMethod(getDeleteTopicMethodHelper())
               .build();
         }
       }

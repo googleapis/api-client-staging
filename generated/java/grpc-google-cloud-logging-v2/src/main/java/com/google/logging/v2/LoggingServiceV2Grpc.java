@@ -1,19 +1,19 @@
 package com.google.logging.v2;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/logging/v2/logging.proto")
 public final class LoggingServiceV2Grpc {
 
@@ -31,50 +31,190 @@ public final class LoggingServiceV2Grpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteLogMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.DeleteLogRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_LOG =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.LoggingServiceV2", "DeleteLog"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.DeleteLogRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_LOG = getDeleteLogMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.DeleteLogRequest,
+      com.google.protobuf.Empty> getDeleteLogMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.DeleteLogRequest,
+      com.google.protobuf.Empty> getDeleteLogMethod() {
+    return getDeleteLogMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.DeleteLogRequest,
+      com.google.protobuf.Empty> getDeleteLogMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.DeleteLogRequest, com.google.protobuf.Empty> getDeleteLogMethod;
+    if ((getDeleteLogMethod = LoggingServiceV2Grpc.getDeleteLogMethod) == null) {
+      synchronized (LoggingServiceV2Grpc.class) {
+        if ((getDeleteLogMethod = LoggingServiceV2Grpc.getDeleteLogMethod) == null) {
+          LoggingServiceV2Grpc.getDeleteLogMethod = getDeleteLogMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.DeleteLogRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.LoggingServiceV2", "DeleteLog"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.DeleteLogRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new LoggingServiceV2MethodDescriptorSupplier("DeleteLog"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteLogMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getWriteLogEntriesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.WriteLogEntriesRequest,
-      com.google.logging.v2.WriteLogEntriesResponse> METHOD_WRITE_LOG_ENTRIES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.LoggingServiceV2", "WriteLogEntries"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.WriteLogEntriesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.WriteLogEntriesResponse.getDefaultInstance()));
+      com.google.logging.v2.WriteLogEntriesResponse> METHOD_WRITE_LOG_ENTRIES = getWriteLogEntriesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.WriteLogEntriesRequest,
+      com.google.logging.v2.WriteLogEntriesResponse> getWriteLogEntriesMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.WriteLogEntriesRequest,
+      com.google.logging.v2.WriteLogEntriesResponse> getWriteLogEntriesMethod() {
+    return getWriteLogEntriesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.WriteLogEntriesRequest,
+      com.google.logging.v2.WriteLogEntriesResponse> getWriteLogEntriesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.WriteLogEntriesRequest, com.google.logging.v2.WriteLogEntriesResponse> getWriteLogEntriesMethod;
+    if ((getWriteLogEntriesMethod = LoggingServiceV2Grpc.getWriteLogEntriesMethod) == null) {
+      synchronized (LoggingServiceV2Grpc.class) {
+        if ((getWriteLogEntriesMethod = LoggingServiceV2Grpc.getWriteLogEntriesMethod) == null) {
+          LoggingServiceV2Grpc.getWriteLogEntriesMethod = getWriteLogEntriesMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.WriteLogEntriesRequest, com.google.logging.v2.WriteLogEntriesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.LoggingServiceV2", "WriteLogEntries"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.WriteLogEntriesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.WriteLogEntriesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new LoggingServiceV2MethodDescriptorSupplier("WriteLogEntries"))
+                  .build();
+          }
+        }
+     }
+     return getWriteLogEntriesMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListLogEntriesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.ListLogEntriesRequest,
-      com.google.logging.v2.ListLogEntriesResponse> METHOD_LIST_LOG_ENTRIES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.LoggingServiceV2", "ListLogEntries"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListLogEntriesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListLogEntriesResponse.getDefaultInstance()));
+      com.google.logging.v2.ListLogEntriesResponse> METHOD_LIST_LOG_ENTRIES = getListLogEntriesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.ListLogEntriesRequest,
+      com.google.logging.v2.ListLogEntriesResponse> getListLogEntriesMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.ListLogEntriesRequest,
+      com.google.logging.v2.ListLogEntriesResponse> getListLogEntriesMethod() {
+    return getListLogEntriesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.ListLogEntriesRequest,
+      com.google.logging.v2.ListLogEntriesResponse> getListLogEntriesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.ListLogEntriesRequest, com.google.logging.v2.ListLogEntriesResponse> getListLogEntriesMethod;
+    if ((getListLogEntriesMethod = LoggingServiceV2Grpc.getListLogEntriesMethod) == null) {
+      synchronized (LoggingServiceV2Grpc.class) {
+        if ((getListLogEntriesMethod = LoggingServiceV2Grpc.getListLogEntriesMethod) == null) {
+          LoggingServiceV2Grpc.getListLogEntriesMethod = getListLogEntriesMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.ListLogEntriesRequest, com.google.logging.v2.ListLogEntriesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.LoggingServiceV2", "ListLogEntries"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListLogEntriesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListLogEntriesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new LoggingServiceV2MethodDescriptorSupplier("ListLogEntries"))
+                  .build();
+          }
+        }
+     }
+     return getListLogEntriesMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListMonitoredResourceDescriptorsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.ListMonitoredResourceDescriptorsRequest,
-      com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.LoggingServiceV2", "ListMonitoredResourceDescriptors"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListMonitoredResourceDescriptorsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListMonitoredResourceDescriptorsResponse.getDefaultInstance()));
+      com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS = getListMonitoredResourceDescriptorsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.ListMonitoredResourceDescriptorsRequest,
+      com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> getListMonitoredResourceDescriptorsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.ListMonitoredResourceDescriptorsRequest,
+      com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> getListMonitoredResourceDescriptorsMethod() {
+    return getListMonitoredResourceDescriptorsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.ListMonitoredResourceDescriptorsRequest,
+      com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> getListMonitoredResourceDescriptorsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.ListMonitoredResourceDescriptorsRequest, com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> getListMonitoredResourceDescriptorsMethod;
+    if ((getListMonitoredResourceDescriptorsMethod = LoggingServiceV2Grpc.getListMonitoredResourceDescriptorsMethod) == null) {
+      synchronized (LoggingServiceV2Grpc.class) {
+        if ((getListMonitoredResourceDescriptorsMethod = LoggingServiceV2Grpc.getListMonitoredResourceDescriptorsMethod) == null) {
+          LoggingServiceV2Grpc.getListMonitoredResourceDescriptorsMethod = getListMonitoredResourceDescriptorsMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.ListMonitoredResourceDescriptorsRequest, com.google.logging.v2.ListMonitoredResourceDescriptorsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.LoggingServiceV2", "ListMonitoredResourceDescriptors"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListMonitoredResourceDescriptorsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListMonitoredResourceDescriptorsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new LoggingServiceV2MethodDescriptorSupplier("ListMonitoredResourceDescriptors"))
+                  .build();
+          }
+        }
+     }
+     return getListMonitoredResourceDescriptorsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListLogsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.ListLogsRequest,
-      com.google.logging.v2.ListLogsResponse> METHOD_LIST_LOGS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.LoggingServiceV2", "ListLogs"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListLogsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListLogsResponse.getDefaultInstance()));
+      com.google.logging.v2.ListLogsResponse> METHOD_LIST_LOGS = getListLogsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.ListLogsRequest,
+      com.google.logging.v2.ListLogsResponse> getListLogsMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.ListLogsRequest,
+      com.google.logging.v2.ListLogsResponse> getListLogsMethod() {
+    return getListLogsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.ListLogsRequest,
+      com.google.logging.v2.ListLogsResponse> getListLogsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.ListLogsRequest, com.google.logging.v2.ListLogsResponse> getListLogsMethod;
+    if ((getListLogsMethod = LoggingServiceV2Grpc.getListLogsMethod) == null) {
+      synchronized (LoggingServiceV2Grpc.class) {
+        if ((getListLogsMethod = LoggingServiceV2Grpc.getListLogsMethod) == null) {
+          LoggingServiceV2Grpc.getListLogsMethod = getListLogsMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.ListLogsRequest, com.google.logging.v2.ListLogsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.LoggingServiceV2", "ListLogs"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListLogsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListLogsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new LoggingServiceV2MethodDescriptorSupplier("ListLogs"))
+                  .build();
+          }
+        }
+     }
+     return getListLogsMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -92,7 +232,7 @@ public final class LoggingServiceV2Grpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static LoggingServiceV2FutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -116,7 +256,7 @@ public final class LoggingServiceV2Grpc {
      */
     public void deleteLog(com.google.logging.v2.DeleteLogRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_LOG, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteLogMethodHelper(), responseObserver);
     }
 
     /**
@@ -131,7 +271,7 @@ public final class LoggingServiceV2Grpc {
      */
     public void writeLogEntries(com.google.logging.v2.WriteLogEntriesRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.WriteLogEntriesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_WRITE_LOG_ENTRIES, responseObserver);
+      asyncUnimplementedUnaryCall(getWriteLogEntriesMethodHelper(), responseObserver);
     }
 
     /**
@@ -143,7 +283,7 @@ public final class LoggingServiceV2Grpc {
      */
     public void listLogEntries(com.google.logging.v2.ListLogEntriesRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListLogEntriesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_LOG_ENTRIES, responseObserver);
+      asyncUnimplementedUnaryCall(getListLogEntriesMethodHelper(), responseObserver);
     }
 
     /**
@@ -154,7 +294,7 @@ public final class LoggingServiceV2Grpc {
      */
     public void listMonitoredResourceDescriptors(com.google.logging.v2.ListMonitoredResourceDescriptorsRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS, responseObserver);
+      asyncUnimplementedUnaryCall(getListMonitoredResourceDescriptorsMethodHelper(), responseObserver);
     }
 
     /**
@@ -165,41 +305,41 @@ public final class LoggingServiceV2Grpc {
      */
     public void listLogs(com.google.logging.v2.ListLogsRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListLogsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_LOGS, responseObserver);
+      asyncUnimplementedUnaryCall(getListLogsMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_DELETE_LOG,
+            getDeleteLogMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.DeleteLogRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_LOG)))
           .addMethod(
-            METHOD_WRITE_LOG_ENTRIES,
+            getWriteLogEntriesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.WriteLogEntriesRequest,
                 com.google.logging.v2.WriteLogEntriesResponse>(
                   this, METHODID_WRITE_LOG_ENTRIES)))
           .addMethod(
-            METHOD_LIST_LOG_ENTRIES,
+            getListLogEntriesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.ListLogEntriesRequest,
                 com.google.logging.v2.ListLogEntriesResponse>(
                   this, METHODID_LIST_LOG_ENTRIES)))
           .addMethod(
-            METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS,
+            getListMonitoredResourceDescriptorsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.ListMonitoredResourceDescriptorsRequest,
                 com.google.logging.v2.ListMonitoredResourceDescriptorsResponse>(
                   this, METHODID_LIST_MONITORED_RESOURCE_DESCRIPTORS)))
           .addMethod(
-            METHOD_LIST_LOGS,
+            getListLogsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.ListLogsRequest,
@@ -241,7 +381,7 @@ public final class LoggingServiceV2Grpc {
     public void deleteLog(com.google.logging.v2.DeleteLogRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_LOG, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteLogMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -257,7 +397,7 @@ public final class LoggingServiceV2Grpc {
     public void writeLogEntries(com.google.logging.v2.WriteLogEntriesRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.WriteLogEntriesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_WRITE_LOG_ENTRIES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getWriteLogEntriesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -270,7 +410,7 @@ public final class LoggingServiceV2Grpc {
     public void listLogEntries(com.google.logging.v2.ListLogEntriesRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListLogEntriesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_LOG_ENTRIES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListLogEntriesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -282,7 +422,7 @@ public final class LoggingServiceV2Grpc {
     public void listMonitoredResourceDescriptors(com.google.logging.v2.ListMonitoredResourceDescriptorsRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListMonitoredResourceDescriptorsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -294,7 +434,7 @@ public final class LoggingServiceV2Grpc {
     public void listLogs(com.google.logging.v2.ListLogsRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListLogsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_LOGS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListLogsMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -329,7 +469,7 @@ public final class LoggingServiceV2Grpc {
      */
     public com.google.protobuf.Empty deleteLog(com.google.logging.v2.DeleteLogRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_LOG, getCallOptions(), request);
+          getChannel(), getDeleteLogMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -344,7 +484,7 @@ public final class LoggingServiceV2Grpc {
      */
     public com.google.logging.v2.WriteLogEntriesResponse writeLogEntries(com.google.logging.v2.WriteLogEntriesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_WRITE_LOG_ENTRIES, getCallOptions(), request);
+          getChannel(), getWriteLogEntriesMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -356,7 +496,7 @@ public final class LoggingServiceV2Grpc {
      */
     public com.google.logging.v2.ListLogEntriesResponse listLogEntries(com.google.logging.v2.ListLogEntriesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_LOG_ENTRIES, getCallOptions(), request);
+          getChannel(), getListLogEntriesMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -367,7 +507,7 @@ public final class LoggingServiceV2Grpc {
      */
     public com.google.logging.v2.ListMonitoredResourceDescriptorsResponse listMonitoredResourceDescriptors(com.google.logging.v2.ListMonitoredResourceDescriptorsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS, getCallOptions(), request);
+          getChannel(), getListMonitoredResourceDescriptorsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -378,7 +518,7 @@ public final class LoggingServiceV2Grpc {
      */
     public com.google.logging.v2.ListLogsResponse listLogs(com.google.logging.v2.ListLogsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_LOGS, getCallOptions(), request);
+          getChannel(), getListLogsMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -414,7 +554,7 @@ public final class LoggingServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteLog(
         com.google.logging.v2.DeleteLogRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_LOG, getCallOptions()), request);
+          getChannel().newCall(getDeleteLogMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -430,7 +570,7 @@ public final class LoggingServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.WriteLogEntriesResponse> writeLogEntries(
         com.google.logging.v2.WriteLogEntriesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_WRITE_LOG_ENTRIES, getCallOptions()), request);
+          getChannel().newCall(getWriteLogEntriesMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -443,7 +583,7 @@ public final class LoggingServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.ListLogEntriesResponse> listLogEntries(
         com.google.logging.v2.ListLogEntriesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_LOG_ENTRIES, getCallOptions()), request);
+          getChannel().newCall(getListLogEntriesMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -455,7 +595,7 @@ public final class LoggingServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.ListMonitoredResourceDescriptorsResponse> listMonitoredResourceDescriptors(
         com.google.logging.v2.ListMonitoredResourceDescriptorsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS, getCallOptions()), request);
+          getChannel().newCall(getListMonitoredResourceDescriptorsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -467,7 +607,7 @@ public final class LoggingServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.ListLogsResponse> listLogs(
         com.google.logging.v2.ListLogsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_LOGS, getCallOptions()), request);
+          getChannel().newCall(getListLogsMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -530,10 +670,38 @@ public final class LoggingServiceV2Grpc {
     }
   }
 
-  private static final class LoggingServiceV2DescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class LoggingServiceV2BaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    LoggingServiceV2BaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.logging.v2.LoggingProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("LoggingServiceV2");
+    }
+  }
+
+  private static final class LoggingServiceV2FileDescriptorSupplier
+      extends LoggingServiceV2BaseDescriptorSupplier {
+    LoggingServiceV2FileDescriptorSupplier() {}
+  }
+
+  private static final class LoggingServiceV2MethodDescriptorSupplier
+      extends LoggingServiceV2BaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    LoggingServiceV2MethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -546,12 +714,12 @@ public final class LoggingServiceV2Grpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new LoggingServiceV2DescriptorSupplier())
-              .addMethod(METHOD_DELETE_LOG)
-              .addMethod(METHOD_WRITE_LOG_ENTRIES)
-              .addMethod(METHOD_LIST_LOG_ENTRIES)
-              .addMethod(METHOD_LIST_MONITORED_RESOURCE_DESCRIPTORS)
-              .addMethod(METHOD_LIST_LOGS)
+              .setSchemaDescriptor(new LoggingServiceV2FileDescriptorSupplier())
+              .addMethod(getDeleteLogMethodHelper())
+              .addMethod(getWriteLogEntriesMethodHelper())
+              .addMethod(getListLogEntriesMethodHelper())
+              .addMethod(getListMonitoredResourceDescriptorsMethodHelper())
+              .addMethod(getListLogsMethodHelper())
               .build();
         }
       }

@@ -118,19 +118,6 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 82: {
-            com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder subBuilder = null;
-            if (googleDataCollectionOptIn_ != null) {
-              subBuilder = googleDataCollectionOptIn_.toBuilder();
-            }
-            googleDataCollectionOptIn_ = input.readMessage(com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(googleDataCollectionOptIn_);
-              googleDataCollectionOptIn_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
           case 88: {
 
             enableAutomaticPunctuation_ = input.readBool();
@@ -817,58 +804,16 @@ private static final long serialVersionUID = 0L;
    * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
    * version of the specified model does not exist, then the speech is
    * recognized using the standard version of the specified model.
-   * Enhanced speech models require that you enable audio logging for
-   * your request. To enable audio logging, set the `loggingConsentState` field
-   * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
-   * You must also opt-in to the audio logging alpha using the instructions in
-   * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
-   * to true and you have not enabled audio logging, then you will receive
-   * an error.
+   * Enhanced speech models require that you opt-in to the audio logging using
+   * instructions in the [alpha documentation](/speech/data-sharing). If you set
+   * `use_enhanced` to true and you have not enabled audio logging, then you
+   * will receive an error.
    * </pre>
    *
    * <code>bool use_enhanced = 14;</code>
    */
   public boolean getUseEnhanced() {
     return useEnhanced_;
-  }
-
-  public static final int GOOGLE_DATA_COLLECTION_OPT_IN_FIELD_NUMBER = 10;
-  private com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig googleDataCollectionOptIn_;
-  /**
-   * <pre>
-   * *Optional* Contains settings to opt-in to allow Google to
-   * collect and use data from this request to improve Google's products and
-   * services.
-   * </pre>
-   *
-   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-   */
-  public boolean hasGoogleDataCollectionOptIn() {
-    return googleDataCollectionOptIn_ != null;
-  }
-  /**
-   * <pre>
-   * *Optional* Contains settings to opt-in to allow Google to
-   * collect and use data from this request to improve Google's products and
-   * services.
-   * </pre>
-   *
-   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-   */
-  public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig getGoogleDataCollectionOptIn() {
-    return googleDataCollectionOptIn_ == null ? com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.getDefaultInstance() : googleDataCollectionOptIn_;
-  }
-  /**
-   * <pre>
-   * *Optional* Contains settings to opt-in to allow Google to
-   * collect and use data from this request to improve Google's products and
-   * services.
-   * </pre>
-   *
-   * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-   */
-  public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder getGoogleDataCollectionOptInOrBuilder() {
-    return getGoogleDataCollectionOptIn();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -906,9 +851,6 @@ private static final long serialVersionUID = 0L;
     }
     if (metadata_ != null) {
       output.writeMessage(9, getMetadata());
-    }
-    if (googleDataCollectionOptIn_ != null) {
-      output.writeMessage(10, getGoogleDataCollectionOptIn());
     }
     if (enableAutomaticPunctuation_ != false) {
       output.writeBool(11, enableAutomaticPunctuation_);
@@ -957,10 +899,6 @@ private static final long serialVersionUID = 0L;
     if (metadata_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(9, getMetadata());
-    }
-    if (googleDataCollectionOptIn_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(10, getGoogleDataCollectionOptIn());
     }
     if (enableAutomaticPunctuation_ != false) {
       size += com.google.protobuf.CodedOutputStream
@@ -1013,11 +951,6 @@ private static final long serialVersionUID = 0L;
         .equals(other.getModel());
     result = result && (getUseEnhanced()
         == other.getUseEnhanced());
-    result = result && (hasGoogleDataCollectionOptIn() == other.hasGoogleDataCollectionOptIn());
-    if (hasGoogleDataCollectionOptIn()) {
-      result = result && getGoogleDataCollectionOptIn()
-          .equals(other.getGoogleDataCollectionOptIn());
-    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -1059,10 +992,6 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + USE_ENHANCED_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getUseEnhanced());
-    if (hasGoogleDataCollectionOptIn()) {
-      hash = (37 * hash) + GOOGLE_DATA_COLLECTION_OPT_IN_FIELD_NUMBER;
-      hash = (53 * hash) + getGoogleDataCollectionOptIn().hashCode();
-    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -1228,12 +1157,6 @@ private static final long serialVersionUID = 0L;
 
       useEnhanced_ = false;
 
-      if (googleDataCollectionOptInBuilder_ == null) {
-        googleDataCollectionOptIn_ = null;
-      } else {
-        googleDataCollectionOptIn_ = null;
-        googleDataCollectionOptInBuilder_ = null;
-      }
       return this;
     }
 
@@ -1281,11 +1204,6 @@ private static final long serialVersionUID = 0L;
       }
       result.model_ = model_;
       result.useEnhanced_ = useEnhanced_;
-      if (googleDataCollectionOptInBuilder_ == null) {
-        result.googleDataCollectionOptIn_ = googleDataCollectionOptIn_;
-      } else {
-        result.googleDataCollectionOptIn_ = googleDataCollectionOptInBuilder_.build();
-      }
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -1385,9 +1303,6 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getUseEnhanced() != false) {
         setUseEnhanced(other.getUseEnhanced());
-      }
-      if (other.hasGoogleDataCollectionOptIn()) {
-        mergeGoogleDataCollectionOptIn(other.getGoogleDataCollectionOptIn());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -2577,13 +2492,10 @@ private static final long serialVersionUID = 0L;
      * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
      * version of the specified model does not exist, then the speech is
      * recognized using the standard version of the specified model.
-     * Enhanced speech models require that you enable audio logging for
-     * your request. To enable audio logging, set the `loggingConsentState` field
-     * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
-     * You must also opt-in to the audio logging alpha using the instructions in
-     * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
-     * to true and you have not enabled audio logging, then you will receive
-     * an error.
+     * Enhanced speech models require that you opt-in to the audio logging using
+     * instructions in the [alpha documentation](/speech/data-sharing). If you set
+     * `use_enhanced` to true and you have not enabled audio logging, then you
+     * will receive an error.
      * </pre>
      *
      * <code>bool use_enhanced = 14;</code>
@@ -2599,13 +2511,10 @@ private static final long serialVersionUID = 0L;
      * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
      * version of the specified model does not exist, then the speech is
      * recognized using the standard version of the specified model.
-     * Enhanced speech models require that you enable audio logging for
-     * your request. To enable audio logging, set the `loggingConsentState` field
-     * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
-     * You must also opt-in to the audio logging alpha using the instructions in
-     * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
-     * to true and you have not enabled audio logging, then you will receive
-     * an error.
+     * Enhanced speech models require that you opt-in to the audio logging using
+     * instructions in the [alpha documentation](/speech/data-sharing). If you set
+     * `use_enhanced` to true and you have not enabled audio logging, then you
+     * will receive an error.
      * </pre>
      *
      * <code>bool use_enhanced = 14;</code>
@@ -2624,13 +2533,10 @@ private static final long serialVersionUID = 0L;
      * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
      * version of the specified model does not exist, then the speech is
      * recognized using the standard version of the specified model.
-     * Enhanced speech models require that you enable audio logging for
-     * your request. To enable audio logging, set the `loggingConsentState` field
-     * to ENABLED in the [GoogleDataCollectionConfig][google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig] section of your request.
-     * You must also opt-in to the audio logging alpha using the instructions in
-     * the [alpha documentation](/speech/data-sharing). If you set `use_enhanced`
-     * to true and you have not enabled audio logging, then you will receive
-     * an error.
+     * Enhanced speech models require that you opt-in to the audio logging using
+     * instructions in the [alpha documentation](/speech/data-sharing). If you set
+     * `use_enhanced` to true and you have not enabled audio logging, then you
+     * will receive an error.
      * </pre>
      *
      * <code>bool use_enhanced = 14;</code>
@@ -2640,177 +2546,6 @@ private static final long serialVersionUID = 0L;
       useEnhanced_ = false;
       onChanged();
       return this;
-    }
-
-    private com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig googleDataCollectionOptIn_ = null;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder> googleDataCollectionOptInBuilder_;
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    public boolean hasGoogleDataCollectionOptIn() {
-      return googleDataCollectionOptInBuilder_ != null || googleDataCollectionOptIn_ != null;
-    }
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig getGoogleDataCollectionOptIn() {
-      if (googleDataCollectionOptInBuilder_ == null) {
-        return googleDataCollectionOptIn_ == null ? com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.getDefaultInstance() : googleDataCollectionOptIn_;
-      } else {
-        return googleDataCollectionOptInBuilder_.getMessage();
-      }
-    }
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    public Builder setGoogleDataCollectionOptIn(com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig value) {
-      if (googleDataCollectionOptInBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        googleDataCollectionOptIn_ = value;
-        onChanged();
-      } else {
-        googleDataCollectionOptInBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    public Builder setGoogleDataCollectionOptIn(
-        com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder builderForValue) {
-      if (googleDataCollectionOptInBuilder_ == null) {
-        googleDataCollectionOptIn_ = builderForValue.build();
-        onChanged();
-      } else {
-        googleDataCollectionOptInBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    public Builder mergeGoogleDataCollectionOptIn(com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig value) {
-      if (googleDataCollectionOptInBuilder_ == null) {
-        if (googleDataCollectionOptIn_ != null) {
-          googleDataCollectionOptIn_ =
-            com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.newBuilder(googleDataCollectionOptIn_).mergeFrom(value).buildPartial();
-        } else {
-          googleDataCollectionOptIn_ = value;
-        }
-        onChanged();
-      } else {
-        googleDataCollectionOptInBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    public Builder clearGoogleDataCollectionOptIn() {
-      if (googleDataCollectionOptInBuilder_ == null) {
-        googleDataCollectionOptIn_ = null;
-        onChanged();
-      } else {
-        googleDataCollectionOptIn_ = null;
-        googleDataCollectionOptInBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder getGoogleDataCollectionOptInBuilder() {
-      
-      onChanged();
-      return getGoogleDataCollectionOptInFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    public com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder getGoogleDataCollectionOptInOrBuilder() {
-      if (googleDataCollectionOptInBuilder_ != null) {
-        return googleDataCollectionOptInBuilder_.getMessageOrBuilder();
-      } else {
-        return googleDataCollectionOptIn_ == null ?
-            com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.getDefaultInstance() : googleDataCollectionOptIn_;
-      }
-    }
-    /**
-     * <pre>
-     * *Optional* Contains settings to opt-in to allow Google to
-     * collect and use data from this request to improve Google's products and
-     * services.
-     * </pre>
-     *
-     * <code>.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig google_data_collection_opt_in = 10;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder> 
-        getGoogleDataCollectionOptInFieldBuilder() {
-      if (googleDataCollectionOptInBuilder_ == null) {
-        googleDataCollectionOptInBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfig.Builder, com.google.cloud.speech.v1p1beta1.GoogleDataCollectionConfigOrBuilder>(
-                getGoogleDataCollectionOptIn(),
-                getParentForChildren(),
-                isClean());
-        googleDataCollectionOptIn_ = null;
-      }
-      return googleDataCollectionOptInBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

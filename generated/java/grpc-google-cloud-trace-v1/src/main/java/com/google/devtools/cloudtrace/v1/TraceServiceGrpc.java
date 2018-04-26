@@ -1,19 +1,19 @@
 package com.google.devtools.cloudtrace.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -25,7 +25,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/devtools/cloudtrace/v1/trace.proto")
 public final class TraceServiceGrpc {
 
@@ -35,32 +35,116 @@ public final class TraceServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListTracesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.ListTracesRequest,
-      com.google.devtools.cloudtrace.v1.ListTracesResponse> METHOD_LIST_TRACES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.devtools.cloudtrace.v1.TraceService", "ListTraces"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.cloudtrace.v1.ListTracesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.cloudtrace.v1.ListTracesResponse.getDefaultInstance()));
+      com.google.devtools.cloudtrace.v1.ListTracesResponse> METHOD_LIST_TRACES = getListTracesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.ListTracesRequest,
+      com.google.devtools.cloudtrace.v1.ListTracesResponse> getListTracesMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.ListTracesRequest,
+      com.google.devtools.cloudtrace.v1.ListTracesResponse> getListTracesMethod() {
+    return getListTracesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.ListTracesRequest,
+      com.google.devtools.cloudtrace.v1.ListTracesResponse> getListTracesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.ListTracesRequest, com.google.devtools.cloudtrace.v1.ListTracesResponse> getListTracesMethod;
+    if ((getListTracesMethod = TraceServiceGrpc.getListTracesMethod) == null) {
+      synchronized (TraceServiceGrpc.class) {
+        if ((getListTracesMethod = TraceServiceGrpc.getListTracesMethod) == null) {
+          TraceServiceGrpc.getListTracesMethod = getListTracesMethod = 
+              io.grpc.MethodDescriptor.<com.google.devtools.cloudtrace.v1.ListTracesRequest, com.google.devtools.cloudtrace.v1.ListTracesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.devtools.cloudtrace.v1.TraceService", "ListTraces"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.cloudtrace.v1.ListTracesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.cloudtrace.v1.ListTracesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new TraceServiceMethodDescriptorSupplier("ListTraces"))
+                  .build();
+          }
+        }
+     }
+     return getListTracesMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetTraceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.GetTraceRequest,
-      com.google.devtools.cloudtrace.v1.Trace> METHOD_GET_TRACE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.devtools.cloudtrace.v1.TraceService", "GetTrace"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.cloudtrace.v1.GetTraceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.cloudtrace.v1.Trace.getDefaultInstance()));
+      com.google.devtools.cloudtrace.v1.Trace> METHOD_GET_TRACE = getGetTraceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.GetTraceRequest,
+      com.google.devtools.cloudtrace.v1.Trace> getGetTraceMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.GetTraceRequest,
+      com.google.devtools.cloudtrace.v1.Trace> getGetTraceMethod() {
+    return getGetTraceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.GetTraceRequest,
+      com.google.devtools.cloudtrace.v1.Trace> getGetTraceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.GetTraceRequest, com.google.devtools.cloudtrace.v1.Trace> getGetTraceMethod;
+    if ((getGetTraceMethod = TraceServiceGrpc.getGetTraceMethod) == null) {
+      synchronized (TraceServiceGrpc.class) {
+        if ((getGetTraceMethod = TraceServiceGrpc.getGetTraceMethod) == null) {
+          TraceServiceGrpc.getGetTraceMethod = getGetTraceMethod = 
+              io.grpc.MethodDescriptor.<com.google.devtools.cloudtrace.v1.GetTraceRequest, com.google.devtools.cloudtrace.v1.Trace>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.devtools.cloudtrace.v1.TraceService", "GetTrace"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.cloudtrace.v1.GetTraceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.cloudtrace.v1.Trace.getDefaultInstance()))
+                  .setSchemaDescriptor(new TraceServiceMethodDescriptorSupplier("GetTrace"))
+                  .build();
+          }
+        }
+     }
+     return getGetTraceMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getPatchTracesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.PatchTracesRequest,
-      com.google.protobuf.Empty> METHOD_PATCH_TRACES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.devtools.cloudtrace.v1.TraceService", "PatchTraces"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.devtools.cloudtrace.v1.PatchTracesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_PATCH_TRACES = getPatchTracesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.PatchTracesRequest,
+      com.google.protobuf.Empty> getPatchTracesMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.PatchTracesRequest,
+      com.google.protobuf.Empty> getPatchTracesMethod() {
+    return getPatchTracesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.PatchTracesRequest,
+      com.google.protobuf.Empty> getPatchTracesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.devtools.cloudtrace.v1.PatchTracesRequest, com.google.protobuf.Empty> getPatchTracesMethod;
+    if ((getPatchTracesMethod = TraceServiceGrpc.getPatchTracesMethod) == null) {
+      synchronized (TraceServiceGrpc.class) {
+        if ((getPatchTracesMethod = TraceServiceGrpc.getPatchTracesMethod) == null) {
+          TraceServiceGrpc.getPatchTracesMethod = getPatchTracesMethod = 
+              io.grpc.MethodDescriptor.<com.google.devtools.cloudtrace.v1.PatchTracesRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.devtools.cloudtrace.v1.TraceService", "PatchTraces"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.devtools.cloudtrace.v1.PatchTracesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new TraceServiceMethodDescriptorSupplier("PatchTraces"))
+                  .build();
+          }
+        }
+     }
+     return getPatchTracesMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -78,7 +162,7 @@ public final class TraceServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static TraceServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -103,7 +187,7 @@ public final class TraceServiceGrpc {
      */
     public void listTraces(com.google.devtools.cloudtrace.v1.ListTracesRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.cloudtrace.v1.ListTracesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_TRACES, responseObserver);
+      asyncUnimplementedUnaryCall(getListTracesMethodHelper(), responseObserver);
     }
 
     /**
@@ -113,7 +197,7 @@ public final class TraceServiceGrpc {
      */
     public void getTrace(com.google.devtools.cloudtrace.v1.GetTraceRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.cloudtrace.v1.Trace> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_TRACE, responseObserver);
+      asyncUnimplementedUnaryCall(getGetTraceMethodHelper(), responseObserver);
     }
 
     /**
@@ -127,27 +211,27 @@ public final class TraceServiceGrpc {
      */
     public void patchTraces(com.google.devtools.cloudtrace.v1.PatchTracesRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_PATCH_TRACES, responseObserver);
+      asyncUnimplementedUnaryCall(getPatchTracesMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_TRACES,
+            getListTracesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.devtools.cloudtrace.v1.ListTracesRequest,
                 com.google.devtools.cloudtrace.v1.ListTracesResponse>(
                   this, METHODID_LIST_TRACES)))
           .addMethod(
-            METHOD_GET_TRACE,
+            getGetTraceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.devtools.cloudtrace.v1.GetTraceRequest,
                 com.google.devtools.cloudtrace.v1.Trace>(
                   this, METHODID_GET_TRACE)))
           .addMethod(
-            METHOD_PATCH_TRACES,
+            getPatchTracesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.devtools.cloudtrace.v1.PatchTracesRequest,
@@ -190,7 +274,7 @@ public final class TraceServiceGrpc {
     public void listTraces(com.google.devtools.cloudtrace.v1.ListTracesRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.cloudtrace.v1.ListTracesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_TRACES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListTracesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -201,7 +285,7 @@ public final class TraceServiceGrpc {
     public void getTrace(com.google.devtools.cloudtrace.v1.GetTraceRequest request,
         io.grpc.stub.StreamObserver<com.google.devtools.cloudtrace.v1.Trace> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_TRACE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetTraceMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -216,7 +300,7 @@ public final class TraceServiceGrpc {
     public void patchTraces(com.google.devtools.cloudtrace.v1.PatchTracesRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_PATCH_TRACES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getPatchTracesMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -252,7 +336,7 @@ public final class TraceServiceGrpc {
      */
     public com.google.devtools.cloudtrace.v1.ListTracesResponse listTraces(com.google.devtools.cloudtrace.v1.ListTracesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_TRACES, getCallOptions(), request);
+          getChannel(), getListTracesMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -262,7 +346,7 @@ public final class TraceServiceGrpc {
      */
     public com.google.devtools.cloudtrace.v1.Trace getTrace(com.google.devtools.cloudtrace.v1.GetTraceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_TRACE, getCallOptions(), request);
+          getChannel(), getGetTraceMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -276,7 +360,7 @@ public final class TraceServiceGrpc {
      */
     public com.google.protobuf.Empty patchTraces(com.google.devtools.cloudtrace.v1.PatchTracesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_PATCH_TRACES, getCallOptions(), request);
+          getChannel(), getPatchTracesMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -313,7 +397,7 @@ public final class TraceServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.devtools.cloudtrace.v1.ListTracesResponse> listTraces(
         com.google.devtools.cloudtrace.v1.ListTracesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_TRACES, getCallOptions()), request);
+          getChannel().newCall(getListTracesMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -324,7 +408,7 @@ public final class TraceServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.devtools.cloudtrace.v1.Trace> getTrace(
         com.google.devtools.cloudtrace.v1.GetTraceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_TRACE, getCallOptions()), request);
+          getChannel().newCall(getGetTraceMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -339,7 +423,7 @@ public final class TraceServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> patchTraces(
         com.google.devtools.cloudtrace.v1.PatchTracesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_PATCH_TRACES, getCallOptions()), request);
+          getChannel().newCall(getPatchTracesMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -392,10 +476,38 @@ public final class TraceServiceGrpc {
     }
   }
 
-  private static final class TraceServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class TraceServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    TraceServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.devtools.cloudtrace.v1.TraceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("TraceService");
+    }
+  }
+
+  private static final class TraceServiceFileDescriptorSupplier
+      extends TraceServiceBaseDescriptorSupplier {
+    TraceServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class TraceServiceMethodDescriptorSupplier
+      extends TraceServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    TraceServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -408,10 +520,10 @@ public final class TraceServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new TraceServiceDescriptorSupplier())
-              .addMethod(METHOD_LIST_TRACES)
-              .addMethod(METHOD_GET_TRACE)
-              .addMethod(METHOD_PATCH_TRACES)
+              .setSchemaDescriptor(new TraceServiceFileDescriptorSupplier())
+              .addMethod(getListTracesMethodHelper())
+              .addMethod(getGetTraceMethodHelper())
+              .addMethod(getPatchTracesMethodHelper())
               .build();
         }
       }

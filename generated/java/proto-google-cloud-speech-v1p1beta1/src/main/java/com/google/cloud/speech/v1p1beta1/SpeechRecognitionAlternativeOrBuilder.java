@@ -43,6 +43,8 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
   /**
    * <pre>
    * Output only. A list of word-specific information for each recognized word.
+   * Note: When enable_speaker_diarization is true, you will see all the words
+   * from the beginning of the audio.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -52,6 +54,8 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
   /**
    * <pre>
    * Output only. A list of word-specific information for each recognized word.
+   * Note: When enable_speaker_diarization is true, you will see all the words
+   * from the beginning of the audio.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -60,6 +64,8 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
   /**
    * <pre>
    * Output only. A list of word-specific information for each recognized word.
+   * Note: When enable_speaker_diarization is true, you will see all the words
+   * from the beginning of the audio.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -68,6 +74,8 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
   /**
    * <pre>
    * Output only. A list of word-specific information for each recognized word.
+   * Note: When enable_speaker_diarization is true, you will see all the words
+   * from the beginning of the audio.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>
@@ -77,6 +85,8 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
   /**
    * <pre>
    * Output only. A list of word-specific information for each recognized word.
+   * Note: When enable_speaker_diarization is true, you will see all the words
+   * from the beginning of the audio.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1p1beta1.WordInfo words = 3;</code>

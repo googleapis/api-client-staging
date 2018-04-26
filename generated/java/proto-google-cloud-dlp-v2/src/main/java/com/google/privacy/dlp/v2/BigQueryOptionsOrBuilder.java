@@ -80,4 +80,15 @@ public interface BigQueryOptionsOrBuilder extends
    */
   com.google.privacy.dlp.v2.FieldIdOrBuilder getIdentifyingFieldsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * Max number of rows to scan. If the table has more rows than this value, the
+   * rest of the rows are omitted. If not set, or if set to 0, all rows will be
+   * scanned. Cannot be used in conjunction with TimespanConfig.
+   * </pre>
+   *
+   * <code>int64 rows_limit = 3;</code>
+   */
+  long getRowsLimit();
 }

@@ -1,19 +1,19 @@
 package com.google.appengine.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/appengine/v1/appengine.proto")
 public final class ApplicationsGrpc {
 
@@ -31,23 +31,79 @@ public final class ApplicationsGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetApplicationMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.GetApplicationRequest,
-      com.google.appengine.v1.Application> METHOD_GET_APPLICATION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Applications", "GetApplication"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.GetApplicationRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.Application.getDefaultInstance()));
+      com.google.appengine.v1.Application> METHOD_GET_APPLICATION = getGetApplicationMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.GetApplicationRequest,
+      com.google.appengine.v1.Application> getGetApplicationMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.GetApplicationRequest,
+      com.google.appengine.v1.Application> getGetApplicationMethod() {
+    return getGetApplicationMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.GetApplicationRequest,
+      com.google.appengine.v1.Application> getGetApplicationMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.GetApplicationRequest, com.google.appengine.v1.Application> getGetApplicationMethod;
+    if ((getGetApplicationMethod = ApplicationsGrpc.getGetApplicationMethod) == null) {
+      synchronized (ApplicationsGrpc.class) {
+        if ((getGetApplicationMethod = ApplicationsGrpc.getGetApplicationMethod) == null) {
+          ApplicationsGrpc.getGetApplicationMethod = getGetApplicationMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.GetApplicationRequest, com.google.appengine.v1.Application>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Applications", "GetApplication"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.GetApplicationRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.Application.getDefaultInstance()))
+                  .setSchemaDescriptor(new ApplicationsMethodDescriptorSupplier("GetApplication"))
+                  .build();
+          }
+        }
+     }
+     return getGetApplicationMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getRepairApplicationMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.RepairApplicationRequest,
-      com.google.longrunning.Operation> METHOD_REPAIR_APPLICATION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Applications", "RepairApplication"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.RepairApplicationRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_REPAIR_APPLICATION = getRepairApplicationMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.RepairApplicationRequest,
+      com.google.longrunning.Operation> getRepairApplicationMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.RepairApplicationRequest,
+      com.google.longrunning.Operation> getRepairApplicationMethod() {
+    return getRepairApplicationMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.RepairApplicationRequest,
+      com.google.longrunning.Operation> getRepairApplicationMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.RepairApplicationRequest, com.google.longrunning.Operation> getRepairApplicationMethod;
+    if ((getRepairApplicationMethod = ApplicationsGrpc.getRepairApplicationMethod) == null) {
+      synchronized (ApplicationsGrpc.class) {
+        if ((getRepairApplicationMethod = ApplicationsGrpc.getRepairApplicationMethod) == null) {
+          ApplicationsGrpc.getRepairApplicationMethod = getRepairApplicationMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.RepairApplicationRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Applications", "RepairApplication"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.RepairApplicationRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ApplicationsMethodDescriptorSupplier("RepairApplication"))
+                  .build();
+          }
+        }
+     }
+     return getRepairApplicationMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -65,7 +121,7 @@ public final class ApplicationsGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static ApplicationsFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -86,7 +142,7 @@ public final class ApplicationsGrpc {
      */
     public void getApplication(com.google.appengine.v1.GetApplicationRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.Application> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_APPLICATION, responseObserver);
+      asyncUnimplementedUnaryCall(getGetApplicationMethodHelper(), responseObserver);
     }
 
     /**
@@ -99,20 +155,20 @@ public final class ApplicationsGrpc {
      */
     public void repairApplication(com.google.appengine.v1.RepairApplicationRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_REPAIR_APPLICATION, responseObserver);
+      asyncUnimplementedUnaryCall(getRepairApplicationMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_GET_APPLICATION,
+            getGetApplicationMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.GetApplicationRequest,
                 com.google.appengine.v1.Application>(
                   this, METHODID_GET_APPLICATION)))
           .addMethod(
-            METHOD_REPAIR_APPLICATION,
+            getRepairApplicationMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.RepairApplicationRequest,
@@ -151,7 +207,7 @@ public final class ApplicationsGrpc {
     public void getApplication(com.google.appengine.v1.GetApplicationRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.Application> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_APPLICATION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetApplicationMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -165,7 +221,7 @@ public final class ApplicationsGrpc {
     public void repairApplication(com.google.appengine.v1.RepairApplicationRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_REPAIR_APPLICATION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRepairApplicationMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -197,7 +253,7 @@ public final class ApplicationsGrpc {
      */
     public com.google.appengine.v1.Application getApplication(com.google.appengine.v1.GetApplicationRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_APPLICATION, getCallOptions(), request);
+          getChannel(), getGetApplicationMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -210,7 +266,7 @@ public final class ApplicationsGrpc {
      */
     public com.google.longrunning.Operation repairApplication(com.google.appengine.v1.RepairApplicationRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_REPAIR_APPLICATION, getCallOptions(), request);
+          getChannel(), getRepairApplicationMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -243,7 +299,7 @@ public final class ApplicationsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.appengine.v1.Application> getApplication(
         com.google.appengine.v1.GetApplicationRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_APPLICATION, getCallOptions()), request);
+          getChannel().newCall(getGetApplicationMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -257,7 +313,7 @@ public final class ApplicationsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> repairApplication(
         com.google.appengine.v1.RepairApplicationRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_REPAIR_APPLICATION, getCallOptions()), request);
+          getChannel().newCall(getRepairApplicationMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -305,10 +361,38 @@ public final class ApplicationsGrpc {
     }
   }
 
-  private static final class ApplicationsDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class ApplicationsBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    ApplicationsBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.appengine.v1.AppengineProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Applications");
+    }
+  }
+
+  private static final class ApplicationsFileDescriptorSupplier
+      extends ApplicationsBaseDescriptorSupplier {
+    ApplicationsFileDescriptorSupplier() {}
+  }
+
+  private static final class ApplicationsMethodDescriptorSupplier
+      extends ApplicationsBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    ApplicationsMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -321,9 +405,9 @@ public final class ApplicationsGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new ApplicationsDescriptorSupplier())
-              .addMethod(METHOD_GET_APPLICATION)
-              .addMethod(METHOD_REPAIR_APPLICATION)
+              .setSchemaDescriptor(new ApplicationsFileDescriptorSupplier())
+              .addMethod(getGetApplicationMethodHelper())
+              .addMethod(getRepairApplicationMethodHelper())
               .build();
         }
       }

@@ -1,19 +1,19 @@
 package com.google.spanner.admin.database.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -24,7 +24,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/spanner/admin/database/v1/spanner_database_admin.proto")
 public final class DatabaseAdminGrpc {
 
@@ -34,86 +34,338 @@ public final class DatabaseAdminGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListDatabasesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.ListDatabasesRequest,
-      com.google.spanner.admin.database.v1.ListDatabasesResponse> METHOD_LIST_DATABASES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "ListDatabases"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.ListDatabasesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.ListDatabasesResponse.getDefaultInstance()));
+      com.google.spanner.admin.database.v1.ListDatabasesResponse> METHOD_LIST_DATABASES = getListDatabasesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.ListDatabasesRequest,
+      com.google.spanner.admin.database.v1.ListDatabasesResponse> getListDatabasesMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.ListDatabasesRequest,
+      com.google.spanner.admin.database.v1.ListDatabasesResponse> getListDatabasesMethod() {
+    return getListDatabasesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.ListDatabasesRequest,
+      com.google.spanner.admin.database.v1.ListDatabasesResponse> getListDatabasesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.ListDatabasesRequest, com.google.spanner.admin.database.v1.ListDatabasesResponse> getListDatabasesMethod;
+    if ((getListDatabasesMethod = DatabaseAdminGrpc.getListDatabasesMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getListDatabasesMethod = DatabaseAdminGrpc.getListDatabasesMethod) == null) {
+          DatabaseAdminGrpc.getListDatabasesMethod = getListDatabasesMethod = 
+              io.grpc.MethodDescriptor.<com.google.spanner.admin.database.v1.ListDatabasesRequest, com.google.spanner.admin.database.v1.ListDatabasesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "ListDatabases"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.ListDatabasesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.ListDatabasesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("ListDatabases"))
+                  .build();
+          }
+        }
+     }
+     return getListDatabasesMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateDatabaseMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.CreateDatabaseRequest,
-      com.google.longrunning.Operation> METHOD_CREATE_DATABASE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "CreateDatabase"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.CreateDatabaseRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_CREATE_DATABASE = getCreateDatabaseMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.CreateDatabaseRequest,
+      com.google.longrunning.Operation> getCreateDatabaseMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.CreateDatabaseRequest,
+      com.google.longrunning.Operation> getCreateDatabaseMethod() {
+    return getCreateDatabaseMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.CreateDatabaseRequest,
+      com.google.longrunning.Operation> getCreateDatabaseMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.CreateDatabaseRequest, com.google.longrunning.Operation> getCreateDatabaseMethod;
+    if ((getCreateDatabaseMethod = DatabaseAdminGrpc.getCreateDatabaseMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getCreateDatabaseMethod = DatabaseAdminGrpc.getCreateDatabaseMethod) == null) {
+          DatabaseAdminGrpc.getCreateDatabaseMethod = getCreateDatabaseMethod = 
+              io.grpc.MethodDescriptor.<com.google.spanner.admin.database.v1.CreateDatabaseRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "CreateDatabase"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.CreateDatabaseRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("CreateDatabase"))
+                  .build();
+          }
+        }
+     }
+     return getCreateDatabaseMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetDatabaseMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseRequest,
-      com.google.spanner.admin.database.v1.Database> METHOD_GET_DATABASE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "GetDatabase"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.GetDatabaseRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.Database.getDefaultInstance()));
+      com.google.spanner.admin.database.v1.Database> METHOD_GET_DATABASE = getGetDatabaseMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseRequest,
+      com.google.spanner.admin.database.v1.Database> getGetDatabaseMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseRequest,
+      com.google.spanner.admin.database.v1.Database> getGetDatabaseMethod() {
+    return getGetDatabaseMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseRequest,
+      com.google.spanner.admin.database.v1.Database> getGetDatabaseMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseRequest, com.google.spanner.admin.database.v1.Database> getGetDatabaseMethod;
+    if ((getGetDatabaseMethod = DatabaseAdminGrpc.getGetDatabaseMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getGetDatabaseMethod = DatabaseAdminGrpc.getGetDatabaseMethod) == null) {
+          DatabaseAdminGrpc.getGetDatabaseMethod = getGetDatabaseMethod = 
+              io.grpc.MethodDescriptor.<com.google.spanner.admin.database.v1.GetDatabaseRequest, com.google.spanner.admin.database.v1.Database>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "GetDatabase"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.GetDatabaseRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.Database.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("GetDatabase"))
+                  .build();
+          }
+        }
+     }
+     return getGetDatabaseMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateDatabaseDdlMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest,
-      com.google.longrunning.Operation> METHOD_UPDATE_DATABASE_DDL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "UpdateDatabaseDdl"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_UPDATE_DATABASE_DDL = getUpdateDatabaseDdlMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest,
+      com.google.longrunning.Operation> getUpdateDatabaseDdlMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest,
+      com.google.longrunning.Operation> getUpdateDatabaseDdlMethod() {
+    return getUpdateDatabaseDdlMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest,
+      com.google.longrunning.Operation> getUpdateDatabaseDdlMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest, com.google.longrunning.Operation> getUpdateDatabaseDdlMethod;
+    if ((getUpdateDatabaseDdlMethod = DatabaseAdminGrpc.getUpdateDatabaseDdlMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getUpdateDatabaseDdlMethod = DatabaseAdminGrpc.getUpdateDatabaseDdlMethod) == null) {
+          DatabaseAdminGrpc.getUpdateDatabaseDdlMethod = getUpdateDatabaseDdlMethod = 
+              io.grpc.MethodDescriptor.<com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "UpdateDatabaseDdl"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("UpdateDatabaseDdl"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateDatabaseDdlMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDropDatabaseMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.DropDatabaseRequest,
-      com.google.protobuf.Empty> METHOD_DROP_DATABASE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "DropDatabase"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.DropDatabaseRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DROP_DATABASE = getDropDatabaseMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.DropDatabaseRequest,
+      com.google.protobuf.Empty> getDropDatabaseMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.DropDatabaseRequest,
+      com.google.protobuf.Empty> getDropDatabaseMethod() {
+    return getDropDatabaseMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.DropDatabaseRequest,
+      com.google.protobuf.Empty> getDropDatabaseMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.DropDatabaseRequest, com.google.protobuf.Empty> getDropDatabaseMethod;
+    if ((getDropDatabaseMethod = DatabaseAdminGrpc.getDropDatabaseMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getDropDatabaseMethod = DatabaseAdminGrpc.getDropDatabaseMethod) == null) {
+          DatabaseAdminGrpc.getDropDatabaseMethod = getDropDatabaseMethod = 
+              io.grpc.MethodDescriptor.<com.google.spanner.admin.database.v1.DropDatabaseRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "DropDatabase"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.DropDatabaseRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("DropDatabase"))
+                  .build();
+          }
+        }
+     }
+     return getDropDatabaseMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetDatabaseDdlMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseDdlRequest,
-      com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> METHOD_GET_DATABASE_DDL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "GetDatabaseDdl"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.GetDatabaseDdlRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.admin.database.v1.GetDatabaseDdlResponse.getDefaultInstance()));
+      com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> METHOD_GET_DATABASE_DDL = getGetDatabaseDdlMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseDdlRequest,
+      com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> getGetDatabaseDdlMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseDdlRequest,
+      com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> getGetDatabaseDdlMethod() {
+    return getGetDatabaseDdlMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseDdlRequest,
+      com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> getGetDatabaseDdlMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.spanner.admin.database.v1.GetDatabaseDdlRequest, com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> getGetDatabaseDdlMethod;
+    if ((getGetDatabaseDdlMethod = DatabaseAdminGrpc.getGetDatabaseDdlMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getGetDatabaseDdlMethod = DatabaseAdminGrpc.getGetDatabaseDdlMethod) == null) {
+          DatabaseAdminGrpc.getGetDatabaseDdlMethod = getGetDatabaseDdlMethod = 
+              io.grpc.MethodDescriptor.<com.google.spanner.admin.database.v1.GetDatabaseDdlRequest, com.google.spanner.admin.database.v1.GetDatabaseDdlResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "GetDatabaseDdl"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.GetDatabaseDdlRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.spanner.admin.database.v1.GetDatabaseDdlResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("GetDatabaseDdl"))
+                  .build();
+          }
+        }
+     }
+     return getGetDatabaseDdlMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSetIamPolicyMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.iam.v1.SetIamPolicyRequest,
-      com.google.iam.v1.Policy> METHOD_SET_IAM_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "SetIamPolicy"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.SetIamPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.Policy.getDefaultInstance()));
+      com.google.iam.v1.Policy> METHOD_SET_IAM_POLICY = getSetIamPolicyMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.iam.v1.SetIamPolicyRequest,
+      com.google.iam.v1.Policy> getSetIamPolicyMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.iam.v1.SetIamPolicyRequest,
+      com.google.iam.v1.Policy> getSetIamPolicyMethod() {
+    return getSetIamPolicyMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.iam.v1.SetIamPolicyRequest,
+      com.google.iam.v1.Policy> getSetIamPolicyMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.iam.v1.SetIamPolicyRequest, com.google.iam.v1.Policy> getSetIamPolicyMethod;
+    if ((getSetIamPolicyMethod = DatabaseAdminGrpc.getSetIamPolicyMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getSetIamPolicyMethod = DatabaseAdminGrpc.getSetIamPolicyMethod) == null) {
+          DatabaseAdminGrpc.getSetIamPolicyMethod = getSetIamPolicyMethod = 
+              io.grpc.MethodDescriptor.<com.google.iam.v1.SetIamPolicyRequest, com.google.iam.v1.Policy>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "SetIamPolicy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.iam.v1.SetIamPolicyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.iam.v1.Policy.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("SetIamPolicy"))
+                  .build();
+          }
+        }
+     }
+     return getSetIamPolicyMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetIamPolicyMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.iam.v1.GetIamPolicyRequest,
-      com.google.iam.v1.Policy> METHOD_GET_IAM_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "GetIamPolicy"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.GetIamPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.Policy.getDefaultInstance()));
+      com.google.iam.v1.Policy> METHOD_GET_IAM_POLICY = getGetIamPolicyMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.iam.v1.GetIamPolicyRequest,
+      com.google.iam.v1.Policy> getGetIamPolicyMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.iam.v1.GetIamPolicyRequest,
+      com.google.iam.v1.Policy> getGetIamPolicyMethod() {
+    return getGetIamPolicyMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.iam.v1.GetIamPolicyRequest,
+      com.google.iam.v1.Policy> getGetIamPolicyMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.iam.v1.GetIamPolicyRequest, com.google.iam.v1.Policy> getGetIamPolicyMethod;
+    if ((getGetIamPolicyMethod = DatabaseAdminGrpc.getGetIamPolicyMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getGetIamPolicyMethod = DatabaseAdminGrpc.getGetIamPolicyMethod) == null) {
+          DatabaseAdminGrpc.getGetIamPolicyMethod = getGetIamPolicyMethod = 
+              io.grpc.MethodDescriptor.<com.google.iam.v1.GetIamPolicyRequest, com.google.iam.v1.Policy>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "GetIamPolicy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.iam.v1.GetIamPolicyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.iam.v1.Policy.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("GetIamPolicy"))
+                  .build();
+          }
+        }
+     }
+     return getGetIamPolicyMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getTestIamPermissionsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.iam.v1.TestIamPermissionsRequest,
-      com.google.iam.v1.TestIamPermissionsResponse> METHOD_TEST_IAM_PERMISSIONS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.spanner.admin.database.v1.DatabaseAdmin", "TestIamPermissions"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.TestIamPermissionsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.TestIamPermissionsResponse.getDefaultInstance()));
+      com.google.iam.v1.TestIamPermissionsResponse> METHOD_TEST_IAM_PERMISSIONS = getTestIamPermissionsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.iam.v1.TestIamPermissionsRequest,
+      com.google.iam.v1.TestIamPermissionsResponse> getTestIamPermissionsMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.iam.v1.TestIamPermissionsRequest,
+      com.google.iam.v1.TestIamPermissionsResponse> getTestIamPermissionsMethod() {
+    return getTestIamPermissionsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.iam.v1.TestIamPermissionsRequest,
+      com.google.iam.v1.TestIamPermissionsResponse> getTestIamPermissionsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.iam.v1.TestIamPermissionsRequest, com.google.iam.v1.TestIamPermissionsResponse> getTestIamPermissionsMethod;
+    if ((getTestIamPermissionsMethod = DatabaseAdminGrpc.getTestIamPermissionsMethod) == null) {
+      synchronized (DatabaseAdminGrpc.class) {
+        if ((getTestIamPermissionsMethod = DatabaseAdminGrpc.getTestIamPermissionsMethod) == null) {
+          DatabaseAdminGrpc.getTestIamPermissionsMethod = getTestIamPermissionsMethod = 
+              io.grpc.MethodDescriptor.<com.google.iam.v1.TestIamPermissionsRequest, com.google.iam.v1.TestIamPermissionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin", "TestIamPermissions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.iam.v1.TestIamPermissionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.iam.v1.TestIamPermissionsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new DatabaseAdminMethodDescriptorSupplier("TestIamPermissions"))
+                  .build();
+          }
+        }
+     }
+     return getTestIamPermissionsMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -131,7 +383,7 @@ public final class DatabaseAdminGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static DatabaseAdminFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -155,7 +407,7 @@ public final class DatabaseAdminGrpc {
      */
     public void listDatabases(com.google.spanner.admin.database.v1.ListDatabasesRequest request,
         io.grpc.stub.StreamObserver<com.google.spanner.admin.database.v1.ListDatabasesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_DATABASES, responseObserver);
+      asyncUnimplementedUnaryCall(getListDatabasesMethodHelper(), responseObserver);
     }
 
     /**
@@ -172,7 +424,7 @@ public final class DatabaseAdminGrpc {
      */
     public void createDatabase(com.google.spanner.admin.database.v1.CreateDatabaseRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_DATABASE, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateDatabaseMethodHelper(), responseObserver);
     }
 
     /**
@@ -182,7 +434,7 @@ public final class DatabaseAdminGrpc {
      */
     public void getDatabase(com.google.spanner.admin.database.v1.GetDatabaseRequest request,
         io.grpc.stub.StreamObserver<com.google.spanner.admin.database.v1.Database> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_DATABASE, responseObserver);
+      asyncUnimplementedUnaryCall(getGetDatabaseMethodHelper(), responseObserver);
     }
 
     /**
@@ -198,7 +450,7 @@ public final class DatabaseAdminGrpc {
      */
     public void updateDatabaseDdl(com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_DATABASE_DDL, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateDatabaseDdlMethodHelper(), responseObserver);
     }
 
     /**
@@ -208,7 +460,7 @@ public final class DatabaseAdminGrpc {
      */
     public void dropDatabase(com.google.spanner.admin.database.v1.DropDatabaseRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DROP_DATABASE, responseObserver);
+      asyncUnimplementedUnaryCall(getDropDatabaseMethodHelper(), responseObserver);
     }
 
     /**
@@ -220,7 +472,7 @@ public final class DatabaseAdminGrpc {
      */
     public void getDatabaseDdl(com.google.spanner.admin.database.v1.GetDatabaseDdlRequest request,
         io.grpc.stub.StreamObserver<com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_DATABASE_DDL, responseObserver);
+      asyncUnimplementedUnaryCall(getGetDatabaseDdlMethodHelper(), responseObserver);
     }
 
     /**
@@ -233,7 +485,7 @@ public final class DatabaseAdminGrpc {
      */
     public void setIamPolicy(com.google.iam.v1.SetIamPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.iam.v1.Policy> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SET_IAM_POLICY, responseObserver);
+      asyncUnimplementedUnaryCall(getSetIamPolicyMethodHelper(), responseObserver);
     }
 
     /**
@@ -246,7 +498,7 @@ public final class DatabaseAdminGrpc {
      */
     public void getIamPolicy(com.google.iam.v1.GetIamPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.iam.v1.Policy> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_IAM_POLICY, responseObserver);
+      asyncUnimplementedUnaryCall(getGetIamPolicyMethodHelper(), responseObserver);
     }
 
     /**
@@ -260,69 +512,69 @@ public final class DatabaseAdminGrpc {
      */
     public void testIamPermissions(com.google.iam.v1.TestIamPermissionsRequest request,
         io.grpc.stub.StreamObserver<com.google.iam.v1.TestIamPermissionsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_TEST_IAM_PERMISSIONS, responseObserver);
+      asyncUnimplementedUnaryCall(getTestIamPermissionsMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_DATABASES,
+            getListDatabasesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.spanner.admin.database.v1.ListDatabasesRequest,
                 com.google.spanner.admin.database.v1.ListDatabasesResponse>(
                   this, METHODID_LIST_DATABASES)))
           .addMethod(
-            METHOD_CREATE_DATABASE,
+            getCreateDatabaseMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.spanner.admin.database.v1.CreateDatabaseRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_CREATE_DATABASE)))
           .addMethod(
-            METHOD_GET_DATABASE,
+            getGetDatabaseMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.spanner.admin.database.v1.GetDatabaseRequest,
                 com.google.spanner.admin.database.v1.Database>(
                   this, METHODID_GET_DATABASE)))
           .addMethod(
-            METHOD_UPDATE_DATABASE_DDL,
+            getUpdateDatabaseDdlMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_UPDATE_DATABASE_DDL)))
           .addMethod(
-            METHOD_DROP_DATABASE,
+            getDropDatabaseMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.spanner.admin.database.v1.DropDatabaseRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DROP_DATABASE)))
           .addMethod(
-            METHOD_GET_DATABASE_DDL,
+            getGetDatabaseDdlMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.spanner.admin.database.v1.GetDatabaseDdlRequest,
                 com.google.spanner.admin.database.v1.GetDatabaseDdlResponse>(
                   this, METHODID_GET_DATABASE_DDL)))
           .addMethod(
-            METHOD_SET_IAM_POLICY,
+            getSetIamPolicyMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.iam.v1.SetIamPolicyRequest,
                 com.google.iam.v1.Policy>(
                   this, METHODID_SET_IAM_POLICY)))
           .addMethod(
-            METHOD_GET_IAM_POLICY,
+            getGetIamPolicyMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.iam.v1.GetIamPolicyRequest,
                 com.google.iam.v1.Policy>(
                   this, METHODID_GET_IAM_POLICY)))
           .addMethod(
-            METHOD_TEST_IAM_PERMISSIONS,
+            getTestIamPermissionsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.iam.v1.TestIamPermissionsRequest,
@@ -364,7 +616,7 @@ public final class DatabaseAdminGrpc {
     public void listDatabases(com.google.spanner.admin.database.v1.ListDatabasesRequest request,
         io.grpc.stub.StreamObserver<com.google.spanner.admin.database.v1.ListDatabasesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_DATABASES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListDatabasesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -382,7 +634,7 @@ public final class DatabaseAdminGrpc {
     public void createDatabase(com.google.spanner.admin.database.v1.CreateDatabaseRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_DATABASE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateDatabaseMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -393,7 +645,7 @@ public final class DatabaseAdminGrpc {
     public void getDatabase(com.google.spanner.admin.database.v1.GetDatabaseRequest request,
         io.grpc.stub.StreamObserver<com.google.spanner.admin.database.v1.Database> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_DATABASE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetDatabaseMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -410,7 +662,7 @@ public final class DatabaseAdminGrpc {
     public void updateDatabaseDdl(com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_DATABASE_DDL, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateDatabaseDdlMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -421,7 +673,7 @@ public final class DatabaseAdminGrpc {
     public void dropDatabase(com.google.spanner.admin.database.v1.DropDatabaseRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DROP_DATABASE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDropDatabaseMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -434,7 +686,7 @@ public final class DatabaseAdminGrpc {
     public void getDatabaseDdl(com.google.spanner.admin.database.v1.GetDatabaseDdlRequest request,
         io.grpc.stub.StreamObserver<com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_DATABASE_DDL, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetDatabaseDdlMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -448,7 +700,7 @@ public final class DatabaseAdminGrpc {
     public void setIamPolicy(com.google.iam.v1.SetIamPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.iam.v1.Policy> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SET_IAM_POLICY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetIamPolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -462,7 +714,7 @@ public final class DatabaseAdminGrpc {
     public void getIamPolicy(com.google.iam.v1.GetIamPolicyRequest request,
         io.grpc.stub.StreamObserver<com.google.iam.v1.Policy> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_IAM_POLICY, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetIamPolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -477,7 +729,7 @@ public final class DatabaseAdminGrpc {
     public void testIamPermissions(com.google.iam.v1.TestIamPermissionsRequest request,
         io.grpc.stub.StreamObserver<com.google.iam.v1.TestIamPermissionsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_TEST_IAM_PERMISSIONS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getTestIamPermissionsMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -512,7 +764,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.spanner.admin.database.v1.ListDatabasesResponse listDatabases(com.google.spanner.admin.database.v1.ListDatabasesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_DATABASES, getCallOptions(), request);
+          getChannel(), getListDatabasesMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -529,7 +781,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.longrunning.Operation createDatabase(com.google.spanner.admin.database.v1.CreateDatabaseRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_DATABASE, getCallOptions(), request);
+          getChannel(), getCreateDatabaseMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -539,7 +791,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.spanner.admin.database.v1.Database getDatabase(com.google.spanner.admin.database.v1.GetDatabaseRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_DATABASE, getCallOptions(), request);
+          getChannel(), getGetDatabaseMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -555,7 +807,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.longrunning.Operation updateDatabaseDdl(com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_DATABASE_DDL, getCallOptions(), request);
+          getChannel(), getUpdateDatabaseDdlMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -565,7 +817,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.protobuf.Empty dropDatabase(com.google.spanner.admin.database.v1.DropDatabaseRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DROP_DATABASE, getCallOptions(), request);
+          getChannel(), getDropDatabaseMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -577,7 +829,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.spanner.admin.database.v1.GetDatabaseDdlResponse getDatabaseDdl(com.google.spanner.admin.database.v1.GetDatabaseDdlRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_DATABASE_DDL, getCallOptions(), request);
+          getChannel(), getGetDatabaseDdlMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -590,7 +842,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.iam.v1.Policy setIamPolicy(com.google.iam.v1.SetIamPolicyRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SET_IAM_POLICY, getCallOptions(), request);
+          getChannel(), getSetIamPolicyMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -603,7 +855,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.iam.v1.Policy getIamPolicy(com.google.iam.v1.GetIamPolicyRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_IAM_POLICY, getCallOptions(), request);
+          getChannel(), getGetIamPolicyMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -617,7 +869,7 @@ public final class DatabaseAdminGrpc {
      */
     public com.google.iam.v1.TestIamPermissionsResponse testIamPermissions(com.google.iam.v1.TestIamPermissionsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_TEST_IAM_PERMISSIONS, getCallOptions(), request);
+          getChannel(), getTestIamPermissionsMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -653,7 +905,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.spanner.admin.database.v1.ListDatabasesResponse> listDatabases(
         com.google.spanner.admin.database.v1.ListDatabasesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_DATABASES, getCallOptions()), request);
+          getChannel().newCall(getListDatabasesMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -671,7 +923,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> createDatabase(
         com.google.spanner.admin.database.v1.CreateDatabaseRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_DATABASE, getCallOptions()), request);
+          getChannel().newCall(getCreateDatabaseMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -682,7 +934,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.spanner.admin.database.v1.Database> getDatabase(
         com.google.spanner.admin.database.v1.GetDatabaseRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_DATABASE, getCallOptions()), request);
+          getChannel().newCall(getGetDatabaseMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -699,7 +951,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> updateDatabaseDdl(
         com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_DATABASE_DDL, getCallOptions()), request);
+          getChannel().newCall(getUpdateDatabaseDdlMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -710,7 +962,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> dropDatabase(
         com.google.spanner.admin.database.v1.DropDatabaseRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DROP_DATABASE, getCallOptions()), request);
+          getChannel().newCall(getDropDatabaseMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -723,7 +975,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.spanner.admin.database.v1.GetDatabaseDdlResponse> getDatabaseDdl(
         com.google.spanner.admin.database.v1.GetDatabaseDdlRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_DATABASE_DDL, getCallOptions()), request);
+          getChannel().newCall(getGetDatabaseDdlMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -737,7 +989,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.iam.v1.Policy> setIamPolicy(
         com.google.iam.v1.SetIamPolicyRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SET_IAM_POLICY, getCallOptions()), request);
+          getChannel().newCall(getSetIamPolicyMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -751,7 +1003,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.iam.v1.Policy> getIamPolicy(
         com.google.iam.v1.GetIamPolicyRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_IAM_POLICY, getCallOptions()), request);
+          getChannel().newCall(getGetIamPolicyMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -766,7 +1018,7 @@ public final class DatabaseAdminGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.iam.v1.TestIamPermissionsResponse> testIamPermissions(
         com.google.iam.v1.TestIamPermissionsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_TEST_IAM_PERMISSIONS, getCallOptions()), request);
+          getChannel().newCall(getTestIamPermissionsMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -849,10 +1101,38 @@ public final class DatabaseAdminGrpc {
     }
   }
 
-  private static final class DatabaseAdminDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class DatabaseAdminBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    DatabaseAdminBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.spanner.admin.database.v1.SpannerDatabaseAdminProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("DatabaseAdmin");
+    }
+  }
+
+  private static final class DatabaseAdminFileDescriptorSupplier
+      extends DatabaseAdminBaseDescriptorSupplier {
+    DatabaseAdminFileDescriptorSupplier() {}
+  }
+
+  private static final class DatabaseAdminMethodDescriptorSupplier
+      extends DatabaseAdminBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    DatabaseAdminMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -865,16 +1145,16 @@ public final class DatabaseAdminGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new DatabaseAdminDescriptorSupplier())
-              .addMethod(METHOD_LIST_DATABASES)
-              .addMethod(METHOD_CREATE_DATABASE)
-              .addMethod(METHOD_GET_DATABASE)
-              .addMethod(METHOD_UPDATE_DATABASE_DDL)
-              .addMethod(METHOD_DROP_DATABASE)
-              .addMethod(METHOD_GET_DATABASE_DDL)
-              .addMethod(METHOD_SET_IAM_POLICY)
-              .addMethod(METHOD_GET_IAM_POLICY)
-              .addMethod(METHOD_TEST_IAM_PERMISSIONS)
+              .setSchemaDescriptor(new DatabaseAdminFileDescriptorSupplier())
+              .addMethod(getListDatabasesMethodHelper())
+              .addMethod(getCreateDatabaseMethodHelper())
+              .addMethod(getGetDatabaseMethodHelper())
+              .addMethod(getUpdateDatabaseDdlMethodHelper())
+              .addMethod(getDropDatabaseMethodHelper())
+              .addMethod(getGetDatabaseDdlMethodHelper())
+              .addMethod(getSetIamPolicyMethodHelper())
+              .addMethod(getGetIamPolicyMethodHelper())
+              .addMethod(getTestIamPermissionsMethodHelper())
               .build();
         }
       }

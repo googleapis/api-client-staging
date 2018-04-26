@@ -1,19 +1,19 @@
 package com.google.monitoring.v3;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -28,7 +28,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/monitoring/v3/uptime_service.proto")
 public final class UptimeCheckServiceGrpc {
 
@@ -38,59 +38,227 @@ public final class UptimeCheckServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListUptimeCheckConfigsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckConfigsRequest,
-      com.google.monitoring.v3.ListUptimeCheckConfigsResponse> METHOD_LIST_UPTIME_CHECK_CONFIGS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.UptimeCheckService", "ListUptimeCheckConfigs"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListUptimeCheckConfigsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListUptimeCheckConfigsResponse.getDefaultInstance()));
+      com.google.monitoring.v3.ListUptimeCheckConfigsResponse> METHOD_LIST_UPTIME_CHECK_CONFIGS = getListUptimeCheckConfigsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckConfigsRequest,
+      com.google.monitoring.v3.ListUptimeCheckConfigsResponse> getListUptimeCheckConfigsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckConfigsRequest,
+      com.google.monitoring.v3.ListUptimeCheckConfigsResponse> getListUptimeCheckConfigsMethod() {
+    return getListUptimeCheckConfigsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckConfigsRequest,
+      com.google.monitoring.v3.ListUptimeCheckConfigsResponse> getListUptimeCheckConfigsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckConfigsRequest, com.google.monitoring.v3.ListUptimeCheckConfigsResponse> getListUptimeCheckConfigsMethod;
+    if ((getListUptimeCheckConfigsMethod = UptimeCheckServiceGrpc.getListUptimeCheckConfigsMethod) == null) {
+      synchronized (UptimeCheckServiceGrpc.class) {
+        if ((getListUptimeCheckConfigsMethod = UptimeCheckServiceGrpc.getListUptimeCheckConfigsMethod) == null) {
+          UptimeCheckServiceGrpc.getListUptimeCheckConfigsMethod = getListUptimeCheckConfigsMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.ListUptimeCheckConfigsRequest, com.google.monitoring.v3.ListUptimeCheckConfigsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.UptimeCheckService", "ListUptimeCheckConfigs"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListUptimeCheckConfigsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListUptimeCheckConfigsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new UptimeCheckServiceMethodDescriptorSupplier("ListUptimeCheckConfigs"))
+                  .build();
+          }
+        }
+     }
+     return getListUptimeCheckConfigsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetUptimeCheckConfigMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.GetUptimeCheckConfigRequest,
-      com.google.monitoring.v3.UptimeCheckConfig> METHOD_GET_UPTIME_CHECK_CONFIG =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.UptimeCheckService", "GetUptimeCheckConfig"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.GetUptimeCheckConfigRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.UptimeCheckConfig.getDefaultInstance()));
+      com.google.monitoring.v3.UptimeCheckConfig> METHOD_GET_UPTIME_CHECK_CONFIG = getGetUptimeCheckConfigMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.GetUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getGetUptimeCheckConfigMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getGetUptimeCheckConfigMethod() {
+    return getGetUptimeCheckConfigMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.GetUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getGetUptimeCheckConfigMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.GetUptimeCheckConfigRequest, com.google.monitoring.v3.UptimeCheckConfig> getGetUptimeCheckConfigMethod;
+    if ((getGetUptimeCheckConfigMethod = UptimeCheckServiceGrpc.getGetUptimeCheckConfigMethod) == null) {
+      synchronized (UptimeCheckServiceGrpc.class) {
+        if ((getGetUptimeCheckConfigMethod = UptimeCheckServiceGrpc.getGetUptimeCheckConfigMethod) == null) {
+          UptimeCheckServiceGrpc.getGetUptimeCheckConfigMethod = getGetUptimeCheckConfigMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.GetUptimeCheckConfigRequest, com.google.monitoring.v3.UptimeCheckConfig>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.UptimeCheckService", "GetUptimeCheckConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.GetUptimeCheckConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.UptimeCheckConfig.getDefaultInstance()))
+                  .setSchemaDescriptor(new UptimeCheckServiceMethodDescriptorSupplier("GetUptimeCheckConfig"))
+                  .build();
+          }
+        }
+     }
+     return getGetUptimeCheckConfigMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateUptimeCheckConfigMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateUptimeCheckConfigRequest,
-      com.google.monitoring.v3.UptimeCheckConfig> METHOD_CREATE_UPTIME_CHECK_CONFIG =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.UptimeCheckService", "CreateUptimeCheckConfig"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.CreateUptimeCheckConfigRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.UptimeCheckConfig.getDefaultInstance()));
+      com.google.monitoring.v3.UptimeCheckConfig> METHOD_CREATE_UPTIME_CHECK_CONFIG = getCreateUptimeCheckConfigMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getCreateUptimeCheckConfigMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getCreateUptimeCheckConfigMethod() {
+    return getCreateUptimeCheckConfigMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getCreateUptimeCheckConfigMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.CreateUptimeCheckConfigRequest, com.google.monitoring.v3.UptimeCheckConfig> getCreateUptimeCheckConfigMethod;
+    if ((getCreateUptimeCheckConfigMethod = UptimeCheckServiceGrpc.getCreateUptimeCheckConfigMethod) == null) {
+      synchronized (UptimeCheckServiceGrpc.class) {
+        if ((getCreateUptimeCheckConfigMethod = UptimeCheckServiceGrpc.getCreateUptimeCheckConfigMethod) == null) {
+          UptimeCheckServiceGrpc.getCreateUptimeCheckConfigMethod = getCreateUptimeCheckConfigMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.CreateUptimeCheckConfigRequest, com.google.monitoring.v3.UptimeCheckConfig>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.UptimeCheckService", "CreateUptimeCheckConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.CreateUptimeCheckConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.UptimeCheckConfig.getDefaultInstance()))
+                  .setSchemaDescriptor(new UptimeCheckServiceMethodDescriptorSupplier("CreateUptimeCheckConfig"))
+                  .build();
+          }
+        }
+     }
+     return getCreateUptimeCheckConfigMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateUptimeCheckConfigMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateUptimeCheckConfigRequest,
-      com.google.monitoring.v3.UptimeCheckConfig> METHOD_UPDATE_UPTIME_CHECK_CONFIG =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.UptimeCheckService", "UpdateUptimeCheckConfig"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.UpdateUptimeCheckConfigRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.UptimeCheckConfig.getDefaultInstance()));
+      com.google.monitoring.v3.UptimeCheckConfig> METHOD_UPDATE_UPTIME_CHECK_CONFIG = getUpdateUptimeCheckConfigMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getUpdateUptimeCheckConfigMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getUpdateUptimeCheckConfigMethod() {
+    return getUpdateUptimeCheckConfigMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateUptimeCheckConfigRequest,
+      com.google.monitoring.v3.UptimeCheckConfig> getUpdateUptimeCheckConfigMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.UpdateUptimeCheckConfigRequest, com.google.monitoring.v3.UptimeCheckConfig> getUpdateUptimeCheckConfigMethod;
+    if ((getUpdateUptimeCheckConfigMethod = UptimeCheckServiceGrpc.getUpdateUptimeCheckConfigMethod) == null) {
+      synchronized (UptimeCheckServiceGrpc.class) {
+        if ((getUpdateUptimeCheckConfigMethod = UptimeCheckServiceGrpc.getUpdateUptimeCheckConfigMethod) == null) {
+          UptimeCheckServiceGrpc.getUpdateUptimeCheckConfigMethod = getUpdateUptimeCheckConfigMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.UpdateUptimeCheckConfigRequest, com.google.monitoring.v3.UptimeCheckConfig>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.UptimeCheckService", "UpdateUptimeCheckConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.UpdateUptimeCheckConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.UptimeCheckConfig.getDefaultInstance()))
+                  .setSchemaDescriptor(new UptimeCheckServiceMethodDescriptorSupplier("UpdateUptimeCheckConfig"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateUptimeCheckConfigMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteUptimeCheckConfigMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteUptimeCheckConfigRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_UPTIME_CHECK_CONFIG =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.UptimeCheckService", "DeleteUptimeCheckConfig"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.DeleteUptimeCheckConfigRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_UPTIME_CHECK_CONFIG = getDeleteUptimeCheckConfigMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteUptimeCheckConfigRequest,
+      com.google.protobuf.Empty> getDeleteUptimeCheckConfigMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteUptimeCheckConfigRequest,
+      com.google.protobuf.Empty> getDeleteUptimeCheckConfigMethod() {
+    return getDeleteUptimeCheckConfigMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteUptimeCheckConfigRequest,
+      com.google.protobuf.Empty> getDeleteUptimeCheckConfigMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.DeleteUptimeCheckConfigRequest, com.google.protobuf.Empty> getDeleteUptimeCheckConfigMethod;
+    if ((getDeleteUptimeCheckConfigMethod = UptimeCheckServiceGrpc.getDeleteUptimeCheckConfigMethod) == null) {
+      synchronized (UptimeCheckServiceGrpc.class) {
+        if ((getDeleteUptimeCheckConfigMethod = UptimeCheckServiceGrpc.getDeleteUptimeCheckConfigMethod) == null) {
+          UptimeCheckServiceGrpc.getDeleteUptimeCheckConfigMethod = getDeleteUptimeCheckConfigMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.DeleteUptimeCheckConfigRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.UptimeCheckService", "DeleteUptimeCheckConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.DeleteUptimeCheckConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new UptimeCheckServiceMethodDescriptorSupplier("DeleteUptimeCheckConfig"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteUptimeCheckConfigMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListUptimeCheckIpsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckIpsRequest,
-      com.google.monitoring.v3.ListUptimeCheckIpsResponse> METHOD_LIST_UPTIME_CHECK_IPS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.monitoring.v3.UptimeCheckService", "ListUptimeCheckIps"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListUptimeCheckIpsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.monitoring.v3.ListUptimeCheckIpsResponse.getDefaultInstance()));
+      com.google.monitoring.v3.ListUptimeCheckIpsResponse> METHOD_LIST_UPTIME_CHECK_IPS = getListUptimeCheckIpsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckIpsRequest,
+      com.google.monitoring.v3.ListUptimeCheckIpsResponse> getListUptimeCheckIpsMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckIpsRequest,
+      com.google.monitoring.v3.ListUptimeCheckIpsResponse> getListUptimeCheckIpsMethod() {
+    return getListUptimeCheckIpsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckIpsRequest,
+      com.google.monitoring.v3.ListUptimeCheckIpsResponse> getListUptimeCheckIpsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.monitoring.v3.ListUptimeCheckIpsRequest, com.google.monitoring.v3.ListUptimeCheckIpsResponse> getListUptimeCheckIpsMethod;
+    if ((getListUptimeCheckIpsMethod = UptimeCheckServiceGrpc.getListUptimeCheckIpsMethod) == null) {
+      synchronized (UptimeCheckServiceGrpc.class) {
+        if ((getListUptimeCheckIpsMethod = UptimeCheckServiceGrpc.getListUptimeCheckIpsMethod) == null) {
+          UptimeCheckServiceGrpc.getListUptimeCheckIpsMethod = getListUptimeCheckIpsMethod = 
+              io.grpc.MethodDescriptor.<com.google.monitoring.v3.ListUptimeCheckIpsRequest, com.google.monitoring.v3.ListUptimeCheckIpsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.monitoring.v3.UptimeCheckService", "ListUptimeCheckIps"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListUptimeCheckIpsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.monitoring.v3.ListUptimeCheckIpsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new UptimeCheckServiceMethodDescriptorSupplier("ListUptimeCheckIps"))
+                  .build();
+          }
+        }
+     }
+     return getListUptimeCheckIpsMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -108,7 +276,7 @@ public final class UptimeCheckServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static UptimeCheckServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -137,7 +305,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public void listUptimeCheckConfigs(com.google.monitoring.v3.ListUptimeCheckConfigsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListUptimeCheckConfigsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_UPTIME_CHECK_CONFIGS, responseObserver);
+      asyncUnimplementedUnaryCall(getListUptimeCheckConfigsMethodHelper(), responseObserver);
     }
 
     /**
@@ -147,7 +315,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public void getUptimeCheckConfig(com.google.monitoring.v3.GetUptimeCheckConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.UptimeCheckConfig> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_UPTIME_CHECK_CONFIG, responseObserver);
+      asyncUnimplementedUnaryCall(getGetUptimeCheckConfigMethodHelper(), responseObserver);
     }
 
     /**
@@ -157,7 +325,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public void createUptimeCheckConfig(com.google.monitoring.v3.CreateUptimeCheckConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.UptimeCheckConfig> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_UPTIME_CHECK_CONFIG, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateUptimeCheckConfigMethodHelper(), responseObserver);
     }
 
     /**
@@ -170,7 +338,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public void updateUptimeCheckConfig(com.google.monitoring.v3.UpdateUptimeCheckConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.UptimeCheckConfig> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_UPTIME_CHECK_CONFIG, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateUptimeCheckConfigMethodHelper(), responseObserver);
     }
 
     /**
@@ -182,7 +350,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public void deleteUptimeCheckConfig(com.google.monitoring.v3.DeleteUptimeCheckConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_UPTIME_CHECK_CONFIG, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteUptimeCheckConfigMethodHelper(), responseObserver);
     }
 
     /**
@@ -192,48 +360,48 @@ public final class UptimeCheckServiceGrpc {
      */
     public void listUptimeCheckIps(com.google.monitoring.v3.ListUptimeCheckIpsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListUptimeCheckIpsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_UPTIME_CHECK_IPS, responseObserver);
+      asyncUnimplementedUnaryCall(getListUptimeCheckIpsMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_UPTIME_CHECK_CONFIGS,
+            getListUptimeCheckConfigsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.ListUptimeCheckConfigsRequest,
                 com.google.monitoring.v3.ListUptimeCheckConfigsResponse>(
                   this, METHODID_LIST_UPTIME_CHECK_CONFIGS)))
           .addMethod(
-            METHOD_GET_UPTIME_CHECK_CONFIG,
+            getGetUptimeCheckConfigMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.GetUptimeCheckConfigRequest,
                 com.google.monitoring.v3.UptimeCheckConfig>(
                   this, METHODID_GET_UPTIME_CHECK_CONFIG)))
           .addMethod(
-            METHOD_CREATE_UPTIME_CHECK_CONFIG,
+            getCreateUptimeCheckConfigMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.CreateUptimeCheckConfigRequest,
                 com.google.monitoring.v3.UptimeCheckConfig>(
                   this, METHODID_CREATE_UPTIME_CHECK_CONFIG)))
           .addMethod(
-            METHOD_UPDATE_UPTIME_CHECK_CONFIG,
+            getUpdateUptimeCheckConfigMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.UpdateUptimeCheckConfigRequest,
                 com.google.monitoring.v3.UptimeCheckConfig>(
                   this, METHODID_UPDATE_UPTIME_CHECK_CONFIG)))
           .addMethod(
-            METHOD_DELETE_UPTIME_CHECK_CONFIG,
+            getDeleteUptimeCheckConfigMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.DeleteUptimeCheckConfigRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_UPTIME_CHECK_CONFIG)))
           .addMethod(
-            METHOD_LIST_UPTIME_CHECK_IPS,
+            getListUptimeCheckIpsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.monitoring.v3.ListUptimeCheckIpsRequest,
@@ -280,7 +448,7 @@ public final class UptimeCheckServiceGrpc {
     public void listUptimeCheckConfigs(com.google.monitoring.v3.ListUptimeCheckConfigsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListUptimeCheckConfigsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_UPTIME_CHECK_CONFIGS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListUptimeCheckConfigsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -291,7 +459,7 @@ public final class UptimeCheckServiceGrpc {
     public void getUptimeCheckConfig(com.google.monitoring.v3.GetUptimeCheckConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.UptimeCheckConfig> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_UPTIME_CHECK_CONFIG, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetUptimeCheckConfigMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -302,7 +470,7 @@ public final class UptimeCheckServiceGrpc {
     public void createUptimeCheckConfig(com.google.monitoring.v3.CreateUptimeCheckConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.UptimeCheckConfig> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_UPTIME_CHECK_CONFIG, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateUptimeCheckConfigMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -316,7 +484,7 @@ public final class UptimeCheckServiceGrpc {
     public void updateUptimeCheckConfig(com.google.monitoring.v3.UpdateUptimeCheckConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.UptimeCheckConfig> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_UPTIME_CHECK_CONFIG, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateUptimeCheckConfigMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -329,7 +497,7 @@ public final class UptimeCheckServiceGrpc {
     public void deleteUptimeCheckConfig(com.google.monitoring.v3.DeleteUptimeCheckConfigRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_UPTIME_CHECK_CONFIG, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteUptimeCheckConfigMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -340,7 +508,7 @@ public final class UptimeCheckServiceGrpc {
     public void listUptimeCheckIps(com.google.monitoring.v3.ListUptimeCheckIpsRequest request,
         io.grpc.stub.StreamObserver<com.google.monitoring.v3.ListUptimeCheckIpsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_UPTIME_CHECK_IPS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListUptimeCheckIpsMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -380,7 +548,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public com.google.monitoring.v3.ListUptimeCheckConfigsResponse listUptimeCheckConfigs(com.google.monitoring.v3.ListUptimeCheckConfigsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_UPTIME_CHECK_CONFIGS, getCallOptions(), request);
+          getChannel(), getListUptimeCheckConfigsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -390,7 +558,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public com.google.monitoring.v3.UptimeCheckConfig getUptimeCheckConfig(com.google.monitoring.v3.GetUptimeCheckConfigRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_UPTIME_CHECK_CONFIG, getCallOptions(), request);
+          getChannel(), getGetUptimeCheckConfigMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -400,7 +568,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public com.google.monitoring.v3.UptimeCheckConfig createUptimeCheckConfig(com.google.monitoring.v3.CreateUptimeCheckConfigRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_UPTIME_CHECK_CONFIG, getCallOptions(), request);
+          getChannel(), getCreateUptimeCheckConfigMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -413,7 +581,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public com.google.monitoring.v3.UptimeCheckConfig updateUptimeCheckConfig(com.google.monitoring.v3.UpdateUptimeCheckConfigRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_UPTIME_CHECK_CONFIG, getCallOptions(), request);
+          getChannel(), getUpdateUptimeCheckConfigMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -425,7 +593,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public com.google.protobuf.Empty deleteUptimeCheckConfig(com.google.monitoring.v3.DeleteUptimeCheckConfigRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_UPTIME_CHECK_CONFIG, getCallOptions(), request);
+          getChannel(), getDeleteUptimeCheckConfigMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -435,7 +603,7 @@ public final class UptimeCheckServiceGrpc {
      */
     public com.google.monitoring.v3.ListUptimeCheckIpsResponse listUptimeCheckIps(com.google.monitoring.v3.ListUptimeCheckIpsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_UPTIME_CHECK_IPS, getCallOptions(), request);
+          getChannel(), getListUptimeCheckIpsMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -476,7 +644,7 @@ public final class UptimeCheckServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.ListUptimeCheckConfigsResponse> listUptimeCheckConfigs(
         com.google.monitoring.v3.ListUptimeCheckConfigsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_UPTIME_CHECK_CONFIGS, getCallOptions()), request);
+          getChannel().newCall(getListUptimeCheckConfigsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -487,7 +655,7 @@ public final class UptimeCheckServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.UptimeCheckConfig> getUptimeCheckConfig(
         com.google.monitoring.v3.GetUptimeCheckConfigRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_UPTIME_CHECK_CONFIG, getCallOptions()), request);
+          getChannel().newCall(getGetUptimeCheckConfigMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -498,7 +666,7 @@ public final class UptimeCheckServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.UptimeCheckConfig> createUptimeCheckConfig(
         com.google.monitoring.v3.CreateUptimeCheckConfigRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_UPTIME_CHECK_CONFIG, getCallOptions()), request);
+          getChannel().newCall(getCreateUptimeCheckConfigMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -512,7 +680,7 @@ public final class UptimeCheckServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.UptimeCheckConfig> updateUptimeCheckConfig(
         com.google.monitoring.v3.UpdateUptimeCheckConfigRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_UPTIME_CHECK_CONFIG, getCallOptions()), request);
+          getChannel().newCall(getUpdateUptimeCheckConfigMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -525,7 +693,7 @@ public final class UptimeCheckServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteUptimeCheckConfig(
         com.google.monitoring.v3.DeleteUptimeCheckConfigRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_UPTIME_CHECK_CONFIG, getCallOptions()), request);
+          getChannel().newCall(getDeleteUptimeCheckConfigMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -536,7 +704,7 @@ public final class UptimeCheckServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.monitoring.v3.ListUptimeCheckIpsResponse> listUptimeCheckIps(
         com.google.monitoring.v3.ListUptimeCheckIpsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_UPTIME_CHECK_IPS, getCallOptions()), request);
+          getChannel().newCall(getListUptimeCheckIpsMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -604,10 +772,38 @@ public final class UptimeCheckServiceGrpc {
     }
   }
 
-  private static final class UptimeCheckServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class UptimeCheckServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    UptimeCheckServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.monitoring.v3.UptimeServiceProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("UptimeCheckService");
+    }
+  }
+
+  private static final class UptimeCheckServiceFileDescriptorSupplier
+      extends UptimeCheckServiceBaseDescriptorSupplier {
+    UptimeCheckServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class UptimeCheckServiceMethodDescriptorSupplier
+      extends UptimeCheckServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    UptimeCheckServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -620,13 +816,13 @@ public final class UptimeCheckServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new UptimeCheckServiceDescriptorSupplier())
-              .addMethod(METHOD_LIST_UPTIME_CHECK_CONFIGS)
-              .addMethod(METHOD_GET_UPTIME_CHECK_CONFIG)
-              .addMethod(METHOD_CREATE_UPTIME_CHECK_CONFIG)
-              .addMethod(METHOD_UPDATE_UPTIME_CHECK_CONFIG)
-              .addMethod(METHOD_DELETE_UPTIME_CHECK_CONFIG)
-              .addMethod(METHOD_LIST_UPTIME_CHECK_IPS)
+              .setSchemaDescriptor(new UptimeCheckServiceFileDescriptorSupplier())
+              .addMethod(getListUptimeCheckConfigsMethodHelper())
+              .addMethod(getGetUptimeCheckConfigMethodHelper())
+              .addMethod(getCreateUptimeCheckConfigMethodHelper())
+              .addMethod(getUpdateUptimeCheckConfigMethodHelper())
+              .addMethod(getDeleteUptimeCheckConfigMethodHelper())
+              .addMethod(getListUptimeCheckIpsMethodHelper())
               .build();
         }
       }

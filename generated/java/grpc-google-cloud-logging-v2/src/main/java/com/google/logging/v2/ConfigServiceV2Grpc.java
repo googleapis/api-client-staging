@@ -1,19 +1,19 @@
 package com.google.logging.v2;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -22,7 +22,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/logging/v2/logging_config.proto")
 public final class ConfigServiceV2Grpc {
 
@@ -32,95 +32,375 @@ public final class ConfigServiceV2Grpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListSinksMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.ListSinksRequest,
-      com.google.logging.v2.ListSinksResponse> METHOD_LIST_SINKS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "ListSinks"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListSinksRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListSinksResponse.getDefaultInstance()));
+      com.google.logging.v2.ListSinksResponse> METHOD_LIST_SINKS = getListSinksMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.ListSinksRequest,
+      com.google.logging.v2.ListSinksResponse> getListSinksMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.ListSinksRequest,
+      com.google.logging.v2.ListSinksResponse> getListSinksMethod() {
+    return getListSinksMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.ListSinksRequest,
+      com.google.logging.v2.ListSinksResponse> getListSinksMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.ListSinksRequest, com.google.logging.v2.ListSinksResponse> getListSinksMethod;
+    if ((getListSinksMethod = ConfigServiceV2Grpc.getListSinksMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getListSinksMethod = ConfigServiceV2Grpc.getListSinksMethod) == null) {
+          ConfigServiceV2Grpc.getListSinksMethod = getListSinksMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.ListSinksRequest, com.google.logging.v2.ListSinksResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "ListSinks"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListSinksRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListSinksResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("ListSinks"))
+                  .build();
+          }
+        }
+     }
+     return getListSinksMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetSinkMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.GetSinkRequest,
-      com.google.logging.v2.LogSink> METHOD_GET_SINK =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "GetSink"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.GetSinkRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogSink.getDefaultInstance()));
+      com.google.logging.v2.LogSink> METHOD_GET_SINK = getGetSinkMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.GetSinkRequest,
+      com.google.logging.v2.LogSink> getGetSinkMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.GetSinkRequest,
+      com.google.logging.v2.LogSink> getGetSinkMethod() {
+    return getGetSinkMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.GetSinkRequest,
+      com.google.logging.v2.LogSink> getGetSinkMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.GetSinkRequest, com.google.logging.v2.LogSink> getGetSinkMethod;
+    if ((getGetSinkMethod = ConfigServiceV2Grpc.getGetSinkMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getGetSinkMethod = ConfigServiceV2Grpc.getGetSinkMethod) == null) {
+          ConfigServiceV2Grpc.getGetSinkMethod = getGetSinkMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.GetSinkRequest, com.google.logging.v2.LogSink>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "GetSink"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.GetSinkRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.LogSink.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("GetSink"))
+                  .build();
+          }
+        }
+     }
+     return getGetSinkMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateSinkMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.CreateSinkRequest,
-      com.google.logging.v2.LogSink> METHOD_CREATE_SINK =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "CreateSink"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.CreateSinkRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogSink.getDefaultInstance()));
+      com.google.logging.v2.LogSink> METHOD_CREATE_SINK = getCreateSinkMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.CreateSinkRequest,
+      com.google.logging.v2.LogSink> getCreateSinkMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.CreateSinkRequest,
+      com.google.logging.v2.LogSink> getCreateSinkMethod() {
+    return getCreateSinkMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.CreateSinkRequest,
+      com.google.logging.v2.LogSink> getCreateSinkMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.CreateSinkRequest, com.google.logging.v2.LogSink> getCreateSinkMethod;
+    if ((getCreateSinkMethod = ConfigServiceV2Grpc.getCreateSinkMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getCreateSinkMethod = ConfigServiceV2Grpc.getCreateSinkMethod) == null) {
+          ConfigServiceV2Grpc.getCreateSinkMethod = getCreateSinkMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.CreateSinkRequest, com.google.logging.v2.LogSink>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "CreateSink"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.CreateSinkRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.LogSink.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("CreateSink"))
+                  .build();
+          }
+        }
+     }
+     return getCreateSinkMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateSinkMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.UpdateSinkRequest,
-      com.google.logging.v2.LogSink> METHOD_UPDATE_SINK =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "UpdateSink"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.UpdateSinkRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogSink.getDefaultInstance()));
+      com.google.logging.v2.LogSink> METHOD_UPDATE_SINK = getUpdateSinkMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.UpdateSinkRequest,
+      com.google.logging.v2.LogSink> getUpdateSinkMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.UpdateSinkRequest,
+      com.google.logging.v2.LogSink> getUpdateSinkMethod() {
+    return getUpdateSinkMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.UpdateSinkRequest,
+      com.google.logging.v2.LogSink> getUpdateSinkMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.UpdateSinkRequest, com.google.logging.v2.LogSink> getUpdateSinkMethod;
+    if ((getUpdateSinkMethod = ConfigServiceV2Grpc.getUpdateSinkMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getUpdateSinkMethod = ConfigServiceV2Grpc.getUpdateSinkMethod) == null) {
+          ConfigServiceV2Grpc.getUpdateSinkMethod = getUpdateSinkMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.UpdateSinkRequest, com.google.logging.v2.LogSink>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "UpdateSink"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.UpdateSinkRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.LogSink.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("UpdateSink"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateSinkMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteSinkMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.DeleteSinkRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_SINK =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "DeleteSink"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.DeleteSinkRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_SINK = getDeleteSinkMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.DeleteSinkRequest,
+      com.google.protobuf.Empty> getDeleteSinkMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.DeleteSinkRequest,
+      com.google.protobuf.Empty> getDeleteSinkMethod() {
+    return getDeleteSinkMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.DeleteSinkRequest,
+      com.google.protobuf.Empty> getDeleteSinkMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.DeleteSinkRequest, com.google.protobuf.Empty> getDeleteSinkMethod;
+    if ((getDeleteSinkMethod = ConfigServiceV2Grpc.getDeleteSinkMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getDeleteSinkMethod = ConfigServiceV2Grpc.getDeleteSinkMethod) == null) {
+          ConfigServiceV2Grpc.getDeleteSinkMethod = getDeleteSinkMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.DeleteSinkRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "DeleteSink"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.DeleteSinkRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("DeleteSink"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteSinkMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListExclusionsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.ListExclusionsRequest,
-      com.google.logging.v2.ListExclusionsResponse> METHOD_LIST_EXCLUSIONS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "ListExclusions"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListExclusionsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListExclusionsResponse.getDefaultInstance()));
+      com.google.logging.v2.ListExclusionsResponse> METHOD_LIST_EXCLUSIONS = getListExclusionsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.ListExclusionsRequest,
+      com.google.logging.v2.ListExclusionsResponse> getListExclusionsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.ListExclusionsRequest,
+      com.google.logging.v2.ListExclusionsResponse> getListExclusionsMethod() {
+    return getListExclusionsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.ListExclusionsRequest,
+      com.google.logging.v2.ListExclusionsResponse> getListExclusionsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.ListExclusionsRequest, com.google.logging.v2.ListExclusionsResponse> getListExclusionsMethod;
+    if ((getListExclusionsMethod = ConfigServiceV2Grpc.getListExclusionsMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getListExclusionsMethod = ConfigServiceV2Grpc.getListExclusionsMethod) == null) {
+          ConfigServiceV2Grpc.getListExclusionsMethod = getListExclusionsMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.ListExclusionsRequest, com.google.logging.v2.ListExclusionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "ListExclusions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListExclusionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.ListExclusionsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("ListExclusions"))
+                  .build();
+          }
+        }
+     }
+     return getListExclusionsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetExclusionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.GetExclusionRequest,
-      com.google.logging.v2.LogExclusion> METHOD_GET_EXCLUSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "GetExclusion"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.GetExclusionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogExclusion.getDefaultInstance()));
+      com.google.logging.v2.LogExclusion> METHOD_GET_EXCLUSION = getGetExclusionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.GetExclusionRequest,
+      com.google.logging.v2.LogExclusion> getGetExclusionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.GetExclusionRequest,
+      com.google.logging.v2.LogExclusion> getGetExclusionMethod() {
+    return getGetExclusionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.GetExclusionRequest,
+      com.google.logging.v2.LogExclusion> getGetExclusionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.GetExclusionRequest, com.google.logging.v2.LogExclusion> getGetExclusionMethod;
+    if ((getGetExclusionMethod = ConfigServiceV2Grpc.getGetExclusionMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getGetExclusionMethod = ConfigServiceV2Grpc.getGetExclusionMethod) == null) {
+          ConfigServiceV2Grpc.getGetExclusionMethod = getGetExclusionMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.GetExclusionRequest, com.google.logging.v2.LogExclusion>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "GetExclusion"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.GetExclusionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.LogExclusion.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("GetExclusion"))
+                  .build();
+          }
+        }
+     }
+     return getGetExclusionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getCreateExclusionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.CreateExclusionRequest,
-      com.google.logging.v2.LogExclusion> METHOD_CREATE_EXCLUSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "CreateExclusion"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.CreateExclusionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogExclusion.getDefaultInstance()));
+      com.google.logging.v2.LogExclusion> METHOD_CREATE_EXCLUSION = getCreateExclusionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.CreateExclusionRequest,
+      com.google.logging.v2.LogExclusion> getCreateExclusionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.CreateExclusionRequest,
+      com.google.logging.v2.LogExclusion> getCreateExclusionMethod() {
+    return getCreateExclusionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.CreateExclusionRequest,
+      com.google.logging.v2.LogExclusion> getCreateExclusionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.CreateExclusionRequest, com.google.logging.v2.LogExclusion> getCreateExclusionMethod;
+    if ((getCreateExclusionMethod = ConfigServiceV2Grpc.getCreateExclusionMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getCreateExclusionMethod = ConfigServiceV2Grpc.getCreateExclusionMethod) == null) {
+          ConfigServiceV2Grpc.getCreateExclusionMethod = getCreateExclusionMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.CreateExclusionRequest, com.google.logging.v2.LogExclusion>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "CreateExclusion"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.CreateExclusionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.LogExclusion.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("CreateExclusion"))
+                  .build();
+          }
+        }
+     }
+     return getCreateExclusionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateExclusionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.UpdateExclusionRequest,
-      com.google.logging.v2.LogExclusion> METHOD_UPDATE_EXCLUSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "UpdateExclusion"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.UpdateExclusionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogExclusion.getDefaultInstance()));
+      com.google.logging.v2.LogExclusion> METHOD_UPDATE_EXCLUSION = getUpdateExclusionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.UpdateExclusionRequest,
+      com.google.logging.v2.LogExclusion> getUpdateExclusionMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.UpdateExclusionRequest,
+      com.google.logging.v2.LogExclusion> getUpdateExclusionMethod() {
+    return getUpdateExclusionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.UpdateExclusionRequest,
+      com.google.logging.v2.LogExclusion> getUpdateExclusionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.UpdateExclusionRequest, com.google.logging.v2.LogExclusion> getUpdateExclusionMethod;
+    if ((getUpdateExclusionMethod = ConfigServiceV2Grpc.getUpdateExclusionMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getUpdateExclusionMethod = ConfigServiceV2Grpc.getUpdateExclusionMethod) == null) {
+          ConfigServiceV2Grpc.getUpdateExclusionMethod = getUpdateExclusionMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.UpdateExclusionRequest, com.google.logging.v2.LogExclusion>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "UpdateExclusion"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.UpdateExclusionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.LogExclusion.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("UpdateExclusion"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateExclusionMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteExclusionMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.logging.v2.DeleteExclusionRequest,
-      com.google.protobuf.Empty> METHOD_DELETE_EXCLUSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.logging.v2.ConfigServiceV2", "DeleteExclusion"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.DeleteExclusionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+      com.google.protobuf.Empty> METHOD_DELETE_EXCLUSION = getDeleteExclusionMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.logging.v2.DeleteExclusionRequest,
+      com.google.protobuf.Empty> getDeleteExclusionMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.logging.v2.DeleteExclusionRequest,
+      com.google.protobuf.Empty> getDeleteExclusionMethod() {
+    return getDeleteExclusionMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.logging.v2.DeleteExclusionRequest,
+      com.google.protobuf.Empty> getDeleteExclusionMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.logging.v2.DeleteExclusionRequest, com.google.protobuf.Empty> getDeleteExclusionMethod;
+    if ((getDeleteExclusionMethod = ConfigServiceV2Grpc.getDeleteExclusionMethod) == null) {
+      synchronized (ConfigServiceV2Grpc.class) {
+        if ((getDeleteExclusionMethod = ConfigServiceV2Grpc.getDeleteExclusionMethod) == null) {
+          ConfigServiceV2Grpc.getDeleteExclusionMethod = getDeleteExclusionMethod = 
+              io.grpc.MethodDescriptor.<com.google.logging.v2.DeleteExclusionRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.logging.v2.ConfigServiceV2", "DeleteExclusion"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.logging.v2.DeleteExclusionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new ConfigServiceV2MethodDescriptorSupplier("DeleteExclusion"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteExclusionMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -138,7 +418,7 @@ public final class ConfigServiceV2Grpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static ConfigServiceV2FutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -160,7 +440,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void listSinks(com.google.logging.v2.ListSinksRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListSinksResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_SINKS, responseObserver);
+      asyncUnimplementedUnaryCall(getListSinksMethodHelper(), responseObserver);
     }
 
     /**
@@ -170,7 +450,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void getSink(com.google.logging.v2.GetSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogSink> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_SINK, responseObserver);
+      asyncUnimplementedUnaryCall(getGetSinkMethodHelper(), responseObserver);
     }
 
     /**
@@ -183,7 +463,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void createSink(com.google.logging.v2.CreateSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogSink> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_SINK, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateSinkMethodHelper(), responseObserver);
     }
 
     /**
@@ -196,7 +476,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void updateSink(com.google.logging.v2.UpdateSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogSink> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_SINK, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateSinkMethodHelper(), responseObserver);
     }
 
     /**
@@ -207,7 +487,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void deleteSink(com.google.logging.v2.DeleteSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_SINK, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteSinkMethodHelper(), responseObserver);
     }
 
     /**
@@ -217,7 +497,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void listExclusions(com.google.logging.v2.ListExclusionsRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListExclusionsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_EXCLUSIONS, responseObserver);
+      asyncUnimplementedUnaryCall(getListExclusionsMethodHelper(), responseObserver);
     }
 
     /**
@@ -227,7 +507,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void getExclusion(com.google.logging.v2.GetExclusionRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_EXCLUSION, responseObserver);
+      asyncUnimplementedUnaryCall(getGetExclusionMethodHelper(), responseObserver);
     }
 
     /**
@@ -239,7 +519,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void createExclusion(com.google.logging.v2.CreateExclusionRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_CREATE_EXCLUSION, responseObserver);
+      asyncUnimplementedUnaryCall(getCreateExclusionMethodHelper(), responseObserver);
     }
 
     /**
@@ -249,7 +529,7 @@ public final class ConfigServiceV2Grpc {
      */
     public void updateExclusion(com.google.logging.v2.UpdateExclusionRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_EXCLUSION, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateExclusionMethodHelper(), responseObserver);
     }
 
     /**
@@ -259,76 +539,76 @@ public final class ConfigServiceV2Grpc {
      */
     public void deleteExclusion(com.google.logging.v2.DeleteExclusionRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_EXCLUSION, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteExclusionMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_SINKS,
+            getListSinksMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.ListSinksRequest,
                 com.google.logging.v2.ListSinksResponse>(
                   this, METHODID_LIST_SINKS)))
           .addMethod(
-            METHOD_GET_SINK,
+            getGetSinkMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.GetSinkRequest,
                 com.google.logging.v2.LogSink>(
                   this, METHODID_GET_SINK)))
           .addMethod(
-            METHOD_CREATE_SINK,
+            getCreateSinkMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.CreateSinkRequest,
                 com.google.logging.v2.LogSink>(
                   this, METHODID_CREATE_SINK)))
           .addMethod(
-            METHOD_UPDATE_SINK,
+            getUpdateSinkMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.UpdateSinkRequest,
                 com.google.logging.v2.LogSink>(
                   this, METHODID_UPDATE_SINK)))
           .addMethod(
-            METHOD_DELETE_SINK,
+            getDeleteSinkMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.DeleteSinkRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_SINK)))
           .addMethod(
-            METHOD_LIST_EXCLUSIONS,
+            getListExclusionsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.ListExclusionsRequest,
                 com.google.logging.v2.ListExclusionsResponse>(
                   this, METHODID_LIST_EXCLUSIONS)))
           .addMethod(
-            METHOD_GET_EXCLUSION,
+            getGetExclusionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.GetExclusionRequest,
                 com.google.logging.v2.LogExclusion>(
                   this, METHODID_GET_EXCLUSION)))
           .addMethod(
-            METHOD_CREATE_EXCLUSION,
+            getCreateExclusionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.CreateExclusionRequest,
                 com.google.logging.v2.LogExclusion>(
                   this, METHODID_CREATE_EXCLUSION)))
           .addMethod(
-            METHOD_UPDATE_EXCLUSION,
+            getUpdateExclusionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.UpdateExclusionRequest,
                 com.google.logging.v2.LogExclusion>(
                   this, METHODID_UPDATE_EXCLUSION)))
           .addMethod(
-            METHOD_DELETE_EXCLUSION,
+            getDeleteExclusionMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.logging.v2.DeleteExclusionRequest,
@@ -368,7 +648,7 @@ public final class ConfigServiceV2Grpc {
     public void listSinks(com.google.logging.v2.ListSinksRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListSinksResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_SINKS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListSinksMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -379,7 +659,7 @@ public final class ConfigServiceV2Grpc {
     public void getSink(com.google.logging.v2.GetSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogSink> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_SINK, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetSinkMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -393,7 +673,7 @@ public final class ConfigServiceV2Grpc {
     public void createSink(com.google.logging.v2.CreateSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogSink> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_SINK, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateSinkMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -407,7 +687,7 @@ public final class ConfigServiceV2Grpc {
     public void updateSink(com.google.logging.v2.UpdateSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogSink> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_SINK, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateSinkMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -419,7 +699,7 @@ public final class ConfigServiceV2Grpc {
     public void deleteSink(com.google.logging.v2.DeleteSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_SINK, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteSinkMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -430,7 +710,7 @@ public final class ConfigServiceV2Grpc {
     public void listExclusions(com.google.logging.v2.ListExclusionsRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.ListExclusionsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_EXCLUSIONS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListExclusionsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -441,7 +721,7 @@ public final class ConfigServiceV2Grpc {
     public void getExclusion(com.google.logging.v2.GetExclusionRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_EXCLUSION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetExclusionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -454,7 +734,7 @@ public final class ConfigServiceV2Grpc {
     public void createExclusion(com.google.logging.v2.CreateExclusionRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_CREATE_EXCLUSION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateExclusionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -465,7 +745,7 @@ public final class ConfigServiceV2Grpc {
     public void updateExclusion(com.google.logging.v2.UpdateExclusionRequest request,
         io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_EXCLUSION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateExclusionMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -476,7 +756,7 @@ public final class ConfigServiceV2Grpc {
     public void deleteExclusion(com.google.logging.v2.DeleteExclusionRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_EXCLUSION, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteExclusionMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -509,7 +789,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.logging.v2.ListSinksResponse listSinks(com.google.logging.v2.ListSinksRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_SINKS, getCallOptions(), request);
+          getChannel(), getListSinksMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -519,7 +799,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.logging.v2.LogSink getSink(com.google.logging.v2.GetSinkRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_SINK, getCallOptions(), request);
+          getChannel(), getGetSinkMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -532,7 +812,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.logging.v2.LogSink createSink(com.google.logging.v2.CreateSinkRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_SINK, getCallOptions(), request);
+          getChannel(), getCreateSinkMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -545,7 +825,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.logging.v2.LogSink updateSink(com.google.logging.v2.UpdateSinkRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_SINK, getCallOptions(), request);
+          getChannel(), getUpdateSinkMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -556,7 +836,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.protobuf.Empty deleteSink(com.google.logging.v2.DeleteSinkRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_SINK, getCallOptions(), request);
+          getChannel(), getDeleteSinkMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -566,7 +846,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.logging.v2.ListExclusionsResponse listExclusions(com.google.logging.v2.ListExclusionsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_EXCLUSIONS, getCallOptions(), request);
+          getChannel(), getListExclusionsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -576,7 +856,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.logging.v2.LogExclusion getExclusion(com.google.logging.v2.GetExclusionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_EXCLUSION, getCallOptions(), request);
+          getChannel(), getGetExclusionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -588,7 +868,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.logging.v2.LogExclusion createExclusion(com.google.logging.v2.CreateExclusionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_CREATE_EXCLUSION, getCallOptions(), request);
+          getChannel(), getCreateExclusionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -598,7 +878,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.logging.v2.LogExclusion updateExclusion(com.google.logging.v2.UpdateExclusionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_EXCLUSION, getCallOptions(), request);
+          getChannel(), getUpdateExclusionMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -608,7 +888,7 @@ public final class ConfigServiceV2Grpc {
      */
     public com.google.protobuf.Empty deleteExclusion(com.google.logging.v2.DeleteExclusionRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_EXCLUSION, getCallOptions(), request);
+          getChannel(), getDeleteExclusionMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -642,7 +922,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.ListSinksResponse> listSinks(
         com.google.logging.v2.ListSinksRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_SINKS, getCallOptions()), request);
+          getChannel().newCall(getListSinksMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -653,7 +933,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogSink> getSink(
         com.google.logging.v2.GetSinkRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_SINK, getCallOptions()), request);
+          getChannel().newCall(getGetSinkMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -667,7 +947,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogSink> createSink(
         com.google.logging.v2.CreateSinkRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_SINK, getCallOptions()), request);
+          getChannel().newCall(getCreateSinkMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -681,7 +961,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogSink> updateSink(
         com.google.logging.v2.UpdateSinkRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_SINK, getCallOptions()), request);
+          getChannel().newCall(getUpdateSinkMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -693,7 +973,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteSink(
         com.google.logging.v2.DeleteSinkRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_SINK, getCallOptions()), request);
+          getChannel().newCall(getDeleteSinkMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -704,7 +984,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.ListExclusionsResponse> listExclusions(
         com.google.logging.v2.ListExclusionsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_EXCLUSIONS, getCallOptions()), request);
+          getChannel().newCall(getListExclusionsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -715,7 +995,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogExclusion> getExclusion(
         com.google.logging.v2.GetExclusionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_EXCLUSION, getCallOptions()), request);
+          getChannel().newCall(getGetExclusionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -728,7 +1008,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogExclusion> createExclusion(
         com.google.logging.v2.CreateExclusionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_CREATE_EXCLUSION, getCallOptions()), request);
+          getChannel().newCall(getCreateExclusionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -739,7 +1019,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogExclusion> updateExclusion(
         com.google.logging.v2.UpdateExclusionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_EXCLUSION, getCallOptions()), request);
+          getChannel().newCall(getUpdateExclusionMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -750,7 +1030,7 @@ public final class ConfigServiceV2Grpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteExclusion(
         com.google.logging.v2.DeleteExclusionRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_EXCLUSION, getCallOptions()), request);
+          getChannel().newCall(getDeleteExclusionMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -838,10 +1118,38 @@ public final class ConfigServiceV2Grpc {
     }
   }
 
-  private static final class ConfigServiceV2DescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class ConfigServiceV2BaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    ConfigServiceV2BaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.logging.v2.LoggingConfigProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("ConfigServiceV2");
+    }
+  }
+
+  private static final class ConfigServiceV2FileDescriptorSupplier
+      extends ConfigServiceV2BaseDescriptorSupplier {
+    ConfigServiceV2FileDescriptorSupplier() {}
+  }
+
+  private static final class ConfigServiceV2MethodDescriptorSupplier
+      extends ConfigServiceV2BaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    ConfigServiceV2MethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -854,17 +1162,17 @@ public final class ConfigServiceV2Grpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new ConfigServiceV2DescriptorSupplier())
-              .addMethod(METHOD_LIST_SINKS)
-              .addMethod(METHOD_GET_SINK)
-              .addMethod(METHOD_CREATE_SINK)
-              .addMethod(METHOD_UPDATE_SINK)
-              .addMethod(METHOD_DELETE_SINK)
-              .addMethod(METHOD_LIST_EXCLUSIONS)
-              .addMethod(METHOD_GET_EXCLUSION)
-              .addMethod(METHOD_CREATE_EXCLUSION)
-              .addMethod(METHOD_UPDATE_EXCLUSION)
-              .addMethod(METHOD_DELETE_EXCLUSION)
+              .setSchemaDescriptor(new ConfigServiceV2FileDescriptorSupplier())
+              .addMethod(getListSinksMethodHelper())
+              .addMethod(getGetSinkMethodHelper())
+              .addMethod(getCreateSinkMethodHelper())
+              .addMethod(getUpdateSinkMethodHelper())
+              .addMethod(getDeleteSinkMethodHelper())
+              .addMethod(getListExclusionsMethodHelper())
+              .addMethod(getGetExclusionMethodHelper())
+              .addMethod(getCreateExclusionMethodHelper())
+              .addMethod(getUpdateExclusionMethodHelper())
+              .addMethod(getDeleteExclusionMethodHelper())
               .build();
         }
       }

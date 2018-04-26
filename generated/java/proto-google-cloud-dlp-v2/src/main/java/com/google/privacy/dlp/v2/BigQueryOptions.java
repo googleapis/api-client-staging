@@ -21,6 +21,7 @@ private static final long serialVersionUID = 0L;
   }
   private BigQueryOptions() {
     identifyingFields_ = java.util.Collections.emptyList();
+    rowsLimit_ = 0L;
   }
 
   @java.lang.Override
@@ -74,6 +75,11 @@ private static final long serialVersionUID = 0L;
             }
             identifyingFields_.add(
                 input.readMessage(com.google.privacy.dlp.v2.FieldId.parser(), extensionRegistry));
+            break;
+          }
+          case 24: {
+
+            rowsLimit_ = input.readInt64();
             break;
           }
         }
@@ -197,6 +203,21 @@ private static final long serialVersionUID = 0L;
     return identifyingFields_.get(index);
   }
 
+  public static final int ROWS_LIMIT_FIELD_NUMBER = 3;
+  private long rowsLimit_;
+  /**
+   * <pre>
+   * Max number of rows to scan. If the table has more rows than this value, the
+   * rest of the rows are omitted. If not set, or if set to 0, all rows will be
+   * scanned. Cannot be used in conjunction with TimespanConfig.
+   * </pre>
+   *
+   * <code>int64 rows_limit = 3;</code>
+   */
+  public long getRowsLimit() {
+    return rowsLimit_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -215,6 +236,9 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < identifyingFields_.size(); i++) {
       output.writeMessage(2, identifyingFields_.get(i));
     }
+    if (rowsLimit_ != 0L) {
+      output.writeInt64(3, rowsLimit_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -230,6 +254,10 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < identifyingFields_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, identifyingFields_.get(i));
+    }
+    if (rowsLimit_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(3, rowsLimit_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -254,6 +282,8 @@ private static final long serialVersionUID = 0L;
     }
     result = result && getIdentifyingFieldsList()
         .equals(other.getIdentifyingFieldsList());
+    result = result && (getRowsLimit()
+        == other.getRowsLimit());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -273,6 +303,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + IDENTIFYING_FIELDS_FIELD_NUMBER;
       hash = (53 * hash) + getIdentifyingFieldsList().hashCode();
     }
+    hash = (37 * hash) + ROWS_LIMIT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getRowsLimit());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -419,6 +452,8 @@ private static final long serialVersionUID = 0L;
       } else {
         identifyingFieldsBuilder_.clear();
       }
+      rowsLimit_ = 0L;
+
       return this;
     }
 
@@ -457,6 +492,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.identifyingFields_ = identifyingFieldsBuilder_.build();
       }
+      result.rowsLimit_ = rowsLimit_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -527,6 +563,9 @@ private static final long serialVersionUID = 0L;
             identifyingFieldsBuilder_.addAllMessages(other.identifyingFields_);
           }
         }
+      }
+      if (other.getRowsLimit() != 0L) {
+        setRowsLimit(other.getRowsLimit());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1037,6 +1076,50 @@ private static final long serialVersionUID = 0L;
         identifyingFields_ = null;
       }
       return identifyingFieldsBuilder_;
+    }
+
+    private long rowsLimit_ ;
+    /**
+     * <pre>
+     * Max number of rows to scan. If the table has more rows than this value, the
+     * rest of the rows are omitted. If not set, or if set to 0, all rows will be
+     * scanned. Cannot be used in conjunction with TimespanConfig.
+     * </pre>
+     *
+     * <code>int64 rows_limit = 3;</code>
+     */
+    public long getRowsLimit() {
+      return rowsLimit_;
+    }
+    /**
+     * <pre>
+     * Max number of rows to scan. If the table has more rows than this value, the
+     * rest of the rows are omitted. If not set, or if set to 0, all rows will be
+     * scanned. Cannot be used in conjunction with TimespanConfig.
+     * </pre>
+     *
+     * <code>int64 rows_limit = 3;</code>
+     */
+    public Builder setRowsLimit(long value) {
+      
+      rowsLimit_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Max number of rows to scan. If the table has more rows than this value, the
+     * rest of the rows are omitted. If not set, or if set to 0, all rows will be
+     * scanned. Cannot be used in conjunction with TimespanConfig.
+     * </pre>
+     *
+     * <code>int64 rows_limit = 3;</code>
+     */
+    public Builder clearRowsLimit() {
+      
+      rowsLimit_ = 0L;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

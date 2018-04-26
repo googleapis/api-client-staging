@@ -182,6 +182,34 @@ private static final long serialVersionUID = 0L;
      */
     com.google.privacy.dlp.v2.CustomInfoType.Dictionary.WordListOrBuilder getWordListOrBuilder();
 
+    /**
+     * <pre>
+     * Newline-delimited file of words in Cloud Storage. Only a single file
+     * is accepted.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+     */
+    boolean hasCloudStoragePath();
+    /**
+     * <pre>
+     * Newline-delimited file of words in Cloud Storage. Only a single file
+     * is accepted.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+     */
+    com.google.privacy.dlp.v2.CloudStoragePath getCloudStoragePath();
+    /**
+     * <pre>
+     * Newline-delimited file of words in Cloud Storage. Only a single file
+     * is accepted.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+     */
+    com.google.privacy.dlp.v2.CloudStoragePathOrBuilder getCloudStoragePathOrBuilder();
+
     public com.google.privacy.dlp.v2.CustomInfoType.Dictionary.SourceCase getSourceCase();
   }
   /**
@@ -262,6 +290,20 @@ private static final long serialVersionUID = 0L;
                 source_ = subBuilder.buildPartial();
               }
               sourceCase_ = 1;
+              break;
+            }
+            case 26: {
+              com.google.privacy.dlp.v2.CloudStoragePath.Builder subBuilder = null;
+              if (sourceCase_ == 3) {
+                subBuilder = ((com.google.privacy.dlp.v2.CloudStoragePath) source_).toBuilder();
+              }
+              source_ =
+                  input.readMessage(com.google.privacy.dlp.v2.CloudStoragePath.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.google.privacy.dlp.v2.CloudStoragePath) source_);
+                source_ = subBuilder.buildPartial();
+              }
+              sourceCase_ = 3;
               break;
             }
           }
@@ -982,6 +1024,7 @@ private static final long serialVersionUID = 0L;
     public enum SourceCase
         implements com.google.protobuf.Internal.EnumLite {
       WORD_LIST(1),
+      CLOUD_STORAGE_PATH(3),
       SOURCE_NOT_SET(0);
       private final int value;
       private SourceCase(int value) {
@@ -998,6 +1041,7 @@ private static final long serialVersionUID = 0L;
       public static SourceCase forNumber(int value) {
         switch (value) {
           case 1: return WORD_LIST;
+          case 3: return CLOUD_STORAGE_PATH;
           case 0: return SOURCE_NOT_SET;
           default: return null;
         }
@@ -1051,6 +1095,47 @@ private static final long serialVersionUID = 0L;
       return com.google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList.getDefaultInstance();
     }
 
+    public static final int CLOUD_STORAGE_PATH_FIELD_NUMBER = 3;
+    /**
+     * <pre>
+     * Newline-delimited file of words in Cloud Storage. Only a single file
+     * is accepted.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+     */
+    public boolean hasCloudStoragePath() {
+      return sourceCase_ == 3;
+    }
+    /**
+     * <pre>
+     * Newline-delimited file of words in Cloud Storage. Only a single file
+     * is accepted.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+     */
+    public com.google.privacy.dlp.v2.CloudStoragePath getCloudStoragePath() {
+      if (sourceCase_ == 3) {
+         return (com.google.privacy.dlp.v2.CloudStoragePath) source_;
+      }
+      return com.google.privacy.dlp.v2.CloudStoragePath.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * Newline-delimited file of words in Cloud Storage. Only a single file
+     * is accepted.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+     */
+    public com.google.privacy.dlp.v2.CloudStoragePathOrBuilder getCloudStoragePathOrBuilder() {
+      if (sourceCase_ == 3) {
+         return (com.google.privacy.dlp.v2.CloudStoragePath) source_;
+      }
+      return com.google.privacy.dlp.v2.CloudStoragePath.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1066,6 +1151,9 @@ private static final long serialVersionUID = 0L;
       if (sourceCase_ == 1) {
         output.writeMessage(1, (com.google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList) source_);
       }
+      if (sourceCase_ == 3) {
+        output.writeMessage(3, (com.google.privacy.dlp.v2.CloudStoragePath) source_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1077,6 +1165,10 @@ private static final long serialVersionUID = 0L;
       if (sourceCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, (com.google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList) source_);
+      }
+      if (sourceCase_ == 3) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, (com.google.privacy.dlp.v2.CloudStoragePath) source_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1102,6 +1194,10 @@ private static final long serialVersionUID = 0L;
           result = result && getWordList()
               .equals(other.getWordList());
           break;
+        case 3:
+          result = result && getCloudStoragePath()
+              .equals(other.getCloudStoragePath());
+          break;
         case 0:
         default:
       }
@@ -1120,6 +1216,10 @@ private static final long serialVersionUID = 0L;
         case 1:
           hash = (37 * hash) + WORD_LIST_FIELD_NUMBER;
           hash = (53 * hash) + getWordList().hashCode();
+          break;
+        case 3:
+          hash = (37 * hash) + CLOUD_STORAGE_PATH_FIELD_NUMBER;
+          hash = (53 * hash) + getCloudStoragePath().hashCode();
           break;
         case 0:
         default:
@@ -1304,6 +1404,13 @@ private static final long serialVersionUID = 0L;
             result.source_ = wordListBuilder_.build();
           }
         }
+        if (sourceCase_ == 3) {
+          if (cloudStoragePathBuilder_ == null) {
+            result.source_ = source_;
+          } else {
+            result.source_ = cloudStoragePathBuilder_.build();
+          }
+        }
         result.sourceCase_ = sourceCase_;
         onBuilt();
         return result;
@@ -1349,6 +1456,10 @@ private static final long serialVersionUID = 0L;
         switch (other.getSourceCase()) {
           case WORD_LIST: {
             mergeWordList(other.getWordList());
+            break;
+          }
+          case CLOUD_STORAGE_PATH: {
+            mergeCloudStoragePath(other.getCloudStoragePath());
             break;
           }
           case SOURCE_NOT_SET: {
@@ -1567,6 +1678,187 @@ private static final long serialVersionUID = 0L;
         sourceCase_ = 1;
         onChanged();;
         return wordListBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.privacy.dlp.v2.CloudStoragePath, com.google.privacy.dlp.v2.CloudStoragePath.Builder, com.google.privacy.dlp.v2.CloudStoragePathOrBuilder> cloudStoragePathBuilder_;
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      public boolean hasCloudStoragePath() {
+        return sourceCase_ == 3;
+      }
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      public com.google.privacy.dlp.v2.CloudStoragePath getCloudStoragePath() {
+        if (cloudStoragePathBuilder_ == null) {
+          if (sourceCase_ == 3) {
+            return (com.google.privacy.dlp.v2.CloudStoragePath) source_;
+          }
+          return com.google.privacy.dlp.v2.CloudStoragePath.getDefaultInstance();
+        } else {
+          if (sourceCase_ == 3) {
+            return cloudStoragePathBuilder_.getMessage();
+          }
+          return com.google.privacy.dlp.v2.CloudStoragePath.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      public Builder setCloudStoragePath(com.google.privacy.dlp.v2.CloudStoragePath value) {
+        if (cloudStoragePathBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          source_ = value;
+          onChanged();
+        } else {
+          cloudStoragePathBuilder_.setMessage(value);
+        }
+        sourceCase_ = 3;
+        return this;
+      }
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      public Builder setCloudStoragePath(
+          com.google.privacy.dlp.v2.CloudStoragePath.Builder builderForValue) {
+        if (cloudStoragePathBuilder_ == null) {
+          source_ = builderForValue.build();
+          onChanged();
+        } else {
+          cloudStoragePathBuilder_.setMessage(builderForValue.build());
+        }
+        sourceCase_ = 3;
+        return this;
+      }
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      public Builder mergeCloudStoragePath(com.google.privacy.dlp.v2.CloudStoragePath value) {
+        if (cloudStoragePathBuilder_ == null) {
+          if (sourceCase_ == 3 &&
+              source_ != com.google.privacy.dlp.v2.CloudStoragePath.getDefaultInstance()) {
+            source_ = com.google.privacy.dlp.v2.CloudStoragePath.newBuilder((com.google.privacy.dlp.v2.CloudStoragePath) source_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            source_ = value;
+          }
+          onChanged();
+        } else {
+          if (sourceCase_ == 3) {
+            cloudStoragePathBuilder_.mergeFrom(value);
+          }
+          cloudStoragePathBuilder_.setMessage(value);
+        }
+        sourceCase_ = 3;
+        return this;
+      }
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      public Builder clearCloudStoragePath() {
+        if (cloudStoragePathBuilder_ == null) {
+          if (sourceCase_ == 3) {
+            sourceCase_ = 0;
+            source_ = null;
+            onChanged();
+          }
+        } else {
+          if (sourceCase_ == 3) {
+            sourceCase_ = 0;
+            source_ = null;
+          }
+          cloudStoragePathBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      public com.google.privacy.dlp.v2.CloudStoragePath.Builder getCloudStoragePathBuilder() {
+        return getCloudStoragePathFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      public com.google.privacy.dlp.v2.CloudStoragePathOrBuilder getCloudStoragePathOrBuilder() {
+        if ((sourceCase_ == 3) && (cloudStoragePathBuilder_ != null)) {
+          return cloudStoragePathBuilder_.getMessageOrBuilder();
+        } else {
+          if (sourceCase_ == 3) {
+            return (com.google.privacy.dlp.v2.CloudStoragePath) source_;
+          }
+          return com.google.privacy.dlp.v2.CloudStoragePath.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Newline-delimited file of words in Cloud Storage. Only a single file
+       * is accepted.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.privacy.dlp.v2.CloudStoragePath, com.google.privacy.dlp.v2.CloudStoragePath.Builder, com.google.privacy.dlp.v2.CloudStoragePathOrBuilder> 
+          getCloudStoragePathFieldBuilder() {
+        if (cloudStoragePathBuilder_ == null) {
+          if (!(sourceCase_ == 3)) {
+            source_ = com.google.privacy.dlp.v2.CloudStoragePath.getDefaultInstance();
+          }
+          cloudStoragePathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.privacy.dlp.v2.CloudStoragePath, com.google.privacy.dlp.v2.CloudStoragePath.Builder, com.google.privacy.dlp.v2.CloudStoragePathOrBuilder>(
+                  (com.google.privacy.dlp.v2.CloudStoragePath) source_,
+                  getParentForChildren(),
+                  isClean());
+          source_ = null;
+        }
+        sourceCase_ = 3;
+        onChanged();;
+        return cloudStoragePathBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {

@@ -1,19 +1,19 @@
 package com.google.appengine.v1;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,7 +21,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/appengine/v1/appengine.proto")
 public final class ServicesGrpc {
 
@@ -31,41 +31,153 @@ public final class ServicesGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getListServicesMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.ListServicesRequest,
-      com.google.appengine.v1.ListServicesResponse> METHOD_LIST_SERVICES =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Services", "ListServices"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.ListServicesRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.ListServicesResponse.getDefaultInstance()));
+      com.google.appengine.v1.ListServicesResponse> METHOD_LIST_SERVICES = getListServicesMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.ListServicesRequest,
+      com.google.appengine.v1.ListServicesResponse> getListServicesMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.ListServicesRequest,
+      com.google.appengine.v1.ListServicesResponse> getListServicesMethod() {
+    return getListServicesMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.ListServicesRequest,
+      com.google.appengine.v1.ListServicesResponse> getListServicesMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.ListServicesRequest, com.google.appengine.v1.ListServicesResponse> getListServicesMethod;
+    if ((getListServicesMethod = ServicesGrpc.getListServicesMethod) == null) {
+      synchronized (ServicesGrpc.class) {
+        if ((getListServicesMethod = ServicesGrpc.getListServicesMethod) == null) {
+          ServicesGrpc.getListServicesMethod = getListServicesMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.ListServicesRequest, com.google.appengine.v1.ListServicesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Services", "ListServices"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.ListServicesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.ListServicesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ServicesMethodDescriptorSupplier("ListServices"))
+                  .build();
+          }
+        }
+     }
+     return getListServicesMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetServiceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.GetServiceRequest,
-      com.google.appengine.v1.Service> METHOD_GET_SERVICE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Services", "GetService"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.GetServiceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.Service.getDefaultInstance()));
+      com.google.appengine.v1.Service> METHOD_GET_SERVICE = getGetServiceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.GetServiceRequest,
+      com.google.appengine.v1.Service> getGetServiceMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.GetServiceRequest,
+      com.google.appengine.v1.Service> getGetServiceMethod() {
+    return getGetServiceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.GetServiceRequest,
+      com.google.appengine.v1.Service> getGetServiceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.GetServiceRequest, com.google.appengine.v1.Service> getGetServiceMethod;
+    if ((getGetServiceMethod = ServicesGrpc.getGetServiceMethod) == null) {
+      synchronized (ServicesGrpc.class) {
+        if ((getGetServiceMethod = ServicesGrpc.getGetServiceMethod) == null) {
+          ServicesGrpc.getGetServiceMethod = getGetServiceMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.GetServiceRequest, com.google.appengine.v1.Service>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Services", "GetService"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.GetServiceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.Service.getDefaultInstance()))
+                  .setSchemaDescriptor(new ServicesMethodDescriptorSupplier("GetService"))
+                  .build();
+          }
+        }
+     }
+     return getGetServiceMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateServiceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateServiceRequest,
-      com.google.longrunning.Operation> METHOD_UPDATE_SERVICE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Services", "UpdateService"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.UpdateServiceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_UPDATE_SERVICE = getUpdateServiceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateServiceRequest,
+      com.google.longrunning.Operation> getUpdateServiceMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateServiceRequest,
+      com.google.longrunning.Operation> getUpdateServiceMethod() {
+    return getUpdateServiceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateServiceRequest,
+      com.google.longrunning.Operation> getUpdateServiceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.UpdateServiceRequest, com.google.longrunning.Operation> getUpdateServiceMethod;
+    if ((getUpdateServiceMethod = ServicesGrpc.getUpdateServiceMethod) == null) {
+      synchronized (ServicesGrpc.class) {
+        if ((getUpdateServiceMethod = ServicesGrpc.getUpdateServiceMethod) == null) {
+          ServicesGrpc.getUpdateServiceMethod = getUpdateServiceMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.UpdateServiceRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Services", "UpdateService"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.UpdateServiceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ServicesMethodDescriptorSupplier("UpdateService"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateServiceMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getDeleteServiceMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteServiceRequest,
-      com.google.longrunning.Operation> METHOD_DELETE_SERVICE =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.appengine.v1.Services", "DeleteService"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.appengine.v1.DeleteServiceRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_DELETE_SERVICE = getDeleteServiceMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteServiceRequest,
+      com.google.longrunning.Operation> getDeleteServiceMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteServiceRequest,
+      com.google.longrunning.Operation> getDeleteServiceMethod() {
+    return getDeleteServiceMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteServiceRequest,
+      com.google.longrunning.Operation> getDeleteServiceMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.appengine.v1.DeleteServiceRequest, com.google.longrunning.Operation> getDeleteServiceMethod;
+    if ((getDeleteServiceMethod = ServicesGrpc.getDeleteServiceMethod) == null) {
+      synchronized (ServicesGrpc.class) {
+        if ((getDeleteServiceMethod = ServicesGrpc.getDeleteServiceMethod) == null) {
+          ServicesGrpc.getDeleteServiceMethod = getDeleteServiceMethod = 
+              io.grpc.MethodDescriptor.<com.google.appengine.v1.DeleteServiceRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.appengine.v1.Services", "DeleteService"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.appengine.v1.DeleteServiceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new ServicesMethodDescriptorSupplier("DeleteService"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteServiceMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -83,7 +195,7 @@ public final class ServicesGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static ServicesFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -104,7 +216,7 @@ public final class ServicesGrpc {
      */
     public void listServices(com.google.appengine.v1.ListServicesRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.ListServicesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_LIST_SERVICES, responseObserver);
+      asyncUnimplementedUnaryCall(getListServicesMethodHelper(), responseObserver);
     }
 
     /**
@@ -114,7 +226,7 @@ public final class ServicesGrpc {
      */
     public void getService(com.google.appengine.v1.GetServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.Service> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_SERVICE, responseObserver);
+      asyncUnimplementedUnaryCall(getGetServiceMethodHelper(), responseObserver);
     }
 
     /**
@@ -124,7 +236,7 @@ public final class ServicesGrpc {
      */
     public void updateService(com.google.appengine.v1.UpdateServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_UPDATE_SERVICE, responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateServiceMethodHelper(), responseObserver);
     }
 
     /**
@@ -134,34 +246,34 @@ public final class ServicesGrpc {
      */
     public void deleteService(com.google.appengine.v1.DeleteServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_DELETE_SERVICE, responseObserver);
+      asyncUnimplementedUnaryCall(getDeleteServiceMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_LIST_SERVICES,
+            getListServicesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.ListServicesRequest,
                 com.google.appengine.v1.ListServicesResponse>(
                   this, METHODID_LIST_SERVICES)))
           .addMethod(
-            METHOD_GET_SERVICE,
+            getGetServiceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.GetServiceRequest,
                 com.google.appengine.v1.Service>(
                   this, METHODID_GET_SERVICE)))
           .addMethod(
-            METHOD_UPDATE_SERVICE,
+            getUpdateServiceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.UpdateServiceRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_UPDATE_SERVICE)))
           .addMethod(
-            METHOD_DELETE_SERVICE,
+            getDeleteServiceMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.appengine.v1.DeleteServiceRequest,
@@ -200,7 +312,7 @@ public final class ServicesGrpc {
     public void listServices(com.google.appengine.v1.ListServicesRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.ListServicesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_LIST_SERVICES, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getListServicesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -211,7 +323,7 @@ public final class ServicesGrpc {
     public void getService(com.google.appengine.v1.GetServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.appengine.v1.Service> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_SERVICE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetServiceMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -222,7 +334,7 @@ public final class ServicesGrpc {
     public void updateService(com.google.appengine.v1.UpdateServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_SERVICE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateServiceMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -233,7 +345,7 @@ public final class ServicesGrpc {
     public void deleteService(com.google.appengine.v1.DeleteServiceRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_DELETE_SERVICE, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getDeleteServiceMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -265,7 +377,7 @@ public final class ServicesGrpc {
      */
     public com.google.appengine.v1.ListServicesResponse listServices(com.google.appengine.v1.ListServicesRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_LIST_SERVICES, getCallOptions(), request);
+          getChannel(), getListServicesMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -275,7 +387,7 @@ public final class ServicesGrpc {
      */
     public com.google.appengine.v1.Service getService(com.google.appengine.v1.GetServiceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_SERVICE, getCallOptions(), request);
+          getChannel(), getGetServiceMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -285,7 +397,7 @@ public final class ServicesGrpc {
      */
     public com.google.longrunning.Operation updateService(com.google.appengine.v1.UpdateServiceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_UPDATE_SERVICE, getCallOptions(), request);
+          getChannel(), getUpdateServiceMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -295,7 +407,7 @@ public final class ServicesGrpc {
      */
     public com.google.longrunning.Operation deleteService(com.google.appengine.v1.DeleteServiceRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_DELETE_SERVICE, getCallOptions(), request);
+          getChannel(), getDeleteServiceMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -328,7 +440,7 @@ public final class ServicesGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.appengine.v1.ListServicesResponse> listServices(
         com.google.appengine.v1.ListServicesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_LIST_SERVICES, getCallOptions()), request);
+          getChannel().newCall(getListServicesMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -339,7 +451,7 @@ public final class ServicesGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.appengine.v1.Service> getService(
         com.google.appengine.v1.GetServiceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_SERVICE, getCallOptions()), request);
+          getChannel().newCall(getGetServiceMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -350,7 +462,7 @@ public final class ServicesGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> updateService(
         com.google.appengine.v1.UpdateServiceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_UPDATE_SERVICE, getCallOptions()), request);
+          getChannel().newCall(getUpdateServiceMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -361,7 +473,7 @@ public final class ServicesGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> deleteService(
         com.google.appengine.v1.DeleteServiceRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_DELETE_SERVICE, getCallOptions()), request);
+          getChannel().newCall(getDeleteServiceMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -419,10 +531,38 @@ public final class ServicesGrpc {
     }
   }
 
-  private static final class ServicesDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class ServicesBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    ServicesBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.appengine.v1.AppengineProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Services");
+    }
+  }
+
+  private static final class ServicesFileDescriptorSupplier
+      extends ServicesBaseDescriptorSupplier {
+    ServicesFileDescriptorSupplier() {}
+  }
+
+  private static final class ServicesMethodDescriptorSupplier
+      extends ServicesBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    ServicesMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -435,11 +575,11 @@ public final class ServicesGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new ServicesDescriptorSupplier())
-              .addMethod(METHOD_LIST_SERVICES)
-              .addMethod(METHOD_GET_SERVICE)
-              .addMethod(METHOD_UPDATE_SERVICE)
-              .addMethod(METHOD_DELETE_SERVICE)
+              .setSchemaDescriptor(new ServicesFileDescriptorSupplier())
+              .addMethod(getListServicesMethodHelper())
+              .addMethod(getGetServiceMethodHelper())
+              .addMethod(getUpdateServiceMethodHelper())
+              .addMethod(getDeleteServiceMethodHelper())
               .build();
         }
       }

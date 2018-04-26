@@ -47,7 +47,7 @@ import javax.annotation.Generated;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 /** Settings class to configure an instance of {@link OperationsClient}. */
-@Generated("by GAPIC v0.0.5")
+@Generated("by gapic-generator")
 @BetaApi
 public class OperationsSettings extends ClientSettings<OperationsSettings> {
   /** Returns the object with the settings used for calls to getOperation. */

@@ -1,19 +1,19 @@
 package com.google.cloud.dialogflow.v2;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -40,7 +40,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.10.0)",
     comments = "Source: google/cloud/dialogflow/v2/agent.proto")
 public final class AgentsGrpc {
 
@@ -50,59 +50,227 @@ public final class AgentsGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getGetAgentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.GetAgentRequest,
-      com.google.cloud.dialogflow.v2.Agent> METHOD_GET_AGENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dialogflow.v2.Agents", "GetAgent"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.GetAgentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.Agent.getDefaultInstance()));
+      com.google.cloud.dialogflow.v2.Agent> METHOD_GET_AGENT = getGetAgentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.GetAgentRequest,
+      com.google.cloud.dialogflow.v2.Agent> getGetAgentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.GetAgentRequest,
+      com.google.cloud.dialogflow.v2.Agent> getGetAgentMethod() {
+    return getGetAgentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.GetAgentRequest,
+      com.google.cloud.dialogflow.v2.Agent> getGetAgentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.GetAgentRequest, com.google.cloud.dialogflow.v2.Agent> getGetAgentMethod;
+    if ((getGetAgentMethod = AgentsGrpc.getGetAgentMethod) == null) {
+      synchronized (AgentsGrpc.class) {
+        if ((getGetAgentMethod = AgentsGrpc.getGetAgentMethod) == null) {
+          AgentsGrpc.getGetAgentMethod = getGetAgentMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dialogflow.v2.GetAgentRequest, com.google.cloud.dialogflow.v2.Agent>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dialogflow.v2.Agents", "GetAgent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.GetAgentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.Agent.getDefaultInstance()))
+                  .setSchemaDescriptor(new AgentsMethodDescriptorSupplier("GetAgent"))
+                  .build();
+          }
+        }
+     }
+     return getGetAgentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getSearchAgentsMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.SearchAgentsRequest,
-      com.google.cloud.dialogflow.v2.SearchAgentsResponse> METHOD_SEARCH_AGENTS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dialogflow.v2.Agents", "SearchAgents"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.SearchAgentsRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.SearchAgentsResponse.getDefaultInstance()));
+      com.google.cloud.dialogflow.v2.SearchAgentsResponse> METHOD_SEARCH_AGENTS = getSearchAgentsMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.SearchAgentsRequest,
+      com.google.cloud.dialogflow.v2.SearchAgentsResponse> getSearchAgentsMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.SearchAgentsRequest,
+      com.google.cloud.dialogflow.v2.SearchAgentsResponse> getSearchAgentsMethod() {
+    return getSearchAgentsMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.SearchAgentsRequest,
+      com.google.cloud.dialogflow.v2.SearchAgentsResponse> getSearchAgentsMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.SearchAgentsRequest, com.google.cloud.dialogflow.v2.SearchAgentsResponse> getSearchAgentsMethod;
+    if ((getSearchAgentsMethod = AgentsGrpc.getSearchAgentsMethod) == null) {
+      synchronized (AgentsGrpc.class) {
+        if ((getSearchAgentsMethod = AgentsGrpc.getSearchAgentsMethod) == null) {
+          AgentsGrpc.getSearchAgentsMethod = getSearchAgentsMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dialogflow.v2.SearchAgentsRequest, com.google.cloud.dialogflow.v2.SearchAgentsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dialogflow.v2.Agents", "SearchAgents"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.SearchAgentsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.SearchAgentsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new AgentsMethodDescriptorSupplier("SearchAgents"))
+                  .build();
+          }
+        }
+     }
+     return getSearchAgentsMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getTrainAgentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.TrainAgentRequest,
-      com.google.longrunning.Operation> METHOD_TRAIN_AGENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dialogflow.v2.Agents", "TrainAgent"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.TrainAgentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_TRAIN_AGENT = getTrainAgentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.TrainAgentRequest,
+      com.google.longrunning.Operation> getTrainAgentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.TrainAgentRequest,
+      com.google.longrunning.Operation> getTrainAgentMethod() {
+    return getTrainAgentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.TrainAgentRequest,
+      com.google.longrunning.Operation> getTrainAgentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.TrainAgentRequest, com.google.longrunning.Operation> getTrainAgentMethod;
+    if ((getTrainAgentMethod = AgentsGrpc.getTrainAgentMethod) == null) {
+      synchronized (AgentsGrpc.class) {
+        if ((getTrainAgentMethod = AgentsGrpc.getTrainAgentMethod) == null) {
+          AgentsGrpc.getTrainAgentMethod = getTrainAgentMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dialogflow.v2.TrainAgentRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dialogflow.v2.Agents", "TrainAgent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.TrainAgentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new AgentsMethodDescriptorSupplier("TrainAgent"))
+                  .build();
+          }
+        }
+     }
+     return getTrainAgentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getExportAgentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ExportAgentRequest,
-      com.google.longrunning.Operation> METHOD_EXPORT_AGENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dialogflow.v2.Agents", "ExportAgent"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.ExportAgentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_EXPORT_AGENT = getExportAgentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ExportAgentRequest,
+      com.google.longrunning.Operation> getExportAgentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ExportAgentRequest,
+      com.google.longrunning.Operation> getExportAgentMethod() {
+    return getExportAgentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ExportAgentRequest,
+      com.google.longrunning.Operation> getExportAgentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ExportAgentRequest, com.google.longrunning.Operation> getExportAgentMethod;
+    if ((getExportAgentMethod = AgentsGrpc.getExportAgentMethod) == null) {
+      synchronized (AgentsGrpc.class) {
+        if ((getExportAgentMethod = AgentsGrpc.getExportAgentMethod) == null) {
+          AgentsGrpc.getExportAgentMethod = getExportAgentMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dialogflow.v2.ExportAgentRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dialogflow.v2.Agents", "ExportAgent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.ExportAgentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new AgentsMethodDescriptorSupplier("ExportAgent"))
+                  .build();
+          }
+        }
+     }
+     return getExportAgentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getImportAgentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ImportAgentRequest,
-      com.google.longrunning.Operation> METHOD_IMPORT_AGENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dialogflow.v2.Agents", "ImportAgent"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.ImportAgentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_IMPORT_AGENT = getImportAgentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ImportAgentRequest,
+      com.google.longrunning.Operation> getImportAgentMethod;
+
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ImportAgentRequest,
+      com.google.longrunning.Operation> getImportAgentMethod() {
+    return getImportAgentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ImportAgentRequest,
+      com.google.longrunning.Operation> getImportAgentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.ImportAgentRequest, com.google.longrunning.Operation> getImportAgentMethod;
+    if ((getImportAgentMethod = AgentsGrpc.getImportAgentMethod) == null) {
+      synchronized (AgentsGrpc.class) {
+        if ((getImportAgentMethod = AgentsGrpc.getImportAgentMethod) == null) {
+          AgentsGrpc.getImportAgentMethod = getImportAgentMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dialogflow.v2.ImportAgentRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dialogflow.v2.Agents", "ImportAgent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.ImportAgentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new AgentsMethodDescriptorSupplier("ImportAgent"))
+                  .build();
+          }
+        }
+     }
+     return getImportAgentMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getRestoreAgentMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.RestoreAgentRequest,
-      com.google.longrunning.Operation> METHOD_RESTORE_AGENT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "google.cloud.dialogflow.v2.Agents", "RestoreAgent"),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.dialogflow.v2.RestoreAgentRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+      com.google.longrunning.Operation> METHOD_RESTORE_AGENT = getRestoreAgentMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.RestoreAgentRequest,
+      com.google.longrunning.Operation> getRestoreAgentMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.RestoreAgentRequest,
+      com.google.longrunning.Operation> getRestoreAgentMethod() {
+    return getRestoreAgentMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.RestoreAgentRequest,
+      com.google.longrunning.Operation> getRestoreAgentMethodHelper() {
+    io.grpc.MethodDescriptor<com.google.cloud.dialogflow.v2.RestoreAgentRequest, com.google.longrunning.Operation> getRestoreAgentMethod;
+    if ((getRestoreAgentMethod = AgentsGrpc.getRestoreAgentMethod) == null) {
+      synchronized (AgentsGrpc.class) {
+        if ((getRestoreAgentMethod = AgentsGrpc.getRestoreAgentMethod) == null) {
+          AgentsGrpc.getRestoreAgentMethod = getRestoreAgentMethod = 
+              io.grpc.MethodDescriptor.<com.google.cloud.dialogflow.v2.RestoreAgentRequest, com.google.longrunning.Operation>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "google.cloud.dialogflow.v2.Agents", "RestoreAgent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.cloud.dialogflow.v2.RestoreAgentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.longrunning.Operation.getDefaultInstance()))
+                  .setSchemaDescriptor(new AgentsMethodDescriptorSupplier("RestoreAgent"))
+                  .build();
+          }
+        }
+     }
+     return getRestoreAgentMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -120,7 +288,7 @@ public final class AgentsGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static AgentsFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -160,7 +328,7 @@ public final class AgentsGrpc {
      */
     public void getAgent(com.google.cloud.dialogflow.v2.GetAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.Agent> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_AGENT, responseObserver);
+      asyncUnimplementedUnaryCall(getGetAgentMethodHelper(), responseObserver);
     }
 
     /**
@@ -175,7 +343,7 @@ public final class AgentsGrpc {
      */
     public void searchAgents(com.google.cloud.dialogflow.v2.SearchAgentsRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.SearchAgentsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_SEARCH_AGENTS, responseObserver);
+      asyncUnimplementedUnaryCall(getSearchAgentsMethodHelper(), responseObserver);
     }
 
     /**
@@ -187,7 +355,7 @@ public final class AgentsGrpc {
      */
     public void trainAgent(com.google.cloud.dialogflow.v2.TrainAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_TRAIN_AGENT, responseObserver);
+      asyncUnimplementedUnaryCall(getTrainAgentMethodHelper(), responseObserver);
     }
 
     /**
@@ -199,7 +367,7 @@ public final class AgentsGrpc {
      */
     public void exportAgent(com.google.cloud.dialogflow.v2.ExportAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_EXPORT_AGENT, responseObserver);
+      asyncUnimplementedUnaryCall(getExportAgentMethodHelper(), responseObserver);
     }
 
     /**
@@ -214,7 +382,7 @@ public final class AgentsGrpc {
      */
     public void importAgent(com.google.cloud.dialogflow.v2.ImportAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_IMPORT_AGENT, responseObserver);
+      asyncUnimplementedUnaryCall(getImportAgentMethodHelper(), responseObserver);
     }
 
     /**
@@ -228,48 +396,48 @@ public final class AgentsGrpc {
      */
     public void restoreAgent(com.google.cloud.dialogflow.v2.RestoreAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_RESTORE_AGENT, responseObserver);
+      asyncUnimplementedUnaryCall(getRestoreAgentMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_GET_AGENT,
+            getGetAgentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dialogflow.v2.GetAgentRequest,
                 com.google.cloud.dialogflow.v2.Agent>(
                   this, METHODID_GET_AGENT)))
           .addMethod(
-            METHOD_SEARCH_AGENTS,
+            getSearchAgentsMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dialogflow.v2.SearchAgentsRequest,
                 com.google.cloud.dialogflow.v2.SearchAgentsResponse>(
                   this, METHODID_SEARCH_AGENTS)))
           .addMethod(
-            METHOD_TRAIN_AGENT,
+            getTrainAgentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dialogflow.v2.TrainAgentRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_TRAIN_AGENT)))
           .addMethod(
-            METHOD_EXPORT_AGENT,
+            getExportAgentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dialogflow.v2.ExportAgentRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_EXPORT_AGENT)))
           .addMethod(
-            METHOD_IMPORT_AGENT,
+            getImportAgentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dialogflow.v2.ImportAgentRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_IMPORT_AGENT)))
           .addMethod(
-            METHOD_RESTORE_AGENT,
+            getRestoreAgentMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.cloud.dialogflow.v2.RestoreAgentRequest,
@@ -327,7 +495,7 @@ public final class AgentsGrpc {
     public void getAgent(com.google.cloud.dialogflow.v2.GetAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.Agent> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_AGENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetAgentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -343,7 +511,7 @@ public final class AgentsGrpc {
     public void searchAgents(com.google.cloud.dialogflow.v2.SearchAgentsRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.dialogflow.v2.SearchAgentsResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_SEARCH_AGENTS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSearchAgentsMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -356,7 +524,7 @@ public final class AgentsGrpc {
     public void trainAgent(com.google.cloud.dialogflow.v2.TrainAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_TRAIN_AGENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getTrainAgentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -369,7 +537,7 @@ public final class AgentsGrpc {
     public void exportAgent(com.google.cloud.dialogflow.v2.ExportAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_EXPORT_AGENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getExportAgentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -385,7 +553,7 @@ public final class AgentsGrpc {
     public void importAgent(com.google.cloud.dialogflow.v2.ImportAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_IMPORT_AGENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getImportAgentMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -400,7 +568,7 @@ public final class AgentsGrpc {
     public void restoreAgent(com.google.cloud.dialogflow.v2.RestoreAgentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_RESTORE_AGENT, getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRestoreAgentMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -451,7 +619,7 @@ public final class AgentsGrpc {
      */
     public com.google.cloud.dialogflow.v2.Agent getAgent(com.google.cloud.dialogflow.v2.GetAgentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_AGENT, getCallOptions(), request);
+          getChannel(), getGetAgentMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -466,7 +634,7 @@ public final class AgentsGrpc {
      */
     public com.google.cloud.dialogflow.v2.SearchAgentsResponse searchAgents(com.google.cloud.dialogflow.v2.SearchAgentsRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_SEARCH_AGENTS, getCallOptions(), request);
+          getChannel(), getSearchAgentsMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -478,7 +646,7 @@ public final class AgentsGrpc {
      */
     public com.google.longrunning.Operation trainAgent(com.google.cloud.dialogflow.v2.TrainAgentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_TRAIN_AGENT, getCallOptions(), request);
+          getChannel(), getTrainAgentMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -490,7 +658,7 @@ public final class AgentsGrpc {
      */
     public com.google.longrunning.Operation exportAgent(com.google.cloud.dialogflow.v2.ExportAgentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_EXPORT_AGENT, getCallOptions(), request);
+          getChannel(), getExportAgentMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -505,7 +673,7 @@ public final class AgentsGrpc {
      */
     public com.google.longrunning.Operation importAgent(com.google.cloud.dialogflow.v2.ImportAgentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_IMPORT_AGENT, getCallOptions(), request);
+          getChannel(), getImportAgentMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -519,7 +687,7 @@ public final class AgentsGrpc {
      */
     public com.google.longrunning.Operation restoreAgent(com.google.cloud.dialogflow.v2.RestoreAgentRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_RESTORE_AGENT, getCallOptions(), request);
+          getChannel(), getRestoreAgentMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -571,7 +739,7 @@ public final class AgentsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.dialogflow.v2.Agent> getAgent(
         com.google.cloud.dialogflow.v2.GetAgentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_AGENT, getCallOptions()), request);
+          getChannel().newCall(getGetAgentMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -587,7 +755,7 @@ public final class AgentsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.dialogflow.v2.SearchAgentsResponse> searchAgents(
         com.google.cloud.dialogflow.v2.SearchAgentsRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_SEARCH_AGENTS, getCallOptions()), request);
+          getChannel().newCall(getSearchAgentsMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -600,7 +768,7 @@ public final class AgentsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> trainAgent(
         com.google.cloud.dialogflow.v2.TrainAgentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_TRAIN_AGENT, getCallOptions()), request);
+          getChannel().newCall(getTrainAgentMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -613,7 +781,7 @@ public final class AgentsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> exportAgent(
         com.google.cloud.dialogflow.v2.ExportAgentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_EXPORT_AGENT, getCallOptions()), request);
+          getChannel().newCall(getExportAgentMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -629,7 +797,7 @@ public final class AgentsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> importAgent(
         com.google.cloud.dialogflow.v2.ImportAgentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_IMPORT_AGENT, getCallOptions()), request);
+          getChannel().newCall(getImportAgentMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -644,7 +812,7 @@ public final class AgentsGrpc {
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> restoreAgent(
         com.google.cloud.dialogflow.v2.RestoreAgentRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_RESTORE_AGENT, getCallOptions()), request);
+          getChannel().newCall(getRestoreAgentMethodHelper(), getCallOptions()), request);
     }
   }
 
@@ -712,10 +880,38 @@ public final class AgentsGrpc {
     }
   }
 
-  private static final class AgentsDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class AgentsBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    AgentsBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.google.cloud.dialogflow.v2.AgentProto.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("Agents");
+    }
+  }
+
+  private static final class AgentsFileDescriptorSupplier
+      extends AgentsBaseDescriptorSupplier {
+    AgentsFileDescriptorSupplier() {}
+  }
+
+  private static final class AgentsMethodDescriptorSupplier
+      extends AgentsBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    AgentsMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -728,13 +924,13 @@ public final class AgentsGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new AgentsDescriptorSupplier())
-              .addMethod(METHOD_GET_AGENT)
-              .addMethod(METHOD_SEARCH_AGENTS)
-              .addMethod(METHOD_TRAIN_AGENT)
-              .addMethod(METHOD_EXPORT_AGENT)
-              .addMethod(METHOD_IMPORT_AGENT)
-              .addMethod(METHOD_RESTORE_AGENT)
+              .setSchemaDescriptor(new AgentsFileDescriptorSupplier())
+              .addMethod(getGetAgentMethodHelper())
+              .addMethod(getSearchAgentsMethodHelper())
+              .addMethod(getTrainAgentMethodHelper())
+              .addMethod(getExportAgentMethodHelper())
+              .addMethod(getImportAgentMethodHelper())
+              .addMethod(getRestoreAgentMethodHelper())
               .build();
         }
       }
