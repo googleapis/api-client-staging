@@ -22,6 +22,6 @@ class StructuredQuery_CompositeFilter_Operator
      *
      * Generated from protobuf enum <code>AND = 1;</code>
      */
-    const AND = 1;
+    const PBAND = 1;
 }
 

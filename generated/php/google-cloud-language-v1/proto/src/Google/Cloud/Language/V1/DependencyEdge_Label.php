@@ -436,7 +436,7 @@ class DependencyEdge_Label
      *
      * Generated from protobuf enum <code>LIST = 70;</code>
      */
-    const LIST = 70;
+    const PBLIST = 70;
     /**
      * Nominalized clause
      *

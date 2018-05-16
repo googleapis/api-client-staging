@@ -23,7 +23,7 @@ class YarnApplication_State
      *
      * Generated from protobuf enum <code>NEW = 1;</code>
      */
-    const NEW = 1;
+    const PBNEW = 1;
     /**
      * Status is NEW_SAVING.
      *
