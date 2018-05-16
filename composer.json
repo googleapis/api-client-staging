@@ -9,6 +9,6 @@
     },
     "autoload": {
         "classmap": ["generated/php"],
-        "exclude-from-classmap": ["generated/php/google-longrunning-v1/proto"]
+        "exclude-from-classmap": ["generated/php/google-cloud-longrunning-v1/proto"]
     }
 }
