@@ -24,6 +24,7 @@ namespace Google\Cloud\ErrorReporting\Tests\Unit\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
@@ -51,6 +52,12 @@ class ReportErrorsServiceClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new ReportErrorsServiceClient($options);
     }
 

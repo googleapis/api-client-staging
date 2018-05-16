@@ -24,6 +24,7 @@ namespace Google\Cloud\Spanner\Tests\Unit\V1;
 
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -60,6 +61,12 @@ class SpannerClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new SpannerClient($options);
     }
 

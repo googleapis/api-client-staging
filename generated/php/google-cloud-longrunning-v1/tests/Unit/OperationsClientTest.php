@@ -37,6 +37,7 @@
 namespace Google\ApiCore\LongRunning\Tests\Unit;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -66,12 +67,17 @@ class OperationsClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
-        return new OperationsClient($options + [
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
             'serviceAddress' => '',
             'credentialsConfig' => [
                 'scopes' => [],
             ],
-        ]);
+        ];
+
+        return new OperationsClient($options);
     }
 
     /**

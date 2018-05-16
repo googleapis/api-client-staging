@@ -24,6 +24,7 @@ namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
 use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Monitoring\V3\ListNotificationChannelDescriptorsResponse;
@@ -54,6 +55,12 @@ class NotificationChannelServiceClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new NotificationChannelServiceClient($options);
     }
 

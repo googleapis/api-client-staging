@@ -24,6 +24,7 @@ namespace Google\Cloud\PubSub\Tests\Unit\V1;
 
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
@@ -58,6 +59,12 @@ class PublisherClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new PublisherClient($options);
     }
 

@@ -25,6 +25,7 @@ namespace Google\Cloud\PubSub\Tests\Unit\V1;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
@@ -65,6 +66,12 @@ class SubscriberClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new SubscriberClient($options);
     }
 

@@ -24,6 +24,7 @@ namespace Google\Cloud\Language\Tests\Unit\V1;
 
 use Google\Cloud\Language\V1\LanguageServiceClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Language\V1\AnalyzeEntitiesResponse;
@@ -57,6 +58,12 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new LanguageServiceClient($options);
     }
 

@@ -24,6 +24,7 @@ namespace Google\Cloud\Logging\Tests\Unit\V2;
 
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Logging\V2\ListExclusionsResponse;
@@ -55,6 +56,12 @@ class ConfigServiceV2ClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new ConfigServiceV2Client($options);
     }
 

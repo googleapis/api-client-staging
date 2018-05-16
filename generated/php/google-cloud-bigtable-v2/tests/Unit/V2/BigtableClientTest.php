@@ -24,6 +24,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\V2;
 
 use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -56,6 +57,12 @@ class BigtableClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new BigtableClient($options);
     }
 

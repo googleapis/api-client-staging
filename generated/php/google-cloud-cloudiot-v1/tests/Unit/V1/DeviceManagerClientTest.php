@@ -24,6 +24,7 @@ namespace Google\Cloud\Iot\Tests\Unit\V1;
 
 use Google\Cloud\Iot\V1\DeviceManagerClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
@@ -60,6 +61,12 @@ class DeviceManagerClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new DeviceManagerClient($options);
     }
 

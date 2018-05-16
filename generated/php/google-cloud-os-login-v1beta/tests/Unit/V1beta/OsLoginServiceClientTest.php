@@ -24,6 +24,7 @@ namespace Google\Cloud\OsLogin\Tests\Unit\V1beta;
 
 use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\OsLogin\Common\SshPublicKey;
@@ -53,6 +54,12 @@ class OsLoginServiceClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new OsLoginServiceClient($options);
     }
 

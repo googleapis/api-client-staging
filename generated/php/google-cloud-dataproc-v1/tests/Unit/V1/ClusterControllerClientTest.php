@@ -24,6 +24,7 @@ namespace Google\Cloud\Dataproc\Tests\Unit\V1;
 
 use Google\Cloud\Dataproc\V1\ClusterControllerClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -56,6 +57,12 @@ class ClusterControllerClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new ClusterControllerClient($options);
     }
 

@@ -24,6 +24,7 @@ namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
 use Google\Cloud\Monitoring\V3\GroupServiceClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Api\MonitoredResource;
@@ -54,6 +55,12 @@ class GroupServiceClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new GroupServiceClient($options);
     }
 

@@ -25,6 +25,7 @@ namespace Google\Cloud\Speech\Tests\Unit\V1beta1;
 use Google\Cloud\Speech\V1beta1\SpeechClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -60,6 +61,12 @@ class SpeechClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new SpeechClient($options);
     }
 

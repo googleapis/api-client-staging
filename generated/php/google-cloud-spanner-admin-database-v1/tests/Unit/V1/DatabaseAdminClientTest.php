@@ -24,6 +24,7 @@ namespace Google\Cloud\Spanner\Admin\Database\Tests\Unit\V1;
 
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -58,6 +59,12 @@ class DatabaseAdminClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new DatabaseAdminClient($options);
     }
 

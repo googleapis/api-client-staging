@@ -24,6 +24,7 @@ namespace Google\Cloud\BigQuery\DataTransfer\Tests\Unit\V1;
 
 use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse;
@@ -62,6 +63,12 @@ class DataTransferServiceClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new DataTransferServiceClient($options);
     }
 

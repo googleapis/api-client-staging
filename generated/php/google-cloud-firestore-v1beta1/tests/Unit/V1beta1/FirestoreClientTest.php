@@ -25,6 +25,7 @@ namespace Google\Cloud\Firestore\Tests\Unit\V1beta1;
 use Google\Cloud\Firestore\V1beta1\FirestoreClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -65,6 +66,12 @@ class FirestoreClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new FirestoreClient($options);
     }
 

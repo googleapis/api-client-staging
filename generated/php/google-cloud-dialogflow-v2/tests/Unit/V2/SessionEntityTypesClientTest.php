@@ -24,6 +24,7 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\Cloud\Dialogflow\V2\SessionEntityTypesClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\ListSessionEntityTypesResponse;
@@ -52,6 +53,12 @@ class SessionEntityTypesClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new SessionEntityTypesClient($options);
     }
 

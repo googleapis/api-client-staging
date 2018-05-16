@@ -25,6 +25,7 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 use Google\Cloud\Dialogflow\V2\SessionsClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\DetectIntentResponse;
@@ -54,6 +55,12 @@ class SessionsClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new SessionsClient($options);
     }
 

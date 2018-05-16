@@ -24,6 +24,7 @@ namespace Google\Cloud\Container\Tests\Unit\V1;
 
 use Google\Cloud\Container\V1\ClusterManagerClient;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Container\V1\AddonsConfig;
@@ -65,6 +66,12 @@ class ClusterManagerClientTest extends GeneratedTest
      */
     private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
         return new ClusterManagerClient($options);
     }
 
