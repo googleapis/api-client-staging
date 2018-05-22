@@ -8,7 +8,6 @@
         "squizlabs/php_codesniffer": "2.*"
     },
     "autoload": {
-        "classmap": ["generated/php"],
-        "exclude-from-classmap": ["generated/php/google-longrunning-v1/proto"]
+        "classmap": ["generated/php"]
     }
 }
