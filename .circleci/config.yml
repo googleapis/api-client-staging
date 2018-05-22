@@ -1,193 +1,6 @@
 ---
 version: 2.0
 jobs:
-  go17:
-    docker:
-      - image: golang:1.7
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests in Go 1.7
-          command: |
-            go get -t ./...
-            go test ./...
-    working_directory: /go/src/github.com/googleapis/api-client-staging
-
-  go18:
-    docker:
-      - image: golang:1.8
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests in Go 1.8
-          command: |
-            go get -t ./...
-            go test ./...
-    working_directory: /go/src/github.com/googleapis/api-client-staging
-
-  node4:
-    docker:
-      - image: node:4
-        user: node
-    steps:
-      - checkout
-      - run:
-          name: Install modules and dependencies.
-          command: |
-            cd generated/nodejs/
-            npm install
-      - run:
-          name: Run GAPIC unit tests in Node 4.
-          command: |
-            cd generated/nodejs/
-
-            # Needed to find the right packages when installed from the top.
-            ./runtests.sh
-    working_directory: /home/node/code/googleapis/
-
-  node6:
-    docker:
-      - image: node:6
-        user: node
-    steps:
-      - checkout
-      - run:
-          name: Install modules and dependencies.
-          command: |
-            cd generated/nodejs/
-            npm install
-      - run:
-          name: Run GAPIC unit tests in Node 6.
-          command: |
-            cd generated/nodejs/
-
-            # Needed to find the right packages when installed from the top.
-            ./runtests.sh
-    working_directory: /home/node/code/googleapis/
-
-  node7:
-    docker:
-      - image: node:7
-        user: node
-    steps:
-      - checkout
-      - run:
-          name: Install modules and dependencies.
-          command: |
-            cd generated/nodejs/
-            npm install
-      - run:
-          name: Run GAPIC unit tests in Node 7.
-          command: |
-            cd generated/nodejs/
-
-            # Needed to find the right packages when installed from the top.
-            ./runtests.sh
-    working_directory: /home/node/code/googleapis/
-
-  node8:
-    docker:
-      - image: node:8
-        user: node
-    steps:
-      - checkout
-      - run:
-          name: Install modules and dependencies.
-          command: |
-            cd generated/nodejs/
-            npm install
-      - run:
-          name: Run GAPIC unit tests in Node 8.
-          command: |
-            cd generated/nodejs/
-            # Needed to find the right packages when installed from the top.
-            ./runtests.sh
-    working_directory: /home/node/code/googleapis/
-
-  openjdk7:
-    docker:
-      - image: openjdk:7u111
-        environment:
-          TERM: dumb
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests in OpenJDK 7.
-          command: ./generated/java/gradlew -p ./generated/java clean test -Dorg.gradle.jvmargs=-Xmx256m
-    working_directory: /var/code/googleapis/
-
-  openjdk8:
-    docker:
-      - image: openjdk:8
-        environment:
-          TERM: dumb
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests in OpenJDK 8.
-          command: ./generated/java/gradlew -p ./generated/java clean test -Dorg.gradle.jvmargs=-Xmx256m
-    working_directory: /var/code/googleapis/
-
-  python27:
-    docker:
-      - image: python:2.7.13
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests in Python 2.7.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='2.7')"
-    working_directory: /var/code/googleapis/
-
-  python34:
-    docker:
-      - image: python:3.4.6
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests in Python 3.4.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.4')"
-    working_directory: /var/code/googleapis/
-
-  python35:
-    docker:
-      - image: python:3.5.3
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests in Python 3.5.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.5')"
-    working_directory: /var/code/googleapis/
-
-  python36:
-    docker:
-      - image: python:3.6.1
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests in Python 3.6.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.6')"
-    working_directory: /var/code/googleapis/
-
   php55:
     docker:
       - image: googleapis/php:5.5
@@ -252,57 +65,38 @@ jobs:
           command: ./vendor/bin/phpcs --standard=./generated/php/phpcs-ruleset.xml
     working_directory: /var/code/googleapis/
 
-  sync_to_private:
+  php72:
     docker:
-      - image: googleapis/git
+      - image: googleapis/php:7.2
     steps:
       - checkout
       - run:
-          command: |
-            if [ "$CIRCLE_PROJECT_USERNAME"  == "googleapis" ]; then
-              git remote add private https://googleapis-publisher:${GITHUB_TOKEN}@github.com/googleapis/api-client-staging-private.git
-              git push private HEAD:master
-            fi
+          name: Install PHP library
+          command: composer install
+      - run:
+          name: Run GAPIC unit tests in PHP 7.2
+          command: ./vendor/bin/phpunit
+      - run:
+          name: Run phpcs format check in PHP 7.2
+          command: ./vendor/bin/phpcs --standard=./generated/php/phpcs-ruleset.xml
     working_directory: /var/code/googleapis/
 
 workflows:
   version: 2
   tests:
     jobs:
-      - go17
-      - go18
-      - node4
-      - node6
-      - node7
-      - node8
-      - openjdk7
-      - openjdk8
-      - python27
-      - python34
-      - python35
-      - python36
       - php55
       - php56
       - php70
       - php71
+      - php72
       - sync_to_private:
           requires:
-            - go17
-            - go18
-            - node4
-            - node6
-            - node7
-            - node8
-            - openjdk7
-            - openjdk8
-            - python27
-            - python34
-            - python35
-            - python36
             - php55
             - php56
             - php70
             - php71
+            - php72
           filters:
             branches:
               only: master
