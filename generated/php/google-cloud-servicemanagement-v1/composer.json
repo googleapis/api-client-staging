@@ -1,0 +1,21 @@
+{
+  "name": "google/cloud-api-servicemanagement",
+  "description": "Google Service Management API client for PHP",
+  "license": "Apache-2.0",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Google\\Cloud\\Api\\Servicemanagement\\": "src",
+      "Google\\Cloud\\Api\\Servicemanagement\\Tests\\": "tests",
+      "": "proto/src"
+    }
+  },
+  "require": {
+    "google/gax": "^0.30.2",
+    "google/protobuf": "^3.5.1",
+    "php" : "^5.5 || ^7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8|^5.0"
+  }
+}
