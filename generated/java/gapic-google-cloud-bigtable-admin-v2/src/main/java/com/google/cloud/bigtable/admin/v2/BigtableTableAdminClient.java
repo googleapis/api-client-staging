@@ -195,6 +195,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * Returns the OperationsClient that can be used to query the status of a long-running operation
    * returned by another API method call.
    */
+  @BetaApi(
+      "The surface for long-running operations is not stable yet and may change in the future.")
   public final OperationsClient getOperationsClient() {
     return operationsClient;
   }
@@ -324,13 +326,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new table from the specified snapshot. The target table must not exist. The snapshot
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new table from the specified snapshot. The target table must not exist. The
-   * snapshot and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -352,6 +354,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *     `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/&lt;cluster&gt;/snapshots/&lt;snapshot&gt;`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
+  @BetaApi(
+      "The surface for long-running operations is not stable yet and may change in the future.")
   public final OperationFuture<Table, CreateTableFromSnapshotMetadata> createTableFromSnapshotAsync(
       InstanceName parent, String tableId, SnapshotName sourceSnapshot) {
 
@@ -366,13 +370,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new table from the specified snapshot. The target table must not exist. The snapshot
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new table from the specified snapshot. The target table must not exist. The
-   * snapshot and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -394,6 +398,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
    *     `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/&lt;cluster&gt;/snapshots/&lt;snapshot&gt;`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
+  @BetaApi(
+      "The surface for long-running operations is not stable yet and may change in the future.")
   public final OperationFuture<Table, CreateTableFromSnapshotMetadata> createTableFromSnapshotAsync(
       String parent, String tableId, String sourceSnapshot) {
 
@@ -408,13 +414,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new table from the specified snapshot. The target table must not exist. The snapshot
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new table from the specified snapshot. The target table must not exist. The
-   * snapshot and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -435,6 +441,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
+  @BetaApi(
+      "The surface for long-running operations is not stable yet and may change in the future.")
   public final OperationFuture<Table, CreateTableFromSnapshotMetadata> createTableFromSnapshotAsync(
       CreateTableFromSnapshotRequest request) {
     return createTableFromSnapshotOperationCallable().futureCall(request);
@@ -442,13 +450,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new table from the specified snapshot. The target table must not exist. The snapshot
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new table from the specified snapshot. The target table must not exist. The
-   * snapshot and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -468,6 +476,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * }
    * </code></pre>
    */
+  @BetaApi("The surface for use by generated code is not stable yet and may change in the future.")
   public final OperationCallable<
           CreateTableFromSnapshotRequest, Table, CreateTableFromSnapshotMetadata>
       createTableFromSnapshotOperationCallable() {
@@ -476,13 +485,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new table from the specified snapshot. The target table must not exist. The snapshot
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new table from the specified snapshot. The target table must not exist. The
-   * snapshot and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -990,12 +999,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Generates a consistency token for a Table, which can be used in CheckConsistency to check
+   * Generates a consistency token for a Table, which can be used in CheckConsistency to check
    * whether mutations to the table that finished before this call started have been replicated. The
    * tokens will be available for 90 days.
    *
@@ -1023,12 +1027,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Generates a consistency token for a Table, which can be used in CheckConsistency to check
+   * Generates a consistency token for a Table, which can be used in CheckConsistency to check
    * whether mutations to the table that finished before this call started have been replicated. The
    * tokens will be available for 90 days.
    *
@@ -1054,12 +1053,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Generates a consistency token for a Table, which can be used in CheckConsistency to check
+   * Generates a consistency token for a Table, which can be used in CheckConsistency to check
    * whether mutations to the table that finished before this call started have been replicated. The
    * tokens will be available for 90 days.
    *
@@ -1085,12 +1079,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Generates a consistency token for a Table, which can be used in CheckConsistency to check
+   * Generates a consistency token for a Table, which can be used in CheckConsistency to check
    * whether mutations to the table that finished before this call started have been replicated. The
    * tokens will be available for 90 days.
    *
@@ -1115,13 +1104,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Checks replication consistency based on a consistency token, that is, if replication has
-   * caught up based on the conditions specified in the token and the check request.
+   * Checks replication consistency based on a consistency token, that is, if replication has caught
+   * up based on the conditions specified in the token and the check request.
    *
    * <p>Sample code:
    *
@@ -1150,13 +1134,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Checks replication consistency based on a consistency token, that is, if replication has
-   * caught up based on the conditions specified in the token and the check request.
+   * Checks replication consistency based on a consistency token, that is, if replication has caught
+   * up based on the conditions specified in the token and the check request.
    *
    * <p>Sample code:
    *
@@ -1185,13 +1164,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Checks replication consistency based on a consistency token, that is, if replication has
-   * caught up based on the conditions specified in the token and the check request.
+   * Checks replication consistency based on a consistency token, that is, if replication has caught
+   * up based on the conditions specified in the token and the check request.
    *
    * <p>Sample code:
    *
@@ -1216,13 +1190,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable replication. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is not subject to any
-   * SLA or deprecation policy.
-   *
-   * <p>Checks replication consistency based on a consistency token, that is, if replication has
-   * caught up based on the conditions specified in the token and the check request.
+   * Checks replication consistency based on a consistency token, that is, if replication has caught
+   * up based on the conditions specified in the token and the check request.
    *
    * <p>Sample code:
    *
@@ -1247,13 +1216,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new snapshot in the specified cluster from the specified source table. The cluster
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new snapshot in the specified cluster from the specified source table. The cluster
-   * and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -1277,6 +1246,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * @param description Description of the snapshot.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
+  @BetaApi(
+      "The surface for long-running operations is not stable yet and may change in the future.")
   public final OperationFuture<Snapshot, SnapshotTableMetadata> snapshotTableAsync(
       TableName name, ClusterName cluster, SnapshotName snapshotId, String description) {
 
@@ -1292,13 +1263,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new snapshot in the specified cluster from the specified source table. The cluster
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new snapshot in the specified cluster from the specified source table. The cluster
-   * and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -1322,6 +1293,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * @param description Description of the snapshot.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
+  @BetaApi(
+      "The surface for long-running operations is not stable yet and may change in the future.")
   public final OperationFuture<Snapshot, SnapshotTableMetadata> snapshotTableAsync(
       String name, String cluster, String snapshotId, String description) {
 
@@ -1337,13 +1310,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new snapshot in the specified cluster from the specified source table. The cluster
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new snapshot in the specified cluster from the specified source table. The cluster
-   * and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -1366,6 +1339,8 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
+  @BetaApi(
+      "The surface for long-running operations is not stable yet and may change in the future.")
   public final OperationFuture<Snapshot, SnapshotTableMetadata> snapshotTableAsync(
       SnapshotTableRequest request) {
     return snapshotTableOperationCallable().futureCall(request);
@@ -1373,13 +1348,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new snapshot in the specified cluster from the specified source table. The cluster
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new snapshot in the specified cluster from the specified source table. The cluster
-   * and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -1401,6 +1376,7 @@ public class BigtableTableAdminClient implements BackgroundResource {
    * }
    * </code></pre>
    */
+  @BetaApi("The surface for use by generated code is not stable yet and may change in the future.")
   public final OperationCallable<SnapshotTableRequest, Snapshot, SnapshotTableMetadata>
       snapshotTableOperationCallable() {
     return stub.snapshotTableOperationCallable();
@@ -1408,13 +1384,13 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Creates a new snapshot in the specified cluster from the specified source table. The cluster
+   * and the table must be in the same instance.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Creates a new snapshot in the specified cluster from the specified source table. The cluster
-   * and the table must be in the same instance.
    *
    * <p>Sample code:
    *
@@ -1442,12 +1418,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Gets metadata information about the specified snapshot.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Gets metadata information about the specified snapshot.
    *
    * <p>Sample code:
    *
@@ -1471,12 +1447,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Gets metadata information about the specified snapshot.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Gets metadata information about the specified snapshot.
    *
    * <p>Sample code:
    *
@@ -1499,12 +1475,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Gets metadata information about the specified snapshot.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Gets metadata information about the specified snapshot.
    *
    * <p>Sample code:
    *
@@ -1527,12 +1503,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Gets metadata information about the specified snapshot.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Gets metadata information about the specified snapshot.
    *
    * <p>Sample code:
    *
@@ -1554,12 +1530,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Lists all snapshots associated with the specified cluster.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Lists all snapshots associated with the specified cluster.
    *
    * <p>Sample code:
    *
@@ -1588,12 +1564,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Lists all snapshots associated with the specified cluster.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Lists all snapshots associated with the specified cluster.
    *
    * <p>Sample code:
    *
@@ -1619,12 +1595,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Lists all snapshots associated with the specified cluster.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Lists all snapshots associated with the specified cluster.
    *
    * <p>Sample code:
    *
@@ -1649,12 +1625,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Lists all snapshots associated with the specified cluster.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Lists all snapshots associated with the specified cluster.
    *
    * <p>Sample code:
    *
@@ -1679,12 +1655,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Lists all snapshots associated with the specified cluster.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Lists all snapshots associated with the specified cluster.
    *
    * <p>Sample code:
    *
@@ -1715,12 +1691,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Permanently deletes the specified snapshot.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Permanently deletes the specified snapshot.
    *
    * <p>Sample code:
    *
@@ -1744,12 +1720,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Permanently deletes the specified snapshot.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Permanently deletes the specified snapshot.
    *
    * <p>Sample code:
    *
@@ -1772,12 +1748,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Permanently deletes the specified snapshot.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Permanently deletes the specified snapshot.
    *
    * <p>Sample code:
    *
@@ -1800,12 +1776,12 @@ public class BigtableTableAdminClient implements BackgroundResource {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * This is a private alpha release of Cloud Bigtable snapshots. This feature is not currently
-   * available to most Cloud Bigtable customers. This feature might be changed in
+   * Permanently deletes the specified snapshot.
+   *
+   * <p>Note: This is a private alpha release of Cloud Bigtable snapshots. This feature is not
+   * currently available to most Cloud Bigtable customers. This feature might be changed in
    * backward-incompatible ways and is not recommended for production use. It is not subject to any
    * SLA or deprecation policy.
-   *
-   * <p>Permanently deletes the specified snapshot.
    *
    * <p>Sample code:
    *
