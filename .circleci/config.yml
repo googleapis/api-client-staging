@@ -85,23 +85,23 @@ workflows:
   version: 2
   tests:
     jobs:
-      - php55
+    - php55:
         filters:
           branches:
             only: autobuild-php
-      - php56
+    - php56:
         filters:
           branches:
             only: autobuild-php
-      - php70
+    - php70:
         filters:
           branches:
             only: autobuild-php
-      - php71
+    - php71:
         filters:
           branches:
             only: autobuild-php
-      - php72
+    - php72:
         filters:
           branches:
             only: autobuild-php
