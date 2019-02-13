@@ -298,6 +298,7 @@ Operation = _reflection.GeneratedProtocolMessageType('Operation', (_message.Mess
   # @@protoc_insertion_point(class_scope:google.longrunning.Operation)
   ))
 _sym_db.RegisterMessage(Operation)
+Operation.deserialize = Operation.FromString
 
 GetOperationRequest = _reflection.GeneratedProtocolMessageType('GetOperationRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETOPERATIONREQUEST,
