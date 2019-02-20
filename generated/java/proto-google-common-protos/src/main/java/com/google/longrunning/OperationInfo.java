@@ -5,23 +5,31 @@ package com.google.longrunning;
 
 /**
  * <pre>
- * The protocol buffer types used to indirectly support this method.
+ * A message representing the message types used by a long-running operation.
+ * Example:
+ *   rpc LongRunningRecognize(LongRunningRecognizeRequest)
+ *       returns (google.longrunning.Operation) {
+ *     option (google.longrunning.operation_info) = {
+ *       response_type: "LongRunningRecognizeResponse"
+ *       metadata_type: "LongRunningRecognizeMetadata"
+ *     };
+ *   }
  * </pre>
  *
- * Protobuf type {@code google.longrunning.OperationTypes}
+ * Protobuf type {@code google.longrunning.OperationInfo}
  */
-public  final class OperationTypes extends
+public  final class OperationInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:google.longrunning.OperationTypes)
-    OperationTypesOrBuilder {
+    // @@protoc_insertion_point(message_implements:google.longrunning.OperationInfo)
+    OperationInfoOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use OperationTypes.newBuilder() to construct.
-  private OperationTypes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use OperationInfo.newBuilder() to construct.
+  private OperationInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private OperationTypes() {
-    response_ = "";
-    metadata_ = "";
+  private OperationInfo() {
+    responseType_ = "";
+    metadataType_ = "";
   }
 
   @java.lang.Override
@@ -29,7 +37,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private OperationTypes(
+  private OperationInfo(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -51,13 +59,13 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            response_ = s;
+            responseType_ = s;
             break;
           }
           case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            metadata_ = s;
+            metadataType_ = s;
             break;
           }
           default: {
@@ -81,39 +89,40 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationTypes_descriptor;
+    return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationInfo_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationTypes_fieldAccessorTable
+    return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationInfo_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.google.longrunning.OperationTypes.class, com.google.longrunning.OperationTypes.Builder.class);
+            com.google.longrunning.OperationInfo.class, com.google.longrunning.OperationInfo.Builder.class);
   }
 
-  public static final int RESPONSE_FIELD_NUMBER = 1;
-  private volatile java.lang.Object response_;
+  public static final int RESPONSE_TYPE_FIELD_NUMBER = 1;
+  private volatile java.lang.Object responseType_;
   /**
    * <pre>
    * Required. The message name of the primary return type for this
    * long-running operation.
    * This type will be used to deserialize the LRO's response.
    * If the response is in a different package from the rpc, a fully-qualified
-   * message name must be used (e.g. "google.protobuf.Empty").
+   * message name must be used (e.g. `google.protobuf.Struct`).
+   * Note: Altering this value constitutes a breaking change.
    * </pre>
    *
-   * <code>string response = 1;</code>
+   * <code>string response_type = 1;</code>
    */
-  public java.lang.String getResponse() {
-    java.lang.Object ref = response_;
+  public java.lang.String getResponseType() {
+    java.lang.Object ref = responseType_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      response_ = s;
+      responseType_ = s;
       return s;
     }
   }
@@ -123,61 +132,70 @@ private static final long serialVersionUID = 0L;
    * long-running operation.
    * This type will be used to deserialize the LRO's response.
    * If the response is in a different package from the rpc, a fully-qualified
-   * message name must be used (e.g. "google.protobuf.Empty").
+   * message name must be used (e.g. `google.protobuf.Struct`).
+   * Note: Altering this value constitutes a breaking change.
    * </pre>
    *
-   * <code>string response = 1;</code>
+   * <code>string response_type = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getResponseBytes() {
-    java.lang.Object ref = response_;
+      getResponseTypeBytes() {
+    java.lang.Object ref = responseType_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      response_ = b;
+      responseType_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int METADATA_FIELD_NUMBER = 2;
-  private volatile java.lang.Object metadata_;
+  public static final int METADATA_TYPE_FIELD_NUMBER = 2;
+  private volatile java.lang.Object metadataType_;
   /**
    * <pre>
-   * The metadata message name for this long-running operation.
+   * Required. The message name of the metadata type for this long-running
+   * operation.
+   * If the response is in a different package from the rpc, a fully-qualified
+   * message name must be used (e.g. `google.protobuf.Struct`).
+   * Note: Altering this value constitutes a breaking change.
    * </pre>
    *
-   * <code>string metadata = 2;</code>
+   * <code>string metadata_type = 2;</code>
    */
-  public java.lang.String getMetadata() {
-    java.lang.Object ref = metadata_;
+  public java.lang.String getMetadataType() {
+    java.lang.Object ref = metadataType_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      metadata_ = s;
+      metadataType_ = s;
       return s;
     }
   }
   /**
    * <pre>
-   * The metadata message name for this long-running operation.
+   * Required. The message name of the metadata type for this long-running
+   * operation.
+   * If the response is in a different package from the rpc, a fully-qualified
+   * message name must be used (e.g. `google.protobuf.Struct`).
+   * Note: Altering this value constitutes a breaking change.
    * </pre>
    *
-   * <code>string metadata = 2;</code>
+   * <code>string metadata_type = 2;</code>
    */
   public com.google.protobuf.ByteString
-      getMetadataBytes() {
-    java.lang.Object ref = metadata_;
+      getMetadataTypeBytes() {
+    java.lang.Object ref = metadataType_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      metadata_ = b;
+      metadataType_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -198,11 +216,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getResponseBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, response_);
+    if (!getResponseTypeBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, responseType_);
     }
-    if (!getMetadataBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, metadata_);
+    if (!getMetadataTypeBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, metadataType_);
     }
     unknownFields.writeTo(output);
   }
@@ -213,11 +231,11 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getResponseBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, response_);
+    if (!getResponseTypeBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, responseType_);
     }
-    if (!getMetadataBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, metadata_);
+    if (!getMetadataTypeBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, metadataType_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -229,16 +247,16 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.google.longrunning.OperationTypes)) {
+    if (!(obj instanceof com.google.longrunning.OperationInfo)) {
       return super.equals(obj);
     }
-    com.google.longrunning.OperationTypes other = (com.google.longrunning.OperationTypes) obj;
+    com.google.longrunning.OperationInfo other = (com.google.longrunning.OperationInfo) obj;
 
     boolean result = true;
-    result = result && getResponse()
-        .equals(other.getResponse());
-    result = result && getMetadata()
-        .equals(other.getMetadata());
+    result = result && getResponseType()
+        .equals(other.getResponseType());
+    result = result && getMetadataType()
+        .equals(other.getMetadataType());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -250,78 +268,78 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
-    hash = (53 * hash) + getResponse().hashCode();
-    hash = (37 * hash) + METADATA_FIELD_NUMBER;
-    hash = (53 * hash) + getMetadata().hashCode();
+    hash = (37 * hash) + RESPONSE_TYPE_FIELD_NUMBER;
+    hash = (53 * hash) + getResponseType().hashCode();
+    hash = (37 * hash) + METADATA_TYPE_FIELD_NUMBER;
+    hash = (53 * hash) + getMetadataType().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.google.longrunning.OperationTypes parseFrom(
+  public static com.google.longrunning.OperationInfo parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(
+  public static com.google.longrunning.OperationInfo parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(
+  public static com.google.longrunning.OperationInfo parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(
+  public static com.google.longrunning.OperationInfo parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(byte[] data)
+  public static com.google.longrunning.OperationInfo parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(
+  public static com.google.longrunning.OperationInfo parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(java.io.InputStream input)
+  public static com.google.longrunning.OperationInfo parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(
+  public static com.google.longrunning.OperationInfo parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.google.longrunning.OperationTypes parseDelimitedFrom(java.io.InputStream input)
+  public static com.google.longrunning.OperationInfo parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.google.longrunning.OperationTypes parseDelimitedFrom(
+  public static com.google.longrunning.OperationInfo parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(
+  public static com.google.longrunning.OperationInfo parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.google.longrunning.OperationTypes parseFrom(
+  public static com.google.longrunning.OperationInfo parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -334,7 +352,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.google.longrunning.OperationTypes prototype) {
+  public static Builder newBuilder(com.google.longrunning.OperationInfo prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -351,29 +369,37 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The protocol buffer types used to indirectly support this method.
+   * A message representing the message types used by a long-running operation.
+   * Example:
+   *   rpc LongRunningRecognize(LongRunningRecognizeRequest)
+   *       returns (google.longrunning.Operation) {
+   *     option (google.longrunning.operation_info) = {
+   *       response_type: "LongRunningRecognizeResponse"
+   *       metadata_type: "LongRunningRecognizeMetadata"
+   *     };
+   *   }
    * </pre>
    *
-   * Protobuf type {@code google.longrunning.OperationTypes}
+   * Protobuf type {@code google.longrunning.OperationInfo}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:google.longrunning.OperationTypes)
-      com.google.longrunning.OperationTypesOrBuilder {
+      // @@protoc_insertion_point(builder_implements:google.longrunning.OperationInfo)
+      com.google.longrunning.OperationInfoOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationTypes_descriptor;
+      return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationTypes_fieldAccessorTable
+      return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.google.longrunning.OperationTypes.class, com.google.longrunning.OperationTypes.Builder.class);
+              com.google.longrunning.OperationInfo.class, com.google.longrunning.OperationInfo.Builder.class);
     }
 
-    // Construct using com.google.longrunning.OperationTypes.newBuilder()
+    // Construct using com.google.longrunning.OperationInfo.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -391,9 +417,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      response_ = "";
+      responseType_ = "";
 
-      metadata_ = "";
+      metadataType_ = "";
 
       return this;
     }
@@ -401,17 +427,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationTypes_descriptor;
+      return com.google.longrunning.OperationsProto.internal_static_google_longrunning_OperationInfo_descriptor;
     }
 
     @java.lang.Override
-    public com.google.longrunning.OperationTypes getDefaultInstanceForType() {
-      return com.google.longrunning.OperationTypes.getDefaultInstance();
+    public com.google.longrunning.OperationInfo getDefaultInstanceForType() {
+      return com.google.longrunning.OperationInfo.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.google.longrunning.OperationTypes build() {
-      com.google.longrunning.OperationTypes result = buildPartial();
+    public com.google.longrunning.OperationInfo build() {
+      com.google.longrunning.OperationInfo result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -419,10 +445,10 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.google.longrunning.OperationTypes buildPartial() {
-      com.google.longrunning.OperationTypes result = new com.google.longrunning.OperationTypes(this);
-      result.response_ = response_;
-      result.metadata_ = metadata_;
+    public com.google.longrunning.OperationInfo buildPartial() {
+      com.google.longrunning.OperationInfo result = new com.google.longrunning.OperationInfo(this);
+      result.responseType_ = responseType_;
+      result.metadataType_ = metadataType_;
       onBuilt();
       return result;
     }
@@ -461,22 +487,22 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.google.longrunning.OperationTypes) {
-        return mergeFrom((com.google.longrunning.OperationTypes)other);
+      if (other instanceof com.google.longrunning.OperationInfo) {
+        return mergeFrom((com.google.longrunning.OperationInfo)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.google.longrunning.OperationTypes other) {
-      if (other == com.google.longrunning.OperationTypes.getDefaultInstance()) return this;
-      if (!other.getResponse().isEmpty()) {
-        response_ = other.response_;
+    public Builder mergeFrom(com.google.longrunning.OperationInfo other) {
+      if (other == com.google.longrunning.OperationInfo.getDefaultInstance()) return this;
+      if (!other.getResponseType().isEmpty()) {
+        responseType_ = other.responseType_;
         onChanged();
       }
-      if (!other.getMetadata().isEmpty()) {
-        metadata_ = other.metadata_;
+      if (!other.getMetadataType().isEmpty()) {
+        metadataType_ = other.metadataType_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -494,11 +520,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.google.longrunning.OperationTypes parsedMessage = null;
+      com.google.longrunning.OperationInfo parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.google.longrunning.OperationTypes) e.getUnfinishedMessage();
+        parsedMessage = (com.google.longrunning.OperationInfo) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -508,25 +534,26 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object response_ = "";
+    private java.lang.Object responseType_ = "";
     /**
      * <pre>
      * Required. The message name of the primary return type for this
      * long-running operation.
      * This type will be used to deserialize the LRO's response.
      * If the response is in a different package from the rpc, a fully-qualified
-     * message name must be used (e.g. "google.protobuf.Empty").
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string response = 1;</code>
+     * <code>string response_type = 1;</code>
      */
-    public java.lang.String getResponse() {
-      java.lang.Object ref = response_;
+    public java.lang.String getResponseType() {
+      java.lang.Object ref = responseType_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        response_ = s;
+        responseType_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
@@ -538,19 +565,20 @@ private static final long serialVersionUID = 0L;
      * long-running operation.
      * This type will be used to deserialize the LRO's response.
      * If the response is in a different package from the rpc, a fully-qualified
-     * message name must be used (e.g. "google.protobuf.Empty").
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string response = 1;</code>
+     * <code>string response_type = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getResponseBytes() {
-      java.lang.Object ref = response_;
+        getResponseTypeBytes() {
+      java.lang.Object ref = responseType_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        response_ = b;
+        responseType_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -562,18 +590,19 @@ private static final long serialVersionUID = 0L;
      * long-running operation.
      * This type will be used to deserialize the LRO's response.
      * If the response is in a different package from the rpc, a fully-qualified
-     * message name must be used (e.g. "google.protobuf.Empty").
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string response = 1;</code>
+     * <code>string response_type = 1;</code>
      */
-    public Builder setResponse(
+    public Builder setResponseType(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      response_ = value;
+      responseType_ = value;
       onChanged();
       return this;
     }
@@ -583,14 +612,15 @@ private static final long serialVersionUID = 0L;
      * long-running operation.
      * This type will be used to deserialize the LRO's response.
      * If the response is in a different package from the rpc, a fully-qualified
-     * message name must be used (e.g. "google.protobuf.Empty").
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string response = 1;</code>
+     * <code>string response_type = 1;</code>
      */
-    public Builder clearResponse() {
+    public Builder clearResponseType() {
       
-      response_ = getDefaultInstance().getResponse();
+      responseType_ = getDefaultInstance().getResponseType();
       onChanged();
       return this;
     }
@@ -600,38 +630,43 @@ private static final long serialVersionUID = 0L;
      * long-running operation.
      * This type will be used to deserialize the LRO's response.
      * If the response is in a different package from the rpc, a fully-qualified
-     * message name must be used (e.g. "google.protobuf.Empty").
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string response = 1;</code>
+     * <code>string response_type = 1;</code>
      */
-    public Builder setResponseBytes(
+    public Builder setResponseTypeBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      response_ = value;
+      responseType_ = value;
       onChanged();
       return this;
     }
 
-    private java.lang.Object metadata_ = "";
+    private java.lang.Object metadataType_ = "";
     /**
      * <pre>
-     * The metadata message name for this long-running operation.
+     * Required. The message name of the metadata type for this long-running
+     * operation.
+     * If the response is in a different package from the rpc, a fully-qualified
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string metadata = 2;</code>
+     * <code>string metadata_type = 2;</code>
      */
-    public java.lang.String getMetadata() {
-      java.lang.Object ref = metadata_;
+    public java.lang.String getMetadataType() {
+      java.lang.Object ref = metadataType_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        metadata_ = s;
+        metadataType_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
@@ -639,19 +674,23 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The metadata message name for this long-running operation.
+     * Required. The message name of the metadata type for this long-running
+     * operation.
+     * If the response is in a different package from the rpc, a fully-qualified
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string metadata = 2;</code>
+     * <code>string metadata_type = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getMetadataBytes() {
-      java.lang.Object ref = metadata_;
+        getMetadataTypeBytes() {
+      java.lang.Object ref = metadataType_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        metadata_ = b;
+        metadataType_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -659,49 +698,61 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The metadata message name for this long-running operation.
+     * Required. The message name of the metadata type for this long-running
+     * operation.
+     * If the response is in a different package from the rpc, a fully-qualified
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string metadata = 2;</code>
+     * <code>string metadata_type = 2;</code>
      */
-    public Builder setMetadata(
+    public Builder setMetadataType(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      metadata_ = value;
+      metadataType_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The metadata message name for this long-running operation.
+     * Required. The message name of the metadata type for this long-running
+     * operation.
+     * If the response is in a different package from the rpc, a fully-qualified
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string metadata = 2;</code>
+     * <code>string metadata_type = 2;</code>
      */
-    public Builder clearMetadata() {
+    public Builder clearMetadataType() {
       
-      metadata_ = getDefaultInstance().getMetadata();
+      metadataType_ = getDefaultInstance().getMetadataType();
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The metadata message name for this long-running operation.
+     * Required. The message name of the metadata type for this long-running
+     * operation.
+     * If the response is in a different package from the rpc, a fully-qualified
+     * message name must be used (e.g. `google.protobuf.Struct`).
+     * Note: Altering this value constitutes a breaking change.
      * </pre>
      *
-     * <code>string metadata = 2;</code>
+     * <code>string metadata_type = 2;</code>
      */
-    public Builder setMetadataBytes(
+    public Builder setMetadataTypeBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      metadata_ = value;
+      metadataType_ = value;
       onChanged();
       return this;
     }
@@ -718,41 +769,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:google.longrunning.OperationTypes)
+    // @@protoc_insertion_point(builder_scope:google.longrunning.OperationInfo)
   }
 
-  // @@protoc_insertion_point(class_scope:google.longrunning.OperationTypes)
-  private static final com.google.longrunning.OperationTypes DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:google.longrunning.OperationInfo)
+  private static final com.google.longrunning.OperationInfo DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.google.longrunning.OperationTypes();
+    DEFAULT_INSTANCE = new com.google.longrunning.OperationInfo();
   }
 
-  public static com.google.longrunning.OperationTypes getDefaultInstance() {
+  public static com.google.longrunning.OperationInfo getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<OperationTypes>
-      PARSER = new com.google.protobuf.AbstractParser<OperationTypes>() {
+  private static final com.google.protobuf.Parser<OperationInfo>
+      PARSER = new com.google.protobuf.AbstractParser<OperationInfo>() {
     @java.lang.Override
-    public OperationTypes parsePartialFrom(
+    public OperationInfo parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new OperationTypes(input, extensionRegistry);
+      return new OperationInfo(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<OperationTypes> parser() {
+  public static com.google.protobuf.Parser<OperationInfo> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<OperationTypes> getParserForType() {
+  public com.google.protobuf.Parser<OperationInfo> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.longrunning.OperationTypes getDefaultInstanceForType() {
+  public com.google.longrunning.OperationInfo getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

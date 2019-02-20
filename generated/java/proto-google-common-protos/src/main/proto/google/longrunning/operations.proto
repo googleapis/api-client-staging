@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//     https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -159,23 +159,44 @@ message DeleteOperationRequest {
   string name = 1;
 }
 
-// The protocol buffer types used to indirectly support this method.
-message OperationTypes {
+// A message representing the message types used by a long-running operation.
+//
+// Example:
+//
+//   rpc LongRunningRecognize(LongRunningRecognizeRequest)
+//       returns (google.longrunning.Operation) {
+//     option (google.longrunning.operation_info) = {
+//       response_type: "LongRunningRecognizeResponse"
+//       metadata_type: "LongRunningRecognizeMetadata"
+//     };
+//   }
+message OperationInfo {
   // Required. The message name of the primary return type for this
   // long-running operation.
   // This type will be used to deserialize the LRO's response.
   //
   // If the response is in a different package from the rpc, a fully-qualified
-  // message name must be used (e.g. "google.protobuf.Empty").
-  string response = 1;
+  // message name must be used (e.g. `google.protobuf.Struct`).
+  //
+  // Note: Altering this value constitutes a breaking change.
+  string response_type = 1;
 
-  // The metadata message name for this long-running operation.
-  string metadata = 2;
+  // Required. The message name of the metadata type for this long-running
+  // operation.
+  //
+  // If the response is in a different package from the rpc, a fully-qualified
+  // message name must be used (e.g. `google.protobuf.Struct`).
+  //
+  // Note: Altering this value constitutes a breaking change.
+  string metadata_type = 2;
 }
 
 extend google.protobuf.MethodOptions {
-  // The types that are returned from long-running operations.
-  // Required for methods that return google.longrunning.Operation; invalid
+  // Additional information regarding long-running operations.
+  // In particular, this specifies the types that are returned from
+  // long-running operations.
+  //
+  // Required for methods that return `google.longrunning.Operation`; invalid
   // otherwise.
-  OperationTypes operation_types = 1049;
+  OperationInfo operation_info = 1049;
 }
