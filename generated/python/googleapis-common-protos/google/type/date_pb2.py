@@ -7,6 +7,7 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
@@ -18,9 +19,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/type/date.proto',
   package='google.type',
   syntax='proto3',
-  serialized_options=_b('\n\017com.google.typeB\tDateProtoP\001Z4google.golang.org/genproto/googleapis/type/date;date\370\001\001\242\002\003GTP'),
-  serialized_pb=_b('\n\x16google/type/date.proto\x12\x0bgoogle.type\"0\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\x05\x12\r\n\x05month\x18\x02 \x01(\x05\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x05\x42]\n\x0f\x63om.google.typeB\tDateProtoP\x01Z4google.golang.org/genproto/googleapis/type/date;date\xf8\x01\x01\xa2\x02\x03GTPb\x06proto3')
+  serialized_pb=_b('\n\x16google/type/date.proto\x12\x0bgoogle.type\"0\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\x05\x12\r\n\x05month\x18\x02 \x01(\x05\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x05\x42$\n\x0f\x63om.google.typeB\tDateProtoP\x01\xa2\x02\x03GTPb\x06proto3')
 )
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -38,28 +39,28 @@ _DATE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
     _descriptor.FieldDescriptor(
       name='month', full_name='google.type.Date.month', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
     _descriptor.FieldDescriptor(
       name='day', full_name='google.type.Date.day', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
   ],
   extensions=[
   ],
   nested_types=[],
   enum_types=[
   ],
-  serialized_options=None,
+  options=None,
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
@@ -70,7 +71,6 @@ _DATE = _descriptor.Descriptor(
 )
 
 DESCRIPTOR.message_types_by_name['Date'] = _DATE
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Date = _reflection.GeneratedProtocolMessageType('Date', (_message.Message,), dict(
   DESCRIPTOR = _DATE,
@@ -80,5 +80,6 @@ Date = _reflection.GeneratedProtocolMessageType('Date', (_message.Message,), dic
 _sym_db.RegisterMessage(Date)
 
 
-DESCRIPTOR._options = None
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\017com.google.typeB\tDateProtoP\001\242\002\003GTP'))
 # @@protoc_insertion_point(module_scope)

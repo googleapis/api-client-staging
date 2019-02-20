@@ -10,18 +10,18 @@ import setuptools
 from setuptools import setup, find_packages
 
 install_requires = [
-  'protobuf >= 3.6.0'
+  'protobuf>=3.0.0'
 ]
 
 extras_require = {
-  'grpc': ['grpcio >= 1.0.0']
+  'grpc': ['grpcio>=1.0.0']
 }
 
 setuptools.setup(
   name='googleapis-common-protos',
-  version='1.5.6',
+  version='1.5.2',
 
-  author='Google LLC',
+  author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
     'Development Status :: 5 - Production/Stable',

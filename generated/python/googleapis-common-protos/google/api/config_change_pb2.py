@@ -8,6 +8,7 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
@@ -19,9 +20,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/api/config_change.proto',
   package='google.api',
   syntax='proto3',
-  serialized_options=_b('\n\016com.google.apiB\021ConfigChangeProtoP\001ZCgoogle.golang.org/genproto/googleapis/api/configchange;configchange\242\002\004GAPI'),
-  serialized_pb=_b('\n\x1egoogle/api/config_change.proto\x12\ngoogle.api\"\x97\x01\n\x0c\x43onfigChange\x12\x0f\n\x07\x65lement\x18\x01 \x01(\t\x12\x11\n\told_value\x18\x02 \x01(\t\x12\x11\n\tnew_value\x18\x03 \x01(\t\x12+\n\x0b\x63hange_type\x18\x04 \x01(\x0e\x32\x16.google.api.ChangeType\x12#\n\x07\x61\x64vices\x18\x05 \x03(\x0b\x32\x12.google.api.Advice\"\x1d\n\x06\x41\x64vice\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t*O\n\nChangeType\x12\x1b\n\x17\x43HANGE_TYPE_UNSPECIFIED\x10\x00\x12\t\n\x05\x41\x44\x44\x45\x44\x10\x01\x12\x0b\n\x07REMOVED\x10\x02\x12\x0c\n\x08MODIFIED\x10\x03\x42q\n\x0e\x63om.google.apiB\x11\x43onfigChangeProtoP\x01ZCgoogle.golang.org/genproto/googleapis/api/configchange;configchange\xa2\x02\x04GAPIb\x06proto3')
+  serialized_pb=_b('\n\x1egoogle/api/config_change.proto\x12\ngoogle.api\"\x97\x01\n\x0c\x43onfigChange\x12\x0f\n\x07\x65lement\x18\x01 \x01(\t\x12\x11\n\told_value\x18\x02 \x01(\t\x12\x11\n\tnew_value\x18\x03 \x01(\t\x12+\n\x0b\x63hange_type\x18\x04 \x01(\x0e\x32\x16.google.api.ChangeType\x12#\n\x07\x61\x64vices\x18\x05 \x03(\x0b\x32\x12.google.api.Advice\"\x1d\n\x06\x41\x64vice\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t*O\n\nChangeType\x12\x1b\n\x17\x43HANGE_TYPE_UNSPECIFIED\x10\x00\x12\t\n\x05\x41\x44\x44\x45\x44\x10\x01\x12\x0b\n\x07REMOVED\x10\x02\x12\x0c\n\x08MODIFIED\x10\x03\x42,\n\x0e\x63om.google.apiB\x11\x43onfigChangeProtoP\x01\xa2\x02\x04GAPIb\x06proto3')
 )
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _CHANGETYPE = _descriptor.EnumDescriptor(
   name='ChangeType',
@@ -31,23 +32,23 @@ _CHANGETYPE = _descriptor.EnumDescriptor(
   values=[
     _descriptor.EnumValueDescriptor(
       name='CHANGE_TYPE_UNSPECIFIED', index=0, number=0,
-      serialized_options=None,
+      options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
       name='ADDED', index=1, number=1,
-      serialized_options=None,
+      options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
       name='REMOVED', index=2, number=2,
-      serialized_options=None,
+      options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
       name='MODIFIED', index=3, number=3,
-      serialized_options=None,
+      options=None,
       type=None),
   ],
   containing_type=None,
-  serialized_options=None,
+  options=None,
   serialized_start=231,
   serialized_end=310,
 )
@@ -74,42 +75,42 @@ _CONFIGCHANGE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
     _descriptor.FieldDescriptor(
       name='old_value', full_name='google.api.ConfigChange.old_value', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
     _descriptor.FieldDescriptor(
       name='new_value', full_name='google.api.ConfigChange.new_value', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
     _descriptor.FieldDescriptor(
       name='change_type', full_name='google.api.ConfigChange.change_type', index=3,
       number=4, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
     _descriptor.FieldDescriptor(
       name='advices', full_name='google.api.ConfigChange.advices', index=4,
       number=5, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
   ],
   extensions=[
   ],
   nested_types=[],
   enum_types=[
   ],
-  serialized_options=None,
+  options=None,
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
@@ -133,14 +134,14 @@ _ADVICE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      options=None),
   ],
   extensions=[
   ],
   nested_types=[],
   enum_types=[
   ],
-  serialized_options=None,
+  options=None,
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
@@ -155,7 +156,6 @@ _CONFIGCHANGE.fields_by_name['advices'].message_type = _ADVICE
 DESCRIPTOR.message_types_by_name['ConfigChange'] = _CONFIGCHANGE
 DESCRIPTOR.message_types_by_name['Advice'] = _ADVICE
 DESCRIPTOR.enum_types_by_name['ChangeType'] = _CHANGETYPE
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ConfigChange = _reflection.GeneratedProtocolMessageType('ConfigChange', (_message.Message,), dict(
   DESCRIPTOR = _CONFIGCHANGE,
@@ -172,5 +172,6 @@ Advice = _reflection.GeneratedProtocolMessageType('Advice', (_message.Message,),
 _sym_db.RegisterMessage(Advice)
 
 
-DESCRIPTOR._options = None
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\016com.google.apiB\021ConfigChangeProtoP\001\242\002\004GAPI'))
 # @@protoc_insertion_point(module_scope)
