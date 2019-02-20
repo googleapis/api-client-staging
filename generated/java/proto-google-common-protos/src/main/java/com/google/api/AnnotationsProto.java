@@ -18,7 +18,8 @@ public final class AnnotationsProto {
   public static final int HTTP_FIELD_NUMBER = 72295728;
   /**
    * <pre>
-   * See `HttpRule`.
+   * The HTTP bindings for this method.
+   * See `google/api/http.proto`.
    * </pre>
    *
    * <code>extend .google.protobuf.MethodOptions { ... }</code>

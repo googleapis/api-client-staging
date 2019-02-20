@@ -43,10 +43,8 @@ public interface ServiceOrBuilder extends
 
   /**
    * <pre>
-   * The service name, which is a DNS-like logical identifier for the
-   * service, such as `calendar.googleapis.com`. The service name
-   * typically goes through DNS verification to make sure the owner
-   * of the service also owns the DNS name.
+   * The DNS address at which this service is available,
+   * e.g. `calendar.googleapis.com`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -54,10 +52,8 @@ public interface ServiceOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * The service name, which is a DNS-like logical identifier for the
-   * service, such as `calendar.googleapis.com`. The service name
-   * typically goes through DNS verification to make sure the owner
-   * of the service also owns the DNS name.
+   * The DNS address at which this service is available,
+   * e.g. `calendar.googleapis.com`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -69,7 +65,7 @@ public interface ServiceOrBuilder extends
    * <pre>
    * A unique ID for a specific instance of this message, typically assigned
    * by the client for tracking purpose. If empty, the server may choose to
-   * generate one instead. Must be no longer than 60 characters.
+   * generate one instead.
    * </pre>
    *
    * <code>string id = 33;</code>
@@ -79,7 +75,7 @@ public interface ServiceOrBuilder extends
    * <pre>
    * A unique ID for a specific instance of this message, typically assigned
    * by the client for tracking purpose. If empty, the server may choose to
-   * generate one instead. Must be no longer than 60 characters.
+   * generate one instead.
    * </pre>
    *
    * <code>string id = 33;</code>
@@ -845,29 +841,4 @@ public interface ServiceOrBuilder extends
    * <code>.google.api.SourceInfo source_info = 37;</code>
    */
   com.google.api.SourceInfoOrBuilder getSourceInfoOrBuilder();
-
-  /**
-   * <pre>
-   * Experimental configuration.
-   * </pre>
-   *
-   * <code>.google.api.Experimental experimental = 101;</code>
-   */
-  boolean hasExperimental();
-  /**
-   * <pre>
-   * Experimental configuration.
-   * </pre>
-   *
-   * <code>.google.api.Experimental experimental = 101;</code>
-   */
-  com.google.api.Experimental getExperimental();
-  /**
-   * <pre>
-   * Experimental configuration.
-   * </pre>
-   *
-   * <code>.google.api.Experimental experimental = 101;</code>
-   */
-  com.google.api.ExperimentalOrBuilder getExperimentalOrBuilder();
 }

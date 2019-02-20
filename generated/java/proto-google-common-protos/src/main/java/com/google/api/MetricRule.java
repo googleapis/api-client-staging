@@ -6,7 +6,9 @@ package com.google.api;
 /**
  * <pre>
  * Bind API methods to metrics. Binding a method to a metric causes that
- * metric's configured quota behaviors to apply to the method call.
+ * metric's configured quota, billing, and monitoring behaviors to apply to the
+ * method call.
+ * Used by metric-based quotas only.
  * </pre>
  *
  * Protobuf type {@code google.api.MetricRule}
@@ -444,7 +446,9 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Bind API methods to metrics. Binding a method to a metric causes that
-   * metric's configured quota behaviors to apply to the method call.
+   * metric's configured quota, billing, and monitoring behaviors to apply to the
+   * method call.
+   * Used by metric-based quotas only.
    * </pre>
    *
    * Protobuf type {@code google.api.MetricRule}
