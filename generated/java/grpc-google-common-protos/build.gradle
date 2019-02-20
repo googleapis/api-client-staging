@@ -6,7 +6,7 @@ buildscript {
 
 apply plugin: 'java'
 
-description = 'GRPC library for grpc-google-common-protos'
+description = 'GRPC library for grpc-google-common-protos (prerelease)'
 group = 'com.google.api.grpc'
 version = '1.13.0-pre3'
 sourceCompatibility = 1.7
