@@ -16,8 +16,8 @@ install_requires = [
 
 setuptools.setup(
   name='grpc-google-iam-v1',
-  version='0.11.4',
-  author='Google Inc',
+  version='0.12.0',
+  author='Google LLC',
   author_email='googleapis-packages@google.com',
   classifiers=[
     'Intended Audience :: Developers',
@@ -28,9 +28,9 @@ setuptools.setup(
     'Programming Language :: Python :: 2',
     'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: Implementation :: CPython',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
   ],
   description='GRPC library for the google-iam-v1 service',
   long_description=open('README.rst').read(),
