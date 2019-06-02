@@ -277,7 +277,6 @@ workflows:
       - node8
       - openjdk7
       - openjdk8
-      - python27
       - python35
       - python36
       - python37
@@ -295,7 +294,6 @@ workflows:
             - node8
             - openjdk7
             - openjdk8
-            - python27
             - python35
             - python36
             - python37
