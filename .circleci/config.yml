@@ -135,57 +135,57 @@ jobs:
       - checkout
       - run:
           name: Install nox.
-          command: pip install nox-automation
+          command: pip install nox
       - run:
           name: Run GAPIC unit tests in Python 2.7.
           command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='2.7')"
-    working_directory: /var/code/googleapis/
-
-  python34:
-    docker:
-      - image: python:3.4.6
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests in Python 3.4.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.4')"
+            nox --noxfile generated/python/noxfile.py \
+                --sessions unit-2.7
     working_directory: /var/code/googleapis/
 
   python35:
     docker:
-      - image: python:3.5.3
+      - image: python:3.5.7
     steps:
       - checkout
       - run:
           name: Install nox.
-          command: pip install nox-automation
+          command: pip install nox
       - run:
           name: Run GAPIC unit tests in Python 3.5.
           command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.5')"
+            nox --noxfile generated/python/noxfile.py \
+                --sessions unit-3.5
     working_directory: /var/code/googleapis/
 
   python36:
     docker:
-      - image: python:3.6.1
+      - image: python:3.6.8
     steps:
       - checkout
       - run:
           name: Install nox.
-          command: pip install nox-automation
+          command: pip install nox
       - run:
           name: Run GAPIC unit tests in Python 3.6.
           command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.6')"
+            nox --noxfile generated/python/noxfile.py \
+                --sessions unit-3.6
+    working_directory: /var/code/googleapis/
+
+  python37:
+    docker:
+      - image: python:3.7.3
+    steps:
+      - checkout
+      - run:
+          name: Install nox.
+          command: pip install nox
+      - run:
+          name: Run GAPIC unit tests in Python 3.7.
+          command: |
+            nox --noxfile generated/python/noxfile.py \
+                --sessions unit-3.7
     working_directory: /var/code/googleapis/
 
   php55:
@@ -278,9 +278,9 @@ workflows:
       - openjdk7
       - openjdk8
       - python27
-      - python34
       - python35
       - python36
+      - python37
       - php55
       - php56
       - php70
@@ -296,9 +296,9 @@ workflows:
             - openjdk7
             - openjdk8
             - python27
-            - python34
             - python35
             - python36
+            - python37
             - php55
             - php56
             - php70
