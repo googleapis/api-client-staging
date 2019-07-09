@@ -186,6 +186,21 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 SetIamPolicyRequest = _reflection.GeneratedProtocolMessageType('SetIamPolicyRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETIAMPOLICYREQUEST,
   '__module__' : 'google.iam.v1.iam_policy_pb2'
+  ,
+  __doc__ = """Request message for ``SetIamPolicy`` method.
+  
+  
+  Attributes:
+      resource:
+          REQUIRED: The resource for which the policy is being
+          specified. See the operation documentation for the appropriate
+          value for this field.
+      policy:
+          REQUIRED: The complete policy to be applied to the
+          ``resource``. The size of the policy is limited to a few 10s
+          of KB. An empty policy is a valid policy but certain Cloud
+          Platform services (such as Projects) might reject them.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.SetIamPolicyRequest)
   })
 _sym_db.RegisterMessage(SetIamPolicyRequest)
@@ -193,6 +208,19 @@ _sym_db.RegisterMessage(SetIamPolicyRequest)
 GetIamPolicyRequest = _reflection.GeneratedProtocolMessageType('GetIamPolicyRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETIAMPOLICYREQUEST,
   '__module__' : 'google.iam.v1.iam_policy_pb2'
+  ,
+  __doc__ = """Request message for ``GetIamPolicy`` method.
+  
+  
+  Attributes:
+      resource:
+          REQUIRED: The resource for which the policy is being
+          requested. See the operation documentation for the appropriate
+          value for this field.
+      options:
+          OPTIONAL: A ``GetPolicyOptions`` object for specifying options
+          to ``GetIamPolicy``. This field is only used by Cloud IAM.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.GetIamPolicyRequest)
   })
 _sym_db.RegisterMessage(GetIamPolicyRequest)
@@ -200,6 +228,21 @@ _sym_db.RegisterMessage(GetIamPolicyRequest)
 TestIamPermissionsRequest = _reflection.GeneratedProtocolMessageType('TestIamPermissionsRequest', (_message.Message,), {
   'DESCRIPTOR' : _TESTIAMPERMISSIONSREQUEST,
   '__module__' : 'google.iam.v1.iam_policy_pb2'
+  ,
+  __doc__ = """Request message for ``TestIamPermissions`` method.
+  
+  
+  Attributes:
+      resource:
+          REQUIRED: The resource for which the policy detail is being
+          requested. See the operation documentation for the appropriate
+          value for this field.
+      permissions:
+          The set of permissions to check for the ``resource``.
+          Permissions with wildcards (such as ‘*’ or ’storage.*’) are
+          not allowed. For more information see `IAM Overview
+          <https://cloud.google.com/iam/docs/overview#permissions>`__.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.TestIamPermissionsRequest)
   })
 _sym_db.RegisterMessage(TestIamPermissionsRequest)
@@ -207,6 +250,15 @@ _sym_db.RegisterMessage(TestIamPermissionsRequest)
 TestIamPermissionsResponse = _reflection.GeneratedProtocolMessageType('TestIamPermissionsResponse', (_message.Message,), {
   'DESCRIPTOR' : _TESTIAMPERMISSIONSRESPONSE,
   '__module__' : 'google.iam.v1.iam_policy_pb2'
+  ,
+  __doc__ = """Response message for ``TestIamPermissions`` method.
+  
+  
+  Attributes:
+      permissions:
+          A subset of ``TestPermissionsRequest.permissions`` that the
+          caller is allowed.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.TestIamPermissionsResponse)
   })
 _sym_db.RegisterMessage(TestIamPermissionsResponse)

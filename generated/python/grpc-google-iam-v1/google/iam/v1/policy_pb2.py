@@ -333,6 +333,75 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 Policy = _reflection.GeneratedProtocolMessageType('Policy', (_message.Message,), {
   'DESCRIPTOR' : _POLICY,
   '__module__' : 'google.iam.v1.policy_pb2'
+  ,
+  __doc__ = """Defines an Identity and Access Management (IAM) policy. It is used to
+  specify access control policies for Cloud Platform resources.
+  
+  A ``Policy`` consists of a list of ``bindings``. A ``binding`` binds a
+  list of ``members`` to a ``role``, where the members can be user
+  accounts, Google groups, Google domains, and service accounts. A
+  ``role`` is a named list of permissions defined by IAM.
+  
+  **JSON Example**
+  
+  ::
+  
+     {
+       "bindings": [
+         {
+           "role": "roles/owner",
+           "members": [
+             "user:mike@example.com",
+             "group:admins@example.com",
+             "domain:google.com",
+             "serviceAccount:my-other-app@appspot.gserviceaccount.com"
+           ]
+         },
+         {
+           "role": "roles/viewer",
+           "members": ["user:sean@example.com"]
+         }
+       ]
+     }
+  
+  **YAML Example**
+  
+  ::
+  
+     bindings:
+     - members:
+       - user:mike@example.com
+       - group:admins@example.com
+       - domain:google.com
+       - serviceAccount:my-other-app@appspot.gserviceaccount.com
+       role: roles/owner
+     - members:
+       - user:sean@example.com
+       role: roles/viewer
+  
+  For a description of IAM and its features, see the `IAM developer’s
+  guide <https://cloud.google.com/iam/docs>`__.
+  
+  
+  Attributes:
+      version:
+          Deprecated.
+      bindings:
+          Associates a list of ``members`` to a ``role``. ``bindings``
+          with no members will result in an error.
+      etag:
+          ``etag`` is used for optimistic concurrency control as a way
+          to help prevent simultaneous updates of a policy from
+          overwriting each other. It is strongly suggested that systems
+          make use of the ``etag`` in the read-modify-write cycle to
+          perform policy updates in order to avoid race conditions: An
+          ``etag`` is returned in the response to ``getIamPolicy``, and
+          systems are expected to put that etag in the request to
+          ``setIamPolicy`` to ensure that their change will be applied
+          to the same version of the policy.  If no ``etag`` is provided
+          in the call to ``setIamPolicy``, then the existing policy is
+          overwritten blindly.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.Policy)
   })
 _sym_db.RegisterMessage(Policy)
@@ -340,6 +409,37 @@ _sym_db.RegisterMessage(Policy)
 Binding = _reflection.GeneratedProtocolMessageType('Binding', (_message.Message,), {
   'DESCRIPTOR' : _BINDING,
   '__module__' : 'google.iam.v1.policy_pb2'
+  ,
+  __doc__ = """Associates ``members`` with a ``role``.
+  
+  
+  Attributes:
+      role:
+          Role that is assigned to ``members``. For example,
+          ``roles/viewer``, ``roles/editor``, or ``roles/owner``.
+      members:
+          Specifies the identities requesting access for a Cloud
+          Platform resource. ``members`` can have the following values:
+          -  ``allUsers``: A special identifier that represents anyone
+          who is on    the internet; with or without a Google account.
+          -  ``allAuthenticatedUsers``: A special identifier that
+          represents    anyone who is authenticated with a Google
+          account or a service    account.  -  ``user:{emailid}``: An
+          email address that represents a specific    Google account.
+          For example, ``alice@gmail.com`` .  -
+          ``serviceAccount:{emailid}``: An email address that represents
+          a    service account. For example,    ``my-other-
+          app@appspot.gserviceaccount.com``.  -  ``group:{emailid}``: An
+          email address that represents a Google group.    For example,
+          ``admins@example.com``.  -  ``domain:{domain}``: The G Suite
+          domain (primary) that represents all    the users of that
+          domain. For example, ``google.com`` or    ``example.com``.
+      condition:
+          The condition that is associated with this binding. NOTE: An
+          unsatisfied condition will not allow user access via current
+          binding. Different bindings, including their conditions, are
+          examined independently.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.Binding)
   })
 _sym_db.RegisterMessage(Binding)
@@ -347,6 +447,16 @@ _sym_db.RegisterMessage(Binding)
 PolicyDelta = _reflection.GeneratedProtocolMessageType('PolicyDelta', (_message.Message,), {
   'DESCRIPTOR' : _POLICYDELTA,
   '__module__' : 'google.iam.v1.policy_pb2'
+  ,
+  __doc__ = """The difference delta between two policies.
+  
+  
+  Attributes:
+      binding_deltas:
+          The delta for Bindings between two policies.
+      audit_config_deltas:
+          The delta for AuditConfigs between two policies.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.PolicyDelta)
   })
 _sym_db.RegisterMessage(PolicyDelta)
@@ -354,6 +464,25 @@ _sym_db.RegisterMessage(PolicyDelta)
 BindingDelta = _reflection.GeneratedProtocolMessageType('BindingDelta', (_message.Message,), {
   'DESCRIPTOR' : _BINDINGDELTA,
   '__module__' : 'google.iam.v1.policy_pb2'
+  ,
+  __doc__ = """One delta entry for Binding. Each individual change (only one member in
+  each entry) to a binding will be a separate entry.
+  
+  
+  Attributes:
+      action:
+          The action that was performed on a Binding. Required
+      role:
+          Role that is assigned to ``members``. For example,
+          ``roles/viewer``, ``roles/editor``, or ``roles/owner``.
+          Required
+      member:
+          A single identity requesting access for a Cloud Platform
+          resource. Follows the same format of Binding.members. Required
+      condition:
+          Unimplemented. The condition that is associated with this
+          binding. This field is logged only for Cloud Audit Logging.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.BindingDelta)
   })
 _sym_db.RegisterMessage(BindingDelta)
@@ -361,6 +490,29 @@ _sym_db.RegisterMessage(BindingDelta)
 AuditConfigDelta = _reflection.GeneratedProtocolMessageType('AuditConfigDelta', (_message.Message,), {
   'DESCRIPTOR' : _AUDITCONFIGDELTA,
   '__module__' : 'google.iam.v1.policy_pb2'
+  ,
+  __doc__ = """One delta entry for AuditConfig. Each individual change (only one
+  exempted_member in each entry) to a AuditConfig will be a separate
+  entry.
+  
+  
+  Attributes:
+      action:
+          The action that was performed on an audit configuration in a
+          policy. Required
+      service:
+          Specifies a service that was configured for Cloud Audit
+          Logging. For example, ``storage.googleapis.com``,
+          ``cloudsql.googleapis.com``. ``allServices`` is a special
+          value that covers all services. Required
+      exempted_member:
+          A single identity that is exempted from “data access” audit
+          logging for the ``service`` specified above. Follows the same
+          format of Binding.members.
+      log_type:
+          Specifies the log_type that was be enabled. ADMIN_ACTIVITY is
+          always enabled, and cannot be configured. Required
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.AuditConfigDelta)
   })
 _sym_db.RegisterMessage(AuditConfigDelta)

@@ -64,6 +64,16 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 GetPolicyOptions = _reflection.GeneratedProtocolMessageType('GetPolicyOptions', (_message.Message,), {
   'DESCRIPTOR' : _GETPOLICYOPTIONS,
   '__module__' : 'google.iam.v1.options_pb2'
+  ,
+  __doc__ = """Encapsulates settings provided to GetIamPolicy.
+  
+  
+  Attributes:
+      requested_policy_version:
+          Optional. The policy format version to be returned. Acceptable
+          values are 0 and 1. If the value is 0, or the field is
+          omitted, policy format version 1 will be returned.
+  """,
   # @@protoc_insertion_point(class_scope:google.iam.v1.GetPolicyOptions)
   })
 _sym_db.RegisterMessage(GetPolicyOptions)
