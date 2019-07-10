@@ -19,13 +19,9 @@ import os
 import nox
 
 
-@nox.session
-@nox.parametrize('python_version', ['2.7', '3.4', '3.5', '3.6'])
-def unit_tests(session, python_version):
+@nox.session(python=['3.5', '3.6', '3.7'])
+def unit(session):
     """Run the unit test suite."""
-
-    # Run unit tests against all supported versions of Python.
-    session.interpreter = 'python{}'.format(python_version)
 
     # Install all test dependencies, then install all GAPIC packages in-place.
     session.install('mock', 'pytest', 'pytest-cov')
