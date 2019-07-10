@@ -66,7 +66,7 @@ AuditData = _reflection.GeneratedProtocolMessageType('AuditData', (_message.Mess
   DESCRIPTOR = _AUDITDATA,
   __module__ = 'google.iam.v1.logging.audit_data_pb2'
   ,
-  '__doc__' : """Audit log information specific to Cloud IAM. This message is serialized
+  __doc__ = """Audit log information specific to Cloud IAM. This message is serialized
   as an ``Any`` type in the ``ServiceData`` message of an ``AuditLog``
   message.
   
