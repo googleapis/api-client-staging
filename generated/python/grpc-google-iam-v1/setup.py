@@ -16,7 +16,7 @@ install_requires = [
 
 setuptools.setup(
   name='grpc-google-iam-v1',
-  version='0.12.0',
+  version='0.12.1',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[

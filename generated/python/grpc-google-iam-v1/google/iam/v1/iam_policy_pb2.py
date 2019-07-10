@@ -187,7 +187,7 @@ SetIamPolicyRequest = _reflection.GeneratedProtocolMessageType('SetIamPolicyRequ
   'DESCRIPTOR' : _SETIAMPOLICYREQUEST,
   '__module__' : 'google.iam.v1.iam_policy_pb2'
   ,
-  __doc__ = """Request message for ``SetIamPolicy`` method.
+  '__doc__' : """Request message for ``SetIamPolicy`` method.
   
   
   Attributes:
@@ -209,7 +209,7 @@ GetIamPolicyRequest = _reflection.GeneratedProtocolMessageType('GetIamPolicyRequ
   'DESCRIPTOR' : _GETIAMPOLICYREQUEST,
   '__module__' : 'google.iam.v1.iam_policy_pb2'
   ,
-  __doc__ = """Request message for ``GetIamPolicy`` method.
+  '__doc__' : """Request message for ``GetIamPolicy`` method.
   
   
   Attributes:
@@ -229,7 +229,7 @@ TestIamPermissionsRequest = _reflection.GeneratedProtocolMessageType('TestIamPer
   'DESCRIPTOR' : _TESTIAMPERMISSIONSREQUEST,
   '__module__' : 'google.iam.v1.iam_policy_pb2'
   ,
-  __doc__ = """Request message for ``TestIamPermissions`` method.
+  '__doc__' : """Request message for ``TestIamPermissions`` method.
   
   
   Attributes:
@@ -251,7 +251,7 @@ TestIamPermissionsResponse = _reflection.GeneratedProtocolMessageType('TestIamPe
   'DESCRIPTOR' : _TESTIAMPERMISSIONSRESPONSE,
   '__module__' : 'google.iam.v1.iam_policy_pb2'
   ,
-  __doc__ = """Response message for ``TestIamPermissions`` method.
+  '__doc__' : """Response message for ``TestIamPermissions`` method.
   
   
   Attributes:
