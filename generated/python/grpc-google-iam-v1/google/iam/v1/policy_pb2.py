@@ -334,7 +334,7 @@ Policy = _reflection.GeneratedProtocolMessageType('Policy', (_message.Message,),
   'DESCRIPTOR' : _POLICY,
   '__module__' : 'google.iam.v1.policy_pb2'
   ,
-  __doc__ = """Defines an Identity and Access Management (IAM) policy. It is used to
+  '__doc__' : """Defines an Identity and Access Management (IAM) policy. It is used to
   specify access control policies for Cloud Platform resources.
   
   A ``Policy`` consists of a list of ``bindings``. A ``binding`` binds a
@@ -410,7 +410,7 @@ Binding = _reflection.GeneratedProtocolMessageType('Binding', (_message.Message,
   'DESCRIPTOR' : _BINDING,
   '__module__' : 'google.iam.v1.policy_pb2'
   ,
-  __doc__ = """Associates ``members`` with a ``role``.
+  '__doc__' : """Associates ``members`` with a ``role``.
   
   
   Attributes:
@@ -448,7 +448,7 @@ PolicyDelta = _reflection.GeneratedProtocolMessageType('PolicyDelta', (_message.
   'DESCRIPTOR' : _POLICYDELTA,
   '__module__' : 'google.iam.v1.policy_pb2'
   ,
-  __doc__ = """The difference delta between two policies.
+  '__doc__' : """The difference delta between two policies.
   
   
   Attributes:
@@ -465,7 +465,7 @@ BindingDelta = _reflection.GeneratedProtocolMessageType('BindingDelta', (_messag
   'DESCRIPTOR' : _BINDINGDELTA,
   '__module__' : 'google.iam.v1.policy_pb2'
   ,
-  __doc__ = """One delta entry for Binding. Each individual change (only one member in
+  '__doc__' : """One delta entry for Binding. Each individual change (only one member in
   each entry) to a binding will be a separate entry.
   
   
@@ -491,7 +491,7 @@ AuditConfigDelta = _reflection.GeneratedProtocolMessageType('AuditConfigDelta', 
   'DESCRIPTOR' : _AUDITCONFIGDELTA,
   '__module__' : 'google.iam.v1.policy_pb2'
   ,
-  __doc__ = """One delta entry for AuditConfig. Each individual change (only one
+  '__doc__' : """One delta entry for AuditConfig. Each individual change (only one
   exempted_member in each entry) to a AuditConfig will be a separate
   entry.
   

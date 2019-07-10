@@ -65,7 +65,7 @@ GetPolicyOptions = _reflection.GeneratedProtocolMessageType('GetPolicyOptions', 
   'DESCRIPTOR' : _GETPOLICYOPTIONS,
   '__module__' : 'google.iam.v1.options_pb2'
   ,
-  __doc__ = """Encapsulates settings provided to GetIamPolicy.
+  '__doc__' : """Encapsulates settings provided to GetIamPolicy.
   
   
   Attributes:
