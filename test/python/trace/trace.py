@@ -1,3 +1,4 @@
+from __future__ import print_function
 from google.cloud.gapic.trace.v1 import enums
 from google.cloud.gapic.trace.v1 import trace_service_api
 from google.devtools.cloudtrace.v1 import trace_pb2
@@ -28,23 +29,23 @@ span = trace_pb2.TraceSpan(span_id=span_id,kind=span_kind,name=SPAN_NAME,
 trace = trace_pb2.Trace(project_id=PROJECT_ID, trace_id=id, spans=[span])
 traces = trace_pb2.Traces(traces=[trace])
 
-print 'testing patch'
+print('testing patch')
 api.patch_traces(PROJECT_ID, traces)
-print 'patched'
+print('patched')
 
 # 1 second seems to be sufficient to avoid race condition
 time.sleep(1)
 
-print 'testing get'
+print('testing get')
 get_response = api.get_trace(PROJECT_ID, id)
-print 'got trace: {}'.format(get_response)
+print('got trace: {}'.format(get_response))
 
-print 'testing list'
+print('testing list')
 list_response = api.list_traces(PROJECT_ID)
-print 'listed traces:'
+print('listed traces:')
 i = 0
 for trace in list_response:
     if i > 10:
         break
     i += 1
-    print '> {}'.format(trace)
+    print('> {}'.format(trace))
