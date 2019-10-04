@@ -1,31 +1,17 @@
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     * Redistributions of source code must retain the above copyright
- * notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following disclaimer
- * in the documentation and/or other materials provided with the
- * distribution.
- *     * Neither the name of Google LLC nor the names of its
- * contributors may be used to endorse or promote products derived from
- * this software without specific prior written permission.
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.longrunning;
 
@@ -39,6 +25,7 @@ import com.google.api.gax.paging.AbstractPage;
 import com.google.api.gax.paging.AbstractPagedListResponse;
 import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.UnaryCallable;
+import com.google.common.util.concurrent.MoreExecutors;
 import com.google.longrunning.stub.OperationsStub;
 import com.google.longrunning.stub.OperationsStubSettings;
 import com.google.protobuf.Empty;
@@ -199,7 +186,7 @@ public class OperationsClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  private final Operation getOperation(GetOperationRequest request) {
+  public final Operation getOperation(GetOperationRequest request) {
     return getOperationCallable().call(request);
   }
 
@@ -231,8 +218,12 @@ public class OperationsClient implements BackgroundResource {
    * Lists operations that match the specified filter in the request. If the server doesn't support
    * this method, it returns `UNIMPLEMENTED`.
    *
-   * <p>NOTE: the `name` binding below allows API services to override the binding to use different
-   * resource name schemes, such as `users/&#42;/operations`.
+   * <p>NOTE: the `name` binding allows API services to override the binding to use different
+   * resource name schemes, such as `users/&#42;/operations`. To override the binding, API services
+   * can add a binding such as `"/v1/{name=users/&#42;}/operations"` to their service configuration.
+   * For backwards compatibility, the default name includes the operations collection id, however
+   * overriding users must ensure the name binding is the parent resource, without the operations
+   * collection id.
    *
    * <p>Sample code:
    *
@@ -246,7 +237,7 @@ public class OperationsClient implements BackgroundResource {
    * }
    * </code></pre>
    *
-   * @param name The name of the operation collection.
+   * @param name The name of the operation's parent resource.
    * @param filter The standard list filter.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
@@ -261,8 +252,12 @@ public class OperationsClient implements BackgroundResource {
    * Lists operations that match the specified filter in the request. If the server doesn't support
    * this method, it returns `UNIMPLEMENTED`.
    *
-   * <p>NOTE: the `name` binding below allows API services to override the binding to use different
-   * resource name schemes, such as `users/&#42;/operations`.
+   * <p>NOTE: the `name` binding allows API services to override the binding to use different
+   * resource name schemes, such as `users/&#42;/operations`. To override the binding, API services
+   * can add a binding such as `"/v1/{name=users/&#42;}/operations"` to their service configuration.
+   * For backwards compatibility, the default name includes the operations collection id, however
+   * overriding users must ensure the name binding is the parent resource, without the operations
+   * collection id.
    *
    * <p>Sample code:
    *
@@ -292,8 +287,12 @@ public class OperationsClient implements BackgroundResource {
    * Lists operations that match the specified filter in the request. If the server doesn't support
    * this method, it returns `UNIMPLEMENTED`.
    *
-   * <p>NOTE: the `name` binding below allows API services to override the binding to use different
-   * resource name schemes, such as `users/&#42;/operations`.
+   * <p>NOTE: the `name` binding allows API services to override the binding to use different
+   * resource name schemes, such as `users/&#42;/operations`. To override the binding, API services
+   * can add a binding such as `"/v1/{name=users/&#42;}/operations"` to their service configuration.
+   * For backwards compatibility, the default name includes the operations collection id, however
+   * overriding users must ensure the name binding is the parent resource, without the operations
+   * collection id.
    *
    * <p>Sample code:
    *
@@ -323,8 +322,12 @@ public class OperationsClient implements BackgroundResource {
    * Lists operations that match the specified filter in the request. If the server doesn't support
    * this method, it returns `UNIMPLEMENTED`.
    *
-   * <p>NOTE: the `name` binding below allows API services to override the binding to use different
-   * resource name schemes, such as `users/&#42;/operations`.
+   * <p>NOTE: the `name` binding allows API services to override the binding to use different
+   * resource name schemes, such as `users/&#42;/operations`. To override the binding, API services
+   * can add a binding such as `"/v1/{name=users/&#42;}/operations"` to their service configuration.
+   * For backwards compatibility, the default name includes the operations collection id, however
+   * overriding users must ensure the name binding is the parent resource, without the operations
+   * collection id.
    *
    * <p>Sample code:
    *
@@ -411,7 +414,7 @@ public class OperationsClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  private final void cancelOperation(CancelOperationRequest request) {
+  public final void cancelOperation(CancelOperationRequest request) {
     cancelOperationCallable().call(request);
   }
 
@@ -489,7 +492,7 @@ public class OperationsClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  private final void deleteOperation(DeleteOperationRequest request) {
+  public final void deleteOperation(DeleteOperationRequest request) {
     deleteOperationCallable().call(request);
   }
 
@@ -564,7 +567,8 @@ public class OperationsClient implements BackgroundResource {
             public ListOperationsPagedResponse apply(ListOperationsPage input) {
               return new ListOperationsPagedResponse(input);
             }
-          });
+          },
+          MoreExecutors.directExecutor());
     }
 
     private ListOperationsPagedResponse(ListOperationsPage page) {

@@ -27,7 +27,7 @@ public final class AuditDataProto {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n&google/iam/v1/logging/audit_data.proto" +
       "\022\025google.iam.v1.logging\032\034google/api/anno" +
       "tations.proto\032\032google/iam/v1/policy.prot" +
@@ -57,7 +57,7 @@ public final class AuditDataProto {
     internal_static_google_iam_v1_logging_AuditData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_iam_v1_logging_AuditData_descriptor,
-        new java.lang.String[] { "PolicyDelta", });
+        new String[] { "PolicyDelta", });
     com.google.api.AnnotationsProto.getDescriptor();
     com.google.iam.v1.PolicyProto.getDescriptor();
   }

@@ -26,7 +26,7 @@ private static final long serialVersionUID = 0L;
     member_ = "";
   }
 
-  @java.lang.Override
+  @Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
     return this.unknownFields;
@@ -37,7 +37,7 @@ private static final long serialVersionUID = 0L;
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
     int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -50,13 +50,6 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          default: {
-            if (!parseUnknownFieldProto3(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
           case 8: {
             int rawValue = input.readEnum();
 
@@ -64,15 +57,35 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+            String s = input.readStringRequireUtf8();
 
             role_ = s;
             break;
           }
           case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
+            String s = input.readStringRequireUtf8();
 
             member_ = s;
+            break;
+          }
+          case 34: {
+            com.google.type.Expr.Builder subBuilder = null;
+            if (condition_ != null) {
+              subBuilder = condition_.toBuilder();
+            }
+            condition_ = input.readMessage(com.google.type.Expr.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(condition_);
+              condition_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          default: {
+            if (!parseUnknownField(
+                input, unknownFields, extensionRegistry, tag)) {
+              done = true;
+            }
             break;
           }
         }
@@ -89,14 +102,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.google.iam.v1.PolicyProto.internal_static_google_iam_v1_BindingDelta_descriptor;
+    return PolicyProto.internal_static_google_iam_v1_BindingDelta_descriptor;
   }
 
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  @Override
+  protected FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.google.iam.v1.PolicyProto.internal_static_google_iam_v1_BindingDelta_fieldAccessorTable
+    return PolicyProto.internal_static_google_iam_v1_BindingDelta_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.google.iam.v1.BindingDelta.class, com.google.iam.v1.BindingDelta.Builder.class);
+            BindingDelta.class, Builder.class);
   }
 
   /**
@@ -163,7 +177,7 @@ private static final long serialVersionUID = 0L;
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -172,7 +186,7 @@ private static final long serialVersionUID = 0L;
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static Action valueOf(int value) {
       return forNumber(value);
     }
@@ -208,7 +222,7 @@ private static final long serialVersionUID = 0L;
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.google.iam.v1.BindingDelta.getDescriptor().getEnumTypes().get(0);
+      return BindingDelta.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final Action[] VALUES = values();
@@ -216,7 +230,7 @@ private static final long serialVersionUID = 0L;
     public static Action valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -255,13 +269,14 @@ private static final long serialVersionUID = 0L;
    *
    * <code>.google.iam.v1.BindingDelta.Action action = 1;</code>
    */
-  public com.google.iam.v1.BindingDelta.Action getAction() {
-    com.google.iam.v1.BindingDelta.Action result = com.google.iam.v1.BindingDelta.Action.valueOf(action_);
-    return result == null ? com.google.iam.v1.BindingDelta.Action.UNRECOGNIZED : result;
+  public Action getAction() {
+    @SuppressWarnings("deprecation")
+    Action result = Action.valueOf(action_);
+    return result == null ? Action.UNRECOGNIZED : result;
   }
 
   public static final int ROLE_FIELD_NUMBER = 2;
-  private volatile java.lang.Object role_;
+  private volatile Object role_;
   /**
    * <pre>
    * Role that is assigned to `members`.
@@ -271,14 +286,14 @@ private static final long serialVersionUID = 0L;
    *
    * <code>string role = 2;</code>
    */
-  public java.lang.String getRole() {
-    java.lang.Object ref = role_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  public String getRole() {
+    Object ref = role_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       role_ = s;
       return s;
     }
@@ -294,11 +309,11 @@ private static final long serialVersionUID = 0L;
    */
   public com.google.protobuf.ByteString
       getRoleBytes() {
-    java.lang.Object ref = role_;
-    if (ref instanceof java.lang.String) {
+    Object ref = role_;
+    if (ref instanceof String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
+              (String) ref);
       role_ = b;
       return b;
     } else {
@@ -307,7 +322,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int MEMBER_FIELD_NUMBER = 3;
-  private volatile java.lang.Object member_;
+  private volatile Object member_;
   /**
    * <pre>
    * A single identity requesting access for a Cloud Platform resource.
@@ -317,14 +332,14 @@ private static final long serialVersionUID = 0L;
    *
    * <code>string member = 3;</code>
    */
-  public java.lang.String getMember() {
-    java.lang.Object ref = member_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  public String getMember() {
+    Object ref = member_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       member_ = s;
       return s;
     }
@@ -340,11 +355,11 @@ private static final long serialVersionUID = 0L;
    */
   public com.google.protobuf.ByteString
       getMemberBytes() {
-    java.lang.Object ref = member_;
-    if (ref instanceof java.lang.String) {
+    Object ref = member_;
+    if (ref instanceof String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
+              (String) ref);
       member_ = b;
       return b;
     } else {
@@ -352,7 +367,41 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int CONDITION_FIELD_NUMBER = 4;
+  private com.google.type.Expr condition_;
+  /**
+   * <pre>
+   * The condition that is associated with this binding.
+   * </pre>
+   *
+   * <code>.google.type.Expr condition = 4;</code>
+   */
+  public boolean hasCondition() {
+    return condition_ != null;
+  }
+  /**
+   * <pre>
+   * The condition that is associated with this binding.
+   * </pre>
+   *
+   * <code>.google.type.Expr condition = 4;</code>
+   */
+  public com.google.type.Expr getCondition() {
+    return condition_ == null ? com.google.type.Expr.getDefaultInstance() : condition_;
+  }
+  /**
+   * <pre>
+   * The condition that is associated with this binding.
+   * </pre>
+   *
+   * <code>.google.type.Expr condition = 4;</code>
+   */
+  public com.google.type.ExprOrBuilder getConditionOrBuilder() {
+    return getCondition();
+  }
+
   private byte memoizedIsInitialized = -1;
+  @Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -362,9 +411,10 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
+  @Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (action_ != com.google.iam.v1.BindingDelta.Action.ACTION_UNSPECIFIED.getNumber()) {
+    if (action_ != Action.ACTION_UNSPECIFIED.getNumber()) {
       output.writeEnum(1, action_);
     }
     if (!getRoleBytes().isEmpty()) {
@@ -373,15 +423,19 @@ private static final long serialVersionUID = 0L;
     if (!getMemberBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, member_);
     }
+    if (condition_ != null) {
+      output.writeMessage(4, getCondition());
+    }
     unknownFields.writeTo(output);
   }
 
+  @Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
 
     size = 0;
-    if (action_ != com.google.iam.v1.BindingDelta.Action.ACTION_UNSPECIFIED.getNumber()) {
+    if (action_ != Action.ACTION_UNSPECIFIED.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, action_);
     }
@@ -391,32 +445,40 @@ private static final long serialVersionUID = 0L;
     if (!getMemberBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, member_);
     }
+    if (condition_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getCondition());
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
+  @Override
+  public boolean equals(final Object obj) {
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.google.iam.v1.BindingDelta)) {
+    if (!(obj instanceof BindingDelta)) {
       return super.equals(obj);
     }
-    com.google.iam.v1.BindingDelta other = (com.google.iam.v1.BindingDelta) obj;
+    BindingDelta other = (BindingDelta) obj;
 
-    boolean result = true;
-    result = result && action_ == other.action_;
-    result = result && getRole()
-        .equals(other.getRole());
-    result = result && getMember()
-        .equals(other.getMember());
-    result = result && unknownFields.equals(other.unknownFields);
-    return result;
+    if (action_ != other.action_) return false;
+    if (!getRole()
+        .equals(other.getRole())) return false;
+    if (!getMember()
+        .equals(other.getMember())) return false;
+    if (hasCondition() != other.hasCondition()) return false;
+    if (hasCondition()) {
+      if (!getCondition()
+          .equals(other.getCondition())) return false;
+    }
+    if (!unknownFields.equals(other.unknownFields)) return false;
+    return true;
   }
 
-  @java.lang.Override
+  @Override
   public int hashCode() {
     if (memoizedHashCode != 0) {
       return memoizedHashCode;
@@ -429,74 +491,78 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getRole().hashCode();
     hash = (37 * hash) + MEMBER_FIELD_NUMBER;
     hash = (53 * hash) + getMember().hashCode();
+    if (hasCondition()) {
+      hash = (37 * hash) + CONDITION_FIELD_NUMBER;
+      hash = (53 * hash) + getCondition().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.google.iam.v1.BindingDelta parseFrom(
+  public static BindingDelta parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(
+  public static BindingDelta parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(
+  public static BindingDelta parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(
+  public static BindingDelta parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(byte[] data)
+  public static BindingDelta parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(
+  public static BindingDelta parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(java.io.InputStream input)
+  public static BindingDelta parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(
+  public static BindingDelta parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.google.iam.v1.BindingDelta parseDelimitedFrom(java.io.InputStream input)
+  public static BindingDelta parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.google.iam.v1.BindingDelta parseDelimitedFrom(
+  public static BindingDelta parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(
+  public static BindingDelta parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.google.iam.v1.BindingDelta parseFrom(
+  public static BindingDelta parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -504,21 +570,23 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  @Override
   public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.google.iam.v1.BindingDelta prototype) {
+  public static Builder newBuilder(BindingDelta prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
+  @Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
         ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
+  @Override
   protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -536,14 +604,15 @@ private static final long serialVersionUID = 0L;
       com.google.iam.v1.BindingDeltaOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.google.iam.v1.PolicyProto.internal_static_google_iam_v1_BindingDelta_descriptor;
+      return PolicyProto.internal_static_google_iam_v1_BindingDelta_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.google.iam.v1.PolicyProto.internal_static_google_iam_v1_BindingDelta_fieldAccessorTable
+      return PolicyProto.internal_static_google_iam_v1_BindingDelta_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.google.iam.v1.BindingDelta.class, com.google.iam.v1.BindingDelta.Builder.class);
+              BindingDelta.class, Builder.class);
     }
 
     // Construct using com.google.iam.v1.BindingDelta.newBuilder()
@@ -552,7 +621,7 @@ private static final long serialVersionUID = 0L;
     }
 
     private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
@@ -561,6 +630,7 @@ private static final long serialVersionUID = 0L;
               .alwaysUseFieldBuilders) {
       }
     }
+    @Override
     public Builder clear() {
       super.clear();
       action_ = 0;
@@ -569,72 +639,94 @@ private static final long serialVersionUID = 0L;
 
       member_ = "";
 
+      if (conditionBuilder_ == null) {
+        condition_ = null;
+      } else {
+        condition_ = null;
+        conditionBuilder_ = null;
+      }
       return this;
     }
 
+    @Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.google.iam.v1.PolicyProto.internal_static_google_iam_v1_BindingDelta_descriptor;
+      return PolicyProto.internal_static_google_iam_v1_BindingDelta_descriptor;
     }
 
-    public com.google.iam.v1.BindingDelta getDefaultInstanceForType() {
-      return com.google.iam.v1.BindingDelta.getDefaultInstance();
+    @Override
+    public BindingDelta getDefaultInstanceForType() {
+      return BindingDelta.getDefaultInstance();
     }
 
-    public com.google.iam.v1.BindingDelta build() {
-      com.google.iam.v1.BindingDelta result = buildPartial();
+    @Override
+    public BindingDelta build() {
+      BindingDelta result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public com.google.iam.v1.BindingDelta buildPartial() {
-      com.google.iam.v1.BindingDelta result = new com.google.iam.v1.BindingDelta(this);
+    @Override
+    public BindingDelta buildPartial() {
+      BindingDelta result = new BindingDelta(this);
       result.action_ = action_;
       result.role_ = role_;
       result.member_ = member_;
+      if (conditionBuilder_ == null) {
+        result.condition_ = condition_;
+      } else {
+        result.condition_ = conditionBuilder_.build();
+      }
       onBuilt();
       return result;
     }
 
+    @Override
     public Builder clone() {
-      return (Builder) super.clone();
+      return super.clone();
     }
+    @Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return (Builder) super.setField(field, value);
+        Object value) {
+      return super.setField(field, value);
     }
+    @Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return (Builder) super.clearField(field);
+      return super.clearField(field);
     }
+    @Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return (Builder) super.clearOneof(oneof);
+      return super.clearOneof(oneof);
     }
+    @Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return (Builder) super.setRepeatedField(field, index, value);
+        int index, Object value) {
+      return super.setRepeatedField(field, index, value);
     }
+    @Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return (Builder) super.addRepeatedField(field, value);
+        Object value) {
+      return super.addRepeatedField(field, value);
     }
+    @Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.google.iam.v1.BindingDelta) {
-        return mergeFrom((com.google.iam.v1.BindingDelta)other);
+      if (other instanceof BindingDelta) {
+        return mergeFrom((BindingDelta)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.google.iam.v1.BindingDelta other) {
-      if (other == com.google.iam.v1.BindingDelta.getDefaultInstance()) return this;
+    public Builder mergeFrom(BindingDelta other) {
+      if (other == BindingDelta.getDefaultInstance()) return this;
       if (other.action_ != 0) {
         setActionValue(other.getActionValue());
       }
@@ -646,24 +738,29 @@ private static final long serialVersionUID = 0L;
         member_ = other.member_;
         onChanged();
       }
+      if (other.hasCondition()) {
+        mergeCondition(other.getCondition());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
+    @Override
     public final boolean isInitialized() {
       return true;
     }
 
+    @Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.google.iam.v1.BindingDelta parsedMessage = null;
+      BindingDelta parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.google.iam.v1.BindingDelta) e.getUnfinishedMessage();
+        parsedMessage = (BindingDelta) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -706,9 +803,10 @@ private static final long serialVersionUID = 0L;
      *
      * <code>.google.iam.v1.BindingDelta.Action action = 1;</code>
      */
-    public com.google.iam.v1.BindingDelta.Action getAction() {
-      com.google.iam.v1.BindingDelta.Action result = com.google.iam.v1.BindingDelta.Action.valueOf(action_);
-      return result == null ? com.google.iam.v1.BindingDelta.Action.UNRECOGNIZED : result;
+    public Action getAction() {
+      @SuppressWarnings("deprecation")
+      Action result = Action.valueOf(action_);
+      return result == null ? Action.UNRECOGNIZED : result;
     }
     /**
      * <pre>
@@ -718,7 +816,7 @@ private static final long serialVersionUID = 0L;
      *
      * <code>.google.iam.v1.BindingDelta.Action action = 1;</code>
      */
-    public Builder setAction(com.google.iam.v1.BindingDelta.Action value) {
+    public Builder setAction(Action value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -742,7 +840,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object role_ = "";
+    private Object role_ = "";
     /**
      * <pre>
      * Role that is assigned to `members`.
@@ -752,16 +850,16 @@ private static final long serialVersionUID = 0L;
      *
      * <code>string role = 2;</code>
      */
-    public java.lang.String getRole() {
-      java.lang.Object ref = role_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getRole() {
+      Object ref = role_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         role_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -775,11 +873,11 @@ private static final long serialVersionUID = 0L;
      */
     public com.google.protobuf.ByteString
         getRoleBytes() {
-      java.lang.Object ref = role_;
+      Object ref = role_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         role_ = b;
         return b;
       } else {
@@ -796,7 +894,7 @@ private static final long serialVersionUID = 0L;
      * <code>string role = 2;</code>
      */
     public Builder setRole(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -841,7 +939,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object member_ = "";
+    private Object member_ = "";
     /**
      * <pre>
      * A single identity requesting access for a Cloud Platform resource.
@@ -851,16 +949,16 @@ private static final long serialVersionUID = 0L;
      *
      * <code>string member = 3;</code>
      */
-    public java.lang.String getMember() {
-      java.lang.Object ref = member_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getMember() {
+      Object ref = member_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         member_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -874,11 +972,11 @@ private static final long serialVersionUID = 0L;
      */
     public com.google.protobuf.ByteString
         getMemberBytes() {
-      java.lang.Object ref = member_;
+      Object ref = member_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         member_ = b;
         return b;
       } else {
@@ -895,7 +993,7 @@ private static final long serialVersionUID = 0L;
      * <code>string member = 3;</code>
      */
     public Builder setMember(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -939,11 +1037,166 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
+    private com.google.type.Expr condition_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.type.Expr, com.google.type.Expr.Builder, com.google.type.ExprOrBuilder> conditionBuilder_;
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    public boolean hasCondition() {
+      return conditionBuilder_ != null || condition_ != null;
+    }
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    public com.google.type.Expr getCondition() {
+      if (conditionBuilder_ == null) {
+        return condition_ == null ? com.google.type.Expr.getDefaultInstance() : condition_;
+      } else {
+        return conditionBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    public Builder setCondition(com.google.type.Expr value) {
+      if (conditionBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        condition_ = value;
+        onChanged();
+      } else {
+        conditionBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    public Builder setCondition(
+        com.google.type.Expr.Builder builderForValue) {
+      if (conditionBuilder_ == null) {
+        condition_ = builderForValue.build();
+        onChanged();
+      } else {
+        conditionBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    public Builder mergeCondition(com.google.type.Expr value) {
+      if (conditionBuilder_ == null) {
+        if (condition_ != null) {
+          condition_ =
+            com.google.type.Expr.newBuilder(condition_).mergeFrom(value).buildPartial();
+        } else {
+          condition_ = value;
+        }
+        onChanged();
+      } else {
+        conditionBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    public Builder clearCondition() {
+      if (conditionBuilder_ == null) {
+        condition_ = null;
+        onChanged();
+      } else {
+        condition_ = null;
+        conditionBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    public com.google.type.Expr.Builder getConditionBuilder() {
+      
+      onChanged();
+      return getConditionFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    public com.google.type.ExprOrBuilder getConditionOrBuilder() {
+      if (conditionBuilder_ != null) {
+        return conditionBuilder_.getMessageOrBuilder();
+      } else {
+        return condition_ == null ?
+            com.google.type.Expr.getDefaultInstance() : condition_;
+      }
+    }
+    /**
+     * <pre>
+     * The condition that is associated with this binding.
+     * </pre>
+     *
+     * <code>.google.type.Expr condition = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.type.Expr, com.google.type.Expr.Builder, com.google.type.ExprOrBuilder> 
+        getConditionFieldBuilder() {
+      if (conditionBuilder_ == null) {
+        conditionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.type.Expr, com.google.type.Expr.Builder, com.google.type.ExprOrBuilder>(
+                getCondition(),
+                getParentForChildren(),
+                isClean());
+        condition_ = null;
+      }
+      return conditionBuilder_;
+    }
+    @Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFieldsProto3(unknownFields);
+      return super.setUnknownFields(unknownFields);
     }
 
+    @Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
@@ -954,17 +1207,18 @@ private static final long serialVersionUID = 0L;
   }
 
   // @@protoc_insertion_point(class_scope:google.iam.v1.BindingDelta)
-  private static final com.google.iam.v1.BindingDelta DEFAULT_INSTANCE;
+  private static final BindingDelta DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.google.iam.v1.BindingDelta();
+    DEFAULT_INSTANCE = new BindingDelta();
   }
 
-  public static com.google.iam.v1.BindingDelta getDefaultInstance() {
+  public static BindingDelta getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
   private static final com.google.protobuf.Parser<BindingDelta>
       PARSER = new com.google.protobuf.AbstractParser<BindingDelta>() {
+    @Override
     public BindingDelta parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -977,12 +1231,13 @@ private static final long serialVersionUID = 0L;
     return PARSER;
   }
 
-  @java.lang.Override
+  @Override
   public com.google.protobuf.Parser<BindingDelta> getParserForType() {
     return PARSER;
   }
 
-  public com.google.iam.v1.BindingDelta getDefaultInstanceForType() {
+  @Override
+  public BindingDelta getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
