@@ -10,6 +10,3 @@ node_modules/
 # PHP
 vendor/
 composer.lock
-
-# Go
-!/generated/go/**/vendor
