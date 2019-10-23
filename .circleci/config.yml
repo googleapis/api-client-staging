@@ -1,30 +1,6 @@
 ---
 version: 2.0
 jobs:
-  go17:
-    docker:
-      - image: golang:1.7
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests in Go 1.7
-          command: |
-            go get -t ./...
-            go test ./...
-    working_directory: /go/src/github.com/googleapis/api-client-staging
-
-  go18:
-    docker:
-      - image: golang:1.8
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests in Go 1.8
-          command: |
-            go get -t ./...
-            go test ./...
-    working_directory: /go/src/github.com/googleapis/api-client-staging
-
   node4:
     docker:
       - image: node:4
@@ -269,8 +245,6 @@ workflows:
   version: 2
   tests:
     jobs:
-      - go17
-      - go18
       - node4
       - node6
       - node7
@@ -286,8 +260,6 @@ workflows:
       - php71
       - sync_to_private:
           requires:
-            - go17
-            - go18
             - node4
             - node6
             - node7
