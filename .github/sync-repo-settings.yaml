@@ -1,0 +1,26 @@
+rebaseMergeAllowed: true
+squashMergeAllowed: true
+mergeCommitAllowed: false
+branchProtectionRules:
+- pattern: master
+  requiredStatusCheckContexts:
+    - 'ci/circleci: openjdk7'
+    - 'ci/circleci: php55'
+    - 'ci/circleci: php56'
+    - 'ci/circleci: php70'
+    - 'ci/circleci: php71'
+    - 'ci/circleci: node4'
+    - 'ci/circleci: node6'
+    - 'ci/circleci: node7'
+    - 'ci/circleci: node8'
+    - 'ci/circleci: openjdk8'
+    - 'ci/circleci: python35'
+    - 'ci/circleci: python36'
+    - 'ci/circleci: python37'
+    - 'cla/google'
+  requiredApprovingReviewCount: 1
+  requiresCodeOwnerReviews: true
+  requiresStrictStatusChecks: true
+permissionRules:
+  - team: actools
+    permission: admin
