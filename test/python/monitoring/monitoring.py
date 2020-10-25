@@ -1,4 +1,5 @@
 """System tests for monitoring."""
+from __future__ import print_function
 
 
 from google.cloud.gapic.monitoring.v3 import group_service_client
@@ -20,37 +21,37 @@ def testGroupCollection():
   group = group_pb2.Group(display_name='displayName', filter='resource.type = gce_instance')
   createdGroup = api.create_group(projectName, group)
 
-  print "New group created: \n%s\n" % createdGroup
+  print("New group created: \n%s\n" % createdGroup)
 
   groupName = createdGroup.name
   groupToUpdate = group_pb2.Group(name=groupName, display_name='displayName2', filter='resource.type = gce_instance')
   updatedGroup = api.update_group(groupToUpdate)
-  print "Group updated: \n%s\n" % updatedGroup
+  print("Group updated: \n%s\n" % updatedGroup)
 
   # group id is the last segment in the returned group name.
   groupId = updatedGroup.name[createdGroup.name.rfind('/')+1:]
   api = group_service_client.GroupServiceClient()
   name = api.group_path(PROJECT_ID, groupId)
   response = api.get_group(name)
-  print "Group fetched: \n%s\n" % response
+  print("Group fetched: \n%s\n" % response)
 
-  print "List groups:\n"
+  print("List groups:\n")
   for group in api.list_groups(name):
       # process element
       print(group)
 
-  print "List group members:\n"
+  print("List group members:\n")
   name = api.group_path(PROJECT_ID, groupId)
   for member in api.list_group_members(name=name, interval=common_pb2.TimeInterval(end_time=timestamp_pb2.Timestamp(seconds=1475262206))):
     print(member)
 
-  print "Delete groups:\n"
+  print("Delete groups:\n")
   name = api.group_path(PROJECT_ID, groupId)
   api.delete_group(name)
   try:
     response = api.get_group(name)
   except:
-    print "Expect error here since the group should have been deleted"
+    print("Expect error here since the group should have been deleted")
 
 
 def testMetricCollection():
@@ -60,20 +61,20 @@ def testMetricCollection():
 
   metric_descriptor = api_metric_pb2.MetricDescriptor(type=custom_metric_type, metric_kind=enums.MetricDescriptor.MetricKind.GAUGE, value_type=enums.MetricDescriptor.ValueType.BOOL)
   response = api.create_metric_descriptor(name, metric_descriptor)
-  print "Metric created: \n%s\n" % response
+  print("Metric created: \n%s\n" % response)
 
   name = api.metric_descriptor_path_path(PROJECT_ID, custom_metric_type)
   response = api.get_metric_descriptor(name)
-  print "Metric fetched: \n%s\n" % response
+  print("Metric fetched: \n%s\n" % response)
 
-  print "List metrics:"
+  print("List metrics:")
   name = api.project_path(PROJECT_ID)
   # Iterate over all results
   for metric in api.list_metric_descriptors(name):
     # process element
-    print metric
+    print(metric)
 
-  print "delete metric:"
+  print("delete metric:")
   name = api.metric_descriptor_path_path(PROJECT_ID, custom_metric_type)
   api.delete_metric_descriptor(name)
 
@@ -94,22 +95,22 @@ def testTimeseriesCollection():
   view = enums.ListTimeSeriesRequest.TimeSeriesView.FULL
   for element in api.list_time_series(name, filter_, interval, view):
       # process element
-      print element
+      print(element)
 
 
 def testMonitoredResourceCollection():
   api = metric_service_client.MetricServiceClient()
   name = api.project_path(PROJECT_ID)
 
-  print "List monitored reourses:"
+  print("List monitored reourses:")
   # Iterate over all results
   for element in api.list_monitored_resource_descriptors(name):
     # process element
-    print element
+    print(element)
 
   name = api.monitored_resource_descriptor_path(PROJECT_ID, 'uptime_url')
   response = api.get_monitored_resource_descriptor(name)
-  print "Get monitored resource\n%s" % response
+  print("Get monitored resource\n%s" % response)
 
 
 testGroupCollection()

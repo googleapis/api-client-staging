@@ -1,4 +1,5 @@
 """Functional test for Google Cloud Vision API."""
+from __future__ import print_function
 
 from google.cloud.gapic.vision.v1.image_annotator_client import ImageAnnotatorClient
 from google.cloud.grpc.vision.v1 import image_annotator_pb2
@@ -19,4 +20,4 @@ request = image_annotator_pb2.AnnotateImageRequest(image = image, features = fea
 requests = [request]
 response = api.batch_annotate_images(requests)
 
-print response.__str__
+print(response.__str__)
